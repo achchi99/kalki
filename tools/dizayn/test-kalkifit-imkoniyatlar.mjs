@@ -61,7 +61,7 @@ try {
   ok('har band bosilganda panel yopilib, o\'z funksiyasi ochiladi (' + keys.join(', ') + ', supp, afsona)');
   /* 5. halqa o'zgarmadi; Profil → Imkoniyatlar — panel bilan bitta ro'yxat; tanishtiruv Profil → Sozlamalar'da */
   const ring1 = await p.evaluate(() => { const r = document.getElementById('kcalBtn').getBoundingClientRect(); return [Math.round(r.width), Math.round(r.height)]; }); assert.deepEqual(ring1, ring0, 'halqa o\'lchami o\'zgarmadi');
-  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500); assert.deepEqual(await p.locator('.sl-feats .sl-feat').evaluateAll((l) => l.map((e) => e.dataset.fk).sort()), keys.concat(['supp', 'afsona']).sort(), 'Profil va panel — bitta ro\'yxat');
+  await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500); assert.deepEqual(await p.locator('.sl-feats .sl-feat').evaluateAll((l) => l.map((e) => e.dataset.fk).sort()), keys.concat(['supp', 'afsona', 'shtrix']).sort(), 'Profil va panel — bitta ro\'yxat');
   await p.click('[data-act=intro]'); await p.waitForTimeout(600); assert.equal(await p.evaluate(() => !document.getElementById('rzIntro').hidden), true, 'tanishtiruv ochildi (Profil → Sozlamalar)');
   assert.deepEqual(p.errs, []); await p.context().close(); ok('Profil → Imkoniyatlar — shu ro\'yxat; «Tanishtiruvni qayta ko\'rish» Profil → Sozlamalar\'da ishlaydi; halqa o\'zgarmadi');
   /* 6. iPhone veb: ovoz server orqali — javob kelmasdan ham ko'rinadi; server o'chirgan bo'lsa — qator yo'q */
@@ -69,7 +69,7 @@ try {
   assert.equal(await p.locator('#ftDr [data-fk=ovoz]').count(), 1, 'iPhone: ovoz javobdan oldin ham ko\'rinadi'); await p.waitForTimeout(1800); assert.equal(await p.locator('#ftDr [data-fk=ovoz]').count(), 1, 'server yoqilgan — qoladi'); assert.match(await p.locator('#ftDr [data-fk=ovoz] .ft-lim').innerText(), /Bugun yana 15 ta/);
   await p.click('#ftDr [data-fk=ovoz]'); await p.waitForTimeout(700); assert.equal(await p.evaluate(() => document.getElementById('rzSheet').getAttribute('data-kind')), 'add'); await p.context().close();
   p = await open(390, '/kalkifit', { ua: IPHONE, noWebSR: true, ovOff: true }); await p.waitForTimeout(300); await openDr(p); await p.click('[data-act=ftpath][data-p=yozish]'); await p.waitForTimeout(400);
-  assert.deepEqual(await p.evaluate(() => [...document.querySelectorAll('#ftDr .sl-feat')].map((e) => e.dataset.fk)), ['yozish', 'rasm', 'yorliq', 'menyu']); await p.context().close();
+  assert.deepEqual(await p.evaluate(() => [...document.querySelectorAll('#ftDr .sl-feat')].map((e) => e.dataset.fk)), ['yozish', 'rasm', 'yorliq', 'shtrix', 'menyu']); await p.context().close();
   ok('iPhone veb (Web Speech yo\'q): ovoz server orqali — doim ko\'rinadi, bosilsa ovoz oynasi; server ovozni o\'chirgan bo\'lsa — qator yo\'q');
   /* 7. tillar va 360 px × 115% */
   for (const [url, t1, t2] of [['/ru/kalkifit', 'Возможности', 'Записать еду'], ['/kalkifit?lang=cyr', 'Имкониятлар', 'Овқат ёзиш']]) { p = await open(390, url, { th: 'dark' }); assert.equal(await p.getAttribute('#ftBtn', 'aria-label'), t1); await openDr(p); const tx = await p.locator('#ftDr').innerText(); assert.ok(tx.includes(t1) && tx.toLowerCase().includes(t2.toLowerCase()), url + ': ' + tx.slice(0, 80)); assert.deepEqual(p.errs, []); await p.context().close(); }

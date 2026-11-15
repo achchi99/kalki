@@ -35,7 +35,7 @@ const units = new Set(A.flatMap((f) => f.u.map((u) => u[0]))); for (const u of [
 const app = fs.readFileSync(path.join(ROOT, 'assets/kalkifit-app.js'), 'utf8'); for (const u of ['shisha05', 'shisha1', 'shisha15', 'banka', 'shar', 'paket', 'plitka']) assert.ok(app.includes(u + ": '"), 'birlik nomi ' + u);
 log('Nomlar (lotin + RU; ЎЗ — translit), RU nomda o\'zbek harfi yo\'q, sinonimlar, porsiya (dona/stakan/shisha 0,5/1/1,5 l/banka/shar + 100 g); «halol»/cho\'chqa matni yo\'q');
 /* 4. tuzatilgan nomlar */
-assert.equal(by.qurt.r, 'Курут'); assert.ok(by.qurt.a.includes('курт'), 'курт — sinonim'); assert.equal(by.qovurdoq.r, 'Ковурдак (жаркое)'); assert.match(by['tandir-gosht'].r, /^Тандыр-гушт/); assert.equal(by.navvot.n, 'Novvot'); assert.match(by.jiz.r, /^Джиз/);
+assert.equal(by.qurt.r, 'Курт'); assert.ok(by.qurt.a.includes('курт'), 'курт — sinonim'); assert.equal(by.qovurdoq.r, 'Ковурдак (жаркое)'); assert.match(by['tandir-gosht'].r, /^Тандыр-гушт/); assert.equal(by.navvot.n, 'Novvot'); assert.match(by.jiz.r, /^Джиз/);
 const qy = A.find((f) => f.i === 'qoymoq'); if (qy) assert.doesNotMatch(qy.r, /[ўқ]/);
 log('Tuzatilgan nomlar: Qurt → «Курут» (курт — sinonim), Qovurdoq → «Ковурдак», Tandir go\'sht → «Тандыр-гушт», Navvot → «Novvot», Jiz → «Джиз», Qo\'ymoq RU nomida kirill-o\'zbek harfi yo\'q');
 /* 5. qidiruv (uch til) */

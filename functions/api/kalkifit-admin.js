@@ -25,7 +25,7 @@ export async function onRequest({ request, env }) {
     const hl = url.searchParams.get('yorliq'), q = 'SELECT t.*, (SELECT COUNT(*) FROM yorliq_taklif x WHERE x.kalit = t.kalit) AS nom_son FROM yorliq_taklif t';
     const r = hl === 'hammasi' ? await db.prepare(q + ' ORDER BY t.jami DESC, t.oxirgi DESC LIMIT 500').all() : (YHOLAT.includes(hl) ? await db.prepare(q + ' WHERE t.holat = ? ORDER BY t.jami DESC, t.oxirgi DESC LIMIT 500').bind(hl).all() : null);
     if (!r) return fail(400);
-    return json(200, { yorliqlar: (r.results || []).map((x) => { const f = asFood(x); return { h: x.h, nom: x.nom, til: x.til, kcal: f.k, o: f.p, y: f.f, u: f.c, g: x.g, birlik: x.birlik, jami: x.jami, rasm: x.rasm, nom_son: x.nom_son, holat: x.holat, kat: x.kat, nom_uz: x.nom_uz, nom_ru: x.nom_ru, birinchi: x.birinchi, oxirgi: x.oxirgi }; }) });
+    return json(200, { yorliqlar: (r.results || []).map((x) => { const f = asFood(x); return { h: x.h, nom: x.nom, til: x.til, kcal: f.k, o: f.p, y: f.f, u: f.c, g: x.g, birlik: x.birlik, jami: x.jami, rasm: x.rasm, kod: x.kod || '', nom_son: x.nom_son, holat: x.holat, kat: x.kat, nom_uz: x.nom_uz, nom_ru: x.nom_ru, birinchi: x.birinchi, oxirgi: x.oxirgi }; }) });
   }
   if (request.method === 'GET' && url.searchParams.get('xato')) {          // v78: «Xato topdingizmi?» xabarlari (xato_xabar)
     const hl = url.searchParams.get('xato'), q = 'SELECT * FROM xato_xabar';
@@ -61,6 +61,7 @@ export async function onRequest({ request, env }) {
       const kat = KAT.includes(b.kat) ? b.kat : 'x', nu = String(b.nom_uz || y.nom).replace(/[<>]/g, '').trim().slice(0, 60), nr = String(b.nom_ru || '').replace(/[<>]/g, '').trim().slice(0, 60);
       if (nu.length < 2) return fail(400);
       await db.prepare("UPDATE yorliq_taklif SET holat = 'qoshildi', kat = ?, nom_uz = ?, nom_ru = ? WHERE h = ?").bind(kat, nu, nr || null, b.h).run();
+      if (y.kod) { try { const f = asFood(y), j = y.jami || 1, r1 = (x) => Math.round(x * 10) / 10; await db.prepare("INSERT OR REPLACE INTO shtrix_mahsulot (kod, nom, brend, kcal, oqsil, yog, uglevod, qadoq, porsiya, birlik, manba, tasdiqlangan, yaratildi, yangilandi) VALUES (?, ?, '', ?, ?, ?, ?, ?, 0, ?, 'yorliq', 1, ?, ?)").bind(y.kod, nu, y.kcal, r1(y.o_sum / j), r1(y.y_sum / j), r1(y.u_sum / j), y.g || 0, y.birlik === 'ml' ? 'ml' : 'g', new Date().toISOString().slice(0, 10), new Date().toISOString().slice(0, 10)).run(); } catch (e) { /* shtrix jadvali yo'q */ } }          // v79: shtrix-kodli taklif — tasdiqlangach hamma uchun skanerda
     } else return fail(400);
     return json(200, { ok: true });
   }

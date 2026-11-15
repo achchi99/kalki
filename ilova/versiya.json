@@ -1,13 +1,13 @@
 {
-  "version": "1.0.8",
-  "versionCode": 10,
-  "apk": "/ilova/kalkifit-1.0.8.apk",
-  "sha256": "daf2ec92ecaf6dd5638650ba04c9c9f4c27ae7772271ee91a105ef7dad739624",
-  "size": 9339195,
+  "version": "1.0.9",
+  "versionCode": 11,
+  "apk": "/ilova/kalkifit-1.0.9.apk",
+  "sha256": "fb5e4ed7310c919143b3e0c96d5b4d1181ef6cb75ec30e7d888291667d8086f1",
+  "size": 9339267,
   "minAndroid": "8.0",
-  "date": "2026-11-02",
+  "date": "2026-11-15",
   "notes": {
-    "uz": "Ma'lumot xavfsizligi: ilovani qayta o'rnatganda ma'lumot (hisobga kirgan bo'lsangiz) qaytadi va eski interfeys ochilmaydi.",
-    "ru": "Безопасность данных: при переустановке данные (если вы вошли в аккаунт) возвращаются, а старый интерфейс не открывается."
+    "uz": "Shtrix-kod skaneri: kamera faqat «Shtrix-kod» ochilganda so'raladi.",
+    "ru": "Сканер штрихкода: доступ к камере запрашивается только при открытии «Штрихкода»."
   }
 }
