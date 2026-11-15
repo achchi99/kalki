@@ -1975,9 +1975,9 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sl-tzp{margin:0 0 8px}
 .rz textarea.sl-xt{width:100%;min-height:76px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:10px 14px;font:inherit;resize:none;margin-bottom:4px}
 /* v79: shtrix-kod skaneri */
-.rz .sc-box{position:relative;border-radius:20px;overflow:hidden;background:#0d0f12;aspect-ratio:4/3;margin:4px 0 8px}
+.rz .sc-box{position:relative;border-radius:20px;overflow:hidden;background:hsl(0 0% 5%);aspect-ratio:4/3;margin:4px 0 8px}
 .rz .sc-box video{width:100%;height:100%;object-fit:cover;display:block}
-.rz .sc-fr{position:absolute;left:12%;right:12%;top:26%;bottom:26%;border:3px solid var(--acc2);border-radius:14px;box-shadow:0 0 0 999px rgba(0,0,0,.38);pointer-events:none}
+.rz .sc-fr{position:absolute;left:12%;right:12%;top:26%;bottom:26%;border:3px solid var(--acc2);border-radius:14px;box-shadow:0 0 0 999px hsl(0 0% 0% / .38);pointer-events:none}
 .rz .sc-fr b{position:absolute;left:8%;right:8%;top:50%;height:2px;background:var(--acc2);opacity:.9;animation:scLine 1.8s ease-in-out infinite alternate}
 @keyframes scLine{from{transform:translateY(-34px)}to{transform:translateY(34px)}}
 @media (prefers-reduced-motion:reduce){.rz .sc-fr b{animation:none}}
@@ -1990,3 +1990,4 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sc-nf~.rz-btn{margin-top:8px}
 .rz .sl-off{flex-basis:100%;text-align:center;font-size:var(--t-xs);color:var(--mut)}.rz .sl-off a{color:var(--acc2);font-weight:600;text-decoration:underline}
 .rz .sc-man input::placeholder{letter-spacing:0;font-weight:500}
+.rz .kq-bcb{background:var(--accsoft);color:var(--acc2)}
