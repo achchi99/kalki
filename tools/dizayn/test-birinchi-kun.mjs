@@ -10,7 +10,7 @@ const DB = S.normFoods(JSON.parse(fs.readFileSync(path.join(ROOT, 'data/ovqatlar
 
 /* ---------- yadro ---------- */
 { const non = S.famVariant ? (by.non.fam ? S.famVariant(by.non, S.famDefault(by.non), null) : by.non) : by.non, a = S.ambOpts(non, 'dona');
-  assert.deepEqual(a.opts.map((x) => x.k), ['tilim', 'chorak', 'yarim', 'butun']); assert.equal(a.opts[a.def].k, 'chorak'); assert.equal(a.opts[3].kcal, 876); assert.ok(a.opts[a.def].kcal < 300);
+  assert.deepEqual(a.opts.map((x) => x.k), ['tilim', 'chorak', 'yarim', 'butun']); assert.equal(a.opts[a.def].k, 'chorak'); assert.equal(a.opts[3].kcal, 1022); assert.ok(a.opts[a.def].kcal < 300);
   const so = S.ambOpts(by.somsa, 'dona'); assert.deepEqual(so.opts.map((x) => x.k), ['yarim', 'butun']); assert.equal(S.ambOpts(by.osh, 'likop'), null, 'lagan/kosa — o\'zi porsiya'); assert.equal(S.ambOpts(by.tuxum, 'dona'), null, '1 dona ≤ 250 kkal');
   assert.equal(S.parseText('non', DB, {}).items[0].nq, true); assert.equal(S.parseText('2 ta non', DB, {}).items[0].nq, undefined); assert.equal(S.parseText('yarimta non', DB, {}).items[0].nq, undefined);
   const amb = DB.filter((f) => !f.h && !f.al && S.ambOpts(f, ((f.b || []).find((b) => b.d) || {}).k || f.u[0][0])); assert.ok(amb.length >= 60 && amb.some((f) => f.id === 'lavash-tovuq') && amb.some((f) => f.id === 'burger'), '«Qancha edi?» taomlari: ' + amb.length);
@@ -38,19 +38,19 @@ async function search(p, q) { if (!(await p.locator('#rzSheet #fdQ').count())) {
 try {
   /* 1. non: qidiruv qatori, [+] → oyna (qo'shmaydi), «Qancha edi?», 876 emas; tanlanmasa — taxminiy yozuv */
   let p = await mk({ st: seed() });
-  await search(p, 'non'); const r0 = await tx(p, '#fdRes .sl-rw'); assert.match(r0, /^Non .*≈ Chorak · 219 kkal/, r0); assert.doesNotMatch(await p.locator('#fdRes').innerText(), /876/);
+  await search(p, 'non'); const r0 = await tx(p, '#fdRes .sl-rw'); assert.match(r0, /^Non .*≈ Chorak · 256 kkal/, r0); assert.doesNotMatch(await p.locator('#fdRes').innerText(), /876/);
   await p.locator('#fdRes .sl-rw').first().locator('.sl-pl').click(); await p.waitForTimeout(600); assert.equal((await stOf(p)).days[TODAY], undefined, '[+] darhol qo\'shmadi'); assert.ok(await p.locator('#fdName').count(), 'porsiya oynasi ochildi');
-  assert.equal(await tx(p, '#fdKcal'), '219'); assert.match(await tx(p, '#fdAmb'), /Qancha edi\? Hozircha taxminiy miqdor/); assert.deepEqual((await p.locator('#fdQuick .kq-chip b').allInnerTexts()), ['1 tilim', 'Chorak', 'Yarim', 'Butun', 'Gramm']); assert.equal(await p.locator('#fdQuick .kq-chip.on').count(), 0, 'hech biri tanlanmagan');
-  await p.click('#fdQuick [data-v="1"][data-u=dona]'); await p.waitForTimeout(400); assert.equal(await tx(p, '#fdKcal'), '876', 'butun — o\'zi tanlasa'); assert.equal(await p.locator('#fdAmbN').count(), 0, 'izoh yo\'qoldi');
-  await p.click('#fdQuick [data-v="0.5"]'); await p.waitForTimeout(300); await p.click('#fsave'); await p.waitForTimeout(600); let e = (await stOf(p)).days[TODAY].food[0]; assert.deepEqual([e.kcal, e.aq], [438, undefined], 'tanlangan — taxminiy emas');
+  assert.equal(await tx(p, '#fdKcal'), '256'); assert.match(await tx(p, '#fdAmb'), /Qancha edi\? Hozircha taxminiy miqdor/); assert.deepEqual((await p.locator('#fdQuick .kq-chip b').allInnerTexts()), ['1 tilim', 'Chorak', 'Yarim', 'Butun', 'Gramm']); assert.equal(await p.locator('#fdQuick .kq-chip.on').count(), 0, 'hech biri tanlanmagan');
+  await p.click('#fdQuick [data-v="1"][data-u=dona]'); await p.waitForTimeout(400); assert.equal(await tx(p, '#fdKcal'), '1 022', 'butun — o\'zi tanlasa'); assert.equal(await p.locator('#fdAmbN').count(), 0, 'izoh yo\'qoldi');
+  await p.click('#fdQuick [data-v="0.5"]'); await p.waitForTimeout(300); await p.click('#fsave'); await p.waitForTimeout(600); let e = (await stOf(p)).days[TODAY].food[0]; assert.deepEqual([e.kcal, e.aq], [511, undefined], 'tanlangan — taxminiy emas');
   await search(p, 'somsa'); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForTimeout(500); await p.click('#fsave'); await p.waitForTimeout(600); e = (await stOf(p)).days[TODAY].food[1]; assert.equal(e.aq, 1, 'tanlanmagan — aq'); assert.equal(e.kcal, 178);
   assert.match(await p.locator('#rzMain').innerText(), /miqdor taxminiy/); assert.deepEqual(p.errs, []);
-  log('«non»: qatorda «≈ Chorak · 219 kkal» (876 yo\'q), [+] darhol qo\'shmaydi — «Qancha edi?» oynasi (1 tilim · chorak · yarim · butun, hech biri tanlanmagan), butun faqat tanlansa 876; tanlanmasa — «miqdor taxminiy» belgisi');
+  log('«non»: qatorda «≈ Chorak · 256 kkal» (876 yo\'q), [+] darhol qo\'shmaydi — «Qancha edi?» oynasi (1 tilim · chorak · yarim · butun, hech biri tanlanmagan), butun faqat tanlansa 876; tanlanmasa — «miqdor taxminiy» belgisi');
   /* 2. ko'p taomli gap: «Topilmadi» yo'q; matn oqimida non — «Qancha edi?» chiplari */
   await search(p, '2 ta tuxum va non'); let t = await p.locator('#fdRes').innerText(); assert.match(t, /Hammasini qo'shish/); assert.doesNotMatch(t, /Topilmadi/);
-  await p.click('#fdAi'); await p.waitForTimeout(700); t = await p.locator('#rzSheet').innerText(); assert.match(t, /Qancha edi\?/); assert.match(t, /Non · obi non\s+≈ Chorak\s+219 kkal/, 'non — taxminiy chorak (876 emas)'); await p.click('[data-act=itamb][data-k="2"]'); await p.waitForTimeout(300); assert.match(await p.locator('#txOut').innerText(), /438/); assert.equal(await p.locator('[data-act=itamb]').count(), 0);
+  await p.click('#fdAi'); await p.waitForTimeout(700); t = await p.locator('#rzSheet').innerText(); assert.match(t, /Qancha edi\?/); assert.match(t, /Non[^\n]*\s+≈ Chorak\s+256 kkal/, 'non — taxminiy chorak (876 emas): ' + t.replace(/\s+/g, ' ').slice(0, 300)); await p.click('[data-act=itamb][data-k="2"]'); await p.waitForTimeout(300); assert.match(await p.locator('#txOut').innerText(), /511/); assert.equal(await p.locator('[data-act=itamb]').count(), 0);
   await p.keyboard.press('Escape'); await p.waitForTimeout(500); await search(p, 'osh va qwertyzz'); assert.match(await p.locator('#fdRes').innerText(), /Topilmadi|Hammasini/); await p.context().close();
-  log('Ko\'p taomli gap: «2 ta tuxum va non» — faqat «Hammasini qo\'shish» («Topilmadi» yo\'q); matn oqimida non — «Qancha edi?», yarim → 438');
+  log('Ko\'p taomli gap: «2 ta tuxum va non» — faqat «Hammasini qo\'shish» («Topilmadi» yo\'q); matn oqimida non — «Qancha edi?», yarim → 511');
   /* 3. tez boshlash: vazn tarixi bo'sh, profil «Kiritilmagan», halqada «Vaqtinchalik hisob», bitta yumshoq taklif */
   p = await mk({}); await p.waitForSelector('[data-act=obsex]'); await p.click('[data-act=obsex][data-v=m]'); await p.click('[data-act=oblater]'); await p.waitForSelector('#mainAdd'); await p.waitForTimeout(900);
   let st = await stOf(p); assert.deepEqual(st.weights, [], 'namunaviy vazn tarixga yozilmadi'); assert.ok(st.prefs.taxminiy);

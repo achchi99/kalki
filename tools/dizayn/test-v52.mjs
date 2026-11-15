@@ -32,7 +32,7 @@ try {
   /* 1. ovoz: natija ekrani (aytilgan gap, matn maydoni yo'q, «2 tilim non» — oq non tilimi) → tahrir → o'chirish → qo'shish */
   let p = await open(seed({ days: 1 })); await p.click('#mainAdd'); await p.waitForTimeout(400); await p.evaluate(() => window.__kalkifit.voiceTest('bir kosa osh, ikki tilim non va choy')); await p.waitForTimeout(700);
   const sh = await p.locator('#rzSheet').innerText(); assert.match(sh, /^Ovoz bilan qo'shish/); assert.match(sh, /Siz aytdingiz:\s*«?bir kosa osh, ikki tilim non va choy»?/); assert.equal(await p.locator('#rzSheet #txQ').count(), 0, 'matn maydoni yo\'q');
-  assert.equal(await p.locator('#rzSheet .rz-btn.primary').count(), 1, 'asosiy tugma bitta'); const rows = await p.locator('#rzSheet .sl-ti').allInnerTexts(); assert.equal(rows.length, 3); assert.match(rows[1].replace(/\s+/g, ' '), /Non · buxanka \(oq non\) 2 tilim 159 kkal/, '2 tilim non — 2 lepyoshka emas: ' + rows[1]);
+  assert.equal(await p.locator('#rzSheet .rz-btn.primary').count(), 1, 'asosiy tugma bitta'); const rows = await p.locator('#rzSheet .sl-ti').allInnerTexts(); assert.equal(rows.length, 3); assert.match(rows[1].replace(/\s+/g, ' '), /Non \(obi non\) · buxanka \(oq non\) 2 tilim 159 kkal/, '2 tilim non — 2 lepyoshka emas: ' + rows[1]);
   assert.deepEqual(await ev(p, 'ai_natija'), ['ovoz.ochildi']);
   await p.click('#rzSheet [data-act=itedit][data-i="0"]'); await p.waitForTimeout(400); await p.click('#rzSheet [data-act=pwdone] >> nth=0'); await p.waitForTimeout(400); await p.click('#rzSheet [data-act=txdel][data-i="2"]'); await p.waitForTimeout(300);
   await p.click('#rzSheet [data-act=txsave]'); await p.waitForTimeout(600); assert.equal((await stOf(p)).days[T0].food.length, 2 + 2);
