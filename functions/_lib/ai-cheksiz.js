@@ -7,6 +7,11 @@ const tashkentDay = () => new Date(Date.now() + 5 * 3600 * 1000).toISOString().s
 async function sha(s) { const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)); return Array.from(new Uint8Array(d)).map((b) => b.toString(16).padStart(2, '0')).join(''); }
 function cookieOf(request) { const m = /(?:^|;\s*)(?:__Host-)?kalki_s=([A-Za-z0-9_-]{43})(?:;|$)/.exec(request.headers.get('Cookie') || ''); return m ? m[1] : null; }
 const SES_SLIDING = 30 * 86400000;
+/* v79: sessiya → GOOGLE bilan kirgan akkaunt id (usul 'google' | 'ikkalasi'); mehmon, faqat email-kod bilan kirgan yoki xato — null. Tekshiruv FAQAT serverda (HttpOnly sessiya cookie). */
+export async function sessiyaGoogle(env, request) {
+  const db = env && env.KALKIFIT_DB, tok = cookieOf(request); if (!db || !tok) return null;
+  try { const now = Date.now(), r = await db.prepare("SELECT a.id AS id FROM sessiya s JOIN akkaunt a ON a.id = s.akkaunt_id WHERE s.id = ? AND s.muddat_abs > ? AND s.oxirgi > ? AND a.usul IN ('google', 'ikkalasi')").bind(await sha(tok), now, now - SES_SLIDING).first(); return r ? r.id : null; } catch (e) { return null; }
+}
 /* → { id, c } (sessiyasi amalda akkaunt; c — «Cheksiz AI» belgisi 0/1) | null (mehmon yoki xato). Tekshiruv FAQAT serverda: HttpOnly sessiya cookie → sessiya → akkaunt. */
 export async function sessiyaAkkaunt(env, request) {
   const db = env && env.KALKIFIT_DB, tok = cookieOf(request); if (!db || !tok) return null;

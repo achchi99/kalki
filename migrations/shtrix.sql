@@ -22,3 +22,10 @@ CREATE TABLE IF NOT EXISTS shtrix_topilmadi (
   kod TEXT PRIMARY KEY, soni INTEGER NOT NULL DEFAULT 0, birinchi TEXT, oxirgi TEXT
 );
 CREATE INDEX IF NOT EXISTS shtrix_topilmadi_soni ON shtrix_topilmadi (soni);
+
+-- v79: taklif ovozlari — mahsulot hamma uchun FAQAT ≥ 2 HAR XIL Google akkauntdan bir xil (kod + nom + kkal) taklif kelganda o'tadi. Mehmon takliflari bu jadvalga yozilmaydi (faqat admin navbati).
+-- Shaxsiy ma'lumot: faqat tasodifiy akkaunt id (email emas); akkaunt o'chirilsa qatorlar ham o'chadi (akkaunt-store).
+CREATE TABLE IF NOT EXISTS shtrix_taklif_akk (
+  h TEXT NOT NULL, akkaunt_id TEXT NOT NULL, kun TEXT,
+  PRIMARY KEY (h, akkaunt_id)
+);

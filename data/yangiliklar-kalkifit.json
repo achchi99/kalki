@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 80,
+   "d": "2026-11-16",
+   "bn": {
+    "uz": "Shtrix-kod: ishonchliroq ma'lumot",
+    "ru": "Штрихкод: надёжнее данные"
+   },
+   "items": [
+    {
+     "uz": "Yangi mahsulot hamma uchun faqat bir necha foydalanuvchi bir xil yorliqni yuborgandan keyin qo'shiladi.",
+     "ru": "Новый продукт появляется для всех только после того, как несколько пользователей пришлют одинаковую этикетку."
+    },
+    {
+     "uz": "«Ilova haqida»da shtrix-kod o'qish kutubxonasi (ZBar) va litsenziyasi ko'rsatildi.",
+     "ru": "В «О приложении» указаны библиотека чтения штрихкодов (ZBar) и её лицензия."
+    }
+   ]
+  },
+  {
    "v": 79,
    "d": "2026-11-15",
    "bn": {

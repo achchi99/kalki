@@ -37,3 +37,10 @@ Open Food Facts bazasi **ODbL 1.0** (share-alike: ma'lumotlar bazasidan olingan 
 
 ## Migratsiya (production, avval `~/backups`)
 `migrations/shtrix.sql` (yangi jadvallar) + `migrations/shtrix-yorliq-kod.sql` (`ALTER TABLE yorliq_taklif ADD COLUMN kod TEXT` — bir marta). Migratsiya qo'llanmaguncha ham ilova ishlaydi (kod ustuni bo'lmasa taklif kodsiz saqlanadi; jadvallar bo'lmasa — «topilmadi»).
+
+
+## Taklif qoidasi (v79 qarori)
+Mahsulot hamma uchun `shtrix_mahsulot` ga **avtomatik** o'tishi uchun bir xil (kod + nom + kkal) taklif **≥ 2 HAR XIL Google akkauntdan** (`akkaunt.usul` = `google` | `ikkalasi`, sessiya cookie serverda tekshiriladi) kelishi kerak. Ovozlar `shtrix_taklif_akk (h, akkaunt_id)` jadvalida: bitta akkaunt necha marta yuborsa ham — bitta ovoz. Mehmon (akkauntsiz), faqat email-kod bilan kirgan va muddati o'tgan sessiya takliflari avtomatik o'tmaydi — faqat admin navbatiga (`yorliq_taklif`) tushadi. Admin tasdiqlashi avvalgidek (`tasdiqlangan = 1`). Akkaunt o'chirilsa uning ovozlari ham o'chadi. Migratsiya: `migrations/shtrix.sql` (jadval `shtrix_taklif_akk`).
+
+## ZBar atributsiyasi
+«Ilova haqida» bo'limida ZBar nomi, LGPL-2.1+ litsenziyasi (`/assets/vendor/zbar/LICENSE`) va manba kodiga havolalar (zbar-wasm, ZBar) ko'rsatiladi; kutubxona o'zgartirilmagan holda alohida fayl sifatida beriladi (`test-shtrix-ui` tekshiradi).

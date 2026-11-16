@@ -60,7 +60,8 @@ async function applySet(page, set) {
 async function runCalc(url) {
   const page = await newPage(); const out = {}; const errs = [];
   // gaz kalkulyatorida boshlang'ich davr joriy oyga bog'liq (taxminiy): golden barqaror bo'lishi uchun sana qotiriladi (15-dekabr — isitish mavsumi)
-  if (/gaz-xarajat/.test(url)) await page.addInitScript("(() => { const R = Date, T = new R(2026, 11, 15, 12).getTime(); class D extends R { constructor(...a) { if (a.length === 0) super(T); else super(...a); } static now() { return T; } } window.Date = D; })();");
+  const FZ = /gaz-xarajat/.test(url) ? [2026, 11, 15] : [2026, 10, 1];          // v79: HAMMA kalkulyatorda bugungi sana qotiriladi (homiladorlik, maktab, davo… — natija «bugun»ga bog'liq): gaz — 15-dekabr (isitish mavsumi), qolganlari — 1-noyabr 2026
+  await page.addInitScript("(() => { const R = Date, T = new R(" + FZ.join(', ') + ", 12).getTime(); class D extends R { constructor(...a) { if (a.length === 0) super(T); else super(...a); } static now() { return T; } } window.Date = D; })();");
   page.on('pageerror', (e) => errs.push(String(e).slice(0, 120)));
   await page.goto(BASE + url, { waitUntil: 'networkidle' }); await page.waitForTimeout(500);
   for (const set of ['odatiy', 'chegara', 'katta']) {
@@ -89,7 +90,9 @@ async function fillGen(page, atypeVal) {
 const zipText = (file) => { try { const x = execFileSync('python3', ['-c', "import zipfile,sys;print(zipfile.ZipFile(sys.argv[1]).read('word/document.xml').decode('utf8'))", file], { maxBuffer: 1 << 26 }).toString(); return norm(x.replace(/<w:tab\/>/g, ' ').replace(/<\/w:p>/g, ' ¶ ').replace(/<[^>]+>/g, '')); } catch (e) { return 'ZIP-XATO'; } };
 async function dl(page, sel) { const w = page.waitForEvent('download', { timeout: 25000 }).catch(() => null); await page.click(sel, { timeout: 4000 }).catch(() => {}); const d = await w; if (!d) return null; const f = path.join(os.tmpdir(), 'oltin-' + Date.now() + '-' + Math.random().toString(36).slice(2, 8) + '-' + d.suggestedFilename()); await d.saveAs(f); const buf = fs.readFileSync(f); return { name: d.suggestedFilename(), size: buf.length, file: f, pages: (buf.toString('latin1').match(/\/Type\s*\/Page[^s]/g) || []).length }; }
 async function runGen(url, lang) {
-  const page = await newPage(); const out = { variantlar: {} }; const errs = []; page.on('pageerror', (e) => errs.push(String(e).slice(0, 120)));
+  const page = await newPage(); const out = { variantlar: {} }; const errs = [];
+  // hujjat namunalarida «bugungi sana» (arizaning imzo sanasi) joriy kundan olinadi: golden barqaror bo'lishi uchun soat qotiriladi (golden 2026-11-01 da yozilgan). Yo'q bo'lsa — har kuni farq chiqadi.
+  await page.addInitScript("(() => { const R = Date, T = new R(2026, 10, 1, 12).getTime(); class D extends R { constructor(...a) { if (a.length === 0) super(T); else super(...a); } static now() { return T; } } window.Date = D; })();"); page.on('pageerror', (e) => errs.push(String(e).slice(0, 120)));
   await page.goto(BASE + url, { waitUntil: 'networkidle' }); await page.waitForTimeout(600);
   const opts = (await page.locator('#dgf-atype option').evaluateAll((os) => os.map((o) => o.value).filter(Boolean))).slice(0, 3);
   const variants = opts.length ? opts : [undefined];

@@ -59,14 +59,28 @@ await T('limit: AI hisobidan sarflamaydi (alohida «sh» hisobi); IP limiti oshs
   const e3 = mkEnv(); e3.SHTRIX_LIMIT = '2'; offReply = async () => ({ status: 404, body: { status: 0 } }); const ss = []; for (const k of codes) ss.push((await SH.onRequest({ request: GET('?kod=' + k, '8.8.8.8'), env: e3 })).status); assert.deepEqual(ss, [200, 200, 429]);
   const e4 = mkEnv(); e4.SHTRIX_OFF_LIMIT = '1'; calls = []; const rr = []; for (const [i, k] of codes.slice(0, 2).entries()) rr.push(await rd(await SH.onRequest({ request: GET('?kod=' + k, '9.9.9.' + i), env: e4 }))); assert.equal(calls.length, 1, 'OFF sutkalik tavan'); assert.equal(rr[1].j.vaqtincha, true);
 });
-await T('yorliq taklifi shtrix-kod bilan: kod saqlanadi, yaroqsiz kod rad; ≥2 bir xil taklif → shtrix_mahsulot (hamma uchun); bir martasi — yo\'q; kodsiz taklif eskicha', async () => {
-  const env = mkEnv(), post = (b, ip) => YQ.onRequest({ request: new Request('https://kalki.uz/api/kalkifit-yorliq', { method: 'POST', headers: { 'Content-Type': 'application/json', Origin: 'https://kalki.uz', 'CF-Connecting-IP': ip }, body: JSON.stringify(b) }), env });
+await T('yorliq taklifi shtrix-kod bilan: kod saqlanadi, yaroqsiz kod rad; hamma uchun FAQAT ≥2 HAR XIL Google akkauntdan bir xil taklif kelganda; mehmon/email-akkaunt/takroriy ovoz — o\'tmaydi; kodsiz taklif eskicha', async () => {
+  const env = mkEnv(), raw = env.KALKIFIT_DB._raw, now = Date.now(), sha = async (s) => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)))).map((b) => b.toString(16).padStart(2, '0')).join('');
+  raw.exec('CREATE TABLE akkaunt (id TEXT PRIMARY KEY, usul TEXT NOT NULL DEFAULT \'email\'); CREATE TABLE sessiya (id TEXT PRIMARY KEY, akkaunt_id TEXT NOT NULL, oxirgi INTEGER NOT NULL, muddat_abs INTEGER NOT NULL);');
+  const tok = (c) => c.repeat(43).slice(0, 43), mk = async (id, usul, c, o = {}) => { raw.prepare('INSERT INTO akkaunt (id, usul) VALUES (?, ?)').run(id, usul); raw.prepare('INSERT INTO sessiya (id, akkaunt_id, oxirgi, muddat_abs) VALUES (?, ?, ?, ?)').run(await sha(tok(c)), id, o.oxirgi || now, o.abs || now + 86400000); };
+  await mk('g1', 'google', 'a'); await mk('g2', 'ikkalasi', 'b'); await mk('e1', 'email', 'c'); await mk('g3', 'google', 'd', { abs: now - 1000 });
+  const post = (b, ip, t) => YQ.onRequest({ request: new Request('https://kalki.uz/api/kalkifit-yorliq', { method: 'POST', headers: Object.assign({ 'Content-Type': 'application/json', Origin: 'https://kalki.uz', 'CF-Connecting-IP': ip }, t ? { Cookie: '__Host-kalki_s=' + tok(t) } : {}), body: JSON.stringify(b) }), env });
+  const cnt = (t) => raw.prepare('SELECT COUNT(*) AS n FROM ' + t).get().n;
   const B = { nom: 'Test shirinlik', kcal: 400, o: 5, y: 15, u: 60, g: 45, manba: 'rasm', til: 'uz', kod: OK13 };
-  assert.equal((await post(Object.assign({}, B, { kod: BAD13 }), '1.1.1.1')).status, 400); assert.equal((await post(B, '1.1.1.1')).status, 200);
-  assert.equal(env.KALKIFIT_DB._raw.prepare('SELECT kod FROM yorliq_taklif').get().kod, OK13); assert.equal(env.KALKIFIT_DB._raw.prepare('SELECT COUNT(*) AS n FROM shtrix_mahsulot').get().n, 0, '1 ta taklif — jadvalga o\'tmaydi');
-  assert.equal((await post(B, '2.2.2.2')).status, 200); const row = env.KALKIFIT_DB._raw.prepare('SELECT * FROM shtrix_mahsulot').get(); assert.deepEqual([row.kod, row.nom, row.kcal, row.qadoq, row.manba, row.tasdiqlangan], [OK13, 'Test shirinlik', 400, 45, 'yorliq', 0]);
+  assert.equal((await post(Object.assign({}, B, { kod: BAD13 }), '1.1.1.1', 'a')).status, 400);
+  assert.equal((await post(B, '1.1.1.1', 'a')).status, 200); assert.equal(raw.prepare('SELECT kod FROM yorliq_taklif').get().kod, OK13); assert.equal(cnt('shtrix_mahsulot'), 0, '1 ta akkaunt — jadvalga o\'tmaydi');
+  assert.equal((await post(B, '1.1.1.1', 'a')).status, 200); assert.equal((await post(B, '9.9.9.9', 'a')).status, 200); assert.equal(cnt('shtrix_mahsulot'), 0, 'bir akkaunt takror (boshqa IP ham) — bitta ovoz');
+  for (let i = 0; i < 3; i++) assert.equal((await post(B, '2.2.2.' + i)).status, 200); assert.equal(cnt('shtrix_mahsulot'), 0, 'mehmon takliflari (cookie yo\'q) — avtomatik o\'tmaydi');
+  assert.equal((await post(B, '2.2.2.9', 'c')).status, 200); assert.equal(cnt('shtrix_mahsulot'), 0, 'faqat email-kod bilan kirgan akkaunt — Google emas, hisoblanmaydi');
+  assert.equal((await post(B, '2.2.2.8', 'd')).status, 200); assert.equal(cnt('shtrix_mahsulot'), 0, 'muddati o\'tgan sessiya — mehmon');
+  assert.equal(raw.prepare('SELECT jami FROM yorliq_taklif').get().jami >= 7, true, 'hamma taklif admin navbatida (jami hisoblanadi)'); assert.equal(raw.prepare("SELECT holat FROM yorliq_taklif").get().holat, 'yangi');
+  assert.equal((await post(B, '3.3.3.3', 'b')).status, 200); const row = raw.prepare('SELECT * FROM shtrix_mahsulot').get(); assert.deepEqual([row.kod, row.nom, row.kcal, row.qadoq, row.manba, row.tasdiqlangan], [OK13, 'Test shirinlik', 400, 45, 'yorliq', 0], '2-HAR XIL Google akkaunt — hamma uchun');
   const r = await rd(await SH.onRequest({ request: GET('?kod=' + OK13), env })); assert.equal(r.j.manba, 'oz'); assert.equal(r.j.mahsulot.tasdiqlangan, false);
-  assert.equal((await post({ nom: 'Oddiy', kcal: 100, o: 3, y: 2, u: 17, manba: 'qolda', til: 'uz' }, '3.3.3.3')).status, 200); assert.equal(env.KALKIFIT_DB._raw.prepare("SELECT COUNT(*) AS n FROM yorliq_taklif WHERE kod IS NOT NULL").get().n, 1);
+  assert.equal((await post({ nom: 'Oddiy', kcal: 100, o: 3, y: 2, u: 17, manba: 'qolda', til: 'uz' }, '4.4.4.4', 'a')).status, 200); assert.equal(raw.prepare("SELECT COUNT(*) AS n FROM yorliq_taklif WHERE kod IS NOT NULL").get().n, 1);
+  /* boshqa qiymat (kkal) — boshqa taklif: akkauntlar bir xil qiymat bo'yicha sanaladi */
+  const B2 = Object.assign({}, B, { kod: ean('590123456789'), kcal: 410 }); assert.equal((await post(B2, '5.5.5.5', 'a')).status, 200); assert.equal((await post(Object.assign({}, B2, { kcal: 380 }), '5.5.5.6', 'b')).status, 200); assert.equal(raw.prepare("SELECT COUNT(*) AS n FROM shtrix_mahsulot WHERE kod = ?").get(B2.kod).n, 0, 'har xil qiymat — bir xil taklif emas');
+  /* akkaunt o'chirilsa ovozlari ham o'chadi */
+  const { makeStore } = await imp('functions/_lib/akkaunt-store.js'); assert.ok(makeStore, 'akkaunt-store mavjud'); assert.ok(/DELETE FROM shtrix_taklif_akk WHERE akkaunt_id/.test(fs.readFileSync(path.join(ROOT, 'functions/_lib/akkaunt-store.js'), 'utf8')));
 });
 await T('statistika: shtrix hodisalari qabul qilinadi (ochildi, topildi.oz/off, topilmadi, yorliqqa_otdi, qoshildi), boshqasi — yo\'q; admin kartasi manbasi bor', async () => {
   const src = fs.readFileSync(path.join(ROOT, 'functions/api/stat.js'), 'utf8'); const m = /shtrix: (\/\^[^,]+\$\/)/.exec(src); assert.ok(m, 'stat.js shtrix qoidasi'); const re = new RegExp(m[1].slice(1, -1));

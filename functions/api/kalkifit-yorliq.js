@@ -8,6 +8,7 @@ import { originOk, json, num, UUID_RE } from './ariza.js';
 import { takeKfQuota } from './kalkifit-quota.js';
 import { normNom } from './kalkifit-taklif.js';
 import { normKod } from './shtrix.js';
+import { sessiyaGoogle } from '../_lib/ai-cheksiz.js';
 
 const DEFAULT_CLIENT_LIMIT = 20, DEFAULT_SITE_LIMIT = 2000;          // KALKIFIT_YORLIQ_LIMIT, KALKIFIT_YORLIQ_SITE_LIMIT
 export const KAT = ['o', 'n', 's', 'm', 'g', 'v', 'f', 'd', 'i', 'q', 'h', 'x'];
@@ -36,9 +37,11 @@ export function asFood(r) {
   return { i: 'yq-' + r.h.slice(0, 10), n: nu, r: nr, a: [], k: r.kcal, p: r1(r.o_sum / j), f: r1(r.y_sum / j), c: r1(r.u_sum / j), t: KAT.includes(r.kat) ? r.kat : 'x', e: 0, u, m: "Qadoq yorlig'i", ms: MANBA_YQ, yq: 1 };
 }
 
-/* v79: bir xil shtrix-kod + nom + kkal bilan ≥ 2 taklif kelsa — mahsulot hamma uchun (shtrix_mahsulot, manba 'yorliq', tasdiqlanmagan). Mavjud (admin/tasdiqlangan) qator ustiga yozilmaydi. */
+/* v79: bir xil shtrix-kod + nom + kkal bilan ≥ 2 HAR XIL Google akkauntdan taklif kelsa — mahsulot hamma uchun (shtrix_mahsulot, manba 'yorliq', tasdiqlanmagan).
+ * Mehmon (akkauntsiz) va email-kod bilan kirgan takliflar HISOBLANMAYDI — ular faqat admin navbatiga tushadi. Bitta akkaunt bir necha marta yuborsa ham bir ovoz. Mavjud (admin/tasdiqlangan) qator ustiga yozilmaydi. */
 export async function promote(db, h, kod, kun) {
-  const r = await db.prepare('SELECT * FROM yorliq_taklif WHERE h = ?').bind(h).first(); if (!r || r.jami < 2 || r.holat === 'rad') return false;
+  const r = await db.prepare('SELECT * FROM yorliq_taklif WHERE h = ?').bind(h).first(); if (!r || r.holat === 'rad') return false;
+  const n = await db.prepare('SELECT COUNT(DISTINCT akkaunt_id) AS n FROM shtrix_taklif_akk WHERE h = ?').bind(h).first(); if (!n || n.n < 2) return false;
   const j = r.jami, r1 = (x) => Math.round(x * 10) / 10, nom = r.nom_uz || r.nom;
   await db.prepare("INSERT OR IGNORE INTO shtrix_mahsulot (kod, nom, brend, kcal, oqsil, yog, uglevod, qadoq, porsiya, birlik, manba, tasdiqlangan, yaratildi, yangilandi) VALUES (?, ?, '', ?, ?, ?, ?, ?, 0, ?, 'yorliq', 0, ?, ?)").bind(kod, nom, r.kcal, r1(r.o_sum / j), r1(r.y_sum / j), r1(r.u_sum / j), r.g || 0, r.birlik === 'ml' ? 'ml' : 'g', kun, kun).run();
   return true;
@@ -66,7 +69,7 @@ export async function onRequest({ request, env }) {
     if (v.kod) { try { await db.prepare("INSERT OR IGNORE INTO yorliq_taklif (h, kalit, nom, til, kcal, birlik, holat, birinchi, oxirgi, kod) VALUES (?, ?, ?, ?, ?, ?, 'yangi', ?, ?, ?)").bind(h, v.key, v.nom, v.til, v.kcal, v.birlik, kun, kun, v.kod).run(); } catch (e) { await db.prepare("INSERT OR IGNORE INTO yorliq_taklif (h, kalit, nom, til, kcal, birlik, holat, birinchi, oxirgi) VALUES (?, ?, ?, ?, ?, ?, 'yangi', ?, ?)").bind(h, v.key, v.nom, v.til, v.kcal, v.birlik, kun, kun).run(); } }          // kod ustuni yo'q bo'lsa (migratsiya hali qo'llanmagan) — oddiy taklif
     else await db.prepare("INSERT OR IGNORE INTO yorliq_taklif (h, kalit, nom, til, kcal, birlik, holat, birinchi, oxirgi) VALUES (?, ?, ?, ?, ?, ?, 'yangi', ?, ?)").bind(h, v.key, v.nom, v.til, v.kcal, v.birlik, kun, kun).run();
     await db.prepare('UPDATE yorliq_taklif SET jami = jami + 1, rasm = rasm + ?, o_sum = o_sum + ?, y_sum = y_sum + ?, u_sum = u_sum + ?, g = CASE WHEN ? > 0 THEN ? ELSE g END, oxirgi = ? WHERE h = ?').bind(v.rasm, v.o, v.y, v.u, v.g, v.g, kun, h).run();
-    if (v.kod) { try { await promote(db, h, v.kod, kun); } catch (e) { /* shtrix jadvali yo'q — keyin */ } }          // ≥2 bir xil taklif (bir xil kod + nom + kkal) → shtrix_mahsulot (hamma uchun)
+    if (v.kod) { try { const ak = await sessiyaGoogle(env, request); if (ak) { await db.prepare('INSERT OR IGNORE INTO shtrix_taklif_akk (h, akkaunt_id, kun) VALUES (?, ?, ?)').bind(h, ak, kun).run(); await promote(db, h, v.kod, kun); } } catch (e) { /* shtrix jadvali yo'q — keyin */ } }          // ≥2 bir xil taklif (bir xil kod + nom + kkal) → shtrix_mahsulot (hamma uchun)
   } catch (e) { console.error('yorliq db xato'); return fail(503); }
   return json(200, { ok: true });
 }

@@ -50,6 +50,10 @@ try {
   assert.ok(wasmLoaded(p), 'wasm skaner ochilganda yuklandi'); assert.equal(p.api, 1, '1 skaner = 1 so\'rov'); assert.equal(await txt(p, '#fdName'), 'Test batonchik');
   const card = await txt(p, '#rzSheet'); assert.match(card, /480|192/); assert.match(card, /1 dona/); assert.match(card, /Ma'lumot: Open Food Facts \(ODbL\)/); assert.match(card, /Xato topdingizmi\?/);
   const links = await p.locator('.sl-off a').evaluateAll((l) => l.map((a) => a.href)); assert.deepEqual(links, ['https://world.openfoodfacts.org/product/' + OK13, 'https://opendatacommons.org/licenses/odbl/1-0/']);
+  /* «Ilova haqida»: ZBar nomi + LGPL-2.1+ + litsenziya (assets/vendor/zbar/LICENSE) va manba kodi havolalari; OFF atributsiyasi */
+  { const pa = await open({}); await pa.goto(BASE + '/kalkifit#haqida', { waitUntil: 'networkidle' }); await pa.reload({ waitUntil: 'networkidle' }); await pa.waitForSelector('#shZbar', { state: 'attached', timeout: 8000 });
+  assert.match(await txt(pa, '#shZbar'), /ZBar/); assert.match(await txt(pa, '#shZbar'), /LGPL-2\.1\+/); const zl = await pa.locator('#shZbar a').evaluateAll((l) => l.map((a) => a.getAttribute('href'))); assert.deepEqual(zl, ['/assets/vendor/zbar/LICENSE', 'https://github.com/undecaf/zbar-wasm', 'https://github.com/mchehab/zbar']);
+  assert.equal((await pa.request.get(BASE + '/assets/vendor/zbar/LICENSE')).status(), 200); assert.match(await txt(pa, '#shAttr'), /Open Food Facts/); await pa.close(); }
   assert.equal(await p.locator('[data-act=funit][data-u=dona]').count() > 0 || (await txt(p, '#fdQu')) === 'dona', true); assert.match(await txt(p, '#fdInfo'), /1 dona ≈ 40 g/);
   assert.equal(await p.locator('#fdKcal').innerText().then((x) => +x.replace(/\s/g, '')), 192, '1 dona 40 g = 192 kkal'); const quick = await p.locator('#fdQuick .kq-chip').evaluateAll((l) => l.map((e) => e.innerText.replace(/\s+/g, ' ').trim())); assert.match(quick[0], /^Yarim 96/, 'yarim qadoq');
   const fd0 = await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit')).customFoods); assert.equal(fd0.length, 1); assert.deepEqual([fd0[0].bc, fd0[0].off, fd0[0].src, fd0[0].brand], [OK13, 1, 'shtrix', 'TestBrend']);

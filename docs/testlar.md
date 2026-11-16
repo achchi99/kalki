@@ -77,3 +77,10 @@ Odatiy ish (darvoza + 1 to'liq skrinshot + iteratsiyada 3–4 `--faqat`): ~38 + 
 ## Keyingi imkoniyatlar (qilinmadi)
 - Sahifa sweep'larini (`pages`, `kontrast`, `kontrast-katta`, `katta`) bitta yuklashga birlashtirish: ~9 → 5 yuklash/sahifa (≈ −15 CPU-daqiqa to'liq to'plamda). Test id'lari va `--only` mantig'ini o'zgartiradi.
 - `kalkifit` 12-bo'limi (til aralashuvi, 3 daqiqa) — ichida tillar bo'yicha bo'lish.
+
+## v79: nega `test:tez` bir yurishda tugamasdi (o'lchangan) va barqarorlik qoidalari
+- **Sabab 1 — tanlov har reliz oldidan to'liq to'plamga kengayadi:** `sw.js` versiyasi har deployda o'zgaradi, «umumiy fayl o'zgargan» qoidasi esa to'liq to'plamni tanlaydi (157 test, ~125 CPU-daqiqa; 4 yadroli serverda botlar bilan bo'lishilgan — ~40 daqiqa devor vaqti). Bu xato emas, shuning uchun foreground buyruq (10 daqiqa chegarasi) yoki qisqa `timeout` yurishni o'ldiradi.
+- **Sabab 2 — yurish paytida kodni o'zgartirish yurishni to'xtatadi** (`kod-kuzat`, chiqish kodi 3): tuzatishlar yurish boshlanishidan OLDIN tugatilishi kerak.
+- **Qoida:** to'liq `test:tez` — fon rejimida (`run_in_background`), `timeout 5400` bilan; yurish paytida fayl o'zgartirilmaydi; yiqilganini `--only` bilan alohida yurgizing.
+- **Sanaga bog'liq testlar qotiriladi:** `tartib` (barcha vaqt T0 dan; ilgari haqiqiy `Date.now()` ishlatilib «5 kundan kam» sharti buzilardi), `golden` (`oltin.mjs`: kalkulyatorda sana 2026-11-01, gaz — 15-dekabr, hujjat namunalarida 2026-11-01), `onboarding-parda` (v75 «Birinchi ovqat» kartasi pastki «Qo'shish»ni yashiradi → `kalki_no_fc=1`).
+- **Tezlik testlari:** `kalkifit-qidiruv` — 3 davrning eng yaxshisi + mediana (≤ 3 ms) + p99 ≤ 30 ms; haqiqiy sekinlashuv HAMMA davrni sekinlashtiradi va baribir yiqitadi. `tahrir` — qotirilgan kutishlar yukka qarab (1×…4×) uzayadi.

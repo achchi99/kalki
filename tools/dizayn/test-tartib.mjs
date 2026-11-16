@@ -9,10 +9,10 @@ const MT = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.cs
 const srv = http.createServer((q, r) => { const p = decodeURIComponent(q.url.split('?')[0]); const f = [path.join(ROOT, p), path.join(ROOT, p + '.html')].find((x) => fs.existsSync(x) && fs.statSync(x).isFile()); if (!f) { r.writeHead(404); return r.end(); } r.writeHead(200, { 'content-type': MT[path.extname(f)] || 'application/octet-stream' }); fs.createReadStream(f).pipe(r); });
 await new Promise((o) => srv.listen(0, o)); const BASE = 'http://localhost:' + srv.address().port; const b = track(await chromium.launch()); let n = 0; const ok = (m) => { n++; console.log('OK  ', n + '.', m); };
 const nb = (x) => String(x).replace(/[\u00a0\u202f\u2009]/g, ' ').replace(/\s+/g, ' ').trim(), F = (v) => String(v).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-const T0 = '2026-10-28';          // chorshanba (yakshanba/dushanba «Haftangiz» eslatmasi aralashmasin)
+const T0 = '2026-10-28', T0MS = new Date(T0 + 'T12:00:00+05:00').getTime();          // v79: barcha vaqt T0 dan hisoblanadi (soat T0 ga qotirilgan — haqiqiy Date.now() ga bog'lanma: 2026-11-16 dan keyin «5 kundan kam» sharti buzilgan edi)          // chorshanba (yakshanba/dushanba «Haftangiz» eslatmasi aralashmasin)
 function seed(o = {}) {
-  const st = S.emptyState(); st.setup = true; st.created = Date.now() - 20 * 864e5; st.trackStart = D.addDays(T0, -20);
-  st.prefs = Object.assign({ tipsDone: true, lpTip: 1, suvFrom: T0, jokes: false, hwSeen: D.addDays(T0, -3), yemayK: 1, ttAsked: 1, h_backup: Date.now(), used: { ovoz: 1, rasm: 1, menyu: 1, yeymiz: 1, hafta: 1, kunkarta: 1, google: 1 } }, o.prefs || {});
+  const st = S.emptyState(); st.setup = true; st.created = T0MS - 20 * 864e5; st.trackStart = D.addDays(T0, -20);
+  st.prefs = Object.assign({ tipsDone: true, lpTip: 1, suvFrom: T0, jokes: false, hwSeen: D.addDays(T0, -3), yemayK: 1, ttAsked: 1, h_backup: T0MS, used: { ovoz: 1, rasm: 1, menyu: 1, yeymiz: 1, hafta: 1, kunkarta: 1, google: 1 } }, o.prefs || {});
   st.profile = Object.assign({ sex: 'm', age: 32, height: 178, weight: 86, act: 2, goal: 'lose' }, o.profile || {}); if (o.tartib) st.profile.tartib = o.tartib;
   S.addWeight(st, D.addDays(T0, -10), 86.4); S.addWeight(st, T0, 85.6);
   const A = (d, meal, kcal, p) => S.addFood(st, d, { meal, fid: null, name: { b: 'Tuxum', l: 'Osh', d: 'Shorva', s: 'Olma' }[meal], kcal, p, f: Math.round(kcal / 25), c: Math.round(kcal / 8), g: 200, est: false, ts: 1 });
