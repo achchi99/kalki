@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 83,
+   "d": "2026-11-16",
+   "bn": {
+    "uz": "Qadam sanash to'xtasa — ilova aytadi",
+    "ru": "Если подсчёт шагов остановился — приложение скажет"
+   },
+   "items": [
+    {
+     "uz": "Ilovani yangilash yoki qayta o'rnatishdan keyin qadam ruxsati o'chib qolsa, Bugun ekranida ogohlantirish chiqadi va bir bosishda qayta beriladi.",
+     "ru": "Если после обновления или переустановки разрешение на шаги сбросится, на экране «Сегодня» появится предупреждение с возвратом в одно касание."
+    },
+    {
+     "uz": "Android ilovasining yangi versiyasini o'rnating: qadamlar qayta o'qiladi, bo'shliq qolmaydi.",
+     "ru": "Установите новую версию приложения для Android: шаги перечитываются, пропусков не остаётся."
+    }
+   ]
+  },
+  {
    "v": 82,
    "d": "2026-11-16",
    "bn": {

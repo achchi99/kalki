@@ -2003,3 +2003,12 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz.sl .rz-f input[type=date]{width:100%;min-height:var(--h-btn);border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:0 14px;font:inherit;font-size:var(--fs-body);font-weight:var(--fw-s);box-sizing:border-box;-webkit-appearance:none;appearance:none;text-align:left}.rz.sl .rz-f input[type=date]:focus-visible{outline:2px solid var(--fill);outline-offset:1px}
 .rz [data-act=xspick] .rz-i,.rz [data-act=xsgo] .rz-i{vertical-align:-4px;margin-right:6px}
 .rz .sl-exr .m .xs-m{display:block;margin-top:2px;font-size:var(--t-xs);color:var(--mut)}
+/* v83: qadam ruxsati yo'qolgan — ogohlantirish kartasi, mini-halqada belgi, bildirishnoma qatorida tugma */
+.rz .sl-qalost{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;margin:0 0 12px;padding:14px 16px;border:1.5px solid var(--err);background:var(--card)}
+.rz .sl-qalost .ai{position:relative;display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--soft);color:var(--ink)}.rz .sl-qalost .ai .rz-i{width:24px;height:24px}
+.rz .sl-qalost .ai i,.rz .sl-warnb{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;border-radius:50%;background:var(--err);color:var(--card);font:700 13px/20px 'Manrope',sans-serif;font-style:normal;text-align:center}
+.rz .sl-qalost .t b{display:block;font-size:var(--t-m);color:var(--ink)}.rz .sl-qalost .t small{display:block;margin-top:2px;font-size:var(--t-s);color:var(--mut);line-height:1.35}
+.rz .sl-qalost .rz-btn{grid-column:1/-1;width:100%}
+.rz .sl-ab2 .mr{position:relative}.rz .sl-warnb{top:2px;right:6px}
+.rz .sl-pill.warn{background:var(--soft);color:var(--err);border:1.5px solid var(--err)}
+.rz .sl-bkfix{display:inline-block;margin-top:4px;min-height:32px;padding:4px 12px;border-radius:10px;background:var(--accsoft);color:var(--acc2);font-weight:700;font-size:var(--t-xs)}

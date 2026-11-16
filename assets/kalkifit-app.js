@@ -189,6 +189,8 @@
   Object.assign(D.ru, { wrTitle: "Ваша неделя", wrIntro: "Ваша неделя готова", wrIntroEmpty: "Новая неделя — новое начало", wrIntroD: "Вы записывали {n} дн. — отлично!", wrIntroE: "На этой неделе записей мало. Даже одна запись — хорошее начало.", wrDaysK: "Дни с записями", wrStreak: "Самая длинная серия: {n} дн.", wrFewDays: "Каждый день с записью — шаг вперёд. Продолжайте!", wrNoDays: "На этой неделе записей пока нет — всё впереди.", wrKcalK: "Калории", wrAvgVs: "в среднем за день · цель {g}", wrBestDay: "Лучший день недели: {d}", wrFewK: "Самый близкий к цели день пока не определён — записывайте больше дней", wrLostK: "Что вы потеряли за неделю", wrNDays: "по {n} дн.", wrLostNote: "Приблизительный расчёт по введённой еде и расходу. Колебания веса ±1 кг в день из-за воды — это нормально.", wrLow: "Вы едите слишком мало — это вредно для здоровья, умеренный дефицит лучше", wrLowD: "В среднем {e} ккал/день; расход в покое ≈ {b} ккал.", wrEven: "Вы удержали вес", wrEvenD: "Разница всего ≈ {x} ккал — это тоже успех", wrEvenS: "расход и питание в балансе", wrSurplus: "На этой неделе ≈ {x} ккал сверх. Со следующей недели начнём с маленького шага", wrSavedLine: "сэкономили → ≈ {kg} кг жира", wrSaved: "сэкономлено", wrFat: "жира", wrPacks: "это {n} пачки сливочного масла (200 г)", wrKg: "кг", wrKm: "км", wrG: "г", wrFunK: "Забавное сравнение", wrFunIs: "Это примерно", wrFunU_dona: "{n} шт. · {x}", wrFunU_kosa: "{n} коса · {x}", wrFunU_bolak: "{n} куск. · {x}", wrTopK: "Любимые блюда", wrTopH: "На этой неделе {n} раз — {x}", wrTimes: "раз", wrMacroK: "Макро", wrPerDay: "ккал/день", wrProtDays: "Цель по белку выполнена {n} дн.", wrWaterK: "Вода", wrLiters: "литров", wrWaterDays: "Норма воды выполнена {n} дн.", wrWaterFew: "Постарайтесь пить больше воды", wrMoveK: "Движение", wrSteps: "шагов", wrRoute: "Вы прошли путь {a} — {b} {n} раз", wrRoutePart: "Путь {a} — {b}: пройдено {p}%", wrMin: "мин тренировок", wrBurn: "ккал сожжено", wrPulse: "ср. пульс", wrWeightK: "Вес", wrWChg: "изменение за неделю", wrWSame: "без изменений за неделю", wrWNote: "Вес не попадает на картинку для публикации.", wrVsK: "К прошлой неделе", wrVsH: "Как эта неделя по сравнению с прошлой?", wrVs_days: "Дни с записями", wrVs_steps: "Шаги", wrVs_water: "Вода (л)", wrVs_prot: "Дни по белку", wrVs_ex: "Тренировки (мин)", wrBadgeK: "Достижения", wrBadgeNew: "Новый значок!", wrBadgeH: "Значки этой недели", wrNew: "новый", wrB_streak7: "7 дней подряд", wrBd_streak7: "Вы записывали каждый день", wrB_near4: "Точно в цель", wrBd_near4: "4+ дня близко к цели", wrB_protein: "Мастер белка", wrBd_protein: "Цель по белку 5+ дн.", wrB_water: "Чемпион воды", wrBd_water: "Норма воды 5+ дн.", wrB_steps: "Мастер шагов", wrBd_steps: "Средние шаги выше цели", wrB_firstEx: "Первая тренировка", wrBd_firstEx: "Вы начали тренироваться", wrB_balance: "Мастер баланса", wrBd_balance: "Вы удержали вес", wrB_saver: "Экономная неделя", wrBd_saver: "Умеренный дефицит", wrGoalK: "Цель на следующую неделю", wrGoalOk: "Цель прошлой недели выполнена!", wrGoalNo: "Вы приблизились к цели прошлой недели", wrGoal_log: "Записывайте {n} дн. в неделю", wrGoalD_log: "Больше дней с записями — точнее результат.", wrGoal_water: "{n} стаканов воды в день", wrGoalD_water: "Маленькая привычка — большая разница.", wrGoal_dinner: "Уменьшите ужин на {n} ккал", wrGoalD_dinner: "Лёгкий ужин — стабильный результат.", wrGoal_steps: "{n} шагов в день", wrGoalD_steps: "Каждый день немного больше ходьбы.", wrGoal_prot: "Цель по белку {n} дн. в неделю", wrGoalD_prot: "Белок даёт сытость и сохраняет мышцы.", wrGoal_keep: "Сохраняйте этот ритм", wrGoalD_keep: "Результат хороший — продолжайте в том же духе.", wrAccept: "Принимаю", wrAccepted: "Принято — на следующей неделе покажем результат", wrFinalK: "Поделитесь", wrShareA: "Карточка недели", wrShare: "Поделиться", wrSave: "Сохранить", wrOther: "Другая неделя", wrShareT: "Моя неделя", wrAvgK: "средн. ккал/день", wrWeeksT: "Ваша неделя", wrWeeksH: "Какую неделю посмотреть?", wrWeekNow: "Последние 7 дней", wrWeekN: "{n} дн. с записями", wrWeekEmpty: "записей нет", wrPrevWeeks: "Прошлые недели" });
   Object.assign(D.uz, { wrModeOne: "Bitta karta", wrModeWeek: "Butun hafta ({n} rasm)", wrShareTxt: "Mening KalkiFit haftam 💪 kalki.uz/kalkifit", hwSavedOk: "Galereyaga saqlandi", hwSavedDl: "Rasm yuklab olindi (Yuklamalar papkasi)", hwSaveShare: "Ochilgan oynada «Galereyaga saqlash» yoki «Fayllar»ni tanlang", hwSaveIos: "Ochilgan oynada «Rasmni saqlash»ni tanlang", hwLongPress: "Rasmni uzun bosib saqlang", hwSaveFail: "Saqlab bo'lmadi. «Ulashish» orqali yuboring yoki qayta urinib ko'ring.", hwShareFail: "Ulashib bo'lmadi. Qayta urinib ko'ring." });
   Object.assign(D.ru, { wrModeOne: "Одна карточка", wrModeWeek: "Вся неделя ({n} фото)", wrShareTxt: "Моя неделя в KalkiFit 💪 kalki.uz/kalkifit", hwSavedOk: "Сохранено в Галерею", hwSavedDl: "Изображение скачано (папка «Загрузки»)", hwSaveShare: "В открывшемся окне выберите «Сохранить в галерею» или «Файлы»", hwSaveIos: "В открывшемся окне выберите «Сохранить изображение»", hwLongPress: "Нажмите и удерживайте изображение, чтобы сохранить", hwSaveFail: "Не удалось сохранить. Отправьте через «Поделиться» или попробуйте снова.", hwShareFail: "Не удалось поделиться. Попробуйте снова." });
+  Object.assign(D.uz, { qaLostT: "Qadam sanash to'xtadi", qaLostD: "Ilova yangilangan yoki qayta o'rnatilgan — «Jismoniy faollik» ruxsati o'chib qolgan. Ruxsatni qayta bering, qadamlaringiz yana sanaladi.", qaLostBtn: "Ruxsatni qayta berish", qaLostPill: "Ruxsat kerak", qaSetT: "Ruxsat sozlamada", qaSetD: "Telefon bu ruxsatni qayta so'ramayapti. Uni sozlamadan qo'lda bering:", qaSet1: "«Sozlamani ochish» ni bosing → «Ruxsatlar».", qaSet2: "«Jismoniy faollik» → «Ruxsat berish».", qaSet3: "KalkiFit'ga qayting — qadamlar o'zi qayta o'qiladi.", qaSetHc: "Qadam Health Connect orqali bo'lsa: Health Connect → Ilova ruxsatlari → KalkiFit → «Qadamlar».", qaSetBtn: "Sozlamani ochish", pushFixBtn: "Yoqish" });
+  Object.assign(D.ru, { qaLostT: "Подсчёт шагов остановился", qaLostD: "Приложение обновили или переустановили — разрешение «Физическая активность» сбросилось. Верните разрешение, и шаги снова считаются.", qaLostBtn: "Вернуть разрешение", qaLostPill: "Нужно разрешение", qaSetT: "Разрешение в настройках", qaSetD: "Телефон больше не запрашивает это разрешение. Включите его вручную:", qaSet1: "Нажмите «Открыть настройки» → «Разрешения».", qaSet2: "«Физическая активность» → «Разрешить».", qaSet3: "Вернитесь в KalkiFit — шаги подтянутся сами.", qaSetHc: "Если шаги идут через Health Connect: Health Connect → Разрешения приложений → KalkiFit → «Шаги».", qaSetBtn: "Открыть настройки", pushFixBtn: "Включить" });
   Object.assign(D.uz, { xsBtn: "Soat skrinshotidan", xsBtnH: "Natija ekranidan o'qiladi", xsT: "Soat skrinshotidan", xsHint: "Soat ilovasidagi mashg'ulot natijasi skrinshotini tanlang (Huawei Health, Samsung Health, Apple Fitness…). Bir mashg'ulotning 3 tagacha ekrani bo'lishi mumkin: umumiy, puls, kkal.", xsPick: "Skrinshot tanlash", xsMore: "Yana skrinshot qo'shish", xsRead: "O'qish", xsRm: "Olib tashlash", xsN: "{n} / 3 skrinshot", xsBusy: "Skrinshot o'qilmoqda…", xsNote: "Skrinshot AI xizmatiga yuboriladi va saqlanmaydi.", xsNone: "Bu mashg'ulot natijasiga o'xshamaydi. Soat ilovasidagi mashg'ulot natijasi ekranini tanlang. Bu urinish limitdan hisoblanmadi.", xsErr: "Skrinshot o'qilmadi. Qayta urinib ko'ring yoki mashg'ulotni qo'lda kiriting.", xsManual: "Qo'lda kiritish",
     xcT: "Mashg'ulotni tekshiring", xcFrom: "{x}'dan", xcWalk: "Yurish", xcDur: "Davomiyligi (daq)", xcDate: "Sana", xcHr: "O'rtacha puls", xcHx: "Maks puls", xcKr: "Soatdagi kkal", xcKrL: "Soatdagi kkal (skrinshotda)", xcKt: "Kkal turi", xcKt_faol: "Faol", xcKt_umumiy: "Umumiy", xcKt_nom: "Noma'lum", xcKc: "Me'yorga qo'shiladigan kkal", xcPulsTag: "taxminiy (puls bo'yicha)",
     xcM_faol: "Faol kkal: soat ko'rsatgan {k} kkal to'liq olindi.", xcM_umumiy: "Soat jami {k} kkal ko'rsatdi − shu vaqtdagi tinch holat sarfi {r} = {n} kkal. Tinch holat kunlik me'yorda bor, ikki marta sanalmaydi.", xcM_puls: "Taxminiy (puls bo'yicha): o'rtacha puls {h}, {m} daq → jami {g} kkal − tinch holat {r} = {n} kkal.", xcM_met: "MET usuli: tur va davomiylik bo'yicha taxmin — {n} kkal.", xcM_qolda: "Qo'lda kiritilgan qiymat.",
@@ -1461,7 +1463,7 @@
     qaDetect(); var dpT = S.dayPlan(st, t);          // v68 TARTIB (birinchi kun ishonchi): halqa → BJU → bugungi ovqatlar → qadam/mashg'ulot (ma'lumot yo'q — ixcham bitta qator) → qolganlar (bitta karta, suv)
     // v70: BJU halqa kartasi ichida (yuqorida)          // v50: 3 ustunli BJU (oqsil birinchi, ko'k) + pastda bitta qator oqsil maslahati — suv/qadamdan keyin, ovqatlar ro'yxatidan oldin
     h += '<div class="sl-sec2 sl-sec2k"><h3>' + esc(T('tdMeals')) + '</h3><span class="sl-secv" id="mealTot"><b>' + fmt(tot.kcal) + '</b> / ' + fmt(dpT.limit) + ' ' + esc(T('kcal')) + '</span></div>' + (x.food.length || fcVis ? '' : '<div class="rz-empty sl-tdempty"><p>' + esc(T('tdEmpty')) + '</p></div>') + mealsHtml(t) + dayEndHtml(t, x);
-    h += '<div class="sl-duo sl-act">' + (stepCard() ? stepCardHtml(x) : stepWebHtml(x, dpT)) + exCardHtml(x, dpT) + '</div>';          // v72: bo'sh holatda ham to'liq kartalar (0 dan mini halqa, och fon, «Qadamni kiriting» / «Mashg'ulot qo'shish»)
+    h += (stepCard() ? qaLostCardHtml() : '') + '<div class="sl-duo sl-act">' + (stepCard() ? stepCardHtml(x) : stepWebHtml(x, dpT)) + exCardHtml(x, dpT) + '</div>';          // v72: bo'sh holatda ham to'liq kartalar (0 dan mini halqa, och fon, «Qadamni kiriting» / «Mashg'ulot qo'shish»)
     h += fcVis ? '' : slotHtml(t, x);          // halqa ostida BITTA karta (yangilanish / birinchi hafta maslahati / eslatma) — bo'lmasa hech narsa
     h += '<div class="sl-duo one"><section class="sl-card sl-w" id="wCard"><button type="button" class="sl-wb" data-act="wopen" aria-label="' + esc(T('wT')) + '"><span class="l">' + ico('drop') + esc(T('wT')) + '</span><span class="v" id="wTxt"><b>' + fmt(wi.ml) + '</b><small> / ' + fmt(wmax) + ' ' + ML() + '</small></span>' + (wi.drink > 0 ? '<span class="sl-wsplit" id="wSplit">' + esc(T('wSplit', { w: fmt(wi.manual), d: fmt(wi.drink) })) + '</span>' : '') + '</button><button type="button" class="sl-pill" data-act="wadd" aria-label="+250 ' + ML() + '">' + esc(T('wAdd2')) + '</button>' + ('<span class="sl-wbar" id="wBar" aria-hidden="true"><i style="width:' + Math.round(Math.min(1, wi.ml / Math.max(1, wmax)) * 100) + '%"></i></span>') + '</section>' +          // vebda (qadam kartasi yo'q) — ixcham bitta qator: ikonka · Suv · N / M ml · +250 ml, ostida ingichka progress
       '</div>';          // v55: suv — alohida ixcham qator (qadam va mashg'ulot yuqorida, ikki kichik karta)
@@ -1940,7 +1942,7 @@
   function standalone() { return (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true; }
   function appDays() { if (/\.pages\.dev$/.test(location.hostname)) { if (/[?&]pushtest=1\b/.test(location.search) && !prefs().pushTest) { prefs().pushTest = true; save(); } return 99; } return st && st.created ? Math.floor((Date.now() - st.created) / DAY_MS) : 0; }          // FAQAT *.pages.dev preview'da: 3-kun sharti o'chiq (sinash oson; ?pushtest=1 bayrog'i ham yoziladi). kalki.uz'da e'tiborsiz
   function pushStatus() {                              // 'na' (server/brauzer qo'llamaydi) | 'ios' (avval Bosh ekran) | 'denied' | 'on' | 'off'
-    if (NAT) { if (NS.perm === 'denied') return 'denied'; var q0 = prefs().push; return q0 && q0.on && q0.local ? 'on' : 'off'; }
+    if (NAT) { if (NS.perm === 'denied') return 'denied'; var q0 = prefs().push; if (q0 && q0.on && q0.local && NS.perm !== 'granted' && NS.loaded) return 'denied'; return q0 && q0.on && q0.local ? 'on' : 'off'; }          // v83: «yoqilgan» deb belgilangan, lekin tizim ruxsati yo'q (qayta o'rnatish) — jim ishlamaydi: ogohlantirish
     if (PS.state !== 2 || !PS.on) return 'na'; if (isIOS() && !standalone()) return 'ios'; if (!pushSupported()) return 'na';
     if (Notification.permission === 'denied') return 'denied'; var p = prefs().push; return p && p.on ? 'on' : 'off';
   }
@@ -1954,6 +1956,20 @@
       return navigator.serviceWorker.ready.then(function (reg) { return reg.pushManager.getSubscription().then(function (s) { return s || reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: urlB64(PS.key) }); }); })
         .then(function (sub) { return pushPost(sub).then(function () { stEv('baliq_kuni_obuna'); prefs().push = { on: true, ep: sub.endpoint, t: Date.now() }; delete prefs().pushNo; commit(); toast(T('bkDone')); }); });
     }).catch(fail);
+  }
+  /* v83: bildirishnoma ruxsati ilova oldinga qaytganda qayta tekshiriladi; yoqilgan-lekin-ruxsatsiz holat bir marta hisobga olinadi, qaytsa eslatmalar qayta rejalanadi */
+  function pushWatch() {
+    var q0 = prefs().push, lost = !!(q0 && q0.on && q0.local && NS.perm !== 'granted');
+    if (lost && !prefs().pushLost) { prefs().pushLost = todayStr(); save(); stEv('qadam_ruxsat', 'bildirishnoma_yoq'); }
+    else if (!lost && prefs().pushLost) { delete prefs().pushLost; save(); stEv('qadam_ruxsat', 'bildirishnoma_qaytdi'); }
+  }
+  function pushFix() {
+    if (!NAT) return; var t0 = Date.now();
+    NAT.notif.enable(natOpts()).then(function (r) {
+      if (r === 'on') { NS.perm = 'granted'; natResched(); hwResched(); plResched(); pushWatch(); toast(T('bkDone')); }
+      else { NS.perm = r === 'denied' ? 'denied' : NS.perm; if (Date.now() - t0 < 900) { stEv('qadam_ruxsat', 'sozlamaga_otdi'); (KalkiNative.qadam.sozlama ? KalkiNative.qadam.sozlama() : Promise.resolve(false)).then(function (ok) { if (!ok) toast(T('bkDen3')); }); } }
+      if (view === 'profile' && !kit.sheetKind()) render();
+    }).catch(function () {});
   }
   function pushDisable() { stEv('baliq_kuni_bekor');
     if (NAT || (prefs().push && prefs().push.local)) { if (NAT) NAT.notif.disable(); prefs().push = null; commit(); toast(T('bkDoneOff')); return; }
@@ -1975,7 +1991,7 @@
   function pushRowHtml(card) {                             // Profil → Eslatmalar: «🐟 Baliq kuni» qatori — o'ngda kun («Pay») va switch; qator bosilsa — kun tanlash oynasi
     var s0 = NAT || PS.state === 2 ? pushStatus() : 'load', on = s0 === 'on', can = s0 === 'on' || s0 === 'off';
     var line = { ios: 'bkIos2', denied: NAT ? 'bkDen3' : 'bkDen2', na: 'bkNA2' }[s0];          // faqat muammo bo'lsa — qator ostida qisqa izoh
-    return '<div class="sl-remr" id="pushRow"><button type="button" class="sl-remm" data-act="fwdaysheet"><span class="ic" aria-hidden="true">' + ico('fish') + '</span><span class="t"><b class="sl-bkT">' + esc(T('bkT2')) + '</b>' + (line ? '<small class="sl-bkL">' + esc(T(line)) + '</small>' : '') + '</span><span class="v" id="pushDay">' + esc(Y ? Y.kunQisqa() : '') + '</span>' + ico('chev', 'r') + '</button>' + swHtml(on, !can ? 'pushna' : (on ? 'pushoff' : 'pushon'), T('bkT2'), !can) + '</div>';
+    return '<div class="sl-remr" id="pushRow"><button type="button" class="sl-remm" data-act="fwdaysheet"><span class="ic" aria-hidden="true">' + ico('fish') + '</span><span class="t"><b class="sl-bkT">' + esc(T('bkT2')) + '</b>' + (line ? '<small class="sl-bkL">' + esc(T(line)) + '</small>' + (NAT && s0 === 'denied' ? '<span class="sl-bkfix" role="button" tabindex="0" data-act="pushfix">' + esc(T('pushFixBtn')) + '</span>' : '') : '') + '</span><span class="v" id="pushDay">' + esc(Y ? Y.kunQisqa() : '') + '</span>' + ico('chev', 'r') + '</button>' + swHtml(on, !can ? 'pushna' : (on ? 'pushoff' : 'pushon'), T('bkT2'), !can) + '</div>';
   }
   function pushOfferHtml() {                           // Kun yakuni: BITTA taklif; «Hozir emas» — 30 kun so'ramaydi
     if (appDays() < 3 || !pushAskDue()) return ''; var s0 = pushStatus(); if (s0 !== 'off' && s0 !== 'ios') return '';
@@ -3165,12 +3181,18 @@
   /* Bugun → qadam kartasi (Android ilovada DOIM): yoqilgan — son, progress, manba; ruxsat yo'q / rad etilgan — «Qadamni yoqish»; sensor yo'q — qisqa izoh; plagin yo'q (eski ilova) — «ilovani yangilang» */
   function stepState() {
     if (!QA) return 'old'; if (!qaS.loaded) return 'wait'; if (qaOn()) return 'on';
-    if (!qaS.avail) return 'nosensor'; return prefs().qa === 'off' && !qaS.granted ? 'denied' : 'off';
+    if (!qaS.avail) return 'nosensor'; if (qaLost()) return 'lost'; return prefs().qa === 'off' && !qaS.granted ? 'denied' : 'off';
   }
   function stepCardHtml(x) {                         // Android (avtomatik): v56 uslubi — sarlavha + manba belgisi (qo'lda «+» yo'q), mini doira, kkal yorlig'i; v49 holatlari pastda
     var s0 = stepState(), steps = x.steps || 0, g = st.stepGoal || 8000, dp = S.dayPlan(st, todayStr()), kc = s0 === 'on' ? dp.stepCredit || 0 : 0;          // v58: kredit
-    var foot = s0 === 'on' ? (qaFitBtn() || (kc ? '<span class="chip c-bl">+' + fmt(kc) + ' ' + T('kcal') + '</span>' : '')) : s0 === 'off' || s0 === 'denied' ? '<button type="button" class="sl-pill" data-act="qaulash">' + ico('steps') + '<span>' + esc(T('qaOnBtn')) + '</span></button>' : s0 === 'nosensor' ? '<span class="sl-src sl-stnote">' + esc(T('qaNoSensorS')) + '</span>' : s0 === 'old' ? '<span class="sl-src sl-stnote">' + esc(T('qaOldApp')) + '</span>' : '';
-    return '<section class="sl-card sl-ab2 sl-s" data-st="' + s0 + '"><div class="ah"><b>' + esc(T('sT')) + '</b></div><button type="button" class="mr' + (steps >= 10000 ? ' w5' : '') + '" data-act="addsteps" aria-label="' + esc(T('stepsT')) + '">' + miniRing('s', steps / g, ico('steps'), 'c-bl') + '<span class="mv"><b id="sNum"' + (steps ? '' : ' class="z"') + '>' + fmt(steps) + '</b><small>/ ' + fmt(g) + '</small></span></button>' + (qaSrcHtml() ? '<span class="sl-abs2">' + qaSrcHtml() + '</span>' : '') + foot + '</section>';          // manba belgisi — doira ostida (sarlavha qisqarmasin)
+    var foot = s0 === 'on' ? (qaFitBtn() || (kc ? '<span class="chip c-bl">+' + fmt(kc) + ' ' + T('kcal') + '</span>' : '')) : s0 === 'lost' ? '<button type="button" class="sl-pill warn" data-act="qafix">' + ico('steps') + '<span>' + esc(T('qaLostPill')) + '</span></button>' : s0 === 'off' || s0 === 'denied' ? '<button type="button" class="sl-pill" data-act="qaulash">' + ico('steps') + '<span>' + esc(T('qaOnBtn')) + '</span></button>' : s0 === 'nosensor' ? '<span class="sl-src sl-stnote">' + esc(T('qaNoSensorS')) + '</span>' : s0 === 'old' ? '<span class="sl-src sl-stnote">' + esc(T('qaOldApp')) + '</span>' : '';
+    return '<section class="sl-card sl-ab2 sl-s" data-st="' + s0 + '"><div class="ah"><b>' + esc(T('sT')) + '</b></div><button type="button" class="mr' + (steps >= 10000 ? ' w5' : '') + '" data-act="addsteps" aria-label="' + esc(T('stepsT')) + '">' + miniRing('s', steps / g, ico('steps'), 'c-bl') + '<span class="mv"><b id="sNum"' + (steps ? '' : ' class="z"') + '>' + fmt(steps) + '</b><small>/ ' + fmt(g) + '</small></span>' + (s0 === 'lost' ? '<i class="sl-warnb" aria-hidden="true">!</i>' : '') + '</button>' + (qaSrcHtml() ? '<span class="sl-abs2">' + qaSrcHtml() + '</span>' : '') + foot + '</section>';          // manba belgisi — doira ostida (sarlavha qisqarmasin)
+  }
+  /* v83: «ulangan» belgisi (prefs.qa = 'on', localStorage / bulutdan tiklanadi) bor, lekin telefonda ruxsat yo'q (qayta o'rnatish, ruxsat bekor qilindi, Health Connect uzildi) — qadam JIM sanalmay qoladi. Aniq karta + bir bosishda tuzatish. */
+  function qaLost() { return !!(QA && qaS.loaded && qaS.avail && !qaS.granted && prefs().qa === 'on'); }
+  function qaLostCardHtml() {
+    if (!qaLost()) return '';
+    return '<section class="sl-card sl-qalost" id="qaLost" role="alert"><span class="ai" aria-hidden="true">' + ico('steps') + '<i>!</i></span><div class="t"><b>' + esc(T('qaLostT')) + '</b><small>' + esc(T('qaLostD')) + '</small></div><button type="button" class="rz-btn primary sm" data-act="qafix">' + esc(T('qaLostBtn')) + '</button></section>';
   }
   function qaOn() { return !!(QA && qaS.avail && qaS.granted && prefs().qa === 'on'); }
   function qaBadge() { return ''; }                 // eski «Avtomatik» belgisi o'rniga kartada manba nomi (qaSrcHtml)
@@ -3206,6 +3228,8 @@
       qaS.loaded = true; qaS.avail = !!(r && r.available); qaS.granted = !!(r && r.granted); qaS.src = (r && r.source) || ''; qaS.hc = (r && r.hc) || ''; qaS.hcToday = +(r && r.hcToday) || 0; qaS.sensor = !!(r && r.sensor); qaS.sensorG = !!(r && r.sensorGranted); qaS.fit = !!(r && r.fit);
       if (qaFlow === 'hc' && qaS.hc === 'ok') { qaFlow = 'hc2'; if (kit.sheetKind() === 'qaask') qaAsk(); setTimeout(function () { if (document.visibilityState === 'visible') qaGo(); }, 500); }          // Play Market'dan qaytdi — jarayon o'zi davom etadi (ruxsat oynasi)
       if (qaS.avail && prefs().qa != null) QA.enable(qaOn());
+      if (qaLost() && !prefs().qaLost) { prefs().qaLost = todayStr(); save(); stEv('qadam_ruxsat', 'yoq'); }          // bir qurilmada bir «yo'qolish» — bir marta (admin: nechta qurilmada ruxsat yo'qolgan)
+      else if (qaOn() && prefs().qaLost) qaRegained(false);          // ruxsat tizim sozlamasidan qaytarildi
       if (qaOn()) qaSync(); if (was !== key() && qaView()) render();
     });
   }
@@ -3222,16 +3246,34 @@
       prefs().hcE = 'on'; save(); stEv('soat_ulandi'); toast(T('hcEok'), null, true); devSync().then(function () { if (kit.sheetKind() === 'xkcal') openKcalHow(); });
     });
   }
-  function qaSync() {
+  function qaSync(nDays) {
     devSync();
     if (!qaOn()) return;
-    QA.days(7).then(function (list) {
+    QA.days(nDays || 7).then(function (list) {
       if (!qaOn() || !st.setup) return; var ch = false, t = todayStr(); if (list.source != null && list.source !== qaS.src) { qaS.src = list.source; ch = true; } if (list.hcToday != null) qaS.hcToday = +list.hcToday || 0;
       list.forEach(function (k) { if (k && typeof k.sana === 'string' && Dt.parse(k.sana) && k.sana <= t && (k.qadam > 0 || st.days[k.sana])) ch = S.setAutoSteps(st, k.sana, k.qadam) || ch; });
       if (!ch) return;
       save(); if (qaView() && view !== 'profile') { render(); afterWater(); }
     });
   }
+  /* v83: ruxsat qaytdi — Health Connect'dan o'tkazib yuborilgan kunlar (30 kun) qayta o'qiladi; sensor bo'shlig'i apparat hisoblagichi bilan (uzluksiz bo'lsa) to'ladi */
+  function qaRegained(enable) {
+    delete prefs().qaLost; delete prefs().qaBlk; prefs().qa = 'on'; save(); stEv('qadam_ruxsat', 'qaytdi');
+    var go = function () { qaSync(30); }; if (enable !== false && QA) QA.enable(true).then(go, go); else go();
+  }
+  function qaFix() {                                  // «Ruxsatni qayta berish»: tizim oynasi; chiqmasa («boshqa so'ramaslik») — sozlamaga yo'riqnoma
+    if (!QA) return; var t0 = Date.now();
+    (QA.ulash || QA.perm)().then(function (r) {
+      qaS.granted = !!(r && r.granted); if (r && r.source != null) qaS.src = r.source; if (r && r.hc) qaS.hc = r.hc; if (r && r.sensor != null) { qaS.sensor = !!r.sensor; qaS.sensorG = !!r.sensorGranted; }
+      if (qaS.granted) { qaRegained(true); toast(T('qaOnT'), null, true); render(); return; }
+      if (Date.now() - t0 < 900 || prefs().qaBlk) { prefs().qaBlk = 1; save(); qaSetSheet(); } else toast(T('qaDenied'));
+      render();
+    });
+  }
+  function qaSetSheet() {
+    openSheet('qaset', shHead(T('qaSetT')) + '<p class="rz-p">' + esc(T('qaSetD')) + '</p><ol class="sl-rules crd-steps"><li>' + esc(T('qaSet1')) + '</li><li>' + esc(T('qaSet2')) + '</li><li>' + esc(T('qaSet3')) + '</li></ol><p class="rz-p sm">' + esc(T('qaSetHc')) + '</p><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="qaset">' + esc(T('qaSetBtn')) + '</button></div>');
+  }
+  function qaOpenSettings() { stEv('qadam_ruxsat', 'sozlamaga_otdi'); (QA && QA.sozlama ? QA.sozlama() : Promise.resolve(false)).then(function (ok) { if (!ok) toast(T('qaSetHint')); }); }
   function qaBoot() {
     if (!qaDetect()) return; qaBooted = true;
     qaRefresh();
@@ -3783,7 +3825,7 @@
       case 'glass': glassTap(+el.getAttribute('data-i')); break;
       case 'updgo': if (upd) { try { KalkiNative.openUrl(location.origin + upd.apk); } catch (e) {} } break;
       case 'updlater': if (upd) { try { localStorage.setItem(UPD_KEY, JSON.stringify({ c: +upd.versionCode, t: Date.now() })); } catch (e) {} upd = null; var uc = $('#updCard'); if (uc) uc.remove(); } break;
-      case 'addsteps': stepsOpen(); break;  case 'qahc': if (QA && QA.hcInstall) { qaFlow = 'hc'; QA.hcInstall(); } break; case 'qafit': if (QA && QA.fitInstall) QA.fitInstall(); break; case 'qaulash': qaAsk(); break;
+      case 'addsteps': stepsOpen(); break;  case 'qahc': if (QA && QA.hcInstall) { qaFlow = 'hc'; QA.hcInstall(); } break; case 'qafit': if (QA && QA.fitInstall) QA.fitInstall(); break; case 'qaulash': qaAsk(); break; case 'qafix': qaFix(); break; case 'qaset': qaOpenSettings(); break; case 'pushfix': pushFix(); break;
       case 'vertap': verTap(); break; case 'diagcopy': { var dt = $('#diagTxt'); if (dt) { try { navigator.clipboard.writeText(dt.textContent).then(function () { toast(T('diagOk')); }, function () { selAll(dt); }); } catch (e) { selAll(dt); } } break; } case 'qayes': qaAllow(true); break; case 'qalater': prefs().qa = 'later'; save(); kit.closeSheet(); render(); break; case 'qatog': qaToggle(el.getAttribute('data-v') === '1'); break; case 'stepgoal': openGoal(); break;
       case 'key': {
         var k = el.getAttribute('data-k'), ks = kit.sheetKind();
@@ -4065,7 +4107,8 @@
     if (navigator.serviceWorker && navigator.serviceWorker.addEventListener) navigator.serviceWorker.addEventListener('message', function (ev) { if (ev.data && ev.data.t === 'baliq' && st && st.setup) { try { caches.open('kalkifit-pending').then(function (c) { c.delete('/__pending/baliq'); }); } catch (e) {} openFish(); } if (ev.data && ev.data.t === 'hafta' && st && st.setup) { try { caches.open('kalkifit-pending').then(function (c) { c.delete('/__pending/hafta'); }); } catch (e) {} openWeek(); } });
     if (window.KalkiNative) KalkiNative.setBack(nativeBack);
     if (NAT) { NAT.notif.onTap(function () { stEv('push_bosildi', 'hafta'); if (st && st.setup) openWeek(); }, HW_ID); }
-    if (NAT) { NAT.notif.onTap(function () { stEv('push_bosildi'); if (st && st.setup) openFish(); }); NAT.notif.perm().then(function (p) { NS.perm = p; if (p === 'granted') { natResched(); hwResched(); plResched(); } if (view === 'profile' && !kit.sheetKind()) render(); }); }
+    if (NAT) document.addEventListener('visibilitychange', function () { if (document.visibilityState !== 'visible') return; NAT.notif.perm().then(function (p) { var was = NS.perm; NS.perm = p; NS.loaded = true; pushWatch(); if (p === 'granted' && was !== 'granted') { natResched(); hwResched(); plResched(); } if (p !== was && view === 'profile' && !kit.sheetKind()) render(); }); });
+    if (NAT) { NAT.notif.onTap(function () { stEv('push_bosildi'); if (st && st.setup) openFish(); }); NAT.notif.perm().then(function (p) { NS.perm = p; NS.loaded = true; pushWatch(); if (p === 'granted') { natResched(); hwResched(); plResched(); } if (view === 'profile' && !kit.sheetKind()) render(); }); }
     if (/[?&]baliq=1\b/.test(location.search) && st.setup) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(openFish, 500); }          // eslatma bosildi: baliq guruhi ochiladi
     if (/[?&]hafta=1\b/.test(location.search) && st.setup) { stEv('push_bosildi', 'hafta'); try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(function () { openWeek(); }, 500); }          // «Haftangiz xulosasi tayyor» bosildi
     if (/[?&]plato=1\b/.test(location.search) && st.setup) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(openPlato, 500); }          // «Eslatib turilsin» bildirishnomasi bosildi
