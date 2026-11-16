@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 84,
+   "d": "2026-11-16",
+   "bn": {
+    "uz": "Soatdagi qadamlar KalkiFit'da",
+    "ru": "Шаги с часов — в KalkiFit"
+   },
+   "items": [
+    {
+     "uz": "Profil → «Soatdan qadam olish»: soat ilovasi Health Connect'ga yozsa, qadamlar shu yerdan olinadi. Ulash tugmasi va qisqa ko'rsatma bor.",
+     "ru": "Профиль → «Шаги с часов»: если приложение часов пишет в Health Connect, шаги берутся оттуда. Есть кнопка подключения и краткая инструкция."
+    },
+    {
+     "uz": "Qadam kartasida manba yoziladi: soat, telefon yoki qo'lda.",
+     "ru": "На карточке шагов указан источник: часы, телефон или вручную."
+    }
+   ]
+  },
+  {
    "v": 83,
    "d": "2026-11-16",
    "bn": {

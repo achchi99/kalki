@@ -48,7 +48,7 @@ try {
   await p.click('#rzSheet [data-act=qahc]'); await p.waitForTimeout(200); assert.ok((await calls(p)).includes('Qadam.openHealthConnect'), 'Play Market');
   await p.evaluate(() => { window.__q.st.hc = 'ok'; }); await visible(p); await p.waitForTimeout(1300);
   assert.ok((await calls(p)).includes('Qadam.ulash'), 'qaytganda jarayon o\'zi davom etdi (ruxsat oynasi ilovadan)'); assert.equal((await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit')).prefs.qa)), 'on');
-  await p.waitForTimeout(600); assert.match(await txt(p, '#sNum'), /2 300/); assert.equal(await txt(p, '.sl-s .sl-src'), 'Telefon sensori'); assert.deepEqual(p.errs, []); await p.context().close();
+  await p.waitForTimeout(600); assert.match(await txt(p, '#sNum'), /2 300/); assert.equal(await txt(p, '.sl-s .sl-src'), 'Manba: telefon'); assert.deepEqual(p.errs, []); await p.context().close();
   log('Health Connect yo\'q: «Qadamlarni ulash» → «1/2 — Health Connect\'ni o\'rnating…» [bitta tugma] → Play Market → qaytganda o\'zi ruxsat oynasi (ulash: HC + ACTIVITY_RECOGNITION) → kartada son va manba');
   /* 2. HC bo'sh, sensor ruxsatli lekin 0 → «Qadamlar hali kelmayapti» + Google Fit */
   p = await open({ st: seed({ prefs: { qa: 'on' } }), q: { st: ST({ granted: true, enabled: true, hcGranted: true, sensorGranted: true }), days: 0 } });
@@ -60,9 +60,9 @@ try {
   log('Health Connect bo\'sh: «Qadamlar hali kelmayapti» + bitta «Google Fit\'ni o\'rnatish» (Play Market), oynada izoh; sensor ruxsati yo\'q (1.0.2 holati) → «Qadamlarni ulash»');
   /* 3. HC + ma'lumot; ikkalasi — kattasi; jonli sensor */
   p = await open({ st: seed({ prefs: { qa: 'on' } }), q: { st: ST({ granted: true, enabled: true, hcGranted: true, hcToday: 4, sensorGranted: true, source: 'hc' }), days: 6400, src: 'hc' } });
-  assert.match(await txt(p, '#sNum'), /6 400/); assert.equal(await txt(p, '.sl-s .sl-src'), 'Health Connect'); assert.equal(await p.locator('.sl-s .sl-pill').count(), 0);
+  assert.match(await txt(p, '#sNum'), /6 400/); assert.equal(await txt(p, '.sl-s .sl-src'), 'Manba: soat (Health Connect)'); assert.equal(await p.locator('.sl-s .sl-pill').count(), 0);
   const gd0 = (await calls(p)).filter((x) => x === 'Qadam.getDays').length; await p.evaluate(() => { window.__q.days = 7100; window.__q.src = 'sensor'; window.__q.ls['Qadam:qadam']({ sensor: 7100 }); }); await p.waitForTimeout(900);
-  assert.ok((await calls(p)).filter((x) => x === 'Qadam.getDays').length > gd0, 'jonli hodisa → yangilandi'); assert.match(await txt(p, '#sNum'), /7 100/); assert.equal(await txt(p, '.sl-s .sl-src'), 'Telefon sensori', 'sensor kattaroq bo\'lsa — sensor'); await p.context().close();
+  assert.ok((await calls(p)).filter((x) => x === 'Qadam.getDays').length > gd0, 'jonli hodisa → yangilandi'); assert.match(await txt(p, '#sNum'), /7 100/); assert.equal(await txt(p, '.sl-s .sl-src'), 'Manba: telefon', 'sensor kattaroq bo\'lsa — sensor'); await p.context().close();
   log('Health Connect\'da ma\'lumot bor → «Health Connect»; sensor kattaroq bo\'lsa → «Telefon sensori» (har kun kattasi, ikki marta qo\'shilmaydi — native); sensor jonli hodisasi → son darrov yangilanadi');
   /* 4. sensor yo'q telefon */
   p = await open({ st: seed({ prefs: { qa: 'on' } }), q: { st: ST({ granted: true, enabled: true, hcGranted: true, sensor: false }), days: 0 } });
