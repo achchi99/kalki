@@ -201,6 +201,27 @@ Chiziqli ulush — soddalashtirish: tinch sarf kechasi biroz kam, kunduzi biroz 
 
 **Plato 5-sabab** («Mashg'ulot kunlari ko'proq yeyiladi»): mashg'ulot kunlari (≥ 2) va boshqa to'liq kunlar (≥ 3) bor bo'lsa, iste'mol farqidan limitga qo'shilgan o'rtacha mashg'ulot krediti ayiriladi. Natija ≥ 200 kkal bo'lsa, sabab chiqadi.
 
+## v82: mashg'ulotni soat skrinshotidan qo'shish
+
+«Mashg'ulot qo'shish» → «Soat skrinshotidan»: 1–3 skrinshot (bir mashg'ulotning turli ekranlari) → `/api/kalkifit-mashq` (AI **faqat raqamlarni o'qiydi**: tur, davomiylik, kkal va uning turi, o'rtacha/maks puls, masofa, qadam, sana-vaqt, manba ilova) → tasdiqlash oynasi → yozuv. Skrinshot saqlanmaydi. Limit — taom rasmi/retsept bilan umumiy AI hisobi; «mashg'ulot emas» va xatoda qaytariladi.
+
+Yozuvga qo'shiladigan maydonlar: `kc` (SOF kkal — `exNet` MET o'rniga shuni oladi), `km` (usul), `kr`/`kt` (soatdagi kkal va turi), `rs` (ayirilgan tinch holat), `hr`/`hx`, `src`, `nm`, `dist`, `stp`, `t0`.
+
+**Sof kkal (`S.shotKcal`)** — tinch holat (BMR/1440 × daqiqa) kunlik sarf modelida (`BMR × k`) allaqachon bor, shuning uchun u ikki marta sanalmaydi:
+
+| Skrinshotda | Usul | Sof kkal |
+|---|---|---|
+| kkal «faol» | `faol` | soat qiymati (u allaqachon tinch holatsiz) |
+| kkal «umumiy» yoki turi noma'lum | `umumiy` | kkal − BMR/1440 × daq (≥ 0) |
+| kkal yo'q, o'rtacha puls 80–200 | `puls` | Keytel formulasi (jami) − BMR/1440 × daq; «taxminiy (puls bo'yicha)» |
+| ikkalasi yo'q (yoki puls < 80) | `met` | mavjud MET usuli (tur + daqiqa, `exNet`) |
+
+**Keytel formulasi** (kkal/daq = kJ/daq ÷ 4,184): erkak `−55,0969 + 0,6309·HR + 0,1988·W + 0,2017·A`, ayol `−20,4022 + 0,4472·HR − 0,1263·W + 0,074·A` (HR — o'rtacha puls, W — vazn kg, A — yosh). Manba: Keytel LL va boshq., «Prediction of energy expenditure from heart rate monitoring during submaximal exercise», *J Sports Sci* 2005;23(3):285–292. Formula o'rta intensivlikda (≈ 40–80% VO₂max) tuzilgan va odatda biroz **oshirib** beradi; 22 kkal/daq bilan cheklangan. Shu sababli ham, har qanday usulda ham, kredit avvalgidek ehtiyotkor: `dayPlan` mashg'ulot NET'ining **0,7** qismini qo'shadi (`LIM.CRED_K`), `ae` (Apple aktiv energiya) kiritilgan bo'lsa — mashg'ulot krediti umuman berilmaydi (soat qadam + mashg'ulot o'rniga).
+
+**Qadam bilan ikki marta sanalmaydi.** `dayPlan` mashg'ulot qadamini (yozuvda `stp`, bo'lmasa daqiqa × `spm`) kunlik qadamning bazadan ortiq qismi bilan solishtiradi: ustma-ust qadamning sof kkal'i mashg'ulot NET'idan ayiriladi (`exOverlap`). Yurish («boshqa» + asl nom) uchun `stp` — skrinshotdagi qadam yoki 100 qadam/daq; yugurish — skrinshotdagi qadam yoki `spm` 160.
+
+**Dublikat** (`S.exDup`): shu kunda daqiqa farqi ≤ max(3, 8%) va (ikkalasida boshlanish vaqti bo'lsa ≤ 20 daq farq, aks holda bir xil tur) — «Bu mashg'ulot qo'shilgan ko'rinadi» ogohlantirishi (saqlashni to'smaydi).
+
 ## O'zini to'g'rilaydigan me'yor (`KalkiPlato.adapt`)
 
 - Shartlar: ilovadan ≥ 14 kun (v62 gacha 21), oxirgi 28 kunning ≥ 80% i to'liq yozilgan kun, shu oynada ≥ 4 tortilish.

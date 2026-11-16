@@ -13,7 +13,7 @@
   function dec(x, d) { return (Math.round((+x || 0) * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d).replace('.', ','); }
   /* nishon ikonkalari (24×24 yo'llar; DOM va canvas uchun bitta joyda) */
   var ICONS = { flame: 'M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z', target: 'M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z M12 11.5a.5.5 0 1 0 0 1', shield: 'M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z M9 12l2 2 4-4',
-    drop: 'M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z', shoe: 'M3 16c4 0 5-3 6-6l4 2c1 2 3 3 6 3a2 2 0 0 1 2 2v1H3z', bolt: 'M13 2L5 13h6l-1 9 8-11h-6z', scale: 'M12 4v16 M6 20h12 M5 8l-3 7a3 3 0 0 0 6 0zM19 8l-3 7a3 3 0 0 0 6 0z M5 8h14', leaf: 'M5 19C5 10 10 5 20 4c0 10-5 15-14 15 M5 19c2-4 5-7 9-9',
+    drop: 'M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z', shoe: 'M3 16c4 0 5-3 6-6l4 2c1 2 3 3 6 3a2 2 0 0 1 2 2v1H3z', bolt: 'M13 2L5 13h6l-1 9 8-11h-6z', heart: 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.600A4 4 0 0 1 19 10c0 5.600-7 10-7 10z', scale: 'M12 4v16 M6 20h12 M5 8l-3 7a3 3 0 0 0 6 0zM19 8l-3 7a3 3 0 0 0 6 0z M5 8h14', leaf: 'M5 19C5 10 10 5 20 4c0 10-5 15-14 15 M5 19c2-4 5-7 9-9',
     cam: 'M4 8h3l2-3h6l2 3h3v11H4z M12 11a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z', up: 'M12 19V5 M6 11l6-6 6 6', down: 'M12 5v14 M6 13l6 6 6-6', check: 'M5 12l5 5 9-10', warn: 'M12 3l10 18H2z M12 10v5 M12 18v.5' };
   function svgI(name, cls) { return '<svg class="hk-ico ' + (cls || '') + '" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="' + ICONS[name] + '"/></svg>'; }
   var G_ = { intro: 1, days: 2, kcal: 3, lost: 4, fun: 5, top: 6, macros: 7, water: 8, move: 9, weight: 10, vs: 11, badges: 12, goal: 13, final: 14 };
@@ -65,7 +65,7 @@
     var t = o.t, V = m.move, rt = V.route, line = '';
     if (rt) line = rt.part ? t('wrRoutePart', { a: rt.a, b: rt.b, p: Math.round(rt.times * 100) }) : t('wrRoute', { a: rt.a, b: rt.b, n: dec(rt.times, rt.times % 1 ? 1 : 0) });
     return '<p class="hk-k">' + esc(t('wrMoveK')) + '</p><h2 class="hk-num"><b data-cu="' + V.steps + '">0</b><small> ' + esc(t('wrSteps')) + '</small></h2>' + (V.km ? '<p class="hk-sub"><span class="hk-arrow">' + svgI('shoe') + '</span><b>≈ ' + dec(V.km, 1) + ' ' + esc(t('wrKm')) + '</b></p>' : '') + (line ? '<p class="hk-pill alt"><span>' + esc(line) + '</span></p>' : '') +
-      (V.exMin ? '<div class="hk-chips"><span>' + svgI('bolt') + '<b data-cu="' + V.exMin + '">0</b> ' + esc(t('wrMin')) + '</span><span><b data-cu="' + V.exKcal + '">0</b> ' + esc(t('wrBurn')) + '</span></div>' : '');
+      (V.exMin ? '<div class="hk-chips"><span>' + svgI('bolt') + '<b data-cu="' + V.exMin + '">0</b> ' + esc(t('wrMin')) + '</span><span><b data-cu="' + V.exKcal + '">0</b> ' + esc(t('wrBurn')) + '</span>' + (V.hr ? '<span>' + svgI('heart') + '<b data-cu="' + V.hr + '">0</b> ' + esc(t('wrPulse')) + '</span>' : '') + '</div>' : '');          // v82: soat skrinshotidan o'rtacha puls
   }
   function sWeight(m, o) {
     var t = o.t, d = m.weight.delta, dir = d < 0 ? 'down' : (d > 0 ? 'up' : 'same');

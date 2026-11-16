@@ -20,7 +20,7 @@ export const HODISA = {
   plato_ochildi: /^(need|slow|fine|fast)$/, plato_sabab: /^(qadam|yozilmagan|damolish|oqsil|defitsit|porsiya|mashq|joyida|fast|low)$/, plato_belgi: /^(walk|log|wkend|prot|goal|weigh|sleep|gram|exeat)$/,
   ai_natija: /^(ovoz|rasm|matn|menyu)\.(ochildi|tahrir|ochirildi|qoshildi|yopildi|bosh|[qy]t(10|30|60|180|x))$/,          // v52: AI natija voronkasi (natija ekrani → qo'shildi / yopildi, soniya guruhi)
   karta: /^(ilova|ekran|akkaunt)\.(korsatildi|bosildi|yopildi)$/,
-  mashq_qoshildi: /^(yugurish|zal|velosiped|futbol|suzish|uyda|raqs|yoga|kurash|voleybol|ogir|boshqa)\.(d15|d30|d60|d90|dx)$/, qadam_qolda: /^(bugun|kecha)$/, balans_ochildi: ANY, aktiv_energiya: ANY, soat_ulandi: ANY,          /* v62: iPhone «Aktiv energiya» kiritildi; Android soat sarfi ulandi (anonim, son) */          // v55: mashg'ulot (tur.daqiqa oralig'i), qo'lda qadam, balans oynasi
+  mashq_skrinshot: /^(ochildi|oqildi|emas|xato|saqlandi|dublikat|kkal_usul\.(faol|umumiy|puls|met))$/, mashq_qoshildi: /^(yugurish|zal|velosiped|futbol|suzish|uyda|raqs|yoga|kurash|voleybol|ogir|boshqa)\.(d15|d30|d60|d90|dx)$/, qadam_qolda: /^(bugun|kecha)$/, balans_ochildi: ANY, aktiv_energiya: ANY, soat_ulandi: ANY,          /* v62: iPhone «Aktiv energiya» kiritildi; Android soat sarfi ulandi (anonim, son) */          // v55: mashg'ulot (tur.daqiqa oralig'i), qo'lda qadam, balans oynasi
   afsona: /^(korsatildi|kirish\.(kun|feat)|ulashildi)$/, afsona_javob: /^a\d{2}\.(ok|xato)$/,          // v54: «Afsona yoki haqiqat?» (kunning savoli ko'rsatildi, kirish joyi, ulashish; har karta javobi to'g'ri/xato)          // v52: bir martalik kartalar (veb → ilova / bosh ekran, akkaunt)
   ilk_ochilish: ANY, birinchi_ovqat: /^(qidiruv|oxirgilar|rasm|matn|ovoz|menyu|odatdagi|kechagidek|retsept|tavsiya|boshqa)\.(d5|d30|d120|dx|dn)$/,          // v66+: aktivatsiya voronkasi — qurilma ilk marta ochildi (bir marta); birinchi ovqat: usul.vaqt guruhi (onboarding tugashidan: d5 0–5 daq, d30 5–30, d120 30–120, dx 2 soat+, dn noma'lum) — bir marta
   shtrix: /^(ochildi|topildi\.oz|topildi\.off|topilmadi|yorliqqa_otdi|qoshildi|qolda|ruxsat_rad)$/, yorliq: /^(rasm|qolda|taklif)$/, tarmoq_qidiruv: /^(evos|maxway|oqtepa|bellissimo|kfc|feedup|lesailes|chopar)$/,          // v67: «Yorliqdan qo'shish» (suratdan / qo'lda saqlandi, anonim taklif yuborildi); fast-food tarmog'i qidirildi (qaysi tarmoq — qat'iy ro'yxat)
@@ -96,7 +96,7 @@ const one = async (db, sql, ...a) => (await db.prepare(sql).bind(...a).first()) 
 /* v60: «DAVR ARALASHUVI» qoidasi — yangi hodisalar oilasi (voronka v53, harakat v55, afsona v54, veb→ilova kartalari v52) o'lchovi boshlangan kundan oldin hodisa yo'q,
    eski hodisalar (ai_sorov .ok, qurilmalar) esa bor: ular yonma-yon ko'rsatilsa «tanidi 10, ochildi 1» kabi chalg'ituvchi nisbat chiqadi.
    Qoida: jadvalning BARCHA ustunlari faqat shu oilaning BIRINCHI hodisasi kunidan (o'lchov boshlanishi) keyingi ma'lumotdan hisoblanadi; admin'da «O'lchov boshlangan: <sana>». */
-export const OLCHOV = { voronka: ['ai_natija'], harakat: ['mashq_qoshildi', 'qadam_qolda', 'balans_ochildi'], afsona: ['afsona', 'afsona_javob'], konv: ['karta', 'apk_yuklandi'] };
+export const OLCHOV = { voronka: ['ai_natija'], harakat: ['mashq_qoshildi', 'qadam_qolda', 'balans_ochildi', 'mashq_skrinshot'], afsona: ['afsona', 'afsona_javob'], konv: ['karta', 'apk_yuklandi'] };
 export async function olchovBosh(db, k) { const hs = OLCHOV[k]; return (await one(db, 'SELECT MIN(kun) AS d FROM stat_kun WHERE hodisa IN (' + hs.map(() => '?').join(',') + ')', ...hs)).d || null; }
 export async function olchovDan(db, k, dan, gacha) { const bosh = await olchovBosh(db, k); return { bosh, dan: !bosh ? addD(gacha, 1) : (bosh > dan ? bosh : dan) }; }          // bosh yo'q — bo'sh oraliq (hamma ustun 0 / null)
 async function devCount(db, dan, gacha) { return (await one(db, 'SELECT COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ?', dan, gacha)).n || 0; }
@@ -226,9 +226,9 @@ export async function afsona(db, dan0, gacha) {
 /* v55: mashg'ulot (tur × daqiqa oralig'i), qo'lda qadam (bugun/kecha), balans oynasi */
 export async function harakat(db, dan0, gacha) {
   const ol = await olchovDan(db, 'harakat', dan0, gacha), dan = ol.dan;
-  const r = await all(db, "SELECT hodisa, kalit, SUM(son) AS n FROM stat_kun WHERE hodisa IN ('mashq_qoshildi', 'qadam_qolda', 'balans_ochildi') AND kun >= ? AND kun <= ? GROUP BY hodisa, kalit", dan, gacha), tur = {}, oraliq = {}, qolda = { bugun: 0, kecha: 0 }; let mashq = 0, balans = 0;
-  r.forEach((x) => { if (x.hodisa === 'mashq_qoshildi') { const [t, d] = x.kalit.split('.'); tur[t] = (tur[t] || 0) + x.n; oraliq[d] = (oraliq[d] || 0) + x.n; mashq += x.n; } else if (x.hodisa === 'qadam_qolda') qolda[x.kalit] = (qolda[x.kalit] || 0) + x.n; else balans += x.n; });
-  return { bosh: ol.bosh, mashq, tur: Object.entries(tur).map(([k, n]) => ({ k, n })).sort((a, b) => b.n - a.n), oraliq, qolda, balans };
+  const r = await all(db, "SELECT hodisa, kalit, SUM(son) AS n FROM stat_kun WHERE hodisa IN ('mashq_qoshildi', 'qadam_qolda', 'balans_ochildi', 'mashq_skrinshot') AND kun >= ? AND kun <= ? GROUP BY hodisa, kalit", dan, gacha), tur = {}, oraliq = {}, qolda = { bugun: 0, kecha: 0 }, shot = {}; let mashq = 0, balans = 0;
+  r.forEach((x) => { if (x.hodisa === 'mashq_qoshildi') { const [t, d] = x.kalit.split('.'); tur[t] = (tur[t] || 0) + x.n; oraliq[d] = (oraliq[d] || 0) + x.n; mashq += x.n; } else if (x.hodisa === 'qadam_qolda') qolda[x.kalit] = (qolda[x.kalit] || 0) + x.n; else if (x.hodisa === 'mashq_skrinshot') shot[x.kalit] = (shot[x.kalit] || 0) + x.n; else balans += x.n; });          // v82: skrinshotdan mashg'ulot (ochildi / oqildi / emas / xato / saqlandi / dublikat / kkal_usul.*)
+  return { bosh: ol.bosh, skrinshot: shot, mashq, tur: Object.entries(tur).map(([k, n]) => ({ k, n })).sort((a, b) => b.n - a.n), oraliq, qolda, balans };
 }
 export async function kengaytma(db, dan, gacha, bugun, now) {
   const kpi = { yangi_bugun: await yangiSum(db, bugun, bugun), yangi_hafta: await yangiSum(db, addD(bugun, -6), bugun), ret30: await retention(db, dan, gacha, 30, bugun) };

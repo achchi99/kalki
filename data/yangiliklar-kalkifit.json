@@ -2,6 +2,28 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 82,
+   "d": "2026-11-16",
+   "bn": {
+    "uz": "Mashg'ulotni soat skrinshotidan qo'shing",
+    "ru": "Добавляйте тренировку по скриншоту часов"
+   },
+   "items": [
+    {
+     "uz": "Soat ilovasidagi mashg'ulot natijasi skrinshotini yuboring — tur, davomiylik, kkal va puls o'zi o'qiladi.",
+     "ru": "Отправьте скриншот результата тренировки из приложения часов — тип, длительность, ккал и пульс считаются сами."
+    },
+    {
+     "uz": "Kaloriya soat ma'lumotiga ko'ra hisoblanadi va tinch holat sarfi ikki marta sanalmaydi.",
+     "ru": "Калории считаются по данным часов, а расход покоя не учитывается дважды."
+    },
+    {
+     "uz": "Haftangizning «Harakat» slaydida o'rtacha puls ham ko'rinadi.",
+     "ru": "На слайде «Движение» вашей недели теперь виден и средний пульс."
+    }
+   ]
+  },
+  {
    "v": 81,
    "d": "2026-11-16",
    "bn": {
