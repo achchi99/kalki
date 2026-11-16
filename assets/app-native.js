@@ -28,6 +28,13 @@
     isAndroidBrowser: function () { var ua = (root.navigator && root.navigator.userAgent) || ''; return !N.isApp() && /Android/i.test(ua); },
     has: function (name) { var c = cap(); if (!N.isApp() || !c) return false; var h = c.PluginHeaders; return Array.isArray(h) ? h.some(function (x) { return x && x.name === name; }) : false; },
     call: call,
+    /* v81 (APK ≥ 1.0.10, plagin «Galereya»): ok() — ko'prik bormi; saqla(files) — Galereyaga (Pictures/KalkiFit, MediaStore; Android 10+ ruxsatsiz, 8–9 da bitta ruxsat);
+       ulash(files, text) — ACTION_SEND_MULTIPLE (bir nechta rasm + matn). files: [{ name, blob }]. Xato kodi: ruxsat | xotira | yoq | xato */
+    galereya: {
+      ok: function () { return N.has('Galereya'); },
+      saqla: function (files) { return Promise.all((files || []).map(function (f) { return blobB64(f.blob).then(function (d) { return { nom: f.name, data: d }; }); })).then(function (a) { return call('Galereya', 'saqla', { files: a }); }); },
+      ulash: function (files, text) { return Promise.all((files || []).map(function (f) { return blobB64(f.blob).then(function (d) { return { nom: f.name, data: d }; }); })).then(function (a) { return call('Galereya', 'ulash', { files: a, text: text || '' }); }); }
+    },
     /* ---------- «Baliq kuni»: haftalik lokal bildirishnoma ---------- */
     notif: {
       ok: function () { return N.has('LocalNotifications'); },

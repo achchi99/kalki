@@ -1,13 +1,1 @@
-{
-  "version": "1.0.9",
-  "versionCode": 11,
-  "apk": "/ilova/kalkifit-1.0.9.apk",
-  "sha256": "fb5e4ed7310c919143b3e0c96d5b4d1181ef6cb75ec30e7d888291667d8086f1",
-  "size": 9339267,
-  "minAndroid": "8.0",
-  "date": "2026-11-15",
-  "notes": {
-    "uz": "Shtrix-kod skaneri: kamera faqat «Shtrix-kod» ochilganda so'raladi.",
-    "ru": "Сканер штрихкода: доступ к камере запрашивается только при открытии «Штрихкода»."
-  }
-}
+{ "version": "1.0.10", "versionCode": 12, "apk": "/ilova/kalkifit-1.0.10.apk", "sha256": "4a4061891f3a0675e15f4f1a8f5e4ee7929c4e3b4a794d85ad87cdef92515cd1", "size": 9339319, "minAndroid": "8.0", "date": "2026-11-16" }

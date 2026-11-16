@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 81,
+   "d": "2026-11-16",
+   "bn": {
+    "uz": "Haftangiz — saqlash va 4 rasmni ulashish",
+    "ru": "Ваша неделя — сохранение и 4 фото"
+   },
+   "items": [
+    {
+     "uz": "«Saqlash» endi Android ilovasida ham ishlaydi — rasm Galereyaga tushadi. Ilovani oxirgi versiyaga yangilang.",
+     "ru": "«Сохранить» теперь работает и в Android-приложении — фото попадает в Галерею. Обновите приложение до последней версии."
+    },
+    {
+     "uz": "Butun haftani 4 ta rasm bo'lib ulashing yoki saqlang: umumiy, yog', top-3 taom va nishonlar.",
+     "ru": "Делитесь или сохраняйте всю неделю в 4 фото: итоги, жир, топ-3 блюд и награды."
+    }
+   ]
+  },
+  {
    "v": 80,
    "d": "2026-11-16",
    "bn": {

@@ -85,8 +85,9 @@
       (o.plato ? '<p class="hk-foot hk-pl">' + esc(o.plato.t) + '</p>' : '') + '<div class="hk-act"><button type="button" class="hk-btn pri" data-hk="goal">' + esc(t('wrAccept')) + '</button>' + (o.plato ? '<button type="button" class="hk-btn" data-hk="plato">' + esc(o.plato.b) + '</button>' : '') + '</div><p class="hk-foot ok" hidden>' + esc(t('wrAccepted')) + '</p>';
   }
   function sFinal(m, o) {
-    var t = o.t; return '<p class="hk-k">' + esc(t('wrFinalK')) + '</p><div class="hk-card9"><canvas width="1080" height="1920" aria-label="' + esc(t('wrShareA')) + '"></canvas></div><div class="hk-act col"><button type="button" class="hk-btn pri" data-hk="share">' + esc(t('wrShare')) + '</button><button type="button" class="hk-btn" data-hk="save">' + esc(t('wrSave')) + '</button>' +
-      (o.onOther ? '<button type="button" class="hk-btn ghost" data-hk="other">' + esc(t('wrOther')) + '</button>' : '') + '</div>';
+    var t = o.t, n = cardsOf(m, o).length; return '<p class="hk-k">' + esc(t('wrFinalK')) + '</p><div class="hk-seg" role="group" aria-label="' + esc(t('wrFinalK')) + '"><button type="button" class="on" data-hk="mode" data-v="one" aria-pressed="true">' + esc(t('wrModeOne')) + '</button><button type="button" data-hk="mode" data-v="week" aria-pressed="false">' + esc(t('wrModeWeek', { n: n })) + '</button></div>' +
+      '<div class="hk-card9"><canvas width="1080" height="1920" aria-label="' + esc(t('wrShareA')) + '"></canvas></div><div class="hk-thumbs" hidden></div><div class="hk-act col"><button type="button" class="hk-btn pri" data-hk="share">' + esc(t('wrShare')) + '</button><button type="button" class="hk-btn" data-hk="save">' + esc(t('wrSave')) + '</button>' +
+      (o.onOther ? '<button type="button" class="hk-btn ghost" data-hk="other">' + esc(t('wrOther')) + '</button>' : '') + '</div><p class="hk-foot hk-say" role="status" aria-live="polite" hidden></p>';
   }
   function sIntro(m, o) {
     var t = o.t; return '<div class="hk-logo" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="r"/><path d="M14 74c14-9 28 9 46 0s32 9 46 0v8a50 50 0 0 1-92 0z" class="w"/><text x="60" y="73" text-anchor="middle" class="k">K</text></svg></div><p class="hk-k">' + esc(o.range) + '</p><h2 class="hk-big">' + esc(t(m.empty ? 'wrIntroEmpty' : 'wrIntro')) + '</h2><p class="hk-sub">' + esc(m.logged ? t('wrIntroD', { n: m.logged }) : t('wrIntroE')) + '</p>' + (o.joke ? '<p class="hk-joke">' + esc(o.joke) + '</p>' : '');
@@ -108,7 +109,7 @@
   }
   /* ============================ ulashish rasmi 1080×1920 (VAZNSIZ) ============================ */
   function shareData(m, o) {                            // oq ro'yxat: vazn umuman olinmaydi
-    var L = m.lost; return { range: o.range, logged: m.logged, avg: m.avgKcal, target: m.target, steps: m.move.steps, liters: m.water.liters, protDays: m.macros.protDays, fat: (L.state === 'deficit' && !L.low) ? { kg: L.kg, kcal: Math.abs(L.total) } : (L.state === 'even' ? { even: true } : null), badge: m.badges[0] ? m.badges[0].id : '', dark: !!o.dark, days: m.rows.map(function (r) { return { l: dowOf(o, r.dow), k: r.k, near: r.state === 'near' }; }) };
+    var L = m.lost; return { range: o.range, logged: m.logged, avg: m.avgKcal, target: m.target, steps: m.move.steps, liters: m.water.liters, protDays: m.macros.protDays, fat: (L.state === 'deficit' && !L.low) ? { kg: L.kg, kcal: Math.abs(L.total) } : (L.state === 'even' ? { even: true } : null), badge: m.badges[0] ? m.badges[0].id : '', badges: m.badges.slice().sort(function (a, b) { return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0); }).slice(0, 4).map(function (b) { return b.id; }), top: (m.top || []).slice(0, 3).map(function (x) { return { name: x.name, n: x.n }; }), per: (L.per || []).map(function (x) { return { l: dowOf(o, x.dow), d: x.diff }; }), dark: !!o.dark, days: m.rows.map(function (r) { return { l: dowOf(o, r.dow), k: r.k, near: r.state === 'near' }; }) };
   }
   function drawShare(cv, s, t, tr) {
     tr = tr || function (x) { return x; }; cv.width = 1080; cv.height = 1920; var c = cv.getContext('2d'), dk = s.dark;
@@ -123,6 +124,51 @@
     if (s.fat) { c.fillStyle = dk ? '#3A2A22' : '#FFFFFF'; c.beginPath(); if (c.roundRect) c.roundRect(90, y, 900, 190, 40); else c.rect(90, y, 900, 190); c.fill(); c.fillStyle = ok; c.font = '800 64px ' + F; c.fillText(s.fat.even ? tr(t('wrEven')) : '≈ ' + dec(s.fat.kg, s.fat.kg < 1 ? 2 : 1) + ' ' + tr(t('wrKg')) + ' ' + tr(t('wrFat')), 130, y + 90); c.fillStyle = mut; c.font = '600 34px ' + F; c.fillText(s.fat.even ? tr(t('wrEvenS')) : '≈ ' + nf(s.fat.kcal) + ' ' + tr(t('kcal')) + ' ' + tr(t('wrSaved')), 130, y + 145); y += 230; }
     if (s.badge) { c.fillStyle = acc; c.font = '800 48px ' + F; c.fillText('★ ' + tr(t('wrB_' + s.badge)), 90, y + 60); }
     c.fillStyle = mut; c.font = '700 38px ' + F; c.textAlign = 'center'; c.fillText('kalki.uz/kalkifit', 540, 1840); c.textAlign = 'left'; return cv;
+  }
+  /* ---- hafta to'plami (v81): 4 ta 9:16 karta — 1) umumiy (drawShare), 2) yog' / «ushlab turdingiz» (faqat sog'lom defitsit yoki teng), 3) top-3 taom, 4) nishonlar. Bir xil uslub, pastda kalki.uz/kalkifit; VAZNSIZ. */
+  function cardBase(cv, s, t, tr, kicker) {
+    tr = tr || function (x) { return x; }; cv.width = 1080; cv.height = 1920; var c = cv.getContext('2d'), dk = s.dark;
+    var bg = c.createLinearGradient(0, 0, 1080, 1920); bg.addColorStop(0, dk ? '#2A1B16' : '#FFE3D6'); bg.addColorStop(1, dk ? '#121012' : '#FBF4EE'); c.fillStyle = bg; c.fillRect(0, 0, 1080, 1920);
+    var P = { c: c, tr: tr, ink: dk ? '#F7F1EC' : '#1E1A17', mut: dk ? '#C9BDB3' : '#6B625B', acc: dk ? '#FF8A66' : '#E0603F', ok: dk ? '#5CCB93' : '#2E9E6A', base: dk ? '#43382F' : '#EADFD6', card: dk ? '#3A2A22' : '#FFFFFF' };
+    c.fillStyle = P.acc; c.font = '800 64px ' + F; c.fillText('KalkiFit', 90, 150); c.fillStyle = P.mut; c.font = '600 44px ' + F; c.fillText(tr(s.range || ''), 90, 215);
+    c.fillStyle = P.acc; c.font = '800 46px ' + F; c.fillText(tr(kicker || ''), 90, 330);
+    c.fillStyle = P.mut; c.font = '700 38px ' + F; c.textAlign = 'center'; c.fillText('kalki.uz/kalkifit', 540, 1840); c.textAlign = 'left'; return P;
+  }
+  function rr(c, x, y, w, h, r) { c.beginPath(); if (c.roundRect) c.roundRect(x, y, w, h, r); else c.rect(x, y, w, h); c.fill(); }
+  function wrapText(c, text, x, y, maxW, lh, maxLines) {         // so'z bo'yicha o'rash; qaytaradi — keyingi y
+    var words = String(text || '').split(/\s+/), line = '', n = 0, i;
+    for (i = 0; i < words.length; i++) { var test = line ? line + ' ' + words[i] : words[i]; if (c.measureText(test).width > maxW && line) { c.fillText(line, x, y); y += lh; n++; line = words[i]; if (n >= maxLines) return y; } else line = test; }
+    if (line) { c.fillText(line, x, y); y += lh; } return y;
+  }
+  function fit(c, text, maxW) { text = String(text || ''); if (c.measureText(text).width <= maxW) return text; while (text.length > 1 && c.measureText(text + '…').width > maxW) text = text.slice(0, -1); return text + '…'; }
+  function drawLost(cv, s, t, tr) {
+    var P = cardBase(cv, s, t, tr, t('wrLostK')), c = P.c, f = s.fat || {};
+    c.fillStyle = P.ink; c.font = '800 150px ' + F; c.fillText(f.even ? tr(t('wrEven')) : '≈ ' + dec(f.kg || 0, (f.kg || 0) < 1 ? 2 : 1), 90, 560);
+    if (!f.even) { c.font = '800 80px ' + F; c.fillStyle = P.ok; c.fillText(tr(t('wrKg')) + ' ' + tr(t('wrFat')), 90, 660); c.fillStyle = P.mut; c.font = '600 46px ' + F; c.fillText('≈ ' + nf(f.kcal) + ' ' + tr(t('kcal')) + ' ' + tr(t('wrSaved')), 90, 740); }
+    else { c.fillStyle = P.mut; c.font = '600 46px ' + F; wrapText(c, tr(t('wrEvenS')), 90, 660, 900, 62, 3); }
+    var per = s.per || [], mx = Math.max.apply(null, per.map(function (x) { return Math.abs(x.d); }).concat([1])), bw = 100, gap = 24, yb = 1330, H = 330;
+    per.forEach(function (x, j) { var h = Math.max(10, H * Math.abs(x.d) / mx), xx = 90 + j * (bw + gap); c.fillStyle = x.d < 0 ? P.acc : P.ok; rr(c, xx, yb - h, bw, h, 20); c.fillStyle = P.mut; c.font = '600 32px ' + F; c.textAlign = 'center'; c.fillText(tr(x.l || ''), xx + bw / 2, yb + 52); c.textAlign = 'left'; });
+    c.fillStyle = P.mut; c.font = '600 34px ' + F; wrapText(c, tr(t('wrLostNote')), 90, 1480, 900, 46, 3); return cv;
+  }
+  function drawTop(cv, s, t, tr) {
+    var P = cardBase(cv, s, t, tr, t('wrTopK')), c = P.c, a = s.top || [];
+    c.fillStyle = P.ink; c.font = '800 76px ' + F; if (a[0]) wrapText(c, tr(t('wrTopH', { n: a[0].n, x: a[0].name })), 90, 470, 900, 92, 3);
+    a.forEach(function (x, j) { var y = 800 + j * 250; c.fillStyle = P.card; rr(c, 90, y, 900, 210, 40); c.fillStyle = P.acc; c.font = '800 110px ' + F; c.fillText(String(j + 1), 130, y + 140); c.fillStyle = P.ink; c.font = '800 56px ' + F; c.fillText(fit(c, tr(x.name), 560), 240, y + 100); c.fillStyle = P.mut; c.font = '600 40px ' + F; c.fillText(x.n + ' ' + tr(t('wrTimes')), 240, y + 160); });
+    return cv;
+  }
+  function drawBadges(cv, s, t, tr) {
+    var P = cardBase(cv, s, t, tr, t('wrBadgeK')), c = P.c, a = s.badges || [];
+    c.fillStyle = P.ink; c.font = '800 80px ' + F; wrapText(c, tr(t('wrBadgeH')), 90, 470, 900, 96, 2);
+    a.forEach(function (id, j) { var y = 700 + j * 260; c.fillStyle = P.card; rr(c, 90, y, 900, 220, 40); c.fillStyle = P.acc; c.font = '800 70px ' + F; c.fillText('★', 130, y + 120); c.fillStyle = P.ink; c.font = '800 52px ' + F; c.fillText(fit(c, tr(t('wrB_' + id)), 700), 240, y + 95); c.fillStyle = P.mut; c.font = '600 36px ' + F; wrapText(c, tr(t('wrBd_' + id)), 240, y + 148, 700, 44, 1); });
+    return cv;
+  }
+  /* [{ id, file, draw(cv) }] — mavjud kartalar tartibi: umumiy · yog' · top-3 · nishonlar (ma'lumot yo'q bo'lsa kartaning o'zi tushirib qoldiriladi) */
+  function cardsOf(m, o) {
+    var s = shareData(m, o), t = o.t, tr = o.tr, L = [{ id: 'umumiy', file: 'kalkifit-hafta-1-umumiy.png', draw: function (cv) { return drawShare(cv, s, t, tr); } }];
+    if (s.fat) L.push({ id: 'yog', file: 'kalkifit-hafta-2-yog.png', draw: function (cv) { return drawLost(cv, s, t, tr); } });
+    if (s.top.length) L.push({ id: 'top', file: 'kalkifit-hafta-3-top3.png', draw: function (cv) { return drawTop(cv, s, t, tr); } });
+    if (s.badges.length) L.push({ id: 'nishon', file: 'kalkifit-hafta-4-nishonlar.png', draw: function (cv) { return drawBadges(cv, s, t, tr); } });
+    return L;
   }
   /* ============================ ochish ============================ */
   /* o = { m, t, range, dow:[7], dayName(d), dark, reduce, joke, onShare(cv), onSave(cv), onGoal(g), onSlide(kind, idx), onOther(), onClose(), dur } → { el, go, next, prev, close, idx, kinds } */
@@ -153,13 +199,23 @@
     function close(fromBack) { if (closed) return; closed = true; clearTimeout(tm); clearTimeout(outT); doc.removeEventListener('keydown', key, true); el.classList.add('out'); doc.documentElement.classList.remove('hk-on'); setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, rm ? 0 : 220); if (o.onClose) o.onClose(!!fromBack); }
     function key(e) { if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); close(); } else if (e.key === 'ArrowRight') next(); else if (e.key === 'ArrowLeft') prev(); }
     doc.addEventListener('keydown', key, true);
+    /* v81: ulashish/saqlash tanlovi — «Bitta karta» (odatiy) yoki «Butun hafta» (3–4 ta 9:16 karta); ilova (o.onShare/o.onSave) fayllarni platformaga mos yo'l bilan ulashadi/saqlaydi */
+    var mode = 'one', sayT = null;
+    function say(msg) { var p = el.querySelector('.hk-say'); if (!p) return; clearTimeout(sayT); p.textContent = msg || ''; p.hidden = !msg; if (msg) sayT = setTimeout(function () { p.hidden = true; }, 7000); }
+    function setMode(v) {
+      mode = v === 'week' ? 'week' : 'one'; [].forEach.call(el.querySelectorAll('[data-hk=mode]'), function (b) { var on = b.getAttribute('data-v') === mode; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      var big = el.querySelector('.hk-card9'), th = el.querySelector('.hk-thumbs'); if (!big || !th) return;
+      if (mode === 'week') { if (!th.firstChild) { try { cardsOf(m, o).forEach(function (c) { var b2 = doc.createElement('canvas'); c.draw(b2); var tc = doc.createElement('canvas'); tc.width = 270; tc.height = 480; tc.getContext('2d').drawImage(b2, 0, 0, 270, 480); tc.setAttribute('aria-hidden', 'true'); th.appendChild(tc); b2.width = b2.height = 0; }); } catch (e) { /* canvas yo'q */ } } big.hidden = true; th.hidden = false; } else { big.hidden = false; th.hidden = true; }
+      say('');
+    }
+    function make() { var L = cardsOf(m, o); if (mode === 'one') L = L.slice(0, 1); return L.map(function (c) { var cv = doc.createElement('canvas'); c.draw(cv); return { id: c.id, file: mode === 'one' ? 'kalkifit-hafta.png' : c.file, cv: cv }; }); }
     var y0 = null, x0 = null, t0 = 0, moved = false;
     el.addEventListener('pointerdown', function (e) { if (e.target.closest && e.target.closest('[data-hk]')) return; y0 = e.clientY; x0 = e.clientX; t0 = Date.now(); moved = false; paused = true; clearTimeout(tm); el.classList.add('hold'); });
     el.addEventListener('pointermove', function (e) { if (y0 == null) return; var dy = e.clientY - y0; if (dy > 10) { moved = true; el.style.transform = 'translateY(' + Math.min(dy, 260) + 'px)'; } });
     el.addEventListener('pointerup', function (e) {
       var b = e.target.closest && e.target.closest('[data-hk]');
       if (b) { var a = b.getAttribute('data-hk'); if (a === 'close') close(); else if (a === 'goal') { var gb = el.querySelector('[data-hk=goal]'); if (gb && !gb.disabled) { gb.disabled = true; gb.classList.add('done'); gb.textContent = o.t('wrAccepted'); var ok = el.querySelector('.hk-sd-goal .hk-foot.ok'); if (ok) ok.hidden = false; if (o.onGoal) o.onGoal(m.goal); } }
-        else if (a === 'share' && o.onShare) { var cv = doc.createElement('canvas'); drawShare(cv, shareData(m, o), o.t, o.tr); o.onShare(cv); } else if (a === 'save' && o.onSave) { var cv2 = doc.createElement('canvas'); drawShare(cv2, shareData(m, o), o.t, o.tr); o.onSave(cv2); } else if (a === 'other' && o.onOther) { close(); o.onOther(); } else if (a === 'plato' && o.onPlato) { close(); o.onPlato(); } return; }
+        else if (a === 'mode') { setMode(b.getAttribute('data-v')); } else if (a === 'share' && o.onShare) { o.onShare(make(), mode, say); } else if (a === 'save' && o.onSave) { o.onSave(make(), mode, say); } else if (a === 'other' && o.onOther) { close(); o.onOther(); } else if (a === 'plato' && o.onPlato) { close(); o.onPlato(); } return; }
       var dy = y0 == null ? 0 : e.clientY - y0, long = Date.now() - t0 > 350; y0 = null; paused = false; el.classList.remove('hold'); el.style.transform = '';
       if (dy > 100) { close(); return; } if (moved || long) { arm(); return; }
       if (x0 != null && x0 < el.clientWidth * 0.33) prev(); else next(); arm();
@@ -168,6 +224,6 @@
     go(0);
     return { el: el, go: go, next: next, prev: prev, close: close, idx: function () { return i; }, kinds: ks };
   }
-  var api = { open: open, shareData: shareData, drawShare: drawShare, slideHtml: slideHtml, DUR: DUR, ICONS: ICONS, ORDER: G_ };
+  var api = { open: open, shareData: shareData, drawShare: drawShare, cardsOf: cardsOf, slideHtml: slideHtml, DUR: DUR, ICONS: ICONS, ORDER: G_ };
   if (typeof module === 'object' && module.exports) module.exports = api; else root.KalkiHikoya = api;
 })(typeof window !== 'undefined' ? window : this);
