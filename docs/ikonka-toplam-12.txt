@@ -1,7 +1,6 @@
 ---
-Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 20 food icons, exactly 6 columns × 4 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 42 food icons, exactly 6 columns × 7 rows, all cells the same size, evenly spaced, no borders or lines between cells.
 Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
-The last 4 cell(s) of the bottom row stay EMPTY (background only).
 Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
 No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
 Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
@@ -27,3 +26,25 @@ lochira — lochira, a small round flat tandir bread with a dimpled center and s
 shirchoy — shirchoy, Uzbek creamy salted milk tea in a small round piyola bowl, with a little butter on top.
 udon — udon, thick white boiled noodles in a bowl, plain, with chopsticks.
 soba — soba, thin brown buckwheat noodles in a bowl, plain, with chopsticks.
+v87-kok-choy-limon — drink, served in a typical glass or cup: Зелёный чай с лимоном (без сахара) (Ko'k choy (limonli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-kok-choy-asal — drink, served in a typical glass or cup: Зелёный чай с мёдом (Ko'k choy (asal bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-jasmin-choy — drink, served in a typical glass or cup: Жасминовый чай (без сахара) (Jasmin choy (ko'k, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-yalpizli-choy — drink, served in a typical glass or cup: Чай с мятой (чёрный, без сахара) (Yalpizli choy (qora, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-yalpizli-kok-choy — drink, served in a typical glass or cup: Зелёный чай с мятой (без сахара) (Yalpizli ko'k choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-zanjabilli-choy — drink, served in a typical glass or cup: Имбирный чай (без сахара) (Zanjabilli choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-zanjabil-limon-asal — drink, served in a typical glass or cup: Имбирный чай с лимоном и мёдом (Zanjabilli choy (limon va asal bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-zanjabilli-kok-choy — drink, served in a typical glass or cup: Зелёный чай с имбирём (без сахара) (Zanjabilli ko'k choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-namatakli-choy — drink, served in a typical glass or cup: Чай из шиповника (без сахара) (Na'matakli choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-moychechak-choy — drink, served in a typical glass or cup: Ромашковый чай (без сахара) (Moychechak choy (romashka, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-karkade — drink, served in a typical glass or cup: Каркаде (чай из гибискуса, без сахара) (Karkade (gibiskus choyi, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-mevali-choy — drink, served in a typical glass or cup: Фруктовый чай (без сахара) (Mevali choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-dolchinli-choy — drink, served in a typical glass or cup: Чай с корицей (без сахара) (Dolchinli choy (qora, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-sutli-choy — drink, served in a typical glass or cup: Чай с молоком (без сахара) (Sutli choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-shirchoy-tuzli — drink, served in a typical glass or cup: Ширчой солёный (без масла) (Shirchoy (tuzli, sariyog'siz)), realistic single serving, top-down three-quarter view, no text.
+v87-shirchoy-qaymoqli — drink, served in a typical glass or cup: Ширчой со сливками (солёный) (Shirchoy (qaymoqli, tuzli)), realistic single serving, top-down three-quarter view, no text.
+v87-masala-choy — drink, served in a typical glass or cup: Масала чай (с молоком и сахаром) (Masala choy (sutli, shirin)), realistic single serving, top-down three-quarter view, no text.
+v87-masala-choy-shakarsiz — drink, served in a typical glass or cup: Масала чай (с молоком, без сахара) (Masala choy (sutli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-matcha — drink, served in a typical glass or cup: Матча (чай, без сахара) (Matcha choy (sof, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-matcha-latte — drink, served in a typical glass or cup: Матча латте (на молоке, без сахара) (Matcha latte (kafe, sutli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-ays-matcha-latte — drink, served in a typical glass or cup: Айс матча латте (со льдом, сладкий) (Ays matcha latte (kafe, muzli, shirin)), realistic single serving, top-down three-quarter view, no text.
+v87-muzli-choy-qora — drink, served in a typical glass or cup: Холодный чай чёрный с лимоном (бутылка) (Muzli choy (qora, limonli, shishada, shirin)), realistic single serving, top-down three-quarter view, no text.

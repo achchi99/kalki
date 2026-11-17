@@ -193,6 +193,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     if (e.pt && !it.fid) it.pt = String(e.pt).slice(0, 60);          // bazada yo'q yozuv (AI/rasm/matn): porsiya matni ALOHIDA — nomga qo'shilmaydi
     if (e.ifid) it.ifid = String(e.ifid).slice(0, 60); if (/^(salat|shorva|issiq|zakuska|desert)$/.test(e.ikat || '')) it.ikat = e.ikat;          // menyudan: ikonka uchun baza taomi va toifa (kkal'ga ta'sir yo'q)
     if (e.vn) { it.vn = String(e.vn).slice(0, 30); if (FILL[e.vf]) it.vf = e.vf; }                 // «Mening idishim»: idish nomi (snapshot) va to'ldirish
+    var ad = it.fid ? adClean(e.ad) : null; if (ad) it.ad = ad;          // v87: choy/qahva qo'shimchasi (shakar, asal, sut…) — kkal yozuvga qo'shilgan, bu faqat nom/tahrir uchun
     x.food.push(it); if (it.fid) { st.recents = [it.fid].concat(st.recents.filter(function (r) { return r !== it.fid; })).slice(0, 12); }
     return it;
   }
@@ -701,8 +702,8 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     return out.slice(0, o.limit || 30).map(function (x) { return x.f; });
   }
   var WORDS = { bir: 1, bitta: 1, ikki: 2, ikkita: 2, uch: 3, uchta: 3, tort: 4, tortta: 4, besh: 5, beshta: 5, olti: 6, yetti: 7, sakkiz: 8, tokkiz: 9, on: 10, yarim: 0.5, yarmi: 0.5, yarimta: 0.5, yarimtasi: 0.5, polovinka: 0.5, polovinu: 0.5, odin: 1, one: 1, dva: 2, tri: 3, chetire: 4, pyat: 5, pol: 0.5, polovina: 0.5 };
-  var UNITW = { kosa: 'kosa', kosada: 'kosa', miska: 'kosa', miski: 'kosa', kosani: 'kosa', kosadan: 'kosa', likop: 'likop', likopda: 'likop', tarelka: 'likop', lagan: 'likop', lagani: 'likop', laganda: 'likop', lagandan: 'likop', laganlik: 'likop', tarelki: 'likop', tarelku: 'likop', dona: 'dona', ta: 'dona', sht: 'dona', shtuk: 'dona', shtuki: 'dona', bolak: 'bolak', kusok: 'bolak', stakan: 'stakan', stakana: 'stakan', qoshiq: 'qoshiq', lojka: 'qoshiq', piyola: 'piyola', pialo: 'piyola', chashka: 'chashka', chashki: 'chashka', chashku: 'chashka', chashkada: 'chashka', chashkani: 'chashka', chashkalik: 'chashka', chashek: 'chashka', chaska: 'chashka', porsiya: 'porsiya', porsii: 'porsiya', portsiya: 'porsiya', portsiyu: 'porsiya', portsii: 'porsiya', portsiyasi: 'porsiya', porsiy: 'porsiya', portsiy: 'porsiya', hovuch: 'hovuch', gorst: 'hovuch', tilim: 'tilim', lomtik: 'tilim', shisha: 'shisha', butilka: 'shisha', skup: 'skup', skupa: 'skup', skuplar: 'skup', skoop: 'skup', scoop: 'skup', shar: 'shar', shari: 'shar', sharik: 'shar', sharikov: 'shar', banka: 'banka', banki: 'banka', bankasi: 'banka', plitka: 'plitka', plitki: 'plitka', paket: 'paket', paketcha: 'paket', pachka: 'paket', g: 'g100', gr: 'g100', gramm: 'g100', gram: 'g100', gramma: 'g100', grammov: 'g100', ml: 'ml', millilitr: 'ml', mililitr: 'ml', pml: 'ml', qoshiqda: 'qoshiq', qoshiqdan: 'qoshiq', oshqoshiq: 'qoshiq', oshqoshiqda: 'qoshiq', piyolada: 'piyola', stakanda: 'stakan', bolagi: 'bolak' };          // v52: «30pml» (telefonda xato), «1 qoshiqda» («kesim non» — nom: oq non tilimi)
-  var MYW = { laganim: 'lagan', laganimda: 'lagan', laganimdagi: 'lagan', laganimdan: 'lagan', kosam: 'kosa', kosamda: 'kosa', kosamdagi: 'kosa', kosamdan: 'kosa', piyolam: 'piyola', piyolamda: 'piyola', piyolamdagi: 'piyola', likopcham: 'likopcha', likopchamda: 'likopcha' };
+  var UNITW = { kosa: 'kosa', kosada: 'kosa', miska: 'kosa', miski: 'kosa', kosani: 'kosa', kosadan: 'kosa', likop: 'likop', likopda: 'likop', tarelka: 'likop', tarelkada: 'likop', tarelkadan: 'likop', tarelkasi: 'likop', lagan: 'likop', lagani: 'likop', laganda: 'likop', lagandan: 'likop', laganlik: 'likop', tarelki: 'likop', tarelku: 'likop', dona: 'dona', ta: 'dona', sht: 'dona', shtuk: 'dona', shtuki: 'dona', bolak: 'bolak', kusok: 'bolak', stakan: 'stakan', stakana: 'stakan', qoshiq: 'qoshiq', lojka: 'qoshiq', piyola: 'piyola', pialo: 'piyola', chashka: 'chashka', chashki: 'chashka', chashku: 'chashka', chashkada: 'chashka', chashkani: 'chashka', chashkalik: 'chashka', chashek: 'chashka', chaska: 'chashka', porsiya: 'porsiya', porsii: 'porsiya', portsiya: 'porsiya', portsiyu: 'porsiya', portsii: 'porsiya', portsiyasi: 'porsiya', porsiy: 'porsiya', portsiy: 'porsiya', hovuch: 'hovuch', gorst: 'hovuch', tilim: 'tilim', lomtik: 'tilim', shisha: 'shisha', butilka: 'shisha', skup: 'skup', skupa: 'skup', skuplar: 'skup', skoop: 'skup', scoop: 'skup', shar: 'shar', shari: 'shar', sharik: 'shar', sharikov: 'shar', banka: 'banka', banki: 'banka', bankasi: 'banka', plitka: 'plitka', plitki: 'plitka', paket: 'paket', paketcha: 'paket', pachka: 'paket', g: 'g100', gr: 'g100', gramm: 'g100', gram: 'g100', gramma: 'g100', grammov: 'g100', ml: 'ml', millilitr: 'ml', mililitr: 'ml', pml: 'ml', qoshiqda: 'qoshiq', qoshiqdan: 'qoshiq', oshqoshiq: 'qoshiq', oshqoshiqda: 'qoshiq', piyolada: 'piyola', stakanda: 'stakan', bolagi: 'bolak' };          // v52: «30pml» (telefonda xato), «1 qoshiqda» («kesim non» — nom: oq non tilimi)
+  var MYW = { laganim: 'lagan', laganimda: 'lagan', laganimdagi: 'lagan', laganimdan: 'lagan', tarelkam: 'lagan', tarelkamda: 'lagan', tarelkamdagi: 'lagan', tarelkamdan: 'lagan', kosam: 'kosa', kosamda: 'kosa', kosamdagi: 'kosa', kosamdan: 'kosa', piyolam: 'piyola', piyolamda: 'piyola', piyolamdagi: 'piyola', likopcham: 'likopcha', likopchamda: 'likopcha' };
   var SZW = { kichik: 'kichik', kichkina: 'kichik', mayda: 'kichik', malenkiy: 'kichik', malenkaya: 'kichik', malenkie: 'kichik', orta: 'orta', ortacha: 'orta', srednyaya: 'orta', sredniy: 'orta', katta: 'katta', yirik: 'katta', bolshoy: 'katta', bolshaya: 'katta', bolshie: 'katta' };
   var SLICEW = { kesim: 1, kesma: 1, kesilgan: 1, kesimi: 1 };
   var STOP = { bilan: 1, sho: 0, bugun: 1, tushlikda: 1, nonushtada: 1, kechqurun: 1, yedim: 1, ichdim: 1, men: 1, va: 1, i: 1, ya: 1, segodnya: 1, el: 1, pil: 1, s: 0 , bn: 1, bln: 1 };
@@ -777,6 +778,58 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   function famKey(f, sel) { var fm = f.fam; return fm.ax.map(function (a) { return (sel && sel[a.i]) || a.d; }).join('.'); }
   function famSelOf(f, vr) { var fm = f.fam, o = {}, p = String(vr || '').split('.'); fm.ax.forEach(function (a, i) { o[a.i] = p[i] && a.o.some(function (x) { return x.i === p[i]; }) ? p[i] : a.d; }); return o; }
   function famDefault(f) { return famSelOf(f, null); }
+  /* ---------- v87: choy/qahvaga QO'SHIMCHA (shakar, asal, navvot, sut, limon, murabbo) — kombinatsiyalar alohida taom bo'lmasin.
+   * Qiymat USDA FDC SR Legacy: shakar 169655 (1 ch.q. 4,2 g), asal 169640 (1 ch.q. 7 g), navvot ≈ shakar (1 bo'lak 5 g), sut 3,2 % 171265 (30 ml), limon 167746 (1 tilim 10 g), murabbo 169641 (1 ch.q. 7 g).
+   * Yozuvda: e.ad = { sh: 0–3, as, nv, su, li, mu: 1 } — porsiya birligi (piyola/chashka…) BOSHIGA; grammda — bir marta. */
+  var ADDON = { sh: { g: 4.2, k: 387, p: 0, f: 0, c: 99.98, max: 3 }, as: { g: 7, k: 304, p: 0.3, f: 0, c: 82.4 }, nv: { g: 5, k: 387, p: 0, f: 0, c: 99.98 }, su: { g: 30, k: 61, p: 3.15, f: 3.25, c: 4.8 }, li: { g: 10, k: 29, p: 1.1, f: 0.3, c: 9.32 }, mu: { g: 7, k: 278, p: 0.37, f: 0.07, c: 68.86 } };
+  var ADDON_K = ['sh', 'as', 'nv', 'su', 'li', 'mu'];
+  var ADDON_T = { uz: { sh: 'shakar', as: 'asal', nv: 'navvot', su: 'sut', li: 'limon', mu: 'murabbo', q: 'q.' }, ru: { sh: 'сахар', as: 'мёд', nv: 'нават', su: 'молоко', li: 'лимон', mu: 'варенье', q: 'л.' } };
+  function adOk(f) {                                      // qo'shimcha qatori: issiq/sovuq choy va qahva (shishadagi tayyor ichimlik, limonad, sharbat — yo'q)
+    if (!f || f.t !== 'i') return false; var s = (f.id || f.i || '') + ' ' + (f.n || '') + ' ' + (f.r || '');
+    if (/limonad|лимонад|sharbat|сок|smuzi|смузи|sheyk|шейк|kompot|компот|ayron|айран|energ|энерг|gazli|газир|kola|cola|pivo|vino|aroq|konyak|kvas|квас|suv\b|вода|kefir|кефир|ichimlik suv/i.test(s)) return false;
+    if ((f.u || []).some(function (u) { var k = u[0] || u.k; return /^(shisha|banka)/.test(k); })) return false;
+    return /choy|чай|qahva|kofe|кофе|kapuchino|капучино|latte|латте|amerikano|американо|espresso|эспрессо|doppio|kakao|какао|matcha|матча|masala|масала|mokk|мокк|\braf\b|\bраф\b|flet|флэт|shokolad \(issiq\)|issiq shokolad|горячий шоколад|karkade|каркаде|na'matak|шиповник|moychechak|ромашк/i.test(s);
+  }
+  function adClean(ad) {
+    if (!ad || typeof ad !== 'object') return null; var o = {}, n = 0;
+    ADDON_K.forEach(function (k) { var v = Math.round(+ad[k] || 0); v = Math.max(0, Math.min(ADDON[k].max || 1, v)); if (v) { o[k] = v; n++; } });
+    return n ? o : null;
+  }
+  function adCalc(ad, n) {                                // n — porsiya soni (piyola/chashka); grammda 1
+    var a = adClean(ad), r = { g: 0, kcal: 0, p: 0, f: 0, c: 0 }; if (!a) return r; n = n > 0 ? n : 1;
+    ADDON_K.forEach(function (k) { if (!a[k]) return; var d = ADDON[k], g = d.g * a[k] * n; r.g += g; r.kcal += d.k * g / 100; r.p += d.p * g / 100; r.f += d.f * g / 100; r.c += d.c * g / 100; });
+    return r;
+  }
+  function adText(ad, lang) {                             // «2 q. shakar, sut» / «2 л. сахара, молоко»
+    var a = adClean(ad); if (!a) return ''; var T = ADDON_T[lang === 'ru' ? 'ru' : 'uz'];
+    return ADDON_K.filter(function (k) { return a[k]; }).map(function (k) { return k === 'sh' ? a.sh + ' ' + T.q + ' ' + (lang === 'ru' ? 'сахара' : T.sh) : T[k]; }).join(', ');
+  }
+  /* ---------- v87: BIR XILLIK MASLAHATI (hisob FAQAT qurilmada; serverga shaxsiy ma'lumot ketmaydi)
+   * Qoida 1: oxirgi 6 kunning (bugundan oldingi) kamida 5 kunida bir xil guruh (taomning gr tegi, 1–2 ta) yozilgan va BUGUN yana shu guruhdan qo'shildi → { k: 'guruh', g, n } (n — nechanchi kun).
+   * Qoida 2: oxirgi 5 kun KETMA-KET (har kuni ovqat yozilgan) oqsil maqsadining 70 % idan kam → { k: 'oqsil' }.
+   * Sabzavot, meva, «boshqa» (yog', sous) — foydali/neytral: karta chiqmaydi. Ichimlik — faqat ≥ 40 kkal yozuv sanaladi (shakarsiz choy/qahva, suv — yo'q).
+   * Cheklov: o'chirilgan (bx.off), haftada ko'pi bilan 1 marta (bx.last), birinchi 7 kunlik yangi foydalanuvchiga — yo'q. */
+  var BX_SKIP = { sabzavot: 1, meva: 1, boshqa: 1 }, BX_DAYS = 6, BX_MIN = 5, BX_PROT_DAYS = 5, BX_PROT_K = 0.7, BX_WEEK = 7;
+  function bxGr(e, grOf) { var g = grOf(e) || []; if (g.indexOf('ichimlik') >= 0 && !((+e.kcal || 0) >= 40)) return g.filter(function (x) { return x !== 'ichimlik'; }); return g; }
+  function bixil(st, t, o) {                              // o: { gr: qo'shilgan taom guruhlari, grOf(e) → guruhlar, protG: oqsil maqsadi (g), now }
+    if (!st || !st.setup || !st.created) return null; var bx = (st.prefs && st.prefs.bx) || {};
+    if (bx.off) return null;
+    var cd = new Date(st.created), born = D.ymd(cd.getFullYear(), cd.getMonth() + 1, cd.getDate());
+    if (D.daysBetween(born, t) < 7) return null;
+    if (bx.last && D.daysBetween(bx.last, t) < BX_WEEK) return null;
+    var grOf = o.grOf, cand = (o.gr || []).filter(function (g) { return !BX_SKIP[g]; });
+    for (var i = 0; i < cand.length; i++) {
+      var g = cand[i], n = 0;
+      for (var k = 1; k <= BX_DAYS; k++) { var x = dayOf(st, D.addDays(t, -k)); if (x && x.food && x.food.some(function (e) { return bxGr(e, grOf).indexOf(g) >= 0; })) n++; }
+      if (n >= BX_MIN) return { k: 'guruh', g: g, n: n + 1 };
+    }
+    if (o.protG > 0) {
+      var low = 0;
+      for (var j = 1; j <= BX_PROT_DAYS; j++) { var y = dayOf(st, D.addDays(t, -j)); if (!y || !y.food || !y.food.length) break; var p = sumEntries(y.food).p; if (p >= o.protG * BX_PROT_K) break; low++; }
+      if (low >= BX_PROT_DAYS) return { k: 'oqsil', g: 'oqsil', n: low };
+    }
+    return null;
+  }
   function famVariant(f, sel, sz) {                      // oila + tanlov → oddiy taom ko'rinishi (k,p,f,c,u,e) — mavjud kod (portion/unitGrams) shu bilan ishlaydi
     var fm = f.fam; if (!fm) return f; var vr = famKey(f, sel), g = fm.g[vr] || fm.g[famKey(f, null)], o = {}, k;
     for (k in f) o[k] = f[k];
@@ -980,6 +1033,6 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayPlan: dayPlan, bestStreak: bestStreak, streakWeek: streakWeek, monthSummary: monthSummary, limShift: limShift, setAe: setAe, setDev: setDev, aeBase: aeBase, devTotal: devTotal, AE_MAX: AE_MAX, STEPS_SANE: STEPS_SANE, dayBal: dayBal, dayFrac: dayFrac, parseEx: parseEx, EX: EX, EX_ORDER: EX_ORDER, exNet: exNet, walkNet: walkNet, addEx: addEx, shotKcal: shotKcal, restKcal: restKcal, exDup: exDup, exExtra: exExtra, EX_XK: EX_XK, updEx: updEx, removeEx: removeEx, restoreEx: restoreEx, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
-    migrate: migrate, famKey: famKey, sameState: sameState, stamp: stamp, stampReset: stampReset, mergeStates: mergeStates, countState: countState, ptSplit: ptSplit, respace: respace, kbVariants: kbVariants, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
+    migrate: migrate, famKey: famKey, sameState: sameState, stamp: stamp, stampReset: stampReset, mergeStates: mergeStates, countState: countState, ptSplit: ptSplit, respace: respace, kbVariants: kbVariants, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, ADDON: ADDON, ADDON_K: ADDON_K, adOk: adOk, adClean: adClean, adCalc: adCalc, adText: adText, bixil: bixil, BX_SKIP: BX_SKIP, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });

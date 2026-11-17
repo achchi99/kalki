@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 87,
+   "d": "2026-11-17",
+   "bn": {
+    "uz": "Baza kengaydi: choy, qahva, limonad, sho'rvalar",
+    "ru": "База расширена: чай, кофе, лимонады, супы"
+   },
+   "items": [
+    {
+     "uz": "264 ta yangi taom va ichimlik qo'shildi. Choy va qahvaga shakar, asal yoki sutni bir bosishda qo'shing",
+     "ru": "Добавлено 264 новых блюд и напитков. К чаю и кофе — сахар, мёд или молоко в одно касание"
+    },
+    {
+     "uz": "«Lagan» endi «tarelka» deb yoziladi. Bir xil taom ko'p takrorlansa — hazilomuz maslahat",
+     "ru": "Вместо «лаган» теперь «тарелка». Если одно блюдо часто повторяется — шутливый совет"
+    }
+   ]
+  },
+  {
    "v": 86,
    "d": "2026-11-17",
    "bn": {

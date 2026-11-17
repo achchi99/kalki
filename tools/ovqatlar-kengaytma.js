@@ -397,5 +397,8 @@ const OQSIL = Object.assign({},
 { const K6 = require('./ovqatlar-kengaytma6.js'); for (const k of Object.keys(K6.TEG)) TEG[k] = (TEG[k] || []).concat(K6.TEG[k]); Object.assign(OQSIL, K6.OQSIL); }   // v73: baza kengaytirish (topilmagan qidiruvlar)
 { const K5 = require('./ovqatlar-kengaytma5.js'); for (const k of Object.keys(K5.TEG)) TEG[k] = (TEG[k] || []).concat(K5.TEG[k]); Object.assign(OQSIL, K5.OQSIL); }   // v67: fast-food tarmoqlari va muzqaymoq turlari
 { const K3 = require('./ovqatlar-kengaytma3.js'); for (const k of Object.keys(K3.TEG)) TEG[k] = (TEG[k] || []).concat(K3.TEG[k]); Object.assign(OQSIL, K3.OQSIL); }   // v65: 2-bosqich
+{ const fs8 = require('fs'), p8 = require('path');          // v87: 8c — qo'lda teglar; 8a/8b — USDA komponentlaridan avtomatik (tools/kengaytma-teg.js)
+  if (fs8.existsSync(p8.join(__dirname, 'ovqatlar-kengaytma8c.js'))) { const K8 = require('./ovqatlar-kengaytma8c.js'); for (const k of Object.keys(K8.TEG || {})) TEG[k] = (TEG[k] || []).concat(K8.TEG[k]); Object.assign(OQSIL, K8.OQSIL || {}); }
+  for (const x of ['8a', '8b']) if (fs8.existsSync(p8.join(__dirname, 'ovqatlar-kengaytma' + x + '.js'))) { const A = require('./kengaytma-teg.js').teglar(require('./ovqatlar-kengaytma' + x + '.js')); for (const k of Object.keys(A)) TEG[k] = (TEG[k] || []).concat(A[k]); } }
 { const K2 = require('./ovqatlar-kengaytma2.js'); for (const k of Object.keys(K2.TEG)) TEG[k] = (TEG[k] || []).concat(K2.TEG[k]); Object.assign(OQSIL, K2.OQSIL); }   // v64: bazani kengaytirish, 1-bosqich   // turk taomlari (v21)
 module.exports = rows; module.exports.TEG = TEG; module.exports.OQSIL = OQSIL;

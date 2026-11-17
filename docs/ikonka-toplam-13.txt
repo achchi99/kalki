@@ -1,0 +1,50 @@
+---
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 42 food icons, exactly 6 columns × 7 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
+Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
+No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
+Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
+Keep the icons in exactly this order (left to right, top to bottom):
+---
+v87-muzli-choy-kok — drink, served in a typical glass or cup: Холодный зелёный чай (бутылка) (Muzli ko'k choy (shishada, shirin)), realistic single serving, top-down three-quarter view, no text.
+v87-muzli-choy-shakarsiz — drink, served in a typical glass or cup: Холодный чай (без сахара) (Muzli choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-ays-ti-shaftoli — drink, served in a typical glass or cup: Айс-ти персиковый (кафе) (Ays-ti (kafe, shaftolili)), realistic single serving, top-down three-quarter view, no text.
+v87-ays-ti-malina — drink, served in a typical glass or cup: Айс-ти малиновый (кафе) (Ays-ti (kafe, malinali)), realistic single serving, top-down three-quarter view, no text.
+v87-kapuchino-kafe — drink, served in a typical glass or cup: Капучино (кафе, без сахара) (Kapuchino (kafe, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-kapuchino-shakar — drink, served in a typical glass or cup: Капучино с сахаром (2 ч. ложки) (Kapuchino (kafe, 2 choy qoshiq shakar bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-kapuchino-bodom — drink, served in a typical glass or cup: Капучино на миндальном молоке (Kapuchino (bodom sutida, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-latte-kafe — drink, served in a typical glass or cup: Латте (кафе, без сахара) (Latte (kafe, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-latte-shakar — drink, served in a typical glass or cup: Латте с сахаром (2 ч. ложки) (Latte (kafe, 2 choy qoshiq shakar bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-latte-yogsiz — drink, served in a typical glass or cup: Латте на обезжиренном молоке (Latte (yog'siz sutda, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-latte-bodom — drink, served in a typical glass or cup: Латте на миндальном молоке (Latte (bodom sutida, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-latte-soya — drink, served in a typical glass or cup: Латте на соевом молоке (Latte (soya sutida)), realistic single serving, top-down three-quarter view, no text.
+v87-flet-uayt — drink, served in a typical glass or cup: Флэт уайт (без сахара) (Flet uayt (kafe, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-amerikano-kafe — drink, served in a typical glass or cup: Американо (кафе, без сахара) (Amerikano (kafe, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-amerikano-sut — drink, served in a typical glass or cup: Американо с молоком (Amerikano (sut bilan, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-mokko-kafe — drink, served in a typical glass or cup: Мокко (кафе, со сливками) (Mokko (kafe, qaymoqli)), realistic single serving, top-down three-quarter view, no text.
+v87-raf-vanil — drink, served in a typical glass or cup: Раф ванильный (кафе) (Raf (kafe, vanilli)), realistic single serving, top-down three-quarter view, no text.
+v87-karamel-latte — drink, served in a typical glass or cup: Карамельный латте (с сиропом) (Karamel latte (kafe, sirop bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-vanil-latte — drink, served in a typical glass or cup: Ванильный латте (с сиропом) (Vanil latte (kafe, sirop bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-yongoq-latte — drink, served in a typical glass or cup: Ореховый латте (с сиропом лесного ореха) (Yong'oqli latte (funduk siropi bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-ays-kapuchino — drink, served in a typical glass or cup: Айс-капучино (со льдом, без сахара) (Ays-kapuchino (muzli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-ays-latte — drink, served in a typical glass or cup: Айс-латте (со льдом, без сахара) (Ays-latte (kafe, muzli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-ays-karamel-latte — drink, served in a typical glass or cup: Айс-латте карамельный (Ays-latte (karamelli, muzli)), realistic single serving, top-down three-quarter view, no text.
+v87-ays-amerikano — drink, served in a typical glass or cup: Айс-американо (со льдом) (Ays-amerikano (muzli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-frappe — drink, served in a typical glass or cup: Фраппе (кафе, со сливками) (Frappe (kafe, qaymoqli, shirin)), realistic single serving, top-down three-quarter view, no text.
+v87-frappe-karamel — drink, served in a typical glass or cup: Фраппе карамельный (Frappe (karamelli, qaymoqli)), realistic single serving, top-down three-quarter view, no text.
+v87-kakao-kafe — drink, served in a typical glass or cup: Какао (кафе, на молоке, сладкое) (Kakao (kafe, sutli, shirin)), realistic single serving, top-down three-quarter view, no text.
+v87-kakao-shakarsiz — drink, served in a typical glass or cup: Какао на молоке (без сахара) (Kakao (sutli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-issiq-shokolad-kafe — drink, served in a typical glass or cup: Горячий шоколад (кафе, со сливками) (Issiq shokolad (kafe, qaymoqli)), realistic single serving, top-down three-quarter view, no text.
+v87-limonad-kafe-klassik — drink, served in a typical glass or cup: Лимонад классический (кафе) (Kafe limonadi (klassik, limonli)), realistic single serving, top-down three-quarter view, no text.
+v87-limonad-mango-marakuya — drink, served in a typical glass or cup: Лимонад манго-маракуйя (кафе) (Kafe limonadi (mango-marakuya)), realistic single serving, top-down three-quarter view, no text.
+v87-limonad-malina — drink, served in a typical glass or cup: Малиновый лимонад (кафе) (Kafe limonadi (malinali)), realistic single serving, top-down three-quarter view, no text.
+v87-limonad-qulupnay — drink, served in a typical glass or cup: Клубничный лимонад (кафе) (Kafe limonadi (qulupnayli)), realistic single serving, top-down three-quarter view, no text.
+v87-limonad-shaftoli — drink, served in a typical glass or cup: Персиковый лимонад (кафе) (Kafe limonadi (shaftolili)), realistic single serving, top-down three-quarter view, no text.
+v87-limonad-tarxun-kafe — drink, served in a typical glass or cup: Тархунный лимонад (кафе, домашний) (Kafe limonadi (tarxunli, uy usulida)), realistic single serving, top-down three-quarter view, no text.
+v87-moxito-kafe — drink, served in a typical glass or cup: Мохито безалкогольный (кафе-лимонад) (Kafe limonadi (moxito, alkogolsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-limonad-kivi — drink, served in a typical glass or cup: Лимонад с киви (кафе) (Kafe limonadi (kivili)), realistic single serving, top-down three-quarter view, no text.
+v87-limonad-apelsin — drink, served in a typical glass or cup: Апельсиновый лимонад (кафе) (Kafe limonadi (apelsinli)), realistic single serving, top-down three-quarter view, no text.
+v87-limonad-tarvuz — drink, served in a typical glass or cup: Арбузный лимонад (кафе) (Kafe limonadi (tarvuzli)), realistic single serving, top-down three-quarter view, no text.
+v87-smuzi-qulupnay-banan — drink, served in a typical glass or cup: Смузи клубника-банан (Smuzi (qulupnay-banan, yogurtli)), realistic single serving, top-down three-quarter view, no text.
+v87-smuzi-yashil — drink, served in a typical glass or cup: Смузи зелёный (шпинат, яблоко, банан) (Smuzi (yashil: ismaloq, olma, banan, kivi)), realistic single serving, top-down three-quarter view, no text.
+v87-smuzi-mango-banan — drink, served in a typical glass or cup: Смузи манго-банан (Smuzi (mango-banan)), realistic single serving, top-down three-quarter view, no text.

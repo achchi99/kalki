@@ -75,7 +75,7 @@ try {
     assert.ok(m.bottom <= m.nav + 1 && m.later <= m.nav, 'karta iPhone ekraniga to\'liq sig\'adi: ' + JSON.stringify(m)); assert.equal(m.barVisible, false, 'pastki tugma yashirin'); await p.context().close(); }
   log('Ko\'rinish: 360/390 px, katta shrift, qorong\'i rejim — sig\'adi, tugmalar ≥ 44 px, gorizontal skroll yo\'q; iPhone ko\'rinadigan maydonida (393×659) karta to\'liq, pastki tugma yashirin');
   /* 8. cheklov: kontekst chip kartaga zid kelmaydi (kod darajasida) va hodisa ro'yxati serverda */
-  { const app = fs.readFileSync(path.join(ROOT, 'assets/kalkifit-app.js'), 'utf8'); assert.match(app, /view !== 'today' \|\| fcVis\) return false/); assert.match(app, /h \+= fcVis \? '' : slotHtml\(t, x\)/); const STAT = await import('../../functions/api/stat.js'); for (const k of ['korsatildi', 'rasm', 'ovoz', 'qidiruv', 'chip', 'yopildi', 'qoshildi']) assert.ok(STAT.HODISA.birinchi_karta.test(k), k); assert.ok(!STAT.HODISA.birinchi_karta.test('boshqa')); }
+  { const app = fs.readFileSync(path.join(ROOT, 'assets/kalkifit-app.js'), 'utf8'); assert.match(app, /view !== 'today' \|\| fcVis(?: \|\| bxVis\(\))?\) return false/); assert.match(app, /h \+= fcVis \? '' : slotHtml\(t, x\)/); const STAT = await import('../../functions/api/stat.js'); for (const k of ['korsatildi', 'rasm', 'ovoz', 'qidiruv', 'chip', 'yopildi', 'qoshildi']) assert.ok(STAT.HODISA.birinchi_karta.test(k), k); assert.ok(!STAT.HODISA.birinchi_karta.test('boshqa')); }
   log('Kontekst chip va maslahat kartasi kartaga almashadi (kod); statistika hodisalari serverda qat\'iy ro\'yxat');
   console.log('birinchi-karta: ' + n + ' guruh OK');
 } finally { await b.close(); srv.close(); }

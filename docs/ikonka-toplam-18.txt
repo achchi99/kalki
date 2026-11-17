@@ -1,0 +1,41 @@
+---
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 32 food icons, exactly 6 columns × 6 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
+The last 4 cell(s) of the bottom row stay EMPTY (background only).
+Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
+No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
+Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
+Keep the icons in exactly this order (left to right, top to bottom):
+---
+v87-puding-vanil — dessert or sweet: Пудинг ванильный (готовый) (Puding (vanilli, tayyor)), realistic single serving, top-down three-quarter view, no text.
+v87-puding-shokolad — dessert or sweet: Пудинг шоколадный (готовый) (Puding (shokoladli, tayyor)), realistic single serving, top-down three-quarter view, no text.
+v87-fondan — dessert or sweet: Шоколадный фондан (Shokoladli fondan (suyuq markazli keks)), realistic single serving, top-down three-quarter view, no text.
+v87-rulet-biskvit — dessert or sweet: Бисквитный рулет с джемом (Biskvit rulet (murabboli)), realistic single serving, top-down three-quarter view, no text.
+v87-pirojnoe-krem — dessert or sweet: Пирожное бисквитное с кремом (Pirojnoe (biskvitli, kremli)), realistic single serving, top-down three-quarter view, no text.
+v87-oreshki — dessert or sweet: Печенье «Орешки» со сгущёнкой (Oreshki (sgushenkali yong'oqcha pechenye)), realistic single serving, top-down three-quarter view, no text.
+v87-sharlotka — dessert or sweet: Шарлотка с яблоками (Sharlotka (olmali pirog)), realistic single serving, top-down three-quarter view, no text.
+v87-smetannik — dessert or sweet: Торт «Сметанник» (Smetannik (smetanali tort)), realistic single serving, top-down three-quarter view, no text.
+v87-vafli-trubochka — dessert or sweet: Вафельные трубочки со сгущёнкой (Vafli trubochka (sgushenkali)), realistic single serving, top-down three-quarter view, no text.
+v87-savoyardi — dessert or sweet: Печенье «Савоярди» (Savoyardi pechenyesi (biskvit tayoqcha)), realistic single serving, top-down three-quarter view, no text.
+v87-xachapuri — cafe or fast-food dish: Хачапури по-аджарски (Xachapuri (ajarcha, tuxumli)), realistic single serving, top-down three-quarter view, no text.
+v87-pasta-karbonara — cafe or fast-food dish: Паста карбонара (Pasta karbonara (qaymoqli)), realistic single serving, top-down three-quarter view, no text.
+v87-pasta-alfredo — cafe or fast-food dish: Паста альфредо с курицей (Pasta alfredo (tovuqli)), realistic single serving, top-down three-quarter view, no text.
+v87-poke-losos — cafe or fast-food dish: Поке с лососем (Poke (losos va guruchli)), realistic single serving, top-down three-quarter view, no text.
+v87-tovuq-teriyaki — cafe or fast-food dish: Курица терияки с рисом (Tovuq teriyaki (guruch bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-maki-bodring — cafe or fast-food dish: Ролл маки с огурцом (Maki roll (bodringli)), realistic single serving, top-down three-quarter view, no text.
+v87-pishloqli-tost — cafe or fast-food dish: Горячий бутерброд с сыром (тост) (Pishloqli tost (issiq sendvich)), realistic single serving, top-down three-quarter view, no text.
+v87-buterbrod-kolbasa — cafe or fast-food dish: Бутерброд с колбасой (Buterbrod (kolbasali)), realistic single serving, top-down three-quarter view, no text.
+v87-buterbrod-pishloq — cafe or fast-food dish: Бутерброд с маслом и сыром (Buterbrod (sariyog' va pishloqli)), realistic single serving, top-down three-quarter view, no text.
+v87-buterbrod-baliq — cafe or fast-food dish: Бутерброд с красной рыбой (Buterbrod (qizil baliqli)), realistic single serving, top-down three-quarter view, no text.
+v87-hotdog-fransuz — cafe or fast-food dish: Французский хот-дог (Fransuzcha hot-dog (baget ichida)), realistic single serving, top-down three-quarter view, no text.
+v87-ovsyanoblin — cafe or fast-food dish: Овсяноблин (Ovsyanoblin (suli va tuxumli quymoq)), realistic single serving, top-down three-quarter view, no text.
+v87-lenivie-vareniki — cafe or fast-food dish: Ленивые вареники (Lenivie vareniki (tvorogli)), realistic single serving, top-down three-quarter view, no text.
+v87-blinchik-gosht — cafe or fast-food dish: Блинчики с мясом (Blinchik (go'shtli)), realistic single serving, top-down three-quarter view, no text.
+v87-blinchik-tvorog — cafe or fast-food dish: Блинчики с творогом (Blinchik (tvorogli)), realistic single serving, top-down three-quarter view, no text.
+v87-adjika — sauce or condiment: Аджика (Adjika (achchiq pomidor-qalampir sousi)), realistic single serving, top-down three-quarter view, no text.
+v87-mayonez-light — sauce or condiment: Майонез лёгкий (30%) (Mayonez (kam yog'li, 30%)), realistic single serving, top-down three-quarter view, no text.
+v87-sezar-sous — sauce or condiment: Соус «Цезарь» (Sezar sousi), realistic single serving, top-down three-quarter view, no text.
+v87-teriyaki-sous — sauce or condiment: Соус терияки (Teriyaki sousi), realistic single serving, top-down three-quarter view, no text.
+v87-kunjut-yogi — sauce or condiment: Кунжутное масло (Kunjut yog'i), realistic single serving, top-down three-quarter view, no text.
+v87-kokos-yogi — sauce or condiment: Кокосовое масло (Kokos yog'i), realistic single serving, top-down three-quarter view, no text.
+v87-kokos-suti — sauce or condiment: Кокосовое молоко (консерва) (Kokos suti (konserva, pishirish uchun)), realistic single serving, top-down three-quarter view, no text.

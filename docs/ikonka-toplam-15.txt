@@ -1,0 +1,50 @@
+---
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 42 food icons, exactly 6 columns × 7 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
+Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
+No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
+Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
+Keep the icons in exactly this order (left to right, top to bottom):
+---
+v87-shchi-kislye — dish, one portion in a bowl (kosa) or plate: Щи из квашеной капусты (Shchi (tuzlangan karamdan)), realistic single serving, top-down three-quarter view, no text.
+v87-rassolnik — dish, one portion in a bowl (kosa) or plate: Рассольник (Rassolnik), realistic single serving, top-down three-quarter view, no text.
+v87-solyanka-kafe — dish, one portion in a bowl (kosa) or plate: Солянка сборная мясная (кафе) (Solyanka (kafe, go'shtli assorti)), realistic single serving, top-down three-quarter view, no text.
+v87-solyanka-baliq — dish, one portion in a bowl (kosa) or plate: Солянка рыбная (Solyanka (baliqli)), realistic single serving, top-down three-quarter view, no text.
+v87-xarcho — dish, one portion in a bowl (kosa) or plate: Харчо (Xarcho (gruzincha mol go'shtli sho'rva)), realistic single serving, top-down three-quarter view, no text.
+v87-okroshka-kvas — dish, one portion in a bowl (kosa) or plate: Окрошка на квасе (Okroshka (kvasli)), realistic single serving, top-down three-quarter view, no text.
+v87-uxa-qizil-baliq — dish, one portion in a bowl (kosa) or plate: Уха из сёмги (Uxa (qizil baliqli)), realistic single serving, top-down three-quarter view, no text.
+v87-qoziqorin-krem-kafe — dish, one portion in a bowl (kosa) or plate: Грибной крем-суп со сливками (кафе) (Qo'ziqorin krem-sho'rva (qaymoqli, kafe)), realistic single serving, top-down three-quarter view, no text.
+v87-qovoq-krem — dish, one portion in a bowl (kosa) or plate: Тыквенный крем-суп (Qovoq krem-sho'rva), realistic single serving, top-down three-quarter view, no text.
+v87-brokkoli-krem — dish, one portion in a bowl (kosa) or plate: Крем-суп из брокколи (Brokkoli krem-sho'rva), realistic single serving, top-down three-quarter view, no text.
+v87-qoziqorin-shurva — dish, one portion in a bowl (kosa) or plate: Грибной суп с картофелем (Qo'ziqorinli sho'rva (kartoshkali)), realistic single serving, top-down three-quarter view, no text.
+v87-tom-yam — dish, one portion in a bowl (kosa) or plate: Том ям с креветками (Tom yam (krevetkali, kokos sutida)), realistic single serving, top-down three-quarter view, no text.
+v87-ramen-tovuq-shurva — dish, one portion in a bowl (kosa) or plate: Рамен с курицей (суп) (Ramen (tovuqli, tuxumli sho'rva)), realistic single serving, top-down three-quarter view, no text.
+v87-fo-bo — dish, one portion in a bowl (kosa) or plate: Фо бо (вьетнамский суп с говядиной) (Fo bo (vyetnamcha mol go'shtli lapsha sho'rva)), realistic single serving, top-down three-quarter view, no text.
+v87-gorox-shurva — dish, one portion in a bowl (kosa) or plate: Гороховый суп с копчёностями (Gorox sho'rva (pallali no'xat pyure, dudlangan kolbasali)), realistic single serving, top-down three-quarter view, no text.
+v87-loviya-shurva-kafe — dish, one portion in a bowl (kosa) or plate: Фасолевый суп с мясом (кафе) (Loviya sho'rva (kafe, go'shtli)), realistic single serving, top-down three-quarter view, no text.
+v87-kartoshka-shurva-uy — dish, one portion in a bowl (kosa) or plate: Картофельный суп (домашний) (Kartoshkali sho'rva (uyda)), realistic single serving, top-down three-quarter view, no text.
+v87-sabzavotli-shurva — dish, one portion in a bowl (kosa) or plate: Овощной суп (Sabzavotli sho'rva (go'shtsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-pomidor-shurva-uy — dish, one portion in a bowl (kosa) or plate: Томатный суп с рисом (домашний) (Pomidorli sho'rva (uyda, guruchli)), realistic single serving, top-down three-quarter view, no text.
+v87-yasmiq-mol — dish, one portion in a bowl (kosa) or plate: Чечевичный суп с говядиной (Yasmiq sho'rva (mol go'shtli)), realistic single serving, top-down three-quarter view, no text.
+v87-grechka-shurva — dish, one portion in a bowl (kosa) or plate: Гречневый суп с мясом (Grechka sho'rva (go'shtli)), realistic single serving, top-down three-quarter view, no text.
+v87-sutli-guruch-shurva — dish, one portion in a bowl (kosa) or plate: Молочный рисовый суп (Sutli guruch sho'rva (suyuq)), realistic single serving, top-down three-quarter view, no text.
+v87-minestrone — dish, one portion in a bowl (kosa) or plate: Минестроне (Minestrone (italyancha sabzavotli sho'rva)), realistic single serving, top-down three-quarter view, no text.
+v87-yayla-shurva — dish, one portion in a bowl (kosa) or plate: Яйла чорбасы (суп с йогуртом и рисом) (Yayla sho'rva (qatiqli guruch sho'rva)), realistic single serving, top-down three-quarter view, no text.
+v87-shirmoy-non — bread or pastry: Ширмай нон (молочная лепёшка с кунжутом) (Shirmoy non (sutli, kunjutli)), realistic single serving, top-down three-quarter view, no text.
+v87-jizzali-non — bread or pastry: Лепёшка с жиззой (со шкварками) (Jizzali non), realistic single serving, top-down three-quarter view, no text.
+v87-piyozli-non — bread or pastry: Лепёшка с луком (Piyozli non), realistic single serving, top-down three-quarter view, no text.
+v87-pirojki-duxovka-kartoshka — bread or pastry: Пирожок печёный с картошкой (Pirojki (duxovkada, kartoshkali)), realistic single serving, top-down three-quarter view, no text.
+v87-pirojki-duxovka-gosht — bread or pastry: Пирожок печёный с мясом (Pirojki (duxovkada, go'shtli)), realistic single serving, top-down three-quarter view, no text.
+v87-pirojki-duxovka-karam — bread or pastry: Пирожок печёный с капустой (Pirojki (duxovkada, karamli)), realistic single serving, top-down three-quarter view, no text.
+v87-pirojki-duxovka-olma — dessert or sweet: Пирожок печёный с яблоком (Pirojki (duxovkada, olmali)), realistic single serving, top-down three-quarter view, no text.
+v87-kruassan-pishloq — bread or pastry: Круассан с сыром (Kruassan (pishloqli)), realistic single serving, top-down three-quarter view, no text.
+v87-sushki — bread or pastry: Сушки (баранки) (Sushki (baranki, quruq halqa non)), realistic single serving, top-down three-quarter view, no text.
+v87-grenki — bread or pastry: Гренки (французские тосты) (Grenki (tuxum-sutga botirib qovurilgan non)), realistic single serving, top-down three-quarter view, no text.
+v87-bulochka-mak — bread or pastry: Булочка с маком (Bulochka (mak urug'li)), realistic single serving, top-down three-quarter view, no text.
+v87-echki-suti — dairy product: Козье молоко (Echki suti), realistic single serving, top-down three-quarter view, no text.
+v87-qatiq-zigir — dairy product: Катык с семенами льна (Qatiq (zig'ir urug'i bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-tvorog-smetana — dairy product: Творог со сметаной (Tvorog (smetana bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-tvorog-asal — dairy product: Творог с мёдом (Tvorog (asal bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-tvorog-massa — dairy product: Творожная масса сладкая с изюмом (Tvorogli massa (shirin, mayizli)), realistic single serving, top-down three-quarter view, no text.
+v87-yogurt-yunon-2 — dairy product: Греческий йогурт 2% (Yunon yogurti (kam yog'li, 2%)), realistic single serving, top-down three-quarter view, no text.
+v87-sariyog-eritilgan — dairy product: Топлёное масло (гхи) (Eritilgan sariyog' (gi)), realistic single serving, top-down three-quarter view, no text.

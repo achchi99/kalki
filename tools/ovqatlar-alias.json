@@ -333,7 +333,10 @@
   "tandir lepyoshka",
   "тандырная лепёшка",
   "гижда",
-  "лепёшка узбекская"
+  "лепёшка узбекская",
+  "xorazm noni",
+  "xorazm non",
+  "abet non"
  ],
  "patir": [
   "patyr",
@@ -411,7 +414,11 @@
   "pirojki qovurma",
   "пирожки",
   "pirozhki",
-  "pirojok"
+  "pirojok",
+  "pirashki",
+  "pirashka",
+  "pirojka",
+  "пирожки жареные"
  ],
  "qatiq": [
   "qatiq sut",
@@ -601,7 +608,10 @@
   "kurka go'shti",
   "индейка",
   "indeyka",
-  "turkey"
+  "turkey",
+  "kurka pishirilgan",
+  "запечённая индейка",
+  "индейка запечённая"
  ],
  "ot-gosht": [
   "ot go'shti",
@@ -619,7 +629,10 @@
   "kotlet go'shtli",
   "котлета",
   "kotleta",
-  "kotlet qovurma"
+  "kotlet qovurma",
+  "mol kotleti",
+  "mol go'shti kotleti",
+  "говяжья котлета"
  ],
  "tushonka": [
   "tushyonka",
@@ -641,7 +654,10 @@
   "сардельки",
   "сосиски",
   "sosimka",
-  "сосимка"
+  "сосимка",
+  "sasiska",
+  "sasiski",
+  "сасиска"
  ],
  "bekon": [
   "bekon",
@@ -825,7 +841,10 @@
   "apple",
   "яблоки",
   "olmа",
-  "alma"
+  "alma",
+  "яблока",
+  "яблок",
+  "yabloka"
  ],
  "nok": [
   "nok",
@@ -925,7 +944,17 @@
   "чай с малиной",
   "чай бергамот",
   "чай имбирный",
-  "чай фруктовый"
+  "чай фруктовый",
+  "қора чой",
+  "black tea",
+  "Erl Grey (bergamotli qora choy, shakarsiz)",
+  "Эрл Грей (чай с бергамотом, без сахара)",
+  "erl grey",
+  "earl grey",
+  "bergamotli choy",
+  "bergamot choy",
+  "эрл грей",
+  "чай с бергамотом"
  ],
  "choy-shakar": [
   "shakarli choy",
@@ -1053,7 +1082,10 @@
   "kok choy",
   "ko'k choy shakarsiz",
   "kok choy quruq",
-  "зеленый чай без сахара"
+  "зеленый чай без сахара",
+  "ko'k choy (shakarsiz)",
+  "kuk choy",
+  "кўк чой"
  ],
  "qahva-sutli": [
   "sutli kofe",
@@ -1109,7 +1141,9 @@
   "bulochka mayiz bilan",
   "mayizli bulka",
   "булочка с изюмом",
-  "изюмная булочка"
+  "изюмная булочка",
+  "sinnabon",
+  "синнабон"
  ],
  "tovuq-boneless": [
   "stripslar",
@@ -1305,5 +1339,78 @@
   "кампина",
   "campina"
  ],
- "yunon-salat": []
+ "yunon-salat": [],
+ "makkajoxori": [
+  "dumbul",
+  "думбул",
+  "yosh makkajo'xori"
+ ],
+ "mol-qaynatilgan": [
+  "yaxna go'sht",
+  "yaxni go'sht",
+  "yaxna",
+  "yaxni",
+  "яхна",
+  "холодное отварное мясо"
+ ],
+ "tefteli": [
+  "teftel",
+  "teftelka",
+  "тефтель"
+ ],
+ "nutella": [
+  "shokoladli krem",
+  "shokolad krem",
+  "шоколадный крем",
+  "шоколадная паста",
+  "chokoteler"
+ ],
+ "tort-shokolad": [
+  "praga tort",
+  "торт прага"
+ ],
+ "pechenye-qumli": [
+  "kurabye",
+  "курабье"
+ ],
+ "ekler": [
+  "profiterol",
+  "профитроли"
+ ],
+ "granola": [
+  "musli",
+  "мюсли"
+ ],
+ "sabzi-sharbat": [
+  "Sabzi fresh (yangi siqilgan)",
+  "Морковный фреш (свежевыжатый)",
+  "sabzi fresh",
+  "sabzi freshi",
+  "yangi siqilgan sabzi",
+  "морковный фреш",
+  "свежевыжатый морковный сок",
+  "фреш морковь"
+ ],
+ "espresso": [
+  "Doppio (qo'sh espresso)",
+  "Доппио (двойной эспрессо)",
+  "doppio",
+  "dopio",
+  "qo'sh espresso",
+  "ikki espresso",
+  "доппио",
+  "двойной эспрессо",
+  "double espresso"
+ ],
+ "otli-choy": [
+  "Tog' choyi (o'tli damlama, shakarsiz)",
+  "Горный травяной чай (без сахара)",
+  "tog' choyi",
+  "tog choyi",
+  "togʻ choy",
+  "o'tli damlama",
+  "тоғ чойи",
+  "горный чай",
+  "травяной сбор"
+ ]
 }

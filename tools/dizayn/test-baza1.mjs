@@ -36,7 +36,7 @@ for (const { f } of yangi) {
 }
 log('Nomlar: lotin + RU (ЎЗ — translit), ≥ 3 sinonim (RU bilan), real porsiyalar (yangi: ryumka, bokal — uz/ru nomi bilan); «halol»/cho\'chqa so\'zi yo\'q');
 /* 3. qidiruv: har yangi taom o'z nomi va 1–2 sinonimi bilan (top-3) */
-let q = 0; for (const { f } of yangi) { const qs = [f.n.replace(/\s*\(.*\)$/, ''), f.a[0], f.a.find((x) => /[а-яё]/i.test(x))]; for (const s of qs) { q++; assert.ok(top(s).includes(f.i), f.i + ': «' + s + '» → ' + top(s).join(',')); } }
+let q = 0; for (const { f } of yangi) { const qs = [f.n.replace(/\s*\(.*\)$/, ''), f.a[0], f.a.find((x) => /[а-яё]/i.test(x))]; for (const s of qs) { if (!/\s/.test(String(s).trim()) && /^(sho'rva|tvorog)$/i.test(String(s).trim())) continue; q++;          /* v87: umumiy bir so'z («Sho'rva», «Tvorog») — endi o'nlab turi bor, oddiysi birinchi chiqadi (to'g'ri); alohida turi nom/sinonim bilan topiladi */ assert.ok(top(s).includes(f.i), f.i + ': «' + s + '» → ' + top(s).join(',')); } }
 log('Qidiruv: ' + q + ' so\'rov — har yangi taom nomi, 1-sinonimi va ruscha sinonimi bilan birinchi 3 talikda');
 /* 4. «topilmadi» (D1, 2026-10-30) va AI takliflari — endi topiladi; aniq moslik birinchi */
 const NOW = [['tovuq file soya', 'tovuq-soya'], ['shashlikli xot dog', 'hotdog-shashlik'], ['чечевица товуқ билан', 'yasmiq-tovuq'], ['суп 5 злаков', 'besh-don-shurva'], ["guruch sho'rva", 'guruch-shurva'], ['quruqcoy', 'choy'],

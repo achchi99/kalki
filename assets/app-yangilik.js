@@ -2,17 +2,19 @@
  *  - data/yangiliklar-<ilova>.json: har yozuvda versiya (v), sana (d), 1–3 band ({uz, ru, show?}). ЎЗ — UZ matnning runtime translit'i.
  *  - Yangi versiyada ilova birinchi ochilganda pastdan kichik oyna «🎉 Yangilandi» (har versiya uchun BIR marta); bir nechta versiya o'tkazib yuborilgan bo'lsa — oxirgi 5 band birlashtiriladi.
  *  - Yangi foydalanuvchiga (onboarding'dan o'tmagan yoki endi o'tgan) ko'rsatilmaydi. Onboarding, ochiq forma/tahrir, yo'l-yo'riq, fokusdagi maydon va «Sayt yangilandi» paneli paytida chiqmaydi; tugmalarni (pastki menyu, «+») to'smaydi.
+ *  - v87: oynada FAQAT oxirgi 3 yozuv (SHOW_N): eng yangisi «Yangi» belgisi va sana bilan, qolgan ikkitasi xiraroq; har yozuv — sarlavha (bn) + 1–2 qisqa jumla.
+ *    Eski yozuvlar JSON'da qoladi (tarix/test), faqat ko'rsatilmaydi. O'tkazib yuborgan foydalanuvchiga ham faqat oxirgi 3 yozuv bandlari.
  *  - [Ko'rsat] — tegishli joyga olib boradi va 2 soniya yoritadi. Men/Sozlamalar'da «Yangiliklar» bo'limi (o'qilmagan bo'lsa nuqta).
  *  Ishlatish: var news = KalkiNews.create({ app, kit, lang, root, isSetup, targets, onChange }); news.row(); */
 (function (root, factory) {
   var api = factory(); if (typeof module === 'object' && module.exports) module.exports = api; else root.KalkiNews = api;
 })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
-  var MAX_ITEMS = 5, HL_MS = 2000, POLL_MS = 1500;
+  var MAX_ITEMS = 5, SHOW_N = 3, ENTRY_ITEMS = 2, HL_MS = 2000, POLL_MS = 1500;
   var D = {
-    uz: { pop: '🎉 Yangilandi', ok: 'Tushunarli', bnNew: 'Yangi:', bnSee: "Ko'rish", bnX: 'Yopish', show: "Ko'rsat", rowT: 'Yangiliklar', rowS: 'Ilovada nima yangi', unread: "O'qilmagan yangilik", sheetT: 'Yangiliklar', none: "Hozircha yangilik yo'q",
+    uz: { isNew: 'Yangi', pop: '🎉 Yangilandi', ok: 'Tushunarli', bnNew: 'Yangi:', bnSee: "Ko'rish", bnX: 'Yopish', show: "Ko'rsat", rowT: 'Yangiliklar', rowS: 'Ilovada nima yangi', unread: "O'qilmagan yangilik", sheetT: 'Yangiliklar', none: "Hozircha yangilik yo'q",
       hDayEnd: "Avval bugungi ovqatni yozing — «Kunni yakunlash» tugmasi shundan keyin shu yerda paydo bo'ladi.", hNo: "Bu joy hozir ko'rinmayapti." },
-    ru: { pop: '🎉 Обновление', ok: 'Понятно', bnNew: 'Новое:', bnSee: 'Смотреть', bnX: 'Закрыть', show: 'Показать', rowT: 'Что нового', rowS: 'Что нового в приложении', unread: 'Непрочитанная новость', sheetT: 'Что нового', none: 'Пока новостей нет',
+    ru: { isNew: 'Новое', pop: '🎉 Обновление', ok: 'Понятно', bnNew: 'Новое:', bnSee: 'Смотреть', bnX: 'Закрыть', show: 'Показать', rowT: 'Что нового', rowS: 'Что нового в приложении', unread: 'Непрочитанная новость', sheetT: 'Что нового', none: 'Пока новостей нет',
       hDayEnd: 'Сначала запишите сегодняшнюю еду — кнопка «Завершить день» появится здесь.', hNo: 'Это место сейчас не видно.' }
   };
   function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
@@ -21,9 +23,10 @@
 
   /* ---------- sof mantiq (Node'da testlanadi) ---------- */
   function sorted(list) { return (list || []).slice().sort(function (a, b) { return b.v - a.v; }); }
+  function recent(list) { return sorted(list).slice(0, SHOW_N); }          // v87: ko'rsatiladigan yozuvlar
   function latest(list) { var s = sorted(list); return s.length ? s[0].v : 0; }
   function unseenItems(list, seen) {                       // o'tkazib yuborilgan versiyalar bandlari birlashtiriladi (yangisi birinchi), oxirgi 5 ta
-    var out = []; sorted(list).forEach(function (e) { if (e.v > seen) (e.items || []).forEach(function (it) { out.push(it); }); });
+    var out = []; recent(list).forEach(function (e) { if (e.v > seen) (e.items || []).forEach(function (it) { out.push(it); }); });
     return out.slice(0, MAX_ITEMS);
   }
   function highlight(el) {
@@ -87,7 +90,7 @@
     inst.close = closePop;
     inst.open = function () {                                // Men → barcha yozilmalar
       if (!list || !cfg.kit) return; var t = L(), lg = (cfg.lang ? cfg.lang() : 'uz') === 'ru' ? 'ru' : 'uz';
-      var body = sorted(list).length ? sorted(list).map(function (e) { return '<section class="yg-e"><div class="yg-d">' + esc(dateLabel(e.d)) + '</div>' + itemsHtml(e.items || []) + '</section>'; }).join('') : '<p class="rz-p">' + esc(t.none) + '</p>';
+      var body = recent(list).length ? recent(list).map(function (e, i) { var tt = e.bn && (e.bn[lg] || e.bn.uz); return '<section class="yg-e' + (i ? ' yg-old' : ' yg-new') + '"><div class="yg-d">' + (i ? '' : '<span class="yg-nb">' + esc(t.isNew) + '</span>') + '<span>' + esc(dateLabel(e.d)) + '</span></div>' + (tt ? '<h3 class="yg-tt">' + esc(tt) + '</h3>' : '') + itemsHtml((e.items || []).slice(0, ENTRY_ITEMS)) + '</section>'; }).join('') : '<p class="rz-p">' + esc(t.none) + '</p>';
       cfg.kit.openSheet('news', '<div class="yg-sheet">' + cfg.kit.shHead(t.sheetT) + body + '<div class="rz-actions"><button type="button" class="rz-btn primary" data-act="sheetclose">' + esc(t.ok) + '</button></div></div>', { noFocus: true });
       mark(null, latest(list));
     };
@@ -112,5 +115,5 @@
     return inst;
   }
   create.instances = {};
-  return { create: create, instances: create.instances, unseenItems: unseenItems, latest: latest, sorted: sorted, highlight: highlight, MAX_ITEMS: MAX_ITEMS, D: D };
+  return { create: create, instances: create.instances, unseenItems: unseenItems, recent: recent, SHOW_N: SHOW_N, latest: latest, sorted: sorted, highlight: highlight, MAX_ITEMS: MAX_ITEMS, D: D };
 });

@@ -419,6 +419,115 @@
     "173317",
     "173466",
     "175001"
+   ],
+   "v87": [
+    "167746",
+    "167755",
+    "167762",
+    "167774",
+    "167781",
+    "167787",
+    "168001",
+    "168092",
+    "168094",
+    "168149",
+    "168153",
+    "168156",
+    "168162",
+    "168165",
+    "168166",
+    "168458",
+    "168464",
+    "168592",
+    "168649",
+    "168778",
+    "168841",
+    "169098",
+    "169110",
+    "169253",
+    "169254",
+    "169387",
+    "169491",
+    "169608",
+    "169641",
+    "169705",
+    "169716",
+    "169910",
+    "169961",
+    "169988",
+    "170106",
+    "170173",
+    "170273",
+    "170379",
+    "170472",
+    "170487",
+    "170568",
+    "170606",
+    "170656",
+    "170857",
+    "170860",
+    "170883",
+    "170884",
+    "170903",
+    "170919",
+    "170926",
+    "170931",
+    "170937",
+    "171016",
+    "171098",
+    "171167",
+    "171244",
+    "171269",
+    "171278",
+    "171292",
+    "171314",
+    "171320",
+    "171330",
+    "171412",
+    "171475",
+    "171663",
+    "171695",
+    "171705",
+    "171719",
+    "171760",
+    "171795",
+    "171796",
+    "171937",
+    "171938",
+    "171946",
+    "171971",
+    "171997",
+    "172237",
+    "172240",
+    "172241",
+    "172401",
+    "172707",
+    "172736",
+    "172821",
+    "172928",
+    "173206",
+    "173230",
+    "173468",
+    "173612",
+    "173694",
+    "173714",
+    "173806",
+    "173857",
+    "173929",
+    "174128",
+    "174156",
+    "174197",
+    "174311",
+    "174370",
+    "174492",
+    "174585",
+    "174863",
+    "174873",
+    "174989",
+    "174998",
+    "175148",
+    "175161",
+    "175180"
    ]
   }
  },
@@ -7650,6 +7759,2437 @@
      "nom": "cone",
      "miqdor": 1.0,
      "g": 10.0
+    }
+   ]
+  },
+  "167746": {
+   "d": "Lemons, raw, without peel",
+   "p": 1.1,
+   "f": 0.3,
+   "c": 9.32,
+   "kcal": 29.0,
+   "suv": 88.98,
+   "o": [
+    {
+     "nom": "cup, sections",
+     "miqdor": 1.0,
+     "g": 212.0
+    },
+    {
+     "nom": "fruit (2-1/8\" dia)",
+     "miqdor": 1.0,
+     "g": 58.0
+    },
+    {
+     "nom": "fruit (2-3/8\" dia)",
+     "miqdor": 1.0,
+     "g": 84.0
+    },
+    {
+     "nom": "wedge or slice (1/8 of one 2-1/8\" dia lemon)",
+     "miqdor": 1.0,
+     "g": 7.0
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 58.0
+    }
+   ]
+  },
+  "167755": {
+   "d": "Raspberries, raw",
+   "c": 11.94,
+   "kcal": 52.0,
+   "f": 0.65,
+   "suv": 85.75,
+   "p": 1.2,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 123.0
+    },
+    {
+     "nom": "pint as purchased, yields",
+     "miqdor": 1.0,
+     "g": 312.0
+    },
+    {
+     "nom": "raspberries",
+     "miqdor": 10.0,
+     "g": 19.0
+    }
+   ]
+  },
+  "167762": {
+   "d": "Strawberries, raw",
+   "suv": 90.95,
+   "f": 0.3,
+   "p": 0.67,
+   "c": 7.68,
+   "kcal": 32.0,
+   "o": [
+    {
+     "nom": "cup, halves",
+     "miqdor": 1.0,
+     "g": 152.0
+    },
+    {
+     "nom": "cup, pureed",
+     "miqdor": 1.0,
+     "g": 232.0
+    },
+    {
+     "nom": "cup, sliced",
+     "miqdor": 1.0,
+     "g": 166.0
+    },
+    {
+     "nom": "cup, whole",
+     "miqdor": 1.0,
+     "g": 144.0
+    },
+    {
+     "nom": "extra large (1-5/8\" dia)",
+     "miqdor": 1.0,
+     "g": 27.0
+    },
+    {
+     "nom": "large (1-3/8\" dia)",
+     "miqdor": 1.0,
+     "g": 18.0
+    },
+    {
+     "nom": "medium (1-1/4\" dia)",
+     "miqdor": 1.0,
+     "g": 12.0
+    },
+    {
+     "nom": "pint as purchased, yields",
+     "miqdor": 1.0,
+     "g": 357.0
+    },
+    {
+     "nom": "small (1\" dia)",
+     "miqdor": 1.0,
+     "g": 7.0
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 147.0
+    }
+   ]
+  },
+  "167774": {
+   "d": "Grapefruit juice, pink, raw",
+   "p": 0.5,
+   "f": 0.1,
+   "c": 9.2,
+   "kcal": 39.0,
+   "suv": 90.0,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 247.0
+    },
+    {
+     "nom": "fruit yields",
+     "miqdor": 1.0,
+     "g": 196.0
+    }
+   ]
+  },
+  "167787": {
+   "d": "Pomegranate juice, bottled",
+   "f": 0.29,
+   "c": 13.13,
+   "kcal": 54.0,
+   "suv": 85.95,
+   "p": 0.15,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 249.0
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 31.4
+    }
+   ]
+  },
+  "168153": {
+   "d": "Kiwifruit, green, raw",
+   "p": 1.14,
+   "f": 0.52,
+   "suv": 83.07,
+   "c": 14.66,
+   "kcal": 61.0,
+   "o": [
+    {
+     "nom": "cup, sliced",
+     "miqdor": 1.0,
+     "g": 180.0
+    },
+    {
+     "nom": "fruit (2\" dia)",
+     "miqdor": 1.0,
+     "g": 69.0
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 148.0
+    }
+   ]
+  },
+  "168156": {
+   "d": "Lime juice, raw",
+   "p": 0.42,
+   "f": 0.07,
+   "suv": 90.79,
+   "c": 8.42,
+   "kcal": 25.0,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 242.0
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 30.8
+    },
+    {
+     "nom": "lime yields",
+     "miqdor": 1.0,
+     "g": 44.0
+    }
+   ]
+  },
+  "168162": {
+   "d": "Plums, dried (prunes), uncooked",
+   "c": 63.88,
+   "kcal": 240.0,
+   "p": 2.18,
+   "suv": 30.92,
+   "f": 0.38,
+   "o": [
+    {
+     "nom": "cup, pitted",
+     "miqdor": 1.0,
+     "g": 174.0
+    },
+    {
+     "nom": "prune, pitted",
+     "miqdor": 1.0,
+     "g": 9.5
+    }
+   ]
+  },
+  "168165": {
+   "d": "Raisins, dark, seedless (Includes foods for USDA's Food Distribution Program)",
+   "p": 3.3,
+   "f": 0.25,
+   "c": 79.32,
+   "suv": 15.46,
+   "kcal": 299.0,
+   "o": [
+    {
+     "nom": "cup, packed",
+     "miqdor": 1.0,
+     "g": 165.0
+    },
+    {
+     "nom": "cup (not packed)",
+     "miqdor": 1.0,
+     "g": 145.0
+    },
+    {
+     "nom": "miniature box (.5 oz)",
+     "miqdor": 1.0,
+     "g": 14.0
+    },
+    {
+     "nom": "small box (1.5 oz)",
+     "miqdor": 1.0,
+     "g": 43.0
+    },
+    {
+     "nom": "raisins",
+     "miqdor": 50.0,
+     "g": 26.0
+    },
+    {
+     "nom": "oz (60 raisins)",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "168464": {
+   "d": "Squash, summer, crookneck and straightneck, raw",
+   "suv": 94.28,
+   "f": 0.27,
+   "c": 3.88,
+   "kcal": 19.0,
+   "p": 1.01,
+   "o": [
+    {
+     "nom": "cup sliced",
+     "miqdor": 1.0,
+     "g": 127.0
+    }
+   ]
+  },
+  "168841": {
+   "d": "Toppings, butterscotch or caramel",
+   "suv": 40.63,
+   "p": 1.21,
+   "f": 0.0,
+   "c": 57.01,
+   "kcal": 216.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 2.0,
+     "g": 41.0
+    }
+   ]
+  },
+  "169098": {
+   "d": "Orange juice, raw (Includes foods for USDA's Food Distribution Program)",
+   "p": 0.7,
+   "f": 0.2,
+   "c": 10.4,
+   "kcal": 45.0,
+   "suv": 88.3,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 248.0
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 31.0
+    },
+    {
+     "nom": "fruit yields",
+     "miqdor": 1.0,
+     "g": 86.0
+    }
+   ]
+  },
+  "169110": {
+   "d": "Passion-fruit juice, yellow, raw",
+   "f": 0.18,
+   "c": 14.45,
+   "kcal": 60.0,
+   "suv": 84.21,
+   "p": 0.67,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 247.0
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 30.9
+    }
+   ]
+  },
+  "169705": {
+   "d": "Oats (Includes foods for USDA's Food Distribution Program)",
+   "p": 16.89,
+   "f": 6.9,
+   "c": 66.27,
+   "kcal": 389.0,
+   "suv": 8.22,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 156.0
+    }
+   ]
+  },
+  "169716": {
+   "d": "Sorghum grain",
+   "p": 10.62,
+   "f": 3.46,
+   "c": 72.09,
+   "kcal": 329.0,
+   "suv": 12.4,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 192.0
+    }
+   ]
+  },
+  "169910": {
+   "d": "Mangos, raw",
+   "f": 0.38,
+   "p": 0.82,
+   "suv": 83.46,
+   "c": 14.98,
+   "kcal": 60.0,
+   "o": [
+    {
+     "nom": "cup pieces",
+     "miqdor": 1.0,
+     "g": 165.0
+    },
+    {
+     "nom": "fruit without refuse",
+     "miqdor": 1.0,
+     "g": 336.0
+    }
+   ]
+  },
+  "169961": {
+   "d": "Beans, snap, green, raw",
+   "suv": 90.32,
+   "f": 0.22,
+   "p": 1.83,
+   "c": 6.97,
+   "kcal": 31.0,
+   "o": [
+    {
+     "nom": "cup 1/2\" pieces",
+     "miqdor": 1.0,
+     "g": 100.0
+    },
+    {
+     "nom": "beans (4\" long)",
+     "miqdor": 10.0,
+     "g": 55.0
+    }
+   ]
+  },
+  "169988": {
+   "d": "Celery, raw",
+   "kcal": 14.0,
+   "c": 2.97,
+   "f": 0.17,
+   "p": 0.69,
+   "suv": 95.43,
+   "o": [
+    {
+     "nom": "cup chopped",
+     "miqdor": 1.0,
+     "g": 101.0
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 110.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 7.5
+    },
+    {
+     "nom": "stalk, large (11\"-12\" long)",
+     "miqdor": 1.0,
+     "g": 64.0
+    },
+    {
+     "nom": "stalk, medium (7-1/2\" - 8\" long)",
+     "miqdor": 1.0,
+     "g": 40.0
+    },
+    {
+     "nom": "stalk, small (5\" long)",
+     "miqdor": 1.0,
+     "g": 17.0
+    },
+    {
+     "nom": "strip (4\" long)",
+     "miqdor": 1.0,
+     "g": 4.0
+    }
+   ]
+  },
+  "170106": {
+   "d": "Peppers, hot chili, red, raw",
+   "f": 0.44,
+   "suv": 88.02,
+   "c": 8.81,
+   "kcal": 40.0,
+   "p": 1.87,
+   "o": [
+    {
+     "nom": "pepper",
+     "miqdor": 1.0,
+     "g": 45.0
+    },
+    {
+     "nom": "cup, chopped or diced",
+     "miqdor": 0.5,
+     "g": 75.0
+    }
+   ]
+  },
+  "170173": {
+   "d": "Nuts, coconut milk, canned (liquid expressed from grated meat and water)",
+   "f": 21.33,
+   "c": 2.81,
+   "kcal": 197.0,
+   "suv": 72.88,
+   "p": 2.02,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 226.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 15.0
+    }
+   ]
+  },
+  "170379": {
+   "d": "Broccoli, raw",
+   "c": 6.64,
+   "kcal": 34.0,
+   "f": 0.37,
+   "suv": 89.3,
+   "p": 2.82,
+   "o": [
+    {
+     "nom": "cup chopped",
+     "miqdor": 1.0,
+     "g": 91.0
+    },
+    {
+     "nom": "bunch",
+     "miqdor": 1.0,
+     "g": 608.0
+    },
+    {
+     "nom": "spear (about 5\" long)",
+     "miqdor": 1.0,
+     "g": 31.0
+    },
+    {
+     "nom": "stalk",
+     "miqdor": 1.0,
+     "g": 151.0
+    },
+    {
+     "nom": "cup, chopped or diced",
+     "miqdor": 0.5,
+     "g": 44.0
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 148.0
+    }
+   ]
+  },
+  "170857": {
+   "d": "Cream, fluid, light (coffee cream or table cream)",
+   "p": 2.96,
+   "f": 19.1,
+   "c": 3.66,
+   "kcal": 195.0,
+   "suv": 73.75,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 30.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 15.0
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 240.0
+    },
+    {
+     "nom": "container, individual",
+     "miqdor": 1.0,
+     "g": 11.1
+    }
+   ]
+  },
+  "170860": {
+   "d": "Cream, whipped, cream topping, pressurized",
+   "kcal": 257.0,
+   "p": 3.2,
+   "f": 22.22,
+   "c": 12.49,
+   "suv": 61.33,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 60.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 3.0
+    }
+   ]
+  },
+  "170883": {
+   "d": "Milk shakes, thick chocolate",
+   "p": 3.05,
+   "f": 2.7,
+   "c": 21.15,
+   "kcal": 119.0,
+   "suv": 72.2,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 28.4
+    },
+    {
+     "nom": "container (10.6 oz)",
+     "miqdor": 1.0,
+     "g": 300.0
+    }
+   ]
+  },
+  "170884": {
+   "d": "Milk shakes, thick vanilla",
+   "suv": 74.45,
+   "f": 3.03,
+   "c": 17.75,
+   "kcal": 112.0,
+   "p": 3.86,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 28.4
+    },
+    {
+     "nom": "container (11 oz)",
+     "miqdor": 1.0,
+     "g": 313.0
+    }
+   ]
+  },
+  "170919": {
+   "d": "Spices, cardamom",
+   "p": 10.76,
+   "f": 6.7,
+   "c": 68.47,
+   "kcal": 311.0,
+   "suv": 8.28,
+   "o": [
+    {
+     "nom": "tsp, ground",
+     "miqdor": 1.0,
+     "g": 2.0
+    },
+    {
+     "nom": "tbsp, ground",
+     "miqdor": 1.0,
+     "g": 5.8
+    }
+   ]
+  },
+  "170926": {
+   "d": "Spices, ginger, ground",
+   "p": 8.98,
+   "f": 4.24,
+   "c": 71.62,
+   "kcal": 335.0,
+   "suv": 9.94,
+   "o": [
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 1.8
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 5.2
+    }
+   ]
+  },
+  "170931": {
+   "d": "Spices, pepper, black",
+   "f": 3.26,
+   "c": 63.95,
+   "kcal": 251.0,
+   "suv": 12.46,
+   "p": 10.39,
+   "o": [
+    {
+     "nom": "tsp, ground",
+     "miqdor": 1.0,
+     "g": 2.3
+    },
+    {
+     "nom": "tbsp, ground",
+     "miqdor": 1.0,
+     "g": 6.9
+    },
+    {
+     "nom": "tsp, whole",
+     "miqdor": 1.0,
+     "g": 2.9
+    },
+    {
+     "nom": "dash",
+     "miqdor": 1.0,
+     "g": 0.1
+    }
+   ]
+  },
+  "170937": {
+   "d": "Spices, tarragon, dried",
+   "p": 22.77,
+   "c": 50.22,
+   "kcal": 295.0,
+   "suv": 7.74,
+   "f": 7.24,
+   "o": [
+    {
+     "nom": "tsp, leaves",
+     "miqdor": 1.0,
+     "g": 0.6
+    },
+    {
+     "nom": "tbsp, leaves",
+     "miqdor": 1.0,
+     "g": 1.8
+    },
+    {
+     "nom": "tsp, ground",
+     "miqdor": 1.0,
+     "g": 1.6
+    },
+    {
+     "nom": "tbsp, ground",
+     "miqdor": 1.0,
+     "g": 4.8
+    }
+   ]
+  },
+  "171269": {
+   "d": "Milk, nonfat, fluid, with added vitamin A and vitamin D (fat free or skim)",
+   "f": 0.08,
+   "suv": 90.84,
+   "p": 3.37,
+   "c": 4.96,
+   "kcal": 34.0,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 245.0
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 30.6
+    },
+    {
+     "nom": "quart",
+     "miqdor": 1.0,
+     "g": 980.0
+    }
+   ]
+  },
+  "171320": {
+   "d": "Spices, cinnamon, ground",
+   "suv": 10.58,
+   "p": 3.99,
+   "f": 1.24,
+   "c": 80.59,
+   "kcal": 247.0,
+   "o": [
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 2.6
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 7.8
+    }
+   ]
+  },
+  "171719": {
+   "d": "Cherries, sweet, raw",
+   "c": 16.01,
+   "kcal": 63.0,
+   "suv": 82.25,
+   "f": 0.2,
+   "p": 1.06,
+   "o": [
+    {
+     "nom": "cup, with pits, yields",
+     "miqdor": 1.0,
+     "g": 138.0
+    },
+    {
+     "nom": "cup, without pits",
+     "miqdor": 1.0,
+     "g": 154.0
+    },
+    {
+     "nom": "cherry",
+     "miqdor": 1.0,
+     "g": 8.2
+    },
+    {
+     "nom": "NLEA serving",
+     "miqdor": 1.0,
+     "g": 140.0
+    }
+   ]
+  },
+  "171937": {
+   "d": "Beverages, Energy drink, ROCKSTAR",
+   "kcal": 58.0,
+   "c": 12.7,
+   "suv": 87.08,
+   "f": 0.22,
+   "p": 0.34,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 31.0
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 8.0,
+     "g": 240.0
+    },
+    {
+     "nom": "can",
+     "miqdor": 1.0,
+     "g": 480.0
+    }
+   ]
+  },
+  "171938": {
+   "d": "Beverages, Energy drink, ROCKSTAR, sugar free",
+   "p": 0.25,
+   "f": 0.08,
+   "c": 0.7,
+   "kcal": 4.0,
+   "suv": 98.35,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 8.0,
+     "g": 240.0
+    }
+   ]
+  },
+  "171946": {
+   "d": "Beverages, tea, hibiscus, brewed",
+   "suv": 99.58,
+   "c": 0.0,
+   "f": 0.0,
+   "kcal": 0.0,
+   "p": 0.0,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 8.0,
+     "g": 237.0
+    }
+   ]
+  },
+  "171971": {
+   "d": "Crustaceans, shrimp, mixed species, cooked, moist heat (may contain additives to retain moisture)",
+   "p": 22.78,
+   "f": 1.7,
+   "c": 1.52,
+   "kcal": 119.0,
+   "suv": 71.56,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "large",
+     "miqdor": 4.0,
+     "g": 22.0
+    }
+   ]
+  },
+  "172401": {
+   "d": "Chicken, stewing, meat and skin, cooked, stewed",
+   "f": 18.87,
+   "c": 0.0,
+   "kcal": 285.0,
+   "suv": 53.07,
+   "p": 26.88,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "unit (yield from 1 lb ready-to-cook chicken)",
+     "miqdor": 1.0,
+     "g": 178.0
+    },
+    {
+     "nom": "chicken, bone removed",
+     "miqdor": 0.5,
+     "g": 261.0
+    }
+   ]
+  },
+  "173206": {
+   "d": "Beverages, carbonated, SPRITE, lemon-lime, without caffeine",
+   "p": 0.05,
+   "f": 0.02,
+   "c": 10.14,
+   "kcal": 40.0,
+   "suv": 89.78,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 30.8
+    },
+    {
+     "nom": "serving 12 fl oz",
+     "miqdor": 1.0,
+     "g": 369.0
+    },
+    {
+     "nom": "serving 16 fl oz",
+     "miqdor": 1.0,
+     "g": 492.0
+    },
+    {
+     "nom": "cup 12 fl oz 12 fl oz",
+     "miqdor": 1.0,
+     "g": 258.0
+    }
+   ]
+  },
+  "173230": {
+   "d": "Beverages, tea, instant, unsweetened, powder",
+   "f": 0.0,
+   "c": 58.66,
+   "kcal": 315.0,
+   "suv": 5.09,
+   "p": 20.21,
+   "o": [
+    {
+     "nom": "serving 1 tsp",
+     "miqdor": 1.0,
+     "g": 0.7
+    }
+   ]
+  },
+  "173468": {
+   "d": "Salt, table",
+   "p": 0.0,
+   "f": 0.0,
+   "c": 0.0,
+   "kcal": 0.0,
+   "suv": 0.2,
+   "o": [
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 6.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 18.0
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 292.0
+    },
+    {
+     "nom": "dash",
+     "miqdor": 1.0,
+     "g": 0.4
+    }
+   ]
+  },
+  "174128": {
+   "d": "Beverages, tea, green, ready-to-drink, sweetened",
+   "p": 0.0,
+   "f": 0.22,
+   "c": 6.2,
+   "kcal": 27.0,
+   "suv": 93.54,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 270.0
+    }
+   ]
+  },
+  "174156": {
+   "d": "Beverages, tea, herb, brewed, chamomile",
+   "p": 0.0,
+   "f": 0.0,
+   "c": 0.2,
+   "kcal": 1.0,
+   "suv": 99.7,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 29.6
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 6.0,
+     "g": 178.0
+    },
+    {
+     "nom": "cup (8 fl oz)",
+     "miqdor": 1.0,
+     "g": 237.0
+    }
+   ]
+  },
+  "174585": {
+   "d": "Sausage, smoked link sausage, pork and beef",
+   "p": 12.0,
+   "f": 28.73,
+   "suv": 53.97,
+   "c": 2.42,
+   "kcal": 320.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "174863": {
+   "d": "Malt beverage, includes non-alcoholic beer",
+   "p": 0.21,
+   "c": 8.05,
+   "kcal": 37.0,
+   "suv": 91.15,
+   "f": 0.12,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 29.6
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 237.0
+    }
+   ]
+  },
+  "174873": {
+   "d": "Beverages, tea, instant, unsweetened, prepared with water",
+   "p": 0.06,
+   "c": 0.17,
+   "kcal": 1.0,
+   "suv": 99.62,
+   "f": 0.0,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 29.7
+    },
+    {
+     "nom": "serving 6 fl oz",
+     "miqdor": 1.0,
+     "g": 178.0
+    },
+    {
+     "nom": "serving 8 fl oz",
+     "miqdor": 1.0,
+     "g": 238.0
+    }
+   ]
+  },
+  "167781": {
+   "d": "Candied fruit",
+   "p": 0.34,
+   "f": 0.07,
+   "c": 82.74,
+   "kcal": 322.0,
+   "suv": 16.7
+  },
+  "168001": {
+   "d": "Candies, milk chocolate coated peanuts",
+   "p": 13.1,
+   "suv": 1.9,
+   "f": 33.5,
+   "c": 49.7,
+   "kcal": 519.0,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 149.0
+    },
+    {
+     "nom": "pieces",
+     "miqdor": 10.0,
+     "g": 40.0
+    }
+   ]
+  },
+  "168092": {
+   "d": "Ham, turkey, sliced, extra lean, prepackaged or deli",
+   "p": 19.6,
+   "suv": 72.0,
+   "f": 5.8,
+   "c": 0.93,
+   "kcal": 134.0,
+   "o": [
+    {
+     "nom": "cup pieces",
+     "miqdor": 1.0,
+     "g": 138.0
+    },
+    {
+     "nom": "cubic inch",
+     "miqdor": 1.0,
+     "g": 20.0
+    }
+   ]
+  },
+  "168094": {
+   "d": "Mayonnaise, reduced-calorie or diet, cholesterol-free",
+   "f": 33.3,
+   "c": 6.7,
+   "kcal": 333.0,
+   "suv": 56.0,
+   "p": 0.9,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 14.6
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 231.0
+    }
+   ]
+  },
+  "168149": {
+   "d": "Fish, mackerel, salted",
+   "f": 25.1,
+   "c": 0.0,
+   "kcal": 305.0,
+   "suv": 43.0,
+   "p": 18.5,
+   "o": [
+    {
+     "nom": "piece (5-1/2\" x 1-1/2\" x 1/2\")",
+     "miqdor": 1.0,
+     "g": 80.0
+    },
+    {
+     "nom": "cubic inch, boneless",
+     "miqdor": 1.0,
+     "g": 17.0
+    },
+    {
+     "nom": "cup, cooked",
+     "miqdor": 1.0,
+     "g": 136.0
+    }
+   ]
+  },
+  "168458": {
+   "d": "Seaweed, laver, raw",
+   "c": 5.11,
+   "kcal": 35.0,
+   "f": 0.28,
+   "suv": 85.03,
+   "p": 5.81,
+   "o": [
+    {
+     "nom": "sheets",
+     "miqdor": 10.0,
+     "g": 26.0
+    },
+    {
+     "nom": "tbsp (1/8 cup)",
+     "miqdor": 2.0,
+     "g": 10.0
+    }
+   ]
+  },
+  "168592": {
+   "d": "Nuts, almonds, honey roasted, unblanched",
+   "p": 18.17,
+   "f": 49.9,
+   "c": 27.9,
+   "kcal": 594.0,
+   "suv": 1.7,
+   "o": [
+    {
+     "nom": "cup whole kernels",
+     "miqdor": 1.0,
+     "g": 144.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "168649": {
+   "d": "Beef, round, top round steak, boneless, separable lean only, trimmed to 0\" fat, all grades, cooked, grilled",
+   "c": 0.0,
+   "p": 30.09,
+   "kcal": 162.0,
+   "suv": 64.28,
+   "f": 3.77,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "steak",
+     "miqdor": 1.0,
+     "g": 277.0
+    }
+   ]
+  },
+  "168778": {
+   "d": "Puddings, chocolate, ready-to-eat",
+   "f": 4.6,
+   "c": 23.01,
+   "kcal": 142.0,
+   "suv": 69.46,
+   "p": 2.09,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "container refrigerated, 4 oz",
+     "miqdor": 1.0,
+     "g": 108.0
+    },
+    {
+     "nom": "container shelf stable, 3.5 oz",
+     "miqdor": 1.0,
+     "g": 98.0
+    }
+   ]
+  },
+  "169253": {
+   "d": "Mushrooms, white, stir-fried",
+   "suv": 91.1,
+   "f": 0.33,
+   "p": 3.58,
+   "c": 4.04,
+   "kcal": 26.0,
+   "o": [
+    {
+     "nom": "cup sliced",
+     "miqdor": 1.0,
+     "g": 108.0
+    }
+   ]
+  },
+  "169254": {
+   "d": "Mushrooms, canned, drained solids",
+   "f": 0.29,
+   "suv": 91.08,
+   "p": 1.87,
+   "c": 5.09,
+   "kcal": 25.0,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 156.0
+    },
+    {
+     "nom": "can",
+     "miqdor": 1.0,
+     "g": 132.0
+    },
+    {
+     "nom": "large",
+     "miqdor": 1.0,
+     "g": 16.0
+    },
+    {
+     "nom": "medium",
+     "miqdor": 1.0,
+     "g": 12.0
+    },
+    {
+     "nom": "small",
+     "miqdor": 1.0,
+     "g": 7.0
+    },
+    {
+     "nom": "slices",
+     "miqdor": 10.0,
+     "g": 40.0
+    },
+    {
+     "nom": "caps",
+     "miqdor": 8.0,
+     "g": 47.0
+    },
+    {
+     "nom": "cup pieces",
+     "miqdor": 0.5,
+     "g": 78.0
+    }
+   ]
+  },
+  "169387": {
+   "d": "Arugula, raw",
+   "c": 3.65,
+   "p": 2.58,
+   "f": 0.66,
+   "suv": 91.71,
+   "kcal": 25.0,
+   "o": [
+    {
+     "nom": "leaf",
+     "miqdor": 1.0,
+     "g": 2.0
+    },
+    {
+     "nom": "cup",
+     "miqdor": 0.5,
+     "g": 10.0
+    }
+   ]
+  },
+  "169491": {
+   "d": "Beef, chuck, arm pot roast, separable lean and fat, trimmed to 1/8\" fat, all grades, raw",
+   "f": 17.98,
+   "suv": 62.33,
+   "p": 19.23,
+   "kcal": 244.0,
+   "c": 0.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "lb",
+     "miqdor": 1.0,
+     "g": 453.6
+    }
+   ]
+  },
+  "169608": {
+   "d": "Puddings, vanilla, ready-to-eat",
+   "p": 1.45,
+   "suv": 71.66,
+   "f": 3.78,
+   "kcal": 130.0,
+   "c": 22.6,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "container refrigerated 4 oz",
+     "miqdor": 1.0,
+     "g": 110.0
+    },
+    {
+     "nom": "container shelf stable 3.5 oz",
+     "miqdor": 1.0,
+     "g": 97.0
+    }
+   ]
+  },
+  "169641": {
+   "d": "Jams and preserves",
+   "p": 0.37,
+   "suv": 30.47,
+   "f": 0.07,
+   "c": 68.86,
+   "kcal": 278.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 20.0
+    },
+    {
+     "nom": "packet (0.5 oz)",
+     "miqdor": 1.0,
+     "g": 14.0
+    }
+   ]
+  },
+  "170273": {
+   "d": "Chocolate, dark, 70-85% cacao solids",
+   "f": 42.63,
+   "c": 45.9,
+   "kcal": 598.0,
+   "suv": 1.37,
+   "p": 7.79,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "bar",
+     "miqdor": 1.0,
+     "g": 101.0
+    }
+   ]
+  },
+  "170472": {
+   "d": "Vegetables, mixed, frozen, cooked, boiled, drained, without salt",
+   "c": 13.09,
+   "kcal": 65.0,
+   "p": 2.86,
+   "f": 0.15,
+   "suv": 83.23,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 0.5,
+     "g": 91.0
+    },
+    {
+     "nom": "package (10 oz) yields",
+     "miqdor": 1.0,
+     "g": 275.0
+    }
+   ]
+  },
+  "170487": {
+   "d": "Squash, summer, all varieties, raw",
+   "suv": 94.64,
+   "f": 0.18,
+   "c": 3.35,
+   "kcal": 16.0,
+   "p": 1.21,
+   "o": [
+    {
+     "nom": "cup, sliced",
+     "miqdor": 1.0,
+     "g": 113.0
+    },
+    {
+     "nom": "large",
+     "miqdor": 1.0,
+     "g": 323.0
+    },
+    {
+     "nom": "medium",
+     "miqdor": 1.0,
+     "g": 196.0
+    },
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 9.9
+    },
+    {
+     "nom": "small",
+     "miqdor": 1.0,
+     "g": 118.0
+    }
+   ]
+  },
+  "170568": {
+   "d": "Nuts, almonds, blanched",
+   "p": 21.4,
+   "suv": 4.51,
+   "f": 52.52,
+   "c": 18.67,
+   "kcal": 590.0,
+   "o": [
+    {
+     "nom": "cup whole kernels",
+     "miqdor": 1.0,
+     "g": 145.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 9.1
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "170656": {
+   "d": "Candies, sugar-coated almonds",
+   "kcal": 465.0,
+   "p": 10.0,
+   "suv": 2.3,
+   "f": 17.93,
+   "c": 68.26,
+   "o": [
+    {
+     "nom": "piece",
+     "miqdor": 1.0,
+     "g": 3.5
+    }
+   ]
+  },
+  "170903": {
+   "d": "Yogurt, Greek, plain, lowfat",
+   "f": 1.92,
+   "c": 3.94,
+   "kcal": 73.0,
+   "suv": 83.56,
+   "p": 9.95,
+   "o": [
+    {
+     "nom": "container (7 oz)",
+     "miqdor": 1.0,
+     "g": 200.0
+    }
+   ]
+  },
+  "171016": {
+   "d": "Oil, sesame, salad or cooking",
+   "p": 0.0,
+   "f": 100.0,
+   "c": 0.0,
+   "kcal": 884.0,
+   "suv": 0.0,
+   "o": [
+    {
+     "nom": "tablespoon",
+     "miqdor": 1.0,
+     "g": 13.6
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 218.0
+    },
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 4.5
+    }
+   ]
+  },
+  "171098": {
+   "d": "Turkey, whole, breast, meat only, raw",
+   "kcal": 114.0,
+   "suv": 74.89,
+   "f": 1.48,
+   "p": 23.66,
+   "c": 0.14,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "breast",
+     "miqdor": 1.0,
+     "g": 1769.0
+    }
+   ]
+  },
+  "171167": {
+   "d": "Sauce, teriyaki, ready-to-serve",
+   "suv": 67.69,
+   "p": 5.93,
+   "f": 0.02,
+   "c": 15.56,
+   "kcal": 89.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 18.0
+    },
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 36.0
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 288.0
+    }
+   ]
+  },
+  "171244": {
+   "d": "Cheese, mozzarella, low moisture, part-skim",
+   "p": 23.75,
+   "suv": 47.07,
+   "f": 19.78,
+   "c": 5.58,
+   "kcal": 295.0,
+   "o": [
+    {
+     "nom": "cup, diced",
+     "miqdor": 1.0,
+     "g": 132.0
+    },
+    {
+     "nom": "cup, shredded",
+     "miqdor": 1.0,
+     "g": 113.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "cubic inch",
+     "miqdor": 1.0,
+     "g": 18.0
+    },
+    {
+     "nom": "slice (1 oz)",
+     "miqdor": 1.0,
+     "g": 28.0
+    }
+   ]
+  },
+  "171278": {
+   "d": "Milk, goat, fluid, with added vitamin D",
+   "kcal": 69.0,
+   "p": 3.56,
+   "suv": 87.03,
+   "f": 4.14,
+   "c": 4.45,
+   "o": [
+    {
+     "nom": "fl oz",
+     "miqdor": 1.0,
+     "g": 30.5
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 244.0
+    },
+    {
+     "nom": "quart",
+     "miqdor": 1.0,
+     "g": 976.0
+    }
+   ]
+  },
+  "171292": {
+   "d": "Cheese, cheddar, reduced fat (Includes foods for USDA's Food Distribution Program)",
+   "p": 27.35,
+   "f": 20.41,
+   "suv": 44.29,
+   "c": 2.67,
+   "kcal": 316.0,
+   "o": [
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 21.0
+    }
+   ]
+  },
+  "171314": {
+   "d": "Butter, Clarified butter (ghee)",
+   "p": 0.0,
+   "f": 100.0,
+   "c": 0.0,
+   "kcal": 900.0,
+   "suv": 0.5
+  },
+  "171330": {
+   "d": "Spices, poppy seed",
+   "f": 41.56,
+   "suv": 5.95,
+   "p": 17.99,
+   "c": 28.13,
+   "kcal": 525.0,
+   "o": [
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 2.8
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 8.8
+    }
+   ]
+  },
+  "171412": {
+   "d": "Oil, coconut",
+   "p": 0.0,
+   "f": 99.06,
+   "kcal": 892.0,
+   "suv": 0.03,
+   "c": 0.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 13.6
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 218.0
+    },
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 4.5
+    }
+   ]
+  },
+  "171475": {
+   "d": "Chicken, broilers or fryers, breast, meat and skin, cooked, fried, batter",
+   "f": 13.2,
+   "c": 8.99,
+   "kcal": 260.0,
+   "suv": 51.64,
+   "p": 24.84,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "unit (yield from 1 lb ready-to-cook chicken)",
+     "miqdor": 0.5,
+     "g": 84.0
+    },
+    {
+     "nom": "breast, bone removed",
+     "miqdor": 0.0,
+     "g": 140.0
+    }
+   ]
+  },
+  "171663": {
+   "d": "Cereals, QUAKER, Instant Oatmeal, apples and cinnamon, dry",
+   "f": 4.61,
+   "c": 76.74,
+   "kcal": 366.0,
+   "suv": 6.62,
+   "p": 8.62,
+   "o": [
+    {
+     "nom": "packet (1 NLEA serving)",
+     "miqdor": 1.0,
+     "g": 43.0
+    }
+   ]
+  },
+  "171695": {
+   "d": "Applesauce, canned, unsweetened, without added ascorbic acid (Includes foods for USDA's Food Distribution Program)",
+   "f": 0.1,
+   "suv": 88.22,
+   "p": 0.17,
+   "c": 11.27,
+   "kcal": 42.0,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 244.0
+    }
+   ]
+  },
+  "171705": {
+   "d": "Avocados, raw, all commercial varieties",
+   "p": 2.0,
+   "f": 14.66,
+   "suv": 73.23,
+   "c": 8.53,
+   "kcal": 160.0,
+   "o": [
+    {
+     "nom": "cup, cubes",
+     "miqdor": 1.0,
+     "g": 150.0
+    },
+    {
+     "nom": "cup, pureed",
+     "miqdor": 1.0,
+     "g": 230.0
+    },
+    {
+     "nom": "cup, sliced",
+     "miqdor": 1.0,
+     "g": 146.0
+    },
+    {
+     "nom": "avocado, NS as to Florida or California",
+     "miqdor": 1.0,
+     "g": 201.0
+    },
+    {
+     "nom": "NLEA Serving",
+     "miqdor": 1.0,
+     "g": 50.0
+    }
+   ]
+  },
+  "171760": {
+   "d": "Beef, round, top round roast, boneless, separable lean only, trimmed to 0\" fat, all grades, raw",
+   "f": 2.94,
+   "c": 0.0,
+   "kcal": 121.0,
+   "suv": 72.96,
+   "p": 23.59,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "roast",
+     "miqdor": 1.0,
+     "g": 758.0
+    }
+   ]
+  },
+  "171795": {
+   "d": "Beef, ground, 90% lean meat / 10% fat, loaf, cooked, baked",
+   "kcal": 214.0,
+   "p": 26.62,
+   "c": 0.0,
+   "f": 11.1,
+   "suv": 61.33,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "171796": {
+   "d": "Beef, ground, 85% lean meat / 15% fat, raw (Includes foods for USDA's Food Distribution Program)",
+   "suv": 65.66,
+   "f": 15.0,
+   "p": 18.59,
+   "c": 0.0,
+   "kcal": 215.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    }
+   ]
+  },
+  "171997": {
+   "d": "Fish, pike, walleye, cooked, dry heat",
+   "f": 1.56,
+   "c": 0.0,
+   "kcal": 119.0,
+   "suv": 73.47,
+   "p": 24.54,
+   "o": [
+    {
+     "nom": "fillet",
+     "miqdor": 1.0,
+     "g": 124.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "172237": {
+   "d": "Vinegar, distilled",
+   "f": 0.0,
+   "suv": 94.78,
+   "p": 0.0,
+   "c": 0.04,
+   "kcal": 18.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 14.9
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 238.0
+    },
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 5.0
+    }
+   ]
+  },
+  "172240": {
+   "d": "Vinegar, red wine",
+   "f": 0.0,
+   "c": 0.27,
+   "kcal": 19.0,
+   "suv": 94.47,
+   "p": 0.04,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 14.9
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 239.0
+    },
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 5.0
+    }
+   ]
+  },
+  "172241": {
+   "d": "Vinegar, balsamic",
+   "p": 0.49,
+   "suv": 76.45,
+   "f": 0.0,
+   "c": 17.03,
+   "kcal": 88.0,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 16.0
+    },
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 255.0
+    },
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 5.3
+    }
+   ]
+  },
+  "172707": {
+   "d": "Cake, sponge, prepared from recipe",
+   "p": 7.3,
+   "f": 4.3,
+   "c": 57.7,
+   "kcal": 297.0,
+   "suv": 29.4,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "piece (1/12 of 10 inch cake)",
+     "miqdor": 1.0,
+     "g": 63.0
+    }
+   ]
+  },
+  "172736": {
+   "d": "Cookies, sugar wafers with creme filling, regular",
+   "p": 3.84,
+   "f": 23.24,
+   "c": 70.64,
+   "kcal": 502.0,
+   "suv": 1.66,
+   "o": [
+    {
+     "nom": "cookies",
+     "miqdor": 3.0,
+     "g": 36.0
+    },
+    {
+     "nom": "cookie",
+     "miqdor": 1.0,
+     "g": 10.1
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "172821": {
+   "d": "Cookies, ladyfingers, without lemon juice and rind",
+   "kcal": 363.0,
+   "p": 10.6,
+   "f": 9.1,
+   "c": 59.7,
+   "suv": 19.5,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "anisette sponge (4\" x 1-1/8\" x 7/8\")",
+     "miqdor": 1.0,
+     "g": 13.0
+    },
+    {
+     "nom": "breakfast treat (approx 4\" x 2\" x 7/8\")",
+     "miqdor": 1.0,
+     "g": 24.0
+    },
+    {
+     "nom": "ladyfinger",
+     "miqdor": 1.0,
+     "g": 11.0
+    }
+   ]
+  },
+  "172928": {
+   "d": "Pate, chicken liver, canned",
+   "f": 13.1,
+   "c": 6.55,
+   "kcal": 201.0,
+   "suv": 65.64,
+   "p": 13.45,
+   "o": [
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 13.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "173612": {
+   "d": "Chicken, broilers or fryers, drumstick, meat and skin, cooked, roasted",
+   "p": 23.35,
+   "kcal": 191.0,
+   "suv": 66.39,
+   "f": 10.15,
+   "c": 0.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "drumstick with skin (yield from 1 lb ready-to-cook chicken)",
+     "miqdor": 1.0,
+     "g": 105.0
+    },
+    {
+     "nom": "drumstick without skin",
+     "miqdor": 1.0,
+     "g": 96.0
+    }
+   ]
+  },
+  "173694": {
+   "d": "Fish, sea bass, mixed species, cooked, dry heat",
+   "f": 2.56,
+   "c": 0.0,
+   "kcal": 124.0,
+   "suv": 72.14,
+   "p": 23.63,
+   "o": [
+    {
+     "nom": "fillet",
+     "miqdor": 1.0,
+     "g": 101.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "173714": {
+   "d": "Fish, catfish, channel, wild, cooked, dry heat",
+   "p": 18.47,
+   "f": 2.85,
+   "c": 0.0,
+   "kcal": 105.0,
+   "suv": 77.67,
+   "o": [
+    {
+     "nom": "fillet",
+     "miqdor": 1.0,
+     "g": 143.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "173806": {
+   "d": "Peanuts, all types, dry-roasted, without salt",
+   "p": 24.35,
+   "c": 21.26,
+   "kcal": 587.0,
+   "suv": 1.81,
+   "f": 49.66,
+   "o": [
+    {
+     "nom": "cup",
+     "miqdor": 1.0,
+     "g": 146.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "peanut",
+     "miqdor": 1.0,
+     "g": 1.0
+    }
+   ]
+  },
+  "173857": {
+   "d": "Bologna, turkey",
+   "c": 4.68,
+   "kcal": 209.0,
+   "suv": 64.55,
+   "f": 16.05,
+   "p": 11.42,
+   "o": [
+    {
+     "nom": "oz 1 serving",
+     "miqdor": 0.99,
+     "g": 28.0
+    },
+    {
+     "nom": "serving",
+     "miqdor": 1.0,
+     "g": 28.0
+    },
+    {
+     "nom": "package",
+     "miqdor": 1.0,
+     "g": 454.0
+    }
+   ]
+  },
+  "173929": {
+   "d": "Apples, raw, without skin, cooked, microwave",
+   "p": 0.28,
+   "f": 0.42,
+   "c": 14.41,
+   "kcal": 56.0,
+   "suv": 84.63,
+   "o": [
+    {
+     "nom": "cup slices",
+     "miqdor": 1.0,
+     "g": 170.0
+    }
+   ]
+  },
+  "174197": {
+   "d": "Fish, flatfish (flounder and sole species), cooked, dry heat",
+   "p": 15.24,
+   "f": 2.37,
+   "c": 0.0,
+   "kcal": 86.0,
+   "suv": 81.11,
+   "o": [
+    {
+     "nom": "fillet",
+     "miqdor": 1.0,
+     "g": 127.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "174311": {
+   "d": "Lamb, leg, whole (shank and sirloin), separable lean and fat, trimmed to 1/4\" fat, choice, raw",
+   "p": 17.91,
+   "f": 17.07,
+   "c": 0.0,
+   "kcal": 230.0,
+   "suv": 64.32,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "lb",
+     "miqdor": 1.0,
+     "g": 453.6
+    }
+   ]
+  },
+  "174370": {
+   "d": "Lamb, ground, raw",
+   "f": 23.41,
+   "c": 0.0,
+   "kcal": 282.0,
+   "suv": 59.47,
+   "p": 16.56,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    }
+   ]
+  },
+  "174492": {
+   "d": "Turkey, ground, 93% lean, 7% fat, patties, broiled",
+   "p": 25.86,
+   "f": 11.45,
+   "suv": 62.42,
+   "c": 0.0,
+   "kcal": 207.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "174989": {
+   "d": "Croissants, cheese",
+   "p": 9.2,
+   "f": 20.9,
+   "c": 47.0,
+   "kcal": 414.0,
+   "suv": 21.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "croissant, small",
+     "miqdor": 1.0,
+     "g": 42.0
+    },
+    {
+     "nom": "croissant, medium",
+     "miqdor": 1.0,
+     "g": 57.0
+    },
+    {
+     "nom": "croissant, large",
+     "miqdor": 1.0,
+     "g": 67.0
+    }
+   ]
+  },
+  "174998": {
+   "d": "French toast, prepared from recipe, made with low fat (2%) milk",
+   "f": 10.8,
+   "c": 25.0,
+   "kcal": 229.0,
+   "suv": 54.7,
+   "p": 7.7,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 65.0
+    }
+   ]
+  },
+  "175148": {
+   "d": "Fish, sturgeon, mixed species, cooked, dry heat",
+   "p": 20.7,
+   "f": 5.18,
+   "c": 0.0,
+   "kcal": 135.0,
+   "suv": 69.94,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "cup, cooked",
+     "miqdor": 1.0,
+     "g": 136.0
+    },
+    {
+     "nom": "piece (4-1/2\" x 2-1/8\" x 7/8\")",
+     "miqdor": 1.0,
+     "g": 145.0
+    },
+    {
+     "nom": "oz, boneless",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "cubic inch, boneless",
+     "miqdor": 1.0,
+     "g": 17.0
+    }
+   ]
+  },
+  "175161": {
+   "d": "Fish, whiting, mixed species, cooked, dry heat",
+   "kcal": 116.0,
+   "f": 1.69,
+   "c": 0.0,
+   "suv": 74.71,
+   "p": 23.48,
+   "o": [
+    {
+     "nom": "fillet",
+     "miqdor": 1.0,
+     "g": 72.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "175180": {
+   "d": "Crustaceans, shrimp, cooked",
+   "p": 23.98,
+   "f": 0.28,
+   "c": 0.2,
+   "kcal": 99.0,
+   "suv": 74.33,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ]
+  },
+  "170606": {
+   "d": "Sausage, beef, cured, cooked, smoked",
+   "f": 26.91,
+   "c": 2.42,
+   "kcal": 312.0,
+   "suv": 53.56,
+   "p": 14.11,
+   "o": [
+    {
+     "nom": "sausage",
+     "miqdor": 1.0,
+     "g": 43.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "168166": {
+   "d": "Raisins, seeded",
+   "p": 2.52,
+   "f": 0.54,
+   "c": 78.47,
+   "kcal": 296.0,
+   "suv": 16.57,
+   "o": [
+    {
+     "nom": "cup, packed",
+     "miqdor": 1.0,
+     "g": 165.0
+    },
+    {
+     "nom": "cup (not packed)",
+     "miqdor": 1.0,
+     "g": 145.0
     }
    ]
   }

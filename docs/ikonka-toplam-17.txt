@@ -1,0 +1,50 @@
+---
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 42 food icons, exactly 6 columns × 7 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
+Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
+No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
+Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
+Keep the icons in exactly this order (left to right, top to bottom):
+---
+v87-bahor-salati — dish, one portion in a bowl (kosa) or plate: Весенний салат (огурец, редис, яйцо, сметана) (Bahor salati (bodring, rediska, tuxum, smetana)), realistic single serving, top-down three-quarter view, no text.
+v87-olivye-tovuq — dish, one portion in a bowl (kosa) or plate: Оливье с курицей (Olivye salati (tovuqli)), realistic single serving, top-down three-quarter view, no text.
+v87-mujskoy-kapriz — dish, one portion in a bowl (kosa) or plate: Салат «Мужской каприз» (Mujskoy kapriz salati (mol go'shti, pishloq)), realistic single serving, top-down three-quarter view, no text.
+v87-tbilisi-salat — dish, one portion in a bowl (kosa) or plate: Салат «Тбилиси» (Tbilisi salati (loviya, mol go'shti)), realistic single serving, top-down three-quarter view, no text.
+v87-obzhorka — dish, one portion in a bowl (kosa) or plate: Салат «Обжорка» (Objorka salati (mol go'shti, qovurilgan sabzi va piyoz)), realistic single serving, top-down three-quarter view, no text.
+v87-ananas-tovuq-salat — dish, one portion in a bowl (kosa) or plate: Салат с курицей и ананасами (Tovuqli salat (ananas va pishloq bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-qoziqorin-salat — dish, one portion in a bowl (kosa) or plate: Салат с грибами и курицей (Qo'ziqorinli salat (tovuq, tuxum, mayonez)), realistic single serving, top-down three-quarter view, no text.
+v87-loviya-salat — dish, one portion in a bowl (kosa) or plate: Салат с фасолью и сухариками (Loviyali salat (suxarik, kolbasa, mayonez)), realistic single serving, top-down three-quarter view, no text.
+v87-sabzi-sarimsoq-salat — dish, one portion in a bowl (kosa) or plate: Морковь с чесноком и майонезом (Sabzi salati (sarimsoq va mayonezli)), realistic single serving, top-down three-quarter view, no text.
+v87-lavlagi-chernosliv — dish, one portion in a bowl (kosa) or plate: Свёкла с черносливом и орехами (Lavlagi salati (olxo'ri qoqi va yong'oqli)), realistic single serving, top-down three-quarter view, no text.
+v87-sabzavot-salat-mayonez — dish, one portion in a bowl (kosa) or plate: Овощной салат с майонезом (Sabzavot salati (mayonezli)), realistic single serving, top-down three-quarter view, no text.
+v87-sabzavot-salat-smetana — dish, one portion in a bowl (kosa) or plate: Овощной салат со сметаной (Sabzavot salati (smetanali)), realistic single serving, top-down three-quarter view, no text.
+v87-kaprese — dish, one portion in a bowl (kosa) or plate: Салат «Капрезе» (Kaprese salati (pomidor, motsarella)), realistic single serving, top-down three-quarter view, no text.
+v87-sezar-krevetka — cafe or fast-food dish: Салат «Цезарь» с креветками (Sezar salati (krevetkali)), realistic single serving, top-down three-quarter view, no text.
+v87-mevali-salat — fruit: Фруктовый салат с йогуртом (Mevali salat (yogurtli)), realistic single serving, top-down three-quarter view, no text.
+v87-xe-baliq — dish, one portion in a bowl (kosa) or plate: Хе из рыбы (по-корейски) (Xe (koreyscha marinadlangan baliq)), realistic single serving, top-down three-quarter view, no text.
+v87-koreyscha-bodring — vegetable dish: Огурцы по-корейски (Koreyscha bodring), realistic single serving, top-down three-quarter view, no text.
+v87-koreyscha-baqlajon — vegetable dish: Баклажаны по-корейски (Koreyscha baqlajon), realistic single serving, top-down three-quarter view, no text.
+v87-baqlajon-qovurilgan — vegetable dish: Баклажаны жареные (Baqlajon (qovurilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-qovoqcha-qovurilgan — vegetable dish: Кабачки жареные (Qovoqcha (qovurilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-lecho — vegetable dish: Лечо (Lecho (qalampir va pomidor)), realistic single serving, top-down three-quarter view, no text.
+v87-sabzavot-aralash — vegetable dish: Овощная смесь (замороженная, варёная) (Sabzavot aralashmasi (muzlatilgan, qaynatilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-rukkola — vegetable dish: Руккола (Rukkola), realistic single serving, top-down three-quarter view, no text.
+v87-aysberg — vegetable dish: Салат «Айсберг» (Aysberg salati), realistic single serving, top-down three-quarter view, no text.
+v87-qalampir-yashil — vegetable dish: Перец сладкий зелёный (Bulg'or qalampiri (yashil)), realistic single serving, top-down three-quarter view, no text.
+v87-qoziqorin-qovurilgan — vegetable dish: Грибы жареные с луком (Qo'ziqorin (piyoz bilan qovurilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-qoziqorin-marinad — vegetable dish: Грибы маринованные (консерва) (Qo'ziqorin (marinadlangan, konserva)), realistic single serving, top-down three-quarter view, no text.
+v87-olma-duxovka — fruit: Яблоко печёное (Olma (duxovkada pishirilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-olma-pyure — fruit: Яблочное пюре (без сахара) (Olma pyuresi (shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-tsukat — nuts or dried fruit: Цукаты (Tsukatlar (shakarlangan mevalar)), realistic single serving, top-down three-quarter view, no text.
+v87-bodom-shakarli — nuts or dried fruit: Миндаль в сахарной глазури (драже) (Bodom (shakarli draje)), realistic single serving, top-down three-quarter view, no text.
+v87-bodom-asalli — nuts or dried fruit: Миндаль медовый жареный (Bodom (asalli qovurilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-yeryongoq-shakarli — nuts or dried fruit: Арахис в сахарной глазури (Yeryong'oq (shakarli glazurda)), realistic single serving, top-down three-quarter view, no text.
+v87-yeryongoq-shokolad — dessert or sweet: Арахис в молочном шоколаде (Yeryong'oq (sutli shokoladda)), realistic single serving, top-down three-quarter view, no text.
+v87-tiramisu — dessert or sweet: Тирамису (Tiramisu), realistic single serving, top-down three-quarter view, no text.
+v87-kartoshka-pirojnoe — dessert or sweet: Пирожное «Картошка» (Kartoshka pirojnoe (shokoladli)), realistic single serving, top-down three-quarter view, no text.
+v87-muraveynik — dessert or sweet: Торт «Муравейник» (Muraveynik (yong'oq va sgushenkali tort)), realistic single serving, top-down three-quarter view, no text.
+v87-trubochka-krem — dessert or sweet: Трубочка слоёная с кремом (Trubochka (kremli, sloyka)), realistic single serving, top-down three-quarter view, no text.
+v87-korzinochka — dessert or sweet: Пирожное «Корзиночка» с кремом (Korzinochka (kremli savatcha pirojnoe)), realistic single serving, top-down three-quarter view, no text.
+v87-rogalik — dessert or sweet: Рогалик с повидлом (Rogalik (murabboli)), realistic single serving, top-down three-quarter view, no text.
+v87-makarons — dessert or sweet: Макарон (миндальное пирожное) (Makarons (fransuzcha bodomli pirojnoe)), realistic single serving, top-down three-quarter view, no text.
+v87-panna-kotta — dessert or sweet: Панна-котта (Panna kotta), realistic single serving, top-down three-quarter view, no text.

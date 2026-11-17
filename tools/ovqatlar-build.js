@@ -313,7 +313,7 @@ for (const r of rows) {
     const id = tok.replace(/^u:/, ''), U = USDA[id]; return U ? { k: U.kcal, p: U.p, f: U.f, c: U.c, u: 'USDA ' + id + ' («' + U.d + '»)', r: 'USDA ' + id + ' («' + U.d + '»)' } : null;
   };
   const ich = (t) => t === 'i' ? [' (ichimlik: 100 ml ≈ 100 g)', ' (напиток: 100 мл ≈ 100 г)'] : ['', ''];
-  for (const row of KENG.concat(require('./ovqatlar-turk.js'), require('./ovqatlar-kengaytma2.js'), require('./ovqatlar-kengaytma3.js'), require('./ovqatlar-kengaytma4.js'), require('./ovqatlar-kengaytma5.js'), require('./ovqatlar-kengaytma6.js'), require('./ovqatlar-kengaytma7.js'))) {          // v67: fast-food tarmoqlari (taxminiy) va muzqaymoq turlari          // v66: 3-bosqich          // v65: 2-bosqich          // v64: 1-bosqich (tools/ovqatlar-kengaytma2.js)
+  for (const row of KENG.concat(require('./ovqatlar-turk.js'), require('./ovqatlar-kengaytma2.js'), require('./ovqatlar-kengaytma3.js'), require('./ovqatlar-kengaytma4.js'), require('./ovqatlar-kengaytma5.js'), require('./ovqatlar-kengaytma6.js'), require('./ovqatlar-kengaytma7.js'), ['8a', '8b', '8c'].filter((x) => fs.existsSync(path.join(__dirname, 'ovqatlar-kengaytma' + x + '.js'))).flatMap((x) => require('./ovqatlar-kengaytma' + x + '.js')))) {          // v67: fast-food tarmoqlari (taxminiy) va muzqaymoq turlari          // v66: 3-bosqich          // v65: 2-bosqich          // v64: 1-bosqich (tools/ovqatlar-kengaytma2.js)          // v87: 8a ichimliklar, 8b sho'rvalar, 8c umumiy
     const [id, n, ru, al, t, un, src, tm, izU, izR] = row;          // v67: tm — fast-food TARMOG'I kaliti (evos, maxway…): qiymat taxminiy, tarmoq rasmiy qiymat e'lon qilmagan; izU/izR — og'irlik/tarkib qayerdan
     if (ids.has(id)) throw new Error('kengaytma: takror id ' + id);
     let v = null;
@@ -344,6 +344,7 @@ if (fs.existsSync(EXTRA)) for (const x of JSON.parse(fs.readFileSync(EXTRA, 'utf
 require('./baza-tuzatish.js').pre(out);          // v78: nomlar, birliklar, eski id'larni yashirish
 const V2 = require('./baza-v2.js').apply(out);
 { const T = require('./baza-tuzatish.js').post(V2.foods); console.log('ishonch (v78): tekshirilgan', T.tekshirilgan, '| yiqilgan', T.yiqilgan.length); T.yiqilgan.forEach((x) => console.log('  ', x.id, x.sabab.join('; '))); }
+{ const n = require('./ovqat-guruh.js').qoy(V2.foods); console.log('guruh teglari (v87):', n); }          // v87: har taomga guruh (bir xillik maslahati)
 // v73: baza-v2/retsept bosqichida qo'shilgan taomlarga ham sinonimlar (ALIAS) qo'llanadi
 V2.foods.forEach((o) => { if (!ALIAS[o.i]) return; const have = new Set([o.n, o.r].concat(o.a || []).map(normA)); o.a = o.a || []; ALIAS[o.i].forEach((a) => { const k = normA(a); if (k && !have.has(k)) { have.add(k); o.a.push(a); } }); });
       // baza v2: oilalar/omillar, birliklar (b), manba, retseptdan hisoblangan qiymatlar

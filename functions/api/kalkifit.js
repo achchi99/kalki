@@ -31,13 +31,13 @@ export function sanitize(list) {
   }
   return out;
 }
-/* ---- lokal parse (AI'dan OLDIN): bazada bor taom ("1 kosa mastava", "2 ta qovoqli somsa", "to'y oshidan bir lagan") — fid + birlik + miqdor + omillar; AI faqat topilmaganini oladi ---- */
+/* ---- lokal parse (AI'dan OLDIN): bazada bor taom ("1 kosa mastava", "2 ta qovoqli somsa", "to'y oshidan bir tarelka") — fid + birlik + miqdor + omillar; AI faqat topilmaganini oladi ---- */
 let FOODS = null;
 async function loadFoods(env, request) {
   if (FOODS) return FOODS; if (!env.ASSETS || typeof env.ASSETS.fetch !== 'function') return null;       // Pages: statik baza; boshqa muhitda (test) — lokal parse o'tkazib yuboriladi
   try { const r = await env.ASSETS.fetch(new URL('/data/ovqatlar.json', request.url)); if (!r.ok) return null; const j = await r.json(); FOODS = S.buildIndex(S.normFoods(j.foods)); return FOODS; } catch (e) { return null; }
 }
-const UN = { uz: { g100: 'g', dona_s: 'kichik', dona_l: 'katta', kosa: 'kosa', likop: 'lagan', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', chashka: 'chashka', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha' }, ru: { g100: 'г', dona_s: 'малый', dona_l: 'большой', kosa: 'коса', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', stakan: 'стакан', qoshiq: 'ст. ложка', choyq: 'ч. ложка', piyola: 'пиала', chashka: 'чашка', porsiya: 'порция', hovuch: 'горсть', tilim: 'ломтик', shisha: 'бутылка' } };
+const UN = { uz: { g100: 'g', dona_s: 'kichik', dona_l: 'katta', kosa: 'kosa', likop: 'tarelka', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', choyq: 'choy qoshiq', piyola: 'piyola', chashka: 'chashka', porsiya: 'porsiya', hovuch: 'hovuch', tilim: 'tilim', shisha: 'shisha' , hajm_s: 'kichik (250 ml)', hajm_m: "o'rta (350 ml)", hajm_l: 'katta (450 ml)', l03: 'stakan (0,3 l)', l04: 'stakan (0,4 l)', l05: 'stakan (0,5 l)' }, ru: { g100: 'г', dona_s: 'малый', dona_l: 'большой', kosa: 'коса', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', stakan: 'стакан', qoshiq: 'ст. ложка', choyq: 'ч. ложка', piyola: 'пиала', chashka: 'чашка', porsiya: 'порция', hovuch: 'горсть', tilim: 'ломтик', shisha: 'бутылка' , hajm_s: 'малый (250 мл)', hajm_m: 'средний (350 мл)', hajm_l: 'большой (450 мл)', l03: 'стакан (0,3 л)', l04: 'стакан (0,4 л)', l05: 'стакан (0,5 л)' } };
 export function localItems(matn, foods, til) {
   const ru = til === 'ru', r = S.parseText(matn, foods, {}), out = [];
   for (const x of r.items) {

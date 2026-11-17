@@ -499,3 +499,267 @@
 8|shirchoy|shirchoy, Uzbek creamy salted milk tea in a small round piyola bowl, with a little butter on top.|shirchoy
 8|udon|udon, thick white boiled noodles in a bowl, plain, with chopsticks.|udon
 8|soba|soba, thin brown buckwheat noodles in a bowl, plain, with chopsticks.|soba
+9|v87-kok-choy-limon|drink, served in a typical glass or cup: Зелёный чай с лимоном (без сахара) (Ko'k choy (limonli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|kok-choy-limon
+9|v87-kok-choy-asal|drink, served in a typical glass or cup: Зелёный чай с мёдом (Ko'k choy (asal bilan)), realistic single serving, top-down three-quarter view, no text.|kok-choy-asal
+9|v87-jasmin-choy|drink, served in a typical glass or cup: Жасминовый чай (без сахара) (Jasmin choy (ko'k, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|jasmin-choy
+9|v87-yalpizli-choy|drink, served in a typical glass or cup: Чай с мятой (чёрный, без сахара) (Yalpizli choy (qora, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|yalpizli-choy
+9|v87-yalpizli-kok-choy|drink, served in a typical glass or cup: Зелёный чай с мятой (без сахара) (Yalpizli ko'k choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.|yalpizli-kok-choy
+9|v87-zanjabilli-choy|drink, served in a typical glass or cup: Имбирный чай (без сахара) (Zanjabilli choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.|zanjabilli-choy
+9|v87-zanjabil-limon-asal|drink, served in a typical glass or cup: Имбирный чай с лимоном и мёдом (Zanjabilli choy (limon va asal bilan)), realistic single serving, top-down three-quarter view, no text.|zanjabil-limon-asal
+9|v87-zanjabilli-kok-choy|drink, served in a typical glass or cup: Зелёный чай с имбирём (без сахара) (Zanjabilli ko'k choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.|zanjabilli-kok-choy
+9|v87-namatakli-choy|drink, served in a typical glass or cup: Чай из шиповника (без сахара) (Na'matakli choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.|namatakli-choy
+9|v87-moychechak-choy|drink, served in a typical glass or cup: Ромашковый чай (без сахара) (Moychechak choy (romashka, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|moychechak-choy
+9|v87-karkade|drink, served in a typical glass or cup: Каркаде (чай из гибискуса, без сахара) (Karkade (gibiskus choyi, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|karkade
+9|v87-mevali-choy|drink, served in a typical glass or cup: Фруктовый чай (без сахара) (Mevali choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.|mevali-choy
+9|v87-dolchinli-choy|drink, served in a typical glass or cup: Чай с корицей (без сахара) (Dolchinli choy (qora, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|dolchinli-choy
+9|v87-sutli-choy|drink, served in a typical glass or cup: Чай с молоком (без сахара) (Sutli choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.|sutli-choy
+9|v87-shirchoy-tuzli|drink, served in a typical glass or cup: Ширчой солёный (без масла) (Shirchoy (tuzli, sariyog'siz)), realistic single serving, top-down three-quarter view, no text.|shirchoy-tuzli
+9|v87-shirchoy-qaymoqli|drink, served in a typical glass or cup: Ширчой со сливками (солёный) (Shirchoy (qaymoqli, tuzli)), realistic single serving, top-down three-quarter view, no text.|shirchoy-qaymoqli
+9|v87-masala-choy|drink, served in a typical glass or cup: Масала чай (с молоком и сахаром) (Masala choy (sutli, shirin)), realistic single serving, top-down three-quarter view, no text.|masala-choy
+9|v87-masala-choy-shakarsiz|drink, served in a typical glass or cup: Масала чай (с молоком, без сахара) (Masala choy (sutli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|masala-choy-shakarsiz
+9|v87-matcha|drink, served in a typical glass or cup: Матча (чай, без сахара) (Matcha choy (sof, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|matcha
+9|v87-matcha-latte|drink, served in a typical glass or cup: Матча латте (на молоке, без сахара) (Matcha latte (kafe, sutli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|matcha-latte
+9|v87-ays-matcha-latte|drink, served in a typical glass or cup: Айс матча латте (со льдом, сладкий) (Ays matcha latte (kafe, muzli, shirin)), realistic single serving, top-down three-quarter view, no text.|ays-matcha-latte
+9|v87-muzli-choy-qora|drink, served in a typical glass or cup: Холодный чай чёрный с лимоном (бутылка) (Muzli choy (qora, limonli, shishada, shirin)), realistic single serving, top-down three-quarter view, no text.|muzli-choy-qora
+9|v87-muzli-choy-kok|drink, served in a typical glass or cup: Холодный зелёный чай (бутылка) (Muzli ko'k choy (shishada, shirin)), realistic single serving, top-down three-quarter view, no text.|muzli-choy-kok
+9|v87-muzli-choy-shakarsiz|drink, served in a typical glass or cup: Холодный чай (без сахара) (Muzli choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.|muzli-choy-shakarsiz
+9|v87-ays-ti-shaftoli|drink, served in a typical glass or cup: Айс-ти персиковый (кафе) (Ays-ti (kafe, shaftolili)), realistic single serving, top-down three-quarter view, no text.|ays-ti-shaftoli
+9|v87-ays-ti-malina|drink, served in a typical glass or cup: Айс-ти малиновый (кафе) (Ays-ti (kafe, malinali)), realistic single serving, top-down three-quarter view, no text.|ays-ti-malina
+9|v87-kapuchino-kafe|drink, served in a typical glass or cup: Капучино (кафе, без сахара) (Kapuchino (kafe, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|kapuchino-kafe
+9|v87-kapuchino-shakar|drink, served in a typical glass or cup: Капучино с сахаром (2 ч. ложки) (Kapuchino (kafe, 2 choy qoshiq shakar bilan)), realistic single serving, top-down three-quarter view, no text.|kapuchino-shakar
+9|v87-kapuchino-bodom|drink, served in a typical glass or cup: Капучино на миндальном молоке (Kapuchino (bodom sutida, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|kapuchino-bodom
+9|v87-latte-kafe|drink, served in a typical glass or cup: Латте (кафе, без сахара) (Latte (kafe, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|latte-kafe
+9|v87-latte-shakar|drink, served in a typical glass or cup: Латте с сахаром (2 ч. ложки) (Latte (kafe, 2 choy qoshiq shakar bilan)), realistic single serving, top-down three-quarter view, no text.|latte-shakar
+9|v87-latte-yogsiz|drink, served in a typical glass or cup: Латте на обезжиренном молоке (Latte (yog'siz sutda, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|latte-yogsiz
+9|v87-latte-bodom|drink, served in a typical glass or cup: Латте на миндальном молоке (Latte (bodom sutida, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|latte-bodom
+9|v87-latte-soya|drink, served in a typical glass or cup: Латте на соевом молоке (Latte (soya sutida)), realistic single serving, top-down three-quarter view, no text.|latte-soya
+9|v87-flet-uayt|drink, served in a typical glass or cup: Флэт уайт (без сахара) (Flet uayt (kafe, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|flet-uayt
+9|v87-amerikano-kafe|drink, served in a typical glass or cup: Американо (кафе, без сахара) (Amerikano (kafe, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|amerikano-kafe
+9|v87-amerikano-sut|drink, served in a typical glass or cup: Американо с молоком (Amerikano (sut bilan, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|amerikano-sut
+9|v87-mokko-kafe|drink, served in a typical glass or cup: Мокко (кафе, со сливками) (Mokko (kafe, qaymoqli)), realistic single serving, top-down three-quarter view, no text.|mokko-kafe
+9|v87-raf-vanil|drink, served in a typical glass or cup: Раф ванильный (кафе) (Raf (kafe, vanilli)), realistic single serving, top-down three-quarter view, no text.|raf-vanil
+9|v87-karamel-latte|drink, served in a typical glass or cup: Карамельный латте (с сиропом) (Karamel latte (kafe, sirop bilan)), realistic single serving, top-down three-quarter view, no text.|karamel-latte
+9|v87-vanil-latte|drink, served in a typical glass or cup: Ванильный латте (с сиропом) (Vanil latte (kafe, sirop bilan)), realistic single serving, top-down three-quarter view, no text.|vanil-latte
+9|v87-yongoq-latte|drink, served in a typical glass or cup: Ореховый латте (с сиропом лесного ореха) (Yong'oqli latte (funduk siropi bilan)), realistic single serving, top-down three-quarter view, no text.|yongoq-latte
+9|v87-ays-kapuchino|drink, served in a typical glass or cup: Айс-капучино (со льдом, без сахара) (Ays-kapuchino (muzli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|ays-kapuchino
+9|v87-ays-latte|drink, served in a typical glass or cup: Айс-латте (со льдом, без сахара) (Ays-latte (kafe, muzli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|ays-latte
+9|v87-ays-karamel-latte|drink, served in a typical glass or cup: Айс-латте карамельный (Ays-latte (karamelli, muzli)), realistic single serving, top-down three-quarter view, no text.|ays-karamel-latte
+9|v87-ays-amerikano|drink, served in a typical glass or cup: Айс-американо (со льдом) (Ays-amerikano (muzli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|ays-amerikano
+9|v87-frappe|drink, served in a typical glass or cup: Фраппе (кафе, со сливками) (Frappe (kafe, qaymoqli, shirin)), realistic single serving, top-down three-quarter view, no text.|frappe
+9|v87-frappe-karamel|drink, served in a typical glass or cup: Фраппе карамельный (Frappe (karamelli, qaymoqli)), realistic single serving, top-down three-quarter view, no text.|frappe-karamel
+9|v87-kakao-kafe|drink, served in a typical glass or cup: Какао (кафе, на молоке, сладкое) (Kakao (kafe, sutli, shirin)), realistic single serving, top-down three-quarter view, no text.|kakao-kafe
+9|v87-kakao-shakarsiz|drink, served in a typical glass or cup: Какао на молоке (без сахара) (Kakao (sutli, shakarsiz)), realistic single serving, top-down three-quarter view, no text.|kakao-shakarsiz
+9|v87-issiq-shokolad-kafe|drink, served in a typical glass or cup: Горячий шоколад (кафе, со сливками) (Issiq shokolad (kafe, qaymoqli)), realistic single serving, top-down three-quarter view, no text.|issiq-shokolad-kafe
+9|v87-limonad-kafe-klassik|drink, served in a typical glass or cup: Лимонад классический (кафе) (Kafe limonadi (klassik, limonli)), realistic single serving, top-down three-quarter view, no text.|limonad-kafe-klassik
+9|v87-limonad-mango-marakuya|drink, served in a typical glass or cup: Лимонад манго-маракуйя (кафе) (Kafe limonadi (mango-marakuya)), realistic single serving, top-down three-quarter view, no text.|limonad-mango-marakuya
+9|v87-limonad-malina|drink, served in a typical glass or cup: Малиновый лимонад (кафе) (Kafe limonadi (malinali)), realistic single serving, top-down three-quarter view, no text.|limonad-malina
+9|v87-limonad-qulupnay|drink, served in a typical glass or cup: Клубничный лимонад (кафе) (Kafe limonadi (qulupnayli)), realistic single serving, top-down three-quarter view, no text.|limonad-qulupnay
+9|v87-limonad-shaftoli|drink, served in a typical glass or cup: Персиковый лимонад (кафе) (Kafe limonadi (shaftolili)), realistic single serving, top-down three-quarter view, no text.|limonad-shaftoli
+9|v87-limonad-tarxun-kafe|drink, served in a typical glass or cup: Тархунный лимонад (кафе, домашний) (Kafe limonadi (tarxunli, uy usulida)), realistic single serving, top-down three-quarter view, no text.|limonad-tarxun-kafe
+9|v87-moxito-kafe|drink, served in a typical glass or cup: Мохито безалкогольный (кафе-лимонад) (Kafe limonadi (moxito, alkogolsiz)), realistic single serving, top-down three-quarter view, no text.|moxito-kafe
+9|v87-limonad-kivi|drink, served in a typical glass or cup: Лимонад с киви (кафе) (Kafe limonadi (kivili)), realistic single serving, top-down three-quarter view, no text.|limonad-kivi
+9|v87-limonad-apelsin|drink, served in a typical glass or cup: Апельсиновый лимонад (кафе) (Kafe limonadi (apelsinli)), realistic single serving, top-down three-quarter view, no text.|limonad-apelsin
+9|v87-limonad-tarvuz|drink, served in a typical glass or cup: Арбузный лимонад (кафе) (Kafe limonadi (tarvuzli)), realistic single serving, top-down three-quarter view, no text.|limonad-tarvuz
+9|v87-smuzi-qulupnay-banan|drink, served in a typical glass or cup: Смузи клубника-банан (Smuzi (qulupnay-banan, yogurtli)), realistic single serving, top-down three-quarter view, no text.|smuzi-qulupnay-banan
+9|v87-smuzi-yashil|drink, served in a typical glass or cup: Смузи зелёный (шпинат, яблоко, банан) (Smuzi (yashil: ismaloq, olma, banan, kivi)), realistic single serving, top-down three-quarter view, no text.|smuzi-yashil
+9|v87-smuzi-mango-banan|drink, served in a typical glass or cup: Смузи манго-банан (Smuzi (mango-banan)), realistic single serving, top-down three-quarter view, no text.|smuzi-mango-banan
+9|v87-smuzi-rezavor|drink, served in a typical glass or cup: Смузи ягодный (Smuzi (rezavor mevali: malina, qulupnay, chernika)), realistic single serving, top-down three-quarter view, no text.|smuzi-rezavor
+9|v87-smuzi-banan-suli|drink, served in a typical glass or cup: Смузи банан-овсянка на молоке (Smuzi (banan-suli, sutli)), realistic single serving, top-down three-quarter view, no text.|smuzi-banan-suli
+9|v87-milksheyk-vanil|drink, served in a typical glass or cup: Милкшейк ванильный (Milksheyk (vanilli)), realistic single serving, top-down three-quarter view, no text.|milksheyk-vanil
+9|v87-milksheyk-shokolad|drink, served in a typical glass or cup: Милкшейк шоколадный (Milksheyk (shokoladli)), realistic single serving, top-down three-quarter view, no text.|milksheyk-shokolad
+9|v87-milksheyk-qulupnay|drink, served in a typical glass or cup: Милкшейк клубничный (Milksheyk (qulupnayli)), realistic single serving, top-down three-quarter view, no text.|milksheyk-qulupnay
+9|v87-milksheyk-banan|drink, served in a typical glass or cup: Милкшейк банановый (Milksheyk (bananli)), realistic single serving, top-down three-quarter view, no text.|milksheyk-banan
+9|v87-milksheyk-karamel|drink, served in a typical glass or cup: Милкшейк карамельный (Milksheyk (karamelli)), realistic single serving, top-down three-quarter view, no text.|milksheyk-karamel
+9|v87-fresh-apelsin|drink, served in a typical glass or cup: Апельсиновый фреш (свежевыжатый) (Apelsin fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.|fresh-apelsin
+9|v87-fresh-olma|drink, served in a typical glass or cup: Яблочный фреш (свежевыжатый) (Olma fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.|fresh-olma
+9|v87-fresh-anor|drink, served in a typical glass or cup: Гранатовый фреш (свежевыжатый) (Anor fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.|fresh-anor
+9|v87-fresh-greypfrut|drink, served in a typical glass or cup: Грейпфрутовый фреш (свежевыжатый) (Greypfrut fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.|fresh-greypfrut
+9|v87-fresh-apelsin-sabzi|drink, served in a typical glass or cup: Фреш апельсин-морковь (Apelsin-sabzi fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.|fresh-apelsin-sabzi
+9|v87-kompot-quruq-shakarsiz|drink, served in a typical glass or cup: Компот из сухофруктов (без сахара) (Quruq meva kompoti (shakarsiz)), realistic single serving, top-down three-quarter view, no text.|kompot-quruq-shakarsiz
+9|v87-kompot-olcha|drink, served in a typical glass or cup: Вишнёвый компот (Olcha kompoti (shakarli)), realistic single serving, top-down three-quarter view, no text.|kompot-olcha
+9|v87-ayron-yalpiz|drink, served in a typical glass or cup: Айран с мятой и огурцом (Ayron (yalpiz va bodring bilan)), realistic single serving, top-down three-quarter view, no text.|ayron-yalpiz
+9|v87-energetik-shakarli|drink, served in a typical glass or cup: Энергетик (с сахаром, банка) (Energetik (shakarli, banka)), realistic single serving, top-down three-quarter view, no text.|energetik-shakarli
+9|v87-energetik-shakarsiz|drink, served in a typical glass or cup: Энергетик без сахара (zero) (Energetik (shakarsiz, zero)), realistic single serving, top-down three-quarter view, no text.|energetik-shakarsiz
+9|v87-shurva-mol-uy|dish, one portion in a bowl (kosa) or plate: Шурпа из говядины (домашняя) (Mol go'shtli sho'rva (uyda)), realistic single serving, top-down three-quarter view, no text.|shurva-mol-uy
+9|v87-qovurma-shurva|dish, one portion in a bowl (kosa) or plate: Ковурма-шурпа (с обжаренной бараниной) (Qovurma sho'rva (qo'y go'shtli)), realistic single serving, top-down three-quarter view, no text.|qovurma-shurva
+9|v87-qaynatma-shurva|dish, one portion in a bowl (kosa) or plate: Кайнатма-шурпа (варёная, с бараниной) (Qaynatma sho'rva (qo'y go'shtli)), realistic single serving, top-down three-quarter view, no text.|qaynatma-shurva
+9|v87-kafe-mol-shurva|dish, one portion in a bowl (kosa) or plate: Шурпа из говядины (кафе) (Sho'rva (mol go'shtli, kafe)), realistic single serving, top-down three-quarter view, no text.|kafe-mol-shurva
+9|v87-kuza-shurva|dish, one portion in a bowl (kosa) or plate: Шурпа в кузе (в горшочке) (Ko'za sho'rva (qo'y go'shti, no'xatli)), realistic single serving, top-down three-quarter view, no text.|kuza-shurva
+9|v87-kifta-shurva|dish, one portion in a bowl (kosa) or plate: Кюфта-шурпа (суп с фрикадельками) (Kifta sho'rva (qiyma sharchali)), realistic single serving, top-down three-quarter view, no text.|kifta-shurva
+9|v87-frikadelli-shurva|dish, one portion in a bowl (kosa) or plate: Суп с фрикадельками (Frikadelli sho'rva), realistic single serving, top-down three-quarter view, no text.|frikadelli-shurva
+9|v87-piyova|dish, one portion in a bowl (kosa) or plate: Пиёва (луковая шурпа) (Piyova (piyozli sho'rva, qo'y go'shtli)), realistic single serving, top-down three-quarter view, no text.|piyova
+9|v87-mosh-shurva|dish, one portion in a bowl (kosa) or plate: Суп из маша с мясом (Mosh sho'rva (go'shtli, kartoshkali)), realistic single serving, top-down three-quarter view, no text.|mosh-shurva
+9|v87-moshxorda-qatiq|dish, one portion in a bowl (kosa) or plate: Машхурда с катыком (Moshxo'rda (qatiq bilan)), realistic single serving, top-down three-quarter view, no text.|moshxorda-qatiq
+9|v87-moshxorda-tovuq|dish, one portion in a bowl (kosa) or plate: Машхурда с курицей (Moshxo'rda (tovuqli)), realistic single serving, top-down three-quarter view, no text.|moshxorda-tovuq
+9|v87-mastava-tovuq|dish, one portion in a bowl (kosa) or plate: Мастава с курицей (Mastava (tovuqli)), realistic single serving, top-down three-quarter view, no text.|mastava-tovuq
+9|v87-mastava-qatiq|dish, one portion in a bowl (kosa) or plate: Мастава с катыком (Mastava (qatiq bilan)), realistic single serving, top-down three-quarter view, no text.|mastava-qatiq
+9|v87-mastava-qoy|dish, one portion in a bowl (kosa) or plate: Мастава с бараниной (Mastava (qo'y go'shtli)), realistic single serving, top-down three-quarter view, no text.|mastava-qoy
+9|v87-umoch-oshi|dish, one portion in a bowl (kosa) or plate: Умач-оши (суп с мучной крошкой) (Umoch oshi), realistic single serving, top-down three-quarter view, no text.|umoch-oshi
+9|v87-goja-oshi|dish, one portion in a bowl (kosa) or plate: Гужа (суп из джугары с катыком) (Go'ja oshi (qatiqli, jo'xori)), realistic single serving, top-down three-quarter view, no text.|goja-oshi
+9|v87-goja-gosht|dish, one portion in a bowl (kosa) or plate: Гужа-шурпа с мясом (Go'ja sho'rva (go'shtli)), realistic single serving, top-down three-quarter view, no text.|goja-gosht
+9|v87-atala|dish, one portion in a bowl (kosa) or plate: Атала (мучная похлёбка) (Atala (unli suyuq oshi)), realistic single serving, top-down three-quarter view, no text.|atala
+9|v87-atala-sutli|dish, one portion in a bowl (kosa) or plate: Атала на молоке (Atala (sutli)), realistic single serving, top-down three-quarter view, no text.|atala-sutli
+9|v87-lagmon-mol-uy|dish, one portion in a bowl (kosa) or plate: Лагман суповой (говядина, домашний) (Lag'mon suyuq (mol go'shtli, uyda)), realistic single serving, top-down three-quarter view, no text.|lagmon-mol-uy
+9|v87-tovuq-lapsha-uy|dish, one portion in a bowl (kosa) or plate: Куриный суп с лапшой (домашний) (Tovuq lapsha sho'rva (uyda)), realistic single serving, top-down three-quarter view, no text.|tovuq-lapsha-uy
+9|v87-tovuq-guruch-shurva|dish, one portion in a bowl (kosa) or plate: Куриный суп с рисом (Tovuqli guruch sho'rva), realistic single serving, top-down three-quarter view, no text.|tovuq-guruch-shurva
+9|v87-borsh-kafe|dish, one portion in a bowl (kosa) or plate: Борщ (кафе, со сметаной) (Borsh (kafe, smetana bilan)), realistic single serving, top-down three-quarter view, no text.|borsh-kafe
+9|v87-yashil-borsh|dish, one portion in a bowl (kosa) or plate: Зелёный борщ (щавелевый) (Yashil borsh (shovul, tuxumli)), realistic single serving, top-down three-quarter view, no text.|yashil-borsh
+9|v87-shchi|dish, one portion in a bowl (kosa) or plate: Щи из свежей капусты (Shchi (yangi karamli)), realistic single serving, top-down three-quarter view, no text.|shchi
+9|v87-shchi-kislye|dish, one portion in a bowl (kosa) or plate: Щи из квашеной капусты (Shchi (tuzlangan karamdan)), realistic single serving, top-down three-quarter view, no text.|shchi-kislye
+9|v87-rassolnik|dish, one portion in a bowl (kosa) or plate: Рассольник (Rassolnik), realistic single serving, top-down three-quarter view, no text.|rassolnik
+9|v87-solyanka-kafe|dish, one portion in a bowl (kosa) or plate: Солянка сборная мясная (кафе) (Solyanka (kafe, go'shtli assorti)), realistic single serving, top-down three-quarter view, no text.|solyanka-kafe
+9|v87-solyanka-baliq|dish, one portion in a bowl (kosa) or plate: Солянка рыбная (Solyanka (baliqli)), realistic single serving, top-down three-quarter view, no text.|solyanka-baliq
+9|v87-xarcho|dish, one portion in a bowl (kosa) or plate: Харчо (Xarcho (gruzincha mol go'shtli sho'rva)), realistic single serving, top-down three-quarter view, no text.|xarcho
+9|v87-okroshka-kvas|dish, one portion in a bowl (kosa) or plate: Окрошка на квасе (Okroshka (kvasli)), realistic single serving, top-down three-quarter view, no text.|okroshka-kvas
+9|v87-uxa-qizil-baliq|dish, one portion in a bowl (kosa) or plate: Уха из сёмги (Uxa (qizil baliqli)), realistic single serving, top-down three-quarter view, no text.|uxa-qizil-baliq
+9|v87-qoziqorin-krem-kafe|dish, one portion in a bowl (kosa) or plate: Грибной крем-суп со сливками (кафе) (Qo'ziqorin krem-sho'rva (qaymoqli, kafe)), realistic single serving, top-down three-quarter view, no text.|qoziqorin-krem-kafe
+9|v87-qovoq-krem|dish, one portion in a bowl (kosa) or plate: Тыквенный крем-суп (Qovoq krem-sho'rva), realistic single serving, top-down three-quarter view, no text.|qovoq-krem
+9|v87-brokkoli-krem|dish, one portion in a bowl (kosa) or plate: Крем-суп из брокколи (Brokkoli krem-sho'rva), realistic single serving, top-down three-quarter view, no text.|brokkoli-krem
+9|v87-qoziqorin-shurva|dish, one portion in a bowl (kosa) or plate: Грибной суп с картофелем (Qo'ziqorinli sho'rva (kartoshkali)), realistic single serving, top-down three-quarter view, no text.|qoziqorin-shurva
+9|v87-tom-yam|dish, one portion in a bowl (kosa) or plate: Том ям с креветками (Tom yam (krevetkali, kokos sutida)), realistic single serving, top-down three-quarter view, no text.|tom-yam
+9|v87-ramen-tovuq-shurva|dish, one portion in a bowl (kosa) or plate: Рамен с курицей (суп) (Ramen (tovuqli, tuxumli sho'rva)), realistic single serving, top-down three-quarter view, no text.|ramen-tovuq-shurva
+9|v87-fo-bo|dish, one portion in a bowl (kosa) or plate: Фо бо (вьетнамский суп с говядиной) (Fo bo (vyetnamcha mol go'shtli lapsha sho'rva)), realistic single serving, top-down three-quarter view, no text.|fo-bo
+9|v87-gorox-shurva|dish, one portion in a bowl (kosa) or plate: Гороховый суп с копчёностями (Gorox sho'rva (pallali no'xat pyure, dudlangan kolbasali)), realistic single serving, top-down three-quarter view, no text.|gorox-shurva
+9|v87-loviya-shurva-kafe|dish, one portion in a bowl (kosa) or plate: Фасолевый суп с мясом (кафе) (Loviya sho'rva (kafe, go'shtli)), realistic single serving, top-down three-quarter view, no text.|loviya-shurva-kafe
+9|v87-kartoshka-shurva-uy|dish, one portion in a bowl (kosa) or plate: Картофельный суп (домашний) (Kartoshkali sho'rva (uyda)), realistic single serving, top-down three-quarter view, no text.|kartoshka-shurva-uy
+9|v87-sabzavotli-shurva|dish, one portion in a bowl (kosa) or plate: Овощной суп (Sabzavotli sho'rva (go'shtsiz)), realistic single serving, top-down three-quarter view, no text.|sabzavotli-shurva
+9|v87-pomidor-shurva-uy|dish, one portion in a bowl (kosa) or plate: Томатный суп с рисом (домашний) (Pomidorli sho'rva (uyda, guruchli)), realistic single serving, top-down three-quarter view, no text.|pomidor-shurva-uy
+9|v87-yasmiq-mol|dish, one portion in a bowl (kosa) or plate: Чечевичный суп с говядиной (Yasmiq sho'rva (mol go'shtli)), realistic single serving, top-down three-quarter view, no text.|yasmiq-mol
+9|v87-grechka-shurva|dish, one portion in a bowl (kosa) or plate: Гречневый суп с мясом (Grechka sho'rva (go'shtli)), realistic single serving, top-down three-quarter view, no text.|grechka-shurva
+9|v87-sutli-guruch-shurva|dish, one portion in a bowl (kosa) or plate: Молочный рисовый суп (Sutli guruch sho'rva (suyuq)), realistic single serving, top-down three-quarter view, no text.|sutli-guruch-shurva
+9|v87-minestrone|dish, one portion in a bowl (kosa) or plate: Минестроне (Minestrone (italyancha sabzavotli sho'rva)), realistic single serving, top-down three-quarter view, no text.|minestrone
+9|v87-yayla-shurva|dish, one portion in a bowl (kosa) or plate: Яйла чорбасы (суп с йогуртом и рисом) (Yayla sho'rva (qatiqli guruch sho'rva)), realistic single serving, top-down three-quarter view, no text.|yayla-shurva
+9|v87-shirmoy-non|bread or pastry: Ширмай нон (молочная лепёшка с кунжутом) (Shirmoy non (sutli, kunjutli)), realistic single serving, top-down three-quarter view, no text.|shirmoy-non
+9|v87-jizzali-non|bread or pastry: Лепёшка с жиззой (со шкварками) (Jizzali non), realistic single serving, top-down three-quarter view, no text.|jizzali-non
+9|v87-piyozli-non|bread or pastry: Лепёшка с луком (Piyozli non), realistic single serving, top-down three-quarter view, no text.|piyozli-non
+9|v87-pirojki-duxovka-kartoshka|bread or pastry: Пирожок печёный с картошкой (Pirojki (duxovkada, kartoshkali)), realistic single serving, top-down three-quarter view, no text.|pirojki-duxovka-kartoshka
+9|v87-pirojki-duxovka-gosht|bread or pastry: Пирожок печёный с мясом (Pirojki (duxovkada, go'shtli)), realistic single serving, top-down three-quarter view, no text.|pirojki-duxovka-gosht
+9|v87-pirojki-duxovka-karam|bread or pastry: Пирожок печёный с капустой (Pirojki (duxovkada, karamli)), realistic single serving, top-down three-quarter view, no text.|pirojki-duxovka-karam
+9|v87-pirojki-duxovka-olma|dessert or sweet: Пирожок печёный с яблоком (Pirojki (duxovkada, olmali)), realistic single serving, top-down three-quarter view, no text.|pirojki-duxovka-olma
+9|v87-kruassan-pishloq|bread or pastry: Круассан с сыром (Kruassan (pishloqli)), realistic single serving, top-down three-quarter view, no text.|kruassan-pishloq
+9|v87-sushki|bread or pastry: Сушки (баранки) (Sushki (baranki, quruq halqa non)), realistic single serving, top-down three-quarter view, no text.|sushki
+9|v87-grenki|bread or pastry: Гренки (французские тосты) (Grenki (tuxum-sutga botirib qovurilgan non)), realistic single serving, top-down three-quarter view, no text.|grenki
+9|v87-bulochka-mak|bread or pastry: Булочка с маком (Bulochka (mak urug'li)), realistic single serving, top-down three-quarter view, no text.|bulochka-mak
+9|v87-echki-suti|dairy product: Козье молоко (Echki suti), realistic single serving, top-down three-quarter view, no text.|echki-suti
+9|v87-qatiq-zigir|dairy product: Катык с семенами льна (Qatiq (zig'ir urug'i bilan)), realistic single serving, top-down three-quarter view, no text.|qatiq-zigir
+9|v87-tvorog-smetana|dairy product: Творог со сметаной (Tvorog (smetana bilan)), realistic single serving, top-down three-quarter view, no text.|tvorog-smetana
+9|v87-tvorog-asal|dairy product: Творог с мёдом (Tvorog (asal bilan)), realistic single serving, top-down three-quarter view, no text.|tvorog-asal
+9|v87-tvorog-massa|dairy product: Творожная масса сладкая с изюмом (Tvorogli massa (shirin, mayizli)), realistic single serving, top-down three-quarter view, no text.|tvorog-massa
+9|v87-yogurt-yunon-2|dairy product: Греческий йогурт 2% (Yunon yogurti (kam yog'li, 2%)), realistic single serving, top-down three-quarter view, no text.|yogurt-yunon-2
+9|v87-sariyog-eritilgan|dairy product: Топлёное масло (гхи) (Eritilgan sariyog' (gi)), realistic single serving, top-down three-quarter view, no text.|sariyog-eritilgan
+9|v87-pishloq-kosichka|dairy product: Сыр-косичка (чечил) (Pishloq kosichka (chechil)), realistic single serving, top-down three-quarter view, no text.|pishloq-kosichka
+9|v87-pishloq-kam-yogli|dairy product: Сыр твёрдый нежирный (Pishloq (qattiq, kam yog'li)), realistic single serving, top-down three-quarter view, no text.|pishloq-kam-yogli
+9|v87-mol-gosht-xom|meat, poultry or fish: Говядина сырая (постная) (Mol go'shti (xom, yog'siz)), realistic single serving, top-down three-quarter view, no text.|mol-gosht-xom
+9|v87-mol-gosht-xom-yogli|meat, poultry or fish: Говядина сырая (с жиром) (Mol go'shti (xom, yog'li)), realistic single serving, top-down three-quarter view, no text.|mol-gosht-xom-yogli
+9|v87-mol-qiyma-xom|meat, poultry or fish: Фарш говяжий (сырой) (Qiyma (mol, xom)), realistic single serving, top-down three-quarter view, no text.|mol-qiyma-xom
+9|v87-qoy-gosht-xom|meat, poultry or fish: Баранина сырая (Qo'y go'shti (xom)), realistic single serving, top-down three-quarter view, no text.|qoy-gosht-xom
+9|v87-qoy-qiyma-xom|meat, poultry or fish: Фарш бараний (сырой) (Qo'y qiymasi (xom)), realistic single serving, top-down three-quarter view, no text.|qoy-qiyma-xom
+9|v87-tovuq-kokrak-xom|meat, poultry or fish: Куриное филе (сырое) (Tovuq ko'kragi (xom, terisiz)), realistic single serving, top-down three-quarter view, no text.|tovuq-kokrak-xom
+9|v87-tovuq-son-xom|meat, poultry or fish: Куриное бедро (сырое, с кожей) (Tovuq soni (xom, terili)), realistic single serving, top-down three-quarter view, no text.|tovuq-son-xom
+9|v87-tovuq-butun-xom|meat, poultry or fish: Курица целая (сырая, с кожей) (Tovuq go'shti (butun, xom, terili)), realistic single serving, top-down three-quarter view, no text.|tovuq-butun-xom
+9|v87-kurka-kokrak-xom|meat, poultry or fish: Филе индейки (сырое) (Kurka ko'kragi (xom)), realistic single serving, top-down three-quarter view, no text.|kurka-kokrak-xom
+9|v87-losos-xom|meat, poultry or fish: Лосось сырой (сёмга) (Losos (xom)), realistic single serving, top-down three-quarter view, no text.|losos-xom
+9|v87-mol-jigar-xom|meat, poultry or fish: Печень говяжья (сырая) (Mol jigari (xom)), realistic single serving, top-down three-quarter view, no text.|mol-jigar-xom
+9|v87-befstroganov|meat, poultry or fish: Бефстроганов (Befstroganov (mol go'shti smetana sousida)), realistic single serving, top-down three-quarter view, no text.|befstroganov
+9|v87-chaxoxbili|meat, poultry or fish: Чахохбили из курицы (Chaxoxbili (tovuq pomidorda dimlangan)), realistic single serving, top-down three-quarter view, no text.|chaxoxbili
+9|v87-tovuq-otbivnoy|meat, poultry or fish: Отбивная из куриного филе (Tovuq otbivnoyi (panirovkada qovurilgan file)), realistic single serving, top-down three-quarter view, no text.|tovuq-otbivnoy
+9|v87-mol-otbivnoy|meat, poultry or fish: Отбивная из говядины (Mol go'shti otbivnoyi (panirovkada)), realistic single serving, top-down three-quarter view, no text.|mol-otbivnoy
+9|v87-zrazy|meat, poultry or fish: Зразы мясные с яйцом (Zrazy (tuxum to'ldirmali go'shtli kotlet)), realistic single serving, top-down three-quarter view, no text.|zrazy
+9|v87-kotlet-bug|meat, poultry or fish: Котлета паровая (говяжья) (Bug'da pishirilgan kotlet (mol go'shti)), realistic single serving, top-down three-quarter view, no text.|kotlet-bug
+9|v87-kurka-kotlet|meat, poultry or fish: Котлета из индейки (Kurka kotleti), realistic single serving, top-down three-quarter view, no text.|kurka-kotlet
+9|v87-tovuq-rulet|meat, poultry or fish: Куриный рулет с сыром и грибами (Tovuq ruleti (pishloq va qo'ziqorinli)), realistic single serving, top-down three-quarter view, no text.|tovuq-rulet
+9|v87-tovuq-boldir-duxovka|meat, poultry or fish: Куриная голень (запечённая) (Tovuq boldiri (duxovkada, terili)), realistic single serving, top-down three-quarter view, no text.|tovuq-boldir-duxovka
+9|v87-tovuq-qanot-duxovka|meat, poultry or fish: Куриные крылья (запечённые) (Tovuq qanoti (duxovkada, terili)), realistic single serving, top-down three-quarter view, no text.|tovuq-qanot-duxovka
+9|v87-kurka-kolbasa|meat, poultry or fish: Колбаса из индейки (варёная) (Kurka kolbasasi (qaynatilgan)), realistic single serving, top-down three-quarter view, no text.|kurka-kolbasa
+9|v87-tovuq-sosiska|meat, poultry or fish: Сосиски куриные (Tovuq sosiskasi), realistic single serving, top-down three-quarter view, no text.|tovuq-sosiska
+9|v87-kurka-vetchina|meat, poultry or fish: Ветчина из индейки (Kurka vetchinasi), realistic single serving, top-down three-quarter view, no text.|kurka-vetchina
+9|v87-jigar-pashtet|meat, poultry or fish: Паштет из куриной печени (Jigar pashteti (tovuq jigari)), realistic single serving, top-down three-quarter view, no text.|jigar-pashtet
+9|v87-kambala|meat, poultry or fish: Камбала (приготовленная) (Kambala (pishgan)), realistic single serving, top-down three-quarter view, no text.|kambala
+9|v87-sudak|meat, poultry or fish: Судак (приготовленный) (Sudak (pishgan)), realistic single serving, top-down three-quarter view, no text.|sudak
+9|v87-sibas|meat, poultry or fish: Сибас (приготовленный) (Sibas (pishgan)), realistic single serving, top-down three-quarter view, no text.|sibas
+9|v87-laqqa-baliq|meat, poultry or fish: Сом (приготовленный) (Laqqa baliq (som, pishgan)), realistic single serving, top-down three-quarter view, no text.|laqqa-baliq
+9|v87-osetr|meat, poultry or fish: Осётр (приготовленный) (Osetr (bakra, pishgan)), realistic single serving, top-down three-quarter view, no text.|osetr
+9|v87-xek|meat, poultry or fish: Хек (приготовленный) (Xek (pishgan)), realistic single serving, top-down three-quarter view, no text.|xek
+9|v87-skumbriya-tuzlangan|meat, poultry or fish: Скумбрия солёная (Skumbriya (tuzlangan)), realistic single serving, top-down three-quarter view, no text.|skumbriya-tuzlangan
+9|v87-guruch-garnir|grain, pasta or potato side dish: Рис отварной с маслом (гарнир) (Guruch garnir (sariyog'li)), realistic single serving, top-down three-quarter view, no text.|guruch-garnir
+9|v87-grechka-garnir|grain, pasta or potato side dish: Гречка с маслом (гарнир) (Grechka garnir (sariyog'li)), realistic single serving, top-down three-quarter view, no text.|grechka-garnir
+9|v87-makaron-garnir|grain, pasta or potato side dish: Макароны с маслом (гарнир) (Makaron garnir (sariyog'li)), realistic single serving, top-down three-quarter view, no text.|makaron-garnir
+9|v87-makaron-pishloq|grain, pasta or potato side dish: Макароны с сыром (Makaron (pishloq bilan)), realistic single serving, top-down three-quarter view, no text.|makaron-pishloq
+9|v87-kartoshka-yosh|grain, pasta or potato side dish: Молодой картофель с маслом и укропом (Yosh kartoshka (sariyog' va shivitli)), realistic single serving, top-down three-quarter view, no text.|kartoshka-yosh
+9|v87-kartoshka-derevenski|grain, pasta or potato side dish: Картофель по-деревенски (Kartoshka po-derevenski (duxovkada, bo'laklab)), realistic single serving, top-down three-quarter view, no text.|kartoshka-derevenski
+9|v87-suli-paketli|grain, pasta or potato side dish: Овсянка быстрого приготовления (пакетик, сухая) (Suli bo'tqasi (tez tayyor, paketli, quruq)), realistic single serving, top-down three-quarter view, no text.|suli-paketli
+9|v87-mimoza|dish, one portion in a bowl (kosa) or plate: Салат «Мимоза» (Mimoza salati (baliqli)), realistic single serving, top-down three-quarter view, no text.|mimoza
+9|v87-bahor-salati|dish, one portion in a bowl (kosa) or plate: Весенний салат (огурец, редис, яйцо, сметана) (Bahor salati (bodring, rediska, tuxum, smetana)), realistic single serving, top-down three-quarter view, no text.|bahor-salati
+9|v87-olivye-tovuq|dish, one portion in a bowl (kosa) or plate: Оливье с курицей (Olivye salati (tovuqli)), realistic single serving, top-down three-quarter view, no text.|olivye-tovuq
+9|v87-mujskoy-kapriz|dish, one portion in a bowl (kosa) or plate: Салат «Мужской каприз» (Mujskoy kapriz salati (mol go'shti, pishloq)), realistic single serving, top-down three-quarter view, no text.|mujskoy-kapriz
+9|v87-tbilisi-salat|dish, one portion in a bowl (kosa) or plate: Салат «Тбилиси» (Tbilisi salati (loviya, mol go'shti)), realistic single serving, top-down three-quarter view, no text.|tbilisi-salat
+9|v87-obzhorka|dish, one portion in a bowl (kosa) or plate: Салат «Обжорка» (Objorka salati (mol go'shti, qovurilgan sabzi va piyoz)), realistic single serving, top-down three-quarter view, no text.|obzhorka
+9|v87-ananas-tovuq-salat|dish, one portion in a bowl (kosa) or plate: Салат с курицей и ананасами (Tovuqli salat (ananas va pishloq bilan)), realistic single serving, top-down three-quarter view, no text.|ananas-tovuq-salat
+9|v87-qoziqorin-salat|dish, one portion in a bowl (kosa) or plate: Салат с грибами и курицей (Qo'ziqorinli salat (tovuq, tuxum, mayonez)), realistic single serving, top-down three-quarter view, no text.|qoziqorin-salat
+9|v87-loviya-salat|dish, one portion in a bowl (kosa) or plate: Салат с фасолью и сухариками (Loviyali salat (suxarik, kolbasa, mayonez)), realistic single serving, top-down three-quarter view, no text.|loviya-salat
+9|v87-sabzi-sarimsoq-salat|dish, one portion in a bowl (kosa) or plate: Морковь с чесноком и майонезом (Sabzi salati (sarimsoq va mayonezli)), realistic single serving, top-down three-quarter view, no text.|sabzi-sarimsoq-salat
+9|v87-lavlagi-chernosliv|dish, one portion in a bowl (kosa) or plate: Свёкла с черносливом и орехами (Lavlagi salati (olxo'ri qoqi va yong'oqli)), realistic single serving, top-down three-quarter view, no text.|lavlagi-chernosliv
+9|v87-sabzavot-salat-mayonez|dish, one portion in a bowl (kosa) or plate: Овощной салат с майонезом (Sabzavot salati (mayonezli)), realistic single serving, top-down three-quarter view, no text.|sabzavot-salat-mayonez
+9|v87-sabzavot-salat-smetana|dish, one portion in a bowl (kosa) or plate: Овощной салат со сметаной (Sabzavot salati (smetanali)), realistic single serving, top-down three-quarter view, no text.|sabzavot-salat-smetana
+9|v87-kaprese|dish, one portion in a bowl (kosa) or plate: Салат «Капрезе» (Kaprese salati (pomidor, motsarella)), realistic single serving, top-down three-quarter view, no text.|kaprese
+9|v87-sezar-krevetka|cafe or fast-food dish: Салат «Цезарь» с креветками (Sezar salati (krevetkali)), realistic single serving, top-down three-quarter view, no text.|sezar-krevetka
+9|v87-mevali-salat|fruit: Фруктовый салат с йогуртом (Mevali salat (yogurtli)), realistic single serving, top-down three-quarter view, no text.|mevali-salat
+9|v87-xe-baliq|dish, one portion in a bowl (kosa) or plate: Хе из рыбы (по-корейски) (Xe (koreyscha marinadlangan baliq)), realistic single serving, top-down three-quarter view, no text.|xe-baliq
+9|v87-koreyscha-bodring|vegetable dish: Огурцы по-корейски (Koreyscha bodring), realistic single serving, top-down three-quarter view, no text.|koreyscha-bodring
+9|v87-koreyscha-baqlajon|vegetable dish: Баклажаны по-корейски (Koreyscha baqlajon), realistic single serving, top-down three-quarter view, no text.|koreyscha-baqlajon
+9|v87-baqlajon-qovurilgan|vegetable dish: Баклажаны жареные (Baqlajon (qovurilgan)), realistic single serving, top-down three-quarter view, no text.|baqlajon-qovurilgan
+9|v87-qovoqcha-qovurilgan|vegetable dish: Кабачки жареные (Qovoqcha (qovurilgan)), realistic single serving, top-down three-quarter view, no text.|qovoqcha-qovurilgan
+9|v87-lecho|vegetable dish: Лечо (Lecho (qalampir va pomidor)), realistic single serving, top-down three-quarter view, no text.|lecho
+9|v87-sabzavot-aralash|vegetable dish: Овощная смесь (замороженная, варёная) (Sabzavot aralashmasi (muzlatilgan, qaynatilgan)), realistic single serving, top-down three-quarter view, no text.|sabzavot-aralash
+9|v87-rukkola|vegetable dish: Руккола (Rukkola), realistic single serving, top-down three-quarter view, no text.|rukkola
+9|v87-aysberg|vegetable dish: Салат «Айсберг» (Aysberg salati), realistic single serving, top-down three-quarter view, no text.|aysberg
+9|v87-qalampir-yashil|vegetable dish: Перец сладкий зелёный (Bulg'or qalampiri (yashil)), realistic single serving, top-down three-quarter view, no text.|qalampir-yashil
+9|v87-qoziqorin-qovurilgan|vegetable dish: Грибы жареные с луком (Qo'ziqorin (piyoz bilan qovurilgan)), realistic single serving, top-down three-quarter view, no text.|qoziqorin-qovurilgan
+9|v87-qoziqorin-marinad|vegetable dish: Грибы маринованные (консерва) (Qo'ziqorin (marinadlangan, konserva)), realistic single serving, top-down three-quarter view, no text.|qoziqorin-marinad
+9|v87-olma-duxovka|fruit: Яблоко печёное (Olma (duxovkada pishirilgan)), realistic single serving, top-down three-quarter view, no text.|olma-duxovka
+9|v87-olma-pyure|fruit: Яблочное пюре (без сахара) (Olma pyuresi (shakarsiz)), realistic single serving, top-down three-quarter view, no text.|olma-pyure
+9|v87-tsukat|nuts or dried fruit: Цукаты (Tsukatlar (shakarlangan mevalar)), realistic single serving, top-down three-quarter view, no text.|tsukat
+9|v87-bodom-shakarli|nuts or dried fruit: Миндаль в сахарной глазури (драже) (Bodom (shakarli draje)), realistic single serving, top-down three-quarter view, no text.|bodom-shakarli
+9|v87-bodom-asalli|nuts or dried fruit: Миндаль медовый жареный (Bodom (asalli qovurilgan)), realistic single serving, top-down three-quarter view, no text.|bodom-asalli
+9|v87-yeryongoq-shakarli|nuts or dried fruit: Арахис в сахарной глазури (Yeryong'oq (shakarli glazurda)), realistic single serving, top-down three-quarter view, no text.|yeryongoq-shakarli
+9|v87-yeryongoq-shokolad|dessert or sweet: Арахис в молочном шоколаде (Yeryong'oq (sutli shokoladda)), realistic single serving, top-down three-quarter view, no text.|yeryongoq-shokolad
+9|v87-tiramisu|dessert or sweet: Тирамису (Tiramisu), realistic single serving, top-down three-quarter view, no text.|tiramisu
+9|v87-kartoshka-pirojnoe|dessert or sweet: Пирожное «Картошка» (Kartoshka pirojnoe (shokoladli)), realistic single serving, top-down three-quarter view, no text.|kartoshka-pirojnoe
+9|v87-muraveynik|dessert or sweet: Торт «Муравейник» (Muraveynik (yong'oq va sgushenkali tort)), realistic single serving, top-down three-quarter view, no text.|muraveynik
+9|v87-trubochka-krem|dessert or sweet: Трубочка слоёная с кремом (Trubochka (kremli, sloyka)), realistic single serving, top-down three-quarter view, no text.|trubochka-krem
+9|v87-korzinochka|dessert or sweet: Пирожное «Корзиночка» с кремом (Korzinochka (kremli savatcha pirojnoe)), realistic single serving, top-down three-quarter view, no text.|korzinochka
+9|v87-rogalik|dessert or sweet: Рогалик с повидлом (Rogalik (murabboli)), realistic single serving, top-down three-quarter view, no text.|rogalik
+9|v87-makarons|dessert or sweet: Макарон (миндальное пирожное) (Makarons (fransuzcha bodomli pirojnoe)), realistic single serving, top-down three-quarter view, no text.|makarons
+9|v87-panna-kotta|dessert or sweet: Панна-котта (Panna kotta), realistic single serving, top-down three-quarter view, no text.|panna-kotta
+9|v87-puding-vanil|dessert or sweet: Пудинг ванильный (готовый) (Puding (vanilli, tayyor)), realistic single serving, top-down three-quarter view, no text.|puding-vanil
+9|v87-puding-shokolad|dessert or sweet: Пудинг шоколадный (готовый) (Puding (shokoladli, tayyor)), realistic single serving, top-down three-quarter view, no text.|puding-shokolad
+9|v87-fondan|dessert or sweet: Шоколадный фондан (Shokoladli fondan (suyuq markazli keks)), realistic single serving, top-down three-quarter view, no text.|fondan
+9|v87-rulet-biskvit|dessert or sweet: Бисквитный рулет с джемом (Biskvit rulet (murabboli)), realistic single serving, top-down three-quarter view, no text.|rulet-biskvit
+9|v87-pirojnoe-krem|dessert or sweet: Пирожное бисквитное с кремом (Pirojnoe (biskvitli, kremli)), realistic single serving, top-down three-quarter view, no text.|pirojnoe-krem
+9|v87-oreshki|dessert or sweet: Печенье «Орешки» со сгущёнкой (Oreshki (sgushenkali yong'oqcha pechenye)), realistic single serving, top-down three-quarter view, no text.|oreshki
+9|v87-sharlotka|dessert or sweet: Шарлотка с яблоками (Sharlotka (olmali pirog)), realistic single serving, top-down three-quarter view, no text.|sharlotka
+9|v87-smetannik|dessert or sweet: Торт «Сметанник» (Smetannik (smetanali tort)), realistic single serving, top-down three-quarter view, no text.|smetannik
+9|v87-vafli-trubochka|dessert or sweet: Вафельные трубочки со сгущёнкой (Vafli trubochka (sgushenkali)), realistic single serving, top-down three-quarter view, no text.|vafli-trubochka
+9|v87-savoyardi|dessert or sweet: Печенье «Савоярди» (Savoyardi pechenyesi (biskvit tayoqcha)), realistic single serving, top-down three-quarter view, no text.|savoyardi
+9|v87-xachapuri|cafe or fast-food dish: Хачапури по-аджарски (Xachapuri (ajarcha, tuxumli)), realistic single serving, top-down three-quarter view, no text.|xachapuri
+9|v87-pasta-karbonara|cafe or fast-food dish: Паста карбонара (Pasta karbonara (qaymoqli)), realistic single serving, top-down three-quarter view, no text.|pasta-karbonara
+9|v87-pasta-alfredo|cafe or fast-food dish: Паста альфредо с курицей (Pasta alfredo (tovuqli)), realistic single serving, top-down three-quarter view, no text.|pasta-alfredo
+9|v87-poke-losos|cafe or fast-food dish: Поке с лососем (Poke (losos va guruchli)), realistic single serving, top-down three-quarter view, no text.|poke-losos
+9|v87-tovuq-teriyaki|cafe or fast-food dish: Курица терияки с рисом (Tovuq teriyaki (guruch bilan)), realistic single serving, top-down three-quarter view, no text.|tovuq-teriyaki
+9|v87-maki-bodring|cafe or fast-food dish: Ролл маки с огурцом (Maki roll (bodringli)), realistic single serving, top-down three-quarter view, no text.|maki-bodring
+9|v87-pishloqli-tost|cafe or fast-food dish: Горячий бутерброд с сыром (тост) (Pishloqli tost (issiq sendvich)), realistic single serving, top-down three-quarter view, no text.|pishloqli-tost
+9|v87-buterbrod-kolbasa|cafe or fast-food dish: Бутерброд с колбасой (Buterbrod (kolbasali)), realistic single serving, top-down three-quarter view, no text.|buterbrod-kolbasa
+9|v87-buterbrod-pishloq|cafe or fast-food dish: Бутерброд с маслом и сыром (Buterbrod (sariyog' va pishloqli)), realistic single serving, top-down three-quarter view, no text.|buterbrod-pishloq
+9|v87-buterbrod-baliq|cafe or fast-food dish: Бутерброд с красной рыбой (Buterbrod (qizil baliqli)), realistic single serving, top-down three-quarter view, no text.|buterbrod-baliq
+9|v87-hotdog-fransuz|cafe or fast-food dish: Французский хот-дог (Fransuzcha hot-dog (baget ichida)), realistic single serving, top-down three-quarter view, no text.|hotdog-fransuz
+9|v87-ovsyanoblin|cafe or fast-food dish: Овсяноблин (Ovsyanoblin (suli va tuxumli quymoq)), realistic single serving, top-down three-quarter view, no text.|ovsyanoblin
+9|v87-lenivie-vareniki|cafe or fast-food dish: Ленивые вареники (Lenivie vareniki (tvorogli)), realistic single serving, top-down three-quarter view, no text.|lenivie-vareniki
+9|v87-blinchik-gosht|cafe or fast-food dish: Блинчики с мясом (Blinchik (go'shtli)), realistic single serving, top-down three-quarter view, no text.|blinchik-gosht
+9|v87-blinchik-tvorog|cafe or fast-food dish: Блинчики с творогом (Blinchik (tvorogli)), realistic single serving, top-down three-quarter view, no text.|blinchik-tvorog
+9|v87-adjika|sauce or condiment: Аджика (Adjika (achchiq pomidor-qalampir sousi)), realistic single serving, top-down three-quarter view, no text.|adjika
+9|v87-mayonez-light|sauce or condiment: Майонез лёгкий (30%) (Mayonez (kam yog'li, 30%)), realistic single serving, top-down three-quarter view, no text.|mayonez-light
+9|v87-sezar-sous|sauce or condiment: Соус «Цезарь» (Sezar sousi), realistic single serving, top-down three-quarter view, no text.|sezar-sous
+9|v87-teriyaki-sous|sauce or condiment: Соус терияки (Teriyaki sousi), realistic single serving, top-down three-quarter view, no text.|teriyaki-sous
+9|v87-kunjut-yogi|sauce or condiment: Кунжутное масло (Kunjut yog'i), realistic single serving, top-down three-quarter view, no text.|kunjut-yogi
+9|v87-kokos-yogi|sauce or condiment: Кокосовое масло (Kokos yog'i), realistic single serving, top-down three-quarter view, no text.|kokos-yogi
+9|v87-kokos-suti|sauce or condiment: Кокосовое молоко (консерва) (Kokos suti (konserva, pishirish uchun)), realistic single serving, top-down three-quarter view, no text.|kokos-suti

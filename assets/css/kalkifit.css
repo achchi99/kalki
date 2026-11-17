@@ -2023,3 +2023,6 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sl-qaw-st{margin:6px 0 0}
 
 .sl-tex{margin:14px 0 4px;border-top:1px solid var(--line);padding-top:8px}.sl-tex summary{cursor:pointer;font-size:.82rem;opacity:.75;min-height:44px;display:flex;align-items:center}.sl-texr{margin:2px 0;word-break:break-word}
+/* v87: bir xillik maslahati kartasi (Bugun, yagona karta o'rnida) va choy/qahva qo'shimchalari */
+.sl-bx{position:relative;padding:14px 44px 10px 14px}.sl-bxx{position:absolute;top:4px;right:4px}.sl-bxt{margin:0 0 10px;font-weight:700;line-height:1.4}.sl-bxc{margin-bottom:4px}.sl-bxoff{font-size:.82rem;opacity:.75;min-height:44px}
+.sl-ad .rz-chip small{opacity:.7;font-weight:600}

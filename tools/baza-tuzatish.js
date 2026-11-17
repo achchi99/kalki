@@ -48,7 +48,7 @@ const BIRLIK = {
   'chuchvara': [['kosa', 400], ['dona', 12]],          // standart — sho'rvada (1 kosa 400 g); suvsiz/qovurma uv da
 };
 /* toifa bo'yicha yagona birlik */
-const SHORVA_RE = /sho'rva|shurva|mastava|moshxo'rda|moshkichiri|kuksi|chalop|kesma|unash|mampar|okroshka|solyanka|borsh|uxa|buloni|krem-sup/i;
+const SHORVA_RE = /sho'rva|shurva|mastava|moshxo'rda|moshkichiri|kuksi|chalop|kesma|unash|mampar|okroshka|solyanka|borsh|\buxa\b|buloni|krem-sup/i;
 const SHORVA_ID = /^(shurva|mastava|moshxorda|moshkichiri|kuksi|chalop|kesma|unash|mampar|okroshka|solyanka|borsch|qaynatma-baliq|tovuq-bulon|sut-oshi|guruch-shurva|besh-don|yasmiq|loviya-shurva|baliq-shurva|kafe-.*(shurva|mastava|moshxorda)|uy-tovuq-shurva|shurva-|tr-(mercimek|ezogelin)|togramach|noxat-shurva|kafe-chuchvara-shorva)/;
 const QAHVA_ID = /^(kofe|qahva|amerikano|raf|mokka|tr-qahva|kakao|latte|kapuchino|espresso)/;
 const CHOY_ID = /^(choy|yashil-choy|kok-choy|otli-choy|choy-|tr-choy|shirchoy)/;

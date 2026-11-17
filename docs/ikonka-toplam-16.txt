@@ -1,0 +1,50 @@
+---
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 42 food icons, exactly 6 columns × 7 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
+Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
+No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
+Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
+Keep the icons in exactly this order (left to right, top to bottom):
+---
+v87-pishloq-kosichka — dairy product: Сыр-косичка (чечил) (Pishloq kosichka (chechil)), realistic single serving, top-down three-quarter view, no text.
+v87-pishloq-kam-yogli — dairy product: Сыр твёрдый нежирный (Pishloq (qattiq, kam yog'li)), realistic single serving, top-down three-quarter view, no text.
+v87-mol-gosht-xom — meat, poultry or fish: Говядина сырая (постная) (Mol go'shti (xom, yog'siz)), realistic single serving, top-down three-quarter view, no text.
+v87-mol-gosht-xom-yogli — meat, poultry or fish: Говядина сырая (с жиром) (Mol go'shti (xom, yog'li)), realistic single serving, top-down three-quarter view, no text.
+v87-mol-qiyma-xom — meat, poultry or fish: Фарш говяжий (сырой) (Qiyma (mol, xom)), realistic single serving, top-down three-quarter view, no text.
+v87-qoy-gosht-xom — meat, poultry or fish: Баранина сырая (Qo'y go'shti (xom)), realistic single serving, top-down three-quarter view, no text.
+v87-qoy-qiyma-xom — meat, poultry or fish: Фарш бараний (сырой) (Qo'y qiymasi (xom)), realistic single serving, top-down three-quarter view, no text.
+v87-tovuq-kokrak-xom — meat, poultry or fish: Куриное филе (сырое) (Tovuq ko'kragi (xom, terisiz)), realistic single serving, top-down three-quarter view, no text.
+v87-tovuq-son-xom — meat, poultry or fish: Куриное бедро (сырое, с кожей) (Tovuq soni (xom, terili)), realistic single serving, top-down three-quarter view, no text.
+v87-tovuq-butun-xom — meat, poultry or fish: Курица целая (сырая, с кожей) (Tovuq go'shti (butun, xom, terili)), realistic single serving, top-down three-quarter view, no text.
+v87-kurka-kokrak-xom — meat, poultry or fish: Филе индейки (сырое) (Kurka ko'kragi (xom)), realistic single serving, top-down three-quarter view, no text.
+v87-losos-xom — meat, poultry or fish: Лосось сырой (сёмга) (Losos (xom)), realistic single serving, top-down three-quarter view, no text.
+v87-mol-jigar-xom — meat, poultry or fish: Печень говяжья (сырая) (Mol jigari (xom)), realistic single serving, top-down three-quarter view, no text.
+v87-befstroganov — meat, poultry or fish: Бефстроганов (Befstroganov (mol go'shti smetana sousida)), realistic single serving, top-down three-quarter view, no text.
+v87-chaxoxbili — meat, poultry or fish: Чахохбили из курицы (Chaxoxbili (tovuq pomidorda dimlangan)), realistic single serving, top-down three-quarter view, no text.
+v87-tovuq-otbivnoy — meat, poultry or fish: Отбивная из куриного филе (Tovuq otbivnoyi (panirovkada qovurilgan file)), realistic single serving, top-down three-quarter view, no text.
+v87-mol-otbivnoy — meat, poultry or fish: Отбивная из говядины (Mol go'shti otbivnoyi (panirovkada)), realistic single serving, top-down three-quarter view, no text.
+v87-zrazy — meat, poultry or fish: Зразы мясные с яйцом (Zrazy (tuxum to'ldirmali go'shtli kotlet)), realistic single serving, top-down three-quarter view, no text.
+v87-kotlet-bug — meat, poultry or fish: Котлета паровая (говяжья) (Bug'da pishirilgan kotlet (mol go'shti)), realistic single serving, top-down three-quarter view, no text.
+v87-kurka-kotlet — meat, poultry or fish: Котлета из индейки (Kurka kotleti), realistic single serving, top-down three-quarter view, no text.
+v87-tovuq-rulet — meat, poultry or fish: Куриный рулет с сыром и грибами (Tovuq ruleti (pishloq va qo'ziqorinli)), realistic single serving, top-down three-quarter view, no text.
+v87-tovuq-boldir-duxovka — meat, poultry or fish: Куриная голень (запечённая) (Tovuq boldiri (duxovkada, terili)), realistic single serving, top-down three-quarter view, no text.
+v87-tovuq-qanot-duxovka — meat, poultry or fish: Куриные крылья (запечённые) (Tovuq qanoti (duxovkada, terili)), realistic single serving, top-down three-quarter view, no text.
+v87-kurka-kolbasa — meat, poultry or fish: Колбаса из индейки (варёная) (Kurka kolbasasi (qaynatilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-tovuq-sosiska — meat, poultry or fish: Сосиски куриные (Tovuq sosiskasi), realistic single serving, top-down three-quarter view, no text.
+v87-kurka-vetchina — meat, poultry or fish: Ветчина из индейки (Kurka vetchinasi), realistic single serving, top-down three-quarter view, no text.
+v87-jigar-pashtet — meat, poultry or fish: Паштет из куриной печени (Jigar pashteti (tovuq jigari)), realistic single serving, top-down three-quarter view, no text.
+v87-kambala — meat, poultry or fish: Камбала (приготовленная) (Kambala (pishgan)), realistic single serving, top-down three-quarter view, no text.
+v87-sudak — meat, poultry or fish: Судак (приготовленный) (Sudak (pishgan)), realistic single serving, top-down three-quarter view, no text.
+v87-sibas — meat, poultry or fish: Сибас (приготовленный) (Sibas (pishgan)), realistic single serving, top-down three-quarter view, no text.
+v87-laqqa-baliq — meat, poultry or fish: Сом (приготовленный) (Laqqa baliq (som, pishgan)), realistic single serving, top-down three-quarter view, no text.
+v87-osetr — meat, poultry or fish: Осётр (приготовленный) (Osetr (bakra, pishgan)), realistic single serving, top-down three-quarter view, no text.
+v87-xek — meat, poultry or fish: Хек (приготовленный) (Xek (pishgan)), realistic single serving, top-down three-quarter view, no text.
+v87-skumbriya-tuzlangan — meat, poultry or fish: Скумбрия солёная (Skumbriya (tuzlangan)), realistic single serving, top-down three-quarter view, no text.
+v87-guruch-garnir — grain, pasta or potato side dish: Рис отварной с маслом (гарнир) (Guruch garnir (sariyog'li)), realistic single serving, top-down three-quarter view, no text.
+v87-grechka-garnir — grain, pasta or potato side dish: Гречка с маслом (гарнир) (Grechka garnir (sariyog'li)), realistic single serving, top-down three-quarter view, no text.
+v87-makaron-garnir — grain, pasta or potato side dish: Макароны с маслом (гарнир) (Makaron garnir (sariyog'li)), realistic single serving, top-down three-quarter view, no text.
+v87-makaron-pishloq — grain, pasta or potato side dish: Макароны с сыром (Makaron (pishloq bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-kartoshka-yosh — grain, pasta or potato side dish: Молодой картофель с маслом и укропом (Yosh kartoshka (sariyog' va shivitli)), realistic single serving, top-down three-quarter view, no text.
+v87-kartoshka-derevenski — grain, pasta or potato side dish: Картофель по-деревенски (Kartoshka po-derevenski (duxovkada, bo'laklab)), realistic single serving, top-down three-quarter view, no text.
+v87-suli-paketli — grain, pasta or potato side dish: Овсянка быстрого приготовления (пакетик, сухая) (Suli bo'tqasi (tez tayyor, paketli, quruq)), realistic single serving, top-down three-quarter view, no text.
+v87-mimoza — dish, one portion in a bowl (kosa) or plate: Салат «Мимоза» (Mimoza salati (baliqli)), realistic single serving, top-down three-quarter view, no text.

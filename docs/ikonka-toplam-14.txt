@@ -1,0 +1,50 @@
+---
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 42 food icons, exactly 6 columns × 7 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
+Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
+No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
+Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
+Keep the icons in exactly this order (left to right, top to bottom):
+---
+v87-smuzi-rezavor — drink, served in a typical glass or cup: Смузи ягодный (Smuzi (rezavor mevali: malina, qulupnay, chernika)), realistic single serving, top-down three-quarter view, no text.
+v87-smuzi-banan-suli — drink, served in a typical glass or cup: Смузи банан-овсянка на молоке (Smuzi (banan-suli, sutli)), realistic single serving, top-down three-quarter view, no text.
+v87-milksheyk-vanil — drink, served in a typical glass or cup: Милкшейк ванильный (Milksheyk (vanilli)), realistic single serving, top-down three-quarter view, no text.
+v87-milksheyk-shokolad — drink, served in a typical glass or cup: Милкшейк шоколадный (Milksheyk (shokoladli)), realistic single serving, top-down three-quarter view, no text.
+v87-milksheyk-qulupnay — drink, served in a typical glass or cup: Милкшейк клубничный (Milksheyk (qulupnayli)), realistic single serving, top-down three-quarter view, no text.
+v87-milksheyk-banan — drink, served in a typical glass or cup: Милкшейк банановый (Milksheyk (bananli)), realistic single serving, top-down three-quarter view, no text.
+v87-milksheyk-karamel — drink, served in a typical glass or cup: Милкшейк карамельный (Milksheyk (karamelli)), realistic single serving, top-down three-quarter view, no text.
+v87-fresh-apelsin — drink, served in a typical glass or cup: Апельсиновый фреш (свежевыжатый) (Apelsin fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-fresh-olma — drink, served in a typical glass or cup: Яблочный фреш (свежевыжатый) (Olma fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-fresh-anor — drink, served in a typical glass or cup: Гранатовый фреш (свежевыжатый) (Anor fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-fresh-greypfrut — drink, served in a typical glass or cup: Грейпфрутовый фреш (свежевыжатый) (Greypfrut fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-fresh-apelsin-sabzi — drink, served in a typical glass or cup: Фреш апельсин-морковь (Apelsin-sabzi fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-kompot-quruq-shakarsiz — drink, served in a typical glass or cup: Компот из сухофруктов (без сахара) (Quruq meva kompoti (shakarsiz)), realistic single serving, top-down three-quarter view, no text.
+v87-kompot-olcha — drink, served in a typical glass or cup: Вишнёвый компот (Olcha kompoti (shakarli)), realistic single serving, top-down three-quarter view, no text.
+v87-ayron-yalpiz — drink, served in a typical glass or cup: Айран с мятой и огурцом (Ayron (yalpiz va bodring bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-energetik-shakarli — drink, served in a typical glass or cup: Энергетик (с сахаром, банка) (Energetik (shakarli, banka)), realistic single serving, top-down three-quarter view, no text.
+v87-energetik-shakarsiz — drink, served in a typical glass or cup: Энергетик без сахара (zero) (Energetik (shakarsiz, zero)), realistic single serving, top-down three-quarter view, no text.
+v87-shurva-mol-uy — dish, one portion in a bowl (kosa) or plate: Шурпа из говядины (домашняя) (Mol go'shtli sho'rva (uyda)), realistic single serving, top-down three-quarter view, no text.
+v87-qovurma-shurva — dish, one portion in a bowl (kosa) or plate: Ковурма-шурпа (с обжаренной бараниной) (Qovurma sho'rva (qo'y go'shtli)), realistic single serving, top-down three-quarter view, no text.
+v87-qaynatma-shurva — dish, one portion in a bowl (kosa) or plate: Кайнатма-шурпа (варёная, с бараниной) (Qaynatma sho'rva (qo'y go'shtli)), realistic single serving, top-down three-quarter view, no text.
+v87-kafe-mol-shurva — dish, one portion in a bowl (kosa) or plate: Шурпа из говядины (кафе) (Sho'rva (mol go'shtli, kafe)), realistic single serving, top-down three-quarter view, no text.
+v87-kuza-shurva — dish, one portion in a bowl (kosa) or plate: Шурпа в кузе (в горшочке) (Ko'za sho'rva (qo'y go'shti, no'xatli)), realistic single serving, top-down three-quarter view, no text.
+v87-kifta-shurva — dish, one portion in a bowl (kosa) or plate: Кюфта-шурпа (суп с фрикадельками) (Kifta sho'rva (qiyma sharchali)), realistic single serving, top-down three-quarter view, no text.
+v87-frikadelli-shurva — dish, one portion in a bowl (kosa) or plate: Суп с фрикадельками (Frikadelli sho'rva), realistic single serving, top-down three-quarter view, no text.
+v87-piyova — dish, one portion in a bowl (kosa) or plate: Пиёва (луковая шурпа) (Piyova (piyozli sho'rva, qo'y go'shtli)), realistic single serving, top-down three-quarter view, no text.
+v87-mosh-shurva — dish, one portion in a bowl (kosa) or plate: Суп из маша с мясом (Mosh sho'rva (go'shtli, kartoshkali)), realistic single serving, top-down three-quarter view, no text.
+v87-moshxorda-qatiq — dish, one portion in a bowl (kosa) or plate: Машхурда с катыком (Moshxo'rda (qatiq bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-moshxorda-tovuq — dish, one portion in a bowl (kosa) or plate: Машхурда с курицей (Moshxo'rda (tovuqli)), realistic single serving, top-down three-quarter view, no text.
+v87-mastava-tovuq — dish, one portion in a bowl (kosa) or plate: Мастава с курицей (Mastava (tovuqli)), realistic single serving, top-down three-quarter view, no text.
+v87-mastava-qatiq — dish, one portion in a bowl (kosa) or plate: Мастава с катыком (Mastava (qatiq bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-mastava-qoy — dish, one portion in a bowl (kosa) or plate: Мастава с бараниной (Mastava (qo'y go'shtli)), realistic single serving, top-down three-quarter view, no text.
+v87-umoch-oshi — dish, one portion in a bowl (kosa) or plate: Умач-оши (суп с мучной крошкой) (Umoch oshi), realistic single serving, top-down three-quarter view, no text.
+v87-goja-oshi — dish, one portion in a bowl (kosa) or plate: Гужа (суп из джугары с катыком) (Go'ja oshi (qatiqli, jo'xori)), realistic single serving, top-down three-quarter view, no text.
+v87-goja-gosht — dish, one portion in a bowl (kosa) or plate: Гужа-шурпа с мясом (Go'ja sho'rva (go'shtli)), realistic single serving, top-down three-quarter view, no text.
+v87-atala — dish, one portion in a bowl (kosa) or plate: Атала (мучная похлёбка) (Atala (unli suyuq oshi)), realistic single serving, top-down three-quarter view, no text.
+v87-atala-sutli — dish, one portion in a bowl (kosa) or plate: Атала на молоке (Atala (sutli)), realistic single serving, top-down three-quarter view, no text.
+v87-lagmon-mol-uy — dish, one portion in a bowl (kosa) or plate: Лагман суповой (говядина, домашний) (Lag'mon suyuq (mol go'shtli, uyda)), realistic single serving, top-down three-quarter view, no text.
+v87-tovuq-lapsha-uy — dish, one portion in a bowl (kosa) or plate: Куриный суп с лапшой (домашний) (Tovuq lapsha sho'rva (uyda)), realistic single serving, top-down three-quarter view, no text.
+v87-tovuq-guruch-shurva — dish, one portion in a bowl (kosa) or plate: Куриный суп с рисом (Tovuqli guruch sho'rva), realistic single serving, top-down three-quarter view, no text.
+v87-borsh-kafe — dish, one portion in a bowl (kosa) or plate: Борщ (кафе, со сметаной) (Borsh (kafe, smetana bilan)), realistic single serving, top-down three-quarter view, no text.
+v87-yashil-borsh — dish, one portion in a bowl (kosa) or plate: Зелёный борщ (щавелевый) (Yashil borsh (shovul, tuxumli)), realistic single serving, top-down three-quarter view, no text.
+v87-shchi — dish, one portion in a bowl (kosa) or plate: Щи из свежей капусты (Shchi (yangi karamli)), realistic single serving, top-down three-quarter view, no text.

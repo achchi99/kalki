@@ -13,7 +13,7 @@ const all = JSON.parse(R('data/ovqatlar.json')).foods, byAll = Object.fromEntrie
 const foods = all.filter((f) => !f.h), by = byAll;          // eski kod uchun: by — barcha (yashirin ham)
 const app = R('assets/kalkifit-app.js').split('\n'), a = app.findIndex((l) => l.startsWith('  var IMGS = {};')), b = app.findIndex((l, i) => i > a && l.startsWith('  function tileHtml'));
 const alias = {}; all.forEach((f) => { if (f.al) alias[f.i] = f.al.f; });
-const imgFile = new Function('dbAlias', app.slice(a, b).join('\n') + ';return imgFile')(alias);          // HOZIRGI holat (IKONKA-XARITA bilan)
+const imgFile = new Function('dbAlias', 'NO_TMP', app.slice(a, b).join('\n') + ';return imgFile')(alias, true);          // v87: vaqtincha (IMGTMP) ikonka «rasmi bor» hisoblanmaydi          // HOZIRGI holat (IKONKA-XARITA bilan)
 const HAVE = new Set(fs.readdirSync(path.join(ROOT, 'assets/ovqat')).filter((x) => /-256\.webp$/.test(x)).map((x) => x.replace(/-256\.webp$/, '')));
 const PORK_SKIP = new Set(['bekon']);          // cho'chqa go'shti: ikonka yo'q (tur ikonkasi qoladi)
 const generic = all.filter((f) => !f.al && !f.i.startsWith('tr-') && !PORK_SKIP.has(f.i) && !imgFile(f.i, null)).map((f) => f.i);

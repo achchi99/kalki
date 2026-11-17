@@ -45,6 +45,7 @@
   "activia": [
    "sut"
   ],
+  "adjika": [],
   "adrenaline": [],
   "agusha-tvorog": [
    "sut"
@@ -65,9 +66,17 @@
    "glyuten"
   ],
   "amerikano": [],
+  "amerikano-kafe": [],
+  "amerikano-sut": [
+   "sut"
+  ],
   "aminokislota": [],
   "ananas": [],
   "ananas-konserva": [],
+  "ananas-tovuq-salat": [
+   "tuxum",
+   "sut"
+  ],
   "anjir": [],
   "anor": [],
   "apelsin": [],
@@ -78,15 +87,45 @@
   "aroq": [],
   "artishok": [],
   "asal": [],
+  "atala": [
+   "glyuten"
+  ],
+  "atala-sutli": [
+   "sut",
+   "glyuten"
+  ],
   "avokado": [],
   "ayron": [
    "sut"
   ],
+  "ayron-yalpiz": [
+   "sut"
+  ],
+  "ays-amerikano": [],
+  "ays-kapuchino": [
+   "sut"
+  ],
+  "ays-karamel-latte": [
+   "sut"
+  ],
+  "ays-latte": [
+   "sut"
+  ],
+  "ays-matcha-latte": [
+   "sut"
+  ],
+  "ays-ti-malina": [],
+  "ays-ti-shaftoli": [],
+  "aysberg": [],
   "bagel": [
    "glyuten"
   ],
   "baget": [
    "glyuten"
+  ],
+  "bahor-salati": [
+   "tuxum",
+   "sut"
   ],
   "baliq-dimlama": [
    "baliq"
@@ -112,6 +151,7 @@
   "banan-chips": [],
   "baqlajon": [],
   "baqlajon-qaynatilgan": [],
+  "baqlajon-qovurilgan": [],
   "barni": [
    "tuxum",
    "sut",
@@ -122,6 +162,10 @@
   "bedana": [],
   "bedana-tuxum": [
    "tuxum"
+  ],
+  "befstroganov": [
+   "sut",
+   "glyuten"
   ],
   "behi": [],
   "bekon": [
@@ -164,10 +208,26 @@
    "sut",
    "glyuten"
   ],
+  "blinchik-gosht": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "blinchik-tvorog": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "bodom": [
    "yongoq"
   ],
+  "bodom-asalli": [
+   "yongoq"
+  ],
   "bodom-qovurilgan": [
+   "yongoq"
+  ],
+  "bodom-shakarli": [
    "yongoq"
   ],
   "bodom-sut": [],
@@ -178,6 +238,9 @@
    "glyuten"
   ],
   "borsch": [],
+  "borsh-kafe": [
+   "sut"
+  ],
   "brauni": [
    "tuxum",
    "sut",
@@ -188,6 +251,9 @@
    "yongoq"
   ],
   "brokkoli": [],
+  "brokkoli-krem": [
+   "sut"
+  ],
   "brokkoli-qaynatilgan": [],
   "bruschetta": [
    "sut",
@@ -207,6 +273,10 @@
   ],
   "bulochka-darchin": [
    "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "bulochka-mak": [
    "sut",
    "glyuten"
   ],
@@ -234,6 +304,19 @@
    "sut",
    "glyuten"
   ],
+  "buterbrod-baliq": [
+   "baliq",
+   "sut",
+   "glyuten"
+  ],
+  "buterbrod-kolbasa": [
+   "sut",
+   "glyuten"
+  ],
+  "buterbrod-pishloq": [
+   "sut",
+   "glyuten"
+  ],
   "buxoro-oshi": [],
   "buzoq": [],
   "buzoq-qiyma": [],
@@ -251,6 +334,7 @@
    "tuxum",
    "glyuten"
   ],
+  "chaxoxbili": [],
   "chebureki": [
    "glyuten"
   ],
@@ -346,6 +430,7 @@
   ],
   "dimlama": [],
   "dimlama-tovuq": [],
+  "dolchinli-choy": [],
   "dolma": [],
   "dolma#karam": [],
   "dolma#uzum": [],
@@ -371,6 +456,9 @@
   ],
   "dumba": [],
   "echki": [],
+  "echki-suti": [
+   "sut"
+  ],
   "edamame": [],
   "ehrmann-desert": [
    "sut"
@@ -388,6 +476,8 @@
    "glyuten"
   ],
   "energetik": [],
+  "energetik-shakarli": [],
+  "energetik-shakarsiz": [],
   "espresso": [],
   "falafel": [
    "glyuten"
@@ -410,8 +500,33 @@
    "glyuten"
   ],
   "flash-up": [],
+  "flet-uayt": [
+   "sut"
+  ],
+  "fo-bo": [
+   "glyuten"
+  ],
+  "fondan": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "forel": [
    "baliq"
+  ],
+  "frappe": [
+   "sut"
+  ],
+  "frappe-karamel": [
+   "sut"
+  ],
+  "fresh-anor": [],
+  "fresh-apelsin": [],
+  "fresh-apelsin-sabzi": [],
+  "fresh-greypfrut": [],
+  "fresh-olma": [],
+  "frikadelli-shurva": [
+   "glyuten"
   ],
   "funchoza": [
    "glyuten"
@@ -431,7 +546,14 @@
   ],
   "gilos": [],
   "gilos-konserva": [],
+  "goja-gosht": [
+   "sut"
+  ],
+  "goja-oshi": [
+   "sut"
+  ],
   "gorilla": [],
+  "gorox-shurva": [],
   "gosht-dimlangan-konserva": [
    "glyuten"
   ],
@@ -452,9 +574,20 @@
    "glyuten"
   ],
   "grechka": [],
+  "grechka-garnir": [
+   "sut"
+  ],
   "grechka-gosht": [],
+  "grechka-shurva": [
+   "glyuten"
+  ],
   "grechka-sutli": [],
   "grechka-xom": [],
+  "grenki": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "greypfrut": [],
   "grilyazh": [
    "sut",
@@ -470,6 +603,9 @@
    "glyuten"
   ],
   "guruch": [],
+  "guruch-garnir": [
+   "sut"
+  ],
   "guruch-jigarrang": [],
   "guruch-jigarrang-xom": [],
   "guruch-lapsha": [],
@@ -491,6 +627,9 @@
    "glyuten"
   ],
   "hotdog#tovuq": [
+   "glyuten"
+  ],
+  "hotdog-fransuz": [
    "glyuten"
   ],
   "hotdog-mol": [
@@ -518,13 +657,21 @@
   "issiq-shokolad": [
    "sut"
   ],
+  "issiq-shokolad-kafe": [
+   "sut"
+  ],
   "j7-apelsin": [],
   "jarkop": [],
+  "jasmin-choy": [],
   "jele-konfet": [],
   "jigar": [],
   "jigar-kabob": [],
+  "jigar-pashtet": [],
   "jigar-qovurma": [],
   "jiz": [],
+  "jizzali-non": [
+   "glyuten"
+  ],
   "jusay": [],
   "kafe-baliq-shashlik": [
    "baliq"
@@ -551,6 +698,7 @@
   "kafe-lyulya": [],
   "kafe-mastava": [],
   "kafe-mol-shashlik": [],
+  "kafe-mol-shurva": [],
   "kafe-moshxorda": [],
   "kafe-qovurga": [],
   "kafe-qoy-shashlik": [],
@@ -569,11 +717,33 @@
   "kakao": [
    "sut"
   ],
+  "kakao-kafe": [
+   "sut"
+  ],
   "kakao-kukun": [],
+  "kakao-shakarsiz": [
+   "sut"
+  ],
   "kalmar": [
    "baliq"
   ],
+  "kambala": [
+   "baliq"
+  ],
+  "kaprese": [
+   "sut"
+  ],
   "kapuchino": [
+   "sut"
+  ],
+  "kapuchino-bodom": [
+   "sut",
+   "yongoq"
+  ],
+  "kapuchino-kafe": [
+   "sut"
+  ],
+  "kapuchino-shakar": [
    "sut"
   ],
   "karam": [],
@@ -581,6 +751,10 @@
   "karam-salat": [],
   "karam-tuzlangan": [],
   "karamel": [],
+  "karamel-latte": [
+   "sut"
+  ],
+  "karkade": [],
   "kartoshka": [],
   "kartoshka#fri": [],
   "kartoshka#pyure": [
@@ -588,14 +762,24 @@
   ],
   "kartoshka#qaynatma": [],
   "kartoshka#qovurma": [],
+  "kartoshka-derevenski": [],
   "kartoshka-duxovka": [],
   "kartoshka-fri": [],
+  "kartoshka-pirojnoe": [
+   "sut",
+   "yongoq",
+   "glyuten"
+  ],
   "kartoshka-pyure": [
    "sut"
   ],
   "kartoshka-qov": [],
   "kartoshka-qovurma": [],
+  "kartoshka-shurva-uy": [],
   "kartoshka-xom": [],
+  "kartoshka-yosh": [
+   "sut"
+  ],
   "kashnich": [],
   "kashtan": [
    "yongoq"
@@ -647,6 +831,7 @@
    "glyuten"
   ],
   "ketchup": [],
+  "kifta-shurva": [],
   "kimchi": [],
   "kinder-bueno": [
    "sut",
@@ -682,6 +867,8 @@
   "kofe-3in1": [
    "sut"
   ],
+  "kok-choy-asal": [],
+  "kok-choy-limon": [],
   "kok-choy-shakar": [],
   "kok-chuchvara": [
    "sut",
@@ -696,7 +883,9 @@
    "sut"
   ],
   "kokos-qirindi": [],
+  "kokos-suti": [],
   "kokos-suvi": [],
+  "kokos-yogi": [],
   "kola": [],
   "kolbasa": [
    "glyuten"
@@ -704,17 +893,29 @@
   "kolbasa-dudlangan": [],
   "kolrabi": [],
   "kompot": [],
+  "kompot-olcha": [],
+  "kompot-quruq-shakarsiz": [],
   "konfet": [
    "sut",
    "yongoq"
   ],
   "konyak": [],
   "koreys-sabzi": [],
+  "koreyscha-baqlajon": [],
+  "koreyscha-bodring": [],
   "kornfleks": [
+   "glyuten"
+  ],
+  "korzinochka": [
+   "sut",
    "glyuten"
   ],
   "kotlet": [
    "tuxum",
+   "glyuten"
+  ],
+  "kotlet-bug": [
+   "sut",
    "glyuten"
   ],
   "kotleta-kiyev": [
@@ -757,6 +958,10 @@
    "sut",
    "glyuten"
   ],
+  "kruassan-pishloq": [
+   "sut",
+   "glyuten"
+  ],
   "kuksi": [
    "glyuten"
   ],
@@ -765,15 +970,24 @@
   "kungaboqar-qovurilgan": [],
   "kunjut": [],
   "kunjut-qovurilgan": [],
+  "kunjut-yogi": [],
   "kurka": [],
   "kurka-kokrak": [],
+  "kurka-kokrak-xom": [],
+  "kurka-kolbasa": [],
+  "kurka-kotlet": [
+   "tuxum",
+   "glyuten"
+  ],
   "kurka-qiyma": [],
+  "kurka-vetchina": [],
   "kuskus": [
    "glyuten"
   ],
   "kuskus-xom": [
    "glyuten"
   ],
+  "kuza-shurva": [],
   "kvas": [
    "glyuten"
   ],
@@ -798,6 +1012,9 @@
   "lagmon#shorvali.tovuq": [
    "glyuten"
   ],
+  "lagmon-mol-uy": [
+   "glyuten"
+  ],
   "lagmon-qov": [
    "glyuten"
   ],
@@ -812,7 +1029,24 @@
    "tuxum",
    "glyuten"
   ],
+  "laqqa-baliq": [
+   "baliq"
+  ],
   "latte": [
+   "sut"
+  ],
+  "latte-bodom": [
+   "sut",
+   "yongoq"
+  ],
+  "latte-kafe": [
+   "sut"
+  ],
+  "latte-shakar": [
+   "sut"
+  ],
+  "latte-soya": [],
+  "latte-yogsiz": [
    "sut"
   ],
   "lavash-mol": [
@@ -834,6 +1068,10 @@
    "glyuten"
   ],
   "lavlagi": [],
+  "lavlagi-chernosliv": [
+   "tuxum",
+   "yongoq"
+  ],
   "lavlagi-qaynatilgan": [],
   "lavlagi-salat": [],
   "laym": [],
@@ -842,12 +1080,27 @@
    "sut",
    "glyuten"
   ],
+  "lecho": [],
   "ledenets": [],
+  "lenivie-vareniki": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "lichi": [],
   "limon": [],
   "limon-sharbat": [],
   "limonad": [],
+  "limonad-apelsin": [],
+  "limonad-kafe-klassik": [],
+  "limonad-kivi": [],
   "limonad-limon": [],
+  "limonad-malina": [],
+  "limonad-mango-marakuya": [],
+  "limonad-qulupnay": [],
+  "limonad-shaftoli": [],
+  "limonad-tarvuz": [],
+  "limonad-tarxun-kafe": [],
   "lion": [
    "tuxum",
    "sut",
@@ -862,6 +1115,9 @@
   "losos-dudlangan": [
    "baliq"
   ],
+  "losos-xom": [
+   "baliq"
+  ],
   "lotus-biscoff": [
    "glyuten"
   ],
@@ -869,7 +1125,12 @@
   "loviya-konserva": [],
   "loviya-oq": [],
   "loviya-qora": [],
+  "loviya-salat": [
+   "tuxum",
+   "glyuten"
+  ],
   "loviya-shurva": [],
+  "loviya-shurva-kafe": [],
   "loviya-tomat": [],
   "loviya-xom": [],
   "lyulya": [],
@@ -890,10 +1151,18 @@
   "makaron-butun-don-xom": [
    "glyuten"
   ],
+  "makaron-garnir": [
+   "sut",
+   "glyuten"
+  ],
   "makaron-gosht": [
    "glyuten"
   ],
   "makaron-pishgan2": [
+   "glyuten"
+  ],
+  "makaron-pishloq": [
+   "sut",
    "glyuten"
   ],
   "makaron-xom": [
@@ -903,6 +1172,11 @@
    "tuxum",
    "glyuten"
   ],
+  "makarons": [
+   "tuxum",
+   "yongoq"
+  ],
+  "maki-bodring": [],
   "makkajoxori": [],
   "makkajoxori-botqa": [],
   "makkajoxori-konserva": [],
@@ -942,10 +1216,30 @@
    "glyuten"
   ],
   "marshmallow": [],
+  "masala-choy": [
+   "sut"
+  ],
+  "masala-choy-shakarsiz": [
+   "sut"
+  ],
   "mastava": [],
+  "mastava-qatiq": [
+   "sut"
+  ],
+  "mastava-qoy": [],
+  "mastava-tovuq": [
+   "glyuten"
+  ],
+  "matcha": [],
+  "matcha-latte": [
+   "sut"
+  ],
   "mayiz": [],
   "mayiz-sariq": [],
   "mayonez": [
+   "tuxum"
+  ],
+  "mayonez-light": [
    "tuxum"
   ],
   "medovik": [
@@ -958,7 +1252,11 @@
    "sut",
    "yongoq"
   ],
+  "mevali-choy": [],
   "mevali-ichimlik": [],
+  "mevali-salat": [
+   "sut"
+  ],
   "midiya": [
    "baliq"
   ],
@@ -969,7 +1267,30 @@
    "sut",
    "yongoq"
   ],
+  "milksheyk-banan": [
+   "sut"
+  ],
+  "milksheyk-karamel": [
+   "sut"
+  ],
+  "milksheyk-qulupnay": [
+   "sut"
+  ],
+  "milksheyk-shokolad": [
+   "sut"
+  ],
+  "milksheyk-vanil": [
+   "sut"
+  ],
   "milky-way": [
+   "sut",
+   "glyuten"
+  ],
+  "mimoza": [
+   "baliq",
+   "tuxum"
+  ],
+  "minestrone": [
    "sut",
    "glyuten"
   ],
@@ -993,28 +1314,60 @@
   "mokka": [
    "sut"
   ],
+  "mokko-kafe": [
+   "sut"
+  ],
   "mol-buyrak": [],
   "mol-gosht": [],
+  "mol-gosht-xom": [],
+  "mol-gosht-xom-yogli": [],
   "mol-jigar-dim": [],
   "mol-jigar-qov": [],
+  "mol-jigar-xom": [],
   "mol-kotlet-grill": [],
   "mol-miya": [],
+  "mol-otbivnoy": [
+   "tuxum",
+   "glyuten"
+  ],
   "mol-qaynatilgan": [],
   "mol-qiyma": [],
+  "mol-qiyma-xom": [],
   "mol-til": [],
   "mol-tosh": [],
   "mol-yurak": [],
   "monster": [],
   "mosh": [],
   "mosh-nihol": [],
+  "mosh-shurva": [],
   "mosh-xom": [],
   "moshkichiri": [],
   "moshxorda": [],
   "moshxorda-gostsiz": [],
+  "moshxorda-qatiq": [
+   "sut"
+  ],
+  "moshxorda-tovuq": [
+   "glyuten"
+  ],
   "motsarella": [
    "sut"
   ],
+  "moxito-kafe": [],
+  "moychechak-choy": [],
+  "mujskoy-kapriz": [
+   "tuxum",
+   "sut"
+  ],
   "murabbo": [],
+  "muraveynik": [
+   "sut",
+   "yongoq",
+   "glyuten"
+  ],
+  "muzli-choy-kok": [],
+  "muzli-choy-qora": [],
+  "muzli-choy-shakarsiz": [],
   "muzqaymoq": [
    "sut"
   ],
@@ -1125,6 +1478,7 @@
    "glyuten"
   ],
   "namatak": [],
+  "namatakli-choy": [],
   "napoleon": [
    "tuxum",
    "sut",
@@ -1193,9 +1547,17 @@
    "sut",
    "yongoq"
   ],
+  "obzhorka": [
+   "tuxum"
+  ],
   "okroshka": [
    "tuxum",
    "sut"
+  ],
+  "okroshka-kvas": [
+   "tuxum",
+   "sut",
+   "glyuten"
   ],
   "okun": [
    "baliq"
@@ -1205,7 +1567,12 @@
   "olivye": [
    "tuxum"
   ],
+  "olivye-tovuq": [
+   "tuxum"
+  ],
   "olma": [],
+  "olma-duxovka": [],
+  "olma-pyure": [],
   "olma-sirka": [],
   "oluxori": [],
   "omlet": [
@@ -1220,7 +1587,15 @@
    "sut"
   ],
   "ordak": [],
+  "oreshki": [
+   "sut",
+   "yongoq",
+   "glyuten"
+  ],
   "orik": [],
+  "osetr": [
+   "baliq"
+  ],
   "osh": [],
   "osh#kam.kam": [],
   "osh#kam.kop": [],
@@ -1237,6 +1612,11 @@
   "osh-tovuq": [],
   "ot-gosht": [],
   "otli-choy": [],
+  "ovsyanoblin": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "pahta": [
    "sut"
   ],
@@ -1246,8 +1626,20 @@
    "sut",
    "glyuten"
   ],
+  "panna-kotta": [
+   "sut"
+  ],
   "papayya": [],
   "parvarda": [
+   "glyuten"
+  ],
+  "pasta-alfredo": [
+   "sut",
+   "glyuten"
+  ],
+  "pasta-karbonara": [
+   "tuxum",
+   "sut",
    "glyuten"
   ],
   "pastila-meva": [],
@@ -1340,6 +1732,31 @@
    "tuxum",
    "glyuten"
   ],
+  "pirojki-duxovka-gosht": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "pirojki-duxovka-karam": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "pirojki-duxovka-kartoshka": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "pirojki-duxovka-olma": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "pirojnoe-krem": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "pirojnoe-pishloq": [
    "tuxum",
    "sut",
@@ -1366,7 +1783,13 @@
   "pishloq-hochland": [
    "sut"
   ],
+  "pishloq-kam-yogli": [
+   "sut"
+  ],
   "pishloq-kok": [
+   "sut"
+  ],
+  "pishloq-kosichka": [
    "sut"
   ],
   "pishloq-parmezan": [
@@ -1380,6 +1803,10 @@
   ],
   "pishloq-yumshoq": [
    "sut"
+  ],
+  "pishloqli-tost": [
+   "sut",
+   "glyuten"
   ],
   "pishmaniye": [
    "sut",
@@ -1429,12 +1856,23 @@
    "glyuten"
   ],
   "pivo-yengil": [],
+  "piyova": [],
   "piyoz": [],
   "piyoz-halqa": [
    "glyuten"
   ],
+  "piyozli-non": [
+   "sut",
+   "glyuten"
+  ],
+  "poke-losos": [
+   "baliq",
+   "tuxum",
+   "glyuten"
+  ],
   "pomelo": [],
   "pomidor": [],
+  "pomidor-shurva-uy": [],
   "popkorn": [],
   "popkorn-karamel": [
    "sut"
@@ -1508,6 +1946,12 @@
    "sut",
    "glyuten"
   ],
+  "puding-shokolad": [
+   "sut"
+  ],
+  "puding-vanil": [
+   "sut"
+  ],
   "qahva-shakar": [],
   "qahva-sovuq": [
    "sut"
@@ -1521,6 +1965,7 @@
   "qalampir": [],
   "qalampir-dolma": [],
   "qalampir-qizil": [],
+  "qalampir-yashil": [],
   "qand": [],
   "qatiq": [
    "sut"
@@ -1535,6 +1980,9 @@
    "sut"
   ],
   "qatiq-yogsiz": [
+   "sut"
+  ],
+  "qatiq-zigir": [
    "sut"
   ],
   "qatlama": [
@@ -1555,6 +2003,7 @@
   "qaynatma-baliq": [
    "baliq"
   ],
+  "qaynatma-shurva": [],
   "qazi": [],
   "qizil-baliq-konserva": [
    "baliq"
@@ -1563,21 +2012,30 @@
   "qoqi": [],
   "qorin": [],
   "qovoq": [],
+  "qovoq-krem": [
+   "sut"
+  ],
   "qovoq-qaynatilgan": [],
   "qovoq-urugi": [],
   "qovoq-urugi-qovurilgan": [],
   "qovoqcha": [],
+  "qovoqcha-qovurilgan": [
+   "glyuten"
+  ],
   "qovun": [],
   "qovun-kantalupa": [],
   "qovurdoq": [],
+  "qovurma-shurva": [],
   "qoy-buyrak": [],
   "qoy-gosht": [],
+  "qoy-gosht-xom": [],
   "qoy-jigar-qov": [],
   "qoy-kabob-bolak": [],
   "qoy-kurak": [],
   "qoy-miya": [],
   "qoy-opka": [],
   "qoy-qiyma": [],
+  "qoy-qiyma-xom": [],
   "qoy-son": [],
   "qoy-til": [],
   "qoy-yogsiz-dim": [],
@@ -1585,7 +2043,21 @@
   "qoymoq": [
    "tuxum"
   ],
+  "qoziqorin-krem-kafe": [
+   "sut"
+  ],
+  "qoziqorin-marinad": [],
   "qoziqorin-qaynatilgan": [],
+  "qoziqorin-qovurilgan": [
+   "sut"
+  ],
+  "qoziqorin-salat": [
+   "tuxum",
+   "sut"
+  ],
+  "qoziqorin-shurva": [
+   "sut"
+  ],
   "qoziqorin-veshenka": [],
   "qozon-kabob": [
    "sut"
@@ -1605,12 +2077,23 @@
   "raf": [
    "sut"
   ],
+  "raf-vanil": [
+   "sut"
+  ],
   "raffaello": [
    "sut",
    "yongoq",
    "glyuten"
   ],
   "ramen": [
+   "glyuten"
+  ],
+  "ramen-tovuq-shurva": [
+   "tuxum",
+   "glyuten"
+  ],
+  "rassolnik": [
+   "sut",
    "glyuten"
   ],
   "rayhon": [],
@@ -1621,6 +2104,10 @@
    "sut"
   ],
   "rich-sharbat": [],
+  "rogalik": [
+   "sut",
+   "glyuten"
+  ],
   "roll-filadelfiya": [
    "baliq",
    "sut"
@@ -1637,12 +2124,29 @@
    "yongoq"
   ],
   "rovoch": [],
+  "rukkola": [],
+  "rulet-biskvit": [
+   "tuxum",
+   "glyuten"
+  ],
   "ryajenka": [
    "sut"
   ],
+  "sabzavot-aralash": [],
   "sabzavot-ragu": [],
+  "sabzavot-salat-mayonez": [
+   "tuxum"
+  ],
+  "sabzavot-salat-smetana": [
+   "sut"
+  ],
+  "sabzavotli-shurva": [],
   "sabzi": [],
   "sabzi-qaynatilgan": [],
+  "sabzi-sarimsoq-salat": [
+   "tuxum",
+   "sut"
+  ],
   "sabzi-sharbat": [],
   "salat-barg": [],
   "salat-sabzavot": [],
@@ -1654,8 +2158,15 @@
   "sariyog": [
    "sut"
   ],
+  "sariyog-eritilgan": [
+   "sut"
+  ],
   "sariyogli-sut": [
    "sut"
+  ],
+  "savoyardi": [
+   "tuxum",
+   "glyuten"
   ],
   "sazan-duxovka": [
    "baliq"
@@ -1711,6 +2222,12 @@
    "sut",
    "glyuten"
   ],
+  "sezar-krevetka": [
+   "baliq",
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "sezar-roll": [
    "baliq",
    "tuxum",
@@ -1722,6 +2239,11 @@
    "tuxum",
    "sut",
    "glyuten"
+  ],
+  "sezar-sous": [
+   "baliq",
+   "tuxum",
+   "sut"
   ],
   "sgushyonka": [
    "sut"
@@ -1748,15 +2270,35 @@
   "sharbat-olxori": [],
   "sharbat-pomidor": [],
   "sharbat-uzum": [],
+  "sharlotka": [
+   "tuxum",
+   "glyuten"
+  ],
   "shashlik": [],
   "shashlik#gosht": [],
   "shashlik#tovuq": [],
   "shashlik-dumba": [],
   "shashlik-tovuq": [],
   "shashlik-yurak": [],
+  "shchi": [
+   "sut"
+  ],
+  "shchi-kislye": [
+   "sut"
+  ],
   "shirchoy": [],
+  "shirchoy-qaymoqli": [
+   "sut"
+  ],
+  "shirchoy-tuzli": [
+   "sut"
+  ],
   "shirguruch": [
    "sut"
+  ],
+  "shirmoy-non": [
+   "sut",
+   "glyuten"
   ],
   "shivit": [],
   "shivit-oshi": [
@@ -1803,10 +2345,14 @@
   "shurva#qaynatma": [],
   "shurva#yogli": [],
   "shurva-mol-sabzavot": [],
+  "shurva-mol-uy": [],
   "shurva-pomidor": [],
   "shurva-qoziqorin": [],
   "shurva-tovuq-lapsha": [
    "glyuten"
+  ],
+  "sibas": [
+   "baliq"
   ],
   "sirniki": [
    "tuxum",
@@ -1820,6 +2366,9 @@
    "sut"
   ],
   "skumbriya": [
+   "baliq"
+  ],
+  "skumbriya-tuzlangan": [
    "baliq"
   ],
   "sloyka": [
@@ -1840,10 +2389,28 @@
   "smetana#odatiy": [
    "sut"
   ],
+  "smetannik": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "smorodina-qizil": [],
   "smorodina-qora": [],
   "smuzi": [],
+  "smuzi-banan-suli": [
+   "sut"
+  ],
   "smuzi-mango": [],
+  "smuzi-mango-banan": [
+   "sut"
+  ],
+  "smuzi-qulupnay-banan": [
+   "sut"
+  ],
+  "smuzi-rezavor": [
+   "sut"
+  ],
+  "smuzi-yashil": [],
   "snickers": [
    "sut",
    "yongoq"
@@ -1859,6 +2426,12 @@
   ],
   "soba": [],
   "solyanka": [],
+  "solyanka-baliq": [
+   "baliq"
+  ],
+  "solyanka-kafe": [
+   "sut"
+  ],
   "somsa": [
    "glyuten"
   ],
@@ -1956,9 +2529,13 @@
   "sprite": [],
   "sprite-zero": [],
   "steyk": [],
+  "sudak": [
+   "baliq"
+  ],
   "suli": [
    "glyuten"
   ],
+  "suli-paketli": [],
   "suli-quruq": [
    "glyuten"
   ],
@@ -1971,6 +2548,10 @@
   ],
   "sushi-nigiri": [
    "baliq"
+  ],
+  "sushki": [
+   "sut",
+   "glyuten"
   ],
   "sut": [
    "sut"
@@ -2013,6 +2594,12 @@
   "sut-yogsiz": [
    "sut"
   ],
+  "sutli-choy": [
+   "sut"
+  ],
+  "sutli-guruch-shurva": [
+   "sut"
+  ],
   "suv": [],
   "suxari": [
    "glyuten"
@@ -2037,13 +2624,24 @@
   ],
   "tarvuz": [],
   "tarxun": [],
+  "tbilisi-salat": [
+   "yongoq"
+  ],
   "tefteli": [
    "tuxum",
    "sut",
    "glyuten"
   ],
+  "teriyaki-sous": [
+   "glyuten"
+  ],
   "tilapiya": [
    "baliq"
+  ],
+  "tiramisu": [
+   "tuxum",
+   "sut",
+   "glyuten"
   ],
   "tm-bellissimo-pitsa-donar": [
    "sut",
@@ -2373,6 +2971,11 @@
   "tofu": [],
   "tofu-qov": [],
   "togramach": [],
+  "tom-yam": [
+   "baliq",
+   "sut",
+   "yongoq"
+  ],
   "tort": [
    "tuxum",
    "sut",
@@ -2412,6 +3015,7 @@
   "tost": [
    "glyuten"
   ],
+  "tovuq-boldir-duxovka": [],
   "tovuq-boldir-qov": [],
   "tovuq-boneless": [
    "tuxum",
@@ -2423,7 +3027,11 @@
    "sut",
    "glyuten"
   ],
+  "tovuq-butun-xom": [],
   "tovuq-grill": [],
+  "tovuq-guruch-shurva": [
+   "glyuten"
+  ],
   "tovuq-jigar": [],
   "tovuq-jigar-qov": [],
   "tovuq-kfc": [
@@ -2434,16 +3042,29 @@
   "tovuq-kokrak-duxovka": [],
   "tovuq-kokrak-qov": [],
   "tovuq-kokrak-qozon": [],
+  "tovuq-kokrak-xom": [],
   "tovuq-kotlet": [
    "tuxum",
    "glyuten"
   ],
+  "tovuq-lapsha-uy": [
+   "tuxum",
+   "glyuten"
+  ],
   "tovuq-oshqozon": [],
+  "tovuq-otbivnoy": [
+   "tuxum",
+   "glyuten"
+  ],
   "tovuq-qanot": [],
+  "tovuq-qanot-duxovka": [],
   "tovuq-qanot-qov": [],
   "tovuq-qaynatilgan": [],
   "tovuq-qov": [
    "glyuten"
+  ],
+  "tovuq-rulet": [
+   "sut"
   ],
   "tovuq-shirin-nordon": [
    "glyuten"
@@ -2451,7 +3072,12 @@
   "tovuq-shurva": [],
   "tovuq-son": [],
   "tovuq-son-qozon": [],
+  "tovuq-son-xom": [],
+  "tovuq-sosiska": [],
   "tovuq-soya": [
+   "glyuten"
+  ],
+  "tovuq-teriyaki": [
    "glyuten"
   ],
   "tovuq-yurak": [],
@@ -2597,6 +3223,11 @@
   "treska": [
    "baliq"
   ],
+  "trubochka-krem": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tsukat": [],
   "tteokbokki": [],
   "tuc": [
    "sut",
@@ -2662,7 +3293,16 @@
    "sut",
    "glyuten"
   ],
+  "tvorog-asal": [
+   "sut"
+  ],
   "tvorog-donador": [
+   "sut"
+  ],
+  "tvorog-massa": [
+   "sut"
+  ],
+  "tvorog-smetana": [
    "sut"
   ],
   "tvorog-zapekanka": [
@@ -2702,12 +3342,18 @@
   "ugra-osh": [
    "glyuten"
   ],
+  "umoch-oshi": [
+   "glyuten"
+  ],
   "un": [
    "glyuten"
   ],
   "unash": [
    "sut",
    "glyuten"
+  ],
+  "uxa-qizil-baliq": [
+   "baliq"
   ],
   "uy-lavash-tovuq": [
    "sut",
@@ -2729,6 +3375,10 @@
    "sut",
    "glyuten"
   ],
+  "vafli-trubochka": [
+   "sut",
+   "glyuten"
+  ],
   "vafli-vanil": [
    "tuxum",
    "glyuten"
@@ -2737,6 +3387,9 @@
    "sut"
   ],
   "valio-yogurt": [
+   "sut"
+  ],
+  "vanil-latte": [
    "sut"
   ],
   "vareniki": [
@@ -2755,11 +3408,26 @@
   "vok-lapsha": [
    "glyuten"
   ],
+  "xachapuri": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "xalva": [],
   "xalvaitar": [
    "glyuten"
   ],
   "xantal": [],
+  "xarcho": [
+   "yongoq"
+  ],
+  "xe-baliq": [
+   "baliq",
+   "glyuten"
+  ],
+  "xek": [
+   "baliq"
+  ],
   "xonim": [
    "glyuten"
   ],
@@ -2768,13 +3436,25 @@
   "xurmo": [],
   "xurmo-quruq": [],
   "yalpiz": [],
+  "yalpizli-choy": [],
+  "yalpizli-kok-choy": [],
+  "yashil-borsh": [
+   "tuxum",
+   "sut"
+  ],
   "yashil-choy": [],
   "yashil-loviya": [],
   "yashil-noxat": [],
   "yasmiq": [],
+  "yasmiq-mol": [],
   "yasmiq-shurva": [],
   "yasmiq-tovuq": [],
   "yasmiq-xom": [],
+  "yayla-shurva": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "yengil-osh": [],
   "yer-nok": [],
   "yerfistiq": [
@@ -2784,6 +3464,13 @@
    "yongoq"
   ],
   "yeryongoq-pasta": [
+   "yongoq"
+  ],
+  "yeryongoq-shakarli": [
+   "yongoq"
+  ],
+  "yeryongoq-shokolad": [
+   "sut",
    "yongoq"
   ],
   "yog": [],
@@ -2808,8 +3495,14 @@
   "yogurt-yunon": [
    "sut"
   ],
+  "yogurt-yunon-2": [
+   "sut"
+  ],
   "yongoq": [
    "yongoq"
+  ],
+  "yongoq-latte": [
+   "sut"
   ],
   "yongoq-mevali-aralash": [
    "yongoq"
@@ -2821,9 +3514,16 @@
    "glyuten"
   ],
   "zanjabil": [],
+  "zanjabil-limon-asal": [],
+  "zanjabilli-choy": [],
+  "zanjabilli-kok-choy": [],
   "zaytun": [],
   "zaytun-yogi": [],
   "zefir": [],
-  "zigir": []
+  "zigir": [],
+  "zrazy": [
+   "tuxum",
+   "glyuten"
+  ]
  }
 }
