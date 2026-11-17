@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 86,
+   "d": "2026-11-17",
+   "bn": {
+    "uz": "Health Connect ruxsati: aylana tuzatildi",
+    "ru": "Разрешение Health Connect: зацикливание исправлено"
+   },
+   "items": [
+    {
+     "uz": "Ruxsat berilgan bo'lsa ham «Ruxsat bering» qayta chiqishi tuzatildi (yangi ilova)",
+     "ru": "Исправлено: «Дайте разрешение» больше не появляется после выдачи разрешения (новое приложение)"
+    },
+    {
+     "uz": "Ruxsat berilmasa — «Holatni qayta tekshirish» tugmasi va «Texnik ma'lumot» bor.",
+     "ru": "Если разрешения нет — кнопка «Проверить ещё раз» и «Техническая информация»."
+    }
+   ]
+  },
+  {
    "v": 85,
    "d": "2026-11-17",
    "bn": {

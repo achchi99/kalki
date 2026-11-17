@@ -2021,3 +2021,5 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 /* v85: qadam oynasida «Soatdan qadam olish» */
 .rz .sl-qashot{margin-top:12px}.rz .sl-qashot .rz-btn{display:flex;align-items:center;justify-content:center;gap:8px}
 .rz .sl-qaw-st{margin:6px 0 0}
+
+.sl-tex{margin:14px 0 4px;border-top:1px solid var(--line);padding-top:8px}.sl-tex summary{cursor:pointer;font-size:.82rem;opacity:.75;min-height:44px;display:flex;align-items:center}.sl-texr{margin:2px 0;word-break:break-word}

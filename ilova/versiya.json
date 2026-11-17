@@ -1,1 +1,9 @@
-{ "version": "1.0.12", "versionCode": 14, "apk": "/ilova/kalkifit-1.0.12.apk", "sha256": "4ba323e79427a5f17d2c15bd53e4167e78fb8e87fa0de6e5b13aba309c4a3824", "size": 9339411, "minAndroid": "8.0", "date": "2026-11-16" }
+{
+  "version": "1.0.13",
+  "versionCode": 15,
+  "apk": "/ilova/kalkifit-1.0.13.apk",
+  "sha256": "a3b44a65481253b7c1480f198266daf62d055283183398e9a26897d329cb2171",
+  "size": 9339411,
+  "minAndroid": "8.0",
+  "date": "2026-11-17"
+}

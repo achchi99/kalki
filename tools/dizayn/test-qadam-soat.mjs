@@ -139,5 +139,40 @@ try {
   p = await info({ lang: 'ru', q: E0.q, st: E0.st }); sh = await txt(p, '#rzSheet'); assert.match(sh, /Приложение ваших часов не пишет в Health Connect/); assert.match(sh, /Sync with Health Connect/); assert.match(sh, /Шаги по скриншоту часов/); assert.ok(await noOverflow(p)); await p.context().close();
   p = await info({ lang: 'cyr', q: E0.q, st: E0.st }); sh = await txt(p, '#rzSheet'); assert.match(sh, /Соат иловангиз Health Connect/); assert.match(sh, /Sync with Health Connect/); assert.match(sh, /Honor Health/); assert.ok(await noOverflow(p)); await p.context().close();
   log('RU va ЎЗ: qadam oynasi (HC 0 + ko\'rsatma + skrinshot) 360 px da sig\'adi, brend nomlari lotincha');
+  /* 14. v86: ruxsat oqimi — aylana himoyasi, qaytganda qayta tekshirish, texnik ma'lumot */
+  const TEX = { hcSdk: 'AVAILABLE', hcBerilgan: [], hcYol: 'yoq', hcXato: 'oqish: SecurityException', hcOqish: Date.now(), sdkInt: 36 };
+  const P0 = { q: { st: ST(Object.assign({ hc: 'ok', hcGranted: false, granted: true, enabled: true, sensorGranted: true, source: 'sensor' }, TEX)), ulash: { hcGranted: false, hcSoralgan: true }, days: 17, src: 'sensor', senN: 17 }, st: S0 };
+  const cnt = async (pp, m) => (await calls(pp)).filter((x) => x === 'Qadam.' + m).length;
+  /* 14a. rad etildi: so'rov BIR marta, keyin «Ruxsat hali berilmagan» + qayta tekshirish (so'rov qaytarilmaydi) */
+  p = await info(P0); assert.equal(await p.getAttribute('#qaWSt', 'data-s'), 'perm'); await p.click('#rzSheet [data-act=qawconn]');
+  await p.waitForSelector('#rzSheet[data-kind=qainfo]'); await p.waitForTimeout(500);
+  assert.equal(await p.getAttribute('#qaWSt', 'data-s'), 'perm2'); assert.match(await txt(p, '#qaWSt'), /Ruxsat hali berilmagan ko'rinadi/); assert.equal(await p.locator('#rzSheet [data-act=qawconn]').count(), 0, 'aylana: «Ruxsat bering» qayta chiqmaydi');
+  assert.equal(await p.locator('#rzSheet [data-act=qarecheck]').count(), 1); assert.match(await txt(p, '#rzSheet'), /Health Connect → Ilova ruxsatlari → KalkiFit/i); assert.equal(await cnt(p, 'ulash'), 1);
+  const st0 = await cnt(p, 'isAvailable'); await p.click('#rzSheet [data-act=qarecheck]'); await p.waitForTimeout(500);
+  assert.equal(await cnt(p, 'ulash'), 1, 'qayta tekshirish ruxsat oynasini ochmaydi'); assert.ok(await cnt(p, 'isAvailable') > st0, 'holat qayta o\'qildi'); assert.equal(await p.getAttribute('#qaWSt', 'data-s'), 'perm2');
+  /* texnik ma'lumot: yig'iladigan, SDK holati, ruxsatlar, yo'l/xato, vaqt */
+  assert.equal(await p.locator('#qaTex').count(), 1); assert.equal(await p.locator('#qaTex').evaluate((e) => e.open), false); await p.click('#qaTex summary'); const tx = await txt(p, '#qaTex');
+  assert.match(tx, /Android: SDK 36/); assert.match(tx, /Health Connect: ok \(AVAILABLE\)/); assert.match(tx, /Qadam ruxsati: berilmagan/); assert.match(tx, /Berilgan ruxsatlar: yo'q/); assert.match(tx, /SecurityException/); assert.match(tx, /Oxirgi o'qish: \d\d:\d\d:\d\d/);
+  assert.ok((await Qs(p)).includes('qadam_oyna:hc_holat.ruxsat_yoq')); assert.ok(await noOverflow(p)); assert.deepEqual(p.errs, []);
+  /* ruxsat oynadan tashqarida berildi (Health Connect sozlamalari) → «Holatni qayta tekshirish» ulaydi */
+  await p.evaluate(() => { Object.assign(window.__q.st, { hcGranted: true, hcToday: 3, hcManbalar: ['com.hihonor.health'], hcBerilgan: ['READ_STEPS'], hcYol: 'royxat', hcXato: '' }); }); await p.click('#rzSheet [data-act=qarecheck]'); await p.waitForTimeout(700);
+  assert.notEqual(await p.getAttribute('#qaWSt', 'data-s'), 'perm2'); assert.notEqual(await p.getAttribute('#qaWSt', 'data-s'), 'perm'); assert.equal(await cnt(p, 'ulash'), 1); await p.click('#qaTex summary'); assert.match(await txt(p, '#qaTex'), /READ_STEPS/); await p.context().close();
+  log('Ruxsat so\'rovi bir marta; qaytgach hamon berilmagan bo\'lsa — «Ruxsat hali berilmagan» + qo\'lda yo\'riqnoma + «Holatni qayta tekshirish» (so\'rov qaytarilmaydi); texnik ma\'lumot bloki; keyin berilsa — ulanadi');
+  /* 14b. qisman: faqat qadam berilgan (kaloriya yo'q) — «ruxsat yo'q» EMAS; bugun hech kim yozmagan — «yozmayapti» (ruxsat emas) */
+  p = await info({ q: { st: ST(Object.assign({ hc: 'ok', hcGranted: false, granted: true, enabled: true, sensorGranted: true, source: 'sensor' }, TEX)), ulash: { hcGranted: true, hcSoralgan: true, hcToday: 0, hcManbalar: [], hcBerilgan: ['READ_STEPS'], hcYol: 'royxat', hcXato: '' }, days: 17, src: 'sensor', senN: 17 }, st: S0 });
+  await p.click('#rzSheet [data-act=qawconn]'); await p.waitForSelector('#rzSheet[data-kind=qainfo]'); await p.waitForTimeout(500);
+  assert.equal(await p.getAttribute('#qaWSt', 'data-s'), 'empty'); assert.match(await txt(p, '#qaWSt'), /yozmayapti/); assert.doesNotMatch(await txt(p, '#qaWSt'), /ruxsat (yo'q|berilmagan|bering)/i); assert.equal(await p.locator('#rzSheet [data-act=qawconn]').count(), 0);
+  assert.match(await txt(p, '#rzSheet'), /Honor Health: Sozlamalar → Health Connect/); assert.match(await txt(p, '#rzSheet'), /ustuvorlik/i); assert.equal(await cnt(p, 'ulash'), 1); await p.context().close();
+  log('Qisman (faqat qadam, kaloriya yo\'q): «ruxsat yo\'q» chiqmaydi; ruxsat bor lekin 0 — «yozmayapti» + Honor/Huawei ko\'rsatmasi + ustuvorlik');
+  /* 14c. ilova oldinga qaytdi (resume): ochiq oyna va holat Health Connect'dan qayta o'qiladi */
+  p = await info(P0); assert.equal(await p.getAttribute('#qaWSt', 'data-s'), 'perm'); const s1 = await cnt(p, 'isAvailable');
+  await p.evaluate(() => { Object.assign(window.__q.st, { hcGranted: true, hcToday: 5, hcManbalar: ['com.huawei.health'] }); window.__q.ls['Qadam:holat']({ hcGranted: true }); }); await p.waitForTimeout(800);
+  assert.ok(await cnt(p, 'isAvailable') > s1, 'resume: holat qayta o\'qildi'); assert.equal(await p.getAttribute('#qaWSt', 'data-s'), 'ok'); assert.match(await txt(p, '#rzSheet'), /Huawei Health/);
+  assert.match(await txt(p, '#qaWSt'), /Health Connect ulangan/); assert.equal(await cnt(p, 'ulash'), 0); await p.context().close();
+  log('Resume (ilova oldinga qaytdi): ochiq qadam oynasi o\'zi yangilanadi — «ruxsat bering» yo\'qoladi, yozgan ilova ko\'rinadi');
+  /* 14d. ru / ЎЗ */
+  p = await info(Object.assign({}, P0, { lang: 'ru' })); await p.click('#rzSheet [data-act=qawconn]'); await p.waitForSelector('#rzSheet[data-kind=qainfo]'); await p.waitForTimeout(500); sh = await txt(p, '#rzSheet'); assert.match(sh, /Разрешение пока не выдано/); assert.match(sh, /Проверить ещё раз/); assert.match(sh, /Техническая информация/); assert.ok(await noOverflow(p)); await p.context().close();
+  p = await info(Object.assign({}, P0, { lang: 'cyr' })); await p.click('#rzSheet [data-act=qawconn]'); await p.waitForSelector('#rzSheet[data-kind=qainfo]'); await p.waitForTimeout(500); sh = await txt(p, '#rzSheet'); assert.match(sh, /Рухсат ҳали берилмаган/); assert.match(sh, /Техник маълумот/); assert.ok(await noOverflow(p)); await p.context().close();
+  log('RU va ЎЗ: «Ruxsat hali berilmagan», qayta tekshirish, texnik ma\'lumot — 360 px da sig\'adi');
   console.log('\nTAYYOR:', n, 'guruh');
 } finally { await b.close(); srv.close(); }
