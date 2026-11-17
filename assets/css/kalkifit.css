@@ -2018,3 +2018,6 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sl-qaw .sl-remr .rz-i{width:18px;height:18px;color:var(--mut);flex:none}
 .rz .sl-ab2 .sl-abs2 .sl-src{white-space:normal;line-height:1.25}
 .rz .sl-qanum{margin:6px 0 0}.rz .sl-qalow{margin:8px 0 0;color:var(--ink)}
+/* v85: qadam oynasida «Soatdan qadam olish» */
+.rz .sl-qashot{margin-top:12px}.rz .sl-qashot .rz-btn{display:flex;align-items:center;justify-content:center;gap:8px}
+.rz .sl-qaw-st{margin:6px 0 0}

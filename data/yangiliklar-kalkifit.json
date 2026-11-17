@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 85,
+   "d": "2026-11-17",
+   "bn": {
+    "uz": "Soatdagi qadam — to'g'ridan-to'g'ri qadam kartasida",
+    "ru": "Шаги с часов — прямо на карточке шагов"
+   },
+   "items": [
+    {
+     "uz": "Qadam kartasini bosing: Health Connect holati, qadam yozayotgan ilovalar va soat uchun qisqa ko'rsatma shu yerda.",
+     "ru": "Нажмите на карточку шагов: состояние Health Connect, приложения, пишущие шаги, и краткая инструкция для часов — здесь."
+    },
+    {
+     "uz": "Soat ilovasi Health Connect'ga yozmasa — soat ekranining skrinshotidan qadamni o'qing va tasdiqlang.",
+     "ru": "Если приложение часов не пишет в Health Connect — считайте шаги со скриншота экрана часов и подтвердите."
+    }
+   ]
+  },
+  {
    "v": 84,
    "d": "2026-11-16",
    "bn": {

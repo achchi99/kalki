@@ -37,15 +37,31 @@ export function sanitizeShot(a, today) {
   const mn = clean(a.manba, 24).toLowerCase(), manba = MANBALAR.find((m) => m.toLowerCase() === mn) || MANBALAR.find((m) => mn && (mn.includes(m.toLowerCase().split(' ')[0]) || m.toLowerCase().includes(mn))) || (mn ? clean(a.manba, 24) : '');
   return { tur, nom: clean(a.nom, 40), daq, kkal, kkal_turi: kkal == null ? null : (a.kkal_turi === 'faol' || a.kkal_turi === 'umumiy' ? a.kkal_turi : 'nomalum'), puls: puls, pulsMax: pm, masofa: n0(a.masofa_km, 0.01, 500, 2), qadam: n0(a.qadam, 1, 80000), sana, vaqt: sana ? vaqt : null, manba };
 }
-export const _test = { SYSTEM, sanitizeShot, extractObj };
+/* v85: soat ilovasining KUNLIK QADAM ekranidan bugungi qadam soni (Health Connect'ga yozilmasa zaxira yo'l). Alohida prompt va JSON; limit xuddi shu hisobdan. */
+const SYSTEM_Q = `Sen smart-soat / salomatlik ilovasidagi KUNLIK QADAM ekranini (Honor Health, Huawei Health, Samsung Health, Mi Fitness / Zepp, Google Fit, Apple Salomatlik, Garmin Connect, Fitbit) O'QIYDIGAN yordamchisan. Ekran ruscha, o'zbekcha yoki inglizcha bo'lishi mumkin.
+Faqat skrinshotda YOZILGAN raqamni ko'chir — o'zingdan taxmin qilma, hisoblama, bir necha kunni qo'shma.
+Faqat JSON obyekt qaytar, boshqa hech narsa yozma:
+{"qadam_ekrani": true|false, "qadam": bugungi (yoki ekrandagi sanaga tegishli) JAMI qadamlar soni (butun son yoki null), "sana": "YYYY-MM-DD" yoki null, "manba": ilova nomi yoki ""}
+Qoidalar:
+- Skrinshotda kunlik qadam jami yo'q bo'lsa (ovqat, selfi, chat, mashg'ulot natijasi, boshqa ekran) — {"qadam_ekrani": false}.
+- Katta doiradagi / sarlavhadagi «Qadamlar / Шаги / Steps» jami son kerak. Masofa, kkal, faol daqiqa, haftalik o'rtacha yoki maqsad (masalan «/ 8 000») qadam soni EMAS.
+- Soat grafigi ustunlarini qo'shma. Jami ko'rinmasa — qadam: null. Sana ko'rinmasa — null (o'ylab topma). Tibbiy maslahat berma.`;
+export function sanitizeSteps(a, today) {
+  if (!a || a.qadam_ekrani === false) return null;
+  const n = n0(a.qadam, 1, 80000, 0); if (n == null) return null;
+  const sana = typeof a.sana === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(a.sana) && !isNaN(Date.parse(a.sana)) && (!today || a.sana <= today) ? a.sana : null;
+  const mn = clean(a.manba, 24).toLowerCase(), manba = MANBALAR.find((m) => m.toLowerCase() === mn) || MANBALAR.find((m) => mn && (mn.includes(m.toLowerCase().split(' ')[0]) || m.toLowerCase().includes(mn))) || (mn ? clean(a.manba, 24) : '');
+  return { qadam: Math.round(n), sana, manba };
+}
+export const _test = { SYSTEM, SYSTEM_Q, sanitizeShot, sanitizeSteps, extractObj };
 
-async function askVision(env, imgs, til, ms) {
+async function askVision(env, imgs, til, ms, steps) {
   const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), ms || TIMEOUT_MS);
   try {
     const content = imgs.map((b64) => ({ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } }));
-    content.push({ type: 'text', text: (til === 'ru' ? 'Прочитай результат тренировки со скриншота (скриншотов).' : "Skrinshotdagi mashg'ulot natijasini o'qi.") + ' JSON.' });
+    content.push({ type: 'text', text: (steps ? (til === 'ru' ? 'Прочитай число шагов за день со скриншота.' : "Skrinshotdagi kunlik qadam sonini o'qi.") : (til === 'ru' ? 'Прочитай результат тренировки со скриншота (скриншотов).' : "Skrinshotdagi mashg'ulot natijasini o'qi.")) + ' JSON.' });
     const res = await fetch('https://api.anthropic.com/v1/messages', { method: 'POST', signal: ctl.signal, headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
-      body: JSON.stringify({ model: MODEL, max_tokens: MAX_TOKENS, thinking: { type: 'disabled' }, system: SYSTEM, messages: [{ role: 'user', content }] }) });
+      body: JSON.stringify({ model: MODEL, max_tokens: MAX_TOKENS, thinking: { type: 'disabled' }, system: steps ? SYSTEM_Q : SYSTEM, messages: [{ role: 'user', content }] }) });
     if (!res.ok) {
       console.error('mashq: model status', res.status);
       if (res.status === 429 || res.status === 529) return { err: 'band', qayta: true, wait: Math.min(2000, (parseInt(res.headers.get('retry-after'), 10) || 0) * 1000) };
@@ -76,13 +92,14 @@ export async function onRequest({ request, env }) {
   let sabab; try { sabab = await takeKfQuota(env, request, cid, qo); } catch (e) { console.error('mashq: kvota xato'); await rasmStat(env, 'ichki'); return failS('ichki'); }
   if (sabab) return json(429, { xato: sabab === 'sayt' ? E[4291] : aiLimitMsg(out.limit || lim.client), sabab, limit: out.limit || lim.client, qoldi: 0, akkaunt: !!out.akkaunt });
   const til = body.til === 'ru' ? 'ru' : 'uz', t0 = Date.now(), today = new Date(Date.now() + 5 * 3600000).toISOString().slice(0, 10);
-  let last = 'ichki';
+  let last = 'ichki'; const qs = body.tur === 'qadam';
   for (let attempt = 0; attempt < MAX_ATTEMPTS; attempt++) {
     const left = TOTAL_MS - (Date.now() - t0); if (attempt > 0 && left < 8000) break;
-    const r = await askVision(env, imgs, til, Math.min(TIMEOUT_MS, left));
+    const r = await askVision(env, imgs, til, Math.min(TIMEOUT_MS, left), qs);
     if (r.err) { last = r.err; if (!r.qayta) break; await sleep(Math.max(r.wait || 0, r.err === 'band' ? 1500 : 700)); continue; }
     const a = extractObj(r.text);
     if (a) {
+      if (qs) { const q = sanitizeSteps(a, today); if (!q) { await refundKfQuota(env, request, cid, qo); await rasmStat(env, 'ok'); return json(200, { qadam: null, limit: out.limit || lim.client, qoldi: out.qoldi >= 9000 ? out.qoldi : (out.qoldi || 0) + 1, akkaunt: !!out.akkaunt }); } await rasmStat(env, 'ok'); return json(200, { qadam: q, limit: out.limit || lim.client, qoldi: out.qoldi, akkaunt: !!out.akkaunt }); }
       const m = sanitizeShot(a, today);
       if (!m) { await refundKfQuota(env, request, cid, qo); await rasmStat(env, 'ok'); return json(200, { mashq: null, limit: out.limit || lim.client, qoldi: out.qoldi >= 9000 ? out.qoldi : (out.qoldi || 0) + 1, akkaunt: !!out.akkaunt }); }          // «mashg'ulot emas» — limit sarflanmaydi
       await rasmStat(env, 'ok'); return json(200, { mashq: m, limit: out.limit || lim.client, qoldi: out.qoldi, akkaunt: !!out.akkaunt });

@@ -50,7 +50,7 @@ var DEFAULT_ABBR = [
   'iPhone', 'iPad', 'iOS', 'Safari', 'Android', 'Chrome', 'Samsung', 'Kalki', 'JSON', 'KalkiFit', 'NIH', 'USDA', 'Harvard', 'EFSA', 'FDA', 'Nutrition', 'Source',
   /* texnik qisqartma va brendlar — lotincha qoladi (kirillda «ИД», «УРЛ», «ҲТМЛ», «ПWА» emas) */
   'ID', 'URL', 'API', 'HTML', 'HTTP', 'HTTPS', 'PWA', 'USD', 'OTP', 'LED', 'Wi-Fi', 'Claude', 'Apple', 'WhatsApp', 'cookie', 'Cookie',
-  'Health Connect', 'Google Fit', 'Samsung Health', 'Mi Fitness', 'Play Market', 'Honor Health', 'Huawei Health', 'Fitbit', 'Zepp', 'Garmin Connect'
+  'Sync with Health Connect', 'Health Connect', 'Google Fit', 'Samsung Health', 'Mi Fitness', 'Play Market', 'Honor Health', 'Huawei Health', 'Fitbit', 'Zepp', 'Garmin Connect'
 ];
 /* Qo'shimchasi APOSTROF bilan kelganda apostrof SAQLANADI: iPhone'da -> iPhone'да, Safari'da -> Safari'да
  * (boshqa qisqartmalarda eski qoida: AI'ning -> AI-нинг). */

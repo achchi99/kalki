@@ -172,8 +172,8 @@
     fw_yeymiz: 'Не знаете, что поесть?', fw_yeymizH: '«Что бы мне съесть?» подберёт быстрое блюдо дома, в кафе или с доставкой.', fw_hafta: 'Посмотрите свою неделю', fw_haftaH: 'Каждое воскресенье — итоги недели короткой историей.', fw_kunkarta: 'Поделитесь днём', fw_kunkartaH: 'Итог дня станет красивой картинкой — без веса и личных данных.', fw_google: 'Сохраните данные', fw_googleH: 'Войдите через Google — при смене телефона всё сохранится.' });
   Object.assign(D.uz, { ovLeft: 'Bugun {q} ta ovozli kiritish qoldi ({n} tadan).', ovLimit: "Bugungi ovozli kiritish tugadi, yozib qo'shing" });
   Object.assign(D.ru, { ovLeft: 'Сегодня осталось голосовых вводов: {q} из {n}.', ovLimit: 'Сегодняшний голосовой ввод закончился, добавьте текстом' });
-  Object.assign(D.uz, { qaOnPill: 'Yoqish', qaOnBtn: 'Qadamni yoqish', qaNoSensorS: "Bu telefonda qadam sensori yo'q", qaOldApp: 'Qadam uchun ilovani yangilang', qaSetHint: "Ruxsat so'ralmasa: Telefon sozlamalari → Ilovalar → KalkiFit → Ruxsatlar → Jismoniy faollik.", qaRowS: 'Telefon sensori orqali', qaRowHc: 'Health Connect orqali', stWeb: 'Qadam ilovada avtomatik sanaladi', qaWT: 'Soatdan qadam olish', qaWRow: "Soatdagi qadamlar telefonga Health Connect orqali keladi", qaWOk: "Health Connect ulangan.", qaWNone: "Bu telefonda Health Connect yo'q — qadam telefon sensoridan olinadi.", qaWInst: "Health Connect o'rnatilmagan. O'rnating, so'ng shu yerga qayting.", qaWPerm: "Health Connect'ga ruxsat berilmagan.", qaWEmpty: "Health Connect'da bugun qadam yo'q. Soat ilovasida Health Connect bilan sinxronlashni yoqing.", qaWFrom: "Qadam yozayotgan ilovalar: {a}.", qaWNums: "Bugun: Health Connect {h} · telefon sensori {s}", qaWBtn: "Health Connect'ni ulash", qaWInstBtn: "Health Connect'ni o'rnatish", qaWOpen: "Health Connect'ni ochish", qaWG: "Qanday sozlanadi", qaWG1: "Soat ilovasida (Honor Health, Samsung Health, Mi Fitness, Google Fit va boshqalar) Health Connect bilan sinxronlashni yoqing.", qaWG2: "Honor Health: Sozlamalar → Health Connect (yoki «Ma'lumotlarni ulashish»).", qaWG3: "Soat ilovasini oching — qadamlar soatdan telefonga ba'zan faqat shunda o'tadi.", qaWHuawei: "Huawei Health Health Connect'ga o'zi yozmasligi mumkin — unda qadam telefon sensoridan olinadi.", qaWPrio: "Health Connect → Ma'lumotlar va ruxsatlar → Ma'lumot manbalari va ustuvorlik: soat ilovasini telefondan yuqoriga qo'ying.", qaWLow: "Telefon bugun ko'proq qadam sanagan. Soat ilovasi hali sinxronlanmagan bo'lishi yoki ustuvorlik pastroq bo'lishi mumkin.", qaWWeb: 'Faqat Android ilovada' });
-  Object.assign(D.ru, { qaOnPill: 'Включить', qaOnBtn: 'Включить шаги', qaNoSensorS: 'В этом телефоне нет датчика шагов', qaOldApp: 'Для шагов обновите приложение', qaSetHint: 'Если запрос не появляется: Настройки телефона → Приложения → KalkiFit → Разрешения → Физическая активность.', qaRowS: 'Через датчик телефона', qaRowHc: 'Через Health Connect', stWeb: 'Шаги считаются автоматически в приложении', qaWT: 'Шаги с часов', qaWRow: 'Шаги с часов приходят в телефон через Health Connect', qaWOk: 'Health Connect подключён.', qaWNone: 'В этом телефоне нет Health Connect — шаги берутся с датчика телефона.', qaWInst: 'Health Connect не установлен. Установите его и вернитесь сюда.', qaWPerm: 'Нет разрешения для Health Connect.', qaWEmpty: 'Сегодня в Health Connect нет шагов. Включите синхронизацию с Health Connect в приложении часов.', qaWFrom: 'Приложения, которые пишут шаги: {a}.', qaWNums: 'Сегодня: Health Connect {h} · датчик телефона {s}', qaWBtn: 'Подключить Health Connect', qaWInstBtn: 'Установить Health Connect', qaWOpen: 'Открыть Health Connect', qaWG: 'Как настроить', qaWG1: 'В приложении часов (Honor Health, Samsung Health, Mi Fitness, Google Fit и другие) включите синхронизацию с Health Connect.', qaWG2: 'Honor Health: Настройки → Health Connect (или «Обмен данными»).', qaWG3: 'Откройте приложение часов — шаги иногда переходят с часов на телефон только так.', qaWHuawei: 'Huawei Health может не записывать в Health Connect сам — тогда шаги берутся с датчика телефона.', qaWPrio: 'Health Connect → Данные и доступ → Источники данных и приоритет: поставьте приложение часов выше телефона.', qaWLow: 'Телефон насчитал больше шагов. Приложение часов могло ещё не синхронизироваться, или у него ниже приоритет.', qaWWeb: 'Только в приложении для Android' });
+  Object.assign(D.uz, { qaOnPill: 'Yoqish', qaOnBtn: 'Qadamni yoqish', qaNoSensorS: "Bu telefonda qadam sensori yo'q", qaOldApp: 'Qadam uchun ilovani yangilang', qaSetHint: "Ruxsat so'ralmasa: Telefon sozlamalari → Ilovalar → KalkiFit → Ruxsatlar → Jismoniy faollik.", qaRowS: 'Telefon sensori orqali', qaRowHc: 'Health Connect orqali', stWeb: 'Qadam ilovada avtomatik sanaladi', qaWT: 'Soatdan qadam olish', qaWRow: "Soatdagi qadamlar telefonga Health Connect orqali keladi", qaWOk: "Health Connect ulangan.", qaWNone: "Bu telefonda Health Connect yo'q — qadam telefon sensoridan olinadi.", qaWInst: "Health Connect o'rnatilmagan. O'rnating, so'ng shu yerga qayting.", qaWPerm: "KalkiFit'ga Health Connect'dan qadam o'qishga ruxsat berilmagan.", qaWEmpty: "Soat ilovangiz Health Connect'ga yozmayapti: ruxsat bor, lekin bugun u yerda hech qaysi ilova qadam yozmagan.", qaWFrom: "Qadam yozayotgan ilovalar: {a}.", qaWNums: "Bugun: Health Connect {h} · telefon sensori {s}", qaWBtn: 'Ruxsat bering', qaWInstBtn: "Health Connect'ni o'rnatish", qaWOpen: "Health Connect'ni ochish", qaWG: "Qanday sozlanadi", qaWG1: 'Soat ilovasida Health Connect bilan sinxronlashni yoqing (Honor Health, Samsung Health, Mi Fitness, Google Fit va boshqalar).', qaWG3: "Soat ilovasini oching — qadamlar soatdan telefonga ba'zan faqat shunda o'tadi.", qaWPrio: "Health Connect → Ma'lumotlar va ruxsatlar → Ma'lumot manbalari va ustuvorlik: soat ilovasini telefondan yuqoriga qo'ying.", qaWLow: "Telefon bugun ko'proq qadam sanagan. Soat ilovasi hali sinxronlanmagan bo'lishi yoki ustuvorlik pastroq bo'lishi mumkin.", qaWWeb: 'Faqat Android ilovada', qaWBr1: "Honor Health: Sozlamalar → Health Connect (yoki «Ma'lumot almashish») → «Sync with Health Connect» ni yoqing. Ba'zi versiyalarda bu band yo'q bo'lishi mumkin — ilovani yangilang yoki pastdagi skrinshot usulidan foydalaning.", qaWBr2: "Huawei Health: Health Connect'ga odatda o'zi yozmaydi — skrinshot usulidan foydalaning.", qaWBr3: 'Samsung Health: Sozlamalar → Health Connect: qadamlarni yozishga ruxsat bering.', qaWBr4: "Mi Fitness: Profil → Sozlamalar → Health Connect (bor bo'lsa): qadamlarni yozishga ruxsat bering.", qaWBrN: 'Band nomlari ilova versiyasiga qarab farq qilishi mumkin.', qaWShot: 'Soat skrinshotidan qadam', qaWShotH: "Soat ilovasi Health Connect'ga yozmasa: ilovadagi bugungi qadam ekranining skrinshotini tanlang — son AI bilan o'qiladi.", xqT: 'Soat skrinshotidan qadam', xqHint: 'Soat ilovasidagi bugungi qadam ekranining skrinshotini tanlang (Honor Health, Huawei Health, Samsung Health, Mi Fitness…).', xqNote: "Rasm AI orqali o'qiladi va saqlanmaydi. Natijani o'zingiz tasdiqlaysiz.", xqNone: 'Skrinshotda kunlik qadam soni topilmadi. Soat ilovasidagi bugungi qadam ekranini tanlang.', xqConfT: 'Soatdagi qadam', xqConfH: "Raqamni tekshiring — kerak bo'lsa o'zgartiring.", xqSteps: 'Soatdagi bugungi qadam', xqAuto: 'Hozir avtomatik sanalgan: {a}', xqAdd: "Qo'lda qo'shiladi: +{m} · jami {t}. Avtomatik qiymat almashtirilmaydi.", xqKam: "Telefon allaqachon bunchalik yoki ko'proq sanagan — hech narsa qo'shilmaydi.", xqDate: 'Ekrandagi sana: {d}. Qadam shu kunga yoziladi.', xqSave: 'Saqlash', xqSaved: "Qadam qo'shildi" });
+  Object.assign(D.ru, { qaOnPill: 'Включить', qaOnBtn: 'Включить шаги', qaNoSensorS: 'В этом телефоне нет датчика шагов', qaOldApp: 'Для шагов обновите приложение', qaSetHint: 'Если запрос не появляется: Настройки телефона → Приложения → KalkiFit → Разрешения → Физическая активность.', qaRowS: 'Через датчик телефона', qaRowHc: 'Через Health Connect', stWeb: 'Шаги считаются автоматически в приложении', qaWT: 'Шаги с часов', qaWRow: 'Шаги с часов приходят в телефон через Health Connect', qaWOk: 'Health Connect подключён.', qaWNone: 'В этом телефоне нет Health Connect — шаги берутся с датчика телефона.', qaWInst: 'Health Connect не установлен. Установите его и вернитесь сюда.', qaWPerm: 'У KalkiFit нет разрешения читать шаги из Health Connect.', qaWEmpty: 'Приложение ваших часов не пишет в Health Connect: разрешение есть, но сегодня никакое приложение шаги не записало.', qaWFrom: 'Приложения, которые пишут шаги: {a}.', qaWNums: 'Сегодня: Health Connect {h} · датчик телефона {s}', qaWBtn: 'Дать разрешение', qaWInstBtn: 'Установить Health Connect', qaWOpen: 'Открыть Health Connect', qaWG: 'Как настроить', qaWG1: 'В приложении часов включите синхронизацию с Health Connect (Honor Health, Samsung Health, Mi Fitness, Google Fit и другие).', qaWG3: 'Откройте приложение часов — шаги иногда переходят с часов на телефон только так.', qaWPrio: 'Health Connect → Данные и доступ → Источники данных и приоритет: поставьте приложение часов выше телефона.', qaWLow: 'Телефон насчитал больше шагов. Приложение часов могло ещё не синхронизироваться, или у него ниже приоритет.', qaWWeb: 'Только в приложении для Android', qaWBr1: 'Honor Health: Настройки → Health Connect (или «Обмен данными») → включите «Sync with Health Connect». В некоторых версиях этого пункта может не быть — обновите приложение или воспользуйтесь способом со скриншотом ниже.', qaWBr2: 'Huawei Health: в Health Connect обычно сам не пишет — воспользуйтесь способом со скриншотом.', qaWBr3: 'Samsung Health: Настройки → Health Connect: разрешите запись шагов.', qaWBr4: 'Mi Fitness: Профиль → Настройки → Health Connect (если есть): разрешите запись шагов.', qaWBrN: 'Названия пунктов могут отличаться в зависимости от версии приложения.', qaWShot: 'Шаги по скриншоту часов', qaWShotH: 'Если приложение часов не пишет в Health Connect: выберите скриншот экрана шагов за сегодня — число считает ИИ.', xqT: 'Шаги по скриншоту часов', xqHint: 'Выберите скриншот экрана шагов за сегодня в приложении часов (Honor Health, Huawei Health, Samsung Health, Mi Fitness…).', xqNote: 'Фото читает ИИ, оно не сохраняется. Результат вы подтверждаете сами.', xqNone: 'На скриншоте не найдено число шагов за день. Выберите экран шагов за сегодня в приложении часов.', xqConfT: 'Шаги с часов', xqConfH: 'Проверьте число — при необходимости измените.', xqSteps: 'Шаги за сегодня на часах', xqAuto: 'Сейчас посчитано автоматически: {a}', xqAdd: 'Добавится вручную: +{m} · всего {t}. Автоматическое значение не заменяется.', xqKam: 'Телефон уже насчитал столько же или больше — ничего не добавится.', xqDate: 'Дата на экране: {d}. Шаги запишутся на этот день.', xqSave: 'Сохранить', xqSaved: 'Шаги добавлены' });
   Object.assign(D.uz, { vMic: "Ovoz bilan qo'shish", vT: "Ovoz bilan qo'shish", vListen: 'Gapiring… Masalan: «bir piyola osh, ikki tilim non va choy»', vStop: "To'xtatish", vPriv: "Ovoz saqlanmaydi: uni telefon yoki brauzerning nutq xizmati (odatda Google) matnga aylantiradi, ilova faqat matnni oladi.", vAgain: 'Qayta gapirish', vText: 'Matn bilan yozish', vPrivS: 'Ovoz saqlanmaydi: qisqa yozuv faqat matnga aylantirish uchun yuboriladi.', vRec: 'Gapiring… tugatgach «Tayyor» yoki mikrofonni bosing (ko\'pi bilan 30 soniya).', vDone: 'Tayyor', vBusy: 'Ovoz tanilmoqda…', vErr_vaqt: "Ovoz tanilmadi. Qayta urinib ko'ring yoki yozib qo'shing.",
     vErr_ruxsat: 'Mikrofonga ruxsat berilmadi. Telefon sozlamalarida mikrofonni yoqing yoki matn bilan yozing.', vErr_jim: "Hech narsa eshitilmadi. Yana bir bor urinib ko'ring.", vErr_tarmoq: 'Ovozni tanish uchun internet kerak.', vErr_yoq: 'Bu qurilmada ovozni tanish ishlamayapti — matn bilan yozing.', vErr_xato: "Ovozni tanib bo'lmadi. Yana urinib ko'ring." });
   Object.assign(D.ru, { vMic: 'Добавить голосом', vT: 'Добавить голосом', vListen: 'Говорите… Например: «тарелка плова, два куска хлеба и чай»', vStop: 'Остановить', vPriv: 'Голос не сохраняется: его превращает в текст служба распознавания телефона или браузера (обычно Google), приложение получает только текст.', vAgain: 'Сказать ещё раз', vText: 'Написать текстом', vPrivS: 'Голос не сохраняется: короткая запись отправляется только для распознавания текста.', vRec: 'Говорите… затем нажмите «Готово» или микрофон (не дольше 30 секунд).', vDone: 'Готово', vBusy: 'Распознаём голос…', vErr_vaqt: 'Голос не распознан. Попробуйте ещё раз или добавьте текстом.',
@@ -1018,19 +1018,20 @@
   /* v82: MASHG'ULOTNI SOAT SKRINSHOTIDAN QO'SHISH. «Mashg'ulot qo'shish» oynasidagi tugma → 1–3 skrinshot (galereya) → /api/kalkifit-mashq (AI FAQAT raqamlarni o'qiydi; alohida prompt) → tasdiqlash oynasi (hammasi tahrirlanadi).
      Kkal hisobi — S.shotKcal (faol → shu; umumiy/noma'lum → − tinch holat; kkal yo'q + puls → Keytel, − tinch holat; ikkalasi yo'q → MET). Soatdagi qadam krediti bilan ikki marta sanalmaydi (yozuvdagi stp → dayPlan ustma-ustligi). Skrinshot saqlanmaydi. */
   var xs = null, xc = null;
-  function xsOpen() { xs = { files: [], busy: false, err: '', lim: null }; stEv('mashq_skrinshot', 'ochildi'); openSheet('exshot', xsHtml()); }
+  function xsOpen(mode) { xs = { files: [], busy: false, err: '', lim: null, q: mode === 'qadam' }; stEv(xs.q ? 'qadam_skrinshot' : 'mashq_skrinshot', 'ochildi'); openSheet('exshot', xsHtml()); }
+  function xsEv(k) { stEv(xs && xs.q ? 'qadam_skrinshot' : 'mashq_skrinshot', k); }
   function xsClean() { if (xs) xs.files.forEach(function (f) { try { URL.revokeObjectURL(f.u); } catch (e) {} }); }
   function xsHtml() {
-    var h = shHead(T('xsT')) + '<p class="rz-p sm">' + esc(T('xsHint')) + '</p>';
+    var h = shHead(T(xs.q ? 'xqT' : 'xsT')) + '<p class="rz-p sm">' + esc(T(xs.q ? 'xqHint' : 'xsHint')) + '</p>';
     if (xs.busy) return h + '<div class="rz-empty"><div class="sl-spin" aria-hidden="true"></div><b>' + esc(T('xsBusy')) + '</b></div>';
     if (xs.lim) return h + rlHtml(xs.lim.akk);
     if (xs.err) h += '<p class="rz-p warn" id="xsErr">' + esc(xs.err) + '</p>';
     var n = xs.files.length;
     if (n) h += '<div class="xs-th" id="xsTh">' + xs.files.map(function (f, i) { return '<div class="xs-i"><img alt="" src="' + f.u + '"><button type="button" class="rz-x" data-act="xsrm" data-i="' + i + '" aria-label="' + esc(T('xsRm')) + '">' + ico('x') + '</button></div>'; }).join('') + '</div><p class="rz-mut sm">' + esc(T('xsN', { n: n })) + '</p>';
-    h += '<p class="rz-mut sm">' + esc(T('xsNote')) + '</p>';
+    h += '<p class="rz-mut sm">' + esc(T(xs.q ? 'xqNote' : 'xsNote')) + '</p>';
     if (aiq && aiq.limit > 0) h += '<p class="rz-mut sm sl-aileft">' + esc(aiq.qoldi > 0 ? T('aiLeft', { q: aiq.qoldi, n: aiq.limit }) : T('aiLimit', { n: aiq.limit })) + '</p>';
     h += '<div class="rz-actions">' + (n < 3 ? '<button type="button" class="rz-btn ' + (n ? 'ghost' : 'primary') + '" data-act="xspick">' + ico('img') + ' ' + esc(T(n ? 'xsMore' : 'xsPick')) + '</button>' : '') + (n ? '<button type="button" class="rz-btn primary" data-act="xsgo">' + esc(T('xsRead')) + '</button>' : '') + '</div>';
-    return h + '<button type="button" class="rz-btn ghost full" data-act="exadd">' + esc(T('xsManual')) + '</button>';
+    return xs.q ? h : h + '<button type="button" class="rz-btn ghost full" data-act="exadd">' + esc(T('xsManual')) + '</button>';
   }
   function xsRefresh() { if (xs && kit.sheetKind() === 'exshot') setSheet(xsHtml()); }
   function xsAdd(list) {
@@ -1043,22 +1044,45 @@
   }
   function xsGo() {
     if (!xs || !xs.files.length || xs.busy) return; var X = xs; X.busy = true; X.err = ''; X.lim = null; setSheet(xsHtml());
-    var out = [], idx = 0, bad = function (key, q) { stEv('mashq_skrinshot', 'xato'); X.busy = false; X.err = T(key); setSheet(xsHtml()); };
+    var out = [], idx = 0, bad = function (key, q) { xsEv('xato'); X.busy = false; X.err = T(key); setSheet(xsHtml()); };
     (function next() {
       if (idx >= X.files.length) return send();
       imgPrep(X.files[idx].file, { px: 1600, maxBytes: 700000 }, function (b64, perr) { if (!b64) { bad(perr === 'hajm' ? 'phErrBig' : 'phErrFmt'); return; } out.push(b64); idx++; next(); });
     })();
     function send() {
       var ctl = window.AbortController ? new AbortController() : null, tm = setTimeout(function () { if (ctl) ctl.abort(); }, 55000);
-      fetch('/api/kalkifit-mashq', { method: 'POST', signal: ctl ? ctl.signal : undefined, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ imgs: out, til: isCyr() ? 'kirill' : lang, mijoz_id: cid(), platforma: aiPlat() || undefined }) })
+      fetch('/api/kalkifit-mashq', { method: 'POST', signal: ctl ? ctl.signal : undefined, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ imgs: out, tur: X.q ? 'qadam' : undefined, til: isCyr() ? 'kirill' : lang, mijoz_id: cid(), platforma: aiPlat() || undefined }) })
         .then(function (r) { clearTimeout(tm); return r.json().catch(function () { return {}; }).then(function (j) { return { s: r.status, j: j }; }); }).then(function (res) {
           if (xs !== X) return; aiqSet(res.j); X.busy = false; var j = res.j || {};
-          if (res.s === 429) { stEv('mashq_skrinshot', 'xato'); if (j.sabab !== 'sayt' && j.limit > 0) X.lim = { akk: !!j.akkaunt }; else X.err = T(j.sabab === 'sayt' ? 'phSite' : 'phLimit'); setSheet(xsHtml()); }
-          else if (res.s === 200 && j.mashq === null) { stEv('mashq_skrinshot', 'emas'); xsClean(); X.files = []; X.err = T('xsNone'); setSheet(xsHtml()); }
-          else if (res.s === 200 && j.mashq) { stEv('mashq_skrinshot', 'oqildi'); xsClean(); xcFrom(j.mashq); }
-          else { stEv('mashq_skrinshot', 'xato'); var sb = j.sabab; X.err = T(res.s === 413 || sb === 'hajm' ? 'phErrBig' : (sb === 'format' ? 'phErrFmt' : (sb === 'band' ? 'phErrBand' : (sb === 'vaqt' ? 'phErrTime' : (res.s >= 500 ? 'phErrSrv' : 'xsErr'))))); setSheet(xsHtml()); }
-        }).catch(function (e) { clearTimeout(tm); if (xs !== X) return; stEv('mashq_skrinshot', 'xato'); var k = aiNetErr(e); X.busy = false; X.err = T(k === 'vaqt' ? 'phErrTime' : 'phErrNet'); setSheet(xsHtml()); });
+          if (res.s === 429) { xsEv('xato'); if (j.sabab !== 'sayt' && j.limit > 0) X.lim = { akk: !!j.akkaunt }; else X.err = T(j.sabab === 'sayt' ? 'phSite' : 'phLimit'); setSheet(xsHtml()); }
+          else if (res.s === 200 && X.q && j.qadam) { xsEv('oqildi'); xsClean(); xqFrom(j.qadam); }
+          else if (res.s === 200 && (X.q ? j.qadam === null : j.mashq === null)) { xsEv('emas'); xsClean(); X.files = []; X.err = T(X.q ? 'xqNone' : 'xsNone'); setSheet(xsHtml()); }
+          else if (res.s === 200 && j.mashq) { xsEv('oqildi'); xsClean(); xcFrom(j.mashq); }
+          else { xsEv('xato'); var sb = j.sabab; X.err = T(res.s === 413 || sb === 'hajm' ? 'phErrBig' : (sb === 'format' ? 'phErrFmt' : (sb === 'band' ? 'phErrBand' : (sb === 'vaqt' ? 'phErrTime' : (res.s >= 500 ? 'phErrSrv' : 'xsErr'))))); setSheet(xsHtml()); }
+        }).catch(function (e) { clearTimeout(tm); if (xs !== X) return; xsEv('xato'); var k = aiNetErr(e); X.busy = false; X.err = T(k === 'vaqt' ? 'phErrTime' : 'phErrNet'); setSheet(xsHtml()); });
     }
+  }
+  /* v85: soat ilovasining kunlik QADAM skrinshotidan bugungi qadam (Health Connect'ga yozilmasa zaxira yo'l). AI faqat sonni o'qiydi → tasdiqlash oynasi → QO'LDA qadam kabi saqlanadi: S.setManualSteps(soat jami − avtomatik) —
+     avtomatik qiymat almashtirilmaydi (day.steps = sa + qo'lda), avtomatik keyin o'ssa ham qo'lda ustama o'zgarmaydi. Skrinshot saqlanmaydi; limit rasm AI hisobidan (xatoda qaytariladi). */
+  var xq = null;
+  function xqFrom(q) { var tod = todayStr(), d = q.sana && q.sana <= tod && q.sana >= Dt.addDays(tod, -60) ? q.sana : tod; xq = { d: d, n: String(q.qadam), src: q.manba || '' }; openSheet('qshotc', xqHtml()); }
+  function xqNum() { return Math.max(0, Math.min(80000, Math.round(num(xq && xq.n)) || 0)); }
+  function xqAuto() { var x = S.dayOf(st, xq.d); return x && x.sa > 0 ? Math.round(x.sa) : 0; }
+  function xqPrev() {
+    var n = xqNum(), a = xqAuto(), m = Math.max(0, n - a);
+    return n < 1 ? '' : (m > 0 ? esc(T('xqAdd', { m: fmt(m), t: fmt(a + m) })) : esc(T('xqKam')));
+  }
+  function xqHtml() {
+    var h = shHead(T('xqConfT')) + '<p class="rz-p sm">' + esc(T('xqConfH')) + '</p>' + (xq.src ? '<p class="rz-mut sm">' + esc(xq.src) + '</p>' : '');
+    h += '<label class="rz-lbl" for="xqN">' + esc(T('xqSteps')) + '</label><input class="rz-in" id="xqN" type="text" inputmode="numeric" autocomplete="off" value="' + esc(xq.n) + '" aria-describedby="xqPrev">';
+    if (xq.d !== todayStr()) h += '<p class="rz-p sm warn" id="xqDate">' + esc(T('xqDate', { d: xq.d.split('-').reverse().join('.') })) + '</p>';
+    h += '<p class="rz-mut sm">' + esc(T('xqAuto', { a: fmt(xqAuto()) })) + '</p><p class="rz-p sm" id="xqPrev" aria-live="polite">' + xqPrev() + '</p>';
+    return h + '<div class="rz-actions"><button type="button" class="rz-btn primary" id="xqSave" data-act="xqsave"' + (xqNum() > xqAuto() ? '' : ' disabled') + '>' + esc(T('xqSave')) + '</button></div>';
+  }
+  function xqUpd() { var a = $('#xqPrev'), b = $('#xqSave'); if (a) a.innerHTML = xqPrev(); if (b) b.disabled = !(xqNum() > xqAuto()); }
+  function xqSave() {
+    if (!xq) return; var n = xqNum(), a = xqAuto(); if (n <= a) { stEv('qadam_skrinshot', 'kam'); kit.closeSheet(); toast(T('xqKam')); xq = null; return; }
+    S.setManualSteps(st, xq.d, n - a); stEv('qadam_skrinshot', 'saqlandi'); xq = null; kit.closeSheet(); heroPrev = null; commit(); toast(T('xqSaved'), null, true);
   }
   function xcMin() { return Math.max(1, Math.min(600, Math.round(num(xc.min)) || 1)); }
   function xcT0() { if (!xc.tm || !/^\d{2}:\d{2}$/.test(xc.tm) || !/^\d{4}-\d{2}-\d{2}$/.test(xc.d)) return 0; var p = xc.d.split('-'), q = xc.tm.split(':'); return new Date(+p[0], +p[1] - 1, +p[2], +q[0], +q[1]).getTime() || 0; }
@@ -3214,35 +3238,46 @@
       openSheet('diag', shHead(T('diagT')) + '<pre class="sl-diag" id="diagTxt">' + esc(head + t) + '</pre><div class="rz-actions"><button type="button" class="rz-btn primary" data-act="diagcopy">' + esc(T('diagCopy')) + '</button></div>');
     });
   }
-  function qaInfo() {                               // avtomatik qadam: karta bosilganda — bugungi jami va manba (qo'lda kiritish yo'q)
-    var x = S.dayOf(st, todayStr()) || { steps: 0 };
-    openSheet('qainfo', shHead(T('stepsT')) + '<div class="rz-amt"><span>' + fmt(x.steps || 0) + '</span><small> / ' + fmt(st.stepGoal) + '</small></div><p class="rz-mut sm sl-qasrc">' + esc(qaZero() ? T('qaNone') : qaSrcName()) + '</p>' + qaNumsHtml() + (!qaS.sensor ? '<p class="rz-p sm">' + esc(T('qaNoSensor')) + '</p>' : '') + (qaZero() && !qaS.fit && qaS.hc !== 'none' ? '<p class="rz-p sm">' + esc(T('qaFitH')) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost full" data-act="qafit">' + esc(T('qaFit')) + '</button></div>' : '') + okBtn());
+  function qaHcState() {                          // v85: Health Connect holati — none | install | perm | empty (ruxsat bor, bugun hech kim yozmagan) | ok
+    if (!QA) return ''; if (qaS.hc === 'none') return 'none'; if (qaS.hc === 'install') return 'install'; if (!qaS.hcG) return 'perm';
+    return qaS.hcToday > 0 || qaS.hcN > 0 ? 'ok' : 'empty';
   }
-  /* v84 «Soatdan qadam olish»: soat ilovasi Health Connect'ga yozadi, KalkiFit undan o'qiydi (kunlik jami — Health Connect o'zi takrorsiz yig'adi). Faqat Android ilovada. */
+  var QA_ST = { none: 'telefonda_yoq', install: 'ornatilmagan', perm: 'ruxsat_yoq', empty: 'hc_nol', ok: 'hc_bor' };
+  function qaStatusLoad() {                        // holatni yangilash: status + bugungi sonlar (sensor va Health Connect alohida)
+    if (!QA) return Promise.resolve();
+    return Promise.all([QA.status(), QA.today ? QA.today() : Promise.resolve(null)]).then(function (a) {
+      var r = a[0] || {}, t = a[1] || {}; qaS.hc = r.hc || qaS.hc; qaS.hcG = !!r.hcGranted; qaS.hcToday = +r.hcToday || 0; qaS.hcSrc = (Array.isArray(r.hcManbalar) ? r.hcManbalar : []).filter(function (x) { return typeof x === 'string'; }).slice(0, 8); qaS.hcN = +t.hcQadam || 0; qaS.senN = +t.sensorQadam || 0;
+    }, function () {});
+  }
+  function qaInfo() {                               // karta bosilganda: bugungi jami, manba + «Soatdan qadam olish» (holat, ilovalar, tugma, ko'rsatma, skrinshot)
+    var x = S.dayOf(st, todayStr()) || { steps: 0 }, ss = qaHcState(); if (ss) stEv('qadam_oyna', 'hc_holat.' + QA_ST[ss]);
+    openSheet('qainfo', shHead(T('stepsT')) + '<div class="rz-amt"><span>' + fmt(x.steps || 0) + '</span><small> / ' + fmt(st.stepGoal) + '</small></div><p class="rz-mut sm sl-qasrc">' + esc(qaZero() ? T('qaNone') : qaSrcName()) + '</p>' + (!qaS.sensor ? '<p class="rz-p sm">' + esc(T('qaNoSensor')) + '</p>' : '') + '<h3 class="sl-grp">' + esc(T('qaWT')) + '</h3>' + qaWatchBlock(true) + (qaZero() && !qaS.fit && qaS.hc !== 'none' ? '<p class="rz-p sm">' + esc(T('qaFitH')) + '</p><div class="rz-actions"><button type="button" class="rz-btn ghost full" data-act="qafit">' + esc(T('qaFit')) + '</button></div>' : '') + okBtn());
+  }
+  /* v84/v85 «Soatdan qadam olish»: soat ilovasi Health Connect'ga yozadi, KalkiFit undan o'qiydi (kunlik jami — Health Connect o'zi takrorsiz yig'adi). Faqat Android ilovada. */
   var HC_APPS = { 'com.google.android.apps.fitness': 'Google Fit', 'com.sec.android.app.shealth': 'Samsung Health', 'com.fitbit.FitbitMobile': 'Fitbit', 'com.mi.health': 'Mi Fitness', 'com.huami.watch.hmwatchmanager': 'Zepp', 'com.garmin.android.apps.connectmobile': 'Garmin Connect', 'com.huawei.health': 'Huawei Health', 'com.hihonor.health': 'Honor Health' };
   function hcAppName(pk) { return HC_APPS[pk] || String(pk).replace(/[^\w.\-]/g, ''); }
   function qaNumsHtml() { return qaS.hc === 'ok' && qaS.hcG && (qaS.hcN > 0 || qaS.senN > 0) ? '<p class="rz-mut sm sl-qanum">' + esc(T('qaWNums', { h: fmt(qaS.hcN), s: fmt(qaS.senN) })) + '</p>' : ''; }
   function qaLow() { return qaS.hc === 'ok' && qaS.hcG && qaS.senN >= 1000 && qaS.senN > qaS.hcN * 1.3; }          // telefon sezilarli ko'p sanagan — soat hali sinxronlanmagan yoki ustuvorlik past
+  function qaWatchBlock(compact) {                  // holat + yozayotgan ilovalar + sonlar + tugma (+ ko'rsatma; ixcham: faqat HC bo'sh/ruxsatsiz/past holatda) + skrinshot yo'li
+    var ss = qaHcState(), h = '', btn = '', key = { none: 'qaWNone', install: 'qaWInst', perm: 'qaWPerm', empty: 'qaWEmpty', ok: 'qaWOk' }[ss];
+    if (ss === 'install') btn = '<button type="button" class="rz-btn primary" data-act="qahc">' + esc(T('qaWInstBtn')) + '</button>';
+    else if (ss === 'perm') btn = '<button type="button" class="rz-btn primary" data-act="qawconn">' + esc(T('qaWBtn')) + '</button>';
+    else if (ss === 'empty' || ss === 'ok') btn = '<button type="button" class="rz-btn ghost" data-act="qahcset">' + esc(T('qaWOpen')) + '</button>';
+    h += '<p class="rz-p sl-qaw-st" id="qaWSt" data-s="' + ss + '">' + esc(T(key)) + '</p>';
+    if (qaS.hc === 'ok' && qaS.hcG && qaS.hcSrc.length) h += '<p class="rz-mut sm">' + esc(T('qaWFrom', { a: qaS.hcSrc.map(hcAppName).join(', ') })) + '</p>';
+    h += qaNumsHtml(); if (qaLow()) h += '<p class="rz-p sm sl-qalow">' + esc(T('qaWLow')) + '</p>';
+    if (btn) h += '<div class="rz-actions">' + btn + '</div>';
+    if (!compact || ss === 'empty' || qaLow()) h += '<h3 class="sl-grp">' + esc(T('qaWG')) + '</h3><ol class="sl-rules crd-steps"><li>' + esc(T('qaWG1')) + '</li><li>' + esc(T('qaWBr1')) + '</li><li>' + esc(T('qaWBr2')) + '</li><li>' + esc(T('qaWBr3')) + '</li><li>' + esc(T('qaWBr4')) + '</li><li>' + esc(T('qaWG3')) + '</li></ol><p class="rz-mut sm">' + esc(T('qaWBrN')) + '</p><p class="rz-p sm">' + esc(T('qaWPrio')) + '</p>';
+    if (ss !== 'ok' || qaLow()) h += '<div class="sl-qashot"><p class="rz-mut sm">' + esc(T('qaWShotH')) + '</p><button type="button" class="rz-btn ghost full" data-act="xqopen">' + ico('img') + ' ' + esc(T('qaWShot')) + '</button></div>';
+    return h;
+  }
   function qaWatchRowHtml() {                         // Profil: faqat ilovada (QA bor); vebda yo'q
     if (!QA || !qaS.loaded) return '';
     return '<div class="sl-remc sl-qarow sl-qaw"><button type="button" class="sl-remr" id="qaWRow" data-act="qawatch" aria-label="' + esc(T('qaWT')) + '"><span class="sl-remm"><span class="ic" aria-hidden="true">' + ico('steps') + '</span><span class="t"><b>' + esc(T('qaWT')) + '</b><small>' + esc(T('qaWRow')) + '</small></span></span>' + ico('chev', 'r') + '</button></div>';
   }
   function qaWatchOpen() {
     if (!QA) return;
-    Promise.all([QA.status(), QA.today ? QA.today() : Promise.resolve(null)]).then(function (a) {
-      var r = a[0] || {}, t = a[1] || {}; qaS.hc = r.hc || qaS.hc; qaS.hcG = !!r.hcGranted; qaS.hcToday = +r.hcToday || 0; qaS.hcSrc = (Array.isArray(r.hcManbalar) ? r.hcManbalar : []).filter(function (x) { return typeof x === 'string'; }).slice(0, 8); qaS.hcN = +t.hcQadam || 0; qaS.senN = +t.sensorQadam || 0;
-      var h = shHead(T('qaWT')), st1, btn = '';
-      if (qaS.hc === 'none') st1 = T('qaWNone');
-      else if (qaS.hc === 'install') { st1 = T('qaWInst'); btn = '<button type="button" class="rz-btn primary" data-act="qahc">' + esc(T('qaWInstBtn')) + '</button>'; }
-      else if (!qaS.hcG) { st1 = T('qaWPerm'); btn = '<button type="button" class="rz-btn primary" data-act="qawconn">' + esc(T('qaWBtn')) + '</button>'; }
-      else { st1 = qaS.hcToday > 0 ? T('qaWOk') : T('qaWEmpty'); btn = '<button type="button" class="rz-btn ghost" data-act="qahcset">' + esc(T('qaWOpen')) + '</button>'; }
-      h += '<p class="rz-p sl-qaw-st" id="qaWSt">' + esc(st1) + '</p>';
-      if (qaS.hc === 'ok' && qaS.hcG && qaS.hcSrc.length) h += '<p class="rz-mut sm">' + esc(T('qaWFrom', { a: qaS.hcSrc.map(hcAppName).join(', ') })) + '</p>';
-      h += qaNumsHtml(); if (qaLow()) h += '<p class="rz-p sm sl-qalow">' + esc(T('qaWLow')) + '</p>';
-      if (btn) h += '<div class="rz-actions">' + btn + '</div>';
-      h += '<h3 class="sl-grp">' + esc(T('qaWG')) + '</h3><ol class="sl-rules crd-steps"><li>' + esc(T('qaWG1')) + '</li><li>' + esc(T('qaWG2')) + '</li><li>' + esc(T('qaWG3')) + '</li></ol><p class="rz-p sm">' + esc(T('qaWPrio')) + '</p><p class="rz-mut sm">' + esc(T('qaWHuawei')) + '</p>' + okBtn();
-      openSheet('qawatch', h);
-    });
+    qaStatusLoad().then(function () { var ss = qaHcState(); if (ss) stEv('qadam_oyna', 'hc_holat.' + QA_ST[ss]); openSheet('qawatch', shHead(T('qaWT')) + qaWatchBlock(false) + okBtn()); });
   }
   function qaRowHtml() {                            // Profil: «Qadamni avtomatik sanash» — Eslatmalar kartasidagi kabi switch + bitta qisqa izoh (faqat Android ilova)
     if (!QA || !qaS.avail) return ''; var on = qaOn();
@@ -3330,7 +3365,7 @@
     if (on) { if (qaS.hc === 'install' && !qaS.sensor) qaAsk(); else qaAllow(false); return; }
     prefs().qa = 'off'; save(); QA.enable(false); render();
   }
-  function stepsOpen() { if (!qaDetect()) { toast(T('qaOldApp')); return; } if (qaS.avail && !qaOn()) { qaAsk(); return; } qaInfo(); }          // qadam faqat avtomatik: ulanmagan — ulash oynasi, ulangan (yoki sensor/Health Connect yo'q) — bugungi jami va manba
+  function stepsOpen() { if (!qaDetect()) { toast(T('qaOldApp')); return; } if (qaS.avail && !qaOn()) { qaAsk(); return; } qaStatusLoad().then(qaInfo); }          // qadam faqat avtomatik: ulanmagan — ulash oynasi, ulangan (yoki sensor/Health Connect yo'q) — bugungi jami va manba
   var sp = null;
   function openGoal() {                              // kunlik qadam maqsadi (qadamning o'zi qo'lda kiritilmaydi)
     sp = { val: '' };
@@ -3853,7 +3888,7 @@
       case 'glass': glassTap(+el.getAttribute('data-i')); break;
       case 'updgo': if (upd) { try { KalkiNative.openUrl(location.origin + upd.apk); } catch (e) {} } break;
       case 'updlater': if (upd) { try { localStorage.setItem(UPD_KEY, JSON.stringify({ c: +upd.versionCode, t: Date.now() })); } catch (e) {} upd = null; var uc = $('#updCard'); if (uc) uc.remove(); } break;
-      case 'addsteps': stepsOpen(); break;  case 'qahc': if (QA && QA.hcInstall) { qaFlow = 'hc'; QA.hcInstall(); } break; case 'qafit': if (QA && QA.fitInstall) QA.fitInstall(); break; case 'qaulash': qaAsk(); break; case 'qafix': qaFix(); break; case 'qaset': qaOpenSettings(); break; case 'qawatch': qaWatchOpen(); break; case 'qahcset': if (QA && QA.hcInstall) QA.hcInstall(); break; case 'qawconn': kit.closeSheet(); qaAllow(false); break; case 'pushfix': pushFix(); break;
+      case 'addsteps': stepsOpen(); break;  case 'qahc': if (QA && QA.hcInstall) { qaFlow = 'hc'; QA.hcInstall(); } break; case 'qafit': if (QA && QA.fitInstall) QA.fitInstall(); break; case 'qaulash': qaAsk(); break; case 'qafix': qaFix(); break; case 'qaset': qaOpenSettings(); break; case 'qawatch': qaWatchOpen(); break; case 'xqopen': xsOpen('qadam'); break; case 'xqsave': xqSave(); break; case 'qahcset': if (QA && QA.hcInstall) QA.hcInstall(); break; case 'qawconn': kit.closeSheet(); qaAllow(false); break; case 'pushfix': pushFix(); break;
       case 'vertap': verTap(); break; case 'diagcopy': { var dt = $('#diagTxt'); if (dt) { try { navigator.clipboard.writeText(dt.textContent).then(function () { toast(T('diagOk')); }, function () { selAll(dt); }); } catch (e) { selAll(dt); } } break; } case 'qayes': qaAllow(true); break; case 'qalater': prefs().qa = 'later'; save(); kit.closeSheet(); render(); break; case 'qatog': qaToggle(el.getAttribute('data-v') === '1'); break; case 'stepgoal': openGoal(); break;
       case 'key': {
         var k = el.getAttribute('data-k'), ks = kit.sheetKind();
@@ -4085,7 +4120,7 @@
   root.addEventListener('focusout', function (e) { if (e.target && e.target.id === 'fdQty' && fd) { var o5 = pwO(); if (o5) e.target.value = qtyStr(o5.qty); } });
   root.addEventListener('keydown', function (e) { if (e.key === 'Enter' && e.target && e.target.id === 'fdQty') { e.preventDefault(); e.target.blur(); } });
   if (window.visualViewport) { var vv = window.visualViewport, vvf = function () { var kb = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop)); root.style.setProperty('--kb', (kb > 80 ? kb : 0) + 'px'); }; vv.addEventListener('resize', vvf); vv.addEventListener('scroll', vvf); }
-  root.addEventListener('input', function (e) { var t = e.target; if (xc && /^xc(Min|Hr|Hx|Kr|Date|Kc)$/.test(t.id) && xcRead(t.id, t.value)) xcApply(); });          // v82: skrinshot tasdiqlash oynasi — joyida yangilanadi (fokus yo'qolmaydi)
+  root.addEventListener('input', function (e) { var t = e.target; if (xq && t.id === 'xqN') { xq.n = t.value.replace(/[^\d]/g, '').slice(0, 5); if (t.value !== xq.n) t.value = xq.n; xqUpd(); return; } if (xc && /^xc(Min|Hr|Hx|Kr|Date|Kc)$/.test(t.id) && xcRead(t.id, t.value)) xcApply(); });          // v82: skrinshot tasdiqlash oynasi — joyida yangilanadi (fokus yo'qolmaydi)
   root.addEventListener('input', function (e) { var t = e.target; if (fd && fd.vc && /^vc(Name|Full|Empty|Direct)$/.test(t.id)) { fd.vc[{ vcName: 'name', vcFull: 'full', vcEmpty: 'empty', vcDirect: 'direct' }[t.id]] = t.value; var rs = $('#vcRes'); if (rs) rs.textContent = vcResTxt(); } else if (t.id === 'fdQty') { var v = parseFloat(String(t.value).replace(',', '.')); if (v > 0) { var o4 = pwO(); o4.aq = false; o4.qty = Math.min(pwMax(o4), Math.round(v * 100) / 100); pwUpdate(true); } } else if (/^cu[KPFC]$/.test(t.id) && fd && fd.mode === 'lbl') lbPaint(); else if (t.id === 'fdQ') { fd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(refreshRes, 120); } else if (t.id === 'ydQ') { yd.q = t.value; clearTimeout(qTimer); qTimer = setTimeout(yRefresh, 120); } else if (t.id === 'rcQ') { rc.q = t.value; var rr = $('#rcRes'); if (rr) rr.innerHTML = rcResults(); } else if (t.id === 'spQ') { spQ = t.value; var sr = $('#spRes'); if (sr) sr.innerHTML = spRows(); } else if (t.id === 'rcName') rc.name = t.value; });
   root.addEventListener('change', function (e) {
     var t = e.target;
