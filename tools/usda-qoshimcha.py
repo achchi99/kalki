@@ -13,7 +13,7 @@ db = json.load(open(P, encoding='utf8'))
 sha = hashlib.sha256(open(zp, 'rb').read()).hexdigest()
 if sha != db['meta']['sha256']: sys.exit('XATO: arxiv sha256 mos emas (%s) — boshqa nashr' % sha)
 ids = set()
-for f in glob.glob(os.path.join(ROOT, 'tools', 'ovqatlar-kengaytma*.js')) + [os.path.join(ROOT, 'tools', 'ovqatlar-turk.js')]:
+for f in glob.glob(os.path.join(ROOT, 'tools', 'ovqatlar-kengaytma*.js')) + glob.glob(os.path.join(ROOT, 'tools', 'retsept-v87*.js')) + [os.path.join(ROOT, 'tools', 'ovqatlar-turk.js')]:
     ids |= set(re.findall(r'\bu:(\d{5,7})\b', open(f, encoding='utf8').read()))
 new = sorted(i for i in ids if i not in db['foods'])
 if not new: print('yangi id yo\'q'); sys.exit(0)

@@ -2,7 +2,8 @@
  "meta": {
   "manba": "Скурихин И.М. и др. «Химический состав пищевых продуктов» (nashr qilingan jadval) — health-diet.ru/base_of_food/sostav/<id>.php sahifalarida keltirilgan qiymatlar",
   "yuklangan": "2026-10-17",
-  "eslatma": "Sahifalardan qo'lda ko'chirilgan (har yozuvda url); 100 g uchun. Skurikhin da pishgan juft yo'q — yield USDA juftlaridan olinadi."
+  "eslatma": "Sahifalardan qo'lda ko'chirilgan (har yozuvda url); 100 g uchun. Skurikhin da pishgan juft yo'q — yield USDA juftlaridan olinadi.",
+  "v87": "v87: kvas, sulugun, kizil, do'lana, tabiiy sharbatlar (olma, anor, sabzi) — 2026-11-18, sahifalardan qo'lda ko'chirildi; Скурихин jadvali (sahifada «Основной источник: Скурихин И.М. и др.»)"
  },
  "yozuvlar": {
   "qoy": {
@@ -104,6 +105,78 @@
    "f": 1.3,
    "c": 39.8,
    "eslatma": "qiymatlar health-diet.ru qidiruv natijasidan (sahifaning o'zi 429 sabab to'g'ridan-to'g'ri ochilmadi); manba: Скурихин И.М. и др."
+  },
+  "kvas": {
+   "id": 133,
+   "nom": "Квас хлебный",
+   "url": "https://health-diet.ru/base_of_food/sostav/133.php",
+   "kcal": 27,
+   "p": 0.2,
+   "f": 0,
+   "c": 5.2
+  },
+  "suluguni": {
+   "id": 381,
+   "nom": "Сулугуни, м.д.ж. 46% в сух. в-ве",
+   "url": "https://health-diet.ru/base_of_food/sostav/381.php",
+   "kcal": 286,
+   "p": 20.5,
+   "f": 22,
+   "c": 0.4
+  },
+  "kizil": {
+   "id": 137,
+   "nom": "Кизил",
+   "url": "https://health-diet.ru/base_of_food/sostav/137.php",
+   "kcal": 45,
+   "p": 1,
+   "f": 0,
+   "c": 9
+  },
+  "boyaryshnik": {
+   "id": 46,
+   "nom": "Боярышник кроваво-красный",
+   "url": "https://health-diet.ru/base_of_food/sostav/46.php",
+   "kcal": 62,
+   "p": 1.1,
+   "f": 0,
+   "c": 14.2
+  },
+  "sok-olma": {
+   "id": 371,
+   "nom": "Сок яблочный",
+   "url": "https://health-diet.ru/base_of_food/sostav/371.php",
+   "kcal": 46,
+   "p": 0.5,
+   "f": 0.1,
+   "c": 10.1
+  },
+  "sok-anor": {
+   "id": 13593,
+   "nom": "Сок гранатовый",
+   "url": "https://health-diet.ru/base_of_food/sostav/13593.php",
+   "kcal": 56,
+   "p": 0.3,
+   "f": 0.1,
+   "c": 14.2
+  },
+  "sok-sabzi": {
+   "id": 13730,
+   "nom": "Морковный сок",
+   "url": "https://health-diet.ru/base_of_food/sostav/13730.php",
+   "kcal": 56,
+   "p": 1.1,
+   "f": 0.1,
+   "c": 12.6
+  },
+  "tvorog9": {
+   "id": 392,
+   "nom": "Творог 9% жирности",
+   "url": "https://health-diet.ru/base_of_food/sostav/392.php",
+   "kcal": 169,
+   "p": 18,
+   "f": 9,
+   "c": 3
   }
  }
 }

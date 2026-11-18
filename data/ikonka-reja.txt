@@ -573,6 +573,7 @@
 9|v87-fresh-apelsin|drink, served in a typical glass or cup: Апельсиновый фреш (свежевыжатый) (Apelsin fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.|fresh-apelsin
 9|v87-fresh-olma|drink, served in a typical glass or cup: Яблочный фреш (свежевыжатый) (Olma fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.|fresh-olma
 9|v87-fresh-anor|drink, served in a typical glass or cup: Гранатовый фреш (свежевыжатый) (Anor fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.|fresh-anor
+9|v87-fresh-sabzi|drink, served in a typical glass or cup: Морковный фреш (свежевыжатый) (Sabzi fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.|fresh-sabzi
 9|v87-fresh-greypfrut|drink, served in a typical glass or cup: Грейпфрутовый фреш (свежевыжатый) (Greypfrut fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.|fresh-greypfrut
 9|v87-fresh-apelsin-sabzi|drink, served in a typical glass or cup: Фреш апельсин-морковь (Apelsin-sabzi fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.|fresh-apelsin-sabzi
 9|v87-kompot-quruq-shakarsiz|drink, served in a typical glass or cup: Компот из сухофруктов (без сахара) (Quruq meva kompoti (shakarsiz)), realistic single serving, top-down three-quarter view, no text.|kompot-quruq-shakarsiz
@@ -763,3 +764,9 @@
 9|v87-kunjut-yogi|sauce or condiment: Кунжутное масло (Kunjut yog'i), realistic single serving, top-down three-quarter view, no text.|kunjut-yogi
 9|v87-kokos-yogi|sauce or condiment: Кокосовое масло (Kokos yog'i), realistic single serving, top-down three-quarter view, no text.|kokos-yogi
 9|v87-kokos-suti|sauce or condiment: Кокосовое молоко (консерва) (Kokos suti (konserva, pishirish uchun)), realistic single serving, top-down three-quarter view, no text.|kokos-suti
+9|v87-dolana|fruit: Боярышник (свежий) (Do'lana (yangi)), realistic single serving, top-down three-quarter view, no text.|dolana
+9|v87-qizilcha|fruit: Кизил (свежий) (Qizilcha (kizil, yangi)), realistic single serving, top-down three-quarter view, no text.|qizilcha
+9|v87-suluguni|dairy product: Сыр сулугуни (Sulugun pishlog'i), realistic single serving, top-down three-quarter view, no text.|suluguni
+9|v87-vafli-shakarsiz|dessert or sweet: Вафли без сахара (Vafli (shakarsiz, poliollar bilan)), realistic single serving, top-down three-quarter view, no text.|vafli-shakarsiz
+9|v87-tomat-pasta|sauce or condiment: Томатная паста (Tomat pastasi), realistic single serving, top-down three-quarter view, no text.|tomat-pasta
+9|v87-balzamik|sauce or condiment: Бальзамический уксус (Balzamik sirka), realistic single serving, top-down three-quarter view, no text.|balzamik

@@ -140,6 +140,12 @@ teriyaki-sous|Teriyaki sousi|Соус терияки|teriyaki sous,teriyaki sous
 kunjut-yogi|Kunjut yog'i|Кунжутное масло|kunjut yog'i,kunjut yogi,кунжутное масло,sesame oil|x|qoshiq:14,choyq:5|u:171016
 kokos-yogi|Kokos yog'i|Кокосовое масло|kokos yog'i,kokos yogi,кокосовое масло,coconut oil|x|qoshiq:14,choyq:5|u:171412
 kokos-suti|Kokos suti (konserva, pishirish uchun)|Кокосовое молоко (консерва)|kokos suti,kokos sut,кокосовое молоко,coconut milk|x|qoshiq:15,stakan:240|u:170173
+dolana|Do'lana (yangi)|Боярышник (свежий)|do'lana,dolana,do'lana mevasi,боярышник,боярышник свежий,hawthorn|f|hovuch:40,porsiya:100|s:boyaryshnik
+qizilcha|Qizilcha (kizil, yangi)|Кизил (свежий)|qizilcha,kizil,кизил,кизил свежий,cornelian cherry|f|hovuch:50,porsiya:100|s:kizil
+suluguni|Sulugun pishlog'i|Сыр сулугуни|suluguni,sulugun,sulguni,сулугуни,сыр сулугуни|s|bolak:30,porsiya:50|s:suluguni
+vafli-shakarsiz|Vafli (shakarsiz, poliollar bilan)|Вафли без сахара|shakarsiz vafli,vafli shakarsiz,diabetik vafli,вафли без сахара,вафли на подсластителе,sugar free wafer|h|dona:9,porsiya:30|y:vafli-shakarsiz
+tomat-pasta|Tomat pastasi|Томатная паста|tomat pasta,tomat pastasi,томатная паста,томат-паста|x|qoshiq:20,choyq:7|u:170459
+balzamik|Balzamik sirka|Бальзамический уксус|balzamik,balzamik sirka,бальзамик,бальзамический уксус|x|qoshiq:15,choyq:5|u:172241
 `;
 const rows = T.trim().split('\n').map((l) => l.split('|'));
 /* «Yemaydiganlarim» teglari: ehtiyotkor tomon (cho'chqa tegi — QO'YILMAYDI, CLAUDE.md qoidasi) */
@@ -157,4 +163,5 @@ const OQSIL = Object.assign({},
   ...L(`tovuq-kokrak-xom tovuq-son-xom tovuq-butun-xom kurka-kokrak-xom chaxoxbili tovuq-otbivnoy kurka-kotlet tovuq-rulet tovuq-boldir-duxovka tovuq-qanot-duxovka kurka-kolbasa tovuq-sosiska kurka-vetchina jigar-pashtet olivye-tovuq ananas-tovuq-salat qoziqorin-salat pasta-alfredo tovuq-teriyaki`).map((i) => ({ [i]: 'tovuq' })),
   ...L(`losos-xom kambala sudak sibas laqqa-baliq osetr xek skumbriya-tuzlangan mimoza xe-baliq sezar-krevetka poke-losos`).map((i) => ({ [i]: 'baliq' })),
   ...L(`echki-suti qatiq-zigir tvorog-smetana tvorog-asal tvorog-massa yogurt-yunon-2 pishloq-kosichka pishloq-kam-yogli lenivie-vareniki`).map((i) => ({ [i]: 'sut' })));
+TEG.sut.push('suluguni', 'vafli-shakarsiz'); TEG.glyuten.push('vafli-shakarsiz'); OQSIL.suluguni = 'sut';          // v87 tuzatish: yorliq/Скурихин qatorlari (vafli — ehtiyot: sut)
 module.exports = rows; module.exports.TEG = TEG; module.exports.OQSIL = OQSIL;

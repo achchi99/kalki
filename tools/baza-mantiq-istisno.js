@@ -9,6 +9,7 @@ module.exports = {
     'qalampir-qizil>qalampir': "«sladkiy» — qalampir navi (USDA 170108), qo'shimcha emas",
     'tvorog-donador>tvorog5': "donador (zernistyy) tvorog — USDA 172179 alohida mahsulot, «qaymoqli» — turi; 100 g da 98 kkal",
     'salat-sabzavot>sabzavot-salat-mayonez': "v87: ikki xil salat — «yog'li» (o'simlik yog'i bilan) va mayonezli; mayonezlisi og'irroq bo'lishi to'g'ri",
+    'salat-sabzavot>sabzavot-salat-smetana': "v87: o'simlik yog'li va smetanali salat — ikki xil zapravka; farq 4 kkal/tarelka",
     'bulochka>bulochka-mak': "v87: mak urug'li bulochka — boshqa mahsulot (USDA 175161 asosida), oddiy shirin bulochkadan og'irroq",
     'choy-shakar1>sutli-choy': "v87: «sutli choy» — sut qo'shimchasi (shakar emas); shakarli qora choy bilan solishtirilmaydi",
     'sutli-guruch-shurva>guruch-shurva': "v87: sutli guruch sho'rva — go'shtsiz sutli taom; go'shtli guruch sho'rva boshqa retsept",
@@ -29,7 +30,9 @@ module.exports = {
     'kakao-kukun': 'kletchatka 33 g (hazm bo\'lmaydi) — USDA kkal 228 rasmiy',
     'kepak': 'kletchatka 43 g — USDA kkal 216 rasmiy',
     'makkajoxori-konserva': 'USDA: kletchatka — farq 15 %',
-    'laym': 'USDA: kletchatka — Atwater farqi'
+    'laym': 'USDA: kletchatka — Atwater farqi',
+    'tomat-pasta': 'v87: USDA 170459 — kletchatka 4,1 g va organik kislotalar; kkal 82 rasmiy USDA qiymati',
+    'balzamik': 'v87: USDA 172241 — sirka kislotasi va qand spirtlari Atwater formulasiga tushmaydi; kkal 88 rasmiy USDA qiymati'
   },
   d: {
     'shirchoy-tuzli': "v87: shirchoy — sutli choy (sut ~40 %), «shakarsiz» bo'lsa ham sut kkal beradi; nomida «sut» so'zi yo'q, shuning uchun qoida ushlaydi",

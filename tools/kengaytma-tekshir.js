@@ -25,7 +25,8 @@ const own = new Set(files.flatMap((f) => require(path.resolve(f)).map((r) => r[0
 const seen = new Map(); base.filter((f) => !f.h && !own.has(f.i)).forEach((f) => { seen.set('n|' + norm(f.n), 'baza:' + f.i); seen.set('r|' + norm(f.r), 'baza:' + f.i); });
 const ids = new Set(base.map((f) => f.i).filter((i) => !own.has(i)));
 let err = 0, n = 0; const E = (id, m) => { err++; console.log('XATO  ' + id + ': ' + m); };
-const part = (tok) => { if (tok === 'suv') return { kcal: 0, p: 0, f: 0, c: 0 }; const y = /^y:(.+)$/.exec(tok); if (y) { const L = YQ[y[1]]; return L ? { kcal: L.k, p: L.p, f: L.f, c: L.c } : null; } const id = tok.replace(/^u:/, ''); return USDA[id] || IDX[id] || null; };
+const RH = require('./retsept-hisob.js'), RA = RH.all();
+const part = (tok) => { if (tok === 'suv') return { kcal: 0, p: 0, f: 0, c: 0 }; if (/^s:/.test(tok)) { const q = RH.part(tok); return q ? { kcal: q.k, p: q.p, f: q.f, c: q.c } : null; } const y = /^y:(.+)$/.exec(tok); if (y) { const L = YQ[y[1]]; return L ? { kcal: L.k, p: L.p, f: L.f, c: L.c } : null; } const id = tok.replace(/^u:/, ''); return USDA[id] || IDX[id] || null; };
 for (const f of files) {
   const rows = require(path.resolve(f));
   for (const row of rows) {
@@ -38,13 +39,14 @@ for (const f of files) {
     const us = String(un || '').split(',').map((x) => { const [a, b] = x.split(':'); return [a, +b]; });
     us.forEach(([u, g]) => { if (!UNITS[u]) E(id, 'birlik noma\'lum ' + u); else if (!(g >= UNITS[u][0] && g <= UNITS[u][1])) E(id, 'birlik ' + u + ':' + g + ' oraliqdan tashqari ' + UNITS[u].join('–')); });
     let v = null;
-    if (/^u:\d+$/.test(src) || /^y:/.test(src)) v = part(src);
+    if (RA[id]) { try { const h = RH.hisob(RA[id]); v = { kcal: h.k, p: h.p, f: h.f, c: h.c }; } catch (e) { E(id, e.message); continue; } }
+    else if (/^u:\d+$/.test(src) || /^y:/.test(src) || /^s:/.test(src)) v = part(src);
     else if (/^m:/.test(src)) { const ps = src.slice(2).split('+').map((x) => { const i = x.lastIndexOf('*'); return { tok: x.slice(0, i), g: +x.slice(i + 1), q: part(x.slice(0, i)) }; });
       ps.forEach((x) => { if (!x.q) E(id, 'komponent topilmadi ' + x.tok); if (!(x.g > 0)) E(id, 'gramm ' + x.tok); });
       if (ps.every((x) => x.q && x.g > 0)) { const G = ps.reduce((a, x) => a + x.g, 0), s = (k) => ps.reduce((a, x) => a + x.q[k] * x.g / 100, 0) / G * 100; v = { kcal: s('kcal'), p: s('p'), f: s('f'), c: s('c') }; } }
     else E(id, 'manba formati ' + src);
     if (!v) { if (!/^m:/.test(src)) E(id, 'manba topilmadi ' + src); continue; }
-    const atw = 4 * v.p + 4 * v.c + 9 * v.f; if (Math.abs(atw - v.kcal) > Math.max(10, v.kcal * 0.15) && !/^(aroq|konyak|vino|pivo)/.test(id)) E(id, 'makro ' + Math.round(atw) + ' ≠ ' + Math.round(v.kcal));
+    const atw = 4 * v.p + 4 * v.c + 9 * v.f; if (Math.abs(atw - v.kcal) > Math.max(10, v.kcal * 0.15) && !/^(aroq|konyak|vino|pivo)/.test(id) && !(require('./baza-mantiq-istisno.js').c || {})[id]) E(id, 'makro ' + Math.round(atw) + ' ≠ ' + Math.round(v.kcal));
     us.forEach(([u, g]) => { if (v.kcal * g / 100 > 1500) E(id, 'porsiya > 1500 kkal ' + u); });
     const nm = nu + ' ' + id;
     if (t === 'o' && SHORVA.test(nm) && us.some(([u]) => u !== 'kosa' && u !== 'qoshiq')) E(id, "sho'rva — faqat kosa");

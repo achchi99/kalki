@@ -6,6 +6,7 @@ No logos, no brand names, no packaging text, no other text, no hands, no people,
 Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
 Keep the icons in exactly this order (left to right, top to bottom):
 ---
+v87-mimoza — dish, one portion in a bowl (kosa) or plate: Салат «Мимоза» (Mimoza salati (baliqli)), realistic single serving, top-down three-quarter view, no text.
 v87-bahor-salati — dish, one portion in a bowl (kosa) or plate: Весенний салат (огурец, редис, яйцо, сметана) (Bahor salati (bodring, rediska, tuxum, smetana)), realistic single serving, top-down three-quarter view, no text.
 v87-olivye-tovuq — dish, one portion in a bowl (kosa) or plate: Оливье с курицей (Olivye salati (tovuqli)), realistic single serving, top-down three-quarter view, no text.
 v87-mujskoy-kapriz — dish, one portion in a bowl (kosa) or plate: Салат «Мужской каприз» (Mujskoy kapriz salati (mol go'shti, pishloq)), realistic single serving, top-down three-quarter view, no text.
@@ -47,4 +48,3 @@ v87-trubochka-krem — dessert or sweet: Трубочка слоёная с кр
 v87-korzinochka — dessert or sweet: Пирожное «Корзиночка» с кремом (Korzinochka (kremli savatcha pirojnoe)), realistic single serving, top-down three-quarter view, no text.
 v87-rogalik — dessert or sweet: Рогалик с повидлом (Rogalik (murabboli)), realistic single serving, top-down three-quarter view, no text.
 v87-makarons — dessert or sweet: Макарон (миндальное пирожное) (Makarons (fransuzcha bodomli pirojnoe)), realistic single serving, top-down three-quarter view, no text.
-v87-panna-kotta — dessert or sweet: Панна-котта (Panna kotta), realistic single serving, top-down three-quarter view, no text.

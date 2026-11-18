@@ -64,4 +64,13 @@ assert.equal(Math.round(S.adCalc({ sh: 2 }, 1).kcal), 33); assert.equal(Math.rou
 assert.deepEqual(S.adClean({ sh: 7, as: 1, xx: 1, su: 0 }), { sh: 3, as: 1 }); assert.equal(S.adClean({}), null); assert.equal(S.adText({ sh: 2, su: 1 }, 'uz'), '2 q. shakar, sut'); assert.equal(S.adText({ nv: 1, li: 1, mu: 1 }, 'ru'), 'нават, лимон, варенье');
 assert.ok(S.adOk(by.choy) && S.adOk(by.kofe) && S.adOk(by['kapuchino-kafe']) && !S.adOk(by.osh) && !S.adOk(by.kola || by['coca-cola']) && !S.adOk(by['limonad-malina']), 'qo\'shimcha faqat choy/qahvada');
 log('qo\'shimchalar: 2 q. shakar +33, asal +21, sut +18 (porsiya boshiga), tozalash va matn; faqat choy/qahva');
+/* 11. v87 tuzatish: milliy/MDH taomlar — RETSEPT HISOBI (USDA'da tayyor taom yo'q), noto'g'ri almashtirishlar tuzatilgan, USDA'da yo'qlar — Скурихин/yorliq */
+const RA = require(path.join(ROOT, 'tools/retsept-hisob.js')).all(); assert.ok(Object.keys(RA).length >= 90, 'retseptlar: ' + Object.keys(RA).length);
+for (const id of Object.keys(RA)) { assert.ok(by[id], id + ' bazada'); assert.match(J.foods.find((f) => f.i === id).m, /^Retsept hisobi: /, id + ': manba belgisi'); }
+for (const id of ['mastava-qoy', 'moshxorda-qatiq', 'mosh-shurva', 'umoch-oshi', 'goja-oshi', 'atala', 'kifta-shurva', 'qaynatma-shurva', 'piyova', 'shirchoy-tuzli', 'lagmon-mol-uy', 'borsh-kafe', 'shchi', 'solyanka-kafe', 'rassolnik', 'xarcho', 'okroshka-kvas', 'ayron-yalpiz', 'kompot-olcha']) assert.ok(RA[id], id + ': standart retsept bor');
+const MS = (id) => J.foods.find((f) => f.i === id).m; assert.match(MS('okroshka-kvas'), /s:kvas/, 'okroshka: Скурихин kvasi'); assert.doesNotMatch(MS('okroshka-kvas'), /174863/, 'solod ichimligi emas');
+for (const id of ['matcha', 'matcha-latte', 'ays-matcha-latte']) assert.match(MS(id), /y:matcha-kukun/, id + ': matcha kukuni yorlig\'i'); assert.doesNotMatch(MS('matcha'), /173230/);
+for (const [id, re] of [['fresh-olma', /Сок яблочный/], ['fresh-anor', /Сок гранатовый/], ['fresh-sabzi', /Морковный сок/], ['fresh-apelsin', /USDA FDC 169098/], ['dolana', /Боярышник/], ['qizilcha', /Кизил/], ['suluguni', /Сулугуни/], ['vafli-shakarsiz', /Yorliq: .*8410376059366/]]) assert.match(MS(id), re, id + ': ' + MS(id));
+assert.ok(!by['pishloq-yumshoq'].a.some((x) => /sulug/i.test(x)), 'sulugun — alohida taom, brinza sinonimi emas'); assert.ok(!by['sabzi-sharbat'].a.some((x) => /fresh|siqilgan/i.test(x)), 'qadoqlangan sharbatda «yangi siqilgan» yo\'q');
+log('v87 tuzatish: ' + Object.keys(RA).length + ' ta standart retsept («Retsept hisobi»), kvas/matcha/fresh manbasi to\'g\'ri, do\'lana/qizilcha/sulugun/vafli — Скурихин va yorliq');
 console.log('\nbaza-mantiq: ' + n + ' tekshiruv o\'tdi');

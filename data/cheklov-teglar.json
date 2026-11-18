@@ -146,6 +146,7 @@
   "baliq-shurva": [
    "baliq"
   ],
+  "balzamik": [],
   "bamiya": [],
   "banan": [],
   "banan-chips": [],
@@ -430,6 +431,7 @@
   ],
   "dimlama": [],
   "dimlama-tovuq": [],
+  "dolana": [],
   "dolchinli-choy": [],
   "dolma": [],
   "dolma#karam": [],
@@ -525,6 +527,7 @@
   "fresh-apelsin-sabzi": [],
   "fresh-greypfrut": [],
   "fresh-olma": [],
+  "fresh-sabzi": [],
   "frikadelli-shurva": [
    "glyuten"
   ],
@@ -2009,6 +2012,7 @@
    "baliq"
   ],
   "qizil-karam": [],
+  "qizilcha": [],
   "qoqi": [],
   "qorin": [],
   "qovoq": [],
@@ -2543,6 +2547,9 @@
   "suli-xom": [
    "glyuten"
   ],
+  "suluguni": [
+   "sut"
+  ],
   "sumalak": [
    "glyuten"
   ],
@@ -2976,6 +2983,7 @@
    "sut",
    "yongoq"
   ],
+  "tomat-pasta": [],
   "tort": [
    "tuxum",
    "sut",
@@ -3372,6 +3380,10 @@
   ],
   "vafli-belgiya": [
    "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "vafli-shakarsiz": [
    "sut",
    "glyuten"
   ],

@@ -840,6 +840,26 @@
    "p": 79,
    "f": 4.2,
    "c": 5.6
+  },
+  "matcha-kukun": {
+   "nom": "Matcha Green Tea Powder Grade A",
+   "brand": "Renée Voltaire",
+   "code": "7340130501200",
+   "qadoq": "yorliq: 100 g uchun (EU, kletchatka alohida)",
+   "k": 315,
+   "p": 32,
+   "f": 0.6,
+   "c": 31
+  },
+  "vafli-shakarsiz": {
+   "nom": "Gullón Zero wafer vanilla (shakarsiz, poliollar bilan)",
+   "brand": "Gullón",
+   "code": "8410376059366",
+   "qadoq": "yorliq: 100 g uchun",
+   "k": 432,
+   "p": 3,
+   "f": 22,
+   "c": 63
   }
  }
 }

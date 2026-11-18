@@ -16,6 +16,7 @@ v87-milksheyk-karamel — drink, served in a typical glass or cup: Милкше�
 v87-fresh-apelsin — drink, served in a typical glass or cup: Апельсиновый фреш (свежевыжатый) (Apelsin fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.
 v87-fresh-olma — drink, served in a typical glass or cup: Яблочный фреш (свежевыжатый) (Olma fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.
 v87-fresh-anor — drink, served in a typical glass or cup: Гранатовый фреш (свежевыжатый) (Anor fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.
+v87-fresh-sabzi — drink, served in a typical glass or cup: Морковный фреш (свежевыжатый) (Sabzi fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.
 v87-fresh-greypfrut — drink, served in a typical glass or cup: Грейпфрутовый фреш (свежевыжатый) (Greypfrut fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.
 v87-fresh-apelsin-sabzi — drink, served in a typical glass or cup: Фреш апельсин-морковь (Apelsin-sabzi fresh (yangi siqilgan)), realistic single serving, top-down three-quarter view, no text.
 v87-kompot-quruq-shakarsiz — drink, served in a typical glass or cup: Компот из сухофруктов (без сахара) (Quruq meva kompoti (shakarsiz)), realistic single serving, top-down three-quarter view, no text.
@@ -47,4 +48,3 @@ v87-tovuq-lapsha-uy — dish, one portion in a bowl (kosa) or plate: Курин�
 v87-tovuq-guruch-shurva — dish, one portion in a bowl (kosa) or plate: Куриный суп с рисом (Tovuqli guruch sho'rva), realistic single serving, top-down three-quarter view, no text.
 v87-borsh-kafe — dish, one portion in a bowl (kosa) or plate: Борщ (кафе, со сметаной) (Borsh (kafe, smetana bilan)), realistic single serving, top-down three-quarter view, no text.
 v87-yashil-borsh — dish, one portion in a bowl (kosa) or plate: Зелёный борщ (щавелевый) (Yashil borsh (shovul, tuxumli)), realistic single serving, top-down three-quarter view, no text.
-v87-shchi — dish, one portion in a bowl (kosa) or plate: Щи из свежей капусты (Shchi (yangi karamli)), realistic single serving, top-down three-quarter view, no text.

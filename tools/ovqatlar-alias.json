@@ -491,8 +491,7 @@
   "brinza",
   "брынза",
   "bryndza",
-  "feta",
-  "suluguni"
+  "feta"
  ],
  "tvorog5": [
   "tvorog",
@@ -1381,16 +1380,7 @@
   "musli",
   "мюсли"
  ],
- "sabzi-sharbat": [
-  "Sabzi fresh (yangi siqilgan)",
-  "Морковный фреш (свежевыжатый)",
-  "sabzi fresh",
-  "sabzi freshi",
-  "yangi siqilgan sabzi",
-  "морковный фреш",
-  "свежевыжатый морковный сок",
-  "фреш морковь"
- ],
+ "sabzi-sharbat": [],
  "espresso": [
   "Doppio (qo'sh espresso)",
   "Доппио (двойной эспрессо)",
