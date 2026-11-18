@@ -830,6 +830,50 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     }
     return null;
   }
+  /* ---------- v88: OVQAT ESLATMALARI (sof mantiq; Android — lokal bildirishnoma, veb — tools/push-yubor.js --eslatma xuddi shu qoidalar bilan)
+   * prefs.rem = { on, m: { b|l|s|d: { on, t (daqiqa, 0–1439) } }, sp: 1 — siyrak (faqat kechki), log: { 'YYYY-MM-DD': { s: yuborilgan soni, c: 1 — bosilgan } }, ask, … }
+   * Qoidalar: shu ovqat yozilgan bo'lsa — eslatma yo'q; kechki eslatma o'tkazib yuborilgan ovqatni eslatadi; kuniga ≤ 3 ta;
+   *           3 kun ketma-ket birorta ham bosilmasa — siyrak (kuniga 1 ta, kechki). */
+  var REM_MEALS = ['b', 'l', 's', 'd'], REM_DEF = { b: 510, l: 810, s: 990, d: 1170 }, REM_MAX = 3, REM_SPARSE = 3, REM_PRI = ['d', 'b', 'l', 's'];
+  function remCfg(r) {
+    r = r && typeof r === 'object' ? r : {}; var m = {};
+    REM_MEALS.forEach(function (k) { var x = (r.m && r.m[k]) || {}, t = Math.round(+x.t); m[k] = { on: x.on != null ? !!x.on : k !== 's', t: t >= 0 && t < 1440 ? t : REM_DEF[k] }; });
+    return { on: !!r.on, m: m, sparse: !!r.sp };
+  }
+  function remLogged(st, d, meal) { var x = dayOf(st, d); return !!(x && x.food && x.food.some(function (e) { return e.meal === meal; })); }
+  function remMiss(st, d, cfg) { var miss = null; ['b', 'l', 's'].forEach(function (k) { if (cfg.m[k].on && !remLogged(st, d, k)) miss = k; }); return miss; }          // oxirgi o'tkazib yuborilgan (kechki eslatmada)
+  function remDay(st, d, cfg, nowMin, isToday) {      // → [{ meal, min, kind: 'm' (shu ovqat) | 'x' (o'tkazib yuborilgan), miss }] — vaqt bo'yicha
+    if (!cfg.on) return []; var on = REM_MEALS.filter(function (k) { return cfg.m[k].on; });
+    if (cfg.sparse) { var ev = cfg.m.d.on ? 'd' : on.slice().sort(function (a, b) { return cfg.m[b].t - cfg.m[a].t; })[0]; on = ev ? [ev] : []; }
+    on = REM_PRI.filter(function (k) { return on.indexOf(k) >= 0; }).slice(0, REM_MAX);          // kuniga ≤ 3: kechki va asosiy ovqatlar ustun, tamaddi oxirida
+    var out = [];
+    on.forEach(function (k) {
+      var it = { meal: k, min: cfg.m[k].t, kind: 'm', miss: null };
+      if (isToday) {
+        if (it.min <= nowMin) return;
+        if (k === 'd' || cfg.sparse) { var ms = remMiss(st, d, cfg); if (ms) { it.kind = 'x'; it.miss = ms; } else if (remLogged(st, d, k)) return; }
+        else if (remLogged(st, d, k)) return;
+      }
+      out.push(it);
+    });
+    return out.sort(function (a, b) { return a.min - b.min; });
+  }
+  function remPlan(st, cfg, now, days) {             // keyingi n kun (bugun ham) uchun aniq vaqtlar (qurilma vaqt mintaqasi)
+    var t0 = new Date(now), today = D.ymd(t0.getFullYear(), t0.getMonth() + 1, t0.getDate()), nowMin = t0.getHours() * 60 + t0.getMinutes(), out = [];
+    for (var i = 0; i < (days || 7); i++) {
+      var d = D.addDays(today, i), p = D.parse(d);
+      remDay(st, d, cfg, nowMin, i === 0).forEach(function (it, j) { out.push({ date: d, meal: it.meal, kind: it.kind, miss: it.miss, at: new Date(p.y, p.m - 1, p.d, Math.floor(it.min / 60), it.min % 60, 0, 0).getTime(), n: D.daysBetween('2024-01-01', d) + j }); });
+    }
+    return out;
+  }
+  function remSparseDue(log, today) {                 // oldingi 3 kunning har birida eslatma yuborilgan va birortasi bosilmagan
+    log = log || {}; for (var i = 1; i <= REM_SPARSE; i++) { var x = log[D.addDays(today, -i)]; if (!x || !(x.s > 0) || x.c) return false; } return true;
+  }
+  function remText(tx, lang, it) {                    // tx — data/eslatmalar.json; → { t, b }
+    var L = lang === 'ru' ? 'ru' : 'uz', list = tx.matn[L][it.kind === 'x' ? 'x' : it.meal], b = list[Math.abs(it.n || 0) % list.length];
+    if (it.kind === 'x') { var nm = tx.ovqat[L][it.miss] || ''; b = b.replace('{m}', nm).replace('{M}', nm.charAt(0).toUpperCase() + nm.slice(1)); }
+    return { t: tx.sarlavha[L], b: b };
+  }
   function famVariant(f, sel, sz) {                      // oila + tanlov → oddiy taom ko'rinishi (k,p,f,c,u,e) — mavjud kod (portion/unitGrams) shu bilan ishlaydi
     var fm = f.fam; if (!fm) return f; var vr = famKey(f, sel), g = fm.g[vr] || fm.g[famKey(f, null)], o = {}, k;
     for (k in f) o[k] = f[k];
@@ -1033,6 +1077,6 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayPlan: dayPlan, bestStreak: bestStreak, streakWeek: streakWeek, monthSummary: monthSummary, limShift: limShift, setAe: setAe, setDev: setDev, aeBase: aeBase, devTotal: devTotal, AE_MAX: AE_MAX, STEPS_SANE: STEPS_SANE, dayBal: dayBal, dayFrac: dayFrac, parseEx: parseEx, EX: EX, EX_ORDER: EX_ORDER, exNet: exNet, walkNet: walkNet, addEx: addEx, shotKcal: shotKcal, restKcal: restKcal, exDup: exDup, exExtra: exExtra, EX_XK: EX_XK, updEx: updEx, removeEx: removeEx, restoreEx: restoreEx, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
-    migrate: migrate, famKey: famKey, sameState: sameState, stamp: stamp, stampReset: stampReset, mergeStates: mergeStates, countState: countState, ptSplit: ptSplit, respace: respace, kbVariants: kbVariants, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, ADDON: ADDON, ADDON_K: ADDON_K, adOk: adOk, adClean: adClean, adCalc: adCalc, adText: adText, bixil: bixil, BX_SKIP: BX_SKIP, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
+    migrate: migrate, famKey: famKey, sameState: sameState, stamp: stamp, stampReset: stampReset, mergeStates: mergeStates, countState: countState, ptSplit: ptSplit, respace: respace, kbVariants: kbVariants, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, ADDON: ADDON, ADDON_K: ADDON_K, adOk: adOk, adClean: adClean, adCalc: adCalc, adText: adText, bixil: bixil, REM_MEALS: REM_MEALS, REM_DEF: REM_DEF, remCfg: remCfg, remLogged: remLogged, remMiss: remMiss, remDay: remDay, remPlan: remPlan, remSparseDue: remSparseDue, remText: remText, BX_SKIP: BX_SKIP, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });

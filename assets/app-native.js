@@ -1,7 +1,7 @@
 /* kalki.uz — KalkiFit Android ilovasi (Capacitor qobiq) bilan ko'prik. window.KalkiNative:
  *   isApp() / platform() / isAndroidBrowser()   — aniqlash (isAndroidBrowser: Android brauzerida, ilova ICHIDA EMAS — «yuklab olish» qatori uchun)
  *   has(plugin)                                 — native plugin bormi (Capacitor.PluginHeaders)
- *   notif.perm() / notif.enable(o) / notif.disable() / notif.onTap(cb)   — «Baliq kuni» haftalik LOKAL bildirishnomasi (@capacitor/local-notifications)
+ *   notif.perm() / notif.enable(o) / notif.disable() / notif.onTap(cb) / notif.at(list) · cancel(ids) · askPerm() · onTapRange(cb, lo, hi) — v88 ovqat eslatmalari   — «Baliq kuni» haftalik LOKAL bildirishnomasi (@capacitor/local-notifications)
  *   pickPhoto(labels)                           — (eski) kamera yoki galereya (@capacitor/camera, native PROMPT oynasi) → Promise<File|null>
  *   pickPhotoFrom('PHOTOS'|'CAMERA')            — tanlangan manba (native oyna YO'Q; sayt o'z tanlov oynasini ko'rsatadi) → Promise<{file}|{cancel:true}|{error:'camera'|'other', message}>
  *   openUrl(url)                                — tashqi brauzer yoki tegishli ilova (Uzum Tezkor, Yandex Eda…) (@capacitor/app-launcher)
@@ -56,6 +56,12 @@
       },
       disable: function (id) { if (!N.notif.ok()) return Promise.resolve(); return call('LocalNotifications', 'cancel', { notifications: [{ id: +id || NOTIF_ID }] }).catch(function () {}); },
       pending: function () { if (!N.notif.ok()) return Promise.resolve([]); return call('LocalNotifications', 'getPending').then(function (r) { return (r && r.notifications) || []; }, function () { return []; }); },
+      /* v88: OVQAT ESLATMALARI — bir martalik (aniq vaqt) lokal bildirishnomalar; plagin qayta yuklashdan keyin o'zi tiklaydi (BOOT_COMPLETED). list = [{ id, at (ms), title, body, extra }] */
+      at: function (list) { if (!N.notif.ok() || !list || !list.length) return Promise.resolve(); return call('LocalNotifications', 'schedule', { notifications: list.map(function (o) { return { id: +o.id, title: String(o.title || 'KalkiFit').slice(0, 60), body: String(o.body || '').slice(0, 200), smallIcon: 'ic_stat_kalkifit', iconColor: '#E8572F', extra: o.extra || {}, schedule: { at: new Date(o.at), allowWhileIdle: true } }; }) }); },
+      cancel: function (ids) { if (!N.notif.ok() || !ids || !ids.length) return Promise.resolve(); return call('LocalNotifications', 'cancel', { notifications: ids.map(function (i) { return { id: +i }; }) }).catch(function () {}); },
+      checkPerm: function () { return N.notif.perm(); },
+      askPerm: function () { if (!N.notif.ok()) return Promise.resolve('na'); return call('LocalNotifications', 'requestPermissions').then(function (r) { return (r && r.display) || 'denied'; }, function () { return 'denied'; }); },
+      onTapRange: function (cb, lo, hi) { var c = cap(); if (!N.notif.ok() || !c || typeof c.addListener !== 'function') return; try { c.addListener('LocalNotifications', 'localNotificationActionPerformed', function (e) { var n = e && e.notification; if (n && +n.id >= lo && +n.id <= hi) cb(n.extra || {}, +n.id); }); } catch (e) {} },
       onTap: function (cb, id) { var c = cap(), want = +id || NOTIF_ID; if (!N.notif.ok() || !c || typeof c.addListener !== 'function') return; try { c.addListener('LocalNotifications', 'localNotificationActionPerformed', function (e) { var n = e && e.notification; if (n && +n.id === want) cb(n.extra || {}); }); } catch (e) {} }
     },
     /* ---------- rasm: kamera yoki galereya ---------- */

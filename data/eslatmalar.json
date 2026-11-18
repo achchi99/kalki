@@ -1,0 +1,101 @@
+{
+ "izoh": "KalkiFit ovqat eslatmalari (v88): matnlar — ilova (Android lokal bildirishnoma) va tools/push-yubor.js --eslatma (veb-push) shu fayldan o'qiydi. ЎЗ — uz matnining translit'i. Har ovqatga 5 variant; kun raqami bo'yicha aylanadi (har kuni boshqacha). {m} — o'tkazib yuborilgan ovqat(lar) nomi.",
+ "sarlavha": {
+  "uz": "KalkiFit",
+  "ru": "KalkiFit"
+ },
+ "ovqat": {
+  "uz": {
+   "b": "nonushta",
+   "l": "tushlik",
+   "s": "tamaddi",
+   "d": "kechki ovqat"
+  },
+  "ru": {
+   "b": "завтрак",
+   "l": "обед",
+   "s": "перекус",
+   "d": "ужин"
+  }
+ },
+ "va": {
+  "uz": " va ",
+  "ru": " и "
+ },
+ "matn": {
+  "uz": {
+   "b": [
+    "Nonushta qildingizmi? Bir bosishda yozib qo'ying",
+    "Nonushtani hozir yozsangiz, kechqurun eslab o'tirmaysiz",
+    "Xayrli tong! Nonushta 10 soniyada yoziladi",
+    "Choy-non bo'lsa ham yozing — kun aniqroq chiqadi",
+    "Nonushtani yozamizmi? Kecha kabi bo'lsa — bir bosish"
+   ],
+   "l": [
+    "Tushlik qanday o'tdi? Yozib qo'yamizmi?",
+    "Tushlikni hozir yozing — keyin eslash qiyin",
+    "Tushlik 10 soniyada yoziladi",
+    "Osh bo'ldimi, sho'rvami? Tushlikni yozing",
+    "Tushlikdan keyin bir bosish: yozib qo'ying"
+   ],
+   "s": [
+    "Tamaddi qildingizmi? Yozib qo'ying",
+    "Kichik tamaddi ham hisobga kiradi — yozamizmi?",
+    "Choy, meva, pechenye? Tamaddini yozing",
+    "Tamaddi 10 soniyada yoziladi",
+    "Tamaddini yozib qo'yamizmi?"
+   ],
+   "d": [
+    "Kechki ovqatni yozamizmi?",
+    "Kun yakunlanmoqda — kechki ovqatni yozing",
+    "Kechki ovqat 10 soniyada yoziladi",
+    "Bugungi kunni to'ldiramizmi? Kechki ovqatni yozing",
+    "Kechki ovqatni yozing — kun hisobi tayyor bo'ladi"
+   ],
+   "x": [
+    "Bugun {m} yozilmagan — 10 soniyada qo'shamizmi?",
+    "{M} yozilmay qoldi. Hozir qo'shamizmi?",
+    "Kun to'liq bo'lsin: {m} ham yozilsin",
+    "{M} esingizdami? Bir bosishda yozing",
+    "Bugungi {m} hali yo'q — qo'shib qo'yamizmi?"
+   ]
+  },
+  "ru": {
+   "b": [
+    "Позавтракали? Запишите в одно касание",
+    "Запишите завтрак сейчас — вечером не придётся вспоминать",
+    "Доброе утро! Завтрак записывается за 10 секунд",
+    "Даже чай с лепёшкой — запишите, день будет точнее",
+    "Запишем завтрак? Если как вчера — одно касание"
+   ],
+   "l": [
+    "Как прошёл обед? Запишем?",
+    "Запишите обед сейчас — потом вспомнить сложнее",
+    "Обед записывается за 10 секунд",
+    "Плов или шурпа? Запишите обед",
+    "После обеда — одно касание: запишите"
+   ],
+   "s": [
+    "Был перекус? Запишите",
+    "Небольшой перекус тоже считается — запишем?",
+    "Чай, фрукт, печенье? Запишите перекус",
+    "Перекус записывается за 10 секунд",
+    "Запишем перекус?"
+   ],
+   "d": [
+    "Запишем ужин?",
+    "День подходит к концу — запишите ужин",
+    "Ужин записывается за 10 секунд",
+    "Дополним сегодняшний день? Запишите ужин",
+    "Запишите ужин — итог дня будет готов"
+   ],
+   "x": [
+    "Сегодня не записан {m} — добавим за 10 секунд?",
+    "{M} так и не записан. Добавим сейчас?",
+    "Пусть день будет полным: запишите {m}",
+    "Не забыли про {m}? Одно касание",
+    "Сегодня {m} ещё нет — добавим?"
+   ]
+  }
+ }
+}

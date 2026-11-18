@@ -2026,3 +2026,9 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 /* v87: bir xillik maslahati kartasi (Bugun, yagona karta o'rnida) va choy/qahva qo'shimchalari */
 .sl-bx{position:relative;padding:14px 44px 10px 14px}.sl-bxx{position:absolute;top:4px;right:4px}.sl-bxt{margin:0 0 10px;font-weight:700;line-height:1.4}.sl-bxc{margin-bottom:4px}.sl-bxoff{font-size:.82rem;opacity:.75;min-height:44px}
 .sl-ad .rz-chip small{opacity:.7;font-weight:600}
+/* v88: ovqat eslatmalari — Profil → Eslatmalar (har ovqat: nom · vaqt · switch), siyrak holati, taklif kartasi, qo'shish oynasidagi chiplar */
+.sl-remml{display:flex;flex-direction:column;gap:2px;padding:0 0 4px 44px}.sl-remmr{display:flex;align-items:center;gap:10px;min-height:48px}.sl-remmr .n{flex:1;font-weight:600}.sl-remmr.off .n,.sl-remmr.off .sl-remt{opacity:.5}
+.sl-remt{font:inherit;font-weight:700;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-height:44px;min-width:96px}
+.sl-rems{display:flex;flex-direction:column;gap:4px;margin:4px 0 8px 44px;padding:10px 12px;border-radius:12px;background:var(--soft)}.sl-rems small{color:var(--mut)}.sl-rems .rz-btn{align-self:flex-start;margin-top:4px}
+.sl-remnote{margin:2px 0 6px 44px}.sl-remoff b{display:block;font-size:1.05rem}.kq-remc{margin:4px 0 8px}
+.kq-remc .rz-chip{display:inline-flex;align-items:center;gap:6px}.kq-remc .rz-chip .rz-i,.kq-remc .rz-chip svg{width:18px;height:18px;flex:0 0 auto}

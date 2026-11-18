@@ -3,6 +3,7 @@
  "hex": [],
  "rangliSelektorlar": [
   ".sl-tile",
+  ".sl-bkfix",
   ".sl-main",
   ".sl-week7 .wd.on",
   ".sl-seg4 button.on",

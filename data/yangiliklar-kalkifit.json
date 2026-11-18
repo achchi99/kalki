@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 88,
+   "d": "2026-11-18",
+   "bn": {
+    "uz": "Ovqat vaqtida eslatma",
+    "ru": "Напоминание во время еды"
+   },
+   "items": [
+    {
+     "uz": "Profil → Eslatmalar: nonushta, tushlik va kechki ovqat vaqtida qisqa eslatma. Yozilgan ovqatga kelmaydi",
+     "ru": "Профиль → Напоминания: короткое напоминание в завтрак, обед и ужин. Для записанной еды не приходит"
+    },
+    {
+     "uz": "Eslatmani bossangiz — darrov yozish oynasi ochiladi, «Kecha kabi» bir bosishda",
+     "ru": "Нажмите на напоминание — сразу откроется запись, «Как вчера» в одно касание"
+    }
+   ]
+  },
+  {
    "v": 87,
    "d": "2026-11-17",
    "bn": {

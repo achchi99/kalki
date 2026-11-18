@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '1879f768';   /* sw-version:auto */
+const SW_VERSION = '0bffb3f7';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -488,10 +488,10 @@ self.addEventListener('push', (e) => {
 self.addEventListener('notificationclick', (e) => {
   e.notification.close(); const u = (e.notification.data && e.notification.data.u) || '/kalkifit';
   e.waitUntil((async () => {
-    const k = /[?&]hafta=1\b/.test(u) ? 'hafta' : 'baliq';          // «Haftangiz xulosasi tayyor» yoki «Baliq kuni»
-    try { const c = await caches.open(PENDING); await c.put('/__pending/' + k, new Response(String(Date.now()))); } catch (_) { /* kesh yo'q — manzil parametri yetarli */ }
+    const em = /[?&]eslatma=([blsd])\b/.exec(u), k = em ? 'eslatma' : (/[?&]hafta=1\b/.test(u) ? 'hafta' : 'baliq');          // v88 «Ovqat eslatmasi» · «Haftangiz xulosasi tayyor» · «Baliq kuni»
+    try { const c = await caches.open(PENDING); await c.put('/__pending/' + k, new Response(String(Date.now()) + (em ? '|' + em[1] : ''))); } catch (_) { /* kesh yo'q — manzil parametri yetarli */ }
     const list = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-    for (const c of list) { if (/\/kalkifit/.test(c.url) && 'focus' in c) { await c.focus(); try { c.postMessage({ t: k }); } catch (_) { /* ilova keshdagi belgini o'zi o'qiydi */ } return; } }
+    for (const c of list) { if (/\/kalkifit/.test(c.url) && 'focus' in c) { await c.focus(); try { c.postMessage(em ? { t: k, m: em[1] } : { t: k }); } catch (_) { /* ilova keshdagi belgini o'zi o'qiydi */ } return; } }
     await self.clients.openWindow(u);
   })());
 });

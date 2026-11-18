@@ -88,6 +88,7 @@ export function makeStore(env) {
     async akkauntOchir(id, email) {
       await run('DELETE FROM akkaunt_ilova WHERE akkaunt_id = ?', id); await run('DELETE FROM sessiya WHERE akkaunt_id = ?', id); await run('DELETE FROM kirish_kodi WHERE email = ?', email); await run('DELETE FROM audit WHERE akkaunt_id = ?', id);
       try { await run('DELETE FROM shtrix_taklif_akk WHERE akkaunt_id = ?', id); } catch (e) {}          // v79: shtrix taklif ovozlari ham o'chadi
+      try { await run('DELETE FROM push_eslatma WHERE id IN (SELECT id FROM push_obuna WHERE akkaunt_id = ?)', id); } catch (e) {}          // v88: ovqat eslatmalari qatori (obuna bilan 1:1)
       try { await run('DELETE FROM push_obuna WHERE akkaunt_id = ?', id); } catch (e) {}          // v68+ MAXFIYLIK: eslatma obunasi ham o'chadi (akkaunt bog'lanishi qolmaydi); jadval bo'lmasa — o'tkazib yuboriladi
       return changes(await run('DELETE FROM akkaunt WHERE id = ?', id)) > 0;
     },

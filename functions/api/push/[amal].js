@@ -1,14 +1,17 @@
 /* kalki.uz — «Baliq kuni» eslatmasi: Web Push obunalari (D1 push_obuna). Yuborish bu yerda EMAS — Hetzner cron (tools/push-yubor.js).
  *   GET  /api/push/kalit               → { yoqilgan, kalit? }   (VAPID ochiq kalit; jadval yoki kalit yo'q bo'lsa yoqilgan:false — ilova taklif ko'rsatmaydi)
  *   POST /api/push/obuna  { obuna: PushSubscription.toJSON(), til, baliqsiz?: bool, kun?: 0..6, hafta?: bool }  → { ok, akkaunt }   (hafta — «Haftalik xulosa» eslatmasi, migrations/push-hafta.sql)   (akkaunt: sessiya cookie'si bo'lsa unga ulanadi — ixtiyoriy)
- *   POST /api/push/ochir  { endpoint } → { ok }
+ *   POST /api/push/ochir  { endpoint } → { ok }   (ovqat eslatmalari qatori ham o'chadi)
+ *   v88 «Ovqat eslatmalari» (migrations/push-eslatma.sql): POST /api/push/eslatma { endpoint, tz, jadval | ochir: true, toliq?: true (siyrakdan qaytarish) } → { ok, siyrak };
+ *     POST /api/push/yozildi { endpoint, kun, ovqat: b|l|s|d } → { ok } (faqat belgi — taom yo'q); POST /api/push/bosildi { endpoint, kun } → { ok }
  *   GET  /api/push/holat (X-Admin-Password) → { obunalar, akkaunt_bilan, til: {uz,cyr,ru}, oxirgi }   (admin: obuna soni va oxirgi yuborish natijasi)
  * Xavfsizlik: POST faqat Origin tekshiruvi + application/json; endpoint faqat ma'lum push xizmatlari (SSRF yo'q); IP boshiga soatiga 20 ta obuna (KV). Secret'lar: VAPID_PUBLIC_KEY (ochiq),
  * VAPID_PRIVATE_KEY/VAPID_SUBJECT (shu yerda ishlatilmaydi), KALKIFIT_ADMIN_PASSWORD. Migratsiya: migrations/push.sql. */
 import { originOk, json } from '../ariza.js';
 import { adminAuth } from '../../_lib/admin-auth.js';
+import { BIT, jadvalTekshir, mahalliy, yangiKun } from '../../_lib/eslatma-qoida.js';
 
-const METOD = { kalit: 'GET', obuna: 'POST', ochir: 'POST', holat: 'GET' };
+const METOD = { kalit: 'GET', obuna: 'POST', ochir: 'POST', holat: 'GET', eslatma: 'POST', yozildi: 'POST', bosildi: 'POST' };
 const E = { 400: "So'rov noto'g'ri.", 401: "Parol noto'g'ri.", 403: "Ruxsat yo'q.", 404: 'Topilmadi.', 405: "Usul noto'g'ri.", 415: 'JSON yuboring.', 429: "Juda ko'p urinish. Keyinroq.", 503: 'Sozlanmagan.' };
 const NC = { 'Cache-Control': 'no-store' };
 const fail = (s) => json(s, { xato: E[s] || 'Xato.' }, NC);
@@ -66,8 +69,31 @@ export async function onRequest({ request, env, params }) {
     if (typeof b.hafta === 'boolean') { try { await db.prepare('UPDATE push_obuna SET hafta = ? WHERE id = ?').bind(b.hafta ? 1 : 0, id).run(); } catch (e) { /* ustun yo'q (migrations/push-hafta.sql yurgizilmagan) — e'tiborsiz */ } }          // «Haftalik xulosa» eslatmasi (Profil)
     return json(200, { ok: true, akkaunt: !!akk }, NC);
   }
+  if (amal === 'eslatma' || amal === 'yozildi' || amal === 'bosildi') {          // v88: obuna egasi (endpoint'ni biladigan brauzer) o'z eslatmasini boshqaradi
+    if (typeof b.endpoint !== 'string' || !ENDPOINT_RE.test(b.endpoint)) return fail(400);
+    const id = await sha(b.endpoint), now = Date.now();
+    try {
+      if (!(await db.prepare('SELECT id FROM push_obuna WHERE id = ?').bind(id).first())) return fail(404);
+      let row = await db.prepare('SELECT * FROM push_eslatma WHERE id = ?').bind(id).first();
+      if (amal === 'eslatma') {
+        if (b.ochir === true) { await db.prepare('DELETE FROM push_eslatma WHERE id = ?').bind(id).run(); return json(200, { ok: true, siyrak: 0 }, NC); }
+        const jd = jadvalTekshir(b.jadval), tz = Math.round(+b.tz); if (!jd || !Number.isFinite(tz) || tz < -720 || tz > 840) return fail(400);
+        const siy = b.toliq === true ? 0 : (row ? row.siyrak : 0), bm = b.toliq === true ? 0 : (row ? row.bosilmagan : 0);
+        await db.prepare('INSERT INTO push_eslatma (id, tz, jadval, siyrak, bosilmagan, yangilangan) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET tz = excluded.tz, jadval = excluded.jadval, siyrak = excluded.siyrak, bosilmagan = excluded.bosilmagan, yangilangan = excluded.yangilangan').bind(id, tz, jd, siy, bm, now).run();
+        return json(200, { ok: true, siyrak: siy }, NC);
+      }
+      if (!row) return json(200, { ok: false }, NC);
+      const kun = typeof b.kun === 'string' && /^\d{4}-\d\d-\d\d$/.test(b.kun) ? b.kun : null, L = mahalliy(now, row.tz);
+      if (!kun || kun !== L.kun) return json(200, { ok: false }, NC);          // faqat BUGUN (foydalanuvchi vaqt mintaqasida) — eski kunlar server uchun kerak emas
+      const r = yangiKun(row, L.kun).row;
+      if (amal === 'yozildi') { const bit = BIT[b.ovqat]; if (!bit) return fail(400); r.yozildi |= bit; }
+      else { r.bosildi = 1; r.bosilmagan = 0; }
+      await db.prepare('UPDATE push_eslatma SET kun = ?, yozildi = ?, ishlangan = ?, yuborildi = ?, bosildi = ?, bosilmagan = ?, siyrak = ?, yangilangan = ? WHERE id = ?').bind(r.kun, r.yozildi, r.ishlangan, r.yuborildi, r.bosildi, r.bosilmagan, r.siyrak, now, id).run();
+      return json(200, { ok: true, siyrak: r.siyrak }, NC);
+    } catch (e) { return fail(503); }
+  }
   /* ochir */
   if (typeof b.endpoint !== 'string' || !ENDPOINT_RE.test(b.endpoint)) return fail(400);
-  try { await db.prepare('DELETE FROM push_obuna WHERE id = ?').bind(await sha(b.endpoint)).run(); } catch (e) { return fail(503); }
+  try { const oid = await sha(b.endpoint); await db.prepare('DELETE FROM push_obuna WHERE id = ?').bind(oid).run(); try { await db.prepare('DELETE FROM push_eslatma WHERE id = ?').bind(oid).run(); } catch (e2) { /* jadval yo'q */ } } catch (e) { return fail(503); }
   return json(200, { ok: true }, NC);
 }
