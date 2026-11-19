@@ -151,10 +151,11 @@ const V2_LINKS = [
   ['hujjatlar', 'Hujjatlar', 'Документы', [
     ['hujjatlar', 'Hujjat generatorlari', 'Генератор документов'], ['shablonlar', 'Shablonlar', 'Шаблоны']]],
   ['blog', 'Maqolalar', 'Статьи', null],
+  ['kalkifit', 'KalkiFit', 'KalkiFit', null],          // kalki.uz → KalkiFit (data-kf="menyu": utm faqat bosilganda — assets/nav.js)
 ];
 const CHEV = '<svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg>';
 function v2A(href, uz, ru, active) {
-  return '<a href="' + href + '"' + (href === active ? ' class="tm-on" aria-current="page"' : '') + ' data-tm-uz="' + uz + '" data-tm-ru="' + ru + '">' + uz + '</a>';
+  return '<a href="' + href + '"' + (href === 'kalkifit' ? ' data-kf="menyu"' : '') + (href === active ? ' class="tm-on" aria-current="page"' : '') + ' data-tm-uz="' + uz + '" data-tm-ru="' + ru + '">' + uz + '</a>';
 }
 function headerV2Html(f) {
   const active = v2Active(f);

@@ -57,7 +57,7 @@ log('320/390/768/1280px: gorizontal toshish yo\'q; sarlavha bitta qator (<=64px)
 // 5. til almashtirish (RU) — menyu va kontent
 for (const u of PAGES) { const p = await pg(1280, 800); await go(p, u); await p.click('#langRu'); await p.waitForURL(/\/ru(\/|$)/, { timeout: 8000 }).catch(() => {}); await p.waitForTimeout(900);
   const t = await p.evaluate(() => [...document.querySelectorAll('#topmenu .tm2 > li > a')].map((a) => a.textContent.trim()));
-  assert.deepEqual(t, ['Калькуляторы', 'Документы', 'Статьи'], u + ' RU menyu: ' + t.join('|'));
+  assert.deepEqual(t, ['Калькуляторы', 'Документы', 'Статьи', 'KalkiFit'], u + ' RU menyu: ' + t.join('|'));
   assert.ok(await p.evaluate(() => document.documentElement.lang === 'ru')); }
 log('RU: menyu (Калькуляторы | Документы | Статьи) uchala sahifada tarjima qilinadi');
 
