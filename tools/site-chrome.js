@@ -113,6 +113,9 @@ const XNAV_LINKS = [
   ['marosim-kalkulyator', 'Marosim / Мероприятие'],
   ['maktab-kalkulyator', 'Maktab / Школа'],
   ['alkogol-kalkulyator', 'Alkogol / Алкоголь'],
+  ['suv-meyori-kalkulyator', "Suv me'yori / Норма воды"],
+  ['ideal-vazn-kalkulyator', 'Ideal vazn / Идеальный вес'],
+  ['tvi-kalkulyator', 'TVI / ИМТ'],
   ['tatil-puli-kalkulyator', 'Ta\'til puli / Компенсация за отпуск'],
   ['kasallik-varaqasi-kalkulyator', 'Kasallik varaqasi / Больничный лист'],
   ['dekret-puli-kalkulyator', 'Dekret puli / Декретные выплаты'],
@@ -191,7 +194,7 @@ const XN_GROUPS = [
   ['Moliya', 'Финансы', 'var(--cat-moliya)', ['oila-byudjet-kalkulyator', 'kredit-kalkulyator', 'naqd-nasiya-kredit-kalkulyator', 'kredit-limit-kalkulyator', 'ipoteka-kalkulyator', 'ipoteka-yoki-ijara-kalkulyator', 'ijara-stavkalari', 'omonat-kalkulyator', 'oylik-soliq-kalkulyator', 'qqs-kalkulyator', 'bojxona-kalkulyator']],
   ['Qurilish va yer', 'Стройка и земля', 'var(--cat-qurilish)', ['uy-qurish-kalkulyator', 'gisht-kalkulyator', 'beton-kalkulyator', 'tom-kalkulyator', 'remont-kalkulyator', 'yer-konvertor', 'chorva-kalkulyator']],
   ['Kommunal va avto', 'Коммуналка и авто', 'var(--cat-kommunal)', ['konditsioner-kalkulyator', 'yoqilgi-kalkulyator', 'quyosh-panel-kalkulyator', 'avto-xarajat-kalkulyator', 'elektr-xarajat-kalkulyator', 'gaz-xarajat-kalkulyator', 'avto-rasmiylashtirish']],
-  ['Kundalik hayot', 'Повседневная жизнь', 'var(--cat-hayot)', ['rozgor', 'kalkifit', 'dtm-kalkulyator', 'universitet-kontrakt-kalkulyator', 'grant-ololmadim', 'bola-puli-kalkulyator', 'kaloriya-kalkulyator', 'homiladorlik-kalkulyator', 'pensiya-kalkulyator', 'staj-kalkulyator', 'zakot-qurbonlik-kalkulyator', 'toy-kalkulyator', 'marosim-kalkulyator', 'maktab-kalkulyator', 'alkogol-kalkulyator']],
+  ['Kundalik hayot', 'Повседневная жизнь', 'var(--cat-hayot)', ['rozgor', 'kalkifit', 'dtm-kalkulyator', 'universitet-kontrakt-kalkulyator', 'grant-ololmadim', 'bola-puli-kalkulyator', 'kaloriya-kalkulyator', 'tvi-kalkulyator', 'ideal-vazn-kalkulyator', 'suv-meyori-kalkulyator', 'homiladorlik-kalkulyator', 'pensiya-kalkulyator', 'staj-kalkulyator', 'zakot-qurbonlik-kalkulyator', 'toy-kalkulyator', 'marosim-kalkulyator', 'maktab-kalkulyator', 'alkogol-kalkulyator']],
   ['Huquqiy', 'Юридические', 'var(--cat-huquqiy)', ['tatil-puli-kalkulyator', 'kasallik-varaqasi-kalkulyator', 'dekret-puli-kalkulyator', 'ishdan-boshatish-kompensatsiyasi-kalkulyator', 'aliment-kalkulyator', 'yhxx-jarima-kalkulyator']],
   ['Hujjatlar va maqolalar', 'Документы и статьи', 'var(--muted)', ['hisob-siyosati-generatori', 'tatil-arizasi-namunasi', 'moddiy-yordam-arizasi-namunasi', 'oquv-tatili-arizasi-namunasi', 'tolov-hisobi-namunasi', 'hujjatlar', 'shablonlar', 'blog']],
 ];
