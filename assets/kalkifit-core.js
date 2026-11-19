@@ -2,19 +2,19 @@
  * Sana funksiyalari (mahalliy kalendar, UTC'siz) — rozgor-core.js dan. Formulalar va qoidalar: docs/kalkifit.md.
  * Hamma natija "taxminiy hisob": tibbiy maslahat emas. */
 (function (root, factory) {
-  if (typeof module === 'object' && module.exports) { var api0 = factory(require('./rozgor-core.js')); try { var fs0 = require('fs'), p0 = require('path'); api0.setSuv(JSON.parse(fs0.readFileSync(p0.join(__dirname, '..', 'data', 'suv-ulush.json'), 'utf8'))); } catch (e) {} module.exports = api0; }       // Node (testlar): suv ulushi jadvali o'zi yuklanadi
-  else root.KalkiFit = factory(root.KalkiRozgor);
-})(typeof self !== 'undefined' ? self : this, function (D) {
+  if (typeof module === 'object' && module.exports) { var api0 = factory(require('./rozgor-core.js'), require('./meyor-core.js')); try { var fs0 = require('fs'), p0 = require('path'); api0.setSuv(JSON.parse(fs0.readFileSync(p0.join(__dirname, '..', 'data', 'suv-ulush.json'), 'utf8'))); } catch (e) {} module.exports = api0; }       // Node (testlar): suv ulushi jadvali o'zi yuklanadi
+  else root.KalkiFit = factory(root.KalkiRozgor, root.KalkiMeyor);
+})(typeof self !== 'undefined' ? self : this, function (D, M) {          // M — assets/meyor-core.js: kunlik me'yor formulasi (sayt kalkulyatorlari bilan BITTA)
   'use strict';
 
   var VERSION = 1;
-  var ACT = { 1: 1.2, 2: 1.375, 3: 1.55, 4: 1.725, 5: 1.9 };                 // faollik koeffitsientlari (oddiy tildagi nomlari ilovada)
-  var KCAL_PER_KG = 7700;
-  var GOAL_DELTA = { keep: 0, slow: -275, lose: -550, gain: 275 };           // kcal/kun: −0,25 / −0,5 / +0,25 kg/hafta
-  var FLOOR = { m: 1500, f: 1200 };                                          // kunlik maqsadning pastki chegarasi
+  var ACT = M.ACT;                 // faollik koeffitsientlari — assets/meyor-core.js
+  var KCAL_PER_KG = M.KCAL_PER_KG;
+  var GOAL_DELTA = M.GOAL_DELTA;           // kcal/kun: −0,25 / −0,5 / +0,25 kg/hafta (assets/meyor-core.js)
+  var FLOOR = M.FLOOR;                                          // kunlik maqsadning pastki chegarasi
   var PROTEIN_PER_KG = { keep: 1.6, slow: 1.8, lose: 2.0, gain: 1.8 };
   var PROTEIN_MAX_SHARE = 0.35, FAT_SHARE = 0.2;          // v50: yog' maqsadi — kunlik kkalning 20% i (pastki chegara, IOM AMDR 20–35%); uglevod — qolgani
-  var WATER_ML_PER_KG = 33, GLASS_ML = 250;
+  var WATER_ML_PER_KG = M.WATER_ML_PER_KG, GLASS_ML = M.GLASS_ML;
   var STRIDE_K = 0.414, MET_WALK = 3.5, WALK_KMH = 5, MET_NET = MET_WALK - 1;           // MET_NET: sof sarf (dam olish sarfisiz)
 var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // ESKI (v50 gacha) — faqat eski testlar/ko'rsatkich uchun; limitda ishlatilmaydi                    // faollik darajasiga odatiy kunlik qadam (kam harakat / o'rtacha / faol / juda faol) — me'yorga allaqachon kiritilgan
   var MEALS = ['b', 'l', 'd', 's'];                                          // nonushta, tushlik, kechki ovqat, gazak
@@ -24,8 +24,8 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   function num(x) { var n = typeof x === 'string' ? parseFloat(x.replace(',', '.').replace(/[\s ]/g, '')) : Number(x); return isFinite(n) ? n : 0; }
 
   /* ---------- profil va me'yor ---------- */
-  function bmrRaw(sex, weight, height, age) { return 10 * weight + 6.25 * height - 5 * age + (sex === 'f' ? -161 : 5); }       // Mifflin–St Jeor
-  function bmi(weight, height) { return height > 0 ? weight / Math.pow(height / 100, 2) : 0; }
+  var bmrRaw = M.bmrRaw;       // Mifflin–St Jeor (assets/meyor-core.js)
+  var bmi = M.bmi;
   function validate(p) {
     var err = {};
     if (!p || (p.sex !== 'm' && p.sex !== 'f')) err.sex = 1;
@@ -34,11 +34,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     if (!p || GOAL_DELTA[p.goal] == null) err.goal = 1;
     return err;
   }
-  function restrictions(p) {                        // dieta hisoblanmaydigan holatlar: faqat saqlash rejimi + shifokor izohi
-    var age = num(p.age), r = { under18: age < 18, preg: !!(p.preg && p.sex === 'f'), lowBmi: bmi(num(p.weight), num(p.height)) < 18.5 };
-    r.keepOnly = r.under18 || r.preg || r.lowBmi;
-    return r;
-  }
+  var restrictions = M.restrictions;                        // dieta hisoblanmaydigan holatlar: faqat saqlash rejimi + shifokor izohi (assets/meyor-core.js)
   function macros(kcal, weight, goal, pg) {          // pg — oqsil maqsadi (protein()); berilmasa eski hisob (moslik uchun)
     var perKg = PROTEIN_PER_KG[goal] || PROTEIN_PER_KG.keep, p = pg > 0 ? pg : Math.min(perKg * weight, PROTEIN_MAX_SHARE * kcal / 4);
     p = Math.round(p); var f = Math.ceil(FAT_SHARE * kcal / 9),          /* ≥ 20% (pastga yaxlitlansa chegaradan tushardi) */ c = Math.max(0, Math.round((kcal - 4 * p - 9 * f) / 4));
@@ -94,8 +90,8 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     var eatenAll = MEALS.reduce(function (a, m) { return a + Math.round(num(ea[m])); }, 0);
     return { mode: mode, meals: meals, now: tgt, note: saved >= 50 ? { k: saved, from: got.map(function (x) { return x.from; }).filter(function (v, i, a) { return a.indexOf(v) === i; }) } : null, took: tookFrom, dayOver: eatenAll > limit, limit: limit };
   }
-  function water(weight) { var ml = Math.round(WATER_ML_PER_KG * weight), gl = Math.max(1, Math.round(ml / GLASS_ML)); return { ml: ml, glasses: gl, glassMl: GLASS_ML, goal: waterGoalMl(gl) }; }
-  function waterGoalMl(glasses) { return Math.max(1, Math.round(+glasses || 0)) * GLASS_ML; }          // audit: suv MAQSADI hamma ekranda shu bitta funksiyadan — butun stakanga (250 ml) yaxlitlangan (onboarding yakuni = kundalik)
+  var water = M.water;
+  var waterGoalMl = M.waterGoalMl;          // audit: suv MAQSADI hamma ekranda shu bitta funksiyadan — butun stakanga (250 ml) yaxlitlangan (assets/meyor-core.js)
   /* ---------- v51: KUNLIK ME'YOR — YAGONA MODEL (docs/limit.md) ----------
      limit = BMR (Mifflin–St Jeor) × koeff + shaxsiy tuzatish + qadam krediti ± maqsad, pastki chegaradan (S.FLOOR) past emas.
      Koeff: Android ilovada (ish turi tanlangan va qadam yoqilgan) — ISH TURI (yurishsiz, kundalik hayot; shu turga kiritilgan qadam bazasi bilan), aks holda — umumiy faollik (ACT, yurish ichida) va kredit 0.
@@ -126,18 +122,16 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     var hi = Math.min(extra, Math.max(0, s - Math.max(base, taper == null ? LIM.TAPER : taper))), lo = extra - hi;          // v62: TAPER dan ortig'i ×0,5
     return Math.min(LIM.CRED_MAX, Math.round(walkNet(lo, height, weight) * LIM.CRED_K + walkNet(hi, height, weight) * LIM.TAPER_K));
   }
-  function plan(p, o) {
-    var w = num(p.weight), h = num(p.height), a = num(p.age), sex = p.sex === 'f' ? 'f' : 'm', job = !!(o && o.job) && LIM.JOB[p.job] ? p.job : null, jt = (o && o.jobT) || LIM.JOB;
-    var r = restrictions(p), goal = r.keepOnly ? 'keep' : (GOAL_DELTA[p.goal] != null ? p.goal : 'keep');
-    var kk = job ? jt[job].k : (ACT[p.act] || ACT[1]), corr = Math.max(-LIM.CORR_MAX, Math.min(LIM.CORR_MAX, Math.round(num(p.corr)))), bmr = bmrRaw(sex, w, h, a), base0 = Math.round(bmr * kk), tdee = base0 + corr;
-    var delta = GOAL_DELTA[goal], raw = tdee + delta, floorMin = FLOOR[sex], target = raw, floorApplied = false;
-    if (delta < 0 && raw < floorMin) { target = floorMin; floorApplied = true; }
-    var out = { sex: sex, bmrRaw: bmr, bmr: Math.round(bmr), act: p.act, actK: kk, job: job, jobBase: job ? LIM.JOB[job].base : 0, base0: base0, corr: corr, tdee: tdee, goal: goal, goalAsked: p.goal, goalOverridden: goal !== p.goal, delta: delta, rawTarget: raw,
-      target: target, floorApplied: floorApplied, floorMin: floorMin, kgPerWeek: Math.round((target - tdee) * 7 / KCAL_PER_KG * 100) / 100, bmi: round1(bmi(w, h)), restrictions: r, doctor: r.keepOnly, notes: [] };
-    out.protein = protein(p, w); out.macros = macros(target, w, goal, out.protein.g); out.water = water(w);
-    if (r.under18) out.notes.push('under18'); if (r.preg) out.notes.push('preg'); if (r.lowBmi) out.notes.push('lowBmi'); if (floorApplied) out.notes.push('floor');
+  function plan(p, o) {          // kunlik me'yor — assets/meyor-core.js meyor() (sayt kalkulyatori bilan BITTA formula) + ish turi, oqsil, makrolar, suv
+    var w = num(p.weight), job = !!(o && o.job) && LIM.JOB[p.job] ? p.job : null, jt = (o && o.jobT) || LIM.JOB;
+    var kk = job ? jt[job].k : (ACT[p.act] || ACT[1]), corr = Math.max(-LIM.CORR_MAX, Math.min(LIM.CORR_MAX, Math.round(num(p.corr)))), m = M.meyor(p, { kk: kk, corr: corr }), r = m.restrictions;
+    var out = { sex: m.sex, bmrRaw: m.bmrRaw, bmr: m.bmr, act: p.act, actK: kk, job: job, jobBase: job ? LIM.JOB[job].base : 0, base0: m.base0, corr: m.corr, tdee: m.tdee, goal: m.goal, goalAsked: p.goal, goalOverridden: m.goalOverridden, delta: m.delta, rawTarget: m.rawTarget,
+      target: m.target, floorApplied: m.floorApplied, floorMin: m.floorMin, kgPerWeek: m.kgPerWeek, bmi: m.bmi, restrictions: r, doctor: r.keepOnly, notes: [] };
+    out.protein = protein(p, w); out.macros = macros(m.target, w, m.goal, out.protein.g); out.water = water(w);
+    if (r.under18) out.notes.push('under18'); if (r.preg) out.notes.push('preg'); if (r.lowBmi) out.notes.push('lowBmi'); if (m.floorApplied) out.notes.push('floor');
     return out;
   }
+
 
   /* ---------- qadam ---------- */
   function strideM(height) { return height * STRIDE_K / 100; }

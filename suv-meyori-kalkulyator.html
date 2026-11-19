@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="uz" data-lang="uz" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz'||s==='cyr')?s:'uz';
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru|cyr)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  var h=document.documentElement;
+  if(l==='cyr'){h.setAttribute('data-lang','uz');h.setAttribute('data-script','cyr');h.lang='uz';}
+  else{h.setAttribute('data-lang',l);h.lang=l;}
+}catch(e){}
+try{if(localStorage.getItem('kalki_fs')==='big')document.documentElement.classList.add('fs-big');}catch(e){}})();
+</script>
+<style id="langcss">html[data-lang="ru"] body,html[data-script="cyr"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body,html[data-script="cyr"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="assets/lang.js" defer=""></script>
+<script src="assets/footer-lang.js" defer=""></script>
+<script src="assets/sw-boot.js" defer=""></script>
+<script src="assets/datanote.js" defer=""></script>
+<script src="assets/answerbox.js" defer=""></script>
+<script src="assets/calc-v2.js" defer=""></script>
+<script src="assets/tgcta.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Suv me'yori kalkulyatori — kuniga qancha suv ichish kerak</title>
+<link rel="canonical" href="https://kalki.uz/suv-meyori-kalkulyator">
+<meta name="description" content="Vazningizni kiriting — kunlik suv me'yori (33 ml × kg), stakanlarda va millilitrda. KalkiFit ilovasi bilan bir xil hisob. Issiq kunlar va mashg'ulot uchun izoh.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--warn:#B3261E;--warn-soft:#FBEAE8}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-xs,14px);font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:1.625rem;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:0.9063rem;color:var(--cat-text);max-width:42ch}
+.warnbar{background:var(--warn-soft);border:1.5px solid #E8C2BE;border-radius:12px;padding:12px 14px;margin-top:16px;font-size:var(--t-xs,14px);font-weight:700;color:var(--warn)}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:16px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:18px}
+label{display:block;font-size:var(--t-xs,14px);font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:1.0625rem;font-weight:700;color:var(--ink);padding:12px 13px;min-width:0}
+select{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:0.9375rem;font-weight:700;color:var(--ink);padding:12px 10px;min-width:0;-webkit-appearance:none;appearance:none}
+.unit{font-size:var(--t-xs,14px);font-weight:700;color:var(--muted);padding:0 11px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
+.seg button{flex:1;border:0;background:transparent;font:inherit;font-size:0.875rem;font-weight:700;color:var(--muted);padding:10px 8px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent}
+.seg button.on{background:var(--cat);color:#fff}
+.hint{font-size:var(--t-xs,14px);color:var(--muted);margin-top:6px}
+.drink-row{border:1.5px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;background:#FBFCFB}
+.drink-top{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.drink-top .input-shell{flex:1;background:#fff}
+.drink-del{border:0;background:var(--warn-soft);color:var(--warn);font:inherit;font-size:1rem;font-weight:800;width:42px;height:42px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+.drink-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.drink-grid .input-shell{background:#fff}
+.add-btn{width:100%;border:1.5px dashed var(--cat);background:var(--cat-soft);color:var(--cat);font:inherit;font-size:0.875rem;font-weight:800;padding:12px;border-radius:11px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.calc-btn{width:100%;margin-top:22px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:1.0625rem;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:var(--t-xs,14px);font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:2.125rem;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.15}
+.big-figure .lbl{font-size:var(--t-xs,14px);color:var(--muted);font-weight:600;margin-top:3px}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:0.9063rem;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.result-warn{margin-top:14px;background:var(--warn-soft);border-radius:10px;padding:11px 13px;font-size:var(--t-xs,14px);font-weight:700;color:var(--warn)}
+.receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+.seo{margin-top:36px;font-size:0.9375rem;color:#33403A}
+.seo h2{font-size:1.125rem;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;min-height:44px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:0.875rem;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:var(--t-xs,14px);color:var(--muted)}
+</style>
+
+<style id="printcss">@media print{body *{visibility:hidden!important}
+#pdfhead,#pdfhead *{visibility:visible!important}
+.receipt.show,.receipt.show *{visibility:visible!important}
+.receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+.receipt-actions{display:none!important}
+.noprint,.noprint *{display:none!important;visibility:hidden!important}
+#pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+#topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="ga.js"></script>
+<meta property="og:title" content="Suv me'yori kalkulyatori — kuniga qancha suv ichish kerak">
+<meta property="og:description" content="Vazningizni kiriting — kunlik suv me'yori (33 ml × kg), stakanlarda va millilitrda. KalkiFit ilovasi bilan bir xil hisob. Issiq kunlar va mashg'ulot uchun izoh.">
+<meta property="og:url" content="https://kalki.uz/suv-meyori-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/suv-meyori-kalkulyator.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Suv me'yori kalkulyatori">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/suv-meyori-kalkulyator.png?v=2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Suv me'yori kalkulyatori — kuniga qancha suv ichish kerak">
+<meta name="twitter:description" content="Vazningizni kiriting — kunlik suv me'yori (33 ml × kg), stakanlarda va millilitrda. KalkiFit ilovasi bilan bir xil hisob. Issiq kunlar va mashg'ulot uchun izoh.">
+<style id="bccss">#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:var(--t-xs,14px);font-weight:600;color:var(--t-muted,#3F4F46);margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:var(--t-muted,#3F4F46)}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Suv me'yori kalkulyatori — vazningizni kiriting: kunlik suv ehtiyoji 33 ml × kg formulasi bo'yicha hisoblanib, butun stakanga (250 ml) yaxlitlanadi. Issiq kunlarda va mashg'ulotda ehtiyoj oshadi; buyrak yoki yurak kasalligida shifokor bilan maslahatlashing.","sources":[]},"ru":{"text":"Калькулятор нормы воды — введите вес: дневная потребность считается по формуле 33 мл × кг и округляется до целых стаканов (250 мл). В жару и при тренировках потребность выше; при болезнях почек или сердца проконсультируйтесь с врачом.","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:0.9063rem;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}#modeSegField + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Suv me'yori qanday hisoblanadi?","acceptedAnswer":{"@type":"Answer","text":"Kalkulyator keng tarqalgan 30–35 ml/kg tavsiyasining o'rtasini oladi: 33 ml × vazn (kg), keyin natija butun stakanga (250 ml) yaxlitlanadi — shunda kun davomida stakan sanash oson bo'ladi. KalkiFit ilovasidagi suv maqsadi aynan shu formula bilan hisoblanadi. Bu — umumiy mo'ljal. Ehtiyoj havo harorati, jismoniy faollik, ovqat tarkibi (sho'rva, meva) va sog'liq holatiga qarab o'zgaradi. Siydik rangi och sariq bo'lsa — suv yetarli ekanining oddiy belgisi."}},{"@type":"Question","name":"Kuniga qancha suv ichish kerak?","acceptedAnswer":{"@type":"Answer","text":"Taxminiy mo'ljal — har kilogramm vazn uchun 33 ml. Masalan, 70 kg — 2 310 ml, ya'ni taxminan 9 stakan (2 250 ml). Choy, sho'rva, meva va sut ham suv ehtiyojining bir qismini qoplaydi."}},{"@type":"Question","name":"Issiq kunda yoki sportda ko'proq ichish kerakmi?","acceptedAnswer":{"@type":"Answer","text":"Ha. Issiqda va terlaganda suv ko'proq yo'qoladi — mashg'ulotning har soatiga taxminan 0,4–0,8 litr qo'shing. Chanqoqni kutmang, lekin bir martada juda ko'p ichmang."}},{"@type":"Question","name":"Kimlarga bu hisob mos emas?","acceptedAnswer":{"@type":"Answer","text":"Buyrak, yurak yetishmovchiligi yoki suv ichish cheklangan holatlarda me'yorni faqat shifokor belgilaydi. Homiladorlik va emizish davrida ehtiyoj boshqacha."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Asosiy","item":"https://kalki.uz/"},{"@type":"ListItem","position":2,"name":"Kundalik hayot","item":"https://kalki.uz/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Suv me'yori kalkulyatori","item":"https://kalki.uz/suv-meyori-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Suv me'yori kalkulyatori","description":"Vazningizni kiriting — kunlik suv me'yori (33 ml × kg), stakanlarda va millilitrda. KalkiFit ilovasi bilan bir xil hisob. Issiq kunlar va mashg'ulot uchun izoh.","url":"https://kalki.uz/suv-meyori-kalkulyator","applicationCategory":"HealthApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script>
+<link rel="manifest" href="/manifest.webmanifest" id="pwamf"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon-180.png" id="pwaicon"><meta name="apple-mobile-web-app-title" content="Kalki" id="pwatitle"><script src="/assets/pwa-install.js" defer="" id="pwainst"></script>
+<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script><link rel="stylesheet" href="/assets/css/typo.css" id="typocss">
+<link rel="alternate" hreflang="uz" href="https://kalki.uz/suv-meyori-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/suv-meyori-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/suv-meyori-kalkulyator" data-hreflang-gen="1"></head>
+<body class="v2 typo2" data-cat="hayot">
+<div id="sitebar" class="sb2"><div class="sb2-in"><a class="logo" href="./" data-cyr="skip">Kalki<span class="dot">.uz</span></a><nav id="topmenu" aria-label="Bo'limlar"><ul class="tm2"><li class="has-sub"><a href="./#kategoriyalar" class="tm-on" aria-current="page" data-tm-uz="Kalkulyatorlar" data-tm-ru="Калькуляторы">Kalkulyatorlar</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Kalkulyatorlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Moliya</a></li><li><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Qurilish</a></li><li><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Kommunal</a></li><li><a href="./#cat-hayot" data-tm-uz="Kundalik hayot" data-tm-ru="Повседневная жизнь">Kundalik hayot</a></li><li><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Huquqiy</a></li></ul></li><li class="has-sub"><a href="hujjatlar" data-tm-uz="Hujjatlar" data-tm-ru="Документы">Hujjatlar</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Hujjatlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="hujjatlar" data-tm-uz="Hujjat generatorlari" data-tm-ru="Генератор документов">Hujjat generatorlari</a></li><li><a href="shablonlar" data-tm-uz="Shablonlar" data-tm-ru="Шаблоны">Shablonlar</a></li></ul></li><li><a href="blog" data-tm-uz="Maqolalar" data-tm-ru="Статьи">Maqolalar</a></li><li><a href="kalkifit" data-kf="menyu" data-tm-uz="KalkiFit" data-tm-ru="KalkiFit">KalkiFit</a></li><li class="tm2-fs"><span class="fs-l" data-lf-uz="Shrift o'lchami" data-lf-ru="Размер шрифта">Shrift o'lchami</span><div class="fs-seg" role="group" aria-label="Shrift o'lchami / Размер шрифта"><button type="button" data-fs="normal" aria-pressed="true" data-lf-uz="Oddiy" data-lf-ru="Обычный">Oddiy</button><button type="button" data-fs="big" aria-pressed="false" data-lf-uz="Katta" data-lf-ru="Крупный">Katta</button></div></li></ul></nav><div class="lang-seg lang-seg-3" role="group" aria-label="Til / Язык" data-cyr="skip"><button type="button" id="langUz" class="on">UZ</button><a id="langCyr" href="/suv-meyori-kalkulyator?lang=cyr" rel="nofollow" hreflang="uz-Cyrl" lang="uz-Cyrl">ЎЗ</a><button type="button" id="langRu">RU</button></div><button type="button" class="sb2-burger" aria-expanded="false" aria-controls="topmenu" aria-label="Menyu"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-menu"></use></svg></button></div></div>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Asosiy</a><span class="sep">›</span><a href="./#cat-hayot">Kundalik hayot</a><span class="sep">›</span><span class="cur">Suv me'yori kalkulyatori</span></nav></div>
+<header class="pagehead band">
+  <div class="wrap ct-in">
+    <div class="ct-l">
+      <span class="cat-badge" data-i="cat">Kundalik hayot</span>
+      <h1 data-i="h1">Suv me'yori kalkulyatori</h1>
+      <p class="sub" data-i="sub">Kuniga qancha suv ichish kerak — vazningiz bo'yicha, stakanlarda.</p>
+    </div>
+    <div class="ab-card"><div class="ab-over"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-info"></use></svg><span data-lf-uz="Qisqacha" data-lf-ru="Кратко">Qisqacha</span></div><div class="answerbox noprint" id="answerbox"><p class="ab-text">Suv me'yori kalkulyatori — vazningizni kiriting: kunlik suv ehtiyoji 33 ml × kg formulasi bo'yicha hisoblanib, butun stakanga (250 ml) yaxlitlanadi. Issiq kunlarda va mashg'ulotda ehtiyoj oshadi; buyrak yoki yurak kasalligida shifokor bilan maslahatlashing.</p></div></div>
+  </div>
+</header>
+
+
+<main class="wrap calc-main">
+<style id="sogliqcss">.field-err{display:none;color:#B3261E;font-size:var(--t-xs,14px);font-weight:700;margin-top:6px}.field-err.show{display:block}.big-figure .num.sm{font-size:2rem}.tvi-scale{display:flex;height:10px;border-radius:6px;overflow:hidden;margin:12px 0 4px}.tvi-scale i{flex:1}.tvi-scale i:nth-child(1){background:#7FA7D9}.tvi-scale i:nth-child(2){background:#5FB88A}.tvi-scale i:nth-child(3){background:#E8B04B}.tvi-scale i:nth-child(4){background:#D9734B}.tvi-pin{position:relative;height:12px}.tvi-pin b{position:absolute;top:0;width:3px;height:12px;background:#fff;border-radius:2px;transform:translateX(-50%)}.kid-msg{display:none;margin-top:12px;background:rgba(255,255,255,.14);border-radius:10px;padding:11px 13px;font-size:var(--t-xs,14px);font-weight:600;line-height:1.5}.kid-msg.show{display:block}</style>
+<div class="calc-grid">
+<div class="calc-form">
+<ol class="qadamlar" aria-label="3 qadamda">
+<li data-lf-uz="Vazningizni kiriting." data-lf-ru="Укажите вес.">Vazningizni kiriting.</li>
+<li data-lf-uz="Kunlik me'yor millilitr va stakanda chiqadi." data-lf-ru="Покажем норму в миллилитрах и стаканах.">Kunlik me'yor millilitr va stakanda chiqadi.</li>
+<li data-lf-uz="Mashg'ulot va issiq kunlar uchun izohni o'qing." data-lf-ru="Учтите пояснение для тренировок и жары.">Mashg'ulot va issiq kunlar uchun izohni o'qing.</li>
+</ol>
+<section class="form-card">
+<div class="field"><label for="weight" data-i="l_weight">Vazn</label><div class="input-shell"><input type="text" id="weight" inputmode="decimal" autocomplete="off" placeholder="masalan, 70"><span class="unit" data-i="u_weight">kg</span></div><div class="field-err" id="weightErr"></div></div>
+<button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Hisoblash</button>
+</section>
+</div>
+<aside class="res-col" aria-label="Natija"><section class="receipt" id="receipt" aria-live="polite">
+<div class="receipt-body">
+<div class="receipt-tag" data-i="rTag">Hisob natijasi</div>
+<div class="big-figure"><div class="num" id="mainNum">—</div><div class="lbl" data-i="lblMain">Kunlik suv me'yori</div></div><div class="receipt-rows"><div class="rrow"><span class="k" data-i="kGlass">Stakan (250 ml)</span><span class="v accent" id="rGlass">—</span></div><div class="rrow"><span class="k" data-i="kHow">Hisob</span><span class="v" id="rHow">—</span></div><div class="rrow"><span class="k" data-i="kSport">Mashg'ulot kuni</span><span class="v" id="rSport">—</span></div></div>
+<div class="receipt-actions"><button type="button" id="shareBtn">Ulashish</button><button type="button" class="pdfbtn">PDF</button></div>
+</div>
+<div class="receipt-edge"></div>
+</section></aside>
+</div>
+<div class="res-extras">
+<div id="kfBlok" hidden=""></div>
+<div class="result-warn" data-i="resWarn">Umumiy mo'ljal: issiqda va mashg'ulotda ko'proq. Buyrak yoki yurak kasalligida, homiladorlikda me'yorni shifokor belgilaydi.</div>
+<div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:var(--t-xs,14px);line-height:1.45;color:var(--t-muted,#3F4F46)" data-i="foot">Ma'lumot 2026-yil avgust holatiga ko'ra</div>
+</div>
+<section class="seo" id="seoBlock"><h2>Suv me'yori qanday hisoblanadi?</h2><p>Kalkulyator keng tarqalgan 30–35 ml/kg tavsiyasining o'rtasini oladi: <b>33 ml × vazn (kg)</b>, keyin natija butun stakanga (250 ml) yaxlitlanadi — shunda kun davomida stakan sanash oson bo'ladi. KalkiFit ilovasidagi suv maqsadi aynan shu formula bilan hisoblanadi.</p><p>Bu — umumiy mo'ljal. Ehtiyoj havo harorati, jismoniy faollik, ovqat tarkibi (sho'rva, meva) va sog'liq holatiga qarab o'zgaradi. Siydik rangi och sariq bo'lsa — suv yetarli ekanining oddiy belgisi.</p><h2 data-faq="1">Kuniga qancha suv ichish kerak?</h2><p>Taxminiy mo'ljal — har kilogramm vazn uchun 33 ml. Masalan, 70 kg — 2 310 ml, ya'ni taxminan 9 stakan (2 250 ml). Choy, sho'rva, meva va sut ham suv ehtiyojining bir qismini qoplaydi.</p><h2 data-faq="1">Issiq kunda yoki sportda ko'proq ichish kerakmi?</h2><p>Ha. Issiqda va terlaganda suv ko'proq yo'qoladi — mashg'ulotning har soatiga taxminan 0,4–0,8 litr qo'shing. Chanqoqni kutmang, lekin bir martada juda ko'p ichmang.</p><h2 data-faq="1">Kimlarga bu hisob mos emas?</h2><p>Buyrak, yurak yetishmovchiligi yoki suv ichish cheklangan holatlarda me'yorni faqat shifokor belgilaydi. Homiladorlik va emizish davrida ehtiyoj boshqacha.</p></section>
+<div id="fbcall" class="cta-tg"><div class="cta-tx"><div class="cta-h" data-lf-uz="Kalkulyator yoki shablon kerakmi?" data-lf-ru="Нужен калькулятор или шаблон?">Kalkulyator yoki shablon kerakmi?</div><div class="cta-d" data-lf-uz="Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz." data-lf-ru="Нужен новый калькулятор, шаблон или нашли ошибку — напишите, быстро сделаем.">Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz.</div></div><a class="btn btn-gold" href="https://t.me/achchi90">Telegram</a></div>
+</main><footer id="sf2"><div class="sf2-in"><div class="sf2-brand" data-cyr="skip">Kalki<span class="dot">.uz</span></div><p data-lf-uz="O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari." data-lf-ru="Бесплатные калькуляторы и образцы документов для Узбекистана.">O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari.</p><div class="sf2-cols" style="margin-top:32px"><div><div class="sf2-t" data-lf-uz="Kategoriyalar" data-lf-ru="Категории">Kategoriyalar</div><ul><li><a href="./#cat-moliya" data-lf-uz="Moliya" data-lf-ru="Финансы">Moliya</a></li><li><a href="./#cat-qurilish" data-lf-uz="Qurilish va yer" data-lf-ru="Стройка и земля">Qurilish va yer</a></li><li><a href="./#cat-kommunal" data-lf-uz="Kommunal va avto" data-lf-ru="Коммуналка и авто">Kommunal va avto</a></li><li><a href="./#cat-hayot" data-lf-uz="Kundalik hayot" data-lf-ru="Повседневная жизнь">Kundalik hayot</a></li><li><a href="./#cat-huquqiy" data-lf-uz="Huquqiy" data-lf-ru="Юридические">Huquqiy</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Hujjatlar" data-lf-ru="Документы">Hujjatlar</div><ul><li><a href="hujjatlar" data-lf-uz="Hujjat generatorlari" data-lf-ru="Генератор документов">Hujjat generatorlari</a></li><li><a href="shablonlar" data-lf-uz="Shablonlar" data-lf-ru="Шаблоны">Shablonlar</a></li><li><a href="ariza-namunasi" data-lf-uz="Ariza yozish" data-lf-ru="Написать заявление">Ariza yozish</a></li><li><a href="blog" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Aloqa" data-lf-ru="Связь">Aloqa</div><ul><li><a href="https://t.me/kalki_uz" data-lf-uz="Telegram kanali" data-lf-ru="Telegram-канал">Telegram kanali</a></li><li><a href="https://t.me/achchi90" data-lf-uz="Aloqa: @achchi90" data-lf-ru="Связь: @achchi90">Aloqa: @achchi90</a></li><li><a href="hamkorlik" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a></li></ul></div></div><p class="sf2-note" data-lf-uz="Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling." data-lf-ru="Расчёты носят справочный характер. Для официального решения обратитесь к специалисту.">Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling.</p><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Maqolalar</a><a href="biz-haqimizda" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">Biz haqimizda</a><a href="maxfiylik" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Maxfiylik</a><a href="shartlar" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Foydalanish shartlari</a><a href="hamkorlik" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Hamkorlik</a><a href="https://t.me/achchi90" target="_blank" rel="noopener" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:normal;overflow-wrap:break-word;max-width:100%" data-lf-uz="Aloqa uchun: Telegram @achchi90" data-lf-ru="Связь: Telegram @achchi90">Aloqa uchun: Telegram @achchi90</a></div><div id="copyline" style="margin-top:12px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Yaratuvchi: Asror Jumaqulov. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — Создатель: Асрор Жумакулов. Все права защищены.">© 2026 Kalki.uz — Yaratuvchi: Asror Jumaqulov. Barcha huquqlar himoyalangan.</span></div></div></footer>
+<script src="/assets/meyor-core.js"></script>
+<script src="/assets/kf-blok.js" defer=""></script>
+<script>
+(function(){
+  var M=window.KalkiMeyor, $=function(i){return document.getElementById(i)};
+  var D={"uz":{"lGender":"Jins","segM":"Erkak","segF":"Ayol","btnCalc":"Hisoblash","rTag":"Hisob natijasi","l_weight":"Vazn","u_weight":"kg","lblMain":"Kunlik suv me'yori","kGlass":"Stakan (250 ml)","kHow":"Hisob","kSport":"Mashg'ulot kuni","ml":"ml","glassN":"{n} stakan","sport":"+0,4–0,8 l har soatiga","errWeight":"Vaznni kiriting (10–300 kg)","resWarn":"Umumiy mo'ljal: issiqda va mashg'ulotda ko'proq. Buyrak yoki yurak kasalligida, homiladorlikda me'yorni shifokor belgilaydi.","foot":"33 ml × kg, butun stakanga (250 ml) yaxlitlangan — KalkiFit bilan bir xil. Faqat ma'lumot uchun.","h1":"Suv me'yori kalkulyatori","sub":"Kuniga qancha suv ichish kerak — vazningiz bo'yicha, stakanlarda.","cat":"Kundalik hayot","seo":"<h2>Suv me'yori qanday hisoblanadi?</h2><p>Kalkulyator keng tarqalgan 30–35 ml/kg tavsiyasining o'rtasini oladi: <b>33 ml × vazn (kg)</b>, keyin natija butun stakanga (250 ml) yaxlitlanadi — shunda kun davomida stakan sanash oson bo'ladi. KalkiFit ilovasidagi suv maqsadi aynan shu formula bilan hisoblanadi.</p><p>Bu — umumiy mo'ljal. Ehtiyoj havo harorati, jismoniy faollik, ovqat tarkibi (sho'rva, meva) va sog'liq holatiga qarab o'zgaradi. Siydik rangi och sariq bo'lsa — suv yetarli ekanining oddiy belgisi.</p><h2 data-faq=\"1\">Kuniga qancha suv ichish kerak?</h2><p>Taxminiy mo'ljal — har kilogramm vazn uchun 33 ml. Masalan, 70 kg — 2 310 ml, ya'ni taxminan 9 stakan (2 250 ml). Choy, sho'rva, meva va sut ham suv ehtiyojining bir qismini qoplaydi.</p><h2 data-faq=\"1\">Issiq kunda yoki sportda ko'proq ichish kerakmi?</h2><p>Ha. Issiqda va terlaganda suv ko'proq yo'qoladi — mashg'ulotning har soatiga taxminan 0,4–0,8 litr qo'shing. Chanqoqni kutmang, lekin bir martada juda ko'p ichmang.</p><h2 data-faq=\"1\">Kimlarga bu hisob mos emas?</h2><p>Buyrak, yurak yetishmovchiligi yoki suv ichish cheklangan holatlarda me'yorni faqat shifokor belgilaydi. Homiladorlik va emizish davrida ehtiyoj boshqacha.</p>","_title":"Suv me'yori kalkulyatori — kuniga qancha suv ichish kerak","_desc":"Vazningizni kiriting — kunlik suv me'yori (33 ml × kg), stakanlarda va millilitrda. KalkiFit ilovasi bilan bir xil hisob. Issiq kunlar va mashg'ulot uchun izoh.","_crumb":"Suv me'yori"},"ru":{"lGender":"Пол","segM":"Мужчина","segF":"Женщина","btnCalc":"Рассчитать","rTag":"Результат расчёта","l_weight":"Вес","u_weight":"кг","lblMain":"Дневная норма воды","kGlass":"Стаканов (250 мл)","kHow":"Расчёт","kSport":"День тренировки","ml":"мл","glassN":"{n} стаканов","sport":"+0,4–0,8 л на каждый час","errWeight":"Укажите вес (10–300 кг)","resWarn":"Общий ориентир: в жару и при тренировках больше. При болезнях почек или сердца, при беременности норму определяет врач.","foot":"33 мл × кг, округлено до целых стаканов (250 мл) — как в KalkiFit. Только для справки.","h1":"Калькулятор нормы воды","sub":"Сколько воды пить в день — по вашему весу, в стаканах.","cat":"Повседневная жизнь","seo":"<h2>Как рассчитывается норма воды?</h2><p>Калькулятор берёт середину распространённой рекомендации 30–35 мл/кг: <b>33 мл × вес (кг)</b>, затем округляет до целых стаканов (250 мл) — так удобнее считать стаканы в течение дня. Цель по воде в приложении KalkiFit считается точно по этой формуле.</p><p>Это общий ориентир. Потребность меняется в зависимости от температуры, физической активности, состава еды (супы, фрукты) и здоровья. Светло-жёлтый цвет мочи — простой признак, что воды достаточно.</p><h2 data-faq=\"1\">Сколько воды нужно пить в день?</h2><p>Примерный ориентир — 33 мл на каждый килограмм веса. Например, 70 кг — 2 310 мл, то есть около 9 стаканов (2 250 мл). Чай, суп, фрукты и молоко тоже частично покрывают потребность в воде.</p><h2 data-faq=\"1\">Нужно ли пить больше в жару или при спорте?</h2><p>Да. В жару и при потоотделении вода теряется быстрее — добавляйте примерно 0,4–0,8 литра на каждый час тренировки. Не ждите жажды, но и не пейте слишком много за раз.</p><h2 data-faq=\"1\">Кому этот расчёт не подходит?</h2><p>При болезнях почек, сердечной недостаточности или ограничении жидкости норму определяет только врач. При беременности и кормлении грудью потребность другая.</p>","_title":"Калькулятор нормы воды — сколько воды пить в день","_desc":"Введите вес — дневная норма воды (33 мл × кг) в стаканах и миллилитрах. Тот же расчёт, что в приложении KalkiFit. Пояснения для жары и тренировок.","_crumb":"Норма воды"}};
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', gender='m', data=null, shown=false;
+  function t(k){return (D[lang]&&D[lang][k]!=null)?D[lang][k]:D.uz[k]}
+  var num=function(s){return parseFloat(String(s||'').replace(/[^\d.,]/g,'').replace(',','.'))||0};
+  function dec(x,n){return (Math.round(x*Math.pow(10,n))/Math.pow(10,n)).toFixed(n).replace('.',',')}
+  function nf(x){return String(Math.round(x)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
+  function clr(id){var e=$(id+'Err');if(e){e.classList.remove('show');e.textContent=''}}
+  function chk(id,ok,k){var e=$(id+'Err');if(ok){clr(id);return true}if(e){e.textContent=t(k);e.classList.add('show')}return false}
+  function calc(user){
+    var w=num($('weight').value); if(!chk('weight',w>=10&&w<=300,'errWeight'))return false;
+    var r=M.water(w);
+    $('mainNum').textContent=nf(r.goal)+' '+t('ml');
+    $('rGlass').textContent=t('glassN').replace('{n}',r.glasses);
+    $('rHow').textContent='33 '+t('ml')+' × '+dec(w,1)+' '+t('u_weight')+' = '+nf(r.ml)+' '+t('ml');
+    $('rSport').textContent=t('sport');
+    data={weight:w,v:nf(r.goal)};
+    return true;
+  }
+  function run(user){if(!calc(user)){if(!shown)$('receipt').classList.remove('show');return}shown=true;$('receipt').classList.add('show');if(window.KFBlok)KFBlok.show($('kfBlok'),'suv',lang,{v:data.v});}
+  function applyLang(){document.documentElement.lang=lang;var ns=document.querySelectorAll('[data-i]');for(var i=0;i<ns.length;i++){var k=ns[i].getAttribute('data-i'),v=t(k);if(typeof v==='string'){if(k==='seo')ns[i].innerHTML=v;else ns[i].textContent=v}}var sb=$('seoBlock');if(sb)sb.innerHTML=t('seo');document.title=t('_title');[['meta[name=description]','_desc'],['meta[property="og:title"]','_title'],['meta[property="og:description"]','_desc'],['meta[name="twitter:title"]','_title'],['meta[name="twitter:description"]','_desc']].forEach(function(x){var m=document.querySelector(x[0]);if(m)m.setAttribute('content',t(x[1]))});var cr=document.querySelector('#breadcrumb .cur');if(cr)cr.textContent=t('_crumb');if(shown)run(false)}
+  if($('gM')){$('gM').onclick=function(){gender='m';this.classList.add('on');$('gF').classList.remove('on');if(shown)run(false)};$('gF').onclick=function(){gender='f';this.classList.add('on');$('gM').classList.remove('on');if(shown)run(false)}}
+  $('calcBtn').onclick=function(){run(true)};
+  ['age','height','weight'].forEach(function(id){var e=$(id);if(e)e.addEventListener('keydown',function(ev){if(ev.key==='Enter')run(true)})});
+  document.addEventListener('click',function(e){if(!e.target.closest||!e.target.closest('#btnKalkiFit')||!data)return;KFBlok.go("suv",lang,{weight:data.weight},document.documentElement.getAttribute('data-script')==='cyr')});
+  window.__applyLang=applyLang; if(lang==='ru')applyLang();
+  window.addEventListener('kalki:lang',function(e){lang=(e&&e.detail&&e.detail.lang)==='ru'?'ru':'uz';applyLang()});
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:1.25rem;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600" id="pdfdate">19.11.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  // PDF button in every receipt-actions
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('/html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('/jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';card.classList.add('pdf-light');
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;card.classList.remove('pdf-light');
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+  // Validation: red message if calc pressed but no result appeared
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:var(--t-xs,14px);border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+
+<script src="/assets/kf-blok.js" defer=""></script>
+<script id="urlshare">
+(function(){
+  // Sahifa yuklanganda URL'dan holatni tiklash
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var data=JSON.parse(decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/')))));
+      var restored=false;
+      // text input'lar
+      if(data.i){
+        for(var id in data.i){
+          var el=document.getElementById(id);
+          if(el&&el.tagName==='INPUT'){el.value=data.i[id];restored=true;}
+        }
+      }
+      // active tugmalar (seg/toggle) — data-* atributlari bo'yicha
+      if(data.b){
+        for(var k=0;k<data.b.length;k++){
+          var sel=data.b[k];
+          try{
+            var btn=document.querySelector(sel);
+            if(btn&&btn.click){btn.click();restored=true;}
+          }catch(e){}
+        }
+      }
+      // checkbox'lar
+      if(data.c){
+        for(var cid in data.c){
+          var ce=document.getElementById(cid);
+          if(ce&&ce.type==='checkbox'){ce.checked=data.c[cid];
+            var ev=document.createEvent('HTMLEvents');ev.initEvent('change',true,false);ce.dispatchEvent(ev);
+            restored=true;}
+        }
+      }
+      return restored;
+    }catch(e){return false;}
+  }
+  // Joriy holatni URL'ga kodlash
+  window.__buildShareUrl=function(){
+    var data={i:{},b:[],c:{}};
+    var inputs=document.querySelectorAll('input[type="text"]');
+    for(var i=0;i<inputs.length;i++){
+      if(inputs[i].id)data.i[inputs[i].id]=inputs[i].value;
+    }
+    // active seg/toggle tugmalari (on class + data-* atribut)
+    var actives=document.querySelectorAll('.seg button.on[data-mat],.seg button.on[data-roof],.seg button.on[data-region],.seg button.on[data-loc],.seg button.on[data-an],.seg button.on[data-slope],[data-loc].on');
+    for(var a=0;a<actives.length;a++){
+      var el=actives[a], attrs=el.attributes, sel=el.tagName.toLowerCase();
+      for(var x=0;x<attrs.length;x++){
+        if(attrs[x].name.indexOf('data-')===0){sel+='['+attrs[x].name+'="'+attrs[x].value+'"]';}
+      }
+      data.b.push(sel);
+    }
+    // checkbox'lar
+    var checks=document.querySelectorAll('input[type="checkbox"]');
+    for(var c=0;c<checks.length;c++){
+      if(checks[c].id)data.c[checks[c].id]=checks[c].checked;
+    }
+    var json=JSON.stringify(data);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  // Sahifa tayyor bo'lganda tiklash (kalkulyator skriptidan keyin ishlashi uchun kechiktiramiz)
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(restoreFromUrl,100);});
+  }else{setTimeout(restoreFromUrl,100);}
+})();
+</script>
+
+
+<script id="sharebtn">
+(function(){
+  // Guard faqat yaratishni o'tkazib yuboradi — hodisa bog'lash (onclick)
+  // har chaqiruvda qayta bajariladi, aks holda prerender qilingan statik
+  // tugma hech qachon bosilmaydigan bo'lib qoladi.
+  function bindShareBtn(){
+    var actions=document.querySelector('.receipt-actions');
+    if(!actions)return;
+    var isRu=document.documentElement.lang==='ru';
+    var btn=document.getElementById('shareBtn');
+    if(!btn){
+      btn=document.createElement('button');
+      btn.id='shareBtn';
+      btn.type='button';
+      actions.insertBefore(btn,actions.firstChild);
+    }
+    btn.textContent=isRu?'Поделиться':'Ulashish';
+    btn.onclick=function(){
+      var url=window.__buildShareUrl?window.__buildShareUrl():location.href;
+      var title=document.querySelector('h1')?document.querySelector('h1').textContent:'Kalki.uz';
+      if(navigator.share){navigator.share({title:title,url:url}).catch(function(){})}
+      else if(navigator.clipboard){navigator.clipboard.writeText(url);var o=btn.textContent;btn.textContent=isRu?'Скопировано ✓':'Nusxalandi ✓';setTimeout(function(){btn.textContent=o},1500)}
+    };
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(bindShareBtn,150)})}
+  else{setTimeout(bindShareBtn,150)}
+  // langUz/langRu bosilganda matn va hodisa qayta yangilanadi
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el){el.addEventListener('click',function(){setTimeout(bindShareBtn,50)})}
+    });
+  },200);
+})();
+</script>
+
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');var __kalkiPos_faq_ld=old?old.nextSibling:null;if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    if(__kalkiPos_faq_ld)document.head.insertBefore(sc,__kalkiPos_faq_ld);else document.head.appendChild(sc);
+  }
+  // SEO bloki applyLang'da to'ladi, shuning uchun kechiktiramiz + til almashganda qayta
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  // til almashsa qayta yasash
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='hayot';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Повседневная жизнь',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');var __kalkiPos_bc_ld=old?old.nextSibling:null;if(old)old.remove();
+    var isRu=/^\/ru(\/|$)/.test(location.pathname);
+    var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    if(__kalkiPos_bc_ld)document.head.insertBefore(sc,__kalkiPos_bc_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='HealthApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');var __kalkiPos_app_ld=old?old.nextSibling:null;if(old)old.remove();
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    if(__kalkiPos_app_ld)document.head.insertBefore(sc,__kalkiPos_app_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>

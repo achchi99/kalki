@@ -1,0 +1,27 @@
+{
+ "odatiy": {
+  "text": "Jins, yosh, bo'y va vazningizni kiriting. TVI va JSST toifasi chiqadi. Bo'yingiz uchun sog'lom vazn oralig'ini ko'ring. JinsErkakAyolYoshyoshYoshni kiriting (2–100)Bo'ysmBo'yni kiriting (100–230 sm)VaznkgVaznni kiriting (10–300 kg) HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi —Tana vazn indeksi (TVI)18 yoshgacha TVI kattalar jadvali bilan baholanmaydi — bolalar uchun yosh va jinsga qarab foizlik (percentil) jadval kerak. Natijani shifokor yoki pediatr bilan baholang.Toifa (JSST)—Bo'yingiz uchun sog'lom vazn—Oraliqqacha— UlashishPDF TVI — tez tekshiruv ko'rsatkichi, tashxis emas: mushak va yog' farqlanmaydi. Homiladorlikda ishlatilmaydi.",
+  "inputs": [
+   "age=",
+   "height=",
+   "weight="
+  ]
+ },
+ "chegara": {
+  "text": "Jins, yosh, bo'y va vazningizni kiriting. TVI va JSST toifasi chiqadi. Bo'yingiz uchun sog'lom vazn oralig'ini ko'ring. JinsErkakAyolYoshyoshYoshni kiriting (2–100)Bo'ysmBo'yni kiriting (100–230 sm)VaznkgVaznni kiriting (10–300 kg) HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi —Tana vazn indeksi (TVI)18 yoshgacha TVI kattalar jadvali bilan baholanmaydi — bolalar uchun yosh va jinsga qarab foizlik (percentil) jadval kerak. Natijani shifokor yoki pediatr bilan baholang.Toifa (JSST)—Bo'yingiz uchun sog'lom vazn—Oraliqqacha— UlashishPDF TVI — tez tekshiruv ko'rsatkichi, tashxis emas: mushak va yog' farqlanmaydi. Homiladorlikda ishlatilmaydi.",
+  "inputs": [
+   "age=0",
+   "height=0",
+   "weight=0"
+  ]
+ },
+ "katta": {
+  "text": "Jins, yosh, bo'y va vazningizni kiriting. TVI va JSST toifasi chiqadi. Bo'yingiz uchun sog'lom vazn oralig'ini ko'ring. JinsErkakAyolYoshyoshYoshni kiriting (2–100)Bo'ysmBo'yni kiriting (100–230 sm)VaznkgVaznni kiriting (10–300 kg) HisoblashIltimos, barcha maydonlarni to'g'ri to'ldiring. Hisob natijasi —Tana vazn indeksi (TVI)18 yoshgacha TVI kattalar jadvali bilan baholanmaydi — bolalar uchun yosh va jinsga qarab foizlik (percentil) jadval kerak. Natijani shifokor yoki pediatr bilan baholang.Toifa (JSST)—Bo'yingiz uchun sog'lom vazn—Oraliqqacha— UlashishPDF TVI — tez tekshiruv ko'rsatkichi, tashxis emas: mushak va yog' farqlanmaydi. Homiladorlikda ishlatilmaydi.",
+  "inputs": [
+   "age=1000000",
+   "height=1000000",
+   "weight=1000000"
+  ]
+ },
+ "xato": []
+}

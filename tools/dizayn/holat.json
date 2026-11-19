@@ -490,5 +490,23 @@
   "seo": "OK",
   "test": "OK",
   "sticky": "OK"
+ },
+ "tvi-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "ideal-vazn-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
+ },
+ "suv-meyori-kalkulyator": {
+  "oltin": "OK",
+  "seo": "OK",
+  "test": "OK",
+  "sticky": "OK"
  }
 }

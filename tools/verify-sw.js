@@ -94,7 +94,7 @@ const smPaths = [...sm.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g)].map((m) => {
 });
 T(smPaths.length > 0, '12. sitemap.xml o\'qildi', smPaths.length + ' URL');
 
-const smNotPre = smPaths.filter((p) => list.indexOf(p) === -1);
+const smNotPre = smPaths.filter((p) => list.indexOf(p) === -1 && !/^\/(ru\/)?kaloriya\//.test(p));          // /kaloriya/<taom> — 100 ta ma'lumot sahifasi: oflayn keshlanmaydi (foydalanuvchi qurilmasini to'ldirmasin)
 T(smNotPre.length === 0, '12b. sitemap.xml dagi har bir sahifa precache\'da',
   smNotPre.length ? 'YO\'Q: ' + smNotPre.join(', ') : '');
 

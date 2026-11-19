@@ -302,7 +302,7 @@
       kcHisob: 'Hisob', kcOpenA: 'Hisobni ochish', kcInfoA: 'Qanday hisoblangan?',
       exTurL: 'Tur', exDurL: 'Davomiyligi', exMinus: '5 daqiqa kamroq', exPlus: '5 daqiqa ko\'proq', lvD0: 'Bemalol gaplasha olasiz', lvD1: "Nafas tezlashadi, gaplashsa bo'ladi", lvD2: 'Gaplashish qiyin, terlaysiz', exBurnT: 'Yoqasiz', exMoreT: "Qo'shimcha yeyish",
       vL1: 'kkal yana', vL2: 'yeyishingiz mumkin', vO1: 'kkal ortiqcha', vO2: 'yedingiz', kcAte: 'Yeyildi', kcStep: 'Yurganingiz uchun', kcEx: "Mashg'ulot uchun", kcMove: 'Harakat uchun', 
-      khT: '{k} kkal qanday chiqdi?', khTo: '{k} kkal ortiqcha — qanday chiqdi?', khSub: 'Bugun uchun hisob', khNorm: "Kunlik me'yoringiz", khNormGoal: 'maqsad: {g}', obImpT: "Ma'lumotlaringiz kalkulyatordan olindi — tekshiring", obImpEdit: "O'zgartirish", obImpPart: "Kalkulyatordagi ma'lumotlaringiz olindi — qolganini to'ldiring", obUsed: 'Avval ishlatganman', obUsedH: "Ma'lumotlaringizni qanday qaytaramiz?", obUsedAcc: 'Google yoki email bilan kirish', obUsedAccS: "Hisobingizga kirsangiz, ma'lumotlar qaytadi", obUsedCode: 'Tiklash kodi bilan', obUsedCodeS: 'KF-… bilan boshlanadigan kod', obUsedNo: 'Yo\'q, men yangiman', gN_keep: 'Vaznni saqlash', gN_slow: 'Sekin ozish', gN_lose: 'Ozish', gN_gain: 'Vazn olish',
+      khT: '{k} kkal qanday chiqdi?', khTo: '{k} kkal ortiqcha — qanday chiqdi?', khSub: 'Bugun uchun hisob', khNorm: "Kunlik me'yoringiz", khNormGoal: 'maqsad: {g}', srcMoreL: "Batafsil: porsiyalar va variantlar (saytda)", obImpT: "Ma'lumotlaringiz kalkulyatordan olindi — tekshiring", obImpEdit: "O'zgartirish", obImpPart: "Kalkulyatordagi ma'lumotlaringiz olindi — qolganini to'ldiring", obUsed: 'Avval ishlatganman', obUsedH: "Ma'lumotlaringizni qanday qaytaramiz?", obUsedAcc: 'Google yoki email bilan kirish', obUsedAccS: "Hisobingizga kirsangiz, ma'lumotlar qaytadi", obUsedCode: 'Tiklash kodi bilan', obUsedCodeS: 'KF-… bilan boshlanadigan kod', obUsedNo: 'Yo\'q, men yangiman', gN_keep: 'Vaznni saqlash', gN_slow: 'Sekin ozish', gN_lose: 'Ozish', gN_gain: 'Vazn olish',
       khGoalL: "{G} maqsadingiz — {k} kkal (saqlash me'yoridan {d} kkal kam). Bugun {r} kkal qoldi.", khGoalK: 'Vaznni saqlash maqsadingiz — {k} kkal. Shu raqamdan oshmasangiz — vazningiz saqlanadi. Bugun {r} kkal qoldi.',
       khGoalG: "Vazn olish maqsadingiz — {k} kkal (saqlash me'yoridan {d} kkal ko'p). Bugun yana {r} kkal yeyish mumkin.", khGoalO: '{G} maqsadingiz — {k} kkal. Bugun {r} kkal ortiq.',
       khStep: 'Qadam · {n}', khStepS: "yurganingiz uchun qo'shildi", khStep0: "bugun hali yo'q", khStepIn: "odatiy yurish me'yor ichida", khOff: "me'yorga qo'shilmadi", khEx: "Mashg'ulot", khExS: "{m} daqiqa — qo'shildi", khEx0: "bugun hali yo'q",
@@ -332,7 +332,7 @@
       kcHisob: 'Расчёт', kcOpenA: 'Открыть расчёт', kcInfoA: 'Как это рассчитано?',
       exTurL: 'Тип', exDurL: 'Длительность', exMinus: 'На 5 минут меньше', exPlus: 'На 5 минут больше', lvD0: 'Можно свободно разговаривать', lvD1: 'Дыхание учащается, поговорить можно', lvD2: 'Говорить трудно, вспотеете', exBurnT: 'Сожжёте', exMoreT: 'Можно съесть ещё',
       vL1: 'ккал ещё', vL2: 'можно съесть', vO1: 'ккал сверх', vO2: 'нормы', kcAte: 'Съедено', kcStep: 'За ходьбу', kcEx: 'За тренировку', kcMove: 'За движение', 
-      khT: 'Откуда {k} ккал?', khTo: 'Откуда {k} ккал сверх нормы?', khSub: 'Расчёт на сегодня', khNorm: 'Ваша дневная норма', khNormGoal: 'цель: {g}', obImpT: 'Данные взяты из калькулятора — проверьте', obImpEdit: 'Изменить', obImpPart: 'Данные из калькулятора взяты — заполните остальное', obUsed: 'Я здесь не впервые', obUsedH: 'Как вернуть ваши данные?', obUsedAcc: 'Войти через Google или email', obUsedAccS: 'Войдите в аккаунт — данные вернутся', obUsedCode: 'По коду восстановления', obUsedCodeS: 'Код, начинающийся с KF-…', obUsedNo: 'Нет, я впервые', gN_keep: 'Поддержание веса', gN_slow: 'Медленное похудение', gN_lose: 'Похудение', gN_gain: 'Набор веса',
+      khT: 'Откуда {k} ккал?', khTo: 'Откуда {k} ккал сверх нормы?', khSub: 'Расчёт на сегодня', khNorm: 'Ваша дневная норма', khNormGoal: 'цель: {g}', srcMoreL: 'Подробнее: порции и варианты на сайте', obImpT: 'Данные взяты из калькулятора — проверьте', obImpEdit: 'Изменить', obImpPart: 'Данные из калькулятора взяты — заполните остальное', obUsed: 'Я здесь не впервые', obUsedH: 'Как вернуть ваши данные?', obUsedAcc: 'Войти через Google или email', obUsedAccS: 'Войдите в аккаунт — данные вернутся', obUsedCode: 'По коду восстановления', obUsedCodeS: 'Код, начинающийся с KF-…', obUsedNo: 'Нет, я впервые', gN_keep: 'Поддержание веса', gN_slow: 'Медленное похудение', gN_lose: 'Похудение', gN_gain: 'Набор веса',
       khGoalL: 'Цель «{G}» — {k} ккал (на {d} ккал меньше нормы поддержания). Сегодня осталось {r} ккал.', khGoalK: 'Цель «Поддержание веса» — {k} ккал. Если не превышать это число — вес сохранится. Сегодня осталось {r} ккал.',
       khGoalG: 'Цель «Набор веса» — {k} ккал (на {d} ккал больше нормы поддержания). Сегодня можно съесть ещё {r} ккал.', khGoalO: 'Цель «{G}» — {k} ккал. Сегодня на {r} ккал больше.',
       khStep: 'Шаги · {n}', khStepS: 'добавлено за ходьбу', khStep0: 'сегодня пока нет', khStepIn: 'обычная ходьба уже в норме', khOff: 'не добавлено к норме', khEx: 'Тренировка', khExS: '{m} мин — добавлено', khEx0: 'сегодня пока нет',
@@ -2736,8 +2736,9 @@
     return '<div class="rz-sh-h sl-ph"><button type="button" class="rz-x" data-act="pwswapx" aria-label="' + esc(T('back')) + '">' + ico('back') + '</button><b>' + esc(T('srcBtn')) + '</b><button type="button" class="rz-x" data-act="sheetclose" aria-label="' + esc(T('close')) + '">' + ico('x') + '</button></div>' +
       '<p class="rz-p"><b>' + esc(f ? nameOf(o.fam || f) : (o.name || '')) + '</b>' + ((o.fam && f.vr) ? ' · ' + esc(S.famLabel(o.fam, f.vr, o.szid, lang) || '') : '') + '</p>' +
       (!f ? '<p class="rz-p sl-ap">' + esc(T('srcAi')) + '</p>' : (f.e ? '<p class="rz-p sl-ap">' + esc(T(f.rc ? 'srcApprox' : 'srcApprox2')) + '</p>' : '')) + (f && f.tekshirilgan && srcKind(o) ? '<p class="rz-p sl-tzp"><b>' + esc(T('tkSrc_' + srcKind(o))) + '</b> · ' + esc(T('tkChk')) + '</p>' : '') + '<p class="rz-p">' + esc(t) + '</p>' + (f && f.off ? '<p class="rz-p sm">' + offLine(f) + '</p>' : '') + (f && f.k ? '<p class="rz-p sm">' + esc(T('srcPer100', { k: f.k }) + (o.fam ? ' · ' + T('famN', { n: o.fam.fam.N }) + ' · ' + T('famDef') : '')) + '</p>' : '') + (us ? '<p class="rz-p sm">' + esc(us) + '</p>' : '') +
-      '<div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="pwswapx">' + esc(T('back')) + '</button></div>';
+      '<p class="rz-p sm" id="srcMore"></p><div class="rz-actions sl-sticky"><button type="button" class="rz-btn primary" data-act="pwswapx">' + esc(T('back')) + '</button></div>';
   }
+  function srcMore(o) { var fid = o && (o.fam ? o.fam.id : (o.food && o.food.id)); if (!fid) return; tsLoad(function (ids) { var el = $('#srcMore'); if (!el || ids.indexOf(fid) < 0) return; el.innerHTML = '<a class="rz-link" href="' + (lang === 'ru' ? '/ru' : '') + '/kaloriya/' + esc(fid) + '" target="_blank" rel="noopener">' + esc(T('srcMoreL')) + ' ›</a>'; }); }          // kalki.uz taom sahifasi: porsiyalar, variantlar, manba
   function itSync(it) {
     var pt = pwCalc(it); it.g = pt.g; it.kcal = pt.kcal; it.p = pt.p; it.f = pt.f; it.c = pt.c;
     if (it.ed || it.food) it.ptxt = it.aq ? ambTxt(it) : (it.unit === 'g100' ? amtG(pt.g, it.food) : qtyStr(it.qty) + ' ' + pwUName(it.unit));
@@ -2950,6 +2951,9 @@
     if (pre.u === 'g100' || pre.u === 'ml') { o.unit = 'g100'; o.qty = Math.round(pre.q); return; }
     o.unit = pre.u && o.food.u.some(function (u) { return u[0] === pre.u; }) ? pre.u : defUnit(o.food); o.qty = o.unit === 'g100' ? Math.round(pre.q * 100) : pre.q;
   }
+  function taomOch(id) { stEv('sayt_taom', 'ochildi'); openAdd(); pickFood(id); }          // sayt taom sahifasidan kelgan: qo'shish oynasi → shu taomning porsiyasi (baza yuklanmagan bo'lsa — yuklangach)
+  var TS_IDS = null;          // kalki.uz/kaloriya/<taom> sahifasi bor taomlar (data/taom-sahifalar.json) — «Manba» oynasida «Batafsil»
+  function tsLoad(cb) { if (TS_IDS) return cb(TS_IDS); loadJson('/data/taom-sahifalar.json', function (j) { TS_IDS = (j && j.ids) || []; cb(TS_IDS); }, function () { TS_IDS = []; cb(TS_IDS); }); }
   function pickFood(id, pick, pre) {
     if (!foodById(id)) { if (dbState !== 2) loadDb(function () { if (fd && foodById(id)) pickFood(id, pick, pre); }); return; }
     if (!Object.keys(fdLM).length) lmIndex();
@@ -4053,7 +4057,7 @@
     try { localStorage.setItem(OBT_LS, String(Date.now())); } catch (e) {}          // v66+: onboarding tugagan vaqt (faqat qurilmada; birinchi ovqatgacha vaqt GURUHI hisoblanadi, vaqt yuborilmaydi)
     st = n; try { localStorage.removeItem(LS_IMPORT); localStorage.removeItem(OLD[LS_IMPORT]); } catch (e) {} ob = null; seenFood = null; heroPrev = null; save(); loadDb(); try { if (STAT) STAT.faol(); } catch (e) {}
     var el = $('#rzOnb'); el.classList.add('out');
-    wait(function () { el.hidden = true; el.classList.remove('out'); view = 'today'; enterNext = true; render(); var mn = $('#rzMain'); if (mn) mn.scrollTop = 0; window.scrollTo(0, 0); if (location.hash === '#boshlash') history.replaceState(null, '', location.pathname + location.search); if (introPending) setTimeout(introShow, 350); }, 260);
+    wait(function () { el.hidden = true; el.classList.remove('out'); view = 'today'; enterNext = true; render(); try { var pt = sessionStorage.getItem('kf_taom'); if (pt) { sessionStorage.removeItem('kf_taom'); setTimeout(function () { taomOch(pt); }, 600); } } catch (e) {} var mn = $('#rzMain'); if (mn) mn.scrollTop = 0; window.scrollTo(0, 0); if (location.hash === '#boshlash') history.replaceState(null, '', location.pathname + location.search); if (introPending) setTimeout(introShow, 350); }, 260);
   }
   function obStart() { if (ob.refine) { obRefineSave(); return; } obFinish(obProfile(), false); }          // v50: tartib savoli onboarding'da YO'Q (standart — «Farqi yo'q»)
   function obLater() { if (!ob || !ob.sex) return; var d = obDef(ob.sex); obFinish({ sex: ob.sex, preg: ob.sex === 'f' && ob.preg, age: d.age, height: d.height, weight: d.weight, act: 2, goal: 'keep', goalWeight: null }, true); }
@@ -4305,7 +4309,7 @@
       case 'vedsave': vmSave(); break;
       case 'vdel': vmDel(+el.getAttribute('data-id')); break;
       case 'vmback': setSheet(vmHtml()); break;
-      case 'pwsrc': setSheet(srcHtml(pwO())); break;
+      case 'pwsrc': setSheet(srcHtml(pwO())); srcMore(pwO()); break;
       case 'pwerr': xt = { k: {}, note: '' }; setSheet(errHtml(pwO())); break;
       case 'xtk': { var xk = el.getAttribute('data-k'); xt.k[xk] = !xt.k[xk]; el.classList.toggle('on', !!xt.k[xk]); el.setAttribute('aria-pressed', !!xt.k[xk]); break; }
       case 'xtsend': errSend(); break;
@@ -4415,6 +4419,8 @@
     if (NAT) { NAT.notif.onTap(function () { stEv('push_bosildi'); if (st && st.setup) openFish(); }); NAT.notif.perm().then(function (p) { NS.perm = p; NS.loaded = true; pushWatch(); if (p === 'granted') { natResched(); hwResched(); plResched(); } if (view === 'profile' && !kit.sheetKind()) render(); }); }
     if (/[?&]baliq=1\b/.test(location.search) && st.setup) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(openFish, 500); }          // eslatma bosildi: baliq guruhi ochiladi
     if (/[?&]hafta=1\b/.test(location.search) && st.setup) { stEv('push_bosildi', 'hafta'); try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(function () { openWeek(); }, 500); }          // «Haftangiz xulosasi tayyor» bosildi
+    (function () { var tq = /[?&]taom=([a-z0-9-]{1,40})(?:&|#|$)/.exec(location.search); if (!tq) return; try { history.replaceState(null, '', location.pathname + location.search.replace(/([?&])taom=[^&#]*&?/, '$1').replace(/[?&]$/, '') + location.hash); } catch (e) {}          // kalki.uz/kaloriya/<taom> → «KalkiFit'da yozish»: shu taomning qo'shish oynasi
+      if (st.setup) setTimeout(function () { taomOch(tq[1]); }, 500); else try { sessionStorage.setItem('kf_taom', tq[1]); } catch (e) {} })();
     if (/[?&]plato=1\b/.test(location.search) && st.setup) { try { history.replaceState(null, '', location.pathname + location.hash); } catch (e) {} setTimeout(openPlato, 500); }          // «Eslatib turilsin» bildirishnomasi bosildi
     plBootRem(); protStat(); remBoot();          // v88: ovqat eslatmalari
     root.addEventListener('change', function (ev) { var el = ev.target; if (!el || !el.classList || !el.classList.contains('sl-remt')) return; var k = el.getAttribute('data-m'), m = /^(\d\d):(\d\d)$/.exec(el.value || ''); if (!m) return; var r = remP(); r.m = r.m || {}; var cur = remC().m[k]; r.m[k] = { on: cur.on, t: +m[1] * 60 + +m[2] }; remChanged(); });

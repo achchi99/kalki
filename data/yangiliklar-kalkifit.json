@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 91,
+   "d": "2026-11-19",
+   "bn": {
+    "uz": "Saytdan bir bosishda",
+    "ru": "С сайта в одно касание"
+   },
+   "items": [
+    {
+     "uz": "kalki.uz'dagi taom sahifasida «KalkiFit'da yozish» — taom darhol qo'shish oynasida ochiladi",
+     "ru": "На странице блюда на kalki.uz «Записать в KalkiFit» — блюдо сразу открывается для добавления"
+    },
+    {
+     "uz": "Kaloriya kalkulyatori va KalkiFit endi bir xil me'yorni ko'rsatadi",
+     "ru": "Калькулятор калорий и KalkiFit теперь показывают одинаковую норму"
+    }
+   ]
+  },
+  {
    "v": 90,
    "d": "2026-11-19",
    "bn": {

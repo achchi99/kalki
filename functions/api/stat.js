@@ -10,11 +10,11 @@ import { turOf, ekranOf } from '../_lib/qurilma-tur.js';
 import { yigMiqdorsiz } from '../_lib/soz-norm.js';
 import { adminAuth } from '../_lib/admin-auth.js';
 
-export const SAYT_JOY = /^(kaloriya|alkogol|bosh|kategoriya|menyu|maqola)$/;          // kalki.uz → KalkiFit: saytdagi joy kodlari (assets/nav.js [data-kf])
-export const MANBA = /^(x|tg|ig|yt|google|fb|sayt|dir|boshqa|sayt-(kaloriya|alkogol|bosh|kategoriya|menyu|maqola))?$/;          // v61: manba kodi (qat'iy ro'yxat; bo'sh — eski ilova versiyasi). Erkin matn / URL qabul qilinmaydi
+export const SAYT_JOY = /^(kaloriya|alkogol|bosh|kategoriya|menyu|maqola|tvi|ideal-vazn|suv|taom-[a-z0-9-]{1,40})$/;          // kalki.uz → KalkiFit: saytdagi joy kodlari (assets/nav.js [data-kf])
+export const MANBA = /^(x|tg|ig|yt|google|fb|sayt|dir|boshqa|sayt-(kaloriya|alkogol|bosh|kategoriya|menyu|maqola|tvi|ideal-vazn|suv|taom-[a-z0-9-]{1,40}))?$/;          // v61: manba kodi (qat'iy ro'yxat; bo'sh — eski ilova versiyasi). Erkin matn / URL qabul qilinmaydi
 const ANY = /^$/, USUL = /^(qidiruv|rasm|retsept|oxirgilar|tavsiya|ovoz|menyu|matn|odatdagi|boshqa)$/, LANG = /^(uz|cyr|ru)$/;
 export const HODISA = {
-  faol: ANY, yangi_foydalanuvchi: MANBA, til_tanlandi: LANG, onboarding_tugadi: ANY, onboarding_keyinroq: ANY,
+  faol: ANY, sayt_taom: /^ochildi$/, yangi_foydalanuvchi: MANBA, til_tanlandi: LANG, onboarding_tugadi: ANY, onboarding_keyinroq: ANY,
   ovqat_qoshildi: USUL, qidiruv_topilmadi: ANY, qidiruv_jami: ANY, haftangiz: /^(ochildi|tugatildi|ulashildi(\.(bitta|toplam))?|maqsad_qabul|slayd\.([1-9]|1[0-4])|saqlash\.(ok|usul\.(galereya|ulashish|share|oyna|yuklab)|xato\.[a-z_]{1,16})|ulashish\.xato\.[a-z_]{1,16})$/, birinchi_karta: /^(korsatildi|rasm|ovoz|qidiruv|chip|yopildi|qoshildi)$/, qidiruv_natijasiz: ANY, yeymiz_chip: /^(kabob|suyuq|tandir|tez|baliq|uyda|boshqa)$/, yeymiz_segment: /^(kafe|buyurtma|uyda)$/, buyurtma_hamkor: /^(uzum|yandex)$/,
   ai_sorov: /^(matn|rasm|retsept|ovoz|menyu|yorliq)\.(ok|limit|xato|format|tarmoq|vaqt|hajm|server|bosh)$|^rasm\.limit\.(mehmon|akkaunt|akkaunt_bosildi)$/, suv_qoshildi: ANY, qadam_ulandi: /^(hc|sensor)$/, baliq_kuni_obuna: ANY, baliq_kuni_bekor: ANY,
   push_bosildi: ANY, apk_yuklandi: ANY, ilova_yangilandi: /^\d{1,2}\.\d{1,2}\.\d{1,3}$/, kun_kartochka_ulashildi: ANY, hazil_yopildi: ANY, haftalik_ochildi: ANY,
@@ -185,10 +185,10 @@ export async function manbalar(db, dan0, gacha, bugun) {
 /* kalki.uz → KalkiFit: joylar bo'yicha voronka — ko'rsatildi → bosildi (stat_kun «sayt_blok») → onboarding tugadi → birinchi ovqat
    (stat_qurilma: yangi = 1 va manba = «sayt-<joy>»; birinchi ovqat — shu qurilmaning ilk qatorida birinchi_usul). Hech qanday id/URL yo'q — faqat sonlar. */
 export async function saytBloklar(db, dan, gacha) {
-  const JOYS = ['kaloriya', 'alkogol', 'bosh', 'kategoriya', 'menyu', 'maqola'], m = {}; JOYS.forEach((j) => { m[j] = { joy: j, korsatildi: 0, bosildi: 0, yangi: 0, ob: 0, ovqat: 0 }; });
-  try { for (const r of await all(db, "SELECT kalit, SUM(son) AS n FROM stat_kun WHERE hodisa = 'sayt_blok' AND kun >= ? AND kun <= ? GROUP BY kalit", dan, gacha)) { const [j, h] = String(r.kalit).split('.'); if (m[j] && (h === 'korsatildi' || h === 'bosildi')) m[j][h] = r.n || 0; } } catch (e) { return null; }
-  try { for (const r of await all(db, "SELECT a.manba AS manba, COUNT(*) AS yangi, SUM(a.ob) AS ob, SUM(CASE WHEN EXISTS (SELECT 1 FROM stat_qurilma b WHERE b.q = a.q AND b.birinchi_usul IS NOT NULL) THEN 1 ELSE 0 END) AS ovqat FROM stat_qurilma a WHERE a.yangi = 1 AND a.manba LIKE 'sayt-%' AND a.kun >= ? AND a.kun <= ? GROUP BY a.manba", dan, gacha)) { const j = String(r.manba).slice(5); if (m[j]) { m[j].yangi = r.yangi || 0; m[j].ob = r.ob || 0; m[j].ovqat = r.ovqat || 0; } } } catch (e) {}
-  return JOYS.map((j) => m[j]);
+  const JOYS = ['kaloriya', 'alkogol', 'tvi', 'ideal-vazn', 'suv', 'taom', 'bosh', 'kategoriya', 'menyu', 'maqola'], m = {}, taom = {}; /* taom — /kaloriya/<taom> sahifalari jami (taomlar bo'yicha — «taomlar» ro'yxatida) */ JOYS.forEach((j) => { m[j] = { joy: j, korsatildi: 0, bosildi: 0, yangi: 0, ob: 0, ovqat: 0 }; });
+  try { for (const r of await all(db, "SELECT kalit, SUM(son) AS n FROM stat_kun WHERE hodisa = 'sayt_blok' AND kun >= ? AND kun <= ? GROUP BY kalit", dan, gacha)) { const [j0, h] = String(r.kalit).split('.'), j = /^taom-/.test(j0) ? 'taom' : j0; if (!(h === 'korsatildi' || h === 'bosildi')) continue; if (j === 'taom') { const id = j0.slice(5); taom[id] = taom[id] || { id, korsatildi: 0, bosildi: 0, yangi: 0, ob: 0, ovqat: 0 }; taom[id][h] += r.n || 0; } if (m[j]) m[j][h] += r.n || 0; } } catch (e) { return null; }
+  try { for (const r of await all(db, "SELECT a.manba AS manba, COUNT(*) AS yangi, SUM(a.ob) AS ob, SUM(CASE WHEN EXISTS (SELECT 1 FROM stat_qurilma b WHERE b.q = a.q AND b.birinchi_usul IS NOT NULL) THEN 1 ELSE 0 END) AS ovqat FROM stat_qurilma a WHERE a.yangi = 1 AND a.manba LIKE 'sayt-%' AND a.kun >= ? AND a.kun <= ? GROUP BY a.manba", dan, gacha)) { const j0 = String(r.manba).slice(5), j = /^taom-/.test(j0) ? 'taom' : j0; if (m[j]) { m[j].yangi += r.yangi || 0; m[j].ob += r.ob || 0; m[j].ovqat += r.ovqat || 0; } if (j === 'taom') { const id = j0.slice(5); taom[id] = taom[id] || { id, korsatildi: 0, bosildi: 0, yangi: 0, ob: 0, ovqat: 0 }; taom[id].yangi += r.yangi || 0; taom[id].ob += r.ob || 0; taom[id].ovqat += r.ovqat || 0; } } } catch (e) {}
+  return { joylar: JOYS.map((j) => m[j]), taomlar: Object.values(taom).sort((a, b) => b.korsatildi - a.korsatildi || b.bosildi - a.bosildi).slice(0, 60) };
 }
 /* v66+: AKTIVATSIYA VORONKASI (platforma bo'yicha: veb / android / ios-pwa / jami). Kogorta = «ilk_ochilish» kelgan qurilmalar (ilk = 1 qator; mijoz kodi chiqqandan keyin ilk marta ochgan).
    Qadamlar: ilk ochilish → onboarding tugadi (istalgan kuni, ob = 1) → ilk kunda ≥1 ovqat → ≥3 ovqat → D1 / D3 / D7 (faqat YETILGAN kogorta: kun + k ≤ bugun; har qadamda n / N ko'rsatiladi).

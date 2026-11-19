@@ -909,6 +909,48 @@
     "uz": "Jami to'lov va nasiyaning haqiqiy yillik stavkasi chiqadi.",
     "ru": "Увидите итог и реальную годовую ставку рассрочки."
    }
+  ],
+  "tvi-kalkulyator": [
+   {
+    "uz": "Jins, yosh, bo'y va vazningizni kiriting.",
+    "ru": "Укажите пол, возраст, рост и вес."
+   },
+   {
+    "uz": "TVI va JSST toifasi chiqadi.",
+    "ru": "Покажем ИМТ и категорию ВОЗ."
+   },
+   {
+    "uz": "Bo'yingiz uchun sog'lom vazn oralig'ini ko'ring.",
+    "ru": "Смотрите здоровый диапазон для вашего роста."
+   }
+  ],
+  "ideal-vazn-kalkulyator": [
+   {
+    "uz": "Jins va bo'yingizni kiriting.",
+    "ru": "Укажите пол и рост."
+   },
+   {
+    "uz": "To'rt formula va TVI bo'yicha oraliq chiqadi.",
+    "ru": "Покажем диапазон по четырём формулам и ИМТ."
+   },
+   {
+    "uz": "Hozirgi vaznni kiritsangiz — farq ko'rinadi.",
+    "ru": "Введите текущий вес — увидите разницу."
+   }
+  ],
+  "suv-meyori-kalkulyator": [
+   {
+    "uz": "Vazningizni kiriting.",
+    "ru": "Укажите вес."
+   },
+   {
+    "uz": "Kunlik me'yor millilitr va stakanda chiqadi.",
+    "ru": "Покажем норму в миллилитрах и стаканах."
+   },
+   {
+    "uz": "Mashg'ulot va issiq kunlar uchun izohni o'qing.",
+    "ru": "Учтите пояснение для тренировок и жары."
+   }
   ]
  },
  "modes": {

@@ -23,7 +23,7 @@
   function manbaOf(search, referrer, selfHost) {
     var m = /[?&](?:utm_source|ref)=([^&#]*)/i.exec(String(search || '')), v = '';
     if (m) { try { v = decodeURIComponent(m[1].replace(/\+/g, ' ')); } catch (e) { v = m[1]; } v = v.trim().toLowerCase().slice(0, 40); }
-    if (v) { if (ALIAS[v]) return ALIAS[v]; if (/^sayt-(kaloriya|alkogol|bosh|kategoriya|menyu|maqola)$/.test(v)) return v;          // kalki.uz ichidagi joy (assets/nav.js [data-kf])
+    if (v) { if (ALIAS[v]) return ALIAS[v]; if (/^sayt-(kaloriya|alkogol|bosh|kategoriya|menyu|maqola|tvi|ideal-vazn|suv|taom-[a-z0-9-]{1,40})$/.test(v)) return v;          // kalki.uz ichidagi joy (assets/nav.js [data-kf])
       return /^[a-z0-9.\-]+$/.test(v) && v.indexOf('.') > 0 ? ofHost(host(v), selfHost) : 'boshqa'; }          // noma'lum utm_source — «boshqa» (erkin matn saqlanmaydi)
     var d = host(referrer); return d ? ofHost(d, selfHost) : 'dir';
   }
@@ -42,7 +42,7 @@
     var api = {
       disabled: function () { return dis; },
       manba: function () {          // birinchi ochilishda aniqlanib qurilmada BIR MARTA saqlanadi (keyin o'zgarmaydi); demo/preview/bot — ''
-        if (dis) return ''; try { var v = ls && ls.getItem(MKEY); if (v && /^[a-z]{1,8}(-[a-z]{2,12})?$/.test(v)) return v; var c = manbaOf((w.location || {}).search, w.document && w.document.referrer, (w.location || {}).hostname); if (ls) ls.setItem(MKEY, c); return c; } catch (e) { return ''; }
+        if (dis) return ''; try { var v = ls && ls.getItem(MKEY); if (v && /^[a-z]{1,8}(-[a-z0-9-]{2,46})?$/.test(v)) return v; var c = manbaOf((w.location || {}).search, w.document && w.document.referrer, (w.location || {}).hostname); if (ls) ls.setItem(MKEY, c); return c; } catch (e) { return ''; }
       },
       queue: read,
       add: function (h, k) {

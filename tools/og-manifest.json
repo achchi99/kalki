@@ -579,5 +579,26 @@
     "hash": "1ab1a3f11f7e",
     "tpl": 1,
     "v": 2
+  },
+  "tvi-kalkulyator": {
+    "title": "TVI (BMI) kalkulyatori",
+    "cat": "hayot",
+    "hash": "934a9cf4d36d",
+    "tpl": 1,
+    "v": 2
+  },
+  "ideal-vazn-kalkulyator": {
+    "title": "Ideal vazn kalkulyatori",
+    "cat": "hayot",
+    "hash": "69d0f1545618",
+    "tpl": 1,
+    "v": 2
+  },
+  "suv-meyori-kalkulyator": {
+    "title": "Suv me'yori kalkulyatori",
+    "cat": "hayot",
+    "hash": "b409cda6a7bb",
+    "tpl": 1,
+    "v": 2
   }
 }

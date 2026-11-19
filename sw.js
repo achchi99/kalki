@@ -5,7 +5,7 @@
  * Qo'lda oshiriladigan raqam ertami-kechmi unutiladi va shunda foydalanuvchi
  * brauzerida eski kod muzlab qoladi.
  */
-const SW_VERSION = '937511c6';   /* sw-version:auto */
+const SW_VERSION = '9c5a5ecd';   /* sw-version:auto */
 
 const STATIC = 'kalki-static-' + SW_VERSION;    // HTML qobiq + assets
 const RUNTIME = 'kalki-runtime-' + SW_VERSION;  // rasm, og, boshqa
@@ -50,6 +50,8 @@ const ASSETS = [
   '/assets/app-akkaunt.js',
   '/assets/app-yangilik.js',
   '/assets/rozgor-app.js',
+  '/assets/meyor-core.js',
+  '/assets/kf-blok.js',
   '/assets/kalkifit-core.js',
   '/assets/kalkifit-app.js',
   '/assets/kalkifit-gaplar.js',
@@ -162,6 +164,12 @@ const ASSETS = [
   '/ru/aliment-kalkulyator',
   '/cyr/aliment-kalkulyator',
   '/alkogol-kalkulyator',
+  '/suv-meyori-kalkulyator',
+  '/ru/suv-meyori-kalkulyator',
+  '/ideal-vazn-kalkulyator',
+  '/ru/ideal-vazn-kalkulyator',
+  '/tvi-kalkulyator',
+  '/ru/tvi-kalkulyator',
   '/ru/alkogol-kalkulyator',
   '/ariza-namunasi',
   '/ru/ariza-namunasi',

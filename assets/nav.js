@@ -73,10 +73,10 @@
 /* kalki.uz → KalkiFit (sayt trafigi ilovaga): [data-kf="<joy>"] havolalar va bloklar. HTML'da utm YO'Q (SEO toza, ichki havolada utm yo'q) —
    faqat bosilganda ?utm_source=sayt-<joy> qo'shiladi (ilova manbani shundan oladi) va anonim «bosildi» sanaladi. [data-kf-k] — ko'rinsa (≥ 50 %),
    sessiyada bir marta «ko'rsatildi». Yuboriladi FAQAT: joy kodi + k|b (POST /api/stat {sb, h}); id, URL, shaxsiy ma'lumot YO'Q.
-   DNT / GPC, bot / headless, localhost, preview (*.pages.dev) — hech narsa yuborilmaydi. Joylar: kaloriya, alkogol, bosh, kategoriya, menyu, maqola. */
+   DNT / GPC, bot / headless, localhost, preview (*.pages.dev) — hech narsa yuborilmaydi. Joylar: kaloriya, alkogol, bosh, kategoriya, menyu, maqola, tvi, ideal-vazn, suv, taom-<id> (/kaloriya/<taom> sahifalari). */
 (function (w, d) {
   'use strict';
-  var JOY = /^(kaloriya|alkogol|bosh|kategoriya|menyu|maqola)$/;
+  var JOY = /^(kaloriya|alkogol|bosh|kategoriya|menyu|maqola|tvi|ideal-vazn|suv|taom-[a-z0-9-]{1,40})$/;
   function off() {
     var n = w.navigator || {}; try { if (w.localStorage && w.localStorage.getItem('kalki_stat_test') === '1') return false; } catch (e) {}
     if (n.doNotTrack === '1' || n.doNotTrack === 'yes' || w.doNotTrack === '1' || n.globalPrivacyControl === true) return true;

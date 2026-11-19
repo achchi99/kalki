@@ -1174,5 +1174,47 @@
   "cyr": false,
   "v2": false,
   "partiya": 2
+ },
+ {
+  "file": "tvi-kalkulyator.html",
+  "slug": "tvi-kalkulyator",
+  "tur": "kalkulyator",
+  "kat": "hayot",
+  "klik_uz": 0,
+  "klik_ru": 0,
+  "kors_uz": 0,
+  "kors_ru": 0,
+  "ru": true,
+  "cyr": false,
+  "v2": false,
+  "partiya": 2
+ },
+ {
+  "file": "ideal-vazn-kalkulyator.html",
+  "slug": "ideal-vazn-kalkulyator",
+  "tur": "kalkulyator",
+  "kat": "hayot",
+  "klik_uz": 0,
+  "klik_ru": 0,
+  "kors_uz": 0,
+  "kors_ru": 0,
+  "ru": true,
+  "cyr": false,
+  "v2": false,
+  "partiya": 2
+ },
+ {
+  "file": "suv-meyori-kalkulyator.html",
+  "slug": "suv-meyori-kalkulyator",
+  "tur": "kalkulyator",
+  "kat": "hayot",
+  "klik_uz": 0,
+  "klik_ru": 0,
+  "kors_uz": 0,
+  "kors_ru": 0,
+  "ru": true,
+  "cyr": false,
+  "v2": false,
+  "partiya": 2
  }
 ]

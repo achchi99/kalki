@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="ru" data-lang="ru" data-ru-page="1"><head>
+<meta charset="UTF-8">
+<script id="langboot">
+(function(){try{
+  var s=localStorage.getItem('kalki_lang')||localStorage.getItem('lang')||localStorage.getItem('siteLang');
+  var l=(s==='ru'||s==='uz'||s==='cyr')?s:'uz';
+  if(/^\/ru\//.test(location.pathname))l='ru';
+  var q=/[?&]lang=(uz|ru|cyr)\b/.exec(location.search||'');
+  if(q)l=q[1];
+  var h=document.documentElement;
+  if(l==='cyr'){h.setAttribute('data-lang','uz');h.setAttribute('data-script','cyr');h.lang='uz';}
+  else{h.setAttribute('data-lang',l);h.lang=l;}
+}catch(e){}
+try{if(localStorage.getItem('kalki_fs')==='big')document.documentElement.classList.add('fs-big');}catch(e){}})();
+</script>
+<style id="langcss">html[data-lang="ru"] body,html[data-script="cyr"] body{visibility:hidden;animation:kalkiLangReveal 0s linear .9s forwards}
+html[data-lang="ru"][data-lang-ready] body,html[data-script="cyr"][data-lang-ready] body{visibility:visible;animation:none}
+@keyframes kalkiLangReveal{to{visibility:visible}}
+</style>
+<script src="/assets/lang.js" defer=""></script>
+<script src="/assets/footer-lang.js" defer=""></script>
+<script src="/assets/sw-boot.js" defer=""></script>
+<script src="/assets/datanote.js" defer=""></script>
+<script src="/assets/answerbox.js" defer=""></script>
+<script src="/assets/calc-v2.js" defer=""></script>
+<script src="/assets/tgcta.js" defer=""></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Калькулятор идеального веса — здоровый диапазон для вашего роста</title>
+<link rel="canonical" href="https://kalki.uz/ru/ideal-vazn-kalkulyator">
+<meta name="description" content="Идеальный вес по росту и полу: формулы Девайна, Робинсона, Миллера, Хамви и диапазон ИМТ 18,5–24,9. Не одно число — здоровый диапазон.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>body[data-cat="hayot"]{--cat:#5B3A63;--cat-deep:#452B4B;--accent:#D98BA6;--cat-soft:#F3EDF5;--cat-text:#D9C6DE}
+:root{--wrap-max:560px;--paper:#F7F8F6;--card:#FFFFFF;--ink:#16211C;--muted:#5C6B63;--line:#DDE5E0;--radius:14px;--warn:#B3261E;--warn-soft:#FBEAE8}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Manrope',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;min-height:100vh}
+.wrap{max-width:var(--wrap-max);margin:0 auto;padding:0 16px 48px}
+.cat-badge{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-xs,14px);font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:rgba(255,255,255,.13);color:#fff;padding:5px 11px;border-radius:99px;margin-bottom:12px}
+.cat-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+h1{font-size:1.625rem;font-weight:800;line-height:1.2;letter-spacing:-.01em}
+.sub{margin-top:8px;font-size:0.9063rem;color:var(--cat-text);max-width:42ch}
+.warnbar{background:var(--warn-soft);border:1.5px solid #E8C2BE;border-radius:12px;padding:12px 14px;margin-top:16px;font-size:var(--t-xs,14px);font-weight:700;color:var(--warn)}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 18px 22px;margin-top:16px;box-shadow:0 6px 24px rgba(0,0,0,.10);position:relative}
+.field{margin-bottom:18px}
+label{display:block;font-size:var(--t-xs,14px);font-weight:700;color:var(--muted);margin-bottom:7px;letter-spacing:.02em}
+.input-shell{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:#FBFCFB;transition:border-color .15s;overflow:hidden}
+.input-shell:focus-within{border-color:var(--cat)}
+input[type=text]{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:1.0625rem;font-weight:700;color:var(--ink);padding:12px 13px;min-width:0}
+select{flex:1;border:0;outline:0;background:transparent;font:inherit;font-size:0.9375rem;font-weight:700;color:var(--ink);padding:12px 10px;min-width:0;-webkit-appearance:none;appearance:none}
+.unit{font-size:var(--t-xs,14px);font-weight:700;color:var(--muted);padding:0 11px;white-space:nowrap;border-left:1px solid var(--line);align-self:stretch;display:flex;align-items:center;background:#F2F5F3}
+.seg{display:flex;background:#EEF2EF;border-radius:10px;padding:4px;gap:4px}
+.seg button{flex:1;border:0;background:transparent;font:inherit;font-size:0.875rem;font-weight:700;color:var(--muted);padding:10px 8px;border-radius:8px;cursor:pointer;transition:background .15s,color .15s;-webkit-tap-highlight-color:transparent}
+.seg button.on{background:var(--cat);color:#fff}
+.hint{font-size:var(--t-xs,14px);color:var(--muted);margin-top:6px}
+.drink-row{border:1.5px solid var(--line);border-radius:12px;padding:12px;margin-bottom:10px;background:#FBFCFB}
+.drink-top{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.drink-top .input-shell{flex:1;background:#fff}
+.drink-del{border:0;background:var(--warn-soft);color:var(--warn);font:inherit;font-size:1rem;font-weight:800;width:42px;height:42px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;flex-shrink:0}
+.drink-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.drink-grid .input-shell{background:#fff}
+.add-btn{width:100%;border:1.5px dashed var(--cat);background:var(--cat-soft);color:var(--cat);font:inherit;font-size:0.875rem;font-weight:800;padding:12px;border-radius:11px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.calc-btn{width:100%;margin-top:22px;background:var(--cat);color:#fff;border:0;border-radius:12px;font:inherit;font-size:1.0625rem;font-weight:800;padding:16px;cursor:pointer;transition:background .15s,transform .05s;-webkit-tap-highlight-color:transparent}
+.calc-btn:active{transform:scale(.985);background:var(--cat-deep)}
+.receipt{margin-top:26px;display:none;filter:drop-shadow(0 10px 24px rgba(0,0,0,.14))}
+.receipt.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.receipt.show{animation:none}}
+.receipt-body{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;padding:22px 20px 18px}
+.receipt-tag{font-size:var(--t-xs,14px);font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px}
+.receipt-tag::after{content:"";flex:1;height:1px;background:var(--line)}
+.big-figure{margin-top:12px}
+.big-figure .num{font-size:2.125rem;font-weight:800;letter-spacing:-.02em;color:var(--cat);line-height:1.15}
+.big-figure .lbl{font-size:var(--t-xs,14px);color:var(--muted);font-weight:600;margin-top:3px}
+.receipt-rows{margin-top:18px;border-top:1px dashed var(--line);padding-top:14px}
+.rrow{display:flex;justify-content:space-between;gap:12px;font-size:0.9063rem;padding:6px 0}
+.rrow .k{color:var(--muted);font-weight:600}
+.rrow .v{font-weight:800;text-align:right}
+.rrow .v.accent{color:var(--accent)}
+.result-warn{margin-top:14px;background:var(--warn-soft);border-radius:10px;padding:11px 13px;font-size:var(--t-xs,14px);font-weight:700;color:var(--warn)}
+.receipt-edge{height:10px;background:radial-gradient(circle at 11px 10px, transparent 7.5px, var(--card) 8px);background-size:22px 10px;background-position:center bottom;background-repeat:repeat-x}
+.seo{margin-top:36px;font-size:0.9375rem;color:#33403A}
+.seo h2{font-size:1.125rem;font-weight:800;color:var(--ink);margin:22px 0 8px}
+.seo p{margin-bottom:10px}
+.receipt-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.receipt-actions button{flex:1;min-width:104px;min-height:44px;border:1.5px solid var(--line);background:var(--card);font:inherit;font-size:0.875rem;font-weight:700;color:var(--cat);padding:12px;border-radius:10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.receipt-actions button:active{background:var(--cat-soft)}
+.receipt-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:var(--t-xs,14px);color:var(--muted)}
+</style>
+
+<style id="printcss">@media print{body *{visibility:hidden!important}
+#pdfhead,#pdfhead *{visibility:visible!important}
+.receipt.show,.receipt.show *{visibility:visible!important}
+.receipt.show{position:absolute;top:90px;left:0;right:0;filter:none!important;display:block!important}
+.receipt-actions{display:none!important}
+.noprint,.noprint *{display:none!important;visibility:hidden!important}
+#pdfhead{display:block!important;position:absolute;top:10px;left:0;right:0}
+#topmenu,header,nav{display:none!important}
+}
+</style>
+<style id="clsfix">/* CLS barqarorlashtirish — elementlar sakramasligi uchun */
+header{min-height:150px}
+h1{min-height:1.2em}
+[data-i]:empty{display:inline-block;min-height:1em;min-width:1px}
+.sub[data-i]{min-height:1.4em;display:block}
+.brand,.cat-badge{min-height:1em}
+img,svg{height:auto}
+.form-card,.card2{contain:layout}
+</style>
+<script src="/ga.js"></script>
+<meta property="og:title" content="Калькулятор идеального веса — здоровый диапазон для вашего роста">
+<meta property="og:description" content="Идеальный вес по росту и полу: формулы Девайна, Робинсона, Миллера, Хамви и диапазон ИМТ 18,5–24,9. Не одно число — здоровый диапазон.">
+<meta property="og:url" content="https://kalki.uz/ru/ideal-vazn-kalkulyator">
+<meta property="og:image" content="https://kalki.uz/assets/og/ideal-vazn-kalkulyator.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ideal vazn kalkulyatori">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kalki.uz/assets/og/ideal-vazn-kalkulyator.png?v=2">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalki.uz">
+<meta name="twitter:title" content="Калькулятор идеального веса — здоровый диапазон для вашего роста">
+<meta name="twitter:description" content="Идеальный вес по росту и полу: формулы Девайна, Робинсона, Миллера, Хамви и диапазон ИМТ 18,5–24,9. Не одно число — здоровый диапазон.">
+<style id="bccss">#breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:var(--t-xs,14px);font-weight:600;color:var(--t-muted,#3F4F46);margin:14px 0 2px;line-height:1.5}
+#breadcrumb a{color:#33403A;text-decoration:none;padding:3px 2px}
+#breadcrumb a:hover{text-decoration:underline}
+#breadcrumb .sep{color:#B9C2BC;font-weight:700}
+#breadcrumb .cur{color:var(--t-muted,#3F4F46)}
+</style>
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9398566611367796" crossorigin="anonymous"></script>
+
+<script type="application/json" id="answerbox-data">{"uz":{"text":"Ideal vazn kalkulyatori — bo'y va jinsingizni kiriting: Devine, Robinson, Miller va Hamwi formulalari hamda TVI 18,5–24,9 bo'yicha sog'lom vazn oralig'i ko'rsatiladi. Formulalar bir-biridan farq qiladi, shuning uchun natija — bitta raqam emas, oraliq.","sources":[]},"ru":{"text":"Калькулятор идеального веса — введите рост и пол: покажем диапазон по формулам Девайна, Робинсона, Миллера и Хамви и здоровый диапазон по ИМТ 18,5–24,9. Формулы расходятся, поэтому результат — диапазон, а не одно число.","sources":[]},"updated":null}</script><style id="answerboxcss">.answerbox{margin:0 0 16px;padding:14px 16px;background:#F1F7F3;border:1.5px solid #C9DDD1;border-left:4px solid #0E3B2E;border-radius:10px;max-width:100%;box-sizing:border-box}.answerbox .ab-text{font-size:0.9063rem;line-height:1.55;color:#16211C;font-weight:600;margin:0;word-wrap:break-word}.answerbox .ab-meta{margin-top:8px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600}.answerbox .ab-sources{margin-top:3px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);word-wrap:break-word}.answerbox .ab-sources a{color:#155E63;text-decoration:underline}.answerbox + .form-card{margin-top:16px}#modeSegField + .form-card{margin-top:16px}@media print{.answerbox{display:none}}</style><script type="application/ld+json" id="faq-ld">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Как рассчитывается идеальный вес?","acceptedAnswer":{"@type":"Answer","text":"Известные формулы добавляют вес за каждые 2,54 см (1 дюйм) роста сверх 152,4 см (5 футов): Девайн (1974) — мужчины 50 кг + 2,3 кг, женщины 45,5 кг + 2,3 кг; Робинсон (1983) — 52 / 49 кг + 1,9 / 1,7 кг; Миллер (1983) — 56,2 / 53,1 кг + 1,41 / 1,36 кг; Хамви (1964) — 48 / 45,5 кг + 2,7 / 2,2 кг. Эти формулы создавались для расчёта доз лекарств и при одном росте расходятся на несколько килограммов. Поэтому страница показывает их диапазон вместе со здоровым диапазоном ВОЗ по ИМТ 18,5–24,9."}},{"@type":"Question","name":"Почему нет одного «идеального веса»?","acceptedAnswer":{"@type":"Answer","text":"Формулы идеального веса (Девайн, Робинсон, Миллер, Хамви) создавались в разные годы для расчёта доз лекарств и при одном росте расходятся на 5–8 кг. Поэтому показываем их диапазон и здоровый диапазон по ИМТ."}},{"@type":"Question","name":"Какая формула точнее?","acceptedAnswer":{"@type":"Answer","text":"Ни одна не единственно верная. Здоровый вес зависит от телосложения, мышечной массы и возраста. Диапазон ИМТ 18,5–24,9 — рекомендация ВОЗ; формулы показывают примерный центр внутри него."}},{"@type":"Question","name":"Верен ли расчёт при росте ниже 152 см?","acceptedAnswer":{"@type":"Answer","text":"Формулы рассчитаны на рост выше 152,4 см (5 футов) — при меньшем росте они менее точны. В этом случае ориентируйтесь на диапазон ИМТ."}}]}</script><script type="application/ld+json" id="bc-ld">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://kalki.uz/ru/"},{"@type":"ListItem","position":2,"name":"Повседневная жизнь","item":"https://kalki.uz/ru/#cat-hayot"},{"@type":"ListItem","position":3,"name":"Калькулятор идеального веса","item":"https://kalki.uz/ru/ideal-vazn-kalkulyator"}]}</script><script type="application/ld+json" id="app-ld">{"@context":"https://schema.org","@type":"WebApplication","name":"Калькулятор идеального веса","description":"Идеальный вес по росту и полу: формулы Девайна, Робинсона, Миллера, Хамви и диапазон ИМТ 18,5–24,9. Не одно число — здоровый диапазон.","url":"https://kalki.uz/ru/ideal-vazn-kalkulyator","applicationCategory":"HealthApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","inLanguage":["uz","ru"],"isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},"publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"},"dateModified":null}</script>
+<link rel="manifest" href="/manifest.webmanifest" id="pwamf"><link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon-180.png" id="pwaicon"><meta name="apple-mobile-web-app-title" content="Kalki" id="pwatitle"><script src="/assets/pwa-install.js" defer="" id="pwainst"></script>
+<link rel="stylesheet" href="/assets/css/tokens.css" id="v2tokens"><link rel="stylesheet" href="/assets/css/site.css" id="v2site"><script src="/assets/nav.js" defer="" id="v2nav"></script><link rel="stylesheet" href="/assets/css/typo.css" id="typocss">
+<link rel="alternate" hreflang="uz" href="https://kalki.uz/ideal-vazn-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="ru" href="https://kalki.uz/ru/ideal-vazn-kalkulyator" data-hreflang-gen="1"><link rel="alternate" hreflang="x-default" href="https://kalki.uz/ideal-vazn-kalkulyator" data-hreflang-gen="1"></head>
+<body class="v2 typo2" data-cat="hayot">
+<div id="sitebar" class="sb2"><div class="sb2-in"><a class="logo" href="./" data-cyr="skip">Kalki<span class="dot">.uz</span></a><nav id="topmenu" aria-label="Bo'limlar"><ul class="tm2"><li class="has-sub"><a href="./#kategoriyalar" class="tm-on" aria-current="page" data-tm-uz="Kalkulyatorlar" data-tm-ru="Калькуляторы">Калькуляторы</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Kalkulyatorlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="./#cat-moliya" data-tm-uz="Moliya" data-tm-ru="Финансы">Финансы</a></li><li><a href="./#cat-qurilish" data-tm-uz="Qurilish" data-tm-ru="Стройка">Стройка</a></li><li><a href="./#cat-kommunal" data-tm-uz="Kommunal" data-tm-ru="Коммуналка">Коммуналка</a></li><li><a href="./#cat-hayot" data-tm-uz="Kundalik hayot" data-tm-ru="Повседневная жизнь">Повседневная жизнь</a></li><li><a href="./#cat-huquqiy" data-tm-uz="Huquqiy" data-tm-ru="Юридические">Юридические</a></li></ul></li><li class="has-sub"><a href="hujjatlar" data-tm-uz="Hujjatlar" data-tm-ru="Документы">Документы</a><button type="button" class="tm2-chev" aria-expanded="false" aria-label="Hujjatlar"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-chevron-down"></use></svg></button><ul class="tm2-sub"><li><a href="hujjatlar" data-tm-uz="Hujjat generatorlari" data-tm-ru="Генератор документов">Генератор документов</a></li><li><a href="shablonlar" data-tm-uz="Shablonlar" data-tm-ru="Шаблоны">Шаблоны</a></li></ul></li><li><a href="blog" data-tm-uz="Maqolalar" data-tm-ru="Статьи">Статьи</a></li><li><a href="kalkifit" data-kf="menyu" data-tm-uz="KalkiFit" data-tm-ru="KalkiFit">KalkiFit</a></li><li class="tm2-fs"><span class="fs-l" data-lf-uz="Shrift o'lchami" data-lf-ru="Размер шрифта">Размер шрифта</span><div class="fs-seg" role="group" aria-label="Shrift o'lchami / Размер шрифта"><button type="button" data-fs="normal" aria-pressed="true" data-lf-uz="Oddiy" data-lf-ru="Обычный">Обычный</button><button type="button" data-fs="big" aria-pressed="false" data-lf-uz="Katta" data-lf-ru="Крупный">Крупный</button></div></li></ul></nav><div class="lang-seg lang-seg-3" role="group" aria-label="Til / Язык" data-cyr="skip"><button type="button" id="langUz" class="on">UZ</button><a id="langCyr" href="/ideal-vazn-kalkulyator?lang=cyr" rel="nofollow" hreflang="uz-Cyrl" lang="uz-Cyrl">ЎЗ</a><button type="button" id="langRu">RU</button></div><button type="button" class="sb2-burger" aria-expanded="false" aria-controls="topmenu" aria-label="Menyu"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-menu"></use></svg></button></div></div>
+
+<div class="wrap"><nav id="breadcrumb" aria-label="Breadcrumb"><a href="./">Главная</a><span class="sep">›</span><a href="./#cat-hayot">Повседневная жизнь</a><span class="sep">›</span><span class="cur">Калькулятор идеального веса</span></nav></div>
+<header class="pagehead band">
+  <div class="wrap ct-in">
+    <div class="ct-l">
+      <span class="cat-badge" data-i="cat">Повседневная жизнь</span>
+      <h1 data-i="h1">Калькулятор идеального веса</h1>
+      <p class="sub" data-i="sub">Не одно «идеальное» число — диапазон по четырём формулам и ИМТ.</p>
+    </div>
+    <div class="ab-card"><div class="ab-over"><svg class="ic" aria-hidden="true"><use href="/assets/icons.svg#i-info"></use></svg><span data-lf-uz="Qisqacha" data-lf-ru="Кратко">Кратко</span></div><div class="answerbox noprint" id="answerbox"><p class="ab-text">Калькулятор идеального веса — введите рост и пол: покажем диапазон по формулам Девайна, Робинсона, Миллера и Хамви и здоровый диапазон по ИМТ 18,5–24,9. Формулы расходятся, поэтому результат — диапазон, а не одно число.</p></div></div>
+  </div>
+</header>
+
+
+<main class="wrap calc-main">
+<style id="sogliqcss">.field-err{display:none;color:#B3261E;font-size:var(--t-xs,14px);font-weight:700;margin-top:6px}.field-err.show{display:block}.big-figure .num.sm{font-size:2rem}.tvi-scale{display:flex;height:10px;border-radius:6px;overflow:hidden;margin:12px 0 4px}.tvi-scale i{flex:1}.tvi-scale i:nth-child(1){background:#7FA7D9}.tvi-scale i:nth-child(2){background:#5FB88A}.tvi-scale i:nth-child(3){background:#E8B04B}.tvi-scale i:nth-child(4){background:#D9734B}.tvi-pin{position:relative;height:12px}.tvi-pin b{position:absolute;top:0;width:3px;height:12px;background:#fff;border-radius:2px;transform:translateX(-50%)}.kid-msg{display:none;margin-top:12px;background:rgba(255,255,255,.14);border-radius:10px;padding:11px 13px;font-size:var(--t-xs,14px);font-weight:600;line-height:1.5}.kid-msg.show{display:block}</style>
+<div class="calc-grid">
+<div class="calc-form">
+<ol class="qadamlar" aria-label="3 qadamda">
+<li data-lf-uz="Jins va bo'yingizni kiriting." data-lf-ru="Укажите пол и рост.">Укажите пол и рост.</li>
+<li data-lf-uz="To'rt formula va TVI bo'yicha oraliq chiqadi." data-lf-ru="Покажем диапазон по четырём формулам и ИМТ.">Покажем диапазон по четырём формулам и ИМТ.</li>
+<li data-lf-uz="Hozirgi vaznni kiritsangiz — farq ko'rinadi." data-lf-ru="Введите текущий вес — увидите разницу.">Введите текущий вес — увидите разницу.</li>
+</ol>
+<section class="form-card">
+<div class="field"><label data-i="lGender">Пол</label><div class="seg"><button type="button" id="gM" class="on" data-i="segM">Мужчина</button><button type="button" id="gF" data-i="segF">Женщина</button></div></div><div class="field"><label for="height" data-i="l_height">Рост</label><div class="input-shell"><input type="text" id="height" inputmode="decimal" autocomplete="off" placeholder="masalan, 170"><span class="unit" data-i="u_height">см</span></div><div class="field-err" id="heightErr"></div></div><div class="field"><label for="weight" data-i="l_weight">Текущий вес (необязательно)</label><div class="input-shell"><input type="text" id="weight" inputmode="decimal" autocomplete="off" placeholder="solishtirish uchun" data-opt="1"><span class="unit" data-i="u_weight">кг</span></div><div class="field-err" id="weightErr"></div></div>
+<button type="button" class="calc-btn" id="calcBtn" data-i="btnCalc">Рассчитать</button>
+</section>
+</div>
+<aside class="res-col" aria-label="Natija"><section class="receipt" id="receipt" aria-live="polite">
+<div class="receipt-body">
+<div class="receipt-tag" data-i="rTag">Результат расчёта</div>
+<div class="big-figure"><div class="num sm" id="mainNum">—</div><div class="lbl" data-i="lblMain">Идеальный вес по формулам</div></div><div class="receipt-rows"><div class="rrow"><span class="k" data-i="kTvi">Здоровый диапазон (ИМТ 18,5–24,9)</span><span class="v accent" id="rTvi">—</span></div><div class="rrow"><span class="k">Devine</span><span class="v" id="rDev">—</span></div><div class="rrow"><span class="k">Robinson</span><span class="v" id="rRob">—</span></div><div class="rrow"><span class="k">Miller</span><span class="v" id="rMil">—</span></div><div class="rrow"><span class="k">Hamwi</span><span class="v" id="rHam">—</span></div><div class="rrow" id="rNowRow" hidden="" style="display:none"><span class="k" data-i="kNow">Относительно текущего веса</span><span class="v" id="rNow">—</span></div></div><div class="kid-msg" id="shortMsg" data-i="shortMsg">При росте ниже 152 см формулы менее точны — ориентируйтесь на диапазон ИМТ.</div>
+<div class="receipt-actions"><button type="button" id="shareBtn">Поделиться</button><button type="button" class="pdfbtn">PDF</button></div>
+</div>
+<div class="receipt-edge"></div>
+</section></aside>
+</div>
+<div class="res-extras">
+<div id="kfBlok" hidden=""></div>
+<div class="result-warn" data-i="resWarn">Идеальный вес — примерный ориентир. Мышечная масса, возраст и телосложение не учитываются. До 18 лет и при беременности не используется.</div>
+<div id="datanote" class="datanote noprint" style="margin-top:10px;font-size:var(--t-xs,14px);line-height:1.45;color:var(--t-muted,#3F4F46)" data-i="foot">Данные по состоянию на август 2026 года</div>
+</div>
+<section class="seo" id="seoBlock"><h2>Как рассчитывается идеальный вес?</h2><p>Известные формулы добавляют вес за каждые 2,54 см (1 дюйм) роста сверх 152,4 см (5 футов): Девайн (1974) — мужчины 50 кг + 2,3 кг, женщины 45,5 кг + 2,3 кг; Робинсон (1983) — 52 / 49 кг + 1,9 / 1,7 кг; Миллер (1983) — 56,2 / 53,1 кг + 1,41 / 1,36 кг; Хамви (1964) — 48 / 45,5 кг + 2,7 / 2,2 кг.</p><p>Эти формулы создавались для расчёта доз лекарств и при одном росте расходятся на несколько килограммов. Поэтому страница показывает их диапазон вместе со здоровым диапазоном ВОЗ по ИМТ 18,5–24,9.</p><h2 data-faq="1">Почему нет одного «идеального веса»?</h2><p>Формулы идеального веса (Девайн, Робинсон, Миллер, Хамви) создавались в разные годы для расчёта доз лекарств и при одном росте расходятся на 5–8 кг. Поэтому показываем их диапазон и здоровый диапазон по ИМТ.</p><h2 data-faq="1">Какая формула точнее?</h2><p>Ни одна не единственно верная. Здоровый вес зависит от телосложения, мышечной массы и возраста. Диапазон ИМТ 18,5–24,9 — рекомендация ВОЗ; формулы показывают примерный центр внутри него.</p><h2 data-faq="1">Верен ли расчёт при росте ниже 152 см?</h2><p>Формулы рассчитаны на рост выше 152,4 см (5 футов) — при меньшем росте они менее точны. В этом случае ориентируйтесь на диапазон ИМТ.</p></section>
+<div id="fbcall" class="cta-tg"><div class="cta-tx"><div class="cta-h" data-lf-uz="Kalkulyator yoki shablon kerakmi?" data-lf-ru="Нужен калькулятор или шаблон?">Нужен калькулятор или шаблон?</div><div class="cta-d" data-lf-uz="Yangi kalkulyator, hujjat shabloni yoki xato — yozing, tez tayyorlaymiz." data-lf-ru="Нужен новый калькулятор, шаблон или нашли ошибку — напишите, быстро сделаем.">Нужен новый калькулятор, шаблон или нашли ошибку — напишите, быстро сделаем.</div></div><a class="btn btn-gold" href="https://t.me/achchi90">Telegram</a></div>
+</main><footer id="sf2"><div class="sf2-in"><div class="sf2-brand" data-cyr="skip">Kalki<span class="dot">.uz</span></div><p data-lf-uz="O'zbekiston uchun bepul kalkulyatorlar va hujjat namunalari." data-lf-ru="Бесплатные калькуляторы и образцы документов для Узбекистана.">Бесплатные калькуляторы и образцы документов для Узбекистана.</p><div class="sf2-cols" style="margin-top:32px"><div><div class="sf2-t" data-lf-uz="Kategoriyalar" data-lf-ru="Категории">Категории</div><ul><li><a href="./#cat-moliya" data-lf-uz="Moliya" data-lf-ru="Финансы">Финансы</a></li><li><a href="./#cat-qurilish" data-lf-uz="Qurilish va yer" data-lf-ru="Стройка и земля">Стройка и земля</a></li><li><a href="./#cat-kommunal" data-lf-uz="Kommunal va avto" data-lf-ru="Коммуналка и авто">Коммуналка и авто</a></li><li><a href="./#cat-hayot" data-lf-uz="Kundalik hayot" data-lf-ru="Повседневная жизнь">Повседневная жизнь</a></li><li><a href="./#cat-huquqiy" data-lf-uz="Huquqiy" data-lf-ru="Юридические">Юридические</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Hujjatlar" data-lf-ru="Документы">Документы</div><ul><li><a href="hujjatlar" data-lf-uz="Hujjat generatorlari" data-lf-ru="Генератор документов">Генератор документов</a></li><li><a href="shablonlar" data-lf-uz="Shablonlar" data-lf-ru="Шаблоны">Шаблоны</a></li><li><a href="ariza-namunasi" data-lf-uz="Ariza yozish" data-lf-ru="Написать заявление">Написать заявление</a></li><li><a href="blog" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a></li></ul></div><div><div class="sf2-t" data-lf-uz="Aloqa" data-lf-ru="Связь">Связь</div><ul><li><a href="https://t.me/kalki_uz" data-lf-uz="Telegram kanali" data-lf-ru="Telegram-канал">Telegram-канал</a></li><li><a href="https://t.me/achchi90" data-lf-uz="Aloqa: @achchi90" data-lf-ru="Связь: @achchi90">Связь: @achchi90</a></li><li><a href="hamkorlik" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a></li></ul></div></div><p class="sf2-note" data-lf-uz="Hisob-kitoblar ma'lumot uchun. Rasmiy qaror uchun mutaxassisga murojaat qiling." data-lf-ru="Расчёты носят справочный характер. Для официального решения обратитесь к специалисту.">Расчёты носят справочный характер. Для официального решения обратитесь к специалисту.</p><div id="legal-links" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center"><a href="blog" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maqolalar" data-lf-ru="Статьи">Статьи</a><a href="biz-haqimizda" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Biz haqimizda" data-lf-ru="О нас">О нас</a><a href="maxfiylik" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Maxfiylik" data-lf-ru="Конфиденциальность">Конфиденциальность</a><a href="shartlar" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Foydalanish shartlari" data-lf-ru="Условия использования">Условия использования</a><a href="hamkorlik" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:nowrap" data-lf-uz="Hamkorlik" data-lf-ru="Партнёрство">Партнёрство</a><a href="https://t.me/achchi90" target="_blank" rel="noopener" style="color:#33403A;font-size:0.875rem;font-weight:700;text-decoration:none;padding:8px 12px;background:#EEF2EF;border-radius:8px;display:inline-block;white-space:normal;overflow-wrap:break-word;max-width:100%" data-lf-uz="Aloqa uchun: Telegram @achchi90" data-lf-ru="Связь: Telegram @achchi90">Связь: Telegram @achchi90</a></div><div id="copyline" style="margin-top:12px;font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600"><span data-lf-uz="© 2026 Kalki.uz — Yaratuvchi: Asror Jumaqulov. Barcha huquqlar himoyalangan." data-lf-ru="© 2026 Kalki.uz — Создатель: Асрор Жумакулов. Все права защищены.">© 2026 Kalki.uz — Создатель: Асрор Жумакулов. Все права защищены.</span></div></div></footer>
+<script src="/assets/meyor-core.js"></script>
+<script src="/assets/kf-blok.js" defer=""></script>
+<script>
+(function(){
+  var M=window.KalkiMeyor, $=function(i){return document.getElementById(i)};
+  var D={"uz":{"lGender":"Jins","segM":"Erkak","segF":"Ayol","btnCalc":"Hisoblash","rTag":"Hisob natijasi","l_height":"Bo'y","u_height":"sm","l_weight":"Hozirgi vazn (ixtiyoriy)","u_weight":"kg","lblMain":"Formulalar bo'yicha ideal vazn","kTvi":"Sog'lom oraliq (TVI 18,5–24,9)","kNow":"Hozirgi vaznga nisbatan","shortMsg":"152 sm dan past bo'yda formulalar kam aniq — TVI oralig'iga qarang.","inRange":"sog'lom oraliq ichida","toLose":"{x} kg ortiq","toGain":"{x} kg kam","errHeight":"Bo'yni kiriting (130–230 sm)","errWeight":"Vaznni tekshiring (30–300 kg)","resWarn":"Ideal vazn — taxminiy mo'ljal. Mushak massasi, yosh va tana tuzilishi hisobga olinmaydi. 18 yoshgacha va homiladorlikda ishlatilmaydi.","foot":"Devine (1974), Robinson (1983), Miller (1983), Hamwi (1964); JSST TVI oralig'i. Faqat ma'lumot uchun.","h1":"Ideal vazn kalkulyatori","sub":"Bitta «ideal» raqam emas — to'rt formula va TVI bo'yicha sog'lom vazn oralig'i.","cat":"Kundalik hayot","seo":"<h2>Ideal vazn qanday hisoblanadi?</h2><p>Mashhur formulalar bo'yning 152,4 sm (5 fut) dan ortiq har 2,54 sm (1 dyuym)iga vazn qo'shadi: Devine (1974) — erkaklar 50 kg + 2,3 kg, ayollar 45,5 kg + 2,3 kg; Robinson (1983) — 52 / 49 kg + 1,9 / 1,7 kg; Miller (1983) — 56,2 / 53,1 kg + 1,41 / 1,36 kg; Hamwi (1964) — 48 / 45,5 kg + 2,7 / 2,2 kg.</p><p>Bu formulalar aslida dori dozasini hisoblash uchun tuzilgan va bir xil bo'yda bir necha kilogramm farq beradi. Shuning uchun sahifa ularning oralig'ini va JSST'ning TVI 18,5–24,9 bo'yicha sog'lom vazn oralig'ini birga ko'rsatadi.</p><h2 data-faq=\"1\">Nega bitta «ideal vazn» raqami yo'q?</h2><p>Ideal vazn formulalari (Devine, Robinson, Miller, Hamwi) dori dozasini hisoblash uchun turli yillarda tuzilgan va bir xil bo'yda 5–8 kg farq beradi. Shuning uchun ularning oralig'i va TVI bo'yicha sog'lom oraliq ko'rsatiladi.</p><h2 data-faq=\"1\">Qaysi formula to'g'riroq?</h2><p>Hech biri yagona to'g'ri emas. Tana tuzilishi, mushak massasi va yoshga qarab sog'lom vazn farq qiladi. TVI 18,5–24,9 oralig'i — JSST tavsiyasi; formulalar shu oraliq ichida taxminiy markazni ko'rsatadi.</p><h2 data-faq=\"1\">152 sm dan past bo'yda hisob to'g'rimi?</h2><p>Formulalar 152,4 sm (5 fut) dan baland bo'y uchun tuzilgan — pastroq bo'yda ular kam aniq. Bunday holatda TVI oralig'iga qarang.</p>","_title":"Ideal vazn kalkulyatori — bo'yingiz uchun sog'lom vazn oralig'i","_desc":"Bo'yingiz va jinsingiz bo'yicha ideal vazn: Devine, Robinson, Miller, Hamwi formulalari va TVI 18,5–24,9 oralig'i. Bitta raqam emas — sog'lom oraliq.","_crumb":"Ideal vazn"},"ru":{"lGender":"Пол","segM":"Мужчина","segF":"Женщина","btnCalc":"Рассчитать","rTag":"Результат расчёта","l_height":"Рост","u_height":"см","l_weight":"Текущий вес (необязательно)","u_weight":"кг","lblMain":"Идеальный вес по формулам","kTvi":"Здоровый диапазон (ИМТ 18,5–24,9)","kNow":"Относительно текущего веса","shortMsg":"При росте ниже 152 см формулы менее точны — ориентируйтесь на диапазон ИМТ.","inRange":"в здоровом диапазоне","toLose":"на {x} кг больше","toGain":"на {x} кг меньше","errHeight":"Укажите рост (130–230 см)","errWeight":"Проверьте вес (30–300 кг)","resWarn":"Идеальный вес — примерный ориентир. Мышечная масса, возраст и телосложение не учитываются. До 18 лет и при беременности не используется.","foot":"Девайн (1974), Робинсон (1983), Миллер (1983), Хамви (1964); диапазон ИМТ ВОЗ. Только для справки.","h1":"Калькулятор идеального веса","sub":"Не одно «идеальное» число — диапазон по четырём формулам и ИМТ.","cat":"Повседневная жизнь","seo":"<h2>Как рассчитывается идеальный вес?</h2><p>Известные формулы добавляют вес за каждые 2,54 см (1 дюйм) роста сверх 152,4 см (5 футов): Девайн (1974) — мужчины 50 кг + 2,3 кг, женщины 45,5 кг + 2,3 кг; Робинсон (1983) — 52 / 49 кг + 1,9 / 1,7 кг; Миллер (1983) — 56,2 / 53,1 кг + 1,41 / 1,36 кг; Хамви (1964) — 48 / 45,5 кг + 2,7 / 2,2 кг.</p><p>Эти формулы создавались для расчёта доз лекарств и при одном росте расходятся на несколько килограммов. Поэтому страница показывает их диапазон вместе со здоровым диапазоном ВОЗ по ИМТ 18,5–24,9.</p><h2 data-faq=\"1\">Почему нет одного «идеального веса»?</h2><p>Формулы идеального веса (Девайн, Робинсон, Миллер, Хамви) создавались в разные годы для расчёта доз лекарств и при одном росте расходятся на 5–8 кг. Поэтому показываем их диапазон и здоровый диапазон по ИМТ.</p><h2 data-faq=\"1\">Какая формула точнее?</h2><p>Ни одна не единственно верная. Здоровый вес зависит от телосложения, мышечной массы и возраста. Диапазон ИМТ 18,5–24,9 — рекомендация ВОЗ; формулы показывают примерный центр внутри него.</p><h2 data-faq=\"1\">Верен ли расчёт при росте ниже 152 см?</h2><p>Формулы рассчитаны на рост выше 152,4 см (5 футов) — при меньшем росте они менее точны. В этом случае ориентируйтесь на диапазон ИМТ.</p>","_title":"Калькулятор идеального веса — здоровый диапазон для вашего роста","_desc":"Идеальный вес по росту и полу: формулы Девайна, Робинсона, Миллера, Хамви и диапазон ИМТ 18,5–24,9. Не одно число — здоровый диапазон.","_crumb":"Идеальный вес"}};
+  var lang=document.documentElement.lang==='ru'?'ru':'uz', gender='m', data=null, shown=false;
+  function t(k){return (D[lang]&&D[lang][k]!=null)?D[lang][k]:D.uz[k]}
+  var num=function(s){return parseFloat(String(s||'').replace(/[^\d.,]/g,'').replace(',','.'))||0};
+  function dec(x,n){return (Math.round(x*Math.pow(10,n))/Math.pow(10,n)).toFixed(n).replace('.',',')}
+  function nf(x){return String(Math.round(x)).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
+  function clr(id){var e=$(id+'Err');if(e){e.classList.remove('show');e.textContent=''}}
+  function chk(id,ok,k){var e=$(id+'Err');if(ok){clr(id);return true}if(e){e.textContent=t(k);e.classList.add('show')}return false}
+  function calc(user){
+    var h=num($('height').value), w=num($('weight').value), ok=chk('height',h>=130&&h<=230,'errHeight');
+    if(w)ok=chk('weight',w>=30&&w<=300,'errWeight')&&ok;else clr('weight');
+    if(!ok)return false;
+    var r=M.idealVazn(gender,h), f=r.formulalar, kg=' '+t('u_weight');
+    $('mainNum').textContent=dec(r.min,1)+' – '+dec(r.max,1)+kg;
+    $('rTvi').textContent=dec(r.tvi.min,1)+' – '+dec(r.tvi.max,1)+kg;
+    $('rDev').textContent=dec(f.devine,1)+kg; $('rRob').textContent=dec(f.robinson,1)+kg; $('rMil').textContent=dec(f.miller,1)+kg; $('rHam').textContent=dec(f.hamwi,1)+kg;
+    $('shortMsg').classList.toggle('show',h<152.4);
+    $('rNowRow').hidden=!w;$('rNowRow').style.display=w?'':'none'; if(w)$('rNow').textContent=w>r.tvi.max?t('toLose').replace('{x}',dec(w-r.tvi.max,1)):(w<r.tvi.min?t('toGain').replace('{x}',dec(r.tvi.min-w,1)):t('inRange'));
+    data={sex:gender,height:h,weight:w||null,v:dec(r.tvi.min,1)+'–'+dec(r.tvi.max,1)};
+    return true;
+  }
+  function run(user){if(!calc(user)){if(!shown)$('receipt').classList.remove('show');return}shown=true;$('receipt').classList.add('show');if(window.KFBlok)KFBlok.show($('kfBlok'),'ideal-vazn',lang,{v:data.v});}
+  function applyLang(){document.documentElement.lang=lang;var ns=document.querySelectorAll('[data-i]');for(var i=0;i<ns.length;i++){var k=ns[i].getAttribute('data-i'),v=t(k);if(typeof v==='string'){if(k==='seo')ns[i].innerHTML=v;else ns[i].textContent=v}}var sb=$('seoBlock');if(sb)sb.innerHTML=t('seo');document.title=t('_title');[['meta[name=description]','_desc'],['meta[property="og:title"]','_title'],['meta[property="og:description"]','_desc'],['meta[name="twitter:title"]','_title'],['meta[name="twitter:description"]','_desc']].forEach(function(x){var m=document.querySelector(x[0]);if(m)m.setAttribute('content',t(x[1]))});var cr=document.querySelector('#breadcrumb .cur');if(cr)cr.textContent=t('_crumb');if(shown)run(false)}
+  if($('gM')){$('gM').onclick=function(){gender='m';this.classList.add('on');$('gF').classList.remove('on');if(shown)run(false)};$('gF').onclick=function(){gender='f';this.classList.add('on');$('gM').classList.remove('on');if(shown)run(false)}}
+  $('calcBtn').onclick=function(){run(true)};
+  ['age','height','weight'].forEach(function(id){var e=$(id);if(e)e.addEventListener('keydown',function(ev){if(ev.key==='Enter')run(true)})});
+  document.addEventListener('click',function(e){if(!e.target.closest||!e.target.closest('#btnKalkiFit')||!data)return;KFBlok.go("ideal-vazn",lang,{sex:data.sex,height:data.height,weight:data.weight},document.documentElement.getAttribute('data-script')==='cyr')});
+  window.__applyLang=applyLang; if(lang==='ru')applyLang();
+  window.addEventListener('kalki:lang',function(e){lang=(e&&e.detail&&e.detail.lang)==='ru'?'ru':'uz';applyLang()});
+})();
+</script>
+<div id="pdfhead" style="display:none;font-family:Manrope,Arial,sans-serif;padding:0 16px">
+  <div style="font-size:1.25rem;font-weight:800;color:#0E3B2E">Kalki<span style="color:#D99A2B">.uz</span></div>
+  <div style="font-size:var(--t-xs,14px);color:var(--t-muted,#3F4F46);font-weight:600" id="pdfdate">19.11.2026</div>
+</div>
+<script>
+(function(){
+  var d=new Date();
+  var pd=document.getElementById('pdfdate');
+  if(pd)pd.textContent=d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear();
+  // PDF button in every receipt-actions
+  function kLoadJs(src){
+    return new Promise(function(res,rej){
+      var s=document.createElement('script');
+      s.src=src;s.async=true;
+      s.onload=function(){res()};
+      s.onerror=function(){rej(new Error(src))};
+      document.head.appendChild(s);
+    });
+  }
+  function kPdfName(){
+    var p=(location.pathname||'').replace(/^\//,'').replace(/\.html$/,'');
+    return 'kalki-'+(p||'hisob')+'.pdf';
+  }
+  function kFindReceipt(el){
+    if(el.closest){var c=el.closest('.receipt');if(c)return c}
+    var r=document.querySelector('.receipt.show');
+    return r||document.querySelector('main');
+  }
+  function kSkip(node){
+    var id=node.id||'', cls=String(node.className||'');
+    if(id==='breadcrumb'||id==='seoBlock'||id==='related'||id==='fbcall'||id==='xnav'
+       ||id==='legal-links'||id==='articleLink'||id==='topmenu'||id==='printhint'||id==='answerbox')return true;
+    return cls.indexOf('receipt-actions')>-1;
+  }
+  function kMakePdf(btn){
+    var card=kFindReceipt(btn);
+    if(!card)return;
+    var ru=document.documentElement.lang==='ru';
+    var orig=btn.textContent;
+    btn.textContent=ru?'Готовим...':'Tayyorlanmoqda...';
+    btn.disabled=true;
+    var done=function(){btn.textContent=orig;btn.disabled=false};
+    var chain=Promise.resolve();
+    if(!window.html2canvas)chain=chain.then(function(){return kLoadJs('/html2canvas.min.js')});
+    if(!window.jspdf)chain=chain.then(function(){return kLoadJs('/jspdf.umd.min.js')});
+    chain.then(function(){
+      var pf=card.style.filter;card.style.filter='none';card.classList.add('pdf-light');
+      return window.html2canvas(card,{scale:2,backgroundColor:'#ffffff',logging:false,ignoreElements:kSkip}).then(function(cv){
+        card.style.filter=pf;card.classList.remove('pdf-light');
+        var img=cv.toDataURL('image/jpeg',0.94);
+        var pdf=new window.jspdf.jsPDF('p','mm','a4');
+        var pw=pdf.internal.pageSize.getWidth(),ph=pdf.internal.pageSize.getHeight();
+        var m=10,iw=pw-m*2,ih=cv.height*iw/cv.width;
+        if(ih>ph-32){ih=ph-32;iw=cv.width*ih/cv.height}
+        var d=new Date();
+        pdf.setFontSize(15);pdf.text('Kalki.uz',m,14);
+        pdf.setFontSize(9);
+        pdf.text(d.getDate()+'.'+(d.getMonth()+1)+'.'+d.getFullYear(),pw-m,14,{align:'right'});
+        pdf.addImage(img,'JPEG',m,20,iw,ih);
+        pdf.save(kPdfName());
+        done();
+      });
+    })['catch'](function(){done();try{window.print()}catch(e){}});
+  }
+  var acts=document.querySelectorAll('.receipt-actions');
+  for(var i=0;i<acts.length;i++){
+    var ex=acts[i].querySelector('.pdfbtn');
+    var b=ex||document.createElement('button');
+    if(!ex){
+      b.type='button';b.textContent='PDF';b.className='pdfbtn';
+      acts[i].appendChild(b);
+    }
+    b.onclick=function(){kMakePdf(this)};
+  }
+  // Validation: red message if calc pressed but no result appeared
+  var btns=document.querySelectorAll('.calc-btn');
+  for(var j=0;j<btns.length;j++){
+    (function(btn){
+      btn.addEventListener('click',function(){
+        setTimeout(function(){
+          var shown=document.querySelector('.receipt.show, .norm-banner.show');
+          if(!shown){
+            if(!btn._err){
+              var e=document.createElement('div');
+              e.style.cssText='margin-top:10px;background:#FBEAE8;color:#B3261E;font-weight:700;font-size:var(--t-xs,14px);border-radius:10px;padding:11px 13px';
+              btn.parentNode.insertBefore(e,btn.nextSibling);
+              btn._err=e;
+            }
+            btn._err.textContent=(document.documentElement.lang==='ru')?'Пожалуйста, заполните все поля корректно.':"Iltimos, barcha maydonlarni to'g'ri to'ldiring.";
+            btn._err.style.display='block';
+          }else if(btn._err){btn._err.style.display='none'}
+        },80);
+      });
+    })(btns[j]);
+  }
+})();
+</script>
+
+<script src="/assets/kf-blok.js" defer=""></script>
+<script id="urlshare">
+(function(){
+  // Sahifa yuklanganda URL'dan holatni tiklash
+  function restoreFromUrl(){
+    try{
+      var qs=new URLSearchParams(location.search);
+      var p=qs.get('p');
+      if(!p)return false;
+      var data=JSON.parse(decodeURIComponent(escape(atob(p.replace(/-/g,'+').replace(/_/g,'/')))));
+      var restored=false;
+      // text input'lar
+      if(data.i){
+        for(var id in data.i){
+          var el=document.getElementById(id);
+          if(el&&el.tagName==='INPUT'){el.value=data.i[id];restored=true;}
+        }
+      }
+      // active tugmalar (seg/toggle) — data-* atributlari bo'yicha
+      if(data.b){
+        for(var k=0;k<data.b.length;k++){
+          var sel=data.b[k];
+          try{
+            var btn=document.querySelector(sel);
+            if(btn&&btn.click){btn.click();restored=true;}
+          }catch(e){}
+        }
+      }
+      // checkbox'lar
+      if(data.c){
+        for(var cid in data.c){
+          var ce=document.getElementById(cid);
+          if(ce&&ce.type==='checkbox'){ce.checked=data.c[cid];
+            var ev=document.createEvent('HTMLEvents');ev.initEvent('change',true,false);ce.dispatchEvent(ev);
+            restored=true;}
+        }
+      }
+      return restored;
+    }catch(e){return false;}
+  }
+  // Joriy holatni URL'ga kodlash
+  window.__buildShareUrl=function(){
+    var data={i:{},b:[],c:{}};
+    var inputs=document.querySelectorAll('input[type="text"]');
+    for(var i=0;i<inputs.length;i++){
+      if(inputs[i].id)data.i[inputs[i].id]=inputs[i].value;
+    }
+    // active seg/toggle tugmalari (on class + data-* atribut)
+    var actives=document.querySelectorAll('.seg button.on[data-mat],.seg button.on[data-roof],.seg button.on[data-region],.seg button.on[data-loc],.seg button.on[data-an],.seg button.on[data-slope],[data-loc].on');
+    for(var a=0;a<actives.length;a++){
+      var el=actives[a], attrs=el.attributes, sel=el.tagName.toLowerCase();
+      for(var x=0;x<attrs.length;x++){
+        if(attrs[x].name.indexOf('data-')===0){sel+='['+attrs[x].name+'="'+attrs[x].value+'"]';}
+      }
+      data.b.push(sel);
+    }
+    // checkbox'lar
+    var checks=document.querySelectorAll('input[type="checkbox"]');
+    for(var c=0;c<checks.length;c++){
+      if(checks[c].id)data.c[checks[c].id]=checks[c].checked;
+    }
+    var json=JSON.stringify(data);
+    var b64=btoa(unescape(encodeURIComponent(json))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+    return location.origin+location.pathname+'?p='+b64;
+  };
+  // Sahifa tayyor bo'lganda tiklash (kalkulyator skriptidan keyin ishlashi uchun kechiktiramiz)
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(restoreFromUrl,100);});
+  }else{setTimeout(restoreFromUrl,100);}
+})();
+</script>
+
+
+<script id="sharebtn">
+(function(){
+  // Guard faqat yaratishni o'tkazib yuboradi — hodisa bog'lash (onclick)
+  // har chaqiruvda qayta bajariladi, aks holda prerender qilingan statik
+  // tugma hech qachon bosilmaydigan bo'lib qoladi.
+  function bindShareBtn(){
+    var actions=document.querySelector('.receipt-actions');
+    if(!actions)return;
+    var isRu=document.documentElement.lang==='ru';
+    var btn=document.getElementById('shareBtn');
+    if(!btn){
+      btn=document.createElement('button');
+      btn.id='shareBtn';
+      btn.type='button';
+      actions.insertBefore(btn,actions.firstChild);
+    }
+    btn.textContent=isRu?'Поделиться':'Ulashish';
+    btn.onclick=function(){
+      var url=window.__buildShareUrl?window.__buildShareUrl():location.href;
+      var title=document.querySelector('h1')?document.querySelector('h1').textContent:'Kalki.uz';
+      if(navigator.share){navigator.share({title:title,url:url}).catch(function(){})}
+      else if(navigator.clipboard){navigator.clipboard.writeText(url);var o=btn.textContent;btn.textContent=isRu?'Скопировано ✓':'Nusxalandi ✓';setTimeout(function(){btn.textContent=o},1500)}
+    };
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',function(){setTimeout(bindShareBtn,150)})}
+  else{setTimeout(bindShareBtn,150)}
+  // langUz/langRu bosilganda matn va hodisa qayta yangilanadi
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el){el.addEventListener('click',function(){setTimeout(bindShareBtn,50)})}
+    });
+  },200);
+})();
+</script>
+
+
+<script id="faqschema">
+(function(){
+  function buildFaqSchema(){
+    var seo=document.getElementById('seoBlock');
+    if(!seo)return;
+    var h2s=seo.querySelectorAll('h2');
+    if(!h2s.length)return;
+    var faqs=[];
+    for(var i=0;i<h2s.length;i++){
+      var q=h2s[i].textContent.trim();
+      var a='';
+      var el=h2s[i].nextElementSibling;
+      while(el&&el.tagName!=='H2'){
+        if(el.textContent)a+=(a?' ':'')+el.textContent.trim();
+        el=el.nextElementSibling;
+      }
+      if(q&&a)faqs.push({q:q,a:a});
+    }
+    if(!faqs.length)return;
+    var old=document.getElementById('faq-ld');var __kalkiPos_faq_ld=old?old.nextSibling:null;if(old)old.remove();
+    var schema={
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":faqs.map(function(f){return{
+        "@type":"Question","name":f.q,
+        "acceptedAnswer":{"@type":"Answer","text":f.a}
+      };})
+    };
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='faq-ld';
+    sc.textContent=JSON.stringify(schema);
+    if(__kalkiPos_faq_ld)document.head.insertBefore(sc,__kalkiPos_faq_ld);else document.head.appendChild(sc);
+  }
+  // SEO bloki applyLang'da to'ladi, shuning uchun kechiktiramiz + til almashganda qayta
+  function initSchema(){setTimeout(buildFaqSchema,120);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initSchema);
+  else initSchema();
+  // til almashsa qayta yasash
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)el.addEventListener('click',function(){setTimeout(buildFaqSchema,120)});
+    });
+  },200);
+})();
+</script>
+
+<script id="bcjs">
+(function(){
+  var CAT='hayot';
+  var NAMES={
+    uz:{home:'Asosiy',moliya:'Moliya',qurilish:'Qurilish va yer',kommunal:'Kommunal va avto',hayot:'Kundalik hayot',blog:'Maqolalar'},
+    ru:{home:'Главная',moliya:'Финансы',qurilish:'Стройка и земля',kommunal:'Коммуналка и авто',hayot:'Повседневная жизнь',blog:'Статьи'}
+  };
+  function curLang(){return document.documentElement.lang==='ru'?'ru':'uz';}
+  function pageName(){
+    var h=document.querySelector('h1');
+    return h&&h.textContent?h.textContent.trim():'';
+  }
+  function catHref(){
+    return CAT==='blog' ? 'blog' : './#cat-'+CAT;
+  }
+  function build(){
+    var el=document.getElementById('breadcrumb');
+    if(!el)return;
+    var L=NAMES[curLang()], name=pageName();
+    if(!name)return;
+    el.innerHTML='<a href="./">'+L.home+'</a>'
+      +'<span class="sep">›</span>'
+      +'<a href="'+catHref()+'">'+L[CAT]+'</a>'
+      +'<span class="sep">›</span>'
+      +'<span class="cur">'+name+'</span>';
+    var old=document.getElementById('bc-ld');var __kalkiPos_bc_ld=old?old.nextSibling:null;if(old)old.remove();
+    var isRu=/^\/ru(\/|$)/.test(location.pathname);
+    var base=isRu?'https://kalki.uz/ru/':'https://kalki.uz/';
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='bc-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org","@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":L.home,"item":base},
+        {"@type":"ListItem","position":2,"name":L[CAT],"item":base+(CAT==='blog'?'blog':'#cat-'+CAT)},
+        {"@type":"ListItem","position":3,"name":name,"item":base+page}
+      ]
+    });
+    if(__kalkiPos_bc_ld)document.head.insertBefore(sc,__kalkiPos_bc_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,140);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,140);});
+    });
+  },220);
+})();
+</script>
+<script id="appschema">
+(function(){
+  var CATEGORY='HealthApplication';
+  function build(){
+    var h=document.querySelector('h1');
+    var name=h&&h.textContent?h.textContent.trim():'';
+    if(!name)return;
+    var d=document.querySelector('meta[name="description"]');
+    var desc=d?d.getAttribute('content'):'';
+    var lang=document.documentElement.lang==='ru'?'ru':'uz';
+    var old=document.getElementById('app-ld');var __kalkiPos_app_ld=old?old.nextSibling:null;if(old)old.remove();
+    var page=location.pathname.replace(/^\/(ru\/)?/,'').replace(/\.html$/,'');
+    var sc=document.createElement('script');
+    sc.type='application/ld+json';
+    sc.id='app-ld';
+    sc.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"WebApplication",
+      "name":name,
+      "description":desc,
+      "url":"https://kalki.uz/"+page,
+      "applicationCategory":CATEGORY,
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "inLanguage":["uz","ru"],
+      "isAccessibleForFree":true,
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"UZS"},
+      "publisher":{"@type":"Organization","name":"Kalki.uz","url":"https://kalki.uz/"}
+    });
+    if(__kalkiPos_app_ld)document.head.insertBefore(sc,__kalkiPos_app_ld);else document.head.appendChild(sc);
+  }
+  function init(){setTimeout(build,150);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(build,150);});
+    });
+  },230);
+})();
+</script>
+
+
+<script id="artlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var sets=[['data-art-uz','data-art-ru'],['data-artt-uz','data-artt-ru'],['data-arta-uz','data-arta-ru']];
+    for(var s=0;s<sets.length;s++){
+      var els=document.querySelectorAll('['+sets[s][0]+']');
+      for(var i=0;i<els.length;i++){
+        var v=els[i].getAttribute(ru?sets[s][1]:sets[s][0]);
+        if(v)els[i].textContent=v;
+      }
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script>
+
+
+
+
+
+
+
+<script id="tmlang">
+(function(){
+  function apply(){
+    var ru=document.documentElement.lang==='ru';
+    var els=document.querySelectorAll('#topmenu a[data-tm-uz]');
+    for(var i=0;i<els.length;i++){
+      var v=els[i].getAttribute(ru?'data-tm-ru':'data-tm-uz');
+      if(v)els[i].textContent=v;
+    }
+  }
+  function init(){setTimeout(apply,160);}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+  setTimeout(function(){
+    ['langUz','langRu'].forEach(function(id){
+      var b=document.getElementById(id);
+      if(b)b.addEventListener('click',function(){setTimeout(apply,160);});
+    });
+  },240);
+})();
+</script></body></html>

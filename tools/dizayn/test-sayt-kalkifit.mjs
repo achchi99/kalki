@@ -121,8 +121,8 @@ try {
   await post({ q: q(1), p: 'veb', t: 'uz', h: [['ilk_ochilish', '', 1], ['yangi_foydalanuvchi', 'sayt-kaloriya', 1], ['onboarding_tugadi', '', 1], ['ovqat_qoshildi', 'qidiruv', 1], ['birinchi_ovqat', 'qidiruv.d5', 1]] });
   await post({ q: q(2), p: 'veb', t: 'uz', h: [['ilk_ochilish', '', 1], ['yangi_foydalanuvchi', 'sayt-kaloriya', 1], ['onboarding_tugadi', '', 1]] });
   await post({ q: q(3), p: 'veb', t: 'uz', h: [['yangi_foydalanuvchi', 'sayt-zz', 1]] });
-  const t = D.today(), sb = await API.saytBloklar(db, D.addDays(t, -2), D.addDays(t, 1)), kal = sb.find((x) => x.joy === 'kaloriya');
-  assert.deepEqual([kal.korsatildi, kal.bosildi, kal.yangi, kal.ob, kal.ovqat], [2, 1, 2, 2, 1], JSON.stringify(kal)); assert.equal(sb.length, 6); void k1;
+  const t = D.today(), sb0 = await API.saytBloklar(db, D.addDays(t, -2), D.addDays(t, 1)), sb = sb0.joylar, kal = sb.find((x) => x.joy === 'kaloriya');
+  assert.deepEqual([kal.korsatildi, kal.bosildi, kal.yangi, kal.ob, kal.ovqat], [2, 1, 2, 2, 1], JSON.stringify(kal)); assert.equal(sb.length, 10); void k1;
   const adm = fs.readFileSync(path.join(ROOT, 'admin/kalkifit-statistika.html'), 'utf8'); assert.match(adm, /function saytHtml\(r\)/); assert.match(adm, /manHtml\(r\)\+saytHtml\(r\)/);
   log('Server: {sb,h} → stat_kun (joy whitelist, DNT — yozilmaydi); voronka: kaloriya — ko\'rsatildi 2 → bosildi 1 → onboarding 2 → birinchi ovqat 1; admin «kalki.uz → KalkiFit» jadvali');
 

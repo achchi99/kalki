@@ -3,16 +3,22 @@
  *   KFBlok.go(joy, lang, imp, cyr)       — kiritilgan qiymatlarni (jins, yosh, bo'y, vazn, faollik, maqsad) SHU BRAUZERGA (localStorage
  *                                          kalki_fit_import) yozadi va /kalkifit?utm_source=sayt-<joy>#boshlash ga o'tadi. URL'ga va serverga shaxsiy
  *                                          ma'lumot YOZILMAYDI. KalkiFit onboardingi uni bir marta ishlatib o'chiradi; mavjud foydalanuvchida ishlatilmaydi.
- * Joylar: kaloriya (kunlik me'yor), alkogol (ichimlik kaloriyasi). Matnlar UZ/RU (ЎЗ — sahifaning o'z translit'i). */
+ * Joylar: kaloriya (kunlik me'yor), alkogol (ichimlik kaloriyasi), tvi, ideal-vazn, suv (o.v — tayyor matn qiymati, masalan «24,5» yoki «58–72»). Matnlar UZ/RU (ЎЗ — sahifaning o'z translit'i). */
 (function (w, d) {
   'use strict';
   var TX = {
     uz: { go: "KalkiFit'da davom etish", note: "Bepul · ro'yxatdan o'tmasdan · kiritganingiz qayta so'ralmaydi", alt: 'KalkiFit ilovasi: Bugun ekrani',
       kaloriya: { t: "Kunlik me'yoringiz: {k} kkal.", s: "Uni har kuni kuzatib boring — ovqatni rasm yoki ovoz bilan yozing." },
-      alkogol: { t: "Bu ichimliklarda ≈ {k} kkal bor.", s: "Kunlik kaloriyangizga qo'shib boring — ovqat va ichimlikni KalkiFit'da bir joyda yozing." } },
+      alkogol: { t: "Bu ichimliklarda ≈ {k} kkal bor.", s: "Kunlik kaloriyangizga qo'shib boring — ovqat va ichimlikni KalkiFit'da bir joyda yozing." },
+      tvi: { t: 'Sizning TVI: {k}.', s: "Vazningizni kuzating — KalkiFit kunlik me'yorni va vazn grafigini o'zi yuritadi." },
+      'ideal-vazn': { t: "Sog'lom vazn oralig'ingiz: {k} kg.", s: "Maqsadingizga KalkiFit bilan boring — ovqatni yozing, vazn grafigi o'zi chiziladi." },
+      suv: { t: "Kunlik suv me'yoringiz: {k} ml.", s: "Suv ichishni belgilab boring — KalkiFit'da bir bosishda «+1 stakan»." } },
     ru: { go: 'Продолжить в KalkiFit', note: 'Бесплатно · без регистрации · введённое не спросим повторно', alt: 'Приложение KalkiFit: экран «Сегодня»',
       kaloriya: { t: 'Ваша дневная норма: {k} ккал.', s: 'Следите за ней каждый день — записывайте еду фото или голосом.' },
-      alkogol: { t: 'В этих напитках ≈ {k} ккал.', s: 'Учитывайте их в дневной норме — еду и напитки удобно записывать в KalkiFit.' } }
+      alkogol: { t: 'В этих напитках ≈ {k} ккал.', s: 'Учитывайте их в дневной норме — еду и напитки удобно записывать в KalkiFit.' },
+      tvi: { t: 'Ваш ИМТ: {k}.', s: 'Следите за весом — KalkiFit сам ведёт дневную норму и график веса.' },
+      'ideal-vazn': { t: 'Ваш здоровый диапазон веса: {k} кг.', s: 'Идите к цели с KalkiFit — записывайте еду, график веса строится сам.' },
+      suv: { t: 'Ваша дневная норма воды: {k} мл.', s: 'Отмечайте выпитое — в KalkiFit «+1 стакан» в одно касание.' } }
   };
   var CSS = '.kf-blok,.kf-blok p,.kf-blok b,.kf-blok span{color:#16211C!important;opacity:1!important}.kf-blok .kf-h{color:#1E6B45!important}.kf-blok p.kf-n{color:#526459!important}.kf-blok .kf-go,.kf-blok .kf-go *{color:#fff!important}'          // sahifa (yashil banner) matn ranglari ichkariga o'tmasin
     + '.kf-blok{display:grid;grid-template-columns:1fr auto;gap:4px 14px;align-items:center;margin-top:14px;background:#fff;color:#16211C;border:1px solid #DDE5E0;border-radius:14px;padding:14px;text-align:left}'
@@ -29,7 +35,7 @@
   function html(joy, lang, o) {
     var L = tx(lang), J = L[joy] || L.kaloriya;
     return '<span class="kf-h"><img src="/assets/icons/kalkifit-192.png" width="22" height="22" alt="">KalkiFit</span>'
-      + '<p class="kf-t"><b id="kfT">' + esc(J.t.replace('{k}', nf(o.k || 0))) + '</b>' + esc(J.s) + '</p>'
+      + '<p class="kf-t"><b id="kfT">' + esc(J.t.replace('{k}', o.v != null ? String(o.v) : nf(o.k || 0))) + '</b>' + esc(J.s) + '</p>'
       + '<img class="kf-sh" src="/assets/kalkifit-mini.webp" width="64" height="128" alt="' + esc(L.alt) + '" loading="lazy" decoding="async">'
       + '<button type="button" class="kf-go" id="btnKalkiFit">' + esc(L.go) + ' ›</button><p class="kf-n">' + esc(L.note) + '</p>';
   }
