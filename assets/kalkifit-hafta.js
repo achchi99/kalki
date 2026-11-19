@@ -106,9 +106,9 @@
     var cnt = {}, order = []; logged.forEach(function (r) { (S.dayOf(st, r.d).food || []).forEach(function (e) { var k = e.fid || (e.name ? 'n:' + e.name : ''); if (!k) return; if (!cnt[k]) { cnt[k] = { fid: e.fid || null, name: e.name || '', n: 0 }; order.push(k); } cnt[k].n++; }); });
     var top = order.map(function (k) { return cnt[k]; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 3).map(function (t) { return { fid: t.fid, n: t.n, name: t.fid && ctx.foodName ? ctx.foodName(t.fid) : t.name, img: t.fid && ctx.foodImg ? ctx.foodImg(t.fid) : '' }; });
     /* ---- makrolar ---- */
-    var sp = 0, sf = 0, sc = 0; logged.forEach(function (r) { sp += r.p; sf += r.f; sc += r.c; }); var kP = sp * 4, kF = sf * 9, kC = sc * 4, kT = kP + kF + kC || 1;
-    var protDays = pg ? logged.filter(function (r) { return r.n >= 2 && r.p >= pg; }).length : 0;
-    var macros = { p: loggedN ? Math.round(sp / loggedN) : 0, f: loggedN ? Math.round(sf / loggedN) : 0, c: loggedN ? Math.round(sc / loggedN) : 0, sh: [kP / kT, kF / kT, kC / kT], protDays: protDays, protGoal: Math.round(pg) };
+    var sp = 0, sf = 0, sc = 0; full.forEach(function (r) { sp += r.p; sf += r.f; sc += r.c; }); var fullN = full.length, kP = sp * 4, kF = sf * 9, kC = sc * 4, kT = kP + kF + kC || 1;          // audit: makro o'rtachasi ham avgDay qoidasi bilan — faqat tugagan to'liq kunlar (bugun kirmaydi)
+    var protDays = pg ? full.filter(function (r) { return r.n >= 2 && r.p >= pg; }).length : 0;
+    var macros = { n: fullN, p: fullN ? Math.round(sp / fullN) : 0, f: fullN ? Math.round(sf / fullN) : 0, c: fullN ? Math.round(sc / fullN) : 0, sh: [kP / kT, kF / kT, kC / kT], protDays: protDays, protGoal: Math.round(pg) };
     /* ---- suv ---- */
     var wDays = rows.filter(function (r) { return (r.ml > 0 || r.logged) && r.d < today; }), wGoal = pl.water ? (S.waterGoalMl ? S.waterGoalMl(pl.water.glasses) : pl.water.ml) : 2000, wTot = rows.reduce(function (a, r) { return a + r.ml; }, 0);
     var water = { total: wTot, liters: Math.round(wTot / 100) / 10, goal: wGoal, avg: wDays.length ? Math.round(wDays.reduce(function (a, r) { return a + r.ml; }, 0) / wDays.length) : null, per: rows.map(function (r) { return { dow: r.dow, ml: r.ml }; }), goalDays: rows.filter(function (r) { return r.ml >= wGoal * 0.9; }).length };
@@ -120,10 +120,10 @@
     /* ---- vazn ---- */
     var ws = S.weekSummary ? S.weekSummary(st, end, today) : null, wIn = (st.weights || []).some(function (x) { return x.d >= w.days[0] && x.d <= end; }), weight = { has: !!(ws && ws.weightDelta != null && wIn), delta: ws && ws.weightDelta != null ? ws.weightDelta : 0 };          // vazn slaydi — shu hafta ichida vazn kiritilgan bo'lsa
     var m = { end: end, from: w.days[0], rows: rows, logged: loggedN, streakMax: streakMax, avgKcal: avgK, avgN: full.length, todayKcal: (rows.filter(function (r) { return r.d === today; })[0] || {}).k || 0, target: pl.target, nearN: nearN, best: best ? best.d : null, lost: lost, fun: fun, top: top, macros: macros, water: water, move: move, weight: weight,
-      sumKcal: Math.round(sumK), dinnerKcal: loggedN ? Math.round(logged.reduce(function (a, r) { return a + r.dinner; }, 0) / loggedN) : null, empty: !loggedN && !stepsSum && !wTot };
+      sumKcal: Math.round(sumK), dinnerKcal: fullN ? Math.round(full.reduce(function (a, r) { return a + r.dinner; }, 0) / fullN) : null, empty: !loggedN && !stepsSum && !wTot };
     if (prev) return m;
     /* ---- o'tgan hafta bilan taqqoslash ---- */
-    var pm = model(S, st, D.addDays(end, -7), ctx, true); m.dinnerPrev = pm.logged ? pm.dinnerKcal : null;
+    var pm = model(S, st, D.addDays(end, -7), ctx, true); m.dinnerPrev = pm.dinnerKcal;
     var vs = []; if (pm.logged && loggedN) { var add = function (k, now, was, unit) { if (now == null || was == null) return; vs.push({ k: k, now: now, was: was, d: now - was, dir: now > was ? 'up' : (now < was ? 'down' : 'same'), unit: unit || '' }); };
       add('days', loggedN, pm.logged); add('steps', stepsSum, pm.move.steps, 'steps'); add('water', water.liters, pm.water.liters, 'l'); add('prot', macros.protDays, pm.macros.protDays); if (exMin || pm.move.exMin) add('ex', exMin, pm.move.exMin, 'min'); vs = vs.slice(0, 4); }
     m.vs = vs;
@@ -132,7 +132,7 @@
     /* ---- maqsad ---- */
     m.goal = pickGoal(m); m.goalPrev = evalGoal(ctx.goal, m);
     /* ---- slaydlar rejasi: ma'lumot yo'q bo'lsa tushib qoladi (kamida 4) ---- */
-    var few = loggedN <= 2, k = ['intro', 'days']; if (loggedN) k.push('kcal'); if (lost.state !== 'none') k.push('lost'); if (fun && !few) k.push('fun'); if (top.length && !few) k.push('top'); if (loggedN && !few) k.push('macros'); if (wTot > 0 && !few) k.push('water'); if (stepsSum > 0 || exMin > 0) k.push('move');          // 1–2 kun yozilgan hafta: iliq qisqa versiya
+    var few = loggedN <= 2, k = ['intro', 'days']; if (loggedN) k.push('kcal'); if (lost.state !== 'none') k.push('lost'); if (fun && !few) k.push('fun'); if (top.length && !few) k.push('top'); if (fullN && !few) k.push('macros'); if (wTot > 0 && !few) k.push('water'); if (stepsSum > 0 || exMin > 0) k.push('move');          // 1–2 kun yozilgan hafta: iliq qisqa versiya
     if (weight.has) k.push('weight'); if (vs.length) k.push('vs'); if (m.badges.length) k.push('badges'); k.push('goal', 'final'); m.kinds = k; return m;
   }
   var api = { summary: summary, dueEnd: dueEnd, model: model, weekEnds: weekEnds, routeOf: routeOf, pickGoal: pickGoal, evalGoal: evalGoal, BADGES: BADGES, ROUTES: ROUTES, FUN: FUN, KG_KCAL: KG_KCAL, FAT_PACK_G: FAT_PACK_G, EVEN_TOL: EVEN_TOL, LOW_DAY_DEFICIT: LOW_DAY_DEFICIT };

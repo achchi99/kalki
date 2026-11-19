@@ -84,3 +84,12 @@ Odatiy ish (darvoza + 1 to'liq skrinshot + iteratsiyada 3–4 `--faqat`): ~38 + 
 - **Qoida:** to'liq `test:tez` — fon rejimida (`run_in_background`), `timeout 5400` bilan; yurish paytida fayl o'zgartirilmaydi; yiqilganini `--only` bilan alohida yurgizing.
 - **Sanaga bog'liq testlar qotiriladi:** `tartib` (barcha vaqt T0 dan; ilgari haqiqiy `Date.now()` ishlatilib «5 kundan kam» sharti buzilardi), `golden` (`oltin.mjs`: kalkulyatorda sana 2026-11-01, gaz — 15-dekabr, hujjat namunalarida 2026-11-01), `onboarding-parda` (v75 «Birinchi ovqat» kartasi pastki «Qo'shish»ni yashiradi → `kalki_no_fc=1`).
 - **Tezlik testlari:** `kalkifit-qidiruv` — 3 davrning eng yaxshisi + mediana (≤ 3 ms) + p99 ≤ 30 ms; haqiqiy sekinlashuv HAMMA davrni sekinlashtiradi va baribir yiqitadi. `tahrir` — qotirilgan kutishlar yukka qarab (1×…4×) uzayadi.
+
+## Sana va vaqt (barqarorlik)
+
+KalkiFit/Ro'zg'or testlari (kodida `kalkifit|rozgor|kalki_fit|push-yubor|eslatma` bor — hozir 131 ta) soati qotirilgan holda yuradi: `tools/test-vaqt.cjs`.
+- Standart: eng yaqin o'tgan **seshanba 11:00** (vaqt keyin oqadi). Node (`S.dates.today()`, `Date`) va har Playwright konteksti bir xil siljishda.
+- Payshanba («Baliq kuni»), dushanba («Haftangiz» chipi), yakshanba 19:00+ (hafta xulosasi) kartalari faqat ular uchun yozilgan testlarda yoqiladi — ular `page.clock.setFixedTime(...)` bilan o'z sanasini beradi.
+- Qo'lda: `node --require ./tools/test-vaqt.cjs tools/dizayn/test-x.mjs`; boshqa sana: `KF_VAQT=2026-11-19T11:00:00`; o'chirish: `KF_VAQT=haqiqiy`; testni chiqarish: `T(..., { haqiqiy: true })`.
+- Tekshiruv: to'plam payshanba 11:00, dushanba 11:00, yakshanba 20:00 va 1-dekabr (oy boshi) soatlarida yurgizildi — bitta ham yiqilish yo'q.
+- Qotirilgan kutish (`waitForTimeout`) o'rniga shart: `tools/dizayn/kut.mjs`; tezlik testlari — devor soati emas, asosiy oqim CPU vaqti (CDP `ThreadTime`).

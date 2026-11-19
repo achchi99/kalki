@@ -55,7 +55,7 @@
     var t = o.t, M = m.macros, C = 2 * Math.PI * 44, off = 0, seg = '', cols = ['p', 'f', 'c'];
     M.sh.forEach(function (s, i) { var len = Math.max(0, s * C - 3); seg += '<circle cx="60" cy="60" r="44" class="s ' + cols[i] + '" style="--c:' + C.toFixed(1) + ';--l:' + len.toFixed(1) + ';--o:' + (-off).toFixed(1) + ';--i:' + i + '"/>'; off += s * C; });
     var key = function (c, v, lbl) { return '<div class="k ' + c + '"><i></i><span>' + esc(lbl) + '</span><b>' + nf(v) + ' ' + esc(t('wrG')) + '</b></div>'; };
-    return '<p class="hk-k">' + esc(t('wrMacroK')) + '</p><div class="hk-donut"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="44" class="bg"/>' + seg + '</svg><div class="mid"><b data-cu="' + (m.avgKcal || Math.round(m.sumKcal / Math.max(1, m.logged))) + '">0</b><small>' + esc(t('wrPerDay')) + '</small></div></div>' +
+    return '<p class="hk-k">' + esc(t('wrMacroK')) + '</p><div class="hk-donut"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="44" class="bg"/>' + seg + '</svg><div class="mid"><b data-cu="' + (m.avgKcal || 0) + '">0</b><small>' + esc(t('wrPerDay')) + '</small></div></div>' +
       '<div class="hk-keys">' + key('p', M.p, t('mP')) + key('f', M.f, t('mF')) + key('c', M.c, t('mC')) + '</div>' + (M.protGoal ? '<p class="hk-pill">' + svgI('shield') + '<span>' + esc(t('wrProtDays', { n: M.protDays })) + '</span></p>' : '');
   }
   function sWater(m, o) {

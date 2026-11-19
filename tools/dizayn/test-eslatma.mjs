@@ -98,6 +98,6 @@ log('cron: vaqti kelganiga bitta push (ru/ЎЗ matn, ?eslatma=…), yozilganiga 
 /* 10. sw.js, maxfiylik, yangilik */
 const sw = fs.readFileSync(path.join(ROOT, 'sw.js'), 'utf8'); assert.match(sw, /eslatma=\(\[blsd\]\)/); assert.match(sw, /\{ t: k, m: em\[1\] \}/);
 for (const f of ['maxfiylik.html', 'ru/maxfiylik.html']) { const h = fs.readFileSync(path.join(ROOT, f), 'utf8'); assert.match(h, f.startsWith('ru') ? /Напоминания о еде/ : /Ovqat eslatmalari/); assert.match(h, f.startsWith('ru') ? /на сервер ничего не отправляется/ : /serverga hech narsa yuborilmaydi/); }
-assert.equal(JSON.parse(fs.readFileSync(path.join(ROOT, 'data/yangiliklar-kalkifit.json'), 'utf8')).items[0].bn.uz, 'Ovqat vaqtida eslatma');
+assert.equal(JSON.parse(fs.readFileSync(path.join(ROOT, 'data/yangiliklar-kalkifit.json'), 'utf8')).items.find((x) => x.v === 88).bn.uz, 'Ovqat vaqtida eslatma');
 log('sw.js: bosilganda ?eslatma=… ilovaga uzatiladi; maxfiylik (uz/ru): veb — faqat vaqt va «yozildi» belgisi, Android — serverga hech narsa; yangilik yozuvi');
 console.log('\nTAYYOR:', n, 'guruh');

@@ -158,9 +158,18 @@ function selectTez() {
 
 /* ---------- ishga tushirish ---------- */
 let jobSeq = 0, TMP_ROOT = null;
+/* Sana/vaqt yordamchisi (tools/test-vaqt.cjs): KalkiFit/Ro'zg'or testlari (kod ichida kalkifit|rozgor|kalki_fit|push-yubor|eslatma) "bugun"ga bog'liq — soat qotiriladi.
+   Kalkulyator/sahifa testlari haqiqiy soatda qoladi (tarif sanalari va golden "ogohlantirish" mexanizmi). Test `haqiqiy: true` bilan chiqarib tashlanadi; KF_VAQT=haqiqiy — hammasi uchun o'chirish. */
+const VAQT_RE = /kalkifit|rozgor|kalki_fit|push-yubor|eslatma/i, VAQT_KESH = {};
+function VAQT_ON(job) {
+  if (process.env.KF_VAQT === 'haqiqiy' || job.haqiqiy || !job.cmd || job.cmd[0] !== 'node' || !job.cmd[1] || /^-/.test(job.cmd[1])) return false;
+  const f = job.cmd[1]; if (!(f in VAQT_KESH)) { try { VAQT_KESH[f] = VAQT_RE.test(fs.readFileSync(path.join(ROOT, f), 'utf8')); } catch (e) { VAQT_KESH[f] = false; } }
+  return VAQT_KESH[f];
+}
 function jobSpec(job, slugs, bolak) {
   if (!TMP_ROOT) TMP_ROOT = fs.mkdtempSync(path.join(os.tmpdir(), 'kalki-test-'));
-  const cmd = job.cmd.slice(); const tmp = path.join(TMP_ROOT, 'j' + (++jobSeq)); fs.mkdirSync(path.join(tmp, 'skrinshot'), { recursive: true });
+  const cmd = job.cmd.slice(); if (VAQT_ON(job)) cmd.splice(1, 0, '--require', path.join(ROOT, 'tools/test-vaqt.cjs'));          // soat QOTIRILADI (seshanba 11:00, vaqt oqadi) — tools/test-vaqt.cjs
+  const tmp = path.join(TMP_ROOT, 'j' + (++jobSeq)); fs.mkdirSync(path.join(tmp, 'skrinshot'), { recursive: true });
   const env = Object.assign({}, process.env, job.env || {}, { TMPDIR: tmp, SKRINSHOT_DIR: path.join(tmp, 'skrinshot'), TEST_ISH: String(jobSeq), TEST_ID: job.id }, bolak ? { TEST_BOLAK: bolak } : {});          // har ish — o'z vaqtinchalik papkasi
   if (slugs && slugs.length) {
     if (job.slugs === 'args') cmd.push(...slugs);
