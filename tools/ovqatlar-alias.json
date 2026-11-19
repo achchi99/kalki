@@ -263,7 +263,12 @@
  "omlet": [
   "omlet tuxumli",
   "омлет яичный",
-  "omelet"
+  "omelet",
+  "amlit",
+  "amlet",
+  "tuxumli amlit",
+  "tuxumli amlet",
+  "амлет"
  ],
  "achichuk": [
   "achchiq chuchuk",
@@ -1342,7 +1347,11 @@
  "makkajoxori": [
   "dumbul",
   "думбул",
-  "yosh makkajo'xori"
+  "yosh makkajo'xori",
+  "qaynatilgan jo'xori",
+  "qaynatilgan joxori",
+  "jo'xori qaynatilgan",
+  "қайнатилган жўхори"
  ],
  "mol-qaynatilgan": [
   "yaxna go'sht",
@@ -1402,5 +1411,17 @@
   "тоғ чойи",
   "горный чай",
   "травяной сбор"
+ ],
+ "yeryongoq-shakarli": [
+  "shakarli yeryong'oqcha",
+  "shakarli yeryongoqcha",
+  "yeryong'oqcha shakarli"
+ ],
+ "tuxum-oqi": [
+  "tuxum sarig'isiz",
+  "tuxum sarigisiz",
+  "sarig'isiz tuxum",
+  "tuxum oqsili",
+  "яичные белки"
  ]
 }

@@ -10,7 +10,8 @@ import { turOf, ekranOf } from '../_lib/qurilma-tur.js';
 import { yigMiqdorsiz } from '../_lib/soz-norm.js';
 import { adminAuth } from '../_lib/admin-auth.js';
 
-export const MANBA = /^(x|tg|ig|yt|google|fb|sayt|dir|boshqa)?$/;          // v61: manba kodi (qat'iy ro'yxat; bo'sh — eski ilova versiyasi). Erkin matn / URL qabul qilinmaydi
+export const SAYT_JOY = /^(kaloriya|alkogol|bosh|kategoriya|menyu|maqola)$/;          // kalki.uz → KalkiFit: saytdagi joy kodlari (assets/nav.js [data-kf])
+export const MANBA = /^(x|tg|ig|yt|google|fb|sayt|dir|boshqa|sayt-(kaloriya|alkogol|bosh|kategoriya|menyu|maqola))?$/;          // v61: manba kodi (qat'iy ro'yxat; bo'sh — eski ilova versiyasi). Erkin matn / URL qabul qilinmaydi
 const ANY = /^$/, USUL = /^(qidiruv|rasm|retsept|oxirgilar|tavsiya|ovoz|menyu|matn|odatdagi|boshqa)$/, LANG = /^(uz|cyr|ru)$/;
 export const HODISA = {
   faol: ANY, yangi_foydalanuvchi: MANBA, til_tanlandi: LANG, onboarding_tugadi: ANY, onboarding_keyinroq: ANY,
@@ -68,6 +69,11 @@ export async function qabul(request, env, now) {
   if (BOT.test(request.headers.get('User-Agent') || '') || !originOk(request, env)) return quiet();
   if (request.headers.get('DNT') === '1' || request.headers.get('Sec-GPC') === '1') return quiet();          // v68+: DNT / GPC sarlavhasi — hech narsa yozilmaydi (mijoz ham yubormaydi; bu — zaxira to'siq)
   let b; try { const raw = await request.text(); if (raw.length > 6000) return quiet(); b = JSON.parse(raw); } catch (e) { return quiet(); }
+  if (b && typeof b === 'object' && typeof b.sb === 'string') {          // sayt → KalkiFit bloki: faqat joy kodi + ko'rsatildi/bosildi (qurilma id'si YO'Q) → stat_kun (platforma «sayt»)
+    if (!SAYT_JOY.test(b.sb) || (b.h !== 'k' && b.h !== 'b')) return quiet();
+    try { await db.prepare('INSERT INTO stat_kun (kun, hodisa, kalit, platforma, son) VALUES (?, ?, ?, ?, 1) ON CONFLICT(kun, hodisa, kalit, platforma) DO UPDATE SET son = son + 1').bind(tosh(now), 'sayt_blok', b.sb + '.' + (b.h === 'k' ? 'korsatildi' : 'bosildi'), 'sayt').run(); } catch (e) {}
+    return quiet();
+  }
   const c = tozala(b); if (!c || !c.h.length) return quiet();
   const kun = tosh(now), q = await qurilma(env, c.q), jami = c.h.reduce((a, x) => a + x.n, 0), yangi = c.h.some((x) => x.h === 'yangi_foydalanuvchi') ? 1 : 0, manba = (c.h.find((x) => x.h === 'yangi_foydalanuvchi') || {}).k || '', ob = c.h.some((x) => x.h === 'onboarding_tugadi') ? 1 : 0, d = turOf(request.headers.get('User-Agent'), c.p, c.v), ek = ekranOf(c.e);
   try {
@@ -176,6 +182,14 @@ export async function manbalar(db, dan0, gacha, bugun) {
   out.sort((a, b) => (a.manba === '') - (b.manba === '') || b.yangi - a.yangi || (a.manba < b.manba ? -1 : 1));
   return { bosh, dan, qatorlar: out };
 }
+/* kalki.uz → KalkiFit: joylar bo'yicha voronka — ko'rsatildi → bosildi (stat_kun «sayt_blok») → onboarding tugadi → birinchi ovqat
+   (stat_qurilma: yangi = 1 va manba = «sayt-<joy>»; birinchi ovqat — shu qurilmaning ilk qatorida birinchi_usul). Hech qanday id/URL yo'q — faqat sonlar. */
+export async function saytBloklar(db, dan, gacha) {
+  const JOYS = ['kaloriya', 'alkogol', 'bosh', 'kategoriya', 'menyu', 'maqola'], m = {}; JOYS.forEach((j) => { m[j] = { joy: j, korsatildi: 0, bosildi: 0, yangi: 0, ob: 0, ovqat: 0 }; });
+  try { for (const r of await all(db, "SELECT kalit, SUM(son) AS n FROM stat_kun WHERE hodisa = 'sayt_blok' AND kun >= ? AND kun <= ? GROUP BY kalit", dan, gacha)) { const [j, h] = String(r.kalit).split('.'); if (m[j] && (h === 'korsatildi' || h === 'bosildi')) m[j][h] = r.n || 0; } } catch (e) { return null; }
+  try { for (const r of await all(db, "SELECT a.manba AS manba, COUNT(*) AS yangi, SUM(a.ob) AS ob, SUM(CASE WHEN EXISTS (SELECT 1 FROM stat_qurilma b WHERE b.q = a.q AND b.birinchi_usul IS NOT NULL) THEN 1 ELSE 0 END) AS ovqat FROM stat_qurilma a WHERE a.yangi = 1 AND a.manba LIKE 'sayt-%' AND a.kun >= ? AND a.kun <= ? GROUP BY a.manba", dan, gacha)) { const j = String(r.manba).slice(5); if (m[j]) { m[j].yangi = r.yangi || 0; m[j].ob = r.ob || 0; m[j].ovqat = r.ovqat || 0; } } } catch (e) {}
+  return JOYS.map((j) => m[j]);
+}
 /* v66+: AKTIVATSIYA VORONKASI (platforma bo'yicha: veb / android / ios-pwa / jami). Kogorta = «ilk_ochilish» kelgan qurilmalar (ilk = 1 qator; mijoz kodi chiqqandan keyin ilk marta ochgan).
    Qadamlar: ilk ochilish → onboarding tugadi (istalgan kuni, ob = 1) → ilk kunda ≥1 ovqat → ≥3 ovqat → D1 / D3 / D7 (faqat YETILGAN kogorta: kun + k ≤ bugun; har qadamda n / N ko'rsatiladi).
    Ilk kun ovqat qadamlari faqat tugagan kunlar uchun (bugungi kogorta — hali tugamagan). Taqqoslashlar: (a) ilk kunda ovqat kiritgan va kiritmagan D1; (b) bosh ekranga qo'shilgan (ilk kunda) va qo'shilmagan D1 / D7.
@@ -243,7 +257,7 @@ export async function kengaytma(db, dan, gacha, bugun, now) {
   kpi.konversiya = konversiya ? konversiya.foiz : null;
   const guruh = async (col, extra) => all(db, 'SELECT ' + col + " AS k, COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? AND " + col + " != ''" + (extra || '') + ' GROUP BY ' + col + ' ORDER BY n DESC LIMIT 20', dan, gacha);
   let qurilmalar = null; try { qurilmalar = { tur: await guruh('tur'), versiya: await guruh('ver', " AND tur = 'android-ilova'"), os: await guruh('os'), brauzer: await guruh('br'), model: await guruh('model'), ekran: await guruh('ekran'), til: await guruh('til'), aniqlanmagan: (await one(db, "SELECT COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? AND tur = ''", dan, gacha)).n || 0 }; } catch (e) {}
-  return { kpi, bolim: { kogorta: await kogortalar(db, dan, gacha, bugun), foydalanish, xarajat, narx: NARX, konversiya, qurilmalar, voronka: await voronka(db, dan, gacha), afsona: await afsona(db, dan, gacha), harakat: await harakat(db, dan, gacha), qaytish: await retPlat(db, dan, gacha, bugun), konv_kun: await konvKun(db, dan, gacha), manbalar: await manbalar(db, dan, gacha, bugun), aktivatsiya: await aktivatsiya(db, dan, gacha, bugun), olchov: { voronka: await olchovBosh(db, 'voronka'), harakat: await olchovBosh(db, 'harakat'), afsona: await olchovBosh(db, 'afsona'), konv: await olchovBosh(db, 'konv') } } };
+  return { kpi, bolim: { kogorta: await kogortalar(db, dan, gacha, bugun), foydalanish, xarajat, narx: NARX, konversiya, qurilmalar, voronka: await voronka(db, dan, gacha), afsona: await afsona(db, dan, gacha), harakat: await harakat(db, dan, gacha), qaytish: await retPlat(db, dan, gacha, bugun), konv_kun: await konvKun(db, dan, gacha), manbalar: await manbalar(db, dan, gacha, bugun), sayt: await saytBloklar(db, dan, gacha), aktivatsiya: await aktivatsiya(db, dan, gacha, bugun), olchov: { voronka: await olchovBosh(db, 'voronka'), harakat: await olchovBosh(db, 'harakat'), afsona: await olchovBosh(db, 'afsona'), konv: await olchovBosh(db, 'konv') } } };
 }
 export async function hisobot(db, davr, now) {
   const bugun = tosh(now), d = [1, 7, 30, 90].includes(davr) ? davr : 0, dan = d ? addD(bugun, -(d - 1)) : '2000-01-01', gacha = bugun;

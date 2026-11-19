@@ -69,3 +69,38 @@
   fsSync();
   w.addEventListener('resize', function () { if (w.innerWidth >= 900 && b.classList.contains('nav-open')) setNav(false); });
 })(window, document);
+
+/* kalki.uz → KalkiFit (sayt trafigi ilovaga): [data-kf="<joy>"] havolalar va bloklar. HTML'da utm YO'Q (SEO toza, ichki havolada utm yo'q) —
+   faqat bosilganda ?utm_source=sayt-<joy> qo'shiladi (ilova manbani shundan oladi) va anonim «bosildi» sanaladi. [data-kf-k] — ko'rinsa (≥ 50 %),
+   sessiyada bir marta «ko'rsatildi». Yuboriladi FAQAT: joy kodi + k|b (POST /api/stat {sb, h}); id, URL, shaxsiy ma'lumot YO'Q.
+   DNT / GPC, bot / headless, localhost, preview (*.pages.dev) — hech narsa yuborilmaydi. Joylar: kaloriya, alkogol, bosh, kategoriya, menyu, maqola. */
+(function (w, d) {
+  'use strict';
+  var JOY = /^(kaloriya|alkogol|bosh|kategoriya|menyu|maqola)$/;
+  function off() {
+    var n = w.navigator || {}; try { if (w.localStorage && w.localStorage.getItem('kalki_stat_test') === '1') return false; } catch (e) {}
+    if (n.doNotTrack === '1' || n.doNotTrack === 'yes' || w.doNotTrack === '1' || n.globalPrivacyControl === true) return true;
+    var h = String((w.location || {}).hostname || ''); return n.webdriver || /\.pages\.dev$/.test(h) || h === 'localhost' || h === '127.0.0.1' || /bot\b|crawl|spider|headless|lighthouse/i.test(String(n.userAgent || ''));
+  }
+  function send(joy, h) {
+    if (!JOY.test(joy) || off()) return false; var body = JSON.stringify({ sb: joy, h: h });
+    try { if (n0().sendBeacon && n0().sendBeacon('/api/stat', new Blob([body], { type: 'application/json' }))) return true; } catch (e) {}
+    try { w.fetch('/api/stat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(function () {}); } catch (e) {} return true;
+  }
+  function n0() { return w.navigator || {}; }
+  var seen = {};
+  function kors(joy) { var k = 'kf_k_' + joy; if (seen[k]) return false; seen[k] = 1; try { if (w.sessionStorage.getItem(k)) return false; w.sessionStorage.setItem(k, '1'); } catch (e) {} return send(joy, 'k'); }
+  function utm(href, joy) { try { var u = new URL(href, w.location.href); u.searchParams.set('utm_source', 'sayt-' + joy); return u.pathname + u.search + u.hash; } catch (e) { return href; } }
+  function mark(a) { var joy = a.getAttribute('data-kf'); if (!JOY.test(joy || '')) return null; if (!a.__kf0) a.__kf0 = a.getAttribute('href'); a.setAttribute('href', utm(a.__kf0, joy)); return joy; }
+  d.addEventListener('pointerdown', function (e) { var a = e.target && e.target.closest && e.target.closest('a[data-kf]'); if (a) mark(a); }, true);
+  d.addEventListener('click', function (e) { var a = e.target && e.target.closest && e.target.closest('a[data-kf]'); if (!a) return; var joy = mark(a); if (joy) send(joy, 'b'); }, true);
+  var io = null;
+  function watch() {          // qayta chaqirsa bo'ladi (sahifa ro'yxatni qayta chizsa) — har element bir marta kuzatiladi
+    var els = [].filter.call(d.querySelectorAll('[data-kf-k]'), function (e) { if (e.__kfw) return false; e.__kfw = 1; return true; }); if (!els.length) return;
+    if (!('IntersectionObserver' in w)) { for (var i = 0; i < els.length; i++) kors(els[i].getAttribute('data-kf-k')); return; }
+    io = io || new IntersectionObserver(function (es) { es.forEach(function (x) { if (x.isIntersecting && x.intersectionRatio >= 0.5) { kors(x.target.getAttribute('data-kf-k')); io.unobserve(x.target); } }); }, { threshold: [0.5] });
+    for (var j = 0; j < els.length; j++) io.observe(els[j]);
+  }
+  if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', watch); else watch();
+  w.KFSayt = { kors: kors, bos: function (joy) { return send(joy, 'b'); }, utm: utm, watch: watch };
+})(window, document);

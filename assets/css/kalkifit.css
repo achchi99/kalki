@@ -2036,3 +2036,7 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 
 /* audit: qadam holati (avtomatik / qo'lda) */
 .rz .sl-smode{display:block;margin:-2px 0 4px;font-size:var(--t-xs);font-weight:600;color:var(--mut);line-height:1.3}
+/* kalki.uz → KalkiFit: kalkulyatordan olingan ma'lumot (onboarding) — «tekshiring» */
+.rz .sl-obimp{display:flex;flex-direction:column;gap:2px;margin:0 0 12px;padding:10px 12px;border-radius:12px;background:var(--accsoft);color:var(--ink);font-size:var(--t-s);line-height:1.4;text-align:left}
+.rz .sl-obimp b{font-weight:700;color:var(--acc2)}.rz .sl-obimp span{color:var(--mut)}.rz .sl-obimp .rz-link{align-self:flex-start;min-height:40px;padding:0}
+.rz .sl-obimp.sm{font-weight:700;color:var(--acc2)}

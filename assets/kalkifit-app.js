@@ -302,7 +302,7 @@
       kcHisob: 'Hisob', kcOpenA: 'Hisobni ochish', kcInfoA: 'Qanday hisoblangan?',
       exTurL: 'Tur', exDurL: 'Davomiyligi', exMinus: '5 daqiqa kamroq', exPlus: '5 daqiqa ko\'proq', lvD0: 'Bemalol gaplasha olasiz', lvD1: "Nafas tezlashadi, gaplashsa bo'ladi", lvD2: 'Gaplashish qiyin, terlaysiz', exBurnT: 'Yoqasiz', exMoreT: "Qo'shimcha yeyish",
       vL1: 'kkal yana', vL2: 'yeyishingiz mumkin', vO1: 'kkal ortiqcha', vO2: 'yedingiz', kcAte: 'Yeyildi', kcStep: 'Yurganingiz uchun', kcEx: "Mashg'ulot uchun", kcMove: 'Harakat uchun', 
-      khT: '{k} kkal qanday chiqdi?', khTo: '{k} kkal ortiqcha — qanday chiqdi?', khSub: 'Bugun uchun hisob', khNorm: "Kunlik me'yoringiz", khNormGoal: 'maqsad: {g}', obUsed: 'Avval ishlatganman', obUsedH: "Ma'lumotlaringizni qanday qaytaramiz?", obUsedAcc: 'Google yoki email bilan kirish', obUsedAccS: "Hisobingizga kirsangiz, ma'lumotlar qaytadi", obUsedCode: 'Tiklash kodi bilan', obUsedCodeS: 'KF-… bilan boshlanadigan kod', obUsedNo: 'Yo\'q, men yangiman', gN_keep: 'Vaznni saqlash', gN_slow: 'Sekin ozish', gN_lose: 'Ozish', gN_gain: 'Vazn olish',
+      khT: '{k} kkal qanday chiqdi?', khTo: '{k} kkal ortiqcha — qanday chiqdi?', khSub: 'Bugun uchun hisob', khNorm: "Kunlik me'yoringiz", khNormGoal: 'maqsad: {g}', obImpT: "Ma'lumotlaringiz kalkulyatordan olindi — tekshiring", obImpEdit: "O'zgartirish", obImpPart: "Kalkulyatordagi ma'lumotlaringiz olindi — qolganini to'ldiring", obUsed: 'Avval ishlatganman', obUsedH: "Ma'lumotlaringizni qanday qaytaramiz?", obUsedAcc: 'Google yoki email bilan kirish', obUsedAccS: "Hisobingizga kirsangiz, ma'lumotlar qaytadi", obUsedCode: 'Tiklash kodi bilan', obUsedCodeS: 'KF-… bilan boshlanadigan kod', obUsedNo: 'Yo\'q, men yangiman', gN_keep: 'Vaznni saqlash', gN_slow: 'Sekin ozish', gN_lose: 'Ozish', gN_gain: 'Vazn olish',
       khGoalL: "{G} maqsadingiz — {k} kkal (saqlash me'yoridan {d} kkal kam). Bugun {r} kkal qoldi.", khGoalK: 'Vaznni saqlash maqsadingiz — {k} kkal. Shu raqamdan oshmasangiz — vazningiz saqlanadi. Bugun {r} kkal qoldi.',
       khGoalG: "Vazn olish maqsadingiz — {k} kkal (saqlash me'yoridan {d} kkal ko'p). Bugun yana {r} kkal yeyish mumkin.", khGoalO: '{G} maqsadingiz — {k} kkal. Bugun {r} kkal ortiq.',
       khStep: 'Qadam · {n}', khStepS: "yurganingiz uchun qo'shildi", khStep0: "bugun hali yo'q", khStepIn: "odatiy yurish me'yor ichida", khOff: "me'yorga qo'shilmadi", khEx: "Mashg'ulot", khExS: "{m} daqiqa — qo'shildi", khEx0: "bugun hali yo'q",
@@ -332,7 +332,7 @@
       kcHisob: 'Расчёт', kcOpenA: 'Открыть расчёт', kcInfoA: 'Как это рассчитано?',
       exTurL: 'Тип', exDurL: 'Длительность', exMinus: 'На 5 минут меньше', exPlus: 'На 5 минут больше', lvD0: 'Можно свободно разговаривать', lvD1: 'Дыхание учащается, поговорить можно', lvD2: 'Говорить трудно, вспотеете', exBurnT: 'Сожжёте', exMoreT: 'Можно съесть ещё',
       vL1: 'ккал ещё', vL2: 'можно съесть', vO1: 'ккал сверх', vO2: 'нормы', kcAte: 'Съедено', kcStep: 'За ходьбу', kcEx: 'За тренировку', kcMove: 'За движение', 
-      khT: 'Откуда {k} ккал?', khTo: 'Откуда {k} ккал сверх нормы?', khSub: 'Расчёт на сегодня', khNorm: 'Ваша дневная норма', khNormGoal: 'цель: {g}', obUsed: 'Я здесь не впервые', obUsedH: 'Как вернуть ваши данные?', obUsedAcc: 'Войти через Google или email', obUsedAccS: 'Войдите в аккаунт — данные вернутся', obUsedCode: 'По коду восстановления', obUsedCodeS: 'Код, начинающийся с KF-…', obUsedNo: 'Нет, я впервые', gN_keep: 'Поддержание веса', gN_slow: 'Медленное похудение', gN_lose: 'Похудение', gN_gain: 'Набор веса',
+      khT: 'Откуда {k} ккал?', khTo: 'Откуда {k} ккал сверх нормы?', khSub: 'Расчёт на сегодня', khNorm: 'Ваша дневная норма', khNormGoal: 'цель: {g}', obImpT: 'Данные взяты из калькулятора — проверьте', obImpEdit: 'Изменить', obImpPart: 'Данные из калькулятора взяты — заполните остальное', obUsed: 'Я здесь не впервые', obUsedH: 'Как вернуть ваши данные?', obUsedAcc: 'Войти через Google или email', obUsedAccS: 'Войдите в аккаунт — данные вернутся', obUsedCode: 'По коду восстановления', obUsedCodeS: 'Код, начинающийся с KF-…', obUsedNo: 'Нет, я впервые', gN_keep: 'Поддержание веса', gN_slow: 'Медленное похудение', gN_lose: 'Похудение', gN_gain: 'Набор веса',
       khGoalL: 'Цель «{G}» — {k} ккал (на {d} ккал меньше нормы поддержания). Сегодня осталось {r} ккал.', khGoalK: 'Цель «Поддержание веса» — {k} ккал. Если не превышать это число — вес сохранится. Сегодня осталось {r} ккал.',
       khGoalG: 'Цель «Набор веса» — {k} ккал (на {d} ккал больше нормы поддержания). Сегодня можно съесть ещё {r} ккал.', khGoalO: 'Цель «{G}» — {k} ккал. Сегодня на {r} ккал больше.',
       khStep: 'Шаги · {n}', khStepS: 'добавлено за ходьбу', khStep0: 'сегодня пока нет', khStepIn: 'обычная ходьба уже в норме', khOff: 'не добавлено к норме', khEx: 'Тренировка', khExS: '{m} мин — добавлено', khEx0: 'сегодня пока нет',
@@ -3945,13 +3945,18 @@
   function obNew() {
     ob = { step: 1, sex: '', preg: false, age: '', height: '', weight: '', act: 0, goal: '', yemay: [], touched: {}, anim: null, refine: false, counted: false, ycounted: false };
     try {
-      var imp = JSON.parse(lsGet(LS_IMPORT) || 'null');
+      var imp = JSON.parse(lsGet(LS_IMPORT) || 'null'); try { localStorage.removeItem(LS_IMPORT); localStorage.removeItem(OLD[LS_IMPORT]); } catch (e0) {}          // kalki.uz → KalkiFit: BIR MARTA ishlatiladi (o'qilgan zahoti o'chadi)
+      if (imp && typeof imp.ts === 'number' && Date.now() - imp.ts > 2 * DAY_MS) imp = null;          // eski (2 kundan ortiq) — e'tiborsiz
       if (imp && typeof imp === 'object') {
+        ob.imp = String(imp.from || 'kaloriya').replace(/[^a-z]/g, '').slice(0, 12) || 'kaloriya';
         ob.sex = imp.sex === 'f' ? 'f' : (imp.sex === 'm' ? 'm' : ''); ob.age = imp.age ? String(Math.round(num(imp.age))) : ''; ob.height = imp.height ? String(Math.round(num(imp.height))) : ''; ob.weight = imp.weight ? String(num(imp.weight)).replace('.', ',') : '';
         ob.act = S.ACT[imp.act] ? +imp.act : 0; ob.goal = S.GOAL_DELTA[imp.goal] != null ? imp.goal : ''; ['age', 'height', 'weight'].forEach(function (f) { if (ob[f]) ob.touched[f] = true; });
-        var er = S.validate(obProfile()); ob.step = !ob.sex ? 1 : er.age ? 2 : er.height ? 3 : er.weight ? 4 : !ob.act ? 5 : !ob.goal ? 6 : 7;
+        var er = S.validate(obProfile()); ob.step = !ob.sex ? 1 : er.age ? 2 : er.height ? 3 : er.weight ? 4 : !ob.act ? 5 : !ob.goal ? 6 : 8; ob.impFull = ob.step === 8;          // hammasi bor — darhol natija + bitta tasdiq
       }
     } catch (e) {}
+  }
+  function obImpSum() {          // «Ayol · 41 yosh · 168 sm · 64 kg · O'rtacha faol · Ozish» — kalkulyatordan olingan qiymatlar (tekshirish uchun)
+    var p = obProfile(); return [T(p.sex === 'f' ? 'female' : 'male'), p.age + ' ' + (lang === 'ru' ? 'лет' : 'yosh'), p.height + ' ' + (lang === 'ru' ? 'см' : 'sm'), obFmt('weight', p.weight) + ' ' + (lang === 'ru' ? 'кг' : 'kg'), T('a' + p.act), T('g' + (ob.goal || 'keep'))].join(' · ');
   }
   function obProfile() { return { sex: ob.sex, preg: ob.sex === 'f' && ob.preg, age: num(ob.age), height: num(ob.height), weight: num(ob.weight), act: ob.act, goal: ob.goal || 'keep', goalWeight: null, job: ob.job || undefined }; }
   function optBtn(act, v, title, sub, on, off) { return '<button type="button" class="rz-opt big' + (on ? ' on' : '') + (off ? ' off' : '') + '" data-act="' + act + '" data-v="' + v + '" aria-pressed="' + !!on + '"' + (off ? ' aria-disabled="true"' : '') + '><b>' + esc(title) + '</b>' + (sub ? '<span>' + esc(sub) + '</span>' : '') + '</button>'; }
@@ -3980,7 +3985,7 @@
   function introSeen() { try { return !!localStorage.getItem(INTRO_K); } catch (e) { return true; } }
   function needIntro() { return !!IN && !(KD && KD.on) && !noIntro() && !introSeen() && !(ob && ob.step > 1); }
   function introFirst() { var el = $('#rzOnb'); if (el) el.hidden = true; if (IN.isOpen()) return; IN.show(function () { try { localStorage.setItem(INTRO_K, '1'); } catch (e) {} render(); }); }
-  function needLangPick() { return !lpDone && !(KD && KD.on) && !noIntro() && !(st && st.setup) && !langStored(); }
+  function needLangPick() { return !lpDone && !(KD && KD.on) && !noIntro() && !(st && st.setup) && !langStored() && lsGet(LS_IMPORT) == null && !(ob && ob.imp); }          // kalkulyatordan kelgan — til sahifadan ma'lum, tanlash ekrani yo'q
   function showLangPick() {
     var el = $('#rzOnb'); if (!el) return;
     var cur = isCyr() ? 'cyr' : lang;
@@ -4005,6 +4010,7 @@
     var s = ob.step, an = ob.anim, h = '', foot = 'next', nav = ''; ob.anim = null;
     if (!ob.counted && !ob.refine) { ob.counted = true; if (Y) Y.count('onboarding_boshlandi'); }
     var body = '';
+    var impNote = ob.imp && !ob.impFull && s <= 6 ? '<p class="sl-obimp sm" id="obImp" role="status">' + esc(T('obImpPart')) + '</p>' : '';
     if (s === 1 && ob.used) { body = '<h2 class="rz-q">' + esc(T('obUsedH')) + '</h2>' + (akk.restoreLink() ? optBtn('obusedacc', '1', T('obUsedAcc'), T('obUsedAccS'), false) : '') + optBtn('obusedcode', '1', T('obUsedCode'), T('obUsedCodeS'), false) + '<button type="button" class="rz-link bk-rclink" data-act="obusedx">' + esc(T('obUsedNo')) + '</button>'; foot = 'none'; }          // audit: «Avval ishlatganman» → usul tanlash (bitta ekran, oyna ustiga oyna yo'q)
     else if (s === 1) { body = '<h2 class="rz-q">' + esc(T('o1q')) + '</h2>' + optBtn('obsex', 'm', T('male'), '', ob.sex === 'm') + optBtn('obsex', 'f', T('female'), '', ob.sex === 'f') + '<button type="button" class="rz-link bk-rclink" id="obUsed" data-act="obused">' + esc(T('obUsed')) + '</button>' + (ob.sex === 'f' ? '<label class="rz-chk" style="margin-top:12px"><input type="checkbox" id="obPreg"' + (ob.preg ? ' checked' : '') + '><span>' + esc(T('preg')) + '</span></label>' : ''); foot = ob.sex ? 'next' : 'next0'; }
     if (OBID && (s === 2 || s === 3 || s === 4)) { var f = { 2: 'age', 3: 'height', 4: 'weight' }[s]; body = '<h2 class="rz-q">' + esc(T('o' + s + 'q')) + '</h2>' + '<p class="rz-p">' + esc(T('o' + s + 'h')) + '</p>' + '<div class="sl-ob-sld">' + obSlider(f) + '</div>'; }
@@ -4012,9 +4018,10 @@
     if (s === 6) { var lock = S.restrictions(obProfile()).keepOnly; body = '<h2 class="rz-q">' + esc(T('o6q')) + '</h2>' + ['keep', 'slow', 'lose', 'gain'].map(function (g) { return optBtn('obgoal', g, T('g' + g), T('g' + g + 'H'), (ob.goal === g) || (lock && g === 'keep' && !ob.goal), lock && g !== 'keep'); }).join('') + (lock ? '<p class="rz-p warn">' + esc(T('gLocked')) + '</p>' : ''); foot = (ob.goal || lock) ? 'next' : 'next0'; }
     if (s === 7) { body = '<h2 class="rz-q">' + esc(T('obYq2')) + '</h2><p class="rz-p">' + esc(T('obYh2')) + '</p>' + (Y ? Y.chipsHtml(ob.yemay, 'obyntog') : '') + '<p class="rz-priv sl-ywarn">' + esc(T('obYwarn')) + '</p>'; foot = 'yemay'; }
     if (s === 8) {
+      var impBn = ob.imp ? '<div class="sl-obimp" id="obImp" role="status"><b>' + esc(T('obImpT')) + '</b><span>' + esc(obImpSum()) + '</span><button type="button" class="rz-link" data-act="obimpedit">' + esc(T('obImpEdit')) + '</button></div>' : '';
       var pr = obProfile(); if (S.restrictions(pr).keepOnly) pr.goal = 'keep'; var pl = S.plan(pr);
       var gk = goalInfo(pl).kind, why = gk === 'keep' ? T('rWhyKeep', { tdee: fmt(pl.tdee) }) : T(gk === 'gain' ? 'rWhyGain' : 'rWhyLose', { tdee: fmt(pl.tdee), kg: dec(Math.abs(pl.kgPerWeek), 2), d: fmt(Math.abs(pl.target - pl.tdee)) });
-      body = '<div class="sl-res7"><p class="rz-fl" style="text-align:center">' + esc(T('rT')) + '</p><div class="sl-big" aria-live="polite"><b id="obTarget">' + fmt(pl.target) + '</b><small> ' + T('kcal') + '</small></div><p class="rz-p">' + esc(why) + '</p>' +
+      body = impBn + '<div class="sl-res7"><p class="rz-fl" style="text-align:center">' + esc(T('rT')) + '</p><div class="sl-big" aria-live="polite"><b id="obTarget">' + fmt(pl.target) + '</b><small> ' + T('kcal') + '</small></div><p class="rz-p">' + esc(why) + '</p>' +
         (pl.floorApplied ? '<p class="rz-p warn">' + esc(T('rFloor', { min: fmt(pl.floorMin), kg: dec(Math.abs(pl.kgPerWeek), 2) })) + '</p>' : '') +
         pl.notes.filter(function (n) { return n !== 'floor'; }).map(function (n) { return '<p class="rz-p warn">' + esc(T(n === 'preg' ? 'pregN' : n)) + '</p>'; }).join('') + (pl.doctor ? '<p class="rz-p warn"><b>' + esc(T('rDoc')) + '</b></p>' : '') +
         '<p class="rz-p">' + esc(T('rMacro', { p: pl.macros.p, f: pl.macros.f, c: pl.macros.c })) + '<br>' + esc(T('rWater', { n: pl.water.glasses, ml: fmt(S.waterGoalMl(pl.water.glasses)) })) + '</p><p class="rz-p sm">' + esc(T('disc')) + '</p></div>'; foot = 'start';
@@ -4023,7 +4030,7 @@
     var btn = foot === 'none' ? '' : foot === 'start' ? '<button type="button" class="rz-btn primary" data-act="obstart">' + esc(T(ob.refine ? 'save' : 'start')) + '</button>' : foot === 'yemay' ? '<button type="button" class="rz-btn primary" data-act="obnext" id="obYbtn">' + esc(T(ob.yemay.length ? 'obYgo' : 'obYno')) + '</button>' : '<button type="button" class="rz-btn primary" data-act="obnext"' + (foot === 'next0' ? ' disabled' : '') + '>' + esc(T('next')) + '</button>';
     nav = '<div class="sl-ob-nav">' + (s > first || (ob.refine && s === first) ? '<button type="button" class="sl-txtbtn sl-ob-back" data-act="obback">' + esc(T(ob.refine && s === first ? 'cancel' : 'back')) + '</button>' : '<span class="sl-ob-sp"></span>') + '<div class="rz-dots" aria-hidden="true">' + dots + '</div>' + '<span class="sl-ob-sp"></span></div>';
     var later = s === 1 && ob.sex ? '<button type="button" class="rz-btn ghost sl-ob-later" data-act="oblater">' + esc(T('obLater2')) + '</button>' : '';
-    h = obLangHtml() + '<div class="sl-ob-body' + (an ? ' in-' + an : '') + '"><div class="sl-ob-in">' + body + '</div></div><div class="sl-ob-foot">' + btn + later + nav + '</div>';
+    h = obLangHtml() + '<div class="sl-ob-body' + (an ? ' in-' + an : '') + '"><div class="sl-ob-in">' + impNote + body + '</div></div><div class="sl-ob-foot">' + btn + later + nav + '</div>';
     el.className = 'rz-onb sl-ob'; el.innerHTML = h; el.hidden = false; el.classList.remove('out'); if (SL) SL.mount(el);
     if (s === 8) kit.setNum($('#obTarget'), 0, planOfOb().target, { dur: 700 });
   }
@@ -4345,7 +4352,7 @@
       case 'obsex': ob.sex = el.getAttribute('data-v'); if (ob.sex === 'm') ob.preg = false; ['age', 'height', 'weight'].forEach(function (f) { if (!ob.touched[f]) ob[f] = ''; }); showOnb(); break;      // tegilmagan qiymatlar yangi jinsning boshlang'ich qiymatiga qaytadi
       case 'obact': ob.act = +el.getAttribute('data-v'); showOnb(); break;
       case 'obgoal': if (el.getAttribute('aria-disabled') !== 'true') { ob.goal = el.getAttribute('data-v'); showOnb(); } break;
-      case 'obnext': obNext(); break; case 'obstart': obStart(); break;
+      case 'obnext': obNext(); break; case 'obstart': obStart(); break; case 'obimpedit': ob.impFull = false; ob.imp = ''; ob.anim = 'b'; ob.step = 1; showOnb(); break;
       case 'obback': obBack(); break;
       case 'oblater': obLater(); break; case 'oblang': obLang(el.getAttribute('data-l')); break; case 'lppick': lpPick(el.getAttribute('data-l')); break;
       case 'taxgo': taxOpen(); break;
@@ -4375,7 +4382,7 @@
 
   /* ---------- ishga tushirish ---------- */
   function init() {
-    st = load(); try { S.stamp(st); } catch (e) {} try { var rc = recoverYedek(); if (rc) setTimeout(function () { toast(lang === 'ru' ? 'Восстановлено записей: ' + rc : 'Qayta tiklangan yozuvlar: ' + rc); }, 1500); } catch (e) {} if (loadDirty) { loadDirty = false; try { localStorage.setItem(LS, JSON.stringify(st)); } catch (e) {} } applyTheme(); shell();
+    st = load(); try { S.stamp(st); } catch (e) {} try { if (st && st.setup && lsGet(LS_IMPORT) != null) { localStorage.removeItem(LS_IMPORT); localStorage.removeItem(OLD[LS_IMPORT]); } } catch (e) {} /* kalki.uz → KalkiFit: MAVJUD foydalanuvchi — kalkulyator qiymatlari HECH QACHON ustidan yozilmaydi (o'chiriladi) */ try { var rc = recoverYedek(); if (rc) setTimeout(function () { toast(lang === 'ru' ? 'Восстановлено записей: ' + rc : 'Qayta tiklangan yozuvlar: ' + rc); }, 1500); } catch (e) {} if (loadDirty) { loadDirty = false; try { localStorage.setItem(LS, JSON.stringify(st)); } catch (e) {} } applyTheme(); shell();
     try { if ((window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone === true) document.body.classList.add('rz-standalone'); } catch (e) {}
     var ab = document.getElementById('rzAbout');
     if (ab && !document.getElementById('rzAboutBar')) {
