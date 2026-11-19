@@ -19,14 +19,15 @@
     near.forEach(function (r) { if (!best || r.steps > best.steps) best = r; });
     if (!best) logged.forEach(function (r) { if (r.state === 'live' || r.state === 'part' && r.d === today) return; var dv = Math.abs(r.kcal - r.limit); if (!best || dv < Math.abs(best.kcal - best.limit)) best = r; });
     if (!best) stepD.forEach(function (r) { if (!best || r.steps > best.steps) best = r; });
-    var waterAvg = avg(wD.map(function (r) { return r.ml; })), stepsAvg = avg(stepD.map(function (r) { return r.steps; })), pAvg = avg(logged.map(function (r) { return r.p; }));
-    var waterGoal = pl.water ? pl.water.ml : 2000, stepGoal = st.stepGoal || 8000, tip = 'keep';
+    var past = function (r) { return r.d < today; }, done = rows.filter(function (r) { return r.d < today && (r.state === 'near' || r.state === 'low' || r.state === 'high'); }), tRow = rows.filter(function (r) { return r.d === today; })[0];          // audit: o'rtacha — faqat TUGAGAN to'liq kunlar (bugun kirmaydi)
+    var waterAvg = avg(wD.filter(past).map(function (r) { return r.ml; })), stepsAvg = avg(stepD.filter(past).map(function (r) { return r.steps; })), pAvg = avg(done.map(function (r) { return r.p; }));
+    var waterGoal = pl.water ? (S.waterGoalMl ? S.waterGoalMl(pl.water.glasses) : pl.water.ml) : 2000, stepGoal = st.stepGoal || 8000, tip = 'keep';
     if (logged.length < 4) tip = 'log';
     else if (waterAvg != null && waterAvg < waterGoal * 0.6) tip = 'water';
     else if (stepsAvg == null || stepsAvg < Math.min(5000, stepGoal * 0.6)) tip = 'steps';
     else if (high.length >= 3) tip = 'over';
     else if (pl.macros && pAvg != null && pAvg < pl.macros.p * 0.7) tip = 'protein';
-    return { days: days, rows: rows, empty: empty, logged: logged.length, avgKcal: avg(logged.map(function (r) { return r.kcal; })), target: pl.target, near: near.length, high: high.length,
+    return { days: days, rows: rows, empty: empty, logged: logged.length, avgKcal: avg(done.map(function (r) { return r.kcal; })), avgN: done.length, todayKcal: tRow && tRow.food ? Math.round(tRow.kcal) : 0, target: pl.target, near: near.length, high: high.length,
       waterAvg: waterAvg, waterGoal: waterGoal, stepsAvg: stepsAvg, stepsSum: stepD.reduce(function (s, r) { return s + r.steps; }, 0), exMin: rows.reduce(function (s, r) { return s + r.exMin; }, 0), exKcal: rows.reduce(function (s, r) { return s + r.exKcal; }, 0), exDays: rows.filter(function (r) { return r.exMin > 0; }).length, stepGoal: stepGoal, best: best ? best.d : null, streak: S.streak(st, end), tip: tip };
   }
   /* Yakshanba 19:00 dan dushanba oxirigacha ko'rsatiladi; end — xulosa haftasining oxirgi kuni (yakshanba) */
@@ -88,7 +89,7 @@
         spend: dp ? Math.round(dp.sarf) : 0, bmr: dp ? Math.round(dp.bmr) : 0, dinner: Math.round(dinner), exMin: r.exMin || 0, exKcal: r.exKcal || 0, hrW: r.hrW || 0, hrM: r.hrM || 0 };
     });
     var logged = rows.filter(function (r) { return r.logged; }), loggedN = logged.length, streakMax = 0, cur = 0; rows.forEach(function (r) { cur = r.logged ? cur + 1 : 0; if (cur > streakMax) streakMax = cur; });
-    var full = rows.filter(function (r) { return r.complete; }), avgK = full.length ? Math.round(full.reduce(function (a, r) { return a + r.k; }, 0) / full.length) : null, nearN = rows.filter(function (r) { return r.state === 'near'; }).length;
+    var full = rows.filter(function (r) { return r.complete && r.d < today; }), avgK = full.length ? Math.round(full.reduce(function (a, r) { return a + r.k; }, 0) / full.length) : null, nearN = rows.filter(function (r) { return r.state === 'near'; }).length;
     /* eng yaxshi kun: to'liq kun, maqsadga eng yaqin */
     var best = null; full.forEach(function (r) { var dv = Math.abs(r.k - r.limit); if (!best || dv < best.dv) best = { d: r.d, dv: dv }; });
     /* ---- energiya balansi: farq = sarf − iste'mol (to'liq yozilgan kunlar); defitsit / teng / ortiqcha ---- */
@@ -109,16 +110,16 @@
     var protDays = pg ? logged.filter(function (r) { return r.n >= 2 && r.p >= pg; }).length : 0;
     var macros = { p: loggedN ? Math.round(sp / loggedN) : 0, f: loggedN ? Math.round(sf / loggedN) : 0, c: loggedN ? Math.round(sc / loggedN) : 0, sh: [kP / kT, kF / kT, kC / kT], protDays: protDays, protGoal: Math.round(pg) };
     /* ---- suv ---- */
-    var wDays = rows.filter(function (r) { return r.ml > 0 || r.logged; }), wGoal = pl.water ? pl.water.ml : 2000, wTot = rows.reduce(function (a, r) { return a + r.ml; }, 0);
-    var water = { total: wTot, liters: Math.round(wTot / 100) / 10, goal: wGoal, avg: wDays.length ? Math.round(wTot / wDays.length) : null, per: rows.map(function (r) { return { dow: r.dow, ml: r.ml }; }), goalDays: rows.filter(function (r) { return r.ml >= wGoal * 0.9; }).length };
+    var wDays = rows.filter(function (r) { return (r.ml > 0 || r.logged) && r.d < today; }), wGoal = pl.water ? (S.waterGoalMl ? S.waterGoalMl(pl.water.glasses) : pl.water.ml) : 2000, wTot = rows.reduce(function (a, r) { return a + r.ml; }, 0);
+    var water = { total: wTot, liters: Math.round(wTot / 100) / 10, goal: wGoal, avg: wDays.length ? Math.round(wDays.reduce(function (a, r) { return a + r.ml; }, 0) / wDays.length) : null, per: rows.map(function (r) { return { dow: r.dow, ml: r.ml }; }), goalDays: rows.filter(function (r) { return r.ml >= wGoal * 0.9; }).length };
     /* ---- harakat ---- */
     var stepsSum = rows.reduce(function (a, r) { return a + r.steps; }, 0), km = rows.reduce(function (a, r) { return a + (S.stepsStats ? S.stepsStats(st, r.steps).km : 0); }, 0); km = Math.round(km * 10) / 10;
     var exMin = rows.reduce(function (a, r) { return a + r.exMin; }, 0), exK = rows.reduce(function (a, r) { return a + r.exKcal; }, 0), exDays = rows.filter(function (r) { return r.exMin > 0; }).length, stD = rows.filter(function (r) { return r.steps > 0; }), exBefore = false;
     Object.keys(st.days || {}).forEach(function (d) { if (d < w.days[0] && ((st.days[d] || {}).ex || []).length) exBefore = true; });
-    var move = { steps: stepsSum, km: km, route: km > 0 ? routeOf(km) : null, exMin: exMin, exKcal: Math.round(exK), exDays: exDays, avgSteps: stD.length ? Math.round(stepsSum / stD.length) : null, goal: st.stepGoal || 8000, exBefore: exBefore }; (function (hw, hm) { if (hm > 0) move.hr = Math.round(hw / hm); })(rows.reduce(function (a, r) { return a + (r.hrW || 0); }, 0), rows.reduce(function (a, r) { return a + (r.hrM || 0); }, 0));
+    var move = { steps: stepsSum, km: km, route: km > 0 ? routeOf(km) : null, exMin: exMin, exKcal: Math.round(exK), exDays: exDays, avgSteps: (function (p) { return p.length ? Math.round(p.reduce(function (a, r) { return a + r.steps; }, 0) / p.length) : null; })(stD.filter(function (r) { return r.d < today; })), goal: st.stepGoal || 8000, exBefore: exBefore }; (function (hw, hm) { if (hm > 0) move.hr = Math.round(hw / hm); })(rows.reduce(function (a, r) { return a + (r.hrW || 0); }, 0), rows.reduce(function (a, r) { return a + (r.hrM || 0); }, 0));
     /* ---- vazn ---- */
     var ws = S.weekSummary ? S.weekSummary(st, end, today) : null, wIn = (st.weights || []).some(function (x) { return x.d >= w.days[0] && x.d <= end; }), weight = { has: !!(ws && ws.weightDelta != null && wIn), delta: ws && ws.weightDelta != null ? ws.weightDelta : 0 };          // vazn slaydi — shu hafta ichida vazn kiritilgan bo'lsa
-    var m = { end: end, from: w.days[0], rows: rows, logged: loggedN, streakMax: streakMax, avgKcal: avgK, target: pl.target, nearN: nearN, best: best ? best.d : null, lost: lost, fun: fun, top: top, macros: macros, water: water, move: move, weight: weight,
+    var m = { end: end, from: w.days[0], rows: rows, logged: loggedN, streakMax: streakMax, avgKcal: avgK, avgN: full.length, todayKcal: (rows.filter(function (r) { return r.d === today; })[0] || {}).k || 0, target: pl.target, nearN: nearN, best: best ? best.d : null, lost: lost, fun: fun, top: top, macros: macros, water: water, move: move, weight: weight,
       sumKcal: Math.round(sumK), dinnerKcal: loggedN ? Math.round(logged.reduce(function (a, r) { return a + r.dinner; }, 0) / loggedN) : null, empty: !loggedN && !stepsSum && !wTot };
     if (prev) return m;
     /* ---- o'tgan hafta bilan taqqoslash ---- */

@@ -34,7 +34,7 @@ const calls = (p) => p.evaluate(() => window.__q.calls.slice());
 try {
   /* 1. veb / iPhone: plagin yo'q — qadam kartasi YO'Q (qo'lda kiritish yo'q), Tarix'da bitta qator */
   let p = await mk(); assert.equal(await p.locator('.sl-s:not([data-st=web])').count(), 0, 'v55: Bugun: avtomatik qadam kartasi yo\'q (vebda — qo\'lda kiritish)'); assert.equal(await p.locator('.sl-act .sl-s [data-act=stepin]').count() >= 1, true, 'v72: qadam yo\'q — to\'liq karta + «Qadamni kiriting»'); assert.equal(await p.locator('[data-act=addsteps]').count(), 0); assert.equal(await p.locator('.sl-duo.one #wCard').count(), 1, 'suv kartasi to\'liq kenglikda');
-  await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(300); assert.equal((await p.locator('.sl-stepweb').innerText()).trim(), 'Qadam ilovada avtomatik sanaladi'); assert.equal(await p.locator('.sl-stepbig, [data-act=stephelp]').count(), 0);
+  await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(300); assert.match((await p.locator('.sl-stepweb').innerText()).trim(), /^Qo'lda kiritiladi/); assert.equal(await p.locator('.sl-stepbig, [data-act=stephelp]').count(), 0);
   await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(300); assert.equal(await p.locator('#qaRow').count(), 0, 'Profil: qator yo\'q'); assert.deepEqual(p.errs, []); await p.context().close();
   log('Veb/iPhone (plagin yo\'q): Bugun\'da qadam kartasi yo\'q, Tarix\'da bitta qator «Qadam ilovada avtomatik sanaladi», Profil\'da qator yo\'q');
   /* 2. sensor/Health Connect yo'q telefon: karta bor, bosilsa — ma'lumot oynasi (qo'lda kiritish yo'q) */

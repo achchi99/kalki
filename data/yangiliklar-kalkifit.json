@@ -2,6 +2,24 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 89,
+   "d": "2026-11-19",
+   "bn": {
+    "uz": "Aniqroq izohlar",
+    "ru": "Точнее пояснения"
+   },
+   "items": [
+    {
+     "uz": "«Qanday hisoblangan?» endi maqsadingizni to'g'ri aytadi; o'rtacha faqat tugagan kunlardan",
+     "ru": "«Как посчитано?» теперь верно называет вашу цель; среднее — только по завершённым дням"
+    },
+    {
+     "uz": "Taomda manba ko'rinadi (retsept hisobi yoki USDA) va porsiya grammi",
+     "ru": "У блюда видно источник (расчёт по рецепту или USDA) и граммы порции"
+    }
+   ]
+  },
+  {
    "v": 88,
    "d": "2026-11-18",
    "bn": {

@@ -15,9 +15,9 @@ const week = (st, plan) => { plan.forEach((x, i) => { const d = D.addDays(SUN, i
 { const st = mk(), T0 = S.plan(st.profile).target; const L = S.dayLimit(st, D.addDays(SUN, -3));
   week(st, [{ k: L, w: 8, s: 9000 }, { k: Math.round(L * 1.3), w: 6, s: 4000 }, { k: Math.round(L * 0.7), w: 8, s: 7000 }, { k: L - 30, w: 8, s: 12000 }, { k: 0, s: 3000 }, { k: Math.round(L * 1.02), w: 8, s: 8000 }, { k: 900, w: 8 }]);
   const w = H.summary(S, st, SUN, SUN); assert.equal(w.empty, false); assert.equal(w.logged, 6); assert.equal(w.days[6], SUN); assert.equal(w.days[0], D.addDays(SUN, -6));
-  const ks = [L, Math.round(L * 1.3), Math.round(L * 0.7), L - 30, Math.round(L * 1.02), 900]; assert.equal(w.avgKcal, Math.round(ks.reduce((a, b) => a + b, 0) / 6), 'o\'rtacha — faqat yozilgan kunlar');
+  const ks = [L, Math.round(L * 1.3), Math.round(L * 0.7), L - 30, Math.round(L * 1.02)]; assert.equal(w.avgKcal, Math.round(ks.reduce((a, b) => a + b, 0) / 5), 'o\'rtacha — faqat tugagan to\'liq kunlar (bugun kirmaydi)'); assert.equal(w.avgN, 5); assert.equal(w.todayKcal, 900);
   assert.equal(w.near, 3, 'maqsadga yaqin (±10%, to\'liq kun): 3'); assert.equal(w.best, D.addDays(SUN, -3), 'eng yaxshi kun — maqsadga yaqin kunlardan eng ko\'p qadam'); assert.equal(w.stepsAvg, Math.round((9000 + 4000 + 7000 + 12000 + 3000 + 8000) / 6)); assert.equal(w.streak, S.streak(st, SUN), 'seriya — core streak bilan bir xil');
-  assert.equal(w.waterAvg, Math.round((2000 + 1500 + 2000 + 2000 + 2000 + 2000) / 6), 'suv o\'rtachasi'); assert.equal(w.tip, 'keep'); assert.equal(w.target, T0);
+  assert.equal(w.waterAvg, Math.round((2000 + 1500 + 2000 + 2000 + 2000) / 5), 'suv o\'rtachasi (bugun kirmaydi)'); assert.equal(w.tip, 'keep'); assert.equal(w.target, T0);
   const w2 = H.summary(S, week(mk(), [{ k: 1500, w: 1 }, { k: 1500, w: 1 }, { k: 1500, w: 1 }, { k: 1500, w: 1 }, { k: 1500, w: 1 }, {}, {}]), SUN, SUN); assert.equal(w2.tip, 'water', 'suv kam → suv maslahati');
   const w3 = H.summary(S, week(mk(), [{ k: 1500 }, {}, {}, {}, {}, {}, { k: 1400 }]), SUN, SUN); assert.equal(w3.tip, 'log', 'kam yozilgan → yozish maslahati');
   const w4 = H.summary(S, week(mk(), [{ k: 1500, w: 8 }, { k: 1500, w: 8 }, { k: 1500, w: 8 }, { k: 1500, w: 8 }, { k: 1500, w: 8 }, {}, {}]), SUN, SUN); assert.equal(w4.tip, 'steps', 'qadam yo\'q → qadam maslahati');

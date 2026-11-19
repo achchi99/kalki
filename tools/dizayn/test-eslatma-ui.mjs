@@ -11,7 +11,7 @@ const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split
 await new Promise((ok) => srv.listen(0, ok)); const BASE = 'http://localhost:' + srv.address().port; const b = track(await chromium.launch());
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 const T0 = D.today(), YD = D.addDays(T0, -1);
-function seed(o = {}) { const st = S.emptyState(); st.setup = true; st.created = Date.now() - (o.age == null ? 10 : o.age) * 864e5; st.prefs = Object.assign({ yemayK: 1, jokes: false, suvFrom: T0, hwSeen: T0, ttAsked: 1, lpTip: 1, fc: { done: 1 }, hafta: false }, o.prefs || {}); st.profile = { sex: 'm', age: 30, height: 175, weight: 80, act: 3, goal: 'lose' }; S.addWeight(st, T0, 80);
+function seed(o = {}) { const st = S.emptyState(); st.setup = true; st.created = Date.now() - (o.age == null ? 10 : o.age) * 864e5; st.prefs = Object.assign({ baliqOff: true, yemayK: 1, jokes: false, suvFrom: T0, hwSeen: T0, ttAsked: 1, lpTip: 1, fc: { done: 1 }, hafta: false }, o.prefs || {}); st.profile = { sex: 'm', age: 30, height: 175, weight: 80, act: 3, goal: 'lose' }; S.addWeight(st, T0, 80);
   (o.food || []).forEach(([d, fid, meal, kcal]) => S.addFood(st, d, { fid, meal, unit: 'porsiya', qty: 1, g: 100, kcal, p: 5, f: 5, c: 5, ts: 1 })); return st; }
 /* Android: Capacitor + LocalNotifications mock — q.sch (rejalanganlar), q.cancel, q.perm, q.ask (requestPermissions javobi), q.ls (tinglovchilar) */
 const NATIVE = (o) => { const q = window.__q = { sch: [], cancelled: [], calls: [], perm: o.perm || 'prompt', ask: o.ask || 'granted', ls: {} };

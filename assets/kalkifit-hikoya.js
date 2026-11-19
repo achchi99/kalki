@@ -26,7 +26,8 @@
   function sKcal(m, o) {
     var t = o.t, mx = Math.max(m.target || 1, Math.max.apply(null, m.rows.map(function (r) { return r.k; }).concat([1]))) * 1.1, g = (m.target || 0) / mx;
     var bars = m.rows.map(function (r, i) { var cl = r.d === m.best ? 'best' : (r.state === 'near' ? 'near' : (r.k ? '' : 'nil')); return '<div class="c"><i class="' + cl + '" style="--h:' + (r.k / mx).toFixed(3) + ';--i:' + i + '"></i><span>' + esc(dowOf(o, r.dow)) + '</span></div>'; }).join('');
-    return '<p class="hk-k">' + esc(t('wrKcalK')) + '</p><h2 class="hk-num"><b data-cu="' + (m.avgKcal || 0) + '">0</b><small> ' + esc(t('kcal')) + '</small></h2><p class="hk-sub">' + esc(t('wrAvgVs', { g: nf(m.target) })) + '</p><div class="hk-bars7" style="--g:' + g.toFixed(3) + '">' + bars + '</div>' +
+    var noAvg = m.avgKcal == null;          // audit: o'rtacha faqat tugagan kunlardan; bo'lmasa — bugungi yozilgan
+    return '<p class="hk-k">' + esc(t('wrKcalK')) + '</p><h2 class="hk-num"><b data-cu="' + (noAvg ? m.todayKcal || 0 : m.avgKcal) + '">0</b><small> ' + esc(t('kcal')) + '</small></h2><p class="hk-sub">' + esc(noAvg ? t('avgToday', { k: nf(m.todayKcal || 0) }) : t('wrAvgVs', { g: nf(m.target) }) + ' · ' + t('avgDaysN', { n: m.avgN })) + '</p><div class="hk-bars7" style="--g:' + g.toFixed(3) + '">' + bars + '</div>' +
       (m.best ? '<p class="hk-pill">' + svgI('target') + '<span>' + esc(t('wrBestDay', { d: o.dayName(m.best) })) + '</span></p>' : '<p class="hk-hint">' + esc(t('wrFewK')) + '</p>');
   }
   function sLost(m, o) {
@@ -118,7 +119,7 @@
     c.fillStyle = acc; c.font = '800 64px ' + F; c.fillText('KalkiFit', 90, 150); c.fillStyle = mut; c.font = '600 44px ' + F; c.fillText(tr(s.range || ''), 90, 215); c.fillStyle = ink; c.font = '800 110px ' + F; c.fillText(tr(t('wrShareT')), 90, 380);
     var days = s.days || [], mx = Math.max(s.target || 1, Math.max.apply(null, days.map(function (x) { return x.k; }).concat([1]))) * 1.1, bw = 100, gap = 24, x0 = 90, H = 360, yb = 820;
     days.forEach(function (x, j) { var h = Math.max(10, H * x.k / mx), xx = x0 + j * (bw + gap); c.fillStyle = x.near ? ok : (x.k ? acc : base); c.beginPath(); if (c.roundRect) c.roundRect(xx, yb - h, bw, h, 20); else c.rect(xx, yb - h, bw, h); c.fill(); c.fillStyle = mut; c.font = '600 32px ' + F; c.textAlign = 'center'; c.fillText(tr(x.l || ''), xx + bw / 2, yb + 52); c.textAlign = 'left'; });
-    var rows = [[String(s.logged) + ' / 7', t('wrDaysK')], [nf(s.avg || 0), t('wrAvgK')], [nf(s.steps || 0), t('wrSteps')], [dec(s.liters || 0, 1) + ' ' + t('wrLiters'), t('wrWaterK')]];
+    var rows = [[String(s.logged) + ' / 7', t('wrDaysK')], [s.avg != null ? nf(s.avg) : '—', t('wrAvgK')], [nf(s.steps || 0), t('wrSteps')], [dec(s.liters || 0, 1) + ' ' + t('wrLiters'), t('wrWaterK')]];
     rows.forEach(function (r, j) { var xx = 90 + (j % 2) * 480, yy = 1010 + Math.floor(j / 2) * 190; c.fillStyle = ink; c.font = '800 78px ' + F; c.fillText(r[0], xx, yy); c.fillStyle = mut; c.font = '600 34px ' + F; c.fillText(tr(String(r[1] || '')), xx, yy + 52); });
     var y = 1400;
     if (s.fat) { c.fillStyle = dk ? '#3A2A22' : '#FFFFFF'; c.beginPath(); if (c.roundRect) c.roundRect(90, y, 900, 190, 40); else c.rect(90, y, 900, 190); c.fill(); c.fillStyle = ok; c.font = '800 64px ' + F; c.fillText(s.fat.even ? tr(t('wrEven')) : '≈ ' + dec(s.fat.kg, s.fat.kg < 1 ? 2 : 1) + ' ' + tr(t('wrKg')) + ' ' + tr(t('wrFat')), 130, y + 90); c.fillStyle = mut; c.font = '600 34px ' + F; c.fillText(s.fat.even ? tr(t('wrEvenS')) : '≈ ' + nf(s.fat.kcal) + ' ' + tr(t('kcal')) + ' ' + tr(t('wrSaved')), 130, y + 145); y += 230; }

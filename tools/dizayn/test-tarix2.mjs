@@ -12,7 +12,7 @@ const nb = (x) => String(x).replace(/[   ]/g, ' ').replace(/\s+/g, ' ').tri
 const at = (d, h, m) => { const [y, mo, da] = d.split('-').map(Number); return new Date(y, mo - 1, da, h, m).getTime(); };
 function seed(o = {}) {
   const st = S.emptyState(); st.setup = true; st.created = Date.now() - 30 * 864e5; st.trackStart = D.addDays(T0, -(o.span || 9));
-  st.prefs = { tipsDone: true, jokes: false, yemayK: 1, introDone: true, lpTip: 1, suvFrom: T0, ttAsked: 1, hwSeen: T0, h_backup: Date.now(), h_hafta: Date.now(), jobAsked: 1, fw: { x: ['ovoz', 'rasm', 'menyu', 'yeymiz', 'hafta', 'kunkarta', 'google'] }, afT: 1, limV62: 1 };
+  st.prefs = { baliqOff: true, tipsDone: true, jokes: false, yemayK: 1, introDone: true, lpTip: 1, suvFrom: T0, ttAsked: 1, hwSeen: T0, h_backup: Date.now(), h_hafta: Date.now(), jobAsked: 1, fw: { x: ['ovoz', 'rasm', 'menyu', 'yeymiz', 'hafta', 'kunkarta', 'google'] }, afT: 1, limV62: 1 };
   st.afsona = { a: {}, ok: {}, dq: { d: T0, id: 'a01', x: 1 } }; st.profile = Object.assign({ sex: 'm', age: 35, height: 175, weight: 80, act: 2, goal: 'keep', tartib: 'erkin' }, o.profile || {}); S.addWeight(st, D.addDays(T0, -(o.span || 9)), 81.4); S.addWeight(st, D.addDays(T0, -1), 80);
   if (o.fill !== false) {
     const F = (d, meal, hh, mm, e) => S.addFood(st, d, Object.assign({ meal, ts: at(d, hh, mm), est: false, p: 5, f: 5, c: 20 }, e));

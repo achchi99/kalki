@@ -58,13 +58,13 @@ try {
   /* 7. brauzer: ✓ belgi, manba oynasi, forma */
   const p = await mk(); let sent = null; await p.route('**/api/kalkifit-xato', async (r) => { sent = JSON.parse(r.request().postData()); await r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
   await p.click('#mainAdd').then(() => p.click('#rzSheet #fdQ')); await p.waitForTimeout(400); await p.fill('#fdQ', 'qurt'); await p.waitForTimeout(250); await p.click('[data-act=pickfood] >> nth=0'); await p.waitForTimeout(300);
-  assert.equal(await txt(p, '#fdName'), 'Qurt (kurut)'); assert.equal(await p.locator('.sl-tzb').count(), 1, '✓ Tekshirilgan belgisi'); assert.match(await txt(p, '.sl-tzb'), /Tekshirilgan/);
+  assert.equal(await txt(p, '#fdName'), 'Qurt (kurut)'); assert.equal(await p.locator('.sl-tzb').count(), 1, 'manba belgisi'); assert.match(await txt(p, '.sl-tzb'), /^Manba: USDA$/);
   const chips = (await p.locator('#fdUnits .rz-chip').allInnerTexts()).map((x) => x.trim()); assert.ok(chips.includes('kichik') && chips.includes('katta'), chips.join('|'));
-  await p.click('.sl-tzb'); await p.waitForTimeout(300); const sh = await txt(p, '#rzSheet'); assert.match(sh, /Tekshirilgan/); assert.match(sh, /172182/, 'manba: USDA fdc_id'); await p.click('[data-act=pwswapx]'); await p.waitForTimeout(300);
+  await p.click('.sl-tzb'); await p.waitForTimeout(300); const sh = await txt(p, '#rzSheet'); assert.match(sh, /Manba: USDA · Manba va hisob/); assert.match(sh, /172182/, 'manba: USDA fdc_id'); await p.click('[data-act=pwswapx]'); await p.waitForTimeout(300);
   await p.click('.sl-tzl'); await p.waitForTimeout(300); await p.click('[data-act=xtsend]'); await p.waitForTimeout(200); assert.equal(sent, null, 'hech narsa tanlanmasa yuborilmaydi'); assert.match(await txt(p, '#xtMsg'), /Kamida/);
   await p.click('[data-act=xtk][data-k=k]'); await p.fill('#xtNote', 'kkal kam'); await p.click('[data-act=xtsend]'); await p.waitForTimeout(500);
   assert.ok(sent && sent.id === 'qurt' && sent.turi === 'k' && sent.izoh === 'kkal kam', JSON.stringify(sent)); assert.ok(!('mijoz_id' in sent) && !('cid' in sent), 'anonim'); assert.deepEqual(p.errs, []);
-  log('taom kartasi: «✓ Tekshirilgan» → manba (USDA 172182), «Xato topdingizmi?» → forma → anonim yuborish; qurt «kichik/katta»'); await p.context().close();
+  log('taom kartasi: «Manba: USDA» → manba (USDA 172182), «Xato topdingizmi?» → forma → anonim yuborish; qurt «kichik/katta»'); await p.context().close();
   /* 8. «кофе» qatori: oxirgi yeyilgan variant (kapuchino) nomi bilan chiqadi — «Qahva · 72 kkal» emas */
   { const q = await mk(); await q.click('#mainAdd').then(() => q.click('#rzSheet #fdQ')); await q.waitForTimeout(400); await q.fill('#fdQ', 'kapuchino'); await q.waitForTimeout(250); await q.click('[data-act=pickfood] >> nth=0'); await q.waitForTimeout(300); await q.click('#fsave'); await q.waitForTimeout(600);
     await q.click('#mainAdd').then(() => q.click('#rzSheet #fdQ')); await q.waitForTimeout(400); await q.fill('#fdQ', 'kofe'); await q.waitForTimeout(300); const row = await txt(q, '[data-act=pickfood] >> nth=0'); assert.ok(/Kapuchino/i.test(row) && /72/.test(row), 'oxirgi variant nomi bilan: ' + row); assert.ok(!/^Qahva\s*[·\d]/.test(row), row);

@@ -74,6 +74,7 @@ html[data-theme=dark] .sl-cal,html[data-theme=dark] .sl-hero{--c-nearb:#57C48A;-
 /* v63: Tarix — 3 plitka va seriya kartasi */
 .sl-cmt{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .sl-cmt .s{min-width:0;background:var(--card);border-radius:18px;padding:12px 10px;box-shadow:var(--shadow)}.sl-cmt small{display:block;font-size:var(--t-xs);font-weight:600;color:var(--mut);line-height:1.25}.sl-cmt b{display:block;margin-top:4px;font-size:var(--t-ml);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}.sl-cmt b.g{color:var(--ok)}
+.sl-cmt .sl-cmn{display:block;margin-top:2px;font-style:normal;font-size:var(--t-xs);font-weight:600;color:var(--mut)}
 @media (max-width:374px){.sl-cmt .s{padding:10px 8px}.sl-cmt b{font-size:var(--t-m)}}
 .sl-stc{display:flex;align-items:center;gap:12px;border-radius:22px;padding:14px;color:var(--onhero);background:linear-gradient(135deg,var(--hero1),var(--hero2) 60%,var(--hero3));box-shadow:0 8px 24px -12px rgba(245,104,58,.5)}
 .sl-stc .fl{flex:none;width:34px;height:34px;display:grid;place-items:center;animation:stcFl 1.6s ease-in-out 4}.sl-stc .fl .rz-i{width:30px;height:30px;stroke:var(--onhero);fill:rgba(255,255,255,.22)}@keyframes stcFl{50%{transform:scale(1.1) rotate(-4deg)}}
@@ -1973,7 +1974,7 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 /* v78: «✓ Tekshirilgan» belgisi va «Xato topdingizmi?» havolasi (taom kartasi) */
 .rz .sl-tz{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 12px;margin:6px 0 0}
 .rz .sl-tzb,.rz .sl-tzl{border:0;background:transparent;font:inherit;font-size:var(--t-xs);font-weight:600;min-height:44px;padding:0 8px;display:inline-flex;align-items:center;gap:4px}
-.rz .sl-tzb{color:var(--acc2)}.rz .sl-tzl{color:var(--mut);text-decoration:underline}
+.rz .sl-tzb{color:var(--acc2)}.rz .sl-tzg{font-size:var(--t-xs);font-weight:600;color:var(--mut);min-height:44px;display:inline-flex;align-items:center;padding:0 8px}.rz .sl-tzl{color:var(--mut);text-decoration:underline}
 .rz .sl-tzp{margin:0 0 8px}
 .rz textarea.sl-xt{width:100%;min-height:76px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);border-radius:14px;padding:10px 14px;font:inherit;resize:none;margin-bottom:4px}
 /* v79: shtrix-kod skaneri */
@@ -2032,3 +2033,6 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .sl-rems{display:flex;flex-direction:column;gap:4px;margin:4px 0 8px 44px;padding:10px 12px;border-radius:12px;background:var(--soft)}.sl-rems small{color:var(--mut)}.sl-rems .rz-btn{align-self:flex-start;margin-top:4px}
 .sl-remnote{margin:2px 0 6px 44px}.sl-remoff b{display:block;font-size:1.05rem}.kq-remc{margin:4px 0 8px}
 .kq-remc .rz-chip{display:inline-flex;align-items:center;gap:6px}.kq-remc .rz-chip .rz-i,.kq-remc .rz-chip svg{width:18px;height:18px;flex:0 0 auto}
+
+/* audit: qadam holati (avtomatik / qo'lda) */
+.rz .sl-smode{display:block;margin:-2px 0 4px;font-size:var(--t-xs);font-weight:600;color:var(--mut);line-height:1.3}

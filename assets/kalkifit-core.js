@@ -94,7 +94,8 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     var eatenAll = MEALS.reduce(function (a, m) { return a + Math.round(num(ea[m])); }, 0);
     return { mode: mode, meals: meals, now: tgt, note: saved >= 50 ? { k: saved, from: got.map(function (x) { return x.from; }).filter(function (v, i, a) { return a.indexOf(v) === i; }) } : null, took: tookFrom, dayOver: eatenAll > limit, limit: limit };
   }
-  function water(weight) { var ml = Math.round(WATER_ML_PER_KG * weight); return { ml: ml, glasses: Math.max(1, Math.round(ml / GLASS_ML)), glassMl: GLASS_ML }; }
+  function water(weight) { var ml = Math.round(WATER_ML_PER_KG * weight), gl = Math.max(1, Math.round(ml / GLASS_ML)); return { ml: ml, glasses: gl, glassMl: GLASS_ML, goal: waterGoalMl(gl) }; }
+  function waterGoalMl(glasses) { return Math.max(1, Math.round(+glasses || 0)) * GLASS_ML; }          // audit: suv MAQSADI hamma ekranda shu bitta funksiyadan — butun stakanga (250 ml) yaxlitlangan (onboarding yakuni = kundalik)
   /* ---------- v51: KUNLIK ME'YOR — YAGONA MODEL (docs/limit.md) ----------
      limit = BMR (Mifflin–St Jeor) × koeff + shaxsiy tuzatish + qadam krediti ± maqsad, pastki chegaradan (S.FLOOR) past emas.
      Koeff: Android ilovada (ish turi tanlangan va qadam yoqilgan) — ISH TURI (yurishsiz, kundalik hayot; shu turga kiritilgan qadam bazasi bilan), aks holda — umumiy faollik (ACT, yurish ichida) va kredit 0.
@@ -359,6 +360,8 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     if (!(x.done || d < today)) return false;
     var lim = dayLimit(st, d); return lim > 0 && sumEntries(x.food).kcal >= 0.5 * lim;
   }
+  function avgDay(st, d, today) { today = today || D.today(); return d < today && isComplete(st, d, today); }          // audit: o'rtacha FAQAT tugagan (o'tgan) to'liq kunlardan — bugun hech qachon kirmaydi
+  function goalKind(g) { return g === 'slow' || g === 'lose' ? 'lose' : (g === 'gain' ? 'gain' : 'keep'); }          // audit: maqsad turi — matnlar shu bitta funksiyadan (slow = ozish, saqlash EMAS)
   function dayStatus(st, d, today) {               // pre | none | part | near (±10%) | low | high — faqat TO'LIQ kunlar maqsad bilan solishtiriladi; rang "yaxshi/yomon" ma'nosiz
     today = today || D.today(); var x = dayOf(st, d), start = trackStart(st);
     if (start && d < start) return { state: 'pre', eaten: 0, limit: 0, ratio: 0, complete: false, live: false };
@@ -386,7 +389,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   /* v63: oy xulosasi (Tarix plitkalari): yozilgan kun / kuzatuv boshlanganidan beri kunlar, to'liq kunlar o'rtacha kkal'i */
   function monthSummary(st, ym, today) {
     var g = monthGrid(st, ym, today), c = g.counts, logd = c.near + c.low + c.high + c.part, total = logd + c.none, s = 0, n = 0;
-    g.days.forEach(function (d) { if (d.state === 'near' || d.state === 'low' || d.state === 'high') { s += d.eaten; n++; } });
+    g.days.forEach(function (d) { if ((d.state === 'near' || d.state === 'low' || d.state === 'high') && d.d < (today || D.today())) { s += d.eaten; n++; } });
     return { logged: logd, total: total, avg: n ? Math.round(s / n) : null, avgN: n, grid: g };
   }
   function monthGrid(st, ym, today) {              // ym = 'YYYY-MM': kunlar + hisob (baho/ball yo'q)
@@ -456,7 +459,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   function weekSummary(st, end, today) {            // end — haftaning oxirgi kuni (oxirgi 7 kun); o'rtacha FAQAT to'liq kunlardan (yozilmagan kun 0 kkal emas)
     var days = [], i; for (i = 6; i >= 0; i--) days.push(D.addDays(end, -i)); today = today || D.today();
     var kc = [], stp = [], logged = 0;
-    days.forEach(function (d) { var x = dayOf(st, d); if (x && x.food.length) logged++; if (isComplete(st, d, today)) kc.push(sumEntries(x.food).kcal); if (x && x.steps > 0) stp.push(x.steps); });
+    days.forEach(function (d) { var x = dayOf(st, d); if (x && x.food.length) logged++; if (avgDay(st, d, today)) kc.push(sumEntries(x.food).kcal); if (x && x.steps > 0 && d < today) stp.push(x.steps); });
     var wFrom = avg7(st.weights, days[0]), wTo = avg7(st.weights, end);
     var avgK = kc.length ? Math.round(kc.reduce(function (a, b) { return a + b; }, 0) / kc.length) : null, avgS = stp.length ? Math.round(stp.reduce(function (a, b) { return a + b; }, 0) / stp.length) : null;
     return { days: days, fullDays: kc.length, loggedDays: logged, stepDays: stp.length, avgKcal: avgK, avgSteps: avgS, weightFrom: wFrom, weightTo: wTo, weightDelta: (wFrom != null && wTo != null) ? Math.round((wTo - wFrom) * 10) / 10 : null, empty: !logged && !stp.length && wTo == null };
@@ -1069,14 +1072,14 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   /* yozuvlar soni (hisobot/himoya uchun): { days, food } */
   function countState(st) { var d = 0, f = 0; Object.keys((st && st.days) || {}).forEach(function (k) { var n = ((st.days[k].food) || []).length; if (n || st.days[k].steps || st.days[k].water) d++; f += n; }); return { days: d, food: f }; }
 
-  return { VERSION: VERSION, ACT: ACT, setSuv: setSuv, suvShare: suvShare, waterInfo: waterInfo, GOAL_DELTA: GOAL_DELTA, FLOOR: FLOOR, MEALS: MEALS, LIMITS: LIMITS, KCAL_PER_KG: KCAL_PER_KG, GLASS_ML: GLASS_ML, STEP_BASE: STEP_BASE, MET_NET: MET_NET, ROUTES: ROUTES,
+  return { VERSION: VERSION, ACT: ACT, setSuv: setSuv, suvShare: suvShare, waterInfo: waterInfo, GOAL_DELTA: GOAL_DELTA, FLOOR: FLOOR, MEALS: MEALS, LIMITS: LIMITS, KCAL_PER_KG: KCAL_PER_KG, GLASS_ML: GLASS_ML, waterGoalMl: waterGoalMl, STEP_BASE: STEP_BASE, MET_NET: MET_NET, ROUTES: ROUTES,
     bmrRaw: bmrRaw, bmi: bmi, refWeight: refWeight, protein: protein, PROT_K: PROT_K, TARTIB: TARTIB, TARTIB_DEF: TARTIB_DEF, tartibOf: tartibOf, mealSplit: mealSplit, mealBudgets: mealBudgets, MEAL_END: MEAL_END, validate: validate, restrictions: restrictions, macros: macros, water: water, plan: plan,
     strideM: strideM, distanceKm: distanceKm, stepKcal: stepKcal, stepCredit: stepCredit, stepBase: stepBase, extraSteps: extraSteps, compareKm: compareKm, dayBalance: dayBalance,
     portion: portion, sumEntries: sumEntries, mealByHour: mealByHour, emptyState: emptyState, dayOf: dayOf, ensureDay: ensureDay, dayTotals: dayTotals,
     addFood: addFood, ambOpts: ambOpts, AMB_KCAL: AMB_KCAL, OB_DEF_W: OB_DEF_W, removeFood: removeFood, restoreFood: restoreFood, setWater: setWater, setSteps: setSteps, setAutoSteps: setAutoSteps, setManualSteps: setManualSteps, manualSteps: manualSteps, toggleFav: toggleFav, addCustom: addCustom, addScanned: addScanned, normKod: normKod,
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
-    dayLimit: dayLimit, dayPlan: dayPlan, bestStreak: bestStreak, streakWeek: streakWeek, monthSummary: monthSummary, limShift: limShift, setAe: setAe, setDev: setDev, aeBase: aeBase, devTotal: devTotal, AE_MAX: AE_MAX, STEPS_SANE: STEPS_SANE, dayBal: dayBal, dayFrac: dayFrac, parseEx: parseEx, EX: EX, EX_ORDER: EX_ORDER, exNet: exNet, walkNet: walkNet, addEx: addEx, shotKcal: shotKcal, restKcal: restKcal, exDup: exDup, exExtra: exExtra, EX_XK: EX_XK, updEx: updEx, removeEx: removeEx, restoreEx: restoreEx, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
+    dayLimit: dayLimit, dayPlan: dayPlan, bestStreak: bestStreak, streakWeek: streakWeek, monthSummary: monthSummary, limShift: limShift, setAe: setAe, setDev: setDev, aeBase: aeBase, devTotal: devTotal, AE_MAX: AE_MAX, STEPS_SANE: STEPS_SANE, dayBal: dayBal, dayFrac: dayFrac, parseEx: parseEx, EX: EX, EX_ORDER: EX_ORDER, exNet: exNet, walkNet: walkNet, addEx: addEx, shotKcal: shotKcal, restKcal: restKcal, exDup: exDup, exExtra: exExtra, EX_XK: EX_XK, updEx: updEx, removeEx: removeEx, restoreEx: restoreEx, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, avgDay: avgDay, goalKind: goalKind, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
     migrate: migrate, famKey: famKey, sameState: sameState, stamp: stamp, stampReset: stampReset, mergeStates: mergeStates, countState: countState, ptSplit: ptSplit, respace: respace, kbVariants: kbVariants, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, ADDON: ADDON, ADDON_K: ADDON_K, adOk: adOk, adClean: adClean, adCalc: adCalc, adText: adText, bixil: bixil, REM_MEALS: REM_MEALS, REM_DEF: REM_DEF, remCfg: remCfg, remLogged: remLogged, remMiss: remMiss, remDay: remDay, remPlan: remPlan, remSparseDue: remSparseDue, remText: remText, BX_SKIP: BX_SKIP, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });
