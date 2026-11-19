@@ -445,6 +445,9 @@ self.addEventListener('fetch', (e) => {
   // APK va versiya.json (/ilova/): HECH QACHON keshlanmaydi (katta fayl; versiya tekshiruvi har doim yangi bo'lsin) — brauzer to'g'ridan-to'g'ri tarmoqdan oladi.
   if (/^\/ilova\/.+\.(apk|json)$/i.test(p)) return;
 
+  // /archa/ — mustaqil sahifa (havola parametrlari # da): SW umuman aralashmaydi, keshlanmaydi, oflayn zaxira ham yo'q.
+  if (p === '/archa' || p.indexOf('/archa/') === 0) return;
+
   // HTML sahifalar — network-first, oflaynda keshdan.
   //
   // Oxirgi chora ILGARI '/' edi: odam so'ragan sahifa o'rniga bosh sahifani
