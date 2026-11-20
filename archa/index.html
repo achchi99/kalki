@@ -292,6 +292,7 @@ var AC=null,muted=false;
 function audio(){if(muted)return null;try{if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(!C)return null;AC=new C();}if(AC.state==="suspended")AC.resume();}catch(e){AC=null;}return AC;}
 function tone(f,at,d,type,vol,f2){var a=audio();if(!a)return;try{var o=a.createOscillator(),g=a.createGain(),t=a.currentTime+at;o.type=type||"sine";o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);
   g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol||.14,t+.015);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+d+.03);}catch(e){}}
+function kurant(){[0,.75,1.5].forEach(function(t){tone(196,t,1.7,"sine",.16);tone(392,t,1.2,"sine",.07);});}
 function boom(at){var a=audio();if(!a)return;try{var n=Math.floor(a.sampleRate*.35),b=a.createBuffer(1,n,a.sampleRate),d=b.getChannelData(0),i;for(i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2.2);
   var s=a.createBufferSource(),g=a.createGain();s.buffer=b;g.gain.value=.22;s.connect(g);g.connect(a.destination);s.start(a.currentTime+at);}catch(e){}}
 var sfx={
@@ -299,6 +300,7 @@ var sfx={
   sir:function(){tone(880,0,.14,"sine",.1);tone(1320,.09,.26,"sine",.1);},
   win:function(){[523,659,784,1047,1319].forEach(function(f,i){tone(f,i*.09,.55,"sine",.13);});},
   karnay:function(){tone(116,0,.5,"sawtooth",.09,155);tone(155,.5,.6,"sawtooth",.09,116);},
+  ask:function(){tone(660,0,.09,"sine",.08);},
   trap:function(){tone(300,0,.18,"square",.07,120);tone(120,.16,.3,"square",.07,80);}
 };
 
@@ -651,6 +653,7 @@ function frame(t){
       ctx.save();ctx.scale(K,K);drawDog(ctx,dog.x,DOG_Y,stp);ctx.restore();}}
     else{if(p.x<vx0-30||p.x>vx1+30||p.y<vy0-10||p.y>vy1+90)continue;
       var st=p.vx?(Math.sin(p.ph)>0?0:1):0,bob=p.vx?-Math.abs(Math.sin(p.ph))*1.6*p.s:0;
+      if(clock<cheerUntil&&!REDUCED)bob=-Math.abs(Math.sin(clock*9+p.ph))*6*p.s;
       ctx.drawImage(p.spr[st],Math.round((p.x-19*p.s)*K),Math.round((p.y-66*p.s+bob)*K));}
   }
   if(!REDUCED){ctx.fillStyle="rgba(255,255,255,.92)";
@@ -703,8 +706,15 @@ function show(id){["game","make","done","result"].forEach(function(s){$(s).class
 function elapsed(){return (run.ms+run.pen+(timing?Date.now()-run.t0:0))/1000;}
 function sirCount(){return Object.keys(run.sirs).length;}
 function portrait(el,h,scale,footY){var c=el.getContext("2d");c.clearRect(0,0,el.width,el.height);drawPerson(c,el.width/2,footY,scale,attrsOf(h),0);}
+function limitOf(){return run.kind==="demo"?45:(run.kind==="gift"?60:0);}
+function clockTxt(rem){rem=Math.max(0,Math.ceil(rem));return rem<=0?"00:00:00":"23:59:"+String(60-rem).padStart(2,"0");}
 function updHud(){
-  $("timer").textContent=fmt(elapsed());
+  var L=limitOf();
+  if(L&&!run.done){var rem=L-elapsed();$("timer").textContent=clockTxt(rem);
+    if(timing&&rem<=10&&rem>0){$("timer").classList.add("hit");var sN=Math.ceil(rem);if(sN!==run.lastTick){run.lastTick=sN;tone(1200,0,.06,"square",.05);}}
+    if(timing&&rem<=0){timeout();return;}}
+  else if(L){$("timer").classList.remove("hit");$("timer").textContent=run.late?"00:00:00":clockTxt(L-(run.foundAt||0));}
+  else{$("timer").textContent=fmt(elapsed());}
   var pre=run.kind==="rounds"?(run.round+1)+"/"+ROUNDS.length+" · "+ROUNDS[run.round].t+" · ":"";
   $("subLine").textContent=pre+"sir "+sirCount()+"/"+SIR_TOTAL+(run.done?" · maydonni bosib ko'ring":"");
 }
@@ -714,7 +724,7 @@ function setZoom(w,keep){
   if(keep){sc.scrollLeft=cx*zoomW-sc.clientWidth/2;sc.scrollTop=cy*zoomW*H/W-sc.clientHeight/2;}
 }
 function clearFx(){Array.prototype.slice.call($("stage").querySelectorAll(".mark,.hint,.bub")).forEach(function(n){n.remove();});hintEl=null;}
-function bubble(x,y,text,cls){var b=document.createElement("div");b.className="bub"+(cls?" "+cls:"");b.textContent=text;b.style.left=Math.max(8,Math.min(92,x/W*100))+"%";b.style.top=(Math.max(60,y)/H*100)+"%";$("stage").appendChild(b);setTimeout(function(){b.remove();},2400);}
+function bubble(x,y,text,cls){var b=document.createElement("div");b.className="bub"+(cls?" "+cls:"");b.textContent=text;var scB=$("scroller"),fB=W/zoomW,hfB=114*fB,xa=scB.scrollLeft*fB+hfB,xb=(scB.scrollLeft+scB.clientWidth)*fB-hfB;if(xb>xa)x=Math.max(xa,Math.min(xb,x));b.style.left=Math.max(4,Math.min(96,x/W*100))+"%";b.style.top=(Math.max(60,y)/H*100)+"%";$("stage").appendChild(b);setTimeout(function(){b.remove();},2400);}
 function ring(p,cls){var m=document.createElement("div");m.className="mark"+(cls?" "+cls:"");m.style.left=(p.x/W*100)+"%";m.style.top=((p.y-30*p.s)/H*100)+"%";$("stage").appendChild(m);return m;}
 function penalty(ms){run.pen+=ms;var t=$("timer");t.classList.add("hit");setTimeout(function(){t.classList.remove("hit");},500);updHud();}
 function centerOn(x,y,smooth){var sc=$("scroller"),w=$("stage").clientWidth,h=w*H/W;sc.scrollTo({left:x/W*w-sc.clientWidth/2,top:y/H*h-sc.clientHeight/2,behavior:smooth&&!REDUCED?"smooth":"auto"});}
@@ -732,13 +742,13 @@ function stageScene(){
 function startDemo(){
   hero=Object.assign({},DEMO);gift=null;resetRun("demo");bars(false);stageScene();
   buildScene(CFG_DEMO,newSeed());$("night").classList.add("hidden");centerOn(TREE.x,TREE.y-40);
-  showCard("Yangi yil tabrigi, o'yin ichida","Jamshidni toping","Do'stingizni shu maydonga yashirasiz. U o'zini topsa, tilagingiz ochiladi. Avval o'zingiz sinab ko'ring: Jamshid shu yerda yuribdi.","Boshladik",hero);updHud();
+  showCard("Soat 23:59. Yangi yilga 45 soniya qoldi","Jamshid yo'qolib qoldi","Kurant chalguncha uni toping. Odamlarni bosing: Jamshid qayoqqa ketganini aytishadi.","Qidiraman",hero);updHud();
 }
 function startGift(g){
   gift=g;hero=Object.assign({},g.h);resetRun("gift");bars(false);stageScene();
   buildScene(CFG_GIFT,g.seed,g.spot,g.twin);$("night").classList.add("hidden");centerOn(TREE.x,TREE.y-40);
   var from=g.from||"Do'stingiz";
-  showCard(from+"dan yangi yil tabrigi",g.to+", sizni shu maydonga yashirishdi","Sovg'angiz ichida. Ochish uchun avval o'zingizni toping. Portretga yaxshilab qarang"+(g.twin?": "+from+" maydonga egizagingizni ham qo'ygan.":"."),"Qidiraman",hero);updHud();
+  showCard(from+"dan yangi yil tabrigi",g.to+", sizni shu maydonga yashirishdi","Sovg'angiz ichida. Kurant chalguncha, 60 soniyada o'zingizni toping. Odamlarni bossangiz, yo'l ko'rsatishadi."+(g.twin?" Ehtiyot bo'ling: "+from+" egizagingizni ham qo'ygan, uning sharfi bor.":""),"Qidiraman",hero);updHud();
 }
 function startRounds(){resetRun("rounds");bars(false);stageScene();prepRound();}
 function prepRound(){
@@ -749,11 +759,12 @@ function prepRound(){
 }
 function go(){
   $("card").classList.add("hidden");run.t0=Date.now();timing=true;run.locked=false;audio();musicStart();
-  clearInterval(tick);tick=setInterval(updHud,500);
+  clearInterval(tick);tick=setInterval(updHud,250);
 }
 function win(){
   run.ms+=Date.now()-run.t0;timing=false;run.locked=true;clearInterval(tick);
   if(hintEl){hintEl.remove();hintEl=null;}
+  run.foundAt=elapsed();if(run.kind!=="rounds"){run.done=true;cheerUntil=clock+3.5;chorus();kurant();}
   ring(heroP);sfx.win();updHud();
   if(run.kind==="rounds"){
     bubble(heroP.x,heroP.y-64*heroP.s,"Topildim!","sir");
@@ -765,17 +776,18 @@ function win(){
 function openGift(){
   var sec=Math.round(elapsed()),g=gift;run.done=true;run.locked=false;
   if(g){var from=g.from||"Do'stingiz";
-    $("giftStep").textContent="Sovg'a ochildi";$("giftTitle").textContent=g.to+", sizga tilak bor";
+    $("giftStep").textContent=run.late?"00:00. Yangi yil keldi":"Sovg'a ochildi";$("giftTitle").textContent=g.to+", sizga tilak bor";
     $("giftWish").textContent=g.wish;$("giftSign").textContent=g.from?g.from:"Sizni yashirgan do'stingiz";
-    $("giftStat").textContent="O'zingizni "+sec+" soniyada topdingiz"+(run.traps?". "+from+" qo'ygan egizakka "+run.traps+" marta uchdingiz.":(g.twin?". Egizakka uchmadingiz, "+from+" xafa bo'ladi.":"."));
+    $("giftStat").textContent=run.late?"Kurant chaldi, siz esa o'zingizni topolmadingiz. "+from+" yaxshi yashiribdi. Tilak baribir sizniki.":"O'zingizni "+clockTxt(60-run.foundAt)+" da, yangi yilga "+Math.max(1,Math.ceil(60-run.foundAt))+" soniya qolganda topdingiz"+(run.traps?". "+from+" qo'ygan egizakka "+run.traps+" marta uchdingiz.":(g.twin?". Egizakka uchmadingiz, "+from+" xafa bo'ladi.":"."));
     $("btnGiftMake").textContent="Men ham tabrik yuboraman";
     $("btnGiftReply").textContent=g.from?g.from+"ni yashirib, javob qaytaraman":"Javob tabrik yasayman";$("btnGiftReply").classList.remove("hidden");
   }else{
-    $("giftStep").textContent="Sovg'a ochildi";$("giftTitle").textContent="Topdingiz: "+sec+" soniya";
+    $("giftStep").textContent=run.late?"00:00. Yangi yil keldi":"Sovg'a ochildi";$("giftTitle").textContent=run.late?"Ulgurmadingiz, Jamshid qorda qoldi":"Ulgurdingiz: soat "+clockTxt(45-run.foundAt);
     $("giftWish").textContent="Mana shu yerda sizning tilagingiz chiqadi. Do'stingiz o'zini topgandagina o'qiydi.";$("giftSign").textContent="Siz";
-    $("giftStat").textContent="Endi navbat sizda: kimni yashiramiz?";
+    $("giftStat").textContent=(run.asks?run.asks+" kishidan so'radingiz. ":"")+"Endi navbat sizda: kimni yashiramiz?";
     $("btnGiftMake").textContent="Do'stimga tabrik yasayman";$("btnGiftReply").classList.add("hidden");
   }
+  $("btnGiftRounds").textContent=run.late?"Qayta urinaman":"Qiyinroq bosqichlar";
   $("gift").classList.remove("hidden");updHud();
 }
 function rankFor(sec){
@@ -844,9 +856,32 @@ function specials(){
   for(i=0;i<SNOWMEN.length;i++)list.push({id:"snowman",x:SNOWMEN[i].x,y:SNOWMEN[i].y-55,r:36});
   return list;
 }
+var DIRS=["o'ngda","o'ng pastda","pastda","chap pastda","chapda","chap tepada","tepada","o'ng tepada"],ARW=["\u2192","\u2198","\u2193","\u2199","\u2190","\u2196","\u2191","\u2197"];
+var EXTRA_SAY=[""," Somsa yeb turgandi.",""," Shoshib ketayotgandi.",""," Sizni so'ragandi.",""," Mandarin ko'tarib olgan."];
+function witness(p){
+  var dx=heroP.x-p.x,dy=heroP.y-p.y,dist=Math.sqrt(dx*dx+dy*dy),k=Math.round(Math.atan2(dy,dx)/(Math.PI/4));k=(k+8)%8;
+  if(dist<150)return "Shu yerda, yonginamda turibdi!";
+  var a=ARW[k],d=DIRS[k],t=Math.floor(Math.random()*3),far=dist>750?" Ancha narida.":"";
+  var line=t===0?a+" "+hero.name+"ni "+d+" ko'rdim.":(t===1?a+" U "+d+", hozirgina o'tdi.":a+" "+d.charAt(0).toUpperCase()+d.slice(1)+" qidiring.");
+  return line+far+EXTRA_SAY[Math.floor(Math.random()*EXTRA_SAY.length)];
+}
+var cheerUntil=0;
+function chorus(){
+  var sc=$("scroller"),f=W/zoomW,x0=sc.scrollLeft*f,y0=sc.scrollTop*f,x1=x0+sc.clientWidth*f,y1=y0+sc.clientHeight*f,L=["Yangi yil bilan!","Urra!","Topildi!","Qutlug' bo'lsin!","Yashavor!"],i;
+  var vis=people.filter(function(q){return !q.hero&&q.x>x0+40&&q.x<x1-40&&q.y>y0+130&&q.y<y1;});
+  for(i=0;i<Math.min(5,vis.length);i++){(function(q,n){setTimeout(function(){bubble(q.x,q.y-64*q.s,L[n%L.length],"shop");},250+n*260);})(vis[Math.floor(Math.random()*vis.length)],i);}
+}
+function timeout(){
+  run.ms+=Date.now()-run.t0;timing=false;run.locked=true;run.late=true;run.done=true;clearInterval(tick);
+  if(hintEl){hintEl.remove();hintEl=null;}
+  centerOn(heroP.x,heroP.y-30,true);ring(heroP);kurant();fireworks();cheerUntil=clock+3.5;
+  bubble(heroP.x,heroP.y-64*heroP.s,"Men shu yerda edim-ku!","sir");updHud();
+  setTimeout(openGift,2400);
+}
 function hitPerson(p){
   if(p.hero){if(run.done){bubble(p.x,p.y-64*p.s,"Meni topib bo'ldingiz-ku.");}else{win();}return;}
-  if(p.twin){if(!run.done){run.traps++;penalty(5000);}sfx.trap();bubble(p.x,p.y-64*p.s,"Tuzoq! Bu "+((gift&&gift.from)||"do'stingiz")+" qo'ygan egizak. Sharfiga qarang.","sir");return;}
+  if(p.twin){if(!run.done){run.traps++;penalty(8000);}sfx.trap();bubble(p.x,p.y-64*p.s,"Tuzoq! Bu "+((gift&&gift.from)||"do'stingiz")+" qo'ygan egizak. Sharfiga qarang.","sir");return;}
+  if(limitOf()&&!run.done){run.asks=(run.asks||0)+1;sfx.ask();bubble(p.x,p.y-64*p.s,witness(p));return;}
   if(!run.done){run.wrong++;penalty(3000);}sfx.nope();bubble(p.x,p.y-64*p.s,NOPE[Math.floor(Math.random()*NOPE.length)]);
 }
 cv.addEventListener("click",function(e){
@@ -920,7 +955,7 @@ $("btnToPick").addEventListener("click",function(){
 $("btnMakeBack").addEventListener("click",function(){if(gift&&run.kind!=="pick"){show("game");}else{startDemo();}});
 $("btnGiftMake").addEventListener("click",function(){openMake("",gift?gift.to:"");});
 $("btnGiftReply").addEventListener("click",function(){openMake(gift?gift.from:"",gift?gift.to:"");});
-$("btnGiftRounds").addEventListener("click",startRounds);
+$("btnGiftRounds").addEventListener("click",function(){if(run.late){if(gift)startGift(gift);else startDemo();}else{startRounds();}});
 $("btnGiftLook").addEventListener("click",function(){$("gift").classList.add("hidden");});
 $("btnResMake").addEventListener("click",function(){openMake("","");});
 $("btnResAgain").addEventListener("click",startRounds);
