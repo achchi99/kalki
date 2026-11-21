@@ -25,7 +25,7 @@ try {
   /* 1. Bugun tartibi (v68): sana → hafta → aylana → BJU → ovqatlar → qadam/mashg'ulot → (bitta karta) → suv → pastda «Qo'shish»; eshik kartalar va makro — ikkinchi qavatda */
   let p = await mk(seed({ prefs: { jokes: true } }), { wait: 1500 });
   const order = await p.evaluate(() => { const sel = ['.sl-hd2', '.sl-week7', '.sl-big', '#bjuCard', '.sl-meals', '#actRow, .sl-act', '.sl-duo.one']; const m = document.getElementById('rzMain'); return sel.map((s) => { const e = m.querySelector(s); return e ? Math.round(e.getBoundingClientRect().top + m.scrollTop) : null; }); });
-  assert.ok(order.every((x) => x != null), 'bloklar: ' + order); assert.deepEqual(order, order.slice().sort((a, b2) => a - b2), 'tartib: ' + order); assert.equal(await p.evaluate(() => document.getElementById('rzMain').nextElementSibling.id), 'rzAddBar', '«Qo\'shish» — aylantirish maydonidan tashqarida (tepasida kontent yo\'q)');
+  assert.ok(order.every((x) => x != null), 'bloklar: ' + order); assert.deepEqual(order, order.slice().sort((a, b2) => a - b2), 'tartib: ' + order); assert.equal(await p.evaluate(() => document.getElementById('rzMain').nextElementSibling.classList.contains('rz-nav') ? 'rzAddBar' : ''), 'rzAddBar', '«Qo\'shish» — aylantirish maydonidan tashqarida (tepasida kontent yo\'q)');
   assert.equal(await p.locator('.rz-main .sl-door, .rz-main .sl-macs, .rz-main #jLine').count(), 0, 'eshik kartalar, makro, doimiy hazil — Bugun\'da yo\'q');
   log('Bugun tartibi: sana → hafta → aylana → suv/qadam → ovqatlar → pastda «Qo\'shish»; eshiklar/makro/hazil Bugun\'da yo\'q');
   /* 2. har asosiy funksiya Bugun'dan 1 bosishda; 1 qavat; yopilganda Bugun */
@@ -36,7 +36,7 @@ try {
   await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(400); await p.click('[data-act=feat][data-fk=yeymiz]'); await p.waitForTimeout(700); assert.equal(await kind(p), 'yeymiz'); assert.equal(await dialogs(p), 1); await closeX(p); assert.equal(await view(p), 'today');
   log('«Qo\'shish» va Suv — Bugun\'dan 1 bosish, Yeymiz — Profil → Imkoniyatlar (2 bosish), bir vaqtda 1 ta oyna, yopilganda Bugun; Tarix — 1 bosish');
   /* 3. Tarix/Profil'dan «+» (FAB) → yopilganda Bugun'ga qaytadi */
-  for (const v of ['history']) { await p.click('[data-act=tab][data-v=' + v + ']'); await p.waitForTimeout(400); await p.click('#rzFab'); await p.waitForTimeout(600); assert.equal(await kind(p), 'add'); await closeX(p); assert.equal(await view(p), 'today', v + ' → Bugun'); }
+  for (const v of ['history']) { await p.click('[data-act=tab][data-v=' + v + ']'); await p.waitForTimeout(400); await p.click('#mainAdd'); await p.waitForTimeout(600); assert.equal(await kind(p), 'add'); await closeX(p); assert.equal(await view(p), 'today', v + ' → Bugun'); }
   log('«+» Tarix\'dan ochilsa ham, yopilganda doim Bugun\'ga qaytadi (Profilda — sozlamalar — «+» yo\'q)');
   /* 4. Profil = faqat sozlamalar */
   await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500);
@@ -65,7 +65,7 @@ try {
   /* 7. Vitamin va BAD: Tarix TEPASIDA ixcham karta + Bugun'da eng pastda bitta qator havola */
   await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(500);
   const histTop = await p.evaluate(() => { const m = document.getElementById('rzMain'), b = m.querySelector('[data-act=supp]'), h2 = m.querySelector('h2.rz-h'); if (!h2) return -1; return b ? -2 : 0; });          /* v68: vitamin kartasi — Tarix PASTIDA */
-  assert.equal(histTop, 0, 'v68: Vitamin kartasi Tarix pastida (tepada emas): ' + histTop); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); await p.click('#ftBtn'); await p.waitForTimeout(600); assert.equal(await p.locator('.ft-bc[data-fk=supp] svg').count(), 1, 'ikonka bitta (emoji yo\'q)'); await p.click('.ft-bc[data-fk=supp]'); await p.waitForTimeout(500); assert.equal(await kind(p), 'supp'); await closeX(p);
+  assert.equal(histTop, 0, 'v68: Vitamin kartasi Tarix pastida (tepada emas): ' + histTop); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); await p.click('.rz-tab[data-v=more]'); await p.waitForTimeout(600); assert.equal(await p.locator('[data-fk=supp] .sl-ci svg').count(), 1, 'ikonka bitta (emoji yo\'q)'); await p.click('[data-act=feat][data-fk=supp]'); await p.waitForTimeout(500); assert.equal(await kind(p), 'supp'); await closeX(p);
   await p.waitForTimeout(300); assert.equal(await p.locator('.sl-suplink').count(), 0, 'v32: Bugun\'da havola yo\'q (Tarix va Profil → Imkoniyatlar)'); await p.context().close();
   log('Vitamin va BAD — Tarix TEPASIDA ixcham karta (💊 + qisqa qator), oynani ochadi; Bugun\'da yo\'q');
   /* 8. bo'sh holat: aylana ostida yo'riqnoma (hazil emas) */
@@ -140,7 +140,7 @@ try {
   log('Aylana raqami: light/dark × 0/50/90%/ortiqcha — raqam BITTA qatlam, to\'lqin guruhidan keyin chiziladi (doim ustida, hech qanday chiziq bilan kesilmaydi); halo bilan fon va suyuqlikda ham o\'qiladi (kontrast ≥4,5 fonda, ≥3 suyuqlikda)');
   /* 15. Yozuvlar kam va katta: Bugun, Profil va oynalarda asosiy matn ≥17 px, ikkilamchi ≥15 px; 13 px faqat birlik/nishon (hafta harflari, «kafe», «Oqsilga boy», «Tez orada»); uzun izoh paragraflari yo'q (Profilda ⓘ ortida) */
   for (const o of [{}, { big: true }, { url: '/ru/kalkifit' }]) { const p = await mk(seed(), Object.assign({ wait: 900 }, o));
-    const scan = (name) => p.evaluate((name) => { const ok13 = (e) => e.closest('.sl-wk .w,.sl-week2 .w,.wd .w,.sl-kb,.ft-btn .n,.sl-fl,.rt-soon,.rz-demo,.rz-badge,.rz-news-dot,.kq-meal,.ml-yb,.rz-sheet[data-kind=add] .sl-sech h3,.kc-l,.mh,.kv-ctr span,.kv-ctr small,small,sub,sup'); const root = (() => { const sh = document.getElementById('rzSheet'); return sh && !sh.hidden ? sh : document.getElementById('rzMain'); })(); const bad = []; const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let t;
+    const scan = (name) => p.evaluate((name) => { const ok13 = (e) => e.closest('.sl-wk .w,.sl-week2 .w,.adv-k,.fl,.kf-leg span,.kf-legb,.kf-ds-m em,.wd .w,.sl-kb,.ft-btn .n,.sl-fl,.rt-soon,.rz-demo,.rz-badge,.rz-news-dot,.kq-meal,.ml-yb,.rz-sheet[data-kind=add] .sl-sech h3,.kc-l,.mh,.kv-ctr span,.kv-ctr small,small,sub,sup'); const root = (() => { const sh = document.getElementById('rzSheet'); return sh && !sh.hidden ? sh : document.getElementById('rzMain'); })(); const bad = []; const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT); let t;
       while ((t = w.nextNode())) { const x = t.textContent.trim(); if (!x) continue; const e = t.parentElement; if (!e.getClientRects().length || e.closest('[hidden],[aria-hidden=true],.rz-sr')) continue; const fs = parseFloat(getComputedStyle(e).fontSize); if (fs < 12.9 && !(fs >= 10.9 && ok13(e))) bad.push(name + ': ' + fs + 'px «' + x.slice(0, 40) + '» ' + e.className); }
       return bad; }, name);
     const bad = []; const step = async (name, sel) => { if (sel) { await p.click(sel); await p.waitForTimeout(650); } bad.push(...await scan(name)); if (sel && await kind(p)) { await closeX(p); } };

@@ -73,7 +73,7 @@ try {
   log('«O\'qilmadi» → qayta suratga olish/qo\'lda maslahati; limit tugadi → aniq xabar, tugma o\'chadi; ruxsat berilmasa — hech narsa yuborilmaydi');
   /* 6. Imkoniyatlar, Mening taomlarim, admin qo'shgan umumiy yorliq qidiruvda; tarmoq taomi — «taxminiy» belgisi */
   p = await mk({ umumiy: [{ i: 'yq-0123456789', n: 'Bahor kefir 1%', r: 'Кефир Бахор 1%', a: [], k: 40, p: 3, f: 1, c: 4, t: 's', e: 0, u: [['qadoq', 900], ['g100', 100]], ms: { u: "Qadoq yorlig'i (foydalanuvchi yuborgan, admin tekshirgan)", r: 'x' }, yq: 1 }] });
-  await p.click('#ftBtn'); await p.waitForTimeout(500); await p.click('[data-act=ftpath][data-p=yozish]'); await p.waitForTimeout(250); assert.ok(await p.locator('[data-act=feat][data-fk=yorliq]').count() >= 1, 'Imkoniyatlar: «Yorliqdan qo\'shish»'); await p.click('[data-act=feat][data-fk=yorliq] >> nth=0'); await p.waitForTimeout(400); assert.match(await sheet(p), /Yorliqdan qo'shish/);
+  await p.click('#mainAdd'); await p.waitForTimeout(500); assert.ok(await p.locator('[data-act=lbphoto]').count() >= 1, '➕ → Qidirish ichida: «Yorliqdan qo\'shish»'); await p.click('[data-act=lbphoto] >> nth=0'); await p.waitForTimeout(400); assert.match(await sheet(p), /Yorliqdan qo'shish/);
   await p.keyboard.press('Escape'); await p.waitForTimeout(400);
   await search(p, 'bahor kefir'); assert.match(await p.locator('#fdRes .sl-rw').first().innerText(), /Bahor kefir 1%/, 'admin qo\'shgan yorliq — umumiy bazada');
   await search(p, 'evos lavash'); const r0 = p.locator('#fdRes .sl-rw').first(); assert.match(await r0.innerText(), /Evos — Lavash mol \(M\)/); assert.match(await r0.innerText(), /taxminiy/);

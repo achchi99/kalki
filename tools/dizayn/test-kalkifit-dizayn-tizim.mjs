@@ -36,31 +36,10 @@ try {
   assert.ok((v69.match(/min-height:var\(--h-btn\)/g) || []).length >= 1, 'asosiy tugma balandligi tokendan');
   let p = await open('/kalkifit');
   const m = await p.evaluate(() => { const g = (s) => { const e = document.querySelector(s); return e ? getComputedStyle(e) : null; }, mb = document.querySelector('#mainAdd'), card = g('#bjuCard'), hd = g('#todayHd'); return { title: hd.fontSize, tw: hd.fontWeight, btn: Math.round(mb.getBoundingClientRect().height), cardSh: card.boxShadow }; });
-  assert.equal(m.title, '30px'); assert.ok(+m.tw >= 600 && +m.tw <= 700); assert.ok(m.btn >= 52 && m.btn <= 56, 'asosiy tugma 52–56: ' + m.btn); assert.equal(m.cardSh, 'none', 'oddiy karta tekis (soya faqat ko\'tarilgan panelda)');
+  assert.equal(m.title, '30px'); assert.ok(+m.tw >= 600 && +m.tw <= 700); assert.ok(m.btn >= 48 && m.btn <= 64, 'v93: ➕ tugmasi (markaziy) 48–64: ' + m.btn); assert.equal(m.cardSh, 'none', 'oddiy karta tekis (soya faqat ko\'tarilgan panelda)');
   ok('tokenlar: 28/20/16/14/12.5, ring 52 (katta shriftda 54), karta 18/22, tugma 54; v69 bloklarida #hex/rgb va og\'ir shrift yo\'q; Bugun sarlavhasi 28, tugma 52–56, karta tekis');
 
   /* 2. Imkoniyatlar paneli: 4 yo'l */
-  const btn = await p.evaluate(() => { const bt = document.getElementById('ftBtn'); return { txt: bt.getAttribute('aria-label'), n: bt.querySelectorAll('.n').length, anim: [...bt.querySelectorAll('*'), bt].some((e) => getComputedStyle(e).animationIterationCount === 'infinite' && getComputedStyle(e).animationName !== 'none') }; });
-  assert.equal(btn.txt, 'Imkoniyatlar'); assert.equal(btn.n, 0, 'tugmada raqam yo\'q'); assert.equal(btn.anim, false, 'doimiy puls yo\'q');
-  await p.click('#ftBtn'); await p.waitForTimeout(500);
-  const dr = await p.evaluate(() => { const d = document.getElementById('ftDr'), cs = getComputedStyle(d), r = d.getBoundingClientRect(); return { open: d.classList.contains('op'), bottom: Math.round(r.bottom), vh: innerHeight, dur: cs.transitionDuration, paths: [...d.querySelectorAll('.ft-pt')].map((e) => e.dataset.p + ':' + e.querySelector('b').textContent), bilim: [...d.querySelectorAll('.ft-bc')].map((e) => e.dataset.fk), intro: d.querySelectorAll('[data-act=ftintro]').length, bg: [...d.querySelectorAll('.ft-pt .ic')].map((e) => getComputedStyle(e).color) }; });
-  assert.ok(dr.open); assert.equal(dr.bottom, dr.vh, 'panel pastdan'); assert.deepEqual(dr.paths, ['yeyman:Nima yeyman?', 'mening:Mening taomlarim', 'natija:Natijalarim']); assert.deepEqual(dr.bilim, ['supp', 'afsona']); assert.equal(dr.intro, 0, 'tanishtiruv havolasi panelda yo\'q');
-  const ms = msOf(dr.dur); assert.ok(ms >= 260 && ms <= 320, 'panel animatsiyasi 260–320 ms: ' + dr.dur); assert.equal(new Set(dr.bg).size, 3, 'har katakning o\'z ikonka rangi: ' + dr.bg.join(' | '));
-  const want = { yozish: ['yozish', 'ovoz', 'rasm', 'yorliq'], yeyman: ['yeymiz', 'yesam', 'retsept'], mening: ['odatdagi', 'taomlarim', 'idishlar', 'tartib'], natija: ['hafta', 'kunkarta', 'ulashish'] };
-  for (const k of Object.keys(want)) {
-    await p.click('[data-act=ftpath][data-p=' + k + ']'); await p.waitForTimeout(250);
-    const keys = await p.evaluate(() => [...document.querySelectorAll('#ftDr .sl-feat')].map((e) => e.dataset.fk)); for (const x of want[k]) assert.ok(keys.includes(x), k + ' yo\'lida ' + x + ': ' + keys.join(','));
-    assert.ok(!keys.includes('supp') && !keys.includes('afsona'), 'supp/afsona yo\'llarda emas');
-    const cols = await p.evaluate(() => new Set([...document.querySelectorAll('#ftDr .sl-feat .sl-ci')].map((e) => getComputedStyle(e).backgroundColor)).size); assert.equal(cols, 1, k + ': qator ikonkalari bitta rangda'); await p.click('[data-act=ftback]'); await p.waitForTimeout(250);
-  }
-  assert.equal(await p.locator('#ftDr .sl-feat').count(), 0, 'bosh ko\'rinishda qatorlar yo\'q (faqat 4 yo\'l)');
-  await p.click('[data-act=ftpath][data-p=yozish]'); await p.waitForTimeout(250); const ic = await p.evaluate(() => ['yorliq', 'menyu'].map((k) => { const e = document.querySelector('[data-fk=' + k + '] .sl-ci svg'); return e ? e.innerHTML : null; })); assert.ok(ic[0], 'yorliq ikonkasi'); if (ic[1]) assert.notEqual(ic[0], ic[1], 'yorliq va menyu ikonkalari farqli');
-  await p.keyboard.press('Escape'); await p.waitForTimeout(400);
-  await p.click('.rz-tab[data-v=profile]'); await p.waitForTimeout(700); assert.equal(await p.locator('[data-act=intro]').count(), 1, 'Profil: Tanishtiruvni qayta ko\'rish');
-  ok('panel: tugmada raqam va puls yo\'q; pastdan 250 ms; 4 yo\'l (rangli ikonkalar) — har birida o\'z bandlari; «Bilim» qatori (Vitaminlar · Afsona); tanishtiruv Profil\'da; yorliq/menyu ikonkalari farqli');
-  p = await open('/kalkifit', { reduce: true }); await p.click('#ftBtn'); await p.waitForTimeout(300);
-  const rd = await p.evaluate(() => { const cs = getComputedStyle(document.getElementById('ftDr')); return { t: cs.transform, dur: cs.transitionDuration }; }); assert.ok(rd.t === 'none' || /matrix\(1, 0, 0, 1, 0, 0\)/.test(rd.t), 'reduced-motion: siljish yo\'q: ' + rd.t); assert.ok(msOf(rd.dur) <= 150, 'reduced-motion: qisqa (faqat xira): ' + rd.dur);
-  ok('reduced-motion: panel siljimaydi, faqat qisqa xiralashish');
 
   /* 3. kontekstli chiplar */
   p = await open('/kalkifit', { fakeHour: 19, state: seed({ days: 2 }) });          // 2 kun yozuv (<3) — «Haftangiz» yo'q; 19:05, kechki bo'sh
@@ -97,9 +76,9 @@ try {
   for (const th of ['light', 'dark']) {
     p = await open('/kalkifit', { scheme: th, fakeHour: 19, state: seed({ days: 2 }) }); await waitChip(p);          /* v76: chip — «Kechki ovqat tanlash» (Haftangiz chipi faqat dushanba) */
     let v = await axeRun(p, '#rzMain'); assert.deepEqual(v, [], th + ' Bugun kontrast: ' + v.join('; ')); v = await axeRun(p, '#rzChip'); assert.deepEqual(v, [], th + ' chip kontrast: ' + v.join('; '));
-    await p.click('#rzChip .sl-chip-x'); await p.click('#ftBtn'); await p.waitForTimeout(500); v = await axeRun(p, '#ftDr'); assert.deepEqual(v, [], th + ' panel kontrast: ' + v.join('; '));
-    await p.click('[data-act=ftpath][data-p=yozish]'); await p.waitForTimeout(300); v = await axeRun(p, '#ftDr'); assert.deepEqual(v, [], th + ' yo\'l kontrast: ' + v.join('; ')); await p.keyboard.press('Escape'); await p.waitForTimeout(400);
-    await p.click('.rz-tab[data-v=profile]'); await p.waitForTimeout(700); v = await axeRun(p, '#rzMain'); assert.deepEqual(v, [], th + ' Profil kontrast: ' + v.join('; '));
+    await p.click('#rzChip .sl-chip-x'); await p.click('.rz-tab[data-v=more]'); await p.waitForTimeout(600); v = await axeRun(p, '#rzMain'); assert.deepEqual(v, [], th + ' Yana kontrast: ' + v.join('; '));
+    await p.click('.rz-tab[data-v=advice]'); await p.waitForTimeout(600); v = await axeRun(p, '#rzMain'); assert.deepEqual(v, [], th + ' Maslahat kontrast: ' + v.join('; '));
+    await p.click('#rzAv'); await p.waitForTimeout(700); v = await axeRun(p, '#rzMain'); assert.deepEqual(v, [], th + ' Profil kontrast: ' + v.join('; '));
     await p.click('.rz-tab[data-v=history]'); await p.waitForTimeout(700); v = await axeRun(p, '#rzMain'); assert.deepEqual(v, [], th + ' Tarix kontrast: ' + v.join('; '));
   }
   ok('kontrast (WCAG AA, axe): Bugun, chip, panel, yo\'l, Profil, Tarix — yorug\' va tungi');

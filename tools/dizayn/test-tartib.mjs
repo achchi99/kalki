@@ -52,7 +52,7 @@ try {
   s1 = await stOf(p); assert.equal(s1.profile.tartib, 'nobf'); assert.equal(await p.locator('#ttCard').count(), 0);
   await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(600); assert.match(nb(await p.locator('.pf-grp').innerText()), /Kun tartibi Nonushta qilmayman Oqsil maqsadi \d+ g/);
   const fr = await p.evaluate(() => { const e = document.querySelector('.sl-feats [data-fk=tartib]'); return e ? e.textContent : ''; }); assert.match(nb(fr), /Kun tartibi/, 'Imkoniyatlar ro\'yxatida');
-  await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(400); await p.click('[data-act=ftopen]'); await p.waitForTimeout(500); await p.click('[data-act=ftpath][data-p=mening]'); await p.waitForTimeout(300); assert.equal(await p.locator('#ftDr [data-fk=tartib]').count(), 1, 'panel: «Mening taomlarim» yo\'lida'); await p.keyboard.press('Escape'); await p.context().close();
+  await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(400); await p.click('.rz-tab[data-v=more]'); await p.waitForTimeout(500); assert.equal(await p.locator('#rzMain [data-fk=tartib]').count(), 1, 'panel: «Mening taomlarim» yo\'lida'); await p.keyboard.press('Escape'); await p.context().close();
   ok('Kun tartibi: bir martalik karta faqat 5+ kun va ≥ 3 kun ovqat yozganlarga (yopsa qaytmaydi); oynada foiz/chiziq yo\'q — real kkal plitkalari (yig\'indi = me\'yor), nonushtasizda «—»; Profil → «Ovqatlanish»; Imkoniyatlar → «Mening»');
   /* ---- 3. Bugun: ovqat budjetlari va qoldiq o'tkazish (kechqurun ko'p, 19:05) ---- */
   let st = seed({ tartib: 'kech', food: [['b', 200, 18], ['l', 500, 22]] }); p = await open(st); let eb = expBud(st, '19:05'); assert.ok(eb.note && eb.note.k >= 50, 'sinov holati: tejalgan ≥ 50');
@@ -67,7 +67,7 @@ try {
   const pc = await p.evaluate(() => { const c = document.getElementById('bjuCard'); return { k: [...c.querySelectorAll('.mc')].map((x) => x.dataset.m), v: [...c.querySelectorAll('.mc .mv')].map((x) => x.innerText), tip: c.querySelector('#prTip').textContent, sub: [...document.querySelectorAll('.sl-meal .ml-sub')].map((x) => x.textContent) }; });
   assert.deepEqual(pc.k, ['p', 'f', 'c'], 'oqsil birinchi'); assert.equal(nb(pc.v[0]), '40 / ' + pg + ' g'); assert.match(nb(pc.tip), /^Yana ~\d+ g oqsil(: \d+ g .+)?$/, 'maslahat: ' + pc.tip); assert.ok(pc.sub.every((x) => !/kunning/.test(x)), 'budjet yoqilganda foiz yo\'q: ' + pc.sub);
   /* (d) «Nima yesam ekan?» — hozirgi ovqat budjeti */
-  await p.click('[data-act=ftopen]'); await p.waitForTimeout(400); await p.click('[data-act=ftpath][data-p=yeyman]'); await p.waitForTimeout(250); await p.click('#ftDr [data-act=feat][data-fk=yesam], #ftDr [data-act=feat][data-fk=yeymiz]'); await p.waitForSelector('#nySt', { timeout: 8000 }); await p.waitForTimeout(400);
+  await p.click('.rz-tab[data-v=more]'); await p.waitForTimeout(400); await p.click('#rzMain [data-act=feat][data-fk=yesam], #rzMain [data-act=feat][data-fk=yeymiz]'); await p.waitForSelector('#nySt', { timeout: 8000 }); await p.waitForTimeout(400);
   const ny = nb(await p.locator('#nySt b').innerText()); assert.match(ny, new RegExp('^Kechki ovqatga ' + F(eb.meals.d.left) + ' kkal va \\d+ g oqsil qoldi$'), 'holat qatori: ' + ny);
   const rem = await p.evaluate(() => window.__kalkifit && window.__kalkifit.remFull ? window.__kalkifit.remFull() : null); if (rem) assert.equal(rem.k, eb.meals.d.left);
   assert.deepEqual(p.errs, []); await p.context().close();

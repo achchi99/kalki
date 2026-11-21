@@ -17,9 +17,9 @@ const tops = (p, sels) => p.evaluate((l) => l.map((s) => { const e = document.qu
 try {
   for (const [w, big, url, th] of [[390, false, '/kalkifit', 'light'], [360, true, '/kalkifit', 'dark'], [360, false, '/ru/kalkifit', 'light']]) {
     const p = await open(url, { w, big, scheme: th });
-    let t = await tops(p, ['#todayHd', '.sl-hd2 .d', '#ftBtn']); assert.ok(t.every((v) => v !== null && v >= 47), url + ' Bugun: sarlavha/sana/Imkoniyatlar status bar ostida: ' + t);
+    let t = await tops(p, ['#todayHd', '.sl-hd2 .d', '#rzAv']); assert.ok(t.every((v) => v !== null && v >= 47), url + ' Bugun: sarlavha/sana/Imkoniyatlar status bar ostida: ' + t);
     await p.click('.rz-tab[data-v=history]'); await p.waitForTimeout(600); t = await tops(p, ['.rz-main h2', '.rz-main .rz-h']); assert.ok(t.some((v) => v !== null) && t.filter((v) => v !== null).every((v) => v >= 47), url + ' Tarix sarlavhasi: ' + t);
-    await p.click('.rz-tab[data-v=profile]'); await p.waitForTimeout(600); t = await tops(p, ['.rz-main h2', '.rz-main .rz-h']); assert.ok(t.filter((v) => v !== null).length && t.filter((v) => v !== null).every((v) => v >= 47), url + ' Profil sarlavhasi: ' + t);
+    await p.click('#rzAv'); await p.waitForTimeout(600); t = await tops(p, ['.rz-main h2', '.rz-main .rz-h']); assert.ok(t.filter((v) => v !== null).length && t.filter((v) => v !== null).every((v) => v >= 47), url + ' Profil sarlavhasi: ' + t);
     /* aylantirilganda status bar zonasi (yuqori 47 px) kontent emas, fon bilan qoplanadi */
     await p.click('.rz-tab[data-v=today]'); await p.waitForTimeout(600); await p.evaluate(() => { document.getElementById('rzMain').scrollTop = 400; }); await p.waitForTimeout(300);
     /* v70+: qoplama YO'Q — scroll konteyner status bar zonasidan pastda boshlanadi; sarlavha ustida blur/opacity/qoplama yo'q, piksellar to'liq kontrastda */

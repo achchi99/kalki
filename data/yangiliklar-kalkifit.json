@@ -2,6 +2,43 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 93,
+   "d": "2026-11-21",
+   "bn": {
+    "uz": "Hammasi endi ko'z oldingizda",
+    "ru": "Теперь всё на виду"
+   },
+   "items": [
+    {
+     "uz": "Pastki panelda 5 ta nomli tugma: Bugun · Tahlil · ➕ · Maslahat · Yana. Profil — tepada, o'ng burchakdagi avatarda.",
+     "ru": "Внизу 5 подписанных кнопок: Сегодня · Анализ · ➕ · Совет · Ещё. Профиль — аватар вверху справа.",
+     "show": "imkoniyatlar",
+     "btn": {
+      "uz": "«Yana»ni ko'rsatish",
+      "ru": "Показать «Ещё»"
+     }
+    },
+    {
+     "uz": "Tepadagi kunni bossangiz sahifa o'zgarmaydi: shu kunning xulosasi joyida ochiladi, surib oldingi haftalarga o'tasiz.",
+     "ru": "Нажатие на день сверху не уводит со страницы: итоги дня открываются на месте, свайпом — прошлые недели.",
+     "show": "week7",
+     "btn": {
+      "uz": "Kunlarni ko'rsatish",
+      "ru": "Показать дни"
+     }
+    },
+    {
+     "uz": "Maslahatchi — Bugun'da doimiy karta. ➕ bosilsa 4 yo'l ochiladi: qidirish, rasm, shtrix-kod, kechagidek.",
+     "ru": "Советник — постоянная карточка на экране «Сегодня». По ➕ открываются 4 пути: поиск, фото, штрихкод, «как вчера».",
+     "show": "bugun",
+     "btn": {
+      "uz": "➕ ni ko'rsatish",
+      "ru": "Показать ➕"
+     }
+    }
+   ]
+  },
+  {
    "v": 92,
    "d": "2026-11-21",
    "bn": {

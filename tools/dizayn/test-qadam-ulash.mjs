@@ -91,7 +91,7 @@ try {
   log('Yangilash: ilova tilida («Yangi versiya tayyor» [Yangilash] [Keyinroq] / RU «Готова новая версия»), mavzuga mos karta, tor ekranga sig\'adi; «Keyinroq» → 3 kun yo\'q; eski ilovada (build < 5) chiqmaydi');
   /* 9. sarlavha */
   p = await open({ q: { st: ST({}) } }); assert.equal(await p.locator('.rz-top .rz-logo').count(), 0, 'ilovada «Kalki.uz» yo\'q'); assert.equal(await txt(p, '#todayHd'), 'Bugun', 'v69: sarlavha — «Bugun» (yuqori «KalkiFit» paneli yo\'q)'); assert.equal(await p.locator('.rz-top').evaluate((e) => getComputedStyle(e).display).catch(() => 'none'), 'none'); await p.context().close();
-  p = await open({ web: true }); await p.click('.rz-tab[data-v=profile]'); await p.waitForTimeout(500); assert.equal(await p.locator('.sl-site').count(), 1, 'v69: vebda «Kalki.uz» havolasi — Profil pastida'); await p.context().close();
+  p = await open({ web: true }); await p.click('#rzAv'); await p.waitForTimeout(500); assert.equal(await p.locator('.sl-site').count(), 1, 'v69: vebda «Kalki.uz» havolasi — Profil pastida'); await p.context().close();
   log('Sarlavha: Android ilovasida faqat «KalkiFit» va til tugmasi; vebda «Kalki.uz» havolasi — Profil pastida');
 } finally { await b.close(); srv.close(); }
 console.log('\n' + n + '/' + n + ' OK');
