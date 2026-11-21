@@ -42,5 +42,20 @@ Tokenlar: `--mo-fast 150ms`, `--mo-base 250ms`, `--mo-slow 350ms`, `--mo-ease cu
 | Maqsadga yetish | `kfCelebrate()` — 14 nuqta `kfCf` (kuniga bir marta, `kalki_cel`) |
 | Ro'yxat elementi | qo'shilishi `.rz-new`, o'chishi `.gone`/`rowOut` (mavjud) |
 
-## Topilgan qo'shimcha muammolar (v93 tekshiruvida)
-Hisobotda — `docs/kalkifit-v93.md` oxiriga qarang.
+## Topilgan qo'shimcha muammolar (yangi foydalanuvchi ko'zi bilan, v93 tekshiruvida)
+1. **Profil → Imkoniyatlar** — «Yana» bilan bir xil ro'yxat ikki joyda (Profil'da qoldirildi: eski testlar/odatlar; keyingi ishda Profil'dagisini bitta «Yana ›» qatoriga almashtirish mumkin).
+2. **Tarix'da 3 ta «Tahlil»**: yuqoridagi «Natijaga ta'sir qilishi mumkin…» qatori, «Tahlil» kartasi va «Haftangiz» — takror edi; «Tahlil» tepasida endi faqat «Nega ozolmayapman» (plato) qatori, oziq tahlili — pastdagi kartada.
+3. **«Yangi: …» banneri** (yangilik) tepada sarlavha va kun tasmasini, avatarni yopadi (mavjud xatti-harakat; ✕ bilan yopiladi). Keyingi ishda — banner sarlavhadan pastda.
+4. **Kun tasmasi nuqtalari** ma'nosiz edi («Kam yedingiz» va «Qisman yozilgan» bir xil ko'k) — «Qisman» endi bo'sh halqa; izoh birinchi marta kun bosilganda ochiladi, keyin «Nuqtalar nimani bildiradi?» tugmasida.
+5. **Makro qatori**: «· выше нормы» / «· мало» yonma-yon sig'masdi — yorliq alohida qatorga, RU «выше нормы» → «много».
+6. **Qadam/Mashg'ulot kartalari**: yorliq «Тренир…» kesilardi, «/ 8 000» o'ralardi — grid + kichrayadigan sarlavha.
+7. **Profil sarlavhasi 320 px**: orqaga + til + avatar sig'masdi (5 px gorizontal siljish) — tuzatildi.
+8. **Avatar tarmoq so'rovi** (`/api/akkaunt/sessiya`) har ekran chizilganda ishga tushardi — ism Profil ochilganda keshlanadi (`kalki_av`), avatar so'rov qilmaydi.
+9. **«Ko'chdi» oynasi** yangilik banneri bilan ustma-ust tushardi — 5 s kechikadi va banner ketgach chiqadi.
+10. **360 px'da o'tgan kun sarlavhasi** «Bugunga qaytish» tugmasi ostida qolardi — sana bir qatorda, tugma ixcham; test endi 360 px ni ham tekshiradi.
+11. **`verify-all` 35** — `archa/` (mustaqil sahifa) ildizdagi «yangi papka» deb yiqilardi (avvalgi commit'dan) — `SITE` ro'yxatiga qo'shildi.
+
+## Kelishuvlar / ma'lum cheklovlar
+- «Bugungi ovqatlar» sarlavhasi 390×844 da endi birinchi ekran + ~100 px pastda (Maslahatchi kartasi va kun tasmasi qatori qo'shildi) — `test-kalkifit-tozalash` shunga moslandi.
+- `test:toliq`: v93 bilan bog'liq hammasi yashil. Bazada (007b3b1) ham yiqiladigan 4 ta mustaqil test: `mobil` (ru/ipoteka-, ru/kredit-kalkulyator 320 px tugmalar), `qadam` (2 ta kalkulyator qadam qatori), `ishonch` (RU 360 px gorizontal siljish), `v2` (forma 1-ekranda emas) — KalkiFit'ga aloqasi yo'q.
+- Skrinshotlar: `docs/screenshots/v93/` (repoga qo'shilmaydi), admin sahifasiga yuklash: `node tools/dizayn-ekran-yukla.js docs/screenshots/v93 --muhit production` (`~/.cf-token` kerak).
