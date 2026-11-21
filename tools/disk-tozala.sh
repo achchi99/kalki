@@ -23,4 +23,11 @@ command -v uv >/dev/null 2>&1 && [ $Q = 0 ] && uv cache prune >/dev/null 2>&1
 if command -v docker >/dev/null 2>&1 && [ $Q = 0 ]; then docker image prune -f >/dev/null 2>&1; docker builder prune -f --filter until=168h >/dev/null 2>&1; fi
 # 4. eski VS Code server versiyalari: eng yangi 2 tasi qoladi (lru.json bo'yicha emas, o'zgargan vaqt bo'yicha)
 S="$H/.vscode-server/cli/servers"; if [ -d "$S" ] && [ $Q = 0 ]; then ls -dt "$S"/Stable-* 2>/dev/null | tail -n +3 | xargs -r rm -rf; fi
+# 5. /tmp: o'zimizning 7 kundan eski vaqtinchalik fayllar va eski sessiya scratchpad'lari (yangilariga tegilmaydi)
+if [ $Q = 0 ]; then
+  find /tmp -maxdepth 1 -user "$(id -un)" \( -name 'kalki-test-*' -o -name 'tmp.*' -o -name 'tmp*' -o -name 'audit-*' -o -name 'iabs_test_*' \) -mtime +7 -exec rm -rf {} + 2>/dev/null
+  find /tmp/claude-1000 -mindepth 3 -type f -mtime +7 -delete 2>/dev/null; find /tmp/claude-1000 -mindepth 2 -type d -empty -mtime +7 -delete 2>/dev/null
+fi
+# 6. disk 85% dan oshgan bo'lsa — ogohlantirish (kunlik cron ham tekshiradi)
+bash "$H/projects/kalki/tools/disk-ogohlantir.sh" >/dev/null 2>&1
 log "disk-tozala: bo'sh ${oldin}M → $(free)M ($([ $Q = 1 ] && echo quruq || echo bajarildi))"
