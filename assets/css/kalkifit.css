@@ -2040,3 +2040,49 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sl-obimp{display:flex;flex-direction:column;gap:2px;margin:0 0 12px;padding:10px 12px;border-radius:12px;background:var(--accsoft);color:var(--ink);font-size:var(--t-s);line-height:1.4;text-align:left}
 .rz .sl-obimp b{font-weight:700;color:var(--acc2)}.rz .sl-obimp span{color:var(--mut)}.rz .sl-obimp .rz-link{align-self:flex-start;min-height:40px;padding:0}
 .rz .sl-obimp.sm{font-weight:700;color:var(--acc2)}
+/* ===== Maslahatchi («jonli nutritsiolog»): makro paneli, maslahat kartasi, kun xulosasi, Tahlil — faqat tokenlar; animatsiya faqat transform/opacity ===== */
+.rz .sl-bju.mk3{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr);column-gap:10px;row-gap:4px}
+.rz .sl-bju .mk-row{display:flex;flex-direction:column;gap:2px;min-width:0;width:100%;border:0;background:transparent;padding:0;color:inherit;font:inherit;text-align:left;min-height:44px;cursor:pointer}
+.rz .sl-bju .mk-row .mh::after{content:'· ' attr(data-st);font-weight:600;color:var(--mut)}.rz .sl-bju .mk-row.mk-oshdi .mh::after{color:var(--acc)}.rz .sl-bju .mk-row.mk-joyida .mh::after{color:var(--ink)}
+.rz .sl-bju .mk-row .tr{position:relative;height:6px;margin:2px 0 0;overflow:visible;background:var(--track);border-radius:3px}
+.rz .mk-row .mk-f{position:absolute;inset:0;display:block;border-radius:3px;transform-origin:left center;transition:transform .7s cubic-bezier(.22,1,.36,1),opacity .3s ease}
+.rz .mk-row[data-m=p] .mk-f{background:var(--p)}.rz .mk-row[data-m=f] .mk-f{background:var(--f)}.rz .mk-row[data-m=c] .mk-f{background:var(--c)}
+.rz .mk-row.mk-oshdi .mk-f{background:var(--fill)}
+.rz .mk-row .mk-g{position:absolute;top:-3px;width:2px;height:12px;margin-left:-1px;border-radius:1px;background:var(--ink);opacity:.55}
+.rz .sl-bju.mk3 .bj-tip{grid-column:1/-1}
+.rz .mk-row .mk-ok{position:absolute;right:0;top:-18px;font-size:var(--t-xs);color:var(--cink);opacity:0;transform:scale(.6)}
+.rz .mk-row.mk-flash .mk-ok{animation:mkOk 1.1s ease both}
+.rz .mk-row.mk-shake .tr{animation:mkShake .45s ease 1}
+@keyframes mkOk{0%{opacity:0;transform:scale(.6)}25%{opacity:1;transform:scale(1.25)}70%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes mkShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}55%{transform:translateX(3px)}80%{transform:translateX(-1px)}}
+.rz .mk-top .rz-row{min-height:44px}.rz .mk-tip{margin-top:12px}
+.rz .sl-msl{position:relative;padding:14px 44px 12px 14px}
+.rz .sl-msl .msl-h{display:flex;align-items:center;gap:10px}.rz .sl-msl .msl-t{font-size:var(--t-m);font-weight:700}
+.rz .sl-msl .msl-b{margin:6px 0 0;font-size:var(--t-s);line-height:1.45;color:var(--ink)}
+.rz .msl-ic{flex:0 0 32px;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--accsoft);color:var(--acc)}.rz .msl-ic svg{width:18px;height:18px;animation:mslFloat 2.4s ease-in-out 2}
+.rz .msl-ic.msl-don{color:var(--cink)}.rz .msl-ic.msl-mushak{color:var(--pink)}.rz .msl-ic.msl-yog{color:var(--fink)}.rz .msl-ic.msl-yulduz{color:var(--acc)}
+@keyframes mslFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+.rz .sl-msl.msl-cf::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(circle at 20% 30%,var(--f) 0 3px,transparent 4px),radial-gradient(circle at 70% 20%,var(--p) 0 3px,transparent 4px),radial-gradient(circle at 45% 75%,var(--c) 0 3px,transparent 4px),radial-gradient(circle at 85% 65%,var(--fill) 0 3px,transparent 4px);animation:mslCf 1.4s ease-out both}
+@keyframes mslCf{0%{opacity:0;transform:translateY(8px) scale(.9)}25%{opacity:1}100%{opacity:0;transform:translateY(-14px) scale(1.05)}}
+.rz .kx-rings{display:flex;justify-content:space-around;gap:8px;margin:10px 0 6px}
+.rz .kx-r{position:relative;width:76px;display:flex;flex-direction:column;align-items:center;font-variant-numeric:tabular-nums}.rz .kx-r svg{width:64px;height:64px;transform:rotate(-90deg)}
+.rz .kx-r circle{fill:none;stroke-width:6}.rz .kx-r .bg{stroke:var(--track)}.rz .kx-r .fg{stroke-linecap:round}
+.rz .kx-p .fg{stroke:var(--p)}.rz .kx-f .fg{stroke:var(--f)}.rz .kx-c .fg{stroke:var(--c)}.rz .kx-r.ov .fg{stroke:var(--fill)}
+.rz .kx-r b{position:absolute;top:20px;font-size:var(--t-s);font-weight:700}.rz .kx-r small{font-size:var(--t-xs);color:var(--mut)}
+.rz .kx-list{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}.rz .kx-list li{padding:10px 12px;border-radius:12px;background:var(--soft);font-size:var(--t-s);line-height:1.4}
+.rz .kx-list li b{display:block;font-size:var(--t-xs);color:var(--mut);font-weight:600;margin-bottom:2px}.rz .kx-list li.off b{color:var(--acc)}
+.rz .tl-card{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;font:inherit;color:inherit;cursor:pointer;margin:0 0 10px}
+.rz .tl-card .tl-ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--accsoft);color:var(--acc)}.rz .tl-card .m{flex:1;display:flex;flex-direction:column;min-width:0}.rz .tl-card .m span{font-size:var(--t-xs);color:var(--mut)}
+.rz .tl-f{display:block;width:100%;text-align:left;border:var(--bd-c,0);font:inherit;color:inherit;margin:0 0 10px;padding:14px}.rz .tl-f.tl-main{border:2px solid var(--fill)}
+.rz .tl-mk{display:inline-block;font-size:var(--t-xs);font-weight:700;color:var(--acc);margin-bottom:6px}
+.rz .tl-hd{display:flex;justify-content:space-between;gap:10px;align-items:baseline}.rz .tl-hd b{font-size:var(--t-s)}.rz .tl-n{font-size:var(--t-m);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rz .tl-main .tl-n{font-size:var(--t-l)}
+.rz .tl-tip{display:block;margin-top:8px;font-size:var(--t-s);color:var(--mut);line-height:1.4}
+.rz .tl-ol{margin:8px 0 0;padding-left:20px;font-size:var(--t-s)}.rz .tl-ol li span{margin-right:8px}.rz .tl-ol li b{font-weight:600;color:var(--mut);white-space:nowrap}
+.rz .tl-bars{display:flex;align-items:flex-end;gap:4px;height:40px;margin-top:10px}.rz .tl-bars i{flex:1;height:100%;border-radius:3px 3px 0 0;background:var(--fill);transform-origin:bottom;opacity:.85}.rz .tl-bars.p i{background:var(--p)}
+.rz .tl-two{display:flex;gap:10px;margin-top:8px}.rz .tl-two span{flex:1;padding:8px 10px;border-radius:10px;background:var(--soft);display:flex;flex-direction:column}.rz .tl-two small{font-size:var(--t-xs);color:var(--mut)}.rz .tl-two b{font-size:var(--t-m);font-variant-numeric:tabular-nums}
+.rz .tl-w{margin-top:4px}
+@media (prefers-reduced-motion:reduce){.rz .mk-row .mk-f{transition:none}.rz .mk-row.mk-flash .mk-ok,.rz .mk-row.mk-shake .tr,.rz .msl-ic svg,.rz .sl-msl.msl-cf::after{animation:none}}
+.rz .sl-bju .mk-row.mk-oshdi .tr .mk-f{background:var(--fill)}
+.rz .kx-card{position:relative;padding:14px 44px 14px 14px}.rz .kx-card .kx-t{display:block;font-size:var(--t-m);font-weight:700}.rz .kx-card .kx-sub{display:block;font-size:var(--t-xs);color:var(--mut);font-variant-numeric:tabular-nums}
+.rz .kx-card .kx-rings{margin-right:-30px}

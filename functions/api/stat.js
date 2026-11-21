@@ -14,7 +14,7 @@ export const SAYT_JOY = /^(kaloriya|alkogol|bosh|kategoriya|menyu|maqola|tvi|ide
 export const MANBA = /^(x|tg|ig|yt|google|fb|sayt|dir|boshqa|sayt-(kaloriya|alkogol|bosh|kategoriya|menyu|maqola|tvi|ideal-vazn|suv|taom-[a-z0-9-]{1,40}))?$/;          // v61: manba kodi (qat'iy ro'yxat; bo'sh — eski ilova versiyasi). Erkin matn / URL qabul qilinmaydi
 const ANY = /^$/, USUL = /^(qidiruv|rasm|retsept|oxirgilar|tavsiya|ovoz|menyu|matn|odatdagi|boshqa)$/, LANG = /^(uz|cyr|ru)$/;
 export const HODISA = {
-  faol: ANY, sayt_taom: /^ochildi$/, yangi_foydalanuvchi: MANBA, til_tanlandi: LANG, onboarding_tugadi: ANY, onboarding_keyinroq: ANY,
+  faol: ANY, sayt_taom: /^ochildi$/, maslahat: /^(korsatildi|yopildi|chip_bosildi)\.(a|b|c|d|e|f|kam)$|^chip_bosildi\.$|^sozlama\.(hazil|jiddiy|off)$/, makro: /^oyna_ochildi\.(p|f|c)$/, kun_xulosa: /^ochildi(\.avto)?$/, tahlil: /^ochildi$|^topilma_bosildi\.(top|yog|kechki|damolish|oqsil|ichimlik|yozilmagan)$/, yangi_foydalanuvchi: MANBA, til_tanlandi: LANG, onboarding_tugadi: ANY, onboarding_keyinroq: ANY,
   ovqat_qoshildi: USUL, qidiruv_topilmadi: ANY, qidiruv_jami: ANY, haftangiz: /^(ochildi|tugatildi|ulashildi(\.(bitta|toplam))?|maqsad_qabul|slayd\.([1-9]|1[0-4])|saqlash\.(ok|usul\.(galereya|ulashish|share|oyna|yuklab)|xato\.[a-z_]{1,16})|ulashish\.xato\.[a-z_]{1,16})$/, birinchi_karta: /^(korsatildi|rasm|ovoz|qidiruv|chip|yopildi|qoshildi)$/, qidiruv_natijasiz: ANY, yeymiz_chip: /^(kabob|suyuq|tandir|tez|baliq|uyda|boshqa)$/, yeymiz_segment: /^(kafe|buyurtma|uyda)$/, buyurtma_hamkor: /^(uzum|yandex)$/,
   ai_sorov: /^(matn|rasm|retsept|ovoz|menyu|yorliq)\.(ok|limit|xato|format|tarmoq|vaqt|hajm|server|bosh)$|^rasm\.limit\.(mehmon|akkaunt|akkaunt_bosildi)$/, suv_qoshildi: ANY, qadam_ulandi: /^(hc|sensor)$/, baliq_kuni_obuna: ANY, baliq_kuni_bekor: ANY,
   push_bosildi: ANY, apk_yuklandi: ANY, ilova_yangilandi: /^\d{1,2}\.\d{1,2}\.\d{1,3}$/, kun_kartochka_ulashildi: ANY, hazil_yopildi: ANY, haftalik_ochildi: ANY,
@@ -182,6 +182,18 @@ export async function manbalar(db, dan0, gacha, bugun) {
   out.sort((a, b) => (a.manba === '') - (b.manba === '') || b.yangi - a.yangi || (a.manba < b.manba ? -1 : 1));
   return { bosh, dan, qatorlar: out };
 }
+/* Maslahatchi: qoida bo'yicha ko'rsatildi / chip bosildi / yopildi, makro oynasi, kun xulosasi, Tahlil, sozlama (stat_kun — faqat sonlar) */
+export async function maslahatchi(db, dan, gacha) {
+  const o = { qoida: {}, makro: {}, kun_xulosa: { ochildi: 0, avto: 0 }, tahlil: { ochildi: 0, topilma: {} }, sozlama: { hazil: 0, jiddiy: 0, off: 0 } };
+  try { for (const r of await all(db, "SELECT hodisa, kalit, SUM(son) AS n FROM stat_kun WHERE hodisa IN ('maslahat','makro','kun_xulosa','tahlil') AND kun >= ? AND kun <= ? GROUP BY hodisa, kalit", dan, gacha)) {
+    const n = r.n || 0, [a, b] = String(r.kalit).split('.');
+    if (r.hodisa === 'maslahat') { if (a === 'sozlama') o.sozlama[b] = (o.sozlama[b] || 0) + n; else if (b) { o.qoida[b] = o.qoida[b] || { korsatildi: 0, chip_bosildi: 0, yopildi: 0 }; o.qoida[b][a] = (o.qoida[b][a] || 0) + n; } }
+    else if (r.hodisa === 'makro') o.makro[b] = (o.makro[b] || 0) + n;
+    else if (r.hodisa === 'kun_xulosa') { if (b === 'avto') o.kun_xulosa.avto += n; else o.kun_xulosa.ochildi += n; }
+    else if (r.hodisa === 'tahlil') { if (a === 'ochildi') o.tahlil.ochildi += n; else o.tahlil.topilma[b] = (o.tahlil.topilma[b] || 0) + n; }
+  } } catch (e) { return null; }
+  return o;
+}
 /* kalki.uz → KalkiFit: joylar bo'yicha voronka — ko'rsatildi → bosildi (stat_kun «sayt_blok») → onboarding tugadi → birinchi ovqat
    (stat_qurilma: yangi = 1 va manba = «sayt-<joy>»; birinchi ovqat — shu qurilmaning ilk qatorida birinchi_usul). Hech qanday id/URL yo'q — faqat sonlar. */
 export async function saytBloklar(db, dan, gacha) {
@@ -257,7 +269,7 @@ export async function kengaytma(db, dan, gacha, bugun, now) {
   kpi.konversiya = konversiya ? konversiya.foiz : null;
   const guruh = async (col, extra) => all(db, 'SELECT ' + col + " AS k, COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? AND " + col + " != ''" + (extra || '') + ' GROUP BY ' + col + ' ORDER BY n DESC LIMIT 20', dan, gacha);
   let qurilmalar = null; try { qurilmalar = { tur: await guruh('tur'), versiya: await guruh('ver', " AND tur = 'android-ilova'"), os: await guruh('os'), brauzer: await guruh('br'), model: await guruh('model'), ekran: await guruh('ekran'), til: await guruh('til'), aniqlanmagan: (await one(db, "SELECT COUNT(DISTINCT q) AS n FROM stat_qurilma WHERE kun >= ? AND kun <= ? AND tur = ''", dan, gacha)).n || 0 }; } catch (e) {}
-  return { kpi, bolim: { kogorta: await kogortalar(db, dan, gacha, bugun), foydalanish, xarajat, narx: NARX, konversiya, qurilmalar, voronka: await voronka(db, dan, gacha), afsona: await afsona(db, dan, gacha), harakat: await harakat(db, dan, gacha), qaytish: await retPlat(db, dan, gacha, bugun), konv_kun: await konvKun(db, dan, gacha), manbalar: await manbalar(db, dan, gacha, bugun), sayt: await saytBloklar(db, dan, gacha), aktivatsiya: await aktivatsiya(db, dan, gacha, bugun), olchov: { voronka: await olchovBosh(db, 'voronka'), harakat: await olchovBosh(db, 'harakat'), afsona: await olchovBosh(db, 'afsona'), konv: await olchovBosh(db, 'konv') } } };
+  return { kpi, bolim: { kogorta: await kogortalar(db, dan, gacha, bugun), foydalanish, xarajat, narx: NARX, konversiya, qurilmalar, voronka: await voronka(db, dan, gacha), afsona: await afsona(db, dan, gacha), harakat: await harakat(db, dan, gacha), qaytish: await retPlat(db, dan, gacha, bugun), konv_kun: await konvKun(db, dan, gacha), manbalar: await manbalar(db, dan, gacha, bugun), sayt: await saytBloklar(db, dan, gacha), maslahatchi: await maslahatchi(db, dan, gacha), aktivatsiya: await aktivatsiya(db, dan, gacha, bugun), olchov: { voronka: await olchovBosh(db, 'voronka'), harakat: await olchovBosh(db, 'harakat'), afsona: await olchovBosh(db, 'afsona'), konv: await olchovBosh(db, 'konv') } } };
 }
 export async function hisobot(db, davr, now) {
   const bugun = tosh(now), d = [1, 7, 30, 90].includes(davr) ? davr : 0, dan = d ? addD(bugun, -(d - 1)) : '2000-01-01', gacha = bugun;

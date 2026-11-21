@@ -2,6 +2,28 @@
  "app": "kalkifit",
  "items": [
   {
+   "v": 92,
+   "d": "2026-11-21",
+   "bn": {
+    "uz": "KalkiFit endi maslahat beradi",
+    "ru": "KalkiFit теперь даёт советы"
+   },
+   "items": [
+    {
+     "uz": "Oqsil, yog' va uglevod — jonli chiziqlar; oshsa yoki yetmasa, qisqa maslahat va muqobil taomlar",
+     "ru": "Белки, жиры и углеводы — живые полоски; если перебор или нехватка — короткий совет и замены"
+    },
+    {
+     "uz": "«Tahlil» — nega ozish sekin: asosiy sabab va aniq maslahat (Tarix'da eng tepada)",
+     "ru": "«Анализ» — почему похудение идёт медленно: главная причина и конкретный совет (вверху «Истории»)"
+    },
+    {
+     "uz": "Profil → «Maslahatchi»: hazil bilan, jiddiy yoki o'chirilgan",
+     "ru": "Профиль → «Советник»: с юмором, серьёзно или выключен"
+    }
+   ]
+  },
+  {
    "v": 91,
    "d": "2026-11-19",
    "bn": {
