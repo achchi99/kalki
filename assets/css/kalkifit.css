@@ -2226,3 +2226,4 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz.sl[data-view=today] .sl-big #kChips{margin-bottom:-10px}
 @media (max-height:830px){.rz.sl[data-view=today] .sl-week7 .wd{min-height:0;padding:3px 0 4px}.rz.sl[data-view=today] .sl-big{gap:6px;padding-bottom:12px}.rz.sl[data-view=today] .wk-hd{min-height:32px;margin-top:-12px;margin-bottom:-18px}.rz.sl[data-view=today] .sl-hd2 .d{margin-top:-2px}}
 .rz .sl-bju.bj3 .mk-row .tr .mk-f,.rz .sl-bju .mk-row .tr .mk-f{transition:transform 450ms var(--mo-ease),background-color .3s ease}          /* eski «width» transition'i transform'ni to'sib qo'ygan edi */
+.rz .wk-mid{overflow:hidden}.rz .wk-back{min-width:0;max-width:100%}.rz .wk-back span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
