@@ -44,7 +44,7 @@ try {
       await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(500); await p.click('#mainAdd'); await p.waitForSelector('#rzSheet .sl-rw'); await p.waitForTimeout(500);
       const w = p.locator('#rzSheet .sl-rw').nth(i), name = (await w.locator('.nm').innerText()).trim();
       const sel = where === 'nm' ? '.nm' : where === 'tile' ? '.sl-tile' : '.sl-rr';
-      const box = await w.locator(sel).first().boundingBox(), rr = await w.locator('.sl-rr').boundingBox(), pl = await w.locator('.sl-pl').boundingBox();
+      await w.scrollIntoViewIfNeeded(); const box = await w.locator(sel).first().boundingBox(), rr = await w.locator('.sl-rr').boundingBox(), pl = await w.locator('.sl-pl').boundingBox();
       const x = where === 'edge' ? Math.max(rr.x + 4, Math.min(pl.x - 8, rr.x + rr.width - 6)) : box.x + Math.min(box.width / 2, 40), y = rr.y + rr.height / 2;
       const before = await p.evaluate(() => document.querySelectorAll('#rzSheet .sl-pl.done').length);
       await p.touchscreen.tap(x, y); await p.waitForTimeout(650);

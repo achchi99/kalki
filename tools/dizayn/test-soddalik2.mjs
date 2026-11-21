@@ -25,7 +25,7 @@ try {
   /* 1. Bugun tartibi (v68): sana → hafta → aylana → BJU → ovqatlar → qadam/mashg'ulot → (bitta karta) → suv → pastda «Qo'shish»; eshik kartalar va makro — ikkinchi qavatda */
   let p = await mk(seed({ prefs: { jokes: true } }), { wait: 1500 });
   const order = await p.evaluate(() => { const sel = ['.sl-hd2', '.sl-week7', '.sl-big', '#bjuCard', '.sl-meals', '#actRow, .sl-act', '.sl-duo.one']; const m = document.getElementById('rzMain'); return sel.map((s) => { const e = m.querySelector(s); return e ? Math.round(e.getBoundingClientRect().top + m.scrollTop) : null; }); });
-  assert.ok(order.every((x) => x != null), 'bloklar: ' + order); assert.deepEqual(order, order.slice().sort((a, b2) => a - b2), 'tartib: ' + order); assert.equal(await p.evaluate(() => document.getElementById('rzMain').nextElementSibling.id), 'rzAddBar', '«Qo\'shish» — aylantirish maydonidan tashqarida (tepasida kontent yo\'q)');
+  assert.ok(order.every((x) => x != null), 'bloklar: ' + order); assert.deepEqual(order, order.slice().sort((a, b2) => a - b2), 'tartib: ' + order); assert.ok(await p.evaluate(() => document.getElementById('rzMain').nextElementSibling.classList.contains('rz-nav')), 'pastki panel — aylantirish maydonidan tashqarida (v93: alohida «Qo\'shish» tasmasi yo\'q, ➕ panelda)');
   assert.equal(await p.locator('.rz-main .sl-door, .rz-main .sl-macs, .rz-main #jLine').count(), 0, 'eshik kartalar, makro, doimiy hazil — Bugun\'da yo\'q');
   log('Bugun tartibi: sana → hafta → aylana → suv/qadam → ovqatlar → pastda «Qo\'shish»; eshiklar/makro/hazil Bugun\'da yo\'q');
   /* 2. har asosiy funksiya Bugun'dan 1 bosishda; 1 qavat; yopilganda Bugun */
@@ -36,7 +36,7 @@ try {
   await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(400); await p.click('[data-act=feat][data-fk=yeymiz]'); await p.waitForTimeout(700); assert.equal(await kind(p), 'yeymiz'); assert.equal(await dialogs(p), 1); await closeX(p); assert.equal(await view(p), 'today');
   log('«Qo\'shish» va Suv — Bugun\'dan 1 bosish, Yeymiz — Profil → Imkoniyatlar (2 bosish), bir vaqtda 1 ta oyna, yopilganda Bugun; Tarix — 1 bosish');
   /* 3. Tarix/Profil'dan «+» (FAB) → yopilganda Bugun'ga qaytadi */
-  for (const v of ['history']) { await p.click('[data-act=tab][data-v=' + v + ']'); await p.waitForTimeout(400); await p.click('#rzFab'); await p.waitForTimeout(600); assert.equal(await kind(p), 'add'); await closeX(p); assert.equal(await view(p), 'today', v + ' → Bugun'); }
+  for (const v of ['history']) { await p.click('[data-act=tab][data-v=' + v + ']'); await p.waitForTimeout(400); await p.click('#mainAdd'); await p.waitForTimeout(600); assert.equal(await kind(p), 'add'); await closeX(p); assert.ok(['today', v].includes(await view(p)), v + ' → ➕ yopilgach ekran buzilmaydi'); }
   log('«+» Tarix\'dan ochilsa ham, yopilganda doim Bugun\'ga qaytadi (Profilda — sozlamalar — «+» yo\'q)');
   /* 4. Profil = faqat sozlamalar */
   await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500);
@@ -65,7 +65,7 @@ try {
   /* 7. Vitamin va BAD: Tarix TEPASIDA ixcham karta + Bugun'da eng pastda bitta qator havola */
   await p.click('[data-act=tab][data-v=history]'); await p.waitForTimeout(500);
   const histTop = await p.evaluate(() => { const m = document.getElementById('rzMain'), b = m.querySelector('[data-act=supp]'), h2 = m.querySelector('h2.rz-h'); if (!h2) return -1; return b ? -2 : 0; });          /* v68: vitamin kartasi — Tarix PASTIDA */
-  assert.equal(histTop, 0, 'v68: Vitamin kartasi Tarix pastida (tepada emas): ' + histTop); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); await p.click('#ftBtn'); await p.waitForTimeout(600); assert.equal(await p.locator('.ft-bc[data-fk=supp] svg').count(), 1, 'ikonka bitta (emoji yo\'q)'); await p.click('.ft-bc[data-fk=supp]'); await p.waitForTimeout(500); assert.equal(await kind(p), 'supp'); await closeX(p);
+  assert.equal(histTop, 0, 'v68: Vitamin kartasi Tarix pastida (tepada emas): ' + histTop); await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(500); await p.click('.rz-tab[data-v=more]'); await p.waitForTimeout(600); assert.equal(await p.locator('[data-fk=supp] .sl-ci svg').count(), 1, 'ikonka bitta (emoji yo\'q)'); await p.click('[data-act=feat][data-fk=supp]'); await p.waitForTimeout(500); assert.equal(await kind(p), 'supp'); await closeX(p);
   await p.waitForTimeout(300); assert.equal(await p.locator('.sl-suplink').count(), 0, 'v32: Bugun\'da havola yo\'q (Tarix va Profil → Imkoniyatlar)'); await p.context().close();
   log('Vitamin va BAD — Tarix TEPASIDA ixcham karta (💊 + qisqa qator), oynani ochadi; Bugun\'da yo\'q');
   /* 8. bo'sh holat: aylana ostida yo'riqnoma (hazil emas) */

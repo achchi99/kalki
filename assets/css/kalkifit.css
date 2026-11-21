@@ -2112,7 +2112,7 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sl-bkT2,.sl-remc .sl-remm .t b.sl-bkT2{display:block}.rz .sl-bkT2 .sl-infob{display:inline-flex;vertical-align:middle;margin:0 0 0 4px;max-width:100%}
 .rz .pf-r{flex-wrap:nowrap}.rz .pf-r .m{flex:1 1 auto;min-width:0}.rz .pf-r .m b{white-space:normal}
 .rz .pf-r .v{flex:0 1 auto;max-width:50%;min-width:0;text-align:right;white-space:normal;overflow-wrap:break-word}
-.rz .pf-tiles,.rz .pf-card .pf-tiles{grid-template-columns:repeat(auto-fit,minmax(min(100%,4.6em),1fr));font-size:16px}
+.rz .pf-tiles,.rz .pf-card .pf-tiles{grid-template-columns:repeat(auto-fit,minmax(min(100%,7em),1fr));font-size:16px}
 .rz .pf-ti>span:last-child,.rz .pf-ti b{overflow-wrap:anywhere}
 .sl-cmt{grid-template-columns:repeat(auto-fit,minmax(min(100%,5.2em),1fr));font-size:16px}.sl-cmt small,.sl-cmt b,.sl-cmt em{overflow-wrap:anywhere}
 .sl-remc .sl-remr{flex-wrap:wrap}.sl-remc .sl-remm{flex:1 1 14em}.sl-remc .sl-remr>.sl-sw{margin-left:auto;flex:none}
@@ -2127,3 +2127,88 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sl-ab2 .sl-cta,.rz .sl-ab2 .sl-cta.sm{position:static;bottom:auto;z-index:auto;box-shadow:none;margin-top:auto;display:block;flex:none}
 .rz .sl-ab2 .mr{margin-bottom:10px}.rz .sl-ab2{overflow:visible}
 .rz .sl-duo.sl-act>.sl-ab2{align-self:stretch;height:auto;min-height:0}
+
+/* ===================== v93: yangi tuzilma — 5 tugmali pastki panel, avatar, doimiy Maslahat kartasi, Maslahat va Yana bo'limlari ===================== */
+/* harakat tokenlari (yagona tizim): 150–350 ms, bitta easing; faqat transform/opacity */
+:root{--mo-fast:150ms;--mo-base:250ms;--mo-slow:350ms;--mo-ease:cubic-bezier(.22,1,.36,1)}
+.rz.sl{--addh:0px}
+.rz.sl .rz-nav{grid-template-columns:repeat(5,minmax(0,1fr));align-items:end;min-height:0;padding:6px 4px calc(8px + env(safe-area-inset-bottom,0px));gap:0}
+.rz.sl .rz-tab{min-height:56px;justify-content:flex-end;gap:3px;padding:6px 2px;overflow:visible;transition:color var(--mo-fast) var(--mo-ease),transform var(--mo-fast) var(--mo-ease)}
+.rz.sl .rz-tab .l{display:block;max-width:100%;font-size:var(--t-xs);font-weight:600;line-height:1.15;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rz.sl .rz-tab .s{display:none}
+.rz.sl .rz-tab:active{transform:scale(.94)}
+.rz.sl .rz-tab.rz-add{color:var(--ink)}
+.rz.sl .rz-tab.rz-add .pl{display:grid;place-items:center;width:54px;height:54px;margin-top:-26px;border-radius:50%;background:var(--fill);color:var(--on);border:4px solid var(--bg);box-shadow:0 8px 20px -6px color-mix(in srgb,var(--fill) 55%,transparent);transition:transform var(--mo-base) var(--mo-ease)}
+.rz.sl .rz-tab.rz-add .pl .rz-i{width:26px;height:26px;background:none;padding:0;margin:0}
+.rz.sl .rz-tab.rz-add:active .pl{transform:scale(.92)}
+.rz.sl .rz-tab.on .rz-i{padding:0;margin:0;background:none}
+.rz.sl .rz-tab.on::after{content:'';position:absolute;top:2px;left:50%;width:18px;height:3px;margin-left:-9px;border-radius:2px;background:var(--fill)}
+.rz.sl .rz-tab{position:relative}
+.rz.sl .rz-tab.rz-add::after{display:none}
+.rz.sl[data-view] .rz-main{margin-bottom:var(--navh,72px);padding-bottom:20px}
+/* avatar (Profil) — sarlavhaning o'ng tepasida */
+.rz .hd-av{display:grid;place-items:center;flex:none;width:44px;height:44px;padding:0;border:0;border-radius:50%;background:var(--accsoft);color:var(--accink);transition:transform var(--mo-fast) var(--mo-ease),background var(--mo-fast) var(--mo-ease)}
+.rz .hd-av .rz-i{width:22px;height:22px}.rz .hd-av:active{transform:scale(.92)}.rz .hd-av.on{background:var(--soft);color:var(--ink)}
+.rz .sl-hd2 .r{flex:none}
+/* doimiy «Maslahat» kartasi (jonli avatar) */
+.rz .sl-adv{display:flex;flex-direction:column;gap:8px;padding:14px 16px;margin:12px 0 0}
+.rz .adv-h{display:flex;align-items:flex-start;gap:12px;min-width:0}
+.rz .adv-av{position:relative;display:grid;place-items:center;flex:none;width:40px;height:40px;border-radius:14px;background:var(--accsoft);color:var(--accink)}.rz .adv-av .rz-i{width:22px;height:22px}
+.rz .adv-av i{position:absolute;right:-2px;top:-2px;width:10px;height:10px;border-radius:50%;background:var(--cink);border:2px solid var(--card);animation:advPulse 2.4s var(--mo-ease) 3}
+@keyframes advPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.55}}
+.rz .adv-m{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}.rz .adv-m b{font-size:var(--t-m);font-weight:600;line-height:1.3;overflow-wrap:anywhere}.rz .adv-s{font-size:var(--t-s);color:var(--mut);line-height:1.35;overflow-wrap:anywhere}
+.rz .sl-adv .msl-src{margin:0;font-size:var(--t-xs);color:var(--mut)}
+.rz .sl-adv-go{align-self:flex-start;display:inline-flex;align-items:center;gap:2px;min-height:36px;padding:4px 0;border:0;background:transparent;color:var(--accink);font:inherit;font-size:var(--t-s);font-weight:600}.rz .sl-adv-go .rz-i{width:16px;height:16px}
+.rz .sl-adv.sl-msl .msl-h{padding-right:34px}
+/* Maslahat bo'limi */
+.rz .adv-sec{margin-top:4px}.rz .adv-sec .sl-grp{margin:16px 0 6px}
+.rz .adv-mk{display:flex;flex-direction:column;gap:14px}
+.rz .adv-row{display:flex;flex-direction:column;gap:4px;min-width:0}
+.rz .adv-rh{display:flex;align-items:baseline;justify-content:space-between;gap:8px}.rz .adv-rh b{font-size:var(--t-m);font-weight:600}.rz .adv-st{font-size:var(--t-s);font-weight:600;color:var(--mut)}.rz .adv-row.mk-oshdi .adv-st{color:var(--acc)}.rz .adv-row.mk-joyida .adv-st{color:var(--cink)}
+.rz .adv-top{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px}.rz .adv-top li{display:flex;justify-content:space-between;gap:8px;font-size:var(--t-s);color:var(--ink)}.rz .adv-top li span{min-width:0;overflow-wrap:anywhere}.rz .adv-top li b{flex:none;font-weight:600;color:var(--mut)}
+.rz .adv-tip{margin:4px 0 0;font-size:var(--t-s);color:var(--mut);line-height:1.4}
+/* Yana bo'limi */
+.rz .sl-mhint{margin:2px 0 4px;color:var(--mut);font-size:var(--t-s)}
+.rz .sl-morec{padding:2px 14px}.rz .sl-more{min-height:60px}
+.rz a.sl-more{text-decoration:none;color:inherit}
+@media (prefers-reduced-motion:reduce){.rz .adv-av i{animation:none}.rz.sl .rz-tab,.rz .sl-av,.rz.sl .rz-tab.rz-add .pl{transition:none}}
+/* ➕ oynasi: 4 katta yo'l */
+.rz .ad-q{display:flex;flex-direction:column;gap:1px;margin:2px 2px 6px}.rz .ad-q b{font-size:var(--t-m);font-weight:600}.rz .ad-q small{font-size:var(--t-s);color:var(--mut)}
+.rz .ad-tiles{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin:12px 0 6px}
+.rz .ad-t{display:flex;flex-direction:row;align-items:center;gap:12px;min-height:68px;padding:10px 14px 10px 12px;border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--ink);font:inherit;text-align:left;min-width:0;transition:transform var(--mo-fast) var(--mo-ease),background var(--mo-fast) var(--mo-ease)}
+.rz .ad-t:active{transform:scale(.97)}.rz .ad-t[disabled]{opacity:.5}
+.rz .ad-t i{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--accsoft);color:var(--accink);flex:none}.rz .ad-t i .rz-i{width:22px;height:22px}
+.rz .ad-t .m{display:flex;flex-direction:column;gap:2px;min-width:0}.rz .ad-t b{font-size:var(--t-m);font-weight:600;line-height:1.2;overflow-wrap:anywhere}.rz .ad-t small{font-size:var(--t-s);color:var(--mut);line-height:1.3;overflow-wrap:anywhere}
+/* kunlar tasmasi: tanlov belgisi transform bilan suriladi (faqat transform/opacity); hafta sarlavhasi; rangli nuqtalar izohi; «Bugunga qaytish» */
+.rz .sl-week7{container-type:inline-size}
+.rz .sl-week7 .wd-pill{display:block;position:absolute;top:0;bottom:0;left:calc(100cqw / 14 - 22px);width:44px;height:auto;margin:0;border-radius:14px;background:var(--gr);transform:translateX(calc(var(--i,6) * 100cqw / 7));transition:transform var(--mo-base) var(--mo-ease),opacity var(--mo-fast) linear;pointer-events:none}
+.rz .sl-week7.nopill .wd-pill{opacity:0}
+.rz .sl-week7 .wd{transition:color var(--mo-fast) var(--mo-ease)}.rz .sl-week7 .wd:active{transform:scale(.94)}
+.rz .wk-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0;min-height:28px}
+.rz .wk-ar{display:grid;place-items:center;width:44px;height:28px;padding:0;border:0;border-radius:10px;background:transparent;color:var(--mut)}.rz .wk-ar .rz-i{width:18px;height:18px}.rz .wk-ar[disabled]{opacity:.28}.rz .wk-ar:active{transform:scale(.92)}
+.rz .wk-rng{font-size:var(--t-xs);font-weight:600;color:var(--mut);text-align:center;min-width:0}
+.rz .wk-back{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;min-height:36px;margin-top:6px;padding:0 12px;border:0;border-radius:22px;background:var(--accsoft);color:var(--accink);font:inherit;font-size:var(--t-s);font-weight:600;white-space:nowrap}.rz .wk-back .rz-i{width:16px;height:16px}.rz .wk-back:active{transform:scale(.96)}
+.rz .wk-leg{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:2px 0 10px;font-size:var(--t-xs);color:var(--mut)}.rz .wk-leg span{display:inline-flex;align-items:center;gap:5px}.rz .wk-leg i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--line)}.rz .wk-leg i.ok{background:var(--dg)}.rz .wk-leg i.lo{background:var(--db)}.rz .wk-leg i.hi{background:var(--da)}.rz .wk-leg .sl-txtbtn{margin-left:auto;min-height:32px;padding:0 4px}
+.rz .sl-hd2 .r{flex:none}
+/* o'tgan kun xulosasi */
+.rz .ds-card{display:flex;flex-direction:column;gap:8px;padding:14px 16px;margin:12px 0 0}.rz .ds-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 10px}.rz .ds-h>b{font-size:var(--t-m);font-weight:600}.rz .ds-k{font-size:var(--t-s);color:var(--mut)}.rz .ds-k b{color:var(--ink);font-weight:700}.rz .ds-k em{font-style:normal;font-weight:700}.rz .ds-k em.up{color:var(--acc)}.rz .ds-k em.dn{color:var(--mut)}
+.rz .ds-mk{display:flex;flex-wrap:wrap;gap:6px 14px}.rz .ds-m{display:inline-flex;align-items:center;gap:4px;font-size:var(--t-s);font-weight:600;color:var(--ink)}.rz .ds-m small{font-size:var(--t-xs);font-weight:600;color:var(--mut)}.rz .ds-m.mk-oshdi small{color:var(--acc)}
+.rz .ds-m .mk-st{display:inline-block;vertical-align:middle;line-height:1}.rz .ds-m .mk-ok{font-size:12px;color:var(--cink)}.rz .ds-m .mk-dn,.rz .ds-m .mk-up{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent}.rz .ds-m .mk-dn{border-top:6px solid var(--mut)}.rz .ds-m .mk-up{border-bottom:6px solid var(--acc)}
+.rz .ds-r{margin:0;font-size:var(--t-s);color:var(--mut);line-height:1.4;overflow-wrap:anywhere}.rz .ds-v{margin:0;font-size:var(--t-m);font-weight:600;line-height:1.35;overflow-wrap:anywhere}
+/* ===================== v93: harakat tizimi (yagona): 150–350 ms, bitta easing, faqat transform/opacity ===================== */
+.rz-main.enter>*{animation:rzIn var(--mo-base) var(--mo-ease) both}
+.rz .rz-main.rzi :is(.sl-adv,.ds-card,.adv-sec,.sl-feats,.wk-hd){animation:rzUp var(--mo-slow) var(--mo-ease) both;animation-delay:calc(var(--i,0) * 55ms + 420ms)}
+.rz :is(.rz-btn,.rz-chip,.rz-row,.sl-pl,.ml-add,.sl-main,.sl-cta,.sl-txtbtn,.ad-t,.sl-adv-go,.wk-back,.sl-vessel,.kq-b2){transition:transform var(--mo-fast) var(--mo-ease),background-color var(--mo-fast) var(--mo-ease),opacity var(--mo-fast) var(--mo-ease)}
+.rz :is(.rz-btn,.rz-chip,.rz-row,.sl-pl,.ml-add,.sl-main,.sl-cta,.ad-t,.sl-adv-go,.wk-back,.kq-b2):active{transform:scale(.97)}
+/* kun almashishi: ro'yxat va xulosa yumshoq almashadi */
+@keyframes dayIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.rz.sw :is(.sl-meals,.ds-card,.sl-adv,.sl-sec2k){animation:dayIn var(--mo-base) var(--mo-ease) both}
+/* maqsadga yetganda kichik bayram (halqa jonlanadi + 8 ta nuqta ko'tariladi) */
+@keyframes goalPop{0%{transform:scale(1)}35%{transform:scale(1.045)}100%{transform:scale(1)}}
+@keyframes gfUp{0%{opacity:0;transform:translate(0,12px) scale(.6)}25%{opacity:1}100%{opacity:0;transform:translate(var(--gx,0),-70px) scale(1)}}
+.rz .sl-big{position:relative}.rz .sl-big.gfx .kc-vw{animation:goalPop 700ms var(--mo-ease) 1}
+.rz .gf-conf{position:absolute;left:0;right:0;top:34%;height:0;pointer-events:none}.rz .gf-conf i{position:absolute;left:50%;top:0;width:8px;height:8px;border-radius:50%;background:var(--fill);opacity:0;animation:gfUp 1.2s var(--mo-ease) both}
+.rz .gf-conf i:nth-child(2){background:var(--c);--gx:-60px;animation-delay:.05s}.rz .gf-conf i:nth-child(3){background:var(--p);--gx:60px;animation-delay:.1s}.rz .gf-conf i:nth-child(4){--gx:-110px;animation-delay:.15s}.rz .gf-conf i:nth-child(5){background:var(--c);--gx:110px;animation-delay:.08s}.rz .gf-conf i:nth-child(6){background:var(--p);--gx:-30px;animation-delay:.2s}.rz .gf-conf i:nth-child(7){--gx:30px;animation-delay:.12s}.rz .gf-conf i:nth-child(8){background:var(--c);--gx:0px;animation-delay:.18s}
+@media (prefers-reduced-motion:reduce){.rz-main.enter>*,.rz.sw :is(.sl-meals,.ds-card,.sl-adv,.sl-sec2k),.rz .sl-big.gfx .kc-vw,.rz .gf-conf i{animation:none!important}.rz .sl-week7 .wd-pill{transition:none}}
+.rz .adv-row .mv{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:5px}.rz .adv-row .mv b{font-size:20px;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums}.rz .adv-row .mv small{font-size:var(--t-s);color:var(--mut);white-space:nowrap}
+.rz .adv-row .tr{position:relative;display:block;height:6px;margin:4px 0 2px;border-radius:3px;background:var(--track)}
+.rz .wk-back{order:3}

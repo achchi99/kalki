@@ -8,12 +8,12 @@
   var A = null, open = false, idx = 0, fin = null, last = null;
   var D = {
     uz: {
-      inT1: 'Nima yeganingizni ayting yoki suratga oling', inT2: "Qadamlar va suv o'zi hisoblanadi", inT2w: "Choy, sharbat va sho'rva ham suvga o'zi qo'shiladi", inT3: 'Har yakshanba: Haftangiz',
+      inT1: "Markazdagi «+»: yozing, ayting yoki suratga oling", inT2: "Qadamlar va suv o'zi hisoblanadi", inT2w: "Choy, sharbat va sho'rva ham suvga o'zi qo'shiladi", inT3: "Hamma imkoniyat «Yana»da, Profil — tepada o'ngda",
       inNext: 'Keyingi', inGo: 'Boshlash', inSkip: "O'tkazib yuborish", inOf: '{i}-ekran, {n} tadan',
       inM1: 'Osh · 1 kosa', inM1b: "Sho'rva · 1 kosa", inSay: "«bir kosa sho'rva va non»", inSt: 'qadam', inWt: 'Suv', inTea: '+ choy', inWk: 'Haftangiz', inWkA: "o'rtacha kkal/kun", inWkB: 'maqsadga yaqin kun'
     },
     ru: {
-      inT1: 'Скажите или сфотографируйте, что вы съели', inT2: 'Шаги и вода считаются сами', inT2w: 'Чай, сок и суп сами добавляются к воде', inT3: 'Каждое воскресенье — «Ваша неделя»',
+      inT1: 'Центральная «+»: напишите, скажите или сфотографируйте', inT2: 'Шаги и вода считаются сами', inT2w: 'Чай, сок и суп сами добавляются к воде', inT3: 'Все возможности — в «Ещё», Профиль — справа вверху',
       inNext: 'Дальше', inGo: 'Начать', inSkip: 'Пропустить', inOf: 'Экран {i} из {n}',
       inM1: 'Плов · 1 тарелка', inM1b: 'Суп · 1 тарелка', inSay: '«тарелка супа и хлеб»', inSt: 'шагов', inWt: 'Вода', inTea: '+ чай', inWk: 'Ваша неделя', inWkA: 'ккал/день в среднем', inWkB: 'дней близко к цели'
     }

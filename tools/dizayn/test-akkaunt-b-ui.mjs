@@ -38,7 +38,7 @@ async function open(app, { state, lang = '', mode = 'on', vp = { width: 390, hei
 }
 const T = async (p, sel) => { const l = p.locator(sel).first(); return (await l.count()) ? (await l.innerText()).replace(/\s+/g, ' ').trim() : null; };
 const lsJ = (p, key) => p.evaluate((k) => JSON.parse(localStorage.getItem(k) || 'null'), key);
-const goProfile = async (p, app) => { await p.click(`[data-act=tab][data-v=${APPS[app].tab}]`); await p.waitForTimeout(500); };
+const goProfile = async (p, app) => { const sel = `[data-act=tab][data-v=${APPS[app].tab}]`; if (await p.locator(sel).count()) { await p.click(sel); await p.waitForTimeout(500); } };          // v93: Kalkifit'da Profil — avatar; allaqachon Profilda bo'lsa tugma yo'q
 const resetLimits = () => DB().exec('DELETE FROM limit_hisob');
 const devKod = (email) => DB().prepare('SELECT kod FROM dev_kod WHERE email = ?').get(email).kod;
 async function sendMail(p, email) { await p.fill('#akkEmail', email); resetLimits(); await p.click('#akkSend'); await p.waitForSelector('#akkCode', { timeout: 8000 }); }

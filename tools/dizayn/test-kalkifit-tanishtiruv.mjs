@@ -25,7 +25,7 @@ try {
   let p = await open(); assert.ok(await vis(p, '#rzIntro .in-body'), 'tanishtiruv ochildi'); assert.equal(await vis(p, '#rzOnb .sl-ob-body'), false, 'profil savollari hali yo\'q');
   const H = [], A = [];
   for (let i = 0; i < 3; i++) { H.push(await txt(p, '#inH')); A.push(await p.locator('#rzIntro .in-art .in-a').count()); if (i === 0) assert.equal(await p.locator('#rzIntro .in-c').count(), 3, '1-ekran: ovoz · rasm · menyu'); assert.ok(await vis(p, '#rzIntro [data-act=inskip]'), 'har ekranda «O\'tkazib yuborish»'); assert.equal(await p.locator('#rzIntro .in-p').count(), 0, 'bitta jumla (qo\'shimcha matn yo\'q)'); if (i < 2) await p.click('#rzIntro [data-act=innext]'); }
-  assert.deepEqual(H, ['Nima yeganingizni ayting yoki suratga oling', "Choy, sharbat va sho'rva ham suvga o'zi qo'shiladi", 'Har yakshanba: Haftangiz']); assert.deepEqual(A, [1, 1, 1], 'har ekranda bitta katta rasm');
+  assert.deepEqual(H, ["Markazdagi «+»: yozing, ayting yoki suratga oling", "Choy, sharbat va sho'rva ham suvga o'zi qo'shiladi", "Hamma imkoniyat «Yana»da, Profil — tepada o'ngda"]); assert.deepEqual(A, [1, 1, 1], 'har ekranda bitta katta rasm');
   await p.click('#rzIntro [data-act=ingo]'); await p.waitForTimeout(400);
   assert.equal(await vis(p, '#rzIntro .in-body'), false); assert.ok(await vis(p, '#rzOnb .sl-ob-body'), 'keyin — profil savollari'); assert.equal(await p.evaluate(() => localStorage.getItem('kalki_intro_v2')), '1'); assert.deepEqual(p.errs, []);
   await p.reload({ waitUntil: 'networkidle' }); await p.waitForTimeout(500); assert.equal(await vis(p, '#rzIntro .in-body'), false, 'qayta ochilganda chiqmaydi'); assert.ok(await vis(p, '#rzOnb .sl-ob-body')); await p.context().close();
@@ -35,8 +35,8 @@ try {
   await p.click('#rzIntro [data-act=inskip]'); await p.waitForTimeout(400); assert.equal(await vis(p, '#rzIntro .in-body'), false); assert.ok(await vis(p, '#rzOnb .sl-ob-body')); await p.context().close();
   log('Android ilovada 2-ekran: «Qadamlar va suv o\'zi hisoblanadi» (qadam halqasi); «O\'tkazib yuborish» darhol profil savollariga');
   /* 3. RU va ЎЗ */
-  p = await open({ lang: 'ru' }); assert.equal(await txt(p, '#inH'), 'Скажите или сфотографируйте, что вы съели'); assert.equal(await txt(p, '#rzIntro [data-act=inskip]'), 'Пропустить'); await p.click('#rzIntro [data-act=innext]'); await p.click('#rzIntro [data-act=innext]'); assert.equal(await txt(p, '#inH'), 'Каждое воскресенье — «Ваша неделя»'); await p.context().close();
-  p = await open({ lang: 'cyr' }); assert.equal(await txt(p, '#inH'), 'Нима еганингизни айтинг ёки суратга олинг'); assert.equal(await txt(p, '#rzIntro [data-act=inskip]'), "Ўтказиб юбориш"); await p.context().close();
+  p = await open({ lang: 'ru' }); assert.equal(await txt(p, '#inH'), 'Центральная «+»: напишите, скажите или сфотографируйте'); assert.equal(await txt(p, '#rzIntro [data-act=inskip]'), 'Пропустить'); await p.click('#rzIntro [data-act=innext]'); await p.click('#rzIntro [data-act=innext]'); assert.equal(await txt(p, '#inH'), 'Все возможности — в «Ещё», Профиль — справа вверху'); await p.context().close();
+  p = await open({ lang: 'cyr' }); assert.equal(await txt(p, '#inH'), 'Марказдаги «+»: ёзинг, айтинг ёки суратга олинг'); assert.equal(await txt(p, '#rzIntro [data-act=inskip]'), "Ўтказиб юбориш"); await p.context().close();
   log('RU: «Скажите или сфотографируйте, что вы съели» … «Каждое воскресенье — «Ваша неделя»»; ЎЗ — translit');
   /* 4. til hali tanlanmagan — avval til ekrani */
   p = await open({ lang: null }); assert.ok(await vis(p, '.sl-lp [data-act=lppick]'), 'til ekrani birinchi'); assert.equal(await vis(p, '#rzIntro .in-body'), false); await p.click('.sl-lp [data-act=lppick][data-l=uz]'); await p.waitForTimeout(600); assert.ok(await vis(p, '#rzIntro .in-body'), 'til tanlangach — tanishtiruv'); await p.context().close();
