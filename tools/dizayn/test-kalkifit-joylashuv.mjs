@@ -66,7 +66,7 @@ try {
     await shot('bugun-past');
     /* Profil */
     await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(700); await scan('Profil', '#rzMain'); await shot('profil');
-    if (!(await p.locator('#qaRow [role=switch]').count())) fails.push(tag + ' Profil: «Qadamni avtomatik sanash» switch qatori yo\'q'); else { const q = await p.evaluate(() => { const b2 = document.querySelector('#qaRow .t').getBoundingClientRect(), sw = document.querySelector('#qaRow .sl-sw').getBoundingClientRect(); return b2.right <= sw.left + 0.5 && sw.width === 52; }); if (!q) fails.push(tag + ' Profil: qadam qatori matni switch ustiga chiqdi'); }
+    if (!(await p.locator('#qaRow [role=switch]').count())) fails.push(tag + ' Profil: «Qadamni avtomatik sanash» switch qatori yo\'q'); else { const q = await p.evaluate(() => { const b2 = document.querySelector('#qaRow .t').getBoundingClientRect(), sw = document.querySelector('#qaRow .sl-sw').getBoundingClientRect(); return (b2.right <= sw.left + 0.5 || b2.bottom <= sw.top + 0.5 || sw.bottom <= b2.top + 0.5) && sw.width === 52; });          /* v93: tor ekranda switch matn ostiga tushishi mumkin — 2 o'lchamda kesishmasin */ if (!q) fails.push(tag + ' Profil: qadam qatori matni switch ustiga chiqdi'); }
     const pb = await p.evaluate(() => { const m = document.getElementById('rzMain'); m.scrollTop = m.scrollHeight; const last = [...m.children].pop(), nav = document.querySelector('.rz-nav'); return { last: last.getBoundingClientRect().bottom, nav: nav.getBoundingClientRect().top }; });
     if (pb.last > pb.nav - 4) fails.push(tag + ' Profil: oxirgi element pastki menyu ostida qoldi');
     await shot('profil-past');

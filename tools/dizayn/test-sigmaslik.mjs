@@ -1,0 +1,56 @@
+// KalkiFit «sig'dirish» darvozasi (v93): matnlar ustma-ust tushmaydi, tugmalar matnni kesmaydi, gorizontal aylanish yo'q.
+// Brauzer: Chromium + WebKit (Safari; yo'q bo'lsa o'tkazib yuboriladi — `source ~/wk-env.sh`). Kenglik 320 (iPhone SE) · 375 · 390 · 430; til UZ + RU (+ЎЗ kichik kenglikda);
+// matn kattalashtirish ×1 va ×1,3 (tor kengliklarda); holatlar: bo'sh kun, to'la kun, makro «много», qadam 0 / 12 000, mashq 0 / 90 daqiqa;
+// ekranlar: Bugun, kun xulosasi, maslahat kartasi, makro oynasi, qo'shish oynasi, Tarix, Tahlil, Profil.   Tekshiruv: tools/dizayn/sigmaslik-yadro.mjs (::before/::after matni ham).
+//   node tools/dizayn/test-sigmaslik.mjs [--tez]     (--tez: faqat Chromium, 375/320, UZ+RU)      SKRINSHOT_DIR=<papka> — buzilganlarning rasmi
+import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path';
+import { server, brauzerlar, open, seed, CHECK, nat, T0, D } from './sigmaslik-yadro.mjs'; import { pool } from './parallel.mjs';
+const TEZ = process.argv.includes('--tez'), OUT = process.env.SKRINSHOT_DIR || '';
+const day = (n, rows) => rows.map(([fid, meal, kcal, p, f, c]) => [D.addDays(T0, -n), fid, meal, kcal, p, f, c]);
+const bugun = (rows) => rows.map(([fid, meal, kcal, p, f, c]) => [T0, fid, meal, kcal, p, f, c]);
+const FULL = bugun([['non', 'b', 500, 15, 2, 100], ['osh', 'l', 800, 25, 35, 110], ['somsa', 'd', 700, 20, 40, 60]]);
+const OVER = bugun([['somsa', 'b', 900, 20, 70, 90], ['osh', 'l', 1000, 25, 50, 140], ['kola', 'd', 700, 10, 40, 120]]);          // yog' va uglevod oshgan, oqsil kam
+let hist = []; for (let i = 1; i <= 6; i++) hist = hist.concat(day(i, [['osh', 'l', 900, 25, 35, 110], ['kola', 'l', 300, 0, 0, 75], ['somsa', 'd', 900, 25, 50, 80]]));
+const click = async (p, sel) => { await p.click(sel); await p.waitForTimeout(450); };
+const closeSh = async (p) => { await p.evaluate(() => { const x = document.querySelector('#rzSheet [data-act=sheetclose], #rzSheet .rz-x'); if (x) x.click(); }); await p.waitForTimeout(250); };
+/* senariy: {n, st, hour, w? (faqat shu kengliklar), act(p) -> scope, scope} */
+const SC = [
+  { n: 'bugun-bosh', st: () => seed({}), scope: '#rzMain' },
+  { n: 'bugun-to\'la', st: () => seed({ food: FULL, steps: 12000, ex: 90, water: 6 }), scope: '#rzMain' },
+  { n: 'bugun-makro-oshdi', st: () => seed({ food: OVER, steps: 0, ex: 0 }), scope: '#rzMain' },
+  { n: 'bugun-qadam0-mashq90', st: () => seed({ food: FULL, steps: 0, ex: 90 }), scope: '#rzMain' },
+  { n: 'bugun-qadam12000-mashq0', st: () => seed({ food: FULL, steps: 12000, ex: 0 }), scope: '#rzMain' },
+  { n: 'maslahat-kartasi', st: () => seed({ food: OVER }), hour: 15, scope: '#rzMain', need: '#mslCard' },
+  { n: 'kun-xulosasi', st: () => seed({ food: OVER }), hour: 22, scope: '#rzMain', need: '#kxCard' },
+  { n: 'makro-oynasi', st: () => seed({ food: OVER }), act: async (p) => { await click(p, '#bjuCard .mk-row[data-m=f]'); await p.waitForSelector('#mkTop'); return '#rzSheet'; } },
+  { n: 'qoshish-oynasi', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '#mainAdd'); await p.waitForTimeout(500); return '#rzSheet'; } },
+  { n: 'qoshish-natijalar', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '#mainAdd'); await p.fill('#fdQ', 'osh'); await p.waitForTimeout(700); return '#rzSheet'; } },
+  { n: 'qoshish-porsiya', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '#mainAdd'); await p.fill('#fdQ', 'osh'); await p.waitForTimeout(700); await click(p, '#rzSheet .sl-rw [data-act], #rzSheet .sl-rw'); await p.waitForTimeout(500); return '#rzSheet'; } },
+  { n: 'imkoniyatlar', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '#ftBtn'); await p.waitForTimeout(400); return '#rzSheet'; } },
+  { n: 'tarix', st: () => seed({ food: hist.concat(FULL) }), act: async (p) => { await click(p, '[data-act=tab][data-v=history]'); await p.waitForSelector('#tlCard'); return '#rzMain'; } },
+  { n: 'tahlil-oynasi', st: () => seed({ food: hist }), act: async (p) => { await click(p, '[data-act=tab][data-v=history]'); await click(p, '#tlCard'); await p.waitForSelector('.tl-main'); return '#rzSheet'; } },
+  { n: 'profil', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '[data-act=tab][data-v=profile]'); return '#rzMain'; } },
+];
+/* matritsa: WebKit (Safari) — 4 kenglik; Chromium (Android WebView) — tanlab. z = matn kattalashtirish (tor kengliklarda ×1,3) */
+const CFG = { webkit: [[320, ['uz', 'ru', 'cyr'], [1, 1.3]], [375, ['uz', 'ru', 'cyr'], [1, 1.3]], [390, ['uz', 'ru'], [1]], [430, ['uz', 'ru'], [1]]], chromium: [[320, ['uz', 'ru', 'cyr'], [1]], [320, ['ru'], [1.3]], [390, ['ru'], [1]], [430, ['uz'], [1]]] };
+const CFG_TEZ = { chromium: [[320, ['uz', 'ru'], [1, 1.3]], [375, ['uz', 'ru'], [1, 1.3]]] };
+const jobs = []; for (const eng of TEZ ? ['chromium'] : ['chromium', 'webkit']) for (const sc of SC) for (const [w, langs, zs] of (TEZ ? CFG_TEZ : CFG)[eng]) for (const lang of langs) for (const z of zs) jobs.push({ eng, sc, w, lang, z });
+const { srv, BASE } = await server(); const B = await brauzerlar(); if (!B.webkit && !TEZ) console.log('OGOHLANTIRISH: WebKit ishga tushmadi — faqat Chromium (' + (B.wkXato || '') + ')');
+/* 0. kalibrlash: tekshiruv o'zi buzilgan maketni TOPA OLISHI shart (v92 xatosi: ::after matni «Жиры · выше нормы» qo'shni ustunga chiqqan, eski tekshiruv ko'rmagan) */
+{ const p = await open(B.chromium, BASE, { w: 320, lang: 'ru', st: seed({}), reduced: true, settle: 200 });
+  const r = await p.evaluate((chk) => { document.getElementById('rzMain').insertAdjacentHTML('afterbegin', '<style>.xb-r{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;font-size:13px}.xb-r span{white-space:nowrap}.xb-r span::after{content:" · " attr(data-st)}</style><div id="xb" class="xb-r"><span data-st="мало">Белки</span><span data-st="выше нормы">Жиры</span><span data-st="мало">Углеводы</span></div><div id="xb2" style="position:relative;height:40px"><button style="position:absolute;left:0;top:0;width:120px;height:30px">Введите шаги</button><b style="position:absolute;left:20px;top:8px">0 / 8 000</b></div>');
+    return (0, eval)('(' + chk + ')')('#xb'); }, CHECK.toString()); const r2 = await p.evaluate((chk) => (0, eval)('(' + chk + ')')('#xb2'), CHECK.toString());
+  assert.ok(r.bad.length + r.clip.length + r.esc.length > 0, "kalibrlash: ::after matnining qo'shni ustunga chiqishi topilmadi — tekshiruv ko'r"); assert.ok(r2.bad.length > 0, "kalibrlash: ustma-ust tushgan tugma + matn topilmadi"); await p.context().close(); }
+const fails = []; let n = 0;
+await pool(jobs.filter((j) => B[j.eng]), 4, async (j) => {
+  let p; try {
+    p = await open(B[j.eng], BASE, { w: j.w, lang: j.lang, st: j.sc.st(), hour: j.sc.hour, zoom: j.z, reduced: true, settle: 300, scheme: j.w % 2 ? 'light' : 'dark' }); let scope = j.sc.scope;
+    if (j.sc.act) scope = await j.sc.act(p); if (j.sc.need) { await p.waitForTimeout(900); if (!(await p.locator(j.sc.need).count())) { fails.push([j.eng, j.sc.n, j.w, j.lang, 'z' + j.z, 'kutilgan karta yo\'q: ' + j.sc.need].join(' ')); return; } }
+    const r = await p.evaluate(CHECK, scope); n++; const t = r.err || nat(r);
+    if (t) { fails.push([j.eng, j.sc.n, j.w, j.lang, 'z' + j.z, t.slice(0, 260)].join(' ')); if (OUT) { fs.mkdirSync(OUT, { recursive: true }); await p.screenshot({ path: path.join(OUT, ['xato', j.eng, j.sc.n, j.w, j.lang, 'z' + j.z].join('-').replace(/[^\w.-]/g, '_') + '.png'), fullPage: false }); } }
+    if (p.errs.length) fails.push([j.eng, j.sc.n, j.w, j.lang, 'JS xato: ' + p.errs[0].slice(0, 120)].join(' '));
+  } catch (e) { fails.push([j.eng, j.sc.n, j.w, j.lang, 'z' + j.z, 'ISTISNO ' + String(e.message).split('\n')[0].slice(0, 160)].join(' ')); } finally { if (p) await p.context().close().catch(() => {}); }
+});
+await B.chromium.close(); if (B.webkit) await B.webkit.close(); srv.close();
+if (fails.length) { console.log(fails.sort().join('\n')); assert.fail(fails.length + ' ta sig\'maslik / ustma-ust tushish (' + n + ' tekshirildi)'); }
+console.log('OK   sig\'dirish: ' + n + ' kombinatsiya (' + (TEZ ? 'Chromium' : 'Chromium + ' + (B.webkit ? 'WebKit' : 'WebKit YO\'Q')) + ') — kesishish, chiqish, kesilish, gorizontal aylanish yo\'q');

@@ -75,7 +75,7 @@ try {
   /* 7b. Profil 360 px, katta shrift (textZoom ~115%): switch qatori — matn switch bilan kesishmaydi */
   p = await mk({ plugin: { available: true, granted: true, grant: true, enabled: true, today: 3000, yday: 0 }, st: Object.assign(seed(), { prefs: Object.assign(seed().prefs, { qa: 'on' }) }), w: 360, h: 760 }); await p.evaluate(() => document.documentElement.classList.add('fs-big'));
   await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(500);
-  const gq = await p.evaluate(() => { const r = (q) => document.querySelector(q).getBoundingClientRect(), t = r('#qaRow .t b'), sm = r('#qaRow .t small'), sw = r('#qaRow .sl-sw'), row = r('#qaRow'); return { w: Math.round(sw.width), ov: t.right > sw.left + 0.5 || sm.right > sw.left + 0.5, inRow: sw.right <= row.right + 0.5 && sw.top >= row.top - 0.5 && sw.bottom <= row.bottom + 0.5 }; });
+  const gq = await p.evaluate(() => { const r = (q) => document.querySelector(q).getBoundingClientRect(), t = r('#qaRow .t b'), sm = r('#qaRow .t small'), sw = r('#qaRow .sl-sw'), row = r('#qaRow'); return { w: Math.round(sw.width), ov: [t, sm].some((a) => a.right > sw.left + 0.5 && a.left < sw.right - 0.5 && a.bottom > sw.top + 0.5 && a.top < sw.bottom - 0.5), inRow: sw.right <= row.right + 0.5 && sw.top >= row.top - 0.5 && sw.bottom <= row.bottom + 0.5 }; });
   assert.equal(gq.w, 52, 'switch 52 px'); assert.ok(!gq.ov, 'matn switch ustiga chiqmaydi'); assert.ok(gq.inRow, 'switch qator ichida'); assert.deepEqual(p.errs, []); await p.context().close();
   log('Profil 360 px + katta shrift: «Qadamni avtomatik sanash» qatori — matn switch bilan kesishmaydi');
   /* 8. RU va ЎЗ matnlari, 360 px katta shrift: kartaga sig'adi */

@@ -67,7 +67,7 @@ const txt = async (p, s) => (await p.locator(s).first().innerText()).replace(/\s
 try {
   /* 5. makro paneli + oynasi */
   { const st = seed({ food: [[T0, 'somsa', 'l', 600, 20, 40, 60], [T0, 'non', 'b', 500, 15, 2, 100], [T0, 'qazi', 'l', 300, 10, 28, 0]] }); const pl = S.plan(st.profile).macros;
-    const p = await open({ st }); const rows = await p.locator('#bjuCard .mk-row').evaluateAll((e) => e.map((x) => [x.getAttribute('data-m'), x.className.match(/mk-(kam|joyida|oshdi)/)[1], x.querySelector('.mh').getAttribute('data-st')]));
+    const p = await open({ st }); const rows = await p.locator('#bjuCard .mk-row').evaluateAll((e) => e.map((x) => [x.getAttribute('data-m'), x.className.match(/mk-(kam|joyida|oshdi)/)[1], x.getAttribute('aria-label')]));
     assert.deepEqual(rows.map((r) => r[0]), ['p', 'f', 'c']); const exp = (v, g) => v / g > 1.15 ? 'oshdi' : v / g >= 0.85 ? 'joyida' : 'kam'; assert.deepEqual(rows.map((r) => r[1]), [exp(45, pl.p), exp(70, pl.f), exp(160, pl.c)]);
     const fOver = await p.locator('#bjuCard .mk-row[data-m=f]').evaluate((e) => [getComputedStyle(e.querySelector('.mk-f')).backgroundColor, parseFloat(e.querySelector('.mk-g').style.left)]); assert.ok(fOver[1] < 100, 'maqsad belgisi chiziq ichida');
     await p.click('#bjuCard .mk-row[data-m=f]'); await p.waitForSelector('#mkTop'); const top = await p.locator('#mkTop .rz-row').allInnerTexts(); assert.equal(top.length, 3); assert.match(top[0], /^1\. Somsa[\s\S]*40 g$/); assert.match(top[1], /^2\. Qazi[\s\S]*28 g$/); assert.match(await txt(p, '#mkTip'), /yog'sizroq/);
