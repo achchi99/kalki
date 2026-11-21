@@ -2195,8 +2195,8 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .ds-m .mk-st{display:inline-block;vertical-align:middle;line-height:1}.rz .ds-m .mk-ok{font-size:12px;color:var(--cink)}.rz .ds-m .mk-dn,.rz .ds-m .mk-up{width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent}.rz .ds-m .mk-dn{border-top:6px solid var(--mut)}.rz .ds-m .mk-up{border-bottom:6px solid var(--acc)}
 .rz .ds-r{margin:0;font-size:var(--t-s);color:var(--mut);line-height:1.4;overflow-wrap:anywhere}.rz .ds-v{margin:0;font-size:var(--t-m);font-weight:600;line-height:1.35;overflow-wrap:anywhere}
 /* ===================== v93: harakat tizimi (yagona): 150–350 ms, bitta easing, faqat transform/opacity ===================== */
-.rz-main.enter>*{animation:rzIn var(--mo-base) var(--mo-ease) both}
-.rz .rz-main.rzi :is(.sl-adv,.ds-card,.adv-sec,.sl-feats,.wk-hd){animation:rzUp var(--mo-slow) var(--mo-ease) both;animation-delay:calc(var(--i,0) * 55ms + 420ms)}
+.rz-main.enter>*{animation:rzIn var(--mo-base) var(--mo-ease) backwards}
+.rz .rz-main.rzi :is(.sl-adv,.ds-card,.adv-sec,.sl-feats,.wk-hd){animation:rzUp var(--mo-slow) var(--mo-ease) backwards;animation-delay:calc(var(--i,0) * 55ms + 420ms)}
 .rz :is(.rz-btn,.rz-chip,.rz-row,.sl-pl,.ml-add,.sl-main,.sl-cta,.sl-txtbtn,.ad-t,.sl-adv-go,.wk-back,.sl-vessel,.kq-b2){transition:transform var(--mo-fast) var(--mo-ease),background-color var(--mo-fast) var(--mo-ease),opacity var(--mo-fast) var(--mo-ease)}
 .rz :is(.rz-btn,.rz-chip,.rz-row,.sl-pl,.ml-add,.sl-main,.sl-cta,.ad-t,.sl-adv-go,.wk-back,.kq-b2):active{transform:scale(.97)}
 /* kun almashishi: ro'yxat va xulosa yumshoq almashadi */
@@ -2212,3 +2212,17 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .adv-row .mv{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:5px}.rz .adv-row .mv b{font-size:20px;font-weight:700;line-height:1.15;font-variant-numeric:tabular-nums}.rz .adv-row .mv small{font-size:var(--t-s);color:var(--mut);white-space:nowrap}
 .rz .adv-row .tr{position:relative;display:block;height:6px;margin:4px 0 2px;border-radius:3px;background:var(--track)}
 .rz .wk-back{order:3}
+
+/* ===================== v96: kun almashganda layout SILJIMAYDI; sarlavha tiniq; animatsiya qatlami ===================== */
+.rz .wk-hd{min-height:36px}.rz .wk-mid{flex:1;display:flex;justify-content:center;align-items:center;min-width:0}
+.rz .wk-back{align-self:center;margin:0;min-height:32px;padding:0 12px}
+.rz .cs{display:block}
+.rz .mk-row .mk-f{transition:transform 450ms var(--mo-ease),opacity .3s ease}
+.rz .fx-ghost{will-change:transform,opacity}.rz .fx-ghost .r{visibility:hidden}
+/* birinchi ekranda Maslahat / kun xulosasi kartasi ko'rinsin: tasma va halqa ixchamroq (bo'shliqlar kamaydi; shrift va elementlar o'sha-o'sha) */
+.rz.sl[data-view=today] .wk-hd{margin-top:-10px;margin-bottom:-12px}
+.rz.sl[data-view=today] .sl-week7{margin:0}
+.rz.sl[data-view=today] .sl-big{padding-top:10px}
+.rz.sl[data-view=today] .sl-big #kChips{margin-bottom:-10px}
+@media (max-height:830px){.rz.sl[data-view=today] .sl-week7 .wd{min-height:0;padding:3px 0 4px}.rz.sl[data-view=today] .sl-big{gap:6px;padding-bottom:12px}.rz.sl[data-view=today] .wk-hd{min-height:32px;margin-top:-12px;margin-bottom:-18px}.rz.sl[data-view=today] .sl-hd2 .d{margin-top:-2px}}
+.rz .sl-bju.bj3 .mk-row .tr .mk-f,.rz .sl-bju .mk-row .tr .mk-f{transition:transform 450ms var(--mo-ease),background-color .3s ease}          /* eski «width» transition'i transform'ni to'sib qo'ygan edi */

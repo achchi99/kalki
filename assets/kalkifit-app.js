@@ -815,7 +815,7 @@
     var wd = lang === 'ru' ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'] : ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'], end = Dt.addDays(t, -7 * wkOff), sel = selDay || t, si = -1, cells = '';
     for (var i = 6; i >= 0; i--) { var d = Dt.addDays(end, -i), r = S.dayStatus(st, d, t), cls = { near: 'ok', low: 'lo', high: 'hi', part: 'pt', none: '', pre: '' }[r.state] || '', on = d === sel; if (on) si = 6 - i;
       cells += '<button type="button" class="wd' + (on ? ' on' : '') + '" data-act="wkday" data-d="' + d + '"' + (d === t ? ' aria-current="date"' : '') + ' aria-pressed="' + on + '" aria-label="' + esc(kit.dLabel(d)) + '"><span class="w">' + wd[S.weekdayIdx(d)] + '</span><b>' + Dt.parse(d).d + '</b><i class="' + cls + '"></i></button>'; }
-    var h = '<div class="wk-hd"><button type="button" class="wk-ar" data-act="wkprev" aria-label="' + esc(T('wkPrev')) + '">' + ico('back') + '</button><span class="wk-rng" id="wkRng">' + esc(wkOff ? wkRange(t) : T('wkThis')) + '</span><button type="button" class="wk-ar" data-act="wknext" aria-label="' + esc(T('wkNext')) + '"' + (wkOff ? '' : ' disabled') + '>' + ico('chev') + '</button></div>';
+    var h = '<div class="wk-hd"><button type="button" class="wk-ar" data-act="wkprev" aria-label="' + esc(T('wkPrev')) + '">' + ico('back') + '</button><span class="wk-mid" id="wkRng">' + (selDay || wkOff > 0 ? '<button type="button" class="wk-back" data-act="wktoday">' + ico('undo') + '<span>' + esc(T('wkBack')) + '</span></button>' : '<span class="wk-rng">' + esc(T('wkThis')) + '</span>') + '</span><button type="button" class="wk-ar" data-act="wknext" aria-label="' + esc(T('wkNext')) + '"' + (wkOff ? '' : ' disabled') + '>' + ico('chev') + '</button></div>';
     h += '<div class="sl-week7' + (si < 0 ? ' nopill' : '') + '" id="wkStrip" role="group" aria-label="' + esc(T('wkTap')) + '" style="--i:' + Math.max(0, si) + '"><i class="wd-pill" aria-hidden="true"></i>' + cells + '</div>';
     if (!prefs().wkLeg) h += '<p class="wk-leg" role="note"><span><i class="ok"></i>' + esc(T('wkLok')) + '</span><span><i class="lo"></i>' + esc(T('wkLlo')) + '</span><span><i class="hi"></i>' + esc(T('wkLhi')) + '</span><span><i></i>' + esc(T('wkLno')) + '</span><button type="button" class="sl-txtbtn" data-act="wklegx">' + esc(T('wkLok2')) + '</button></p>';
     return h;
@@ -1644,22 +1644,22 @@
     var prev = heroPrev, n = over ? -bal.remaining : bal.remaining, ty = tyOf(over ? 1 : ratio), now0 = performance.now(), swK = n + '|' + ty;
     if (swK !== swayKey) { swayKey = swK; swayT0 = now0; }          // v57: raqam/daraja o'zgardi — to'lqin yangidan jonlanadi
     var swEl = (now0 - swayT0) / 1000, cont = !!(heroAnim && !reduce && now0 - heroAnim.t0 < heroAnim.dur && heroAnim.to === n && heroAnim.ty === ty);
-    var fromTy = cont ? heroAnim.fromTy : (prev ? prev.ty : 196), fromR = cont ? heroAnim.fromR : (prev ? prev.r : 0), upd = cont ? heroAnim.upd : (!!prev && prev.ty !== ty), el0 = cont ? (now0 - heroAnim.t0) / 1000 : 0, startN = prev ? prev.n : 0, curN = startN, durN = prev ? (prev.n !== n ? 1200 : 0) : 900;
+    var fromTy = cont ? heroAnim.fromTy : (prev ? prev.ty : 196), fromR = cont ? heroAnim.fromR : (prev ? prev.r : 0), upd = cont ? heroAnim.upd : (!!prev && prev.ty !== ty), el0 = cont ? (now0 - heroAnim.t0) / 1000 : 0, startN = prev ? prev.n : 0, curN = startN, durN = prev ? (prev.n !== n ? 650 : 0) : 900;
     if (cont) { var kk = Math.min(1, (now0 - heroAnim.t0) / heroAnim.dur); curN = Math.round(heroAnim.from + (heroAnim.to - heroAnim.from) * (1 - Math.pow(1 - kk, 3))); durN = heroAnim.dur - (now0 - heroAnim.t0); startN = heroAnim.from; }
     var pct = Math.round(ratio * 100), wd = (WDN[lang === 'ru' ? 'ru' : 'uz'] || WDN.uz)[S.weekdayIdx(t)], sk = S.streak(st, t);
     fcVis = isPast ? false : fcShow(t);          // v75: birinchi ovqat kartasi ko'rinadimi (halqa ixchamlashadi, hafta chizig'i yashirinadi — karta ekranda to'liq ko'rinsin)
     var h = !isPast && inst.isTop() ? inst.cardHtml() : '';
-    h += '<div class="sl-hd2"><div class="t"><h2 class="rz-h sl-h1" id="todayHd">' + esc(isPast ? kit.dLabel(t) : T('navToday')) + '</h2><span class="d">' + esc(isPast ? wd : wd + ', ' + kit.dLabel(t)) + '</span>' + (isPast || wkOff > 0 ? '<button type="button" class="wk-back" data-act="wktoday">' + ico('undo') + '<span>' + esc(T('wkBack')) + '</span></button>' : '') + '</div><div class="r">' + avHtml(false) + '</div></div>';          // v69: Bugun sarlavhasida til tugmasi yo'q (joy tor; til — Tarix/Profil sarlavhasi va Profil → Sozlamalar)          // har ekranda sarlavha bir joyda (rz-h)
+    h += '<div class="sl-hd2"><div class="t"><h2 class="rz-h sl-h1" id="todayHd">' + esc(isPast ? kit.dLabel(t) : T('navToday')) + '</h2><span class="d">' + esc(isPast ? wd : wd + ', ' + kit.dLabel(t)) + '</span></div><div class="r">' + avHtml(false) + '</div></div>';          // v69: Bugun sarlavhasida til tugmasi yo'q (joy tor; til — Tarix/Profil sarlavhasi va Profil → Sozlamalar)          // har ekranda sarlavha bir joyda (rz-h)
     h += isPast ? '' : bkBannerHtml();
     h += fcVis ? '' : weekStripHtml(t0);
     h += '<section class="sl-big' + (over ? ' ovr' : '') + (fcVis ? ' fc-on' : '') + '"><div class="kc-vw"><button type="button" class="sl-vessel" id="kcalBtn" data-act="xkcal" aria-label="' + esc(!x.food.length ? T('vAriaE', { k: fmt(n) }) : (over ? T('vAriaO', { k: fmt(n) }) : T('vAria', { p: pct, k: fmt(n) }))) + '">' + vesselSvg({ ratio: ratio, fromR: fromR, ty: ty, fromTy: fromTy, upd: upd, begin: el0, swEl: swEl, n: n, a: !x.food.length ? T('rgGoal') : (over ? T('rgOverA') : T('rgRest')), b: fmt(curN), c: over ? [T('rgOverC')] : [T('kcal')] }) + '</button></div><button type="button" class="kc-i" id="kcalI" data-act="xkcal" aria-label="' + esc(T('kcInfoA')) + '"><span aria-hidden="true">i</span></button>' + (over ? '<p class="sl-over rz-sr" id="kOver">' + esc(T('cOver', { x: fmt(n) })) + '</p>' : '') +
       kcChipsHtml(tot.kcal, t) + taxChipHtml() + bjuHtml(tot, pl) + '</section>';
-    if (!isPast) mslEval(t); h += fcVis ? fcHtml() : (isPast ? daySumHtml(t, x, tot, pl, info) : advCardHtml(t));          // v93: halqadan keyin DOIM «Maslahat» kartasi; v75: birinchi ovqat kartasi (halqa ostida); ko'rinib tursa kontekst chiplar/karta o'rniga ALMASHADI          // v70: halqa + BJU — bitta ixcham blok          // v68: halqa ostida «kiritilgan ovqatlar bo'yicha»; «Keyinroq» — «Vaqtinchalik hisob»
+    if (!isPast) mslEval(t); h += fcVis ? fcHtml() : ('<div class="cs" id="cardSlot">' + (isPast ? daySumHtml(t, x, tot, pl, info) : advCardHtml(t)) + '</div>');          // v93: halqadan keyin DOIM «Maslahat» kartasi; v75: birinchi ovqat kartasi (halqa ostida); ko'rinib tursa kontekst chiplar/karta o'rniga ALMASHADI          // v70: halqa + BJU — bitta ixcham blok          // v68: halqa ostida «kiritilgan ovqatlar bo'yicha»; «Keyinroq» — «Vaqtinchalik hisob»
     var stp = S.stepsStats(st, x.steps), rs = routeShort(stp.km), wiInfo = S.weightInfo(st, t);
     qaDetect(); var dpT = S.dayPlan(st, t);          // v68 TARTIB (birinchi kun ishonchi): halqa → BJU → bugungi ovqatlar → qadam/mashg'ulot (ma'lumot yo'q — ixcham bitta qator) → qolganlar (bitta karta, suv)
     // v70: BJU halqa kartasi ichida (yuqorida)          // v50: 3 ustunli BJU (oqsil birinchi, ko'k) + pastda bitta qator oqsil maslahati — suv/qadamdan keyin, ovqatlar ro'yxatidan oldin
     h += '<div class="sl-sec2 sl-sec2k"><h3>' + esc(isPast ? T('dsMeals') : T('tdMeals')) + '</h3><span class="sl-secv" id="mealTot"><b>' + fmt(tot.kcal) + '</b> / ' + fmt(dpT.limit) + ' ' + esc(T('kcal')) + '</span></div>' + (x.food.length || fcVis ? '' : '<div class="rz-empty sl-tdempty"><p>' + esc(isPast ? T('dsEmpty') : T('tdEmpty')) + '</p></div>') + mealsHtml(t) + (isPast ? '' : dayEndHtml(t, x));
-    if (isPast) { setMain(h); root.classList.toggle('fc-card', false); animNum(curN, n, durN); heroPrev = { n: n, ty: ty, r: ratio }; return; }          // o'tgan kun: qadam/mashq/suv kartalari va bugungi kartalar yo'q (xulosada)
+    if (isPast) { setMain(h); root.classList.toggle('fc-card', false); animNum(curN, n, durN); mkAnim(); heroFx(prev, { n: n, ty: ty, r: ratio }); heroPrev = { n: n, ty: ty, r: ratio }; dayPost(); return; }          // o'tgan kun: qadam/mashq/suv kartalari va bugungi kartalar yo'q (xulosada)
     h += (stepCard() ? qaLostCardHtml() : '') + '<div class="sl-duo sl-act">' + (stepCard() ? stepCardHtml(x) : stepWebHtml(x, dpT)) + exCardHtml(x, dpT) + '</div>';          // v72: bo'sh holatda ham to'liq kartalar (0 dan mini halqa, och fon, «Qadamni kiriting» / «Mashg'ulot qo'shish»)
     h += fcVis ? '' : kxCardHtml(t);          // «Kun yakuni» kartasi (bo'lsa) — slot kartasidan oldin
     h += fcVis ? '' : slotHtml(t, x);          // halqa ostida BITTA karta (yangilanish / birinchi hafta maslahati / eslatma) — bo'lmasa hech narsa
@@ -1667,7 +1667,7 @@
       '</div>';          // v55: suv — alohida ixcham qator (qadam va mashg'ulot yuqorida, ikki kichik karta)
 
     setMain(h); root.classList.toggle('fc-card', !!fcVis); fcAfter(t, x, n); markSeen(); fishSwim(t); lpTipOnce(x); jokeShow(); inlineChipMount(); setTimeout(function () { chipTry(0); }, 1800);
-    goalFx(x, tot, limit); animNum(curN, n, durN); statsAnim(tot.kcal, limit, !prev); mkAnim(); mslFx(); kxFx(); kxAuto(); if (!cont) heroAnim = (!reduce && durN > 0) || (!reduce && fromTy !== ty) ? { t0: now0, dur: prev ? 1200 : 900, from: startN, to: n, fromTy: fromTy, fromR: fromR, ty: ty, upd: upd } : null; heroPrev = { n: n, ty: ty, r: ratio };
+    goalFx(x, tot, limit); animNum(curN, n, durN); heroFx(prev, { n: n, ty: ty, r: ratio }); dayPost(); statsAnim(tot.kcal, limit, !prev); mkAnim(); mslFx(); kxFx(); kxAuto(); if (!cont) heroAnim = (!reduce && durN > 0) || (!reduce && fromTy !== ty) ? { t0: now0, dur: prev ? 650 : 900, from: startN, to: n, fromTy: fromTy, fromR: fromR, ty: ty, upd: upd } : null; heroPrev = { n: n, ty: ty, r: ratio };
     if (G && !jokeBoot) { jokeBoot = true; loadHazil(); loadMasofa(); if (appDays() >= 3) loadPush(function () { pushSync(); if ((view === 'today' || view === 'profile') && !kit.sheetKind()) render(); }); loadDb(function () { if (view === 'today' && !kit.sheetKind()) render(); }); }
   }
 
@@ -1796,6 +1796,26 @@
   function secHead(k) { return '<div class="sl-sec2"><h3>' + esc(T(k)) + '</h3></div>'; }
   function cloudOn() { try { var o = JSON.parse(localStorage.getItem('kalki_zaxira_kalkifit') || 'null'); return !!(o && o.on); } catch (e) { return false; } }          // v68: bulut zaxirasi yoqilganmi (maxfiylik matni uchun)
   /* ================= v93: «Maslahat» doimiy kartasi, Maslahat va Yana bo'limlari ================= */
+  /* ================= v96: kun almashish va ovqat qo'shish — YAGONA animatsiya qatlami (Web Animations; transform/opacity/stroke-dasharray; reduced-motion'da o'chadi) ================= */
+  var FX = { dur: 450, ease: 'cubic-bezier(.22,1,.36,1)' }, fxPre = null;
+  function canFx() { return !reduce && typeof Element !== 'undefined' && !!Element.prototype.animate; }
+  function tweenNum(el, from, to, dur) { if (!el) return; var t0 = performance.now(); (function tick(t) { var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = fmt(Math.round(from + (to - from) * e)); if (k < 1) requestAnimationFrame(tick); })(t0); }
+  function ghostGone(g) { if (g && g.parentNode) g.parentNode.removeChild(g); }
+  function dayPre() {          // render'dan OLDIN: eski sarlavha (ghost), kartalar o'rni balandligi, tasma belgisi
+    var wk = $('#wkStrip'), cs = $('#cardSlot'); fxPre = { cs: cs ? cs.offsetHeight : null, pill: wk ? +wk.style.getPropertyValue('--i') || 0 : null };
+    var hd = $('.sl-hd2'); if (canFx() && hd) { var r = hd.getBoundingClientRect(), g = hd.cloneNode(true); [].forEach.call(g.querySelectorAll('[id]'), function (e) { e.removeAttribute('id'); }); g.className += ' fx-ghost'; g.setAttribute('aria-hidden', 'true'); g.style.cssText = 'position:fixed;left:' + r.left + 'px;top:' + r.top + 'px;width:' + r.width + 'px;margin:0;pointer-events:none;z-index:30'; root.appendChild(g); var a = g.animate([{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(-8px)' }], { duration: 200, easing: 'ease-out', fill: 'forwards' }); a.onfinish = function () { ghostGone(g); }; setTimeout(function () { ghostGone(g); }, 400); }
+  }
+  function dayPost() {          // render'dan KEYIN: yangi sarlavha kirib keladi, tanlov belgisi suriladi, karta joyi balandligi silliq o'zgaradi
+    var pre = fxPre; fxPre = null; if (!pre || !canFx()) return; var E = FX.ease;
+    var t = $('.sl-hd2 .t'); if (t) t.animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 220, easing: E });
+    var wk = $('#wkStrip'); if (pre.pill != null && wk && !wk.classList.contains('nopill')) { var pl = wk.querySelector('.wd-pill'), w = wk.clientWidth / 7, cur = +wk.style.getPropertyValue('--i') || 0; if (pl && cur !== pre.pill) pl.animate([{ transform: 'translateX(' + pre.pill * w + 'px)' }, { transform: 'translateX(' + cur * w + 'px)' }], { duration: 250, easing: E }); }
+    var cs = $('#cardSlot'); if (cs) { var h1 = cs.offsetHeight; if (pre.cs != null && Math.abs(h1 - pre.cs) > 1) { cs.style.overflow = 'hidden'; var a = cs.animate([{ height: pre.cs + 'px' }, { height: h1 + 'px' }], { duration: 260, easing: E }); a.onfinish = a.oncancel = function () { cs.style.overflow = ''; }; } if (cs.firstElementChild) cs.firstElementChild.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 240, easing: 'ease-out' }); }
+  }
+  function heroFx(prev, cur) {          // halqa yoyi, to'lqin sathi: eski qiymatdan yangisiga (≈450 ms, ease-out); raqam — animNum
+    if (!canFx() || !prev) return; var D = FX.dur, E = FX.ease, L = 2 * Math.PI * 105;
+    var arc = $('.sl-big .kv-arc'); if (arc && Math.abs(prev.r - cur.r) > 0.002) { arc.getAnimations().forEach(function (a) { a.cancel(); }); arc.animate([{ strokeDasharray: (L * prev.r).toFixed(1) + ' 700' }, { strokeDasharray: (L * cur.r).toFixed(1) + ' 700' }], { duration: D, easing: E }); }
+    if (Math.abs(prev.ty - cur.ty) > 0.2) $$('.sl-big .kv-lv').forEach(function (g, i) { var o = i === 0 ? 7 : 0; g.getAnimations().forEach(function (a) { a.cancel(); }); g.animate([{ translate: '0 ' + (prev.ty - o) + 'px' }, { translate: '0 ' + (cur.ty - o) + 'px' }], { duration: D + 100, easing: E }); });
+  }
   var gfN = null;          // oxirgi chizilgan bugungi ovqat soni (maqsadga yetganda kichik bayram)
   function goalFx(x, tot, limit) {
     var n = (x.food || []).length, was = gfN; gfN = n; if (reduce || was == null || n <= was || !(limit > 0)) return; var r = tot.kcal / limit, p = prefs(), t = todayStr(); if (r < 0.9 || r > 1.1 || p.gf === t) return; p.gf = t; save();
@@ -2590,13 +2610,14 @@
     }).join('');
     return '<div class="sl-bju bj3 mk3" id="bjuCard">' + rows + '<span class="bj-tip" id="prTip">' + esc(protTipDay(tot, pl)) + '</span></div>';
   }
-  function mkAnim() {          // render'dan keyin: oldingi ulushdan yangisiga (transform), maqsadga yetganda ✓, oshganda bir marta silkinish
+  function mkAnim() {          // render'dan keyin: oldingi ulushdan yangisiga (transform 450 ms) + raqam sanaladi; maqsadga yetganda ✓, oshganda bir marta silkinish
     var els = document.querySelectorAll('#bjuCard .mk-row'); if (!els.length) return;
     [].forEach.call(els, function (el) {
-      var k = el.getAttribute('data-m'), w = +el.getAttribute('data-w'), prev = mkMem[k], bar = el.querySelector('.mk-f'), st1 = el.classList.contains('mk-oshdi') ? 'oshdi' : el.classList.contains('mk-joyida') ? 'joyida' : 'kam', pst = mkMem[k + 'st'];
-      mkMem[k] = w; mkMem[k + 'st'] = st1; if (!bar) return;
+      var k = el.getAttribute('data-m'), w = +el.getAttribute('data-w'), prev = mkMem[k], bar = el.querySelector('.mk-f'), st1 = el.classList.contains('mk-oshdi') ? 'oshdi' : el.classList.contains('mk-joyida') ? 'joyida' : 'kam', pst = mkMem[k + 'st'], vb = el.querySelector('.mv b'), nv = vb ? parseFloat(vb.textContent.replace(/\s/g, '')) : 0, pv = mkMem[k + 'v'];
+      mkMem[k] = w; mkMem[k + 'st'] = st1; mkMem[k + 'v'] = nv; if (!bar) return;
+      if (!reduce && pv != null && pv !== nv && vb) tweenNum(vb, pv, nv, 600);
       if (reduce || prev == null || Math.abs(prev - w) < 0.0005) { bar.style.transform = 'scaleX(' + w.toFixed(4) + ')'; return; }
-      requestAnimationFrame(function () { requestAnimationFrame(function () { bar.style.transform = 'scaleX(' + w.toFixed(4) + ')'; }); });
+      void bar.offsetWidth; bar.style.transform = 'scaleX(' + w.toFixed(4) + ')';          // uslub tozalanadi (eski qiymat) → transition darhol boshlanadi (rAF'ga bog'liq emas)
       if (pst && pst !== st1) { if (st1 === 'joyida') { el.classList.remove('mk-flash'); void el.offsetWidth; el.classList.add('mk-flash'); } if (st1 === 'oshdi') { el.classList.remove('mk-shake'); void el.offsetWidth; el.classList.add('mk-shake'); } }
     });
   }
@@ -4477,9 +4498,9 @@
       case 'baliqgo': openFish(); break;
       case 'ibtog': { var ibx = el.parentNode && el.parentNode.nextElementSibling, ibo = el.getAttribute('aria-expanded') !== 'true'; if (ibx && ibx.classList.contains('sl-ibx')) { ibx.hidden = !ibo; el.setAttribute('aria-expanded', String(ibo)); } break; }
       case 'streakinfo': openSheet('stk', shHead(T('stkT')) + '<p class="rz-p">' + esc(T('stkB', { n: S.streak(st, todayStr()) })) + '</p>' + okBtn()); break;
-      case 'wkday': { var wd0 = el.getAttribute('data-d'), tt0 = todayStr(), nsel = wd0 >= tt0 ? null : wd0; if (nsel === selDay) break; selDay = nsel; var wk = el.closest('.sl-week7'); if (wk) { wk.style.setProperty('--i', [].indexOf.call(wk.querySelectorAll('.wd'), el)); wk.classList.remove('nopill'); [].forEach.call(wk.querySelectorAll('.wd'), function (b) { var on = b === el; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }); } if (!prefs().wkLeg) { prefs().wkLeg = 1; save(); } if (!reduce) { root.classList.add('sw'); setTimeout(function () { root.classList.remove('sw'); }, 380); } render(); break; }          // v93: sahifa o'zgarmaydi
-      case 'wkprev': wkOff = Math.min(26, wkOff + 1); render(); break; case 'wknext': if (wkOff > 0) { wkOff--; render(); } break;
-      case 'wktoday': selDay = null; wkOff = 0; render(); break;
+      case 'wkday': { var wd0 = el.getAttribute('data-d'), tt0 = todayStr(), nsel = wd0 >= tt0 ? null : wd0; if (nsel === selDay) break; dayPre(); selDay = nsel; var wk = el.closest('.sl-week7'); if (wk) { wk.style.setProperty('--i', [].indexOf.call(wk.querySelectorAll('.wd'), el)); wk.classList.remove('nopill'); [].forEach.call(wk.querySelectorAll('.wd'), function (b) { var on = b === el; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }); } render(); break; }          // v93: sahifa o'zgarmaydi; v96: joy oldindan ajratilgan, animatsiyalar dayPre/dayPost
+      case 'wkprev': dayPre(); wkOff = Math.min(26, wkOff + 1); render(); break; case 'wknext': if (wkOff > 0) { dayPre(); wkOff--; render(); } break;
+      case 'wktoday': dayPre(); selDay = null; wkOff = 0; render(); break;
       case 'wklegx': prefs().wkLeg = 1; save(); render(); break;
       case 'mealrep': mealRepeat(el.getAttribute('data-d'), el.getAttribute('data-m')); break;
       case 'baliqoff': prefs().baliqOff = true; commit(); break;
