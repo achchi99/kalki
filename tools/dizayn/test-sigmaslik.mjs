@@ -20,6 +20,10 @@ const SC = [
   { n: 'bugun-makro-oshdi', st: () => seed({ food: OVER, steps: 0, ex: 0 }), scope: '#rzMain' },
   { n: 'bugun-qadam0-mashq90', st: () => seed({ food: FULL, steps: 0, ex: 90 }), scope: '#rzMain' },
   { n: 'bugun-qadam12000-mashq0', st: () => seed({ food: FULL, steps: 12000, ex: 0 }), scope: '#rzMain' },
+  /* v94: iPhone web — qo'lda qadam rejimi («Введите шаги» tugmasi) va mashq 0 («Добавить тренировку»): karta ekran tagida (sticky tugma ishga tushadi) va ekranning o'rtasida; 390 px */
+  { n: 'iphone-qadam0-mashq0-pastda', w: [390], st: () => seed({ food: FULL, steps: 0, ex: 0 }), scope: '.sl-act' },
+  { n: 'iphone-qadam0-mashq0-ekranda', w: [390], st: () => seed({ food: FULL, steps: 0, ex: 0 }), act: async (p) => { await p.evaluate(() => document.querySelector('.sl-act').scrollIntoView({ block: 'center' })); await p.waitForTimeout(300); return '.sl-act'; } },
+  { n: 'iphone-qadam0-mashq0-bosh-kun', w: [390], st: () => seed({}), scope: '#rzMain' },
   { n: 'maslahat-kartasi', st: () => seed({ food: OVER }), hour: 15, scope: '#rzMain', need: '#mslCard' },
   { n: 'kun-xulosasi', st: () => seed({ food: OVER }), hour: 22, scope: '#rzMain', need: '#kxCard' },
   { n: 'makro-oynasi', st: () => seed({ food: OVER }), act: async (p) => { await click(p, '#bjuCard .mk-row[data-m=f]'); await p.waitForSelector('#mkTop'); return '#rzSheet'; } },
@@ -32,15 +36,18 @@ const SC = [
   { n: 'profil', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '[data-act=tab][data-v=profile]'); return '#rzMain'; } },
 ];
 /* matritsa: WebKit (Safari) — 4 kenglik; Chromium (Android WebView) — tanlab. z = matn kattalashtirish (tor kengliklarda ×1,3) */
-const CFG = { webkit: [[320, ['uz', 'ru', 'cyr'], [1, 1.3]], [375, ['uz', 'ru', 'cyr'], [1, 1.3]], [390, ['uz', 'ru'], [1]], [430, ['uz', 'ru'], [1]]], chromium: [[320, ['uz', 'ru', 'cyr'], [1]], [320, ['ru'], [1.3]], [390, ['ru'], [1]], [430, ['uz'], [1]]] };
-const CFG_TEZ = { chromium: [[320, ['uz', 'ru'], [1, 1.3]], [375, ['uz', 'ru'], [1, 1.3]]] };
-const jobs = []; for (const eng of TEZ ? ['chromium'] : ['chromium', 'webkit']) for (const sc of SC) for (const [w, langs, zs] of (TEZ ? CFG_TEZ : CFG)[eng]) for (const lang of langs) for (const z of zs) jobs.push({ eng, sc, w, lang, z });
+const CFG = { webkit: [[320, ['uz', 'ru', 'cyr'], [1, 1.3]], [375, ['uz', 'ru', 'cyr'], [1, 1.3]], [390, ['uz', 'ru'], [1]], [430, ['uz', 'ru'], [1]]], chromium: [[320, ['uz', 'ru', 'cyr'], [1]], [320, ['ru'], [1.3]], [390, ['uz', 'ru'], [1]], [430, ['uz'], [1]]] };
+const CFG_TEZ = { chromium: [[320, ['uz', 'ru'], [1, 1.3]], [375, ['uz', 'ru'], [1, 1.3]], [390, ['uz', 'ru'], [1]]] };
+const jobs = []; for (const eng of TEZ ? ['chromium'] : ['chromium', 'webkit']) for (const sc of SC) for (const [w, langs, zs] of (TEZ ? CFG_TEZ : CFG)[eng]) for (const lang of langs) for (const z of zs) { if (sc.w && !sc.w.includes(w)) continue; jobs.push({ eng, sc, w, lang, z }); }
 const { srv, BASE } = await server(); const B = await brauzerlar(); if (!B.webkit && !TEZ) console.log('OGOHLANTIRISH: WebKit ishga tushmadi — faqat Chromium (' + (B.wkXato || '') + ')');
 /* 0. kalibrlash: tekshiruv o'zi buzilgan maketni TOPA OLISHI shart (v92 xatosi: ::after matni «Жиры · выше нормы» qo'shni ustunga chiqqan, eski tekshiruv ko'rmagan) */
 { const p = await open(B.chromium, BASE, { w: 320, lang: 'ru', st: seed({}), reduced: true, settle: 200 });
   const r = await p.evaluate((chk) => { document.getElementById('rzMain').insertAdjacentHTML('afterbegin', '<style>.xb-r{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;font-size:13px}.xb-r span{white-space:nowrap}.xb-r span::after{content:" · " attr(data-st)}</style><div id="xb" class="xb-r"><span data-st="мало">Белки</span><span data-st="выше нормы">Жиры</span><span data-st="мало">Углеводы</span></div><div id="xb2" style="position:relative;height:40px"><button style="position:absolute;left:0;top:0;width:120px;height:30px">Введите шаги</button><b style="position:absolute;left:20px;top:8px">0 / 8 000</b></div>');
     return (0, eval)('(' + chk + ')')('#xb'); }, CHECK.toString()); const r2 = await p.evaluate((chk) => (0, eval)('(' + chk + ')')('#xb2'), CHECK.toString());
   assert.ok(r.bad.length + r.clip.length + r.esc.length > 0, "kalibrlash: ::after matnining qo'shni ustunga chiqishi topilmadi — tekshiruv ko'r"); assert.ok(r2.bad.length > 0, "kalibrlash: ustma-ust tushgan tugma + matn topilmadi"); await p.context().close(); }
+{ const p = await open(B.chromium, BASE, { w: 390, lang: 'ru', st: seed({}), reduced: true, settle: 200 });
+  const r3 = await p.evaluate((chk) => { document.getElementById('rzMain').insertAdjacentHTML('afterbegin', '<div id="xc" style="height:22px;overflow:hidden;width:150px;font-size:16px"><span>Добавить тренировку сегодня вечером</span></div><div id="xd" style="position:relative;height:90px"><button style="display:block;width:100%;height:40px;position:sticky;bottom:0">Введите шаги</button><button id="xe" style="position:absolute;top:10px;left:0;width:60px;height:30px">0 минут</button></div>'); return [(0, eval)('(' + chk + ')')('#xc'), (0, eval)('(' + chk + ')')('#xd')]; }, CHECK.toString());
+  assert.ok(r3[0].cut.length > 0, 'kalibrlash: ota overflow:hidden kesgan matn topilmadi'); assert.ok(r3[1].blk.length > 0, 'kalibrlash: ustma-ust tugmalar (blk) topilmadi'); await p.context().close(); }
 const fails = []; let n = 0;
 await pool(jobs.filter((j) => B[j.eng]), 4, async (j) => {
   let p; try {

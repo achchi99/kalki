@@ -2103,21 +2103,27 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sl-ab2 .mr{flex-wrap:wrap;row-gap:4px;margin-right:0;min-width:0}
 .rz .sl-ab2 .mr .mv{flex:1 1 4.5em;min-width:0}
 .rz .sl-ab2 .mv b,.rz .sl-ab2 .mv small{overflow-wrap:anywhere}
-.rz .sl-ab2 .sl-cta,.rz .sl-ab2 .sl-cta.sm{height:auto;min-height:44px;padding:8px 12px;overflow-wrap:anywhere;hyphens:auto;max-width:100%;box-sizing:border-box}
-.rz .sl-ab2 .ah>b{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;hyphens:auto;line-height:1.2}
+.rz .sl-ab2 .sl-cta,.rz .sl-ab2 .sl-cta.sm{height:auto;min-height:44px;padding:8px 12px;overflow-wrap:anywhere;max-width:100%;box-sizing:border-box}
+.rz .sl-ab2 .ah>b{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere;line-height:1.2}
 .rz .sl-ab2 .chip{white-space:normal;max-width:100%}
-.rz .tt-cb b,.rz .tt-cb .m span{overflow-wrap:anywhere;hyphens:auto}
+.rz .tt-cb b,.rz .tt-cb .m span{overflow-wrap:anywhere}
 /* Profil / Tarix / Kun xulosasi: tor ekran + katta matnda o'ralsin (ustma-ust yoki kesilmasin) */
-.rz .m>b,.rz .m>small,.rz .m>span,.rz .t>b,.rz .t>small,.rz .sl-bkL,.rz .sl-bkT,.rz .sl-bkT2{overflow-wrap:anywhere;hyphens:auto;min-width:0}
+.rz .m>b,.rz .m>small,.rz .m>span,.rz .t>b,.rz .t>small,.rz .sl-bkL,.rz .sl-bkT,.rz .sl-bkT2{overflow-wrap:anywhere;min-width:0}
 .rz .sl-bkT2,.sl-remc .sl-remm .t b.sl-bkT2{display:block}.rz .sl-bkT2 .sl-infob{display:inline-flex;vertical-align:middle;margin:0 0 0 4px;max-width:100%}
 .rz .pf-r{flex-wrap:nowrap}.rz .pf-r .m{flex:1 1 auto;min-width:0}.rz .pf-r .m b{white-space:normal}
-.rz .pf-r .v{flex:0 1 auto;max-width:50%;min-width:0;text-align:right;white-space:normal;overflow-wrap:break-word;hyphens:auto}
+.rz .pf-r .v{flex:0 1 auto;max-width:50%;min-width:0;text-align:right;white-space:normal;overflow-wrap:break-word}
 .rz .pf-tiles,.rz .pf-card .pf-tiles{grid-template-columns:repeat(auto-fit,minmax(min(100%,4.6em),1fr));font-size:16px}
 .rz .pf-ti>span:last-child,.rz .pf-ti b{overflow-wrap:anywhere}
-.sl-cmt{grid-template-columns:repeat(auto-fit,minmax(min(100%,5.2em),1fr));font-size:16px}.sl-cmt small,.sl-cmt b,.sl-cmt em{overflow-wrap:anywhere;hyphens:auto}
+.sl-cmt{grid-template-columns:repeat(auto-fit,minmax(min(100%,5.2em),1fr));font-size:16px}.sl-cmt small,.sl-cmt b,.sl-cmt em{overflow-wrap:anywhere}
 .sl-remc .sl-remr{flex-wrap:wrap}.sl-remc .sl-remm{flex:1 1 14em}.sl-remc .sl-remr>.sl-sw{margin-left:auto;flex:none}
 .sl-remc .sl-remm .v{flex:none}
 .rz .kx-rings{flex-wrap:wrap;row-gap:10px}.rz .kx-r{width:auto;min-width:76px;flex:1 1 76px}.rz .kx-r small{text-align:center;overflow-wrap:anywhere;max-width:100%}
 .rz .tl-hd{flex-wrap:wrap;row-gap:2px}.rz .tl-hd>b{flex:1 1 9em;min-width:0;overflow-wrap:anywhere}.rz .tl-n{flex:none;max-width:100%}.rz .tl-f small,.rz .tl-f li{overflow-wrap:anywhere;min-width:0}
 .rz .kx-r small{white-space:normal;line-height:1.15}
 .rz .pf-r .m{min-width:min(min-content,5.5em)}.rz .pf-r .m>b{overflow-wrap:break-word;hyphens:manual}.rz .pf-r .v{max-width:48%}
+
+/* v94 (iPhone): `.sl-cta` — Qo'shish oynasining YOPISHQOQ (position:sticky; bottom:0) tugmasi; qadam/mashg'ulot kartalaridagi tugma ham shu klassni olgan edi, shuning uchun karta ekran tagida turganda tugma
+   skroll maydonining pastiga «yopishib» halqa va raqam ustiga chiqib qolardi. Kartada — oddiy oqim: yopishmaydi, soyasiz; karta kontentga qarab o'sadi, ikkala kartada tugma pastda (bir xil balandlik) */
+.rz .sl-ab2 .sl-cta,.rz .sl-ab2 .sl-cta.sm{position:static;bottom:auto;z-index:auto;box-shadow:none;margin-top:auto;display:block;flex:none}
+.rz .sl-ab2 .mr{margin-bottom:10px}.rz .sl-ab2{overflow:visible}
+.rz .sl-duo.sl-act>.sl-ab2{align-self:stretch;height:auto;min-height:0}
