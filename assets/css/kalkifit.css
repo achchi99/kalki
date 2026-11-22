@@ -2235,3 +2235,12 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sl-duo.one .sl-wb .v{white-space:normal;flex-wrap:wrap}
 /* v94: sarlavha (line-height 1.05) harflari katta matnda sana qatoriga tushmasin */
 .rz.sl .sl-hd2 .sl-h1{margin-bottom:max(0px,calc(.3em - 9px))}
+/* v95: «Yana» — kategoriya ranglari, bir tekis yangiliklar qatori, uzun matn 2 qatorgacha o'raladi */
+.rz .gc-yoz .sl-ci{background:var(--accsoft);color:var(--accink)}
+.rz .gc-har .sl-ci{background:var(--fcbl);color:var(--fcbli)}
+.rz .gc-yey .sl-ci{background:var(--fcgr);color:var(--fcgri)}
+.rz .gc-nat .sl-ci{background:var(--fcpu);color:var(--fcpui)}
+.rz .gc-boshq .sl-ci{background:var(--fcye);color:var(--fcyei)}
+.rz .sl-morec .sl-feat .m b,.rz .sl-morec .sl-feat .m>span{white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
+.rz .sl-morec .yg-row .m b{display:-webkit-box}
+.rz .sl-morec .yg-row .yg-dot{display:inline-block;vertical-align:middle}
