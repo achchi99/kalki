@@ -48,7 +48,7 @@ const DATA = (k) => k.startsWith('rt_') || k.startsWith('r_') ? RULE : ({ s_wait
   m_kcal_better: { x: 340 }, m_fat_better: { x: 22 }, m_streak: { n: 4 }, m_pstreak: { n: 3 }, m_prot3: { n: 3 }, m_skipbf: { n: 3 }, m_eve: { n: 3 }, cel_day: { k: '2 310', l: '2 436' }, cel_p: { p: 131, g: 130 }, c_noon: {}, q_full: {}, q_mood: {},
   qr_full_yes: { left: 640 }, qr_full_mid: { left: 640 }, qr_full_no: { left: 640 }, qr_mood_good: { left: 640 }, qr_mood_ok: { left: 640 }, qr_mood_bad: { left: 640 },
   x_okP: { v: 131, g: 130 }, x_okK: { v: '2 310', g: '2 436' }, x_okW: { v: '2 250' }, x_okS: { v: '9 400' }, x_okN: { n: 4 }, x_offF: { x: 22, src: 'somsa' }, x_offC: { x: 60, src: 'non' }, x_offK: { x: 340, src: 'osh' }, x_offP: { x: 35 }, x_offLow: { k: 900, min: '1 500' },
-  d_over: { x: 340 }, t_top: { f: 'Osh' } })[k] || (k.startsWith('mk_') ? { left: 19, x: 28, v: 141, g: 160 } : {});
+  d_over: { x: 340 }, t_top: { f: 'Osh' }, w_kam: { m: 'oqsil', M: 'Oqsil', pct: 26, left: 41 }, w_deyarli: { m: 'oqsil', M: 'Oqsil', pct: 8, left: 11 }, w_oshdi: { m: 'yog\'', M: 'Yog\'', pct: 41, x: 21 }, w_ok: {} })[k] || (k.startsWith('mk_') ? { left: 19, x: 28, v: 141, g: 160 } : {});
 const leak = /[{}|]|undefined|NaN|null|\s[,.!?]|\s{2}/;
 for (const L of LS) for (const m of MODES) for (const k of KEYS) { const d = DATA(k), allow = new Set(Object.keys(d).concat('ism'));
   X[L][m][k].forEach((tpl, i) => { (tpl.replace(/\{[^{}|]*\|[^{}|]*\}/g, '').match(/\{(\w+)\}/g) || []).forEach((ph) => assert.ok(allow.has(ph.slice(1, -1)), `${L}/${m}/${k}#${i}: ilova ${ph} bermaydi — «${tpl}»`));
@@ -67,7 +67,7 @@ for (const L of LS) for (const m of MODES) { const xs = M.xulosa({ tot: { kcal: 
 /* ilova ishlatadigan har kalit matnlarda bor */
 const APP = fs.readFileSync(path.join(ROOT, 'assets/kalkifit-app.js'), 'utf8');
 const used = new Set([...APP.matchAll(/say\('([a-z]\w*)'/g)].map((x) => x[1]).filter((k) => !/_$/.test(k)).concat([...APP.matchAll(/key = '(re_\w+)'/g)].map((x) => x[1]), [...APP.matchAll(/key: '((?:m|cel|c)_\w+)'/g)].map((x) => x[1]),
-  ['g_morning', 'g_day', 'g_evening', 'g_night', 'q_full', 'q_mood', 'qr_full_yes', 'qr_full_mid', 'qr_full_no', 'qr_mood_good', 'qr_mood_ok', 'qr_mood_bad', 'd_over', 'd_low', 'd_ok', 'd_empty'],
+  ['w_kam', 'w_oshdi', 'w_deyarli', 'w_ok', 'g_morning', 'g_day', 'g_evening', 'g_night', 'q_full', 'q_mood', 'qr_full_yes', 'qr_full_mid', 'qr_full_no', 'qr_mood_good', 'qr_mood_ok', 'qr_mood_bad', 'd_over', 'd_low', 'd_ok', 'd_empty'],
   ['p', 'f', 'c'].flatMap((k) => M.STATES.map((s) => 'mk_' + k + '_' + s)), [...APP.matchAll(/tl\w+: '(t_\w+)'/g)].map((x) => x[1]), Object.keys(M.XT.uz).map((k) => 'x_' + k), ['a', 'b', 'c', 'd', 'e', 'f', 'kam'].flatMap((r) => ['r_' + r, 'rt_' + r])));
 for (const k of used) assert.ok(KEYS.includes(k), 'ilovadagi kalit matnlarda yo\'q: ' + k);
 assert.ok(used.size >= 90, 'ishlatilgan kalitlar: ' + used.size);

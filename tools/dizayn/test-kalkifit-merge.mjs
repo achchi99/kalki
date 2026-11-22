@@ -53,4 +53,8 @@ T('10 v97: maslahatchi qiyofasi/ismi (prefs.lola) — yangisi ustun, yangida yo\
   const l = base(); l.prefs = Object.assign({}, l.prefs, { lola: { av: 'timur', ism: 'Тимур' } }); S.stamp(l, 10); const r = base(); r.prefs = Object.assign({}, r.prefs); delete r.prefs.lola; S.stamp(r, 20); S.stampReset();
   assert.deepEqual(S.mergeStates(l, r).prefs.lola, { av: 'timur', ism: 'Тимур' }, 'yangi qurilmada yo\'q — eski tanlov yo\'qolmaydi');
   const r2 = base(); r2.prefs = Object.assign({}, r2.prefs, { lola: { av: 'mushuk', ism: null } }); S.stamp(r2, 30); S.stampReset(); assert.deepEqual(S.mergeStates(l, r2).prefs.lola, { av: 'mushuk', ism: null }, 'yangisi ustun'); });
-console.log('OK ' + n + '/10 kalkifit-merge');
+T('11 v98: soatdan qo\'lda kiritilgan qadam (day.sw) — kattasi, yo\'qolmaydi; kun ≥ sw', () => {
+  const d = '2026-11-20', l = base(); S.setWatchSteps(l, d, 9000); S.stamp(l, 10); const r = base(); S.setAutoSteps(r, d, 4000); S.stamp(r, 20); S.stampReset();
+  const m = S.mergeStates(l, r); assert.equal(m.days[d].sw, 9000); assert.equal(m.days[d].steps, 9000); assert.equal(m.days[d].sa, 4000);
+  const r2 = base(); S.setWatchSteps(r2, d, 6000); S.stamp(r2, 30); S.stampReset(); assert.equal(S.mergeStates(l, r2).days[d].sw, 9000, 'kichigi kattasini bosmaydi'); });
+console.log('OK ' + n + '/11 kalkifit-merge');

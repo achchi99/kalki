@@ -3,6 +3,7 @@
    DOM'siz: brauzerda window.KalkiHafta, Node'da require(). */
 (function (root) {
   'use strict';
+  function msOf() { try { if (typeof module === 'object' && module.exports) return require('./kalkifit-maslahat.js'); } catch (e) { } return root.KalkiMaslahat || null; }          // makro holati — bitta manba
   function avg(a) { return a.length ? Math.round(a.reduce(function (s, x) { return s + x; }, 0) / a.length) : null; }
   /* S — KalkiFit core; end — haftaning oxirgi kuni (odatda bugun, yakshanba) */
   function summary(S, st, end, today) {
@@ -109,6 +110,12 @@
     var sp = 0, sf = 0, sc = 0; full.forEach(function (r) { sp += r.p; sf += r.f; sc += r.c; }); var fullN = full.length, kP = sp * 4, kF = sf * 9, kC = sc * 4, kT = kP + kF + kC || 1;          // audit: makro o'rtachasi ham avgDay qoidasi bilan — faqat tugagan to'liq kunlar (bugun kirmaydi)
     var protDays = pg ? full.filter(function (r) { return r.n >= 2 && r.p >= pg; }).length : 0;
     var macros = { n: fullN, p: fullN ? Math.round(sp / fullN) : 0, f: fullN ? Math.round(sf / fullN) : 0, c: fullN ? Math.round(sc / fullN) : 0, sh: [kP / kT, kF / kT, kC / kT], protDays: protDays, protGoal: Math.round(pg) };
+    /* v98: me'yorga nisbatan (holat — MS.holat, YAGONA manba): har makro { v (haftalik o'rtacha), g (me'yor), pct (−26 / +41), st, ok (me'yorda bo'lgan kunlar: oqsil — yetgan, yog'/uglevod — 85–114 %) }; top — eng katta og'ish */
+    var MSm = msOf(), gl = pl.macros || {}, vs = { p: macros.p, f: macros.f, c: macros.c }, vsN = {};
+    ['p', 'f', 'c'].forEach(function (k) { var g = Math.round(+gl[k] || 0), v = vs[k], st = g ? (MSm ? MSm.holat(v, g) : (v >= g * 1.15 ? 'oshdi' : v >= g ? 'bajarildi' : v >= g * 0.85 ? 'deyarli' : 'kam')) : 'kam';
+      var okD = g ? full.filter(function (r) { var s1 = MSm ? MSm.holat(r[k], g) : null; return k === 'p' ? (s1 === 'bajarildi' || s1 === 'oshdi') : (s1 === 'deyarli' || s1 === 'bajarildi'); }).length : 0;
+      vsN[k] = { v: v, g: g, pct: g ? Math.round((v - g) / g * 100) : 0, st: st, ok: okD, n: fullN }; });
+    macros.vs = vsN; macros.top = ['p', 'f', 'c'].filter(function (k) { return vsN[k].g; }).sort(function (a2, b2) { return Math.abs(vsN[b2].pct) - Math.abs(vsN[a2].pct); })[0] || null;
     /* ---- suv ---- */
     var wDays = rows.filter(function (r) { return (r.ml > 0 || r.logged) && r.d < today; }), wGoal = pl.water ? (S.waterGoalMl ? S.waterGoalMl(pl.water.glasses) : pl.water.ml) : 2000, wTot = rows.reduce(function (a, r) { return a + r.ml; }, 0);
     var water = { total: wTot, liters: Math.round(wTot / 100) / 10, goal: wGoal, avg: wDays.length ? Math.round(wDays.reduce(function (a, r) { return a + r.ml; }, 0) / wDays.length) : null, per: rows.map(function (r) { return { dow: r.dow, ml: r.ml }; }), goalDays: rows.filter(function (r) { return r.ml >= wGoal * 0.9; }).length };

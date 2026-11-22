@@ -50,7 +50,7 @@ try {
   /* 4. Ruxsat berish → avtomatik qiymat + manba; karta bosilsa — faqat ma'lumot */
   p = await mk({ plugin: { available: true, granted: false, grant: true, today: 3456, yday: 8000 } });
   await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForSelector('[data-act=qayes]'); await p.click('[data-act=qayes]'); await p.waitForTimeout(700);
-  assert.equal((await prefs(p)).qa, 'on'); assert.ok((await calls(p)).includes('Qadam.setEnabled:true')); assert.equal(await num(p), 3456); assert.equal(await p.locator('.sl-s .sl-src').innerText(), 'Manba: telefon'); assert.equal(await p.locator('.sl-s .sl-pill').count(), 0, 'avtomatik — tugma yo\'q');
+  assert.equal((await prefs(p)).qa, 'on'); assert.ok((await calls(p)).includes('Qadam.setEnabled:true')); assert.equal(await num(p), 3456); assert.equal(await p.locator('.sl-s .sl-src').innerText(), 'Manba: telefon'); assert.equal(await p.locator('.sl-s .sl-pill:not(.sw-pill)').count(), 0, 'avtomatik — tugma yo\'q');
   assert.deepEqual(await day(p, YDAY).then((x) => [x.sa, x.steps]), [8000, 8000], 'kechagi kun ham (tarix)');
   await p.click('.sl-s [data-act=addsteps] >> nth=0'); await p.waitForTimeout(500); assert.match(await p.locator('#rzSheet').innerText(), /3 456/); assert.equal(await p.locator('#rzSheet [data-act=qafix], #spAmt').count(), 0, '«Qo\'lda tuzatish» yo\'q'); await p.keyboard.press('Escape'); await p.waitForTimeout(300);
   await p.evaluate(() => { document.querySelector('.sl-meals').__keep = 1; document.querySelector('#mainAdd').__keep = 1; });

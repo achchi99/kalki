@@ -714,9 +714,9 @@ button.sl-vmic{border:0;padding:0;cursor:pointer;font:inherit}
 /* v76: «Haftangiz» — Wrapped uslubidagi to'liq ekranli hikoya (assets/kalkifit-hikoya.js). BITTA doimiy OPAQ qatlam: slaydlar ICHIDA almashadi, chiquvchi slayd kiruvchi qoplaguncha ostida qoladi → orqadagi ekran hech qachon ko'rinmaydi.
    Animatsiya: faqat transform/opacity (+ kichik SVG halqa/donut); .rm (prefers-reduced-motion) — animatsiyasiz, oxirgi holat. Tokenlar shu yerda (grafit + mandarin, Manrope). */
 html.hk-on,html.hk-on body{overflow:hidden}
-.hk{--hk-ink:#1E1A17;--hk-mut:#6B625B;--hk-acc:#E0603F;--hk-acc2:#F5683A;--hk-ok:#2E9E6A;--hk-warn:#C77A12;--hk-bg:#FBF4EE;--hk-card:rgba(255,255,255,.72);--hk-line:rgba(30,26,23,.14);--hk-fat1:#FFD98A;--hk-fat2:#F2A93B;--hk-water:#2F8FD8;--hk-fat-c:#F5B84A;
+.hk{--hk-over:#D6453D;--hk-mp:#3F6FD8;--hk-mf:#C98A12;--hk-mc:#2E9E6A;--hk-ink:#1E1A17;--hk-mut:#6B625B;--hk-acc:#E0603F;--hk-acc2:#F5683A;--hk-ok:#2E9E6A;--hk-warn:#C77A12;--hk-bg:#FBF4EE;--hk-card:rgba(255,255,255,.72);--hk-line:rgba(30,26,23,.14);--hk-fat1:#FFD98A;--hk-fat2:#F2A93B;--hk-water:#2F8FD8;--hk-fat-c:#F5B84A;
   position:fixed;inset:0;z-index:2000;background:var(--hk-bg);color:var(--hk-ink);font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none;overflow:hidden;transition:transform .2s ease,opacity .2s ease;animation:hkOpen .3s cubic-bezier(.2,.8,.2,1) both}
-.hk.dk{--hk-ink:#F7F1EC;--hk-mut:#C9BDB3;--hk-acc:#FF8A66;--hk-acc2:#FF9A78;--hk-ok:#5CCB93;--hk-warn:#F2B25A;--hk-bg:#141112;--hk-card:rgba(255,255,255,.09);--hk-line:rgba(247,241,236,.2);--hk-fat1:#F6C86A;--hk-fat2:#D68A1E;--hk-water:#6FB8F0}
+.hk.dk{--hk-over:#FF7A70;--hk-mp:#8FB2FF;--hk-mf:#F2C14E;--hk-mc:#5CCB93;--hk-ink:#F7F1EC;--hk-mut:#C9BDB3;--hk-acc:#FF8A66;--hk-acc2:#FF9A78;--hk-ok:#5CCB93;--hk-warn:#F2B25A;--hk-bg:#141112;--hk-card:rgba(255,255,255,.09);--hk-line:rgba(247,241,236,.2);--hk-fat1:#F6C86A;--hk-fat2:#D68A1E;--hk-water:#6FB8F0}
 @keyframes hkOpen{from{transform:translateY(28px)}}
 .hk.out{opacity:0;transform:translateY(40px)}
 .hk *{box-sizing:border-box}
@@ -2307,3 +2307,23 @@ html[data-theme=dark] .rz.sl .sl-adv.lola .sl-adv-go{color:color-mix(in srgb,var
 .rz .in-a4{width:100%;max-width:420px;margin:0 auto;text-align:left}.rz .in-a4 .lola-avb{background:var(--card)}
 /* v97: halqa (yoy, raqam, to'lqin) — alohida kompozit qatlam: animatsiya kartaning gradient/soyasini har kadrda qayta chizmaydi */
 .rz.sl .sl-big #kcalBtn{will-change:transform}
+/* v98: makrolar me'yorga nisbatan — gorizontal chiziqlar (Haftangiz slaydi va «Tahlil»); me'yor belgisi, ortiqcha qism boshqa rangda; ketma-ket o'sish (transform) */
+.hk-mbars{display:flex;flex-direction:column;gap:16px;width:100%;margin:8px 0 6px;--mb-p:var(--hk-mp,var(--p));--mb-f:var(--hk-mf,var(--f));--mb-c:var(--hk-mc,var(--c));--mb-over:var(--hk-over,var(--over));--mb-track:var(--hk-line,var(--track));--mb-ink:var(--hk-ink,var(--ink));--mb-mut:var(--hk-mut,var(--mut))}
+.hk-mb{display:flex;flex-direction:column;gap:8px;min-width:0}
+.hk-mb-h{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 10px}
+.hk-mb-h b{font-size:17px;font-weight:700;color:var(--mb-ink)}.hk-mb-h span{font-size:15px;font-weight:600;color:var(--mb-mut);font-variant-numeric:tabular-nums}
+.hk-mb-h em{font-style:normal;font-weight:700;color:var(--mb-ink)}.hk-mb.st-oshdi .hk-mb-h em{color:var(--mb-over)}
+.hk-mb-t{position:relative;height:14px;border-radius:999px;background:var(--mb-track);overflow:visible}
+.hk-mb-t .f,.hk-mb-t .o{position:absolute;top:0;bottom:0;border-radius:999px;transform-origin:left center;transform:scaleX(0)}
+.hk-mb-t .f{left:0;width:100%;background:var(--mb-p)}.hk-mb:nth-child(2) .hk-mb-t .f{background:var(--mb-f)}.hk-mb:nth-child(3) .hk-mb-t .f{background:var(--mb-c)}
+.hk-mb-t .o{left:var(--l);width:100%;background:var(--mb-over)}
+.hk-mb-t .n{position:absolute;top:-5px;bottom:-5px;width:3px;margin-left:-1.5px;border-radius:2px;background:var(--mb-ink)}
+@keyframes hkMbIn{from{transform:scaleX(0)}to{transform:scaleX(var(--w))}}
+.hk-mbars.run .hk-mb-t .f,.hk-sl.run .hk-mbars .hk-mb-t .f{animation:hkMbIn .9s cubic-bezier(.3,.7,.2,1) calc(.2s + var(--i,0) * .35s) both}
+.hk-mbars.run .hk-mb-t .o,.hk-sl.run .hk-mbars .hk-mb-t .o{animation:hkMbIn .6s cubic-bezier(.3,.7,.2,1) calc(1s + var(--i,0) * .35s) both}
+@media (prefers-reduced-motion:reduce){.hk-mbars .hk-mb-t .f,.hk-mbars .hk-mb-t .o{animation:none!important;transform:scaleX(var(--w))}}
+.hk.rm .hk-mbars .hk-mb-t .f,.hk.rm .hk-mbars .hk-mb-t .o{animation:none!important;transform:scaleX(var(--w))}
+.hk .hk-mline{margin:6px 0 4px;text-align:left}
+.rz .tl-mb .hk-mbars{margin-top:12px}.rz .tl-mb .hk-mline{font-size:var(--t-s);line-height:1.45;color:var(--ink);margin:12px 0 8px}
+.rz .tl-mb .hk-pill{display:inline-flex;align-items:center;gap:8px;margin:2px 0;padding:8px 14px;border-radius:999px;background:var(--soft);font-weight:600;font-size:var(--t-xs)}.rz .tl-mb .hk-pill .hk-ico{width:18px;height:18px;color:var(--accink);fill:none;stroke:currentColor;stroke-width:2}
+.hk .hk-say .hk-say-b{display:inline-flex;margin:8px auto 0;min-height:44px}

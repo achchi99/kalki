@@ -51,13 +51,27 @@
     var t = o.t, a = m.top, rows = a.map(function (x, i) { return '<div class="r" style="--i:' + i + '"><span class="n">' + (i + 1) + '</span>' + (x.img ? '<img src="' + esc(x.img) + '" alt="" width="56" height="56">' : '<em>' + esc(String(x.name || '?').charAt(0)) + '</em>') + '<b>' + esc(x.name) + '</b><span class="q"><b data-cu="' + x.n + '">0</b> ' + esc(t('wrTimes')) + '</span></div>'; }).join('');
     return '<p class="hk-k">' + esc(t('wrTopK')) + '</p><h2 class="hk-big sm">' + esc(t('wrTopH', { n: a[0].n, x: a[0].name })) + '</h2><div class="hk-top3">' + rows + '</div>';
   }
-  function sMacros(m, o) {
-    var t = o.t, M = m.macros, C = 2 * Math.PI * 44, off = 0, seg = '', cols = ['p', 'f', 'c'];
-    M.sh.forEach(function (s, i) { var len = Math.max(0, s * C - 3); seg += '<circle cx="60" cy="60" r="44" class="s ' + cols[i] + '" style="--c:' + C.toFixed(1) + ';--l:' + len.toFixed(1) + ';--o:' + (-off).toFixed(1) + ';--i:' + i + '"/>'; off += s * C; });
-    var key = function (c, v, lbl) { return '<div class="k ' + c + '"><i></i><span>' + esc(lbl) + '</span><b>' + nf(v) + ' ' + esc(t('wrG')) + '</b></div>'; };
-    return '<p class="hk-k">' + esc(t('wrMacroK')) + '</p><div class="hk-donut"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="44" class="bg"/>' + seg + '</svg><div class="mid"><b data-cu="' + (m.avgKcal || 0) + '">0</b><small>' + esc(t('wrPerDay')) + '</small></div></div>' +
-      '<div class="hk-keys">' + key('p', M.p, t('mP')) + key('f', M.f, t('mF')) + key('c', M.c, t('mC')) + '</div>' + (M.protGoal ? '<p class="hk-pill">' + svgI('shield') + '<span>' + esc(t('wrProtDays', { n: M.protDays })) + '</span></p>' : '');
+  /* v98: makrolar ME'YORGA nisbatan — har makro gorizontal chiziq: me'yor (100 %) aniq belgi, haftalik o'rtacha unga nisbatan to'ladi; kam — bo'sh qism ko'rinadi, ko'p — me'yordan o'tgani boshqa rangda.
+     Yozuv: «Белки: 119 из 160 г · −26%»; ostida eng katta og'ish haqida maslahatchi jumlasi va «норма по белку — N из 7 дней». Holat — MS.holat (hafta modeli, m.macros.vs) */
+  function mbRows(m) { var V = (m.macros || {}).vs || {}, ks = ['p', 'f', 'c'].filter(function (k) { return V[k] && V[k].g > 0; }), mx = Math.max.apply(null, ks.map(function (k) { return V[k].v / V[k].g; }).concat([1])), sc = Math.max(1.5, mx * 1.06);
+    return ks.map(function (k) { var x = V[k], r = x.v / x.g; return { k: k, x: x, fill: Math.min(r, 1) / sc, over: Math.max(0, r - 1) / sc, norm: 1 / sc }; }); }
+  function pctS(p) { return p === 0 ? '0%' : (p > 0 ? '+' : '\u2212') + Math.abs(p) + '%'; }
+  function mbLine(m, o) {          // eng katta og'ish — maslahatchi uslubida (o.say), bo'lmasa bo'sh
+    var V = (m.macros || {}).vs, k = (m.macros || {}).top; if (!o.say || !V || !k) return ''; var x = V[k], nm = o.t({ p: 'mP', f: 'mF', c: 'mC' }[k]), d = { m: String(nm).toLowerCase(), M: nm, pct: Math.abs(x.pct), left: nf(Math.max(0, x.g - x.v)), x: nf(Math.max(0, x.v - x.g)) };
+    var key = x.st === 'oshdi' ? 'w_oshdi' : x.st === 'kam' ? 'w_kam' : x.st === 'deyarli' ? 'w_deyarli' : 'w_ok'; return o.say(key, d) || '';
   }
+  function mbHtml(m, o, cls) {
+    var t = o.t, V = (m.macros || {}).vs || {}, rows = mbRows(m), line = mbLine(m, o), top = (m.macros || {}).top;
+    var h = '<div class="hk-mbars' + (cls ? ' ' + cls : '') + '">' + rows.map(function (r, i) { var x = r.x;
+      return '<div class="hk-mb st-' + x.st + '" style="--i:' + i + '"><div class="hk-mb-h"><b>' + esc(t({ p: 'mP', f: 'mF', c: 'mC' }[r.k])) + '</b><span>' + esc(t('wrMbOf', { v: nf(x.v), g: nf(x.g) })) + ' · <em>' + esc(pctS(x.pct)) + '</em></span></div>'
+        + '<div class="hk-mb-t" role="img" aria-label="' + esc(t({ p: 'mP', f: 'mF', c: 'mC' }[r.k]) + ': ' + t('wrMbOf', { v: nf(x.v), g: nf(x.g) }) + ', ' + pctS(x.pct)) + '"><i class="f" style="--w:' + r.fill.toFixed(4) + '"></i>' + (r.over > 0 ? '<i class="o" style="--l:' + (r.norm * 100).toFixed(2) + '%;--w:' + r.over.toFixed(4) + '"></i>' : '') + '<b class="n" style="left:' + (r.norm * 100).toFixed(2) + '%"></b></div></div>'; }).join('') + '</div>';
+    if (line) h += '<p class="hk-sub hk-mline">' + esc(line) + '</p>';
+    var dl = ['p'].concat(top && top !== 'p' ? [top] : []).filter(function (k) { return V[k] && V[k].g; });
+    h += dl.map(function (k) { return '<p class="hk-pill">' + svgI(k === 'p' ? 'shield' : 'target') + '<span>' + esc(t('wrMbDays_' + k, { n: V[k].ok, t: V[k].n })) + '</span></p>'; }).join('');
+    return h;
+  }
+  function sMacros(m, o) { return '<p class="hk-k">' + esc(o.t('wrMbK')) + '</p>' + mbHtml(m, o); }
+
   function sWater(m, o) {
     var t = o.t, W = m.water, gl = W.per.map(function (x, i) { var f = Math.max(0, Math.min(1, x.ml / (W.goal || 2000))); return '<div class="g" style="--i:' + i + ';--f:' + f.toFixed(3) + '"><svg viewBox="0 0 40 60" aria-hidden="true"><defs><clipPath id="hkw' + i + '"><path d="M5 4h30l-4 52H9z"/></clipPath></defs><g clip-path="url(#hkw' + i + ')"><rect x="0" y="0" width="40" height="60" class="w"/></g><path d="M5 4h30l-4 52H9z" class="o"/></svg><span>' + esc(dowOf(o, x.dow)) + '</span></div>'; }).join('');
     return '<p class="hk-k">' + esc(t('wrWaterK')) + '</p><h2 class="hk-num"><b data-cu="' + W.liters + '" data-dec="1">0</b><small> ' + esc(t('wrLiters')) + '</small></h2><div class="hk-glasses">' + gl + '</div><p class="hk-sub">' + esc(W.goalDays >= 1 ? t('wrWaterDays', { n: W.goalDays }) : t('wrWaterFew')) + '</p>';
@@ -110,7 +124,7 @@
   }
   /* ============================ ulashish rasmi 1080×1920 (VAZNSIZ) ============================ */
   function shareData(m, o) {                            // oq ro'yxat: vazn umuman olinmaydi
-    var L = m.lost; return { range: o.range, logged: m.logged, avg: m.avgKcal, target: m.target, steps: m.move.steps, liters: m.water.liters, protDays: m.macros.protDays, fat: (L.state === 'deficit' && !L.low) ? { kg: L.kg, kcal: Math.abs(L.total) } : (L.state === 'even' ? { even: true } : null), badge: m.badges[0] ? m.badges[0].id : '', badges: m.badges.slice().sort(function (a, b) { return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0); }).slice(0, 4).map(function (b) { return b.id; }), top: (m.top || []).slice(0, 3).map(function (x) { return { name: x.name, n: x.n }; }), per: (L.per || []).map(function (x) { return { l: dowOf(o, x.dow), d: x.diff }; }), dark: !!o.dark, days: m.rows.map(function (r) { return { l: dowOf(o, r.dow), k: r.k, near: r.state === 'near' }; }) };
+    var L = m.lost; return { range: o.range, logged: m.logged, avg: m.avgKcal, target: m.target, steps: m.move.steps, liters: m.water.liters, protDays: m.macros.protDays, fat: (L.state === 'deficit' && !L.low) ? { kg: L.kg, kcal: Math.abs(L.total) } : (L.state === 'even' ? { even: true } : null), badge: m.badges[0] ? m.badges[0].id : '', badges: m.badges.slice().sort(function (a, b) { return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0); }).slice(0, 4).map(function (b) { return b.id; }), top: (m.top || []).slice(0, 3).map(function (x) { return { name: x.name, n: x.n }; }), per: (L.per || []).map(function (x) { return { l: dowOf(o, x.dow), d: x.diff }; }), mb: (m.macros && m.macros.vs) ? { rows: mbRows(m), line: mbLine(m, o), vs: m.macros.vs, top: m.macros.top } : null, dark: !!o.dark, days: m.rows.map(function (r) { return { l: dowOf(o, r.dow), k: r.k, near: r.state === 'near' }; }) };
   }
   function drawShare(cv, s, t, tr) {
     tr = tr || function (x) { return x; }; cv.width = 1080; cv.height = 1920; var c = cv.getContext('2d'), dk = s.dark;
@@ -163,12 +177,23 @@
     a.forEach(function (id, j) { var y = 700 + j * 260; c.fillStyle = P.card; rr(c, 90, y, 900, 220, 40); c.fillStyle = P.acc; c.font = '800 70px ' + F; c.fillText('★', 130, y + 120); c.fillStyle = P.ink; c.font = '800 52px ' + F; c.fillText(fit(c, tr(t('wrB_' + id)), 700), 240, y + 95); c.fillStyle = P.mut; c.font = '600 36px ' + F; wrapText(c, tr(t('wrBd_' + id)), 240, y + 148, 700, 44, 1); });
     return cv;
   }
+  function drawMacros(cv, s, t, tr) {          // v98: makro kartasi — me'yorga nisbatan chiziqlar (slayd bilan bir xil ko'rinish)
+    var P = cardBase(cv, s, t, tr, t('wrMbK')), c = P.c, mb = s.mb || { rows: [] }, y = 470, W = 900, over = s.dark ? '#FF6B6B' : '#D6453D', col = { p: s.dark ? '#7FA8FF' : '#3F6FD8', f: s.dark ? '#F2C14E' : '#C98A12', c: s.dark ? '#5CCB93' : '#2E9E6A' };
+    mb.rows.forEach(function (r) { var x = r.x; c.fillStyle = P.ink; c.font = '800 58px ' + F; c.fillText(tr(t({ p: 'mP', f: 'mF', c: 'mC' }[r.k])), 90, y);
+      c.fillStyle = x.st === 'oshdi' ? over : P.mut; c.font = '700 40px ' + F; c.textAlign = 'right'; c.fillText(tr(t('wrMbOf', { v: nf(x.v), g: nf(x.g) })) + ' · ' + pctS(x.pct), 990, y); c.textAlign = 'left';
+      var ty = y + 36; c.fillStyle = P.base; rr(c, 90, ty, W, 44, 22); c.fillStyle = col[r.k]; if (r.fill > 0) rr(c, 90, ty, Math.max(44, W * r.fill), 44, 22); if (r.over > 0) { c.fillStyle = over; rr(c, 90 + W * r.norm - 22, ty, W * r.over + 22, 44, 22); }
+      c.fillStyle = P.ink; c.fillRect(90 + W * r.norm - 3, ty - 14, 6, 72); y += 250; });
+    c.fillStyle = P.ink; c.font = '700 46px ' + F; y = wrapText(c, tr(mb.line || ''), 90, y + 20, 900, 62, 4);
+    var V = mb.vs || {}; if (V.p && V.p.g) { c.fillStyle = P.acc; c.font = '800 44px ' + F; wrapText(c, tr(t('wrMbDays_p', { n: V.p.ok, t: V.p.n })), 90, y + 50, 900, 56, 2); }
+    return cv;
+  }
   /* [{ id, file, draw(cv) }] — mavjud kartalar tartibi: umumiy · yog' · top-3 · nishonlar (ma'lumot yo'q bo'lsa kartaning o'zi tushirib qoldiriladi) */
   function cardsOf(m, o) {
     var s = shareData(m, o), t = o.t, tr = o.tr, L = [{ id: 'umumiy', file: 'kalkifit-hafta-1-umumiy.png', draw: function (cv) { return drawShare(cv, s, t, tr); } }];
-    if (s.fat) L.push({ id: 'yog', file: 'kalkifit-hafta-2-yog.png', draw: function (cv) { return drawLost(cv, s, t, tr); } });
-    if (s.top.length) L.push({ id: 'top', file: 'kalkifit-hafta-3-top3.png', draw: function (cv) { return drawTop(cv, s, t, tr); } });
-    if (s.badges.length) L.push({ id: 'nishon', file: 'kalkifit-hafta-4-nishonlar.png', draw: function (cv) { return drawBadges(cv, s, t, tr); } });
+    if (s.mb && s.mb.rows.length) L.push({ id: 'makro', file: 'kalkifit-hafta-2-makro.png', draw: function (cv) { return drawMacros(cv, s, t, tr); } });
+    if (s.fat) L.push({ id: 'yog', file: 'kalkifit-hafta-3-yog.png', draw: function (cv) { return drawLost(cv, s, t, tr); } });
+    if (s.top.length) L.push({ id: 'top', file: 'kalkifit-hafta-4-top3.png', draw: function (cv) { return drawTop(cv, s, t, tr); } });
+    if (s.badges.length) L.push({ id: 'nishon', file: 'kalkifit-hafta-5-nishonlar.png', draw: function (cv) { return drawBadges(cv, s, t, tr); } });
     return L;
   }
   /* ============================ ochish ============================ */
@@ -202,20 +227,24 @@
     doc.addEventListener('keydown', key, true);
     /* v81: ulashish/saqlash tanlovi — «Bitta karta» (odatiy) yoki «Butun hafta» (3–4 ta 9:16 karta); ilova (o.onShare/o.onSave) fayllarni platformaga mos yo'l bilan ulashadi/saqlaydi */
     var mode = 'one', sayT = null;
-    function say(msg) { var p = el.querySelector('.hk-say'); if (!p) return; clearTimeout(sayT); p.textContent = msg || ''; p.hidden = !msg; if (msg) sayT = setTimeout(function () { p.hidden = true; }, 7000); }
+    function say(msg, btn) {          // v98: holat xabari (+ ixtiyoriy tugma: { label, fn }) — tugmali xabar o'zi yopilmaydi
+      var p = el.querySelector('.hk-say'); if (!p) return; clearTimeout(sayT); p.textContent = msg || ''; p.hidden = !msg;
+      if (msg && btn && btn.label) { var b2 = doc.createElement('button'); b2.type = 'button'; b2.className = 'hk-btn ghost hk-say-b'; b2.setAttribute('data-hk', 'sayb'); b2.textContent = btn.label; b2.addEventListener('click', function (e) { e.stopPropagation(); say(''); btn.fn(); }); p.appendChild(doc.createTextNode(' ')); p.appendChild(b2); }
+      else if (msg) sayT = setTimeout(function () { p.hidden = true; }, 7000);
+    }
     function setMode(v) {
       mode = v === 'week' ? 'week' : 'one'; [].forEach.call(el.querySelectorAll('[data-hk=mode]'), function (b) { var on = b.getAttribute('data-v') === mode; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
       var big = el.querySelector('.hk-card9'), th = el.querySelector('.hk-thumbs'); if (!big || !th) return;
       if (mode === 'week') { if (!th.firstChild) { try { cardsOf(m, o).forEach(function (c) { var b2 = doc.createElement('canvas'); c.draw(b2); var tc = doc.createElement('canvas'); tc.width = 270; tc.height = 480; tc.getContext('2d').drawImage(b2, 0, 0, 270, 480); tc.setAttribute('aria-hidden', 'true'); th.appendChild(tc); b2.width = b2.height = 0; }); } catch (e) { /* canvas yo'q */ } } big.hidden = true; th.hidden = false; } else { big.hidden = false; th.hidden = true; }
       say('');
     }
-    function make() { var L = cardsOf(m, o); if (mode === 'one') L = L.slice(0, 1); return L.map(function (c) { var cv = doc.createElement('canvas'); c.draw(cv); return { id: c.id, file: mode === 'one' ? 'kalkifit-hafta.png' : c.file, cv: cv }; }); }
+    function make() { var L = cardsOf(m, o); if (mode === 'one') L = L.slice(0, 1); return L.map(function (c) { return { id: c.id, file: mode === 'one' ? 'kalkifit-hafta.png' : c.file, draw: c.draw }; }); }          // v98: kartalar BITTADAN chiziladi (ilova hwFiles) — 4 ta 1080×1920 canvas bir vaqtda xotirada turmaydi
     var y0 = null, x0 = null, t0 = 0, moved = false;
     el.addEventListener('pointerdown', function (e) { if (e.target.closest && e.target.closest('[data-hk]')) return; y0 = e.clientY; x0 = e.clientX; t0 = Date.now(); moved = false; paused = true; clearTimeout(tm); el.classList.add('hold'); });
     el.addEventListener('pointermove', function (e) { if (y0 == null) return; var dy = e.clientY - y0; if (dy > 10) { moved = true; el.style.transform = 'translateY(' + Math.min(dy, 260) + 'px)'; } });
     el.addEventListener('pointerup', function (e) {
       var b = e.target.closest && e.target.closest('[data-hk]');
-      if (b) { var a = b.getAttribute('data-hk'); if (a === 'close') close(); else if (a === 'goal') { var gb = el.querySelector('[data-hk=goal]'); if (gb && !gb.disabled) { gb.disabled = true; gb.classList.add('done'); gb.textContent = o.t('wrAccepted'); var ok = el.querySelector('.hk-sd-goal .hk-foot.ok'); if (ok) ok.hidden = false; if (o.onGoal) o.onGoal(m.goal); } }
+      if (b) { var a = b.getAttribute('data-hk'); if (a === 'sayb') return; if (a === 'close') close(); else if (a === 'goal') { var gb = el.querySelector('[data-hk=goal]'); if (gb && !gb.disabled) { gb.disabled = true; gb.classList.add('done'); gb.textContent = o.t('wrAccepted'); var ok = el.querySelector('.hk-sd-goal .hk-foot.ok'); if (ok) ok.hidden = false; if (o.onGoal) o.onGoal(m.goal); } }
         else if (a === 'mode') { setMode(b.getAttribute('data-v')); } else if (a === 'share' && o.onShare) { o.onShare(make(), mode, say); } else if (a === 'save' && o.onSave) { o.onSave(make(), mode, say); } else if (a === 'other' && o.onOther) { close(); o.onOther(); } else if (a === 'plato' && o.onPlato) { close(); o.onPlato(); } return; }
       var dy = y0 == null ? 0 : e.clientY - y0, long = Date.now() - t0 > 350; y0 = null; paused = false; el.classList.remove('hold'); el.style.transform = '';
       if (dy > 100) { close(); return; } if (moved || long) { arm(); return; }
@@ -225,6 +254,6 @@
     go(0);
     return { el: el, go: go, next: next, prev: prev, close: close, idx: function () { return i; }, kinds: ks };
   }
-  var api = { open: open, shareData: shareData, drawShare: drawShare, cardsOf: cardsOf, slideHtml: slideHtml, DUR: DUR, ICONS: ICONS, ORDER: G_ };
+  var api = { mbHtml: mbHtml, mbRows: mbRows, mbLine: mbLine, pctS: pctS, drawMacros: drawMacros, open: open, shareData: shareData, drawShare: drawShare, cardsOf: cardsOf, slideHtml: slideHtml, DUR: DUR, ICONS: ICONS, ORDER: G_ };
   if (typeof module === 'object' && module.exports) module.exports = api; else root.KalkiHikoya = api;
 })(typeof window !== 'undefined' ? window : this);

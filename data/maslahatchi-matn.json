@@ -561,6 +561,34 @@
     "Har kun o'z sahifasini olgan — bunday kitobni o'qish yoqimli.",
     "Siz va daftar ajoyib jamoasiz: kunlar deyarli bo'shliqsiz."
    ],
+   "w_deyarli": [
+    "{M} marraga bir qadam qoldirdi: {pct} %, kuniga ~{left} g. Deyarli oltin medal!",
+    "Bu hafta {m} nishonning chetiga tegdi — farq {pct} %, kuniga ~{left} g. Mergan darajasi!",
+    "{M} mo'ljalga juda yaqin uchdi: {pct} % qoldi, kuniga ~{left} g. Zo'r zarba.",
+    "Hafta deyarli mukammal: {m} {pct} % ortda, kuniga ~{left} g. Bir chimdim qo'shsak — tamom.",
+    "{M} finishga yetay deb turibdi: {pct} %, kuniga ~{left} g. Kelasi hafta lentani uzamiz!"
+   ],
+   "w_kam": [
+    "{M} haftani zaxira o'rindig'ida o'tkazdi: {pct} % kam, kuniga ~{left} g. Kelasi hafta uni asosiy tarkibga chiqaramiz!",
+    "{M} poyezdi bekatda qolib ketdi — {pct} % ga, kuniga ~{left} g. Keyingi reysga chipta olib qo'yamiz.",
+    "Hafta orkestrida {m} sekin chaldi: {pct} % kam, kuniga ~{left} g. Kelasi hafta ovozini balandlatamiz.",
+    "{M} ko'rinmas odam bo'lib qolay dedi: {pct} % yetmadi, kuniga ~{left} g. Uni likopchaga qaytaramiz.",
+    "{M} hafta bo'yi ta'tilda yurdi: {pct} % kam, kuniga ~{left} g. Ishga qaytish vaqti keldi!"
+   ],
+   "w_ok": [
+    "Oqsil, yog' va uglevod hafta bo'yi bir jamoa bo'lib o'ynadi. Kubok sizniki!",
+    "Makrolar orkestri soat kabi chaldi — birorta ham noto'g'ri nota yo'q.",
+    "Uchala makro kelishib oldi: hafta tarozisi tekis turibdi. Qoyil!",
+    "Bu hafta likopchada tinchlik va hamjihatlik hukm surdi. Ajoyib!",
+    "Makrolar hafta bo'yi marrani birga kesib o'tdi. Chempion hafta!"
+   ],
+   "w_oshdi": [
+    "{M} haftani bayram qilib o'tkazdi: +{pct} %, kuniga ~{x} g. Kelasi hafta sal tinchroq kuy chalamiz.",
+    "{M} chamadoni og'ir chiqdi: +{pct} %, kuniga ~{x} g ortiqcha yuk. Bir-ikki narsani uyda qoldiramiz.",
+    "Hafta sahnasida {m} bosh rolni egalladi: +{pct} %, kuniga ~{x} g. Endi boshqa aktyorlarga ham navbat beramiz.",
+    "{M} tezlikni oshirib yubordi: +{pct} %, kuniga ~{x} g. Svetoforda biroz sekinlaymiz.",
+    "{M} mehmon bo'lib kelib, uyda qolib ketdi: +{pct} %, kuniga ~{x} g. Uni muloyimgina kuzatib qo'yamiz."
+   ],
    "x_nx0": [
     "Ertaga — bugungi serialning ikkinchi qismi, syujet o'sha",
     "Ertangi menyu: bugungi g'alabani qaytaramiz",
@@ -1241,6 +1269,34 @@
     "Deyarli har kun yozilgan, shuning uchun raqamlar aniq.",
     "Men kunlarni deyarli to'liq ko'ryapman. Shu odatni saqlang.",
     "Yozib borish tartibi yaxshi: bo'sh kunlar deyarli yo'q."
+   ],
+   "w_deyarli": [
+    "{M} me'yorga juda yaqin: atigi {pct} % yetmadi (kuniga ~{left} g). Juda yaxshi hafta.",
+    "Hafta yaxshi o'tdi: {m} me'yordan bor-yo'g'i {pct} % kam, kuniga ~{left} g.",
+    "Eng katta farq ham kichik — {m} me'yordan {pct} % past (kuniga ~{left} g). Shu tartibni saqlaymiz.",
+    "{M} deyarli me'yorda: farq {pct} %, kuniga taxminan {left} g. Barqaror natija.",
+    "Haftalik xulosa: makrolar me'yor atrofida, eng katta farq — {m}, {pct} %."
+   ],
+   "w_kam": [
+    "Haftaning asosiy og'ishi: {m} me'yordan {pct} % kam (kuniga ~{left} g). Har ovqatga ozgina qo'shsak, tenglashadi.",
+    "{M} hafta davomida yetishmadi: o'rtacha {pct} % kam, ya'ni kuniga ~{left} g. Kelasi haftada shunga e'tibor qaratamiz.",
+    "Eng katta farq — {m}: me'yorning {pct} % i yetmadi (kuniga ~{left} g). Nonushta va tushlikda biroz ko'paytirish yetarli.",
+    "{M} me'yordan {pct} % past bo'ldi — kuniga taxminan {left} g. Buni bir-ikki qo'shimcha porsiya bilan yopish mumkin.",
+    "Haftalik xulosa: {m} kam — {pct} %, kuniga ~{left} g. Shu ko'rsatkichni kelasi hafta asosiy maqsad qilamiz."
+   ],
+   "w_ok": [
+    "Uchala makro ham hafta davomida me'yor atrofida bo'ldi. A'lo natija.",
+    "Oqsil, yog' va uglevod — barchasi me'yorda. Shu tartibni davom ettiramiz.",
+    "Hafta muvozanatli o'tdi: hech bir makroda sezilarli og'ish yo'q.",
+    "Makrolar bo'yicha hafta yaxshi: hammasi maqsad chegarasida.",
+    "Haftalik xulosa: og'ish yo'q, makrolar me'yorda."
+   ],
+   "w_oshdi": [
+    "Haftaning asosiy og'ishi: {m} me'yordan {pct} % ko'p (kuniga ~{x} g). Ayrim taomlarni yengilrog'iga almashtirish yordam beradi.",
+    "{M} hafta davomida me'yordan oshdi: o'rtacha +{pct} %, kuniga ~{x} g. Kelasi haftada porsiyalarga e'tibor beramiz.",
+    "Eng katta farq — {m}: me'yordan {pct} % yuqori (kuniga ~{x} g). Bitta odatiy taomni yengilroq variantga almashtirish yetadi.",
+    "{M} me'yordan {pct} % ko'p bo'ldi — kuniga taxminan {x} g ortiqcha. Shu yerda kichik o'zgarish katta natija beradi.",
+    "Haftalik xulosa: {m} ortiqcha — +{pct} %, kuniga ~{x} g. Kelasi hafta shuni kamaytirishni maqsad qilamiz."
    ],
    "x_nx0": [
     "Ertaga ham shu tartibda davom eting",
@@ -1925,6 +1981,34 @@
     "У каждого дня своя страница — такую книгу приятно читать.",
     "Вы и дневник — отличная команда: дни почти без пробелов."
    ],
+   "w_deyarli": [
+    "{M} остановились в шаге от финиша: {pct} %, около {left} г в день. Почти золото!",
+    "На этой неделе {m} попали в край мишени — промах {pct} %, около {left} г в день. Снайперский уровень!",
+    "{M} пролетели совсем рядом с целью: осталось {pct} %, около {left} г в день. Красивый удар.",
+    "Неделя почти идеальна: {m} позади на {pct} %, около {left} г в день. Щепотка — и готово.",
+    "{M} вот-вот коснутся ленточки: {pct} %, около {left} г в день. На следующей неделе рвём финиш!"
+   ],
+   "w_kam": [
+    "{M} провели неделю на скамейке запасных: −{pct} %, около {left} г в день. На следующей выпускаем их в основной состав!",
+    "Поезд «{M}» отстал на {pct} % — это около {left} г в день. Бронируем билет на следующий рейс.",
+    "В оркестре недели {m} играли шёпотом: −{pct} %, около {left} г в день. Прибавим громкость.",
+    "{M} чуть не стали невидимками: не хватило {pct} %, около {left} г в день. Вернём их на тарелку.",
+    "{M} всю неделю были в отпуске: −{pct} %, около {left} г в день. Пора выходить на работу!"
+   ],
+   "w_ok": [
+    "Белки, жиры и углеводы всю неделю играли одной командой. Кубок ваш!",
+    "Оркестр макросов отыграл как часы — ни одной фальшивой ноты.",
+    "Все три макроса договорились: весы недели стоят ровно. Браво!",
+    "На тарелке всю неделю царили мир и согласие. Блестяще!",
+    "Макросы вместе пересекли финишную черту. Чемпионская неделя!"
+   ],
+   "w_oshdi": [
+    "{M} устроили недельную вечеринку: +{pct} %, около {x} г в день. На следующей включим музыку потише.",
+    "Чемодан «{M}» оказался тяжеловат: +{pct} %, около {x} г лишнего в день. Пару вещей оставим дома.",
+    "На сцене недели {m} забрали главную роль: +{pct} %, около {x} г в день. Дадим слово и другим актёрам.",
+    "{M} разогнались выше разрешённого: +{pct} %, около {x} г в день. У светофора чуть притормозим.",
+    "{M} пришли в гости и задержались: +{pct} %, около {x} г в день. Вежливо проводим до двери."
+   ],
    "x_nx0": [
     "Завтра — вторая серия сегодняшнего фильма, сюжет тот же",
     "Меню на завтра: повторяем сегодняшнюю победу",
@@ -2605,6 +2689,34 @@
     "Почти каждый день записан, поэтому цифры точные.",
     "Я вижу почти полные дни. Сохраняйте эту привычку.",
     "Записи ведутся хорошо: пустых дней почти нет."
+   ],
+   "w_deyarli": [
+    "{M} очень близки к норме: не хватило всего {pct} % (около {left} г в день). Хорошая неделя.",
+    "Неделя прошла хорошо: {m} ниже нормы всего на {pct} %, около {left} г в день.",
+    "Даже самая большая разница невелика — {m} на {pct} % ниже нормы (около {left} г в день). Сохраняем режим.",
+    "{M} почти в норме: разница {pct} %, примерно {left} г в день. Стабильный результат.",
+    "Итог недели: макросы около нормы, наибольшая разница — {m}, {pct} %."
+   ],
+   "w_kam": [
+    "Главное отклонение недели: {m} ниже нормы на {pct} % (примерно {left} г в день). Немного добавить в каждый приём — и всё выровняется.",
+    "{M} не добирали всю неделю: в среднем на {pct} % меньше, около {left} г в день. На следующей неделе сосредоточимся на этом.",
+    "Самая большая разница — {m}: не хватило {pct} % нормы (около {left} г в день). Достаточно чуть больше за завтраком и обедом.",
+    "{M} ниже нормы на {pct} % — примерно {left} г в день. Это закрывается одной-двумя дополнительными порциями.",
+    "Итог недели: {m} в дефиците — {pct} %, около {left} г в день. Сделаем это главной целью следующей недели."
+   ],
+   "w_ok": [
+    "Все три макроса держались около нормы всю неделю. Отличный результат.",
+    "Белки, жиры и углеводы — всё в норме. Продолжаем в том же режиме.",
+    "Неделя сбалансирована: заметных отклонений ни по одному макросу.",
+    "По макросам неделя удалась: всё в пределах цели.",
+    "Итог недели: отклонений нет, макросы в норме."
+   ],
+   "w_oshdi": [
+    "Главное отклонение недели: {m} выше нормы на {pct} % (примерно {x} г в день). Поможет замена пары блюд на более лёгкие.",
+    "{M} превышали норму всю неделю: в среднем +{pct} %, около {x} г в день. На следующей неделе следим за порциями.",
+    "Самая большая разница — {m}: выше нормы на {pct} % (около {x} г в день). Достаточно заменить одно привычное блюдо на более лёгкое.",
+    "{M} выше нормы на {pct} % — примерно {x} г лишних в день. Здесь небольшое изменение даст заметный результат.",
+    "Итог недели: {m} в избытке — +{pct} %, около {x} г в день. Цель следующей недели — снизить."
    ],
    "x_nx0": [
     "Завтра продолжайте так же",

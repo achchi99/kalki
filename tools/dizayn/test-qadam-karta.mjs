@@ -32,7 +32,7 @@ try {
   /* 1. veb / iPhone — kartasiz, suv ixcham */
   let p = await mk({ mode: 'none' }); assert.equal(await p.locator('.sl-s:not([data-st=web])').count(), 0, 'v55: vebda faqat qo\'lda kiritish kartasi'); assert.equal(await p.locator('.sl-duo.one #wCard').count(), 1, 'suv bitta ixcham qator'); assert.equal(await p.locator('#wBar').count(), 1); assert.deepEqual(p.errs, []); await p.context().close();
   /* 2. ruxsat BOR — son, progress; qadam st.days[d].steps ga yoziladi */
-  p = await mk({ pl: { granted: true, enabled: true, today: 3456, sensorGranted: true }, prefs: { qa: 'on' } }); let c = await card(p); assert.equal(c.st, 'on'); assert.match(c.text, /^Qadam Avtomatik( · oxirgi yangilanish \d\d:\d\d)? 3 456 \/ [\d ]+( Manba: telefon)?$/, 'v56: holat (avtomatik) + manba belgisi + doira + son'); assert.ok(c.side && c.duo, 'v55: mashg\'ulot bilan yonma-yon'); assert.ok(!c.out.length && !c.hs);
+  p = await mk({ pl: { granted: true, enabled: true, today: 3456, sensorGranted: true }, prefs: { qa: 'on' } }); let c = await card(p); assert.equal(c.st, 'on'); assert.match(c.text, /^Qadam Avtomatik( · oxirgi yangilanish \d\d:\d\d)? 3 456 \/ [\d ]+( Manba: telefon)?( Soatdagi qadamni kiritish)?$/, 'v56: holat (avtomatik) + manba belgisi + doira + son'); assert.ok(c.side && c.duo, 'v55: mashg\'ulot bilan yonma-yon'); assert.ok(!c.out.length && !c.hs);
   assert.equal((await stOf(p)).days[TODAY].steps, 3456, 'st.days[bugun].steps yozildi (plato tahlili uchun)'); await p.context().close();
   ok('Ruxsat bor: «' + c.text + '» suv yonida, qadam st.days[d].steps ga yozildi; veb — kartasiz, suv ixcham');
   /* 3. ruxsat YO'Q (hali so'ralmagan) — «Qadamni yoqish»; bosilsa ruxsat oynasi */
@@ -46,7 +46,7 @@ try {
   /* 5. sensor yo'q */
   p = await mk({ pl: { available: false, sensor: false } }); c = await card(p); assert.equal(c.st, 'nosensor'); assert.match(c.text, /Bu telefonda qadam sensori yo'q/); assert.ok(c.side && !c.out.length && !c.hs); await p.context().close();
   /* 6. plagin yo'q (eski ilova) — karta baribir bor; ko'prik KECH tayyor bo'lsa — topiladi */
-  p = await mk({ mode: 'native-noplugin' }); c = await card(p); assert.equal(c.st, 'old'); assert.match(c.text, /Qadam uchun ilovani yangilang/); assert.ok(c.side); await p.click('.sl-s [data-act=addsteps]'); await p.waitForTimeout(300); assert.match(nb(await p.locator('#rzToast').innerText()), /yangilang/); await p.context().close();
+  p = await mk({ mode: 'native-noplugin' }); c = await card(p); assert.equal(c.st, 'old'); assert.match(c.text, /Qadam uchun ilovani yangilang/); assert.ok(c.side); await p.click('.sl-s [data-act=addsteps]'); await p.waitForSelector('#siN'); assert.match(nb(await p.locator('#rzSheet').innerText()), /Soatdagi qadamlar/, 'v98: plagin yo\'q (eski ilova) — qadamni qo\'lda kiritish oynasi ochiladi'); await p.context().close();
   p = await mk({ mode: 'late', pl: { granted: false }, wait: 5200 }); c = await card(p); assert.ok(['off', 'denied'].includes(c.st), 'kech tayyor bo\'lgan ko\'prik topildi: ' + c.st); assert.match(c.text, /Qadamni yoqish/); assert.deepEqual(p.errs, []); await p.context().close();
   ok('Sensor yo\'q — «Bu telefonda qadam sensori yo\'q»; plagin yo\'q (eski ilova) — karta + «ilovani yangilang»; ko\'prik kech tayyor bo\'lsa ham plagin topiladi va «Qadamni yoqish» chiqadi');
   /* 7. 360/390 px × 115% × UZ/RU/ЎЗ × yorug'/tungi — har holatda karta suv yonida, sig'adi */
