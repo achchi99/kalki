@@ -2257,7 +2257,7 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 @keyframes lolaBr{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 .rz .lola-b{position:relative;margin:0;padding:10px 14px;border-radius:6px 18px 18px 18px;background:var(--soft);color:var(--ink);font-size:var(--t-s);line-height:1.45;max-width:100%;overflow-wrap:anywhere}
 .rz .lola-b.lola-g{background:transparent;padding:0 2px;color:var(--mut)}
-.rz .lola-b[data-typing] .lola-tx{visibility:hidden}
+.rz .lola-b[data-typing] .lola-tx{visibility:hidden}.rz .lola-b:not([data-typing]) .lola-dots{display:none}
 .rz .lola-dots{position:absolute;left:14px;top:14px;display:inline-flex;gap:5px}.rz .lola-dots i{width:7px;height:7px;border-radius:50%;background:var(--mut);animation:lolaDot calc(var(--mo-slow) * 3.4) var(--mo-ease) infinite}
 .rz .lola-dots i:nth-child(2){animation-delay:calc(var(--mo-fast) * 1)}.rz .lola-dots i:nth-child(3){animation-delay:calc(var(--mo-fast) * 2)}
 @keyframes lolaDot{0%,70%,100%{opacity:.3;transform:translateY(0)}35%{opacity:1;transform:translateY(-3px)}}
