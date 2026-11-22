@@ -1,0 +1,71 @@
+/* ===== umumiy (a, b, c): kartalar, tipografiya, makro, bo'lim sarlavhalari, frosted panel ===== */
+html[data-dz] .rz.sl .rz-card,html[data-dz] .rz.sl .sl-big,html[data-dz] .rz.sl .sl-meal{background:var(--card);border:var(--dz-bd);box-shadow:var(--dz-sh)}
+html[data-dz] .rz.sl .sl-hd2 .sl-h1{font-weight:800;letter-spacing:-.025em}
+html[data-dz] .rz.sl :is(#kNum,#kLeft,.kc-h b,.mv b,.ml-k .k,.am b,.sl-secv b,.wd b,.v){font-variant-numeric:tabular-nums}
+html[data-dz] .rz.sl .sl-bju .tr{height:var(--dz-bar);border-radius:999px}
+html[data-dz] .rz.sl .mk-f{border-radius:999px}
+html[data-dz] .rz.sl .mk-g{width:3px;border-radius:2px}
+html[data-dz] .rz.sl .mv b{font-weight:800}
+html[data-dz] .rz.sl .mh{font-weight:700}
+html[data-dz] .rz.sl .sl-sec2 h3,html[data-dz] .rz.sl .sl-sec2>h3{font-size:21px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+html[data-dz] .rz.sl .sl-grp{font-size:13px;font-weight:800;letter-spacing:.09em;color:var(--ink);opacity:.78}
+html[data-dz] .rz.sl .sl-meal .ml-h .m>b{font-weight:800;font-size:17px}
+html[data-dz] .rz.sl .ml-k .k{font-weight:800}
+html[data-dz] .rz.sl .rz-nav{background:var(--dz-nav);-webkit-backdrop-filter:saturate(180%) blur(22px);backdrop-filter:saturate(180%) blur(22px);border-top:1px solid var(--dz-navline)}
+html[data-dz] .rz.sl .hd-av{box-shadow:var(--dz-sh)}
+/* ===== Maslahat kartasi: o'z qiyofasi — maslahatchi avatari + holat ohangi (yaxshi / ma'lumot / ogohlantirish) ===== */
+html[data-dz] .rz .sl-adv{--tn:var(--dz-info);--tn2:var(--dz-info2);--tn-bg:var(--dz-info-bg);--tn-ink:var(--dz-info-ink);position:relative;overflow:hidden;padding:16px 16px 14px}
+html[data-dz] .rz .sl-adv[data-s=ok],html[data-dz] .rz .sl-adv:has(.msl-yulduz){--tn:var(--dz-good);--tn2:var(--dz-good2);--tn-bg:var(--dz-good-bg);--tn-ink:var(--dz-good-ink)}
+html[data-dz] .rz .sl-adv[data-s=rule]:not(:has(.msl-yulduz)){--tn:var(--dz-warn);--tn2:var(--dz-warn2);--tn-bg:var(--dz-warn-bg);--tn-ink:var(--dz-warn-ink)}
+html[data-dz] .rz .sl-adv[data-s=off]{--tn:var(--mut);--tn2:var(--mut);--tn-bg:var(--soft);--tn-ink:var(--mut)}
+html[data-dz] .rz .adv-av,html[data-dz] .rz .sl-adv .msl-ic{width:46px;height:46px;flex:0 0 46px;border-radius:50%;background:linear-gradient(145deg,var(--tn),var(--tn2));color:#fff;box-shadow:0 0 0 3px var(--tn-bg),0 6px 14px -6px var(--tn2)}
+html[data-dz] .rz .adv-av .rz-i,html[data-dz] .rz .sl-adv .msl-ic svg{width:23px;height:23px;color:#fff}
+html[data-dz] .rz .adv-av i{background:#fff;border:3px solid var(--tn2);width:14px;height:14px;right:-3px;top:-3px}
+html[data-dz] .rz .adv-m b,html[data-dz] .rz .sl-adv .msl-t{font-size:17px;font-weight:800;letter-spacing:-.01em;color:var(--ink)}
+html[data-dz] .rz .adv-m .adv-s,html[data-dz] .rz .sl-adv .msl-b{color:var(--mut);font-weight:500}
+html[data-dz] .rz .sl-adv .sl-adv-go,html[data-dz] .rz .sl-adv .msl-src{color:var(--tn-ink)}
+html[data-dz] .rz .sl-adv .sl-adv-go{font-weight:800}
+/* ===== ➕ oynasi va Yana ===== */
+html[data-dz] #rzSheet,html[data-dz] .rz-sheet{border-radius:28px 28px 0 0}
+html[data-dz] .rz .ad-t{box-shadow:var(--dz-sh);border-color:var(--line)}
+html[data-dz] .rz .ad-t:nth-child(4n+1) i{background:var(--accsoft);color:var(--accink)}
+html[data-dz] .rz .ad-t:nth-child(4n+2) i{background:var(--fcbl);color:var(--fcbli)}
+html[data-dz] .rz .ad-t:nth-child(4n+3) i{background:var(--fcgr);color:var(--fcgri)}
+html[data-dz] .rz .ad-t:nth-child(4n+4) i{background:var(--fcpu);color:var(--fcpui)}
+html[data-dz] .rz .ad-t b{font-weight:800}
+html[data-dz] .rz.sl .sl-feats .sl-feat .m b{font-weight:700}
+/* ===== A — «Iliq»: krem fon, hero zonada yumshoq gradient, qatlamli soyalar ===== */
+html[data-dz=a] .rz.sl .sl-big{background:var(--dz-hero);box-shadow:var(--dz-sh2);border-radius:32px}
+html[data-dz=a] .rz.sl .sl-meal{border-radius:24px}
+html[data-dz=a] .rz.sl .sl-meal.tl-m::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:0 4px 4px 0;background:var(--accink);opacity:.8}
+html[data-dz=a] .rz.sl .sl-meal.tl-m:nth-child(2)::before{background:#3D9970}html[data-dz=a] .rz.sl .sl-meal.tl-m:nth-child(3)::before{background:#8B6BE0}
+html[data-dz=a] .rz.sl .sl-meal{position:relative}
+html[data-dz=a] .rz.sl .sl-adv{border-radius:24px;background:linear-gradient(135deg,var(--tn-bg),var(--card) 78%);border:1px solid color-mix(in srgb,var(--tn) 28%,transparent)}
+html[data-dz=a] .rz.sl .wd.on{box-shadow:0 8px 18px -8px rgba(160,70,25,.55)}
+html[data-dz=a] .rz.sl .rz-tab.rz-add .pl{box-shadow:0 10px 24px -8px rgba(200,70,25,.6)}
+/* ===== B — «Rangli hero»: yuqori blok to'liq rangli gradient (oq halqa va raqamlar), pastda oq kartalar ===== */
+html[data-dz=b] .rz.sl .sl-big{background:var(--dz-hero);border:0;box-shadow:var(--dz-sh2);border-radius:32px;
+  --ink:#FFFFFF;--mut:rgba(255,255,255,.9);--track:rgba(255,255,255,.28);--line:rgba(255,255,255,.3);--line2:rgba(255,255,255,.45);--fill:#FFFFFF;--man2:rgba(255,255,255,.7);--vessel:rgba(255,255,255,.16);--onacc:#8F2E13;--accink:#FFFFFF;--accsoft:rgba(255,255,255,.18);
+  --p:#C6DBFF;--f:#FFE49E;--c:#AFF3D6;--pink:#E3EDFF;--fink:#FFF0C6;--cink:#CDF8E6;--over:#FFE0E0;--soft:rgba(255,255,255,.18);--card:rgba(255,255,255,.14);--acc:#fff;--acc2:#fff;--waterink:#E3EDFF}
+html[data-dz=b] .rz.sl .sl-big :is(.kc-i,.mk-row,.kc-two){color:#fff}
+html[data-dz=b] .rz.sl .sl-big .mk-g{background:#fff;opacity:.9}
+html[data-dz=b] .rz.sl .sl-adv{border-radius:22px;background:var(--card);border:0;box-shadow:var(--dz-sh)}
+html[data-dz=b] .rz.sl .sl-adv::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(180deg,var(--tn),var(--tn2))}
+html[data-dz=b] .rz.sl .sl-adv{padding-left:22px}
+html[data-dz=b] .rz.sl .sl-meal{border-radius:22px}
+html[data-dz=b] .rz.sl .wd.on{background:linear-gradient(160deg,#D8481A,#A02E14);color:#fff;box-shadow:0 8px 18px -8px rgba(168,46,18,.6)}
+html[data-dz=b] .rz.sl .wd.on :is(.w,b){color:#fff}
+/* ===== C — «Premium minimal»: oq fon, kuchli tipografiya, qalin makro chiziqlar, nozik chegaralar ===== */
+html[data-dz=c] .rz.sl .sl-big{background:var(--card);border:1.5px solid var(--line);box-shadow:none;border-radius:26px}
+html[data-dz=c] .rz.sl .rz-card,html[data-dz=c] .rz.sl .sl-meal{border:1.5px solid var(--line);box-shadow:none;border-radius:22px}
+html[data-dz=c] .rz.sl .sl-hd2 .sl-h1{font-size:38px;font-weight:800;letter-spacing:-.035em}
+html[data-dz=c] .rz.sl .sl-hd2 .d{text-transform:uppercase;letter-spacing:.08em;font-size:12px;font-weight:700;color:var(--mut)}
+html[data-dz=c] .rz.sl :is(#kNum,#kLeft){font-weight:800;letter-spacing:-.04em}
+html[data-dz=c] .rz.sl .mh{text-transform:uppercase;letter-spacing:.07em;font-size:12px;font-weight:800;color:var(--mut)}
+html[data-dz=c] .rz.sl .mv b{font-size:26px;letter-spacing:-.03em}
+html[data-dz=c] .rz.sl .sl-adv{border-radius:22px;border:1.5px solid var(--tn);background:var(--card)}
+html[data-dz=c] .rz.sl .adv-av,html[data-dz=c] .rz.sl .sl-adv .msl-ic{box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--tn)}
+html[data-dz=c] .rz.sl .sl-sec2 h3{font-size:24px;letter-spacing:-.03em}
+html[data-dz=c] .rz.sl .wd.on{background:var(--ink);color:var(--bg)}
+html[data-dz=c] .rz.sl .wd.on :is(.w,b){color:var(--bg)}
+html[data-dz=c] .rz .ad-t{box-shadow:none;border-width:1.5px}

@@ -3,6 +3,7 @@
 (function () {
   'use strict';
   if (/jsdom/i.test(navigator.userAgent || '')) return;      // prerender (jsdom) ilova DOM'ini HTML'ga pishirmasin
+  try { var dzV = (location.search.match(/[?&]dizayn=([abc])(?:&|$)/) || [])[1]; if (dzV) { document.documentElement.setAttribute('data-dz', dzV); var dzL = document.createElement('link'); dzL.rel = 'stylesheet'; dzL.href = '/assets/css/kalkifit-dizayn.css?v=1'; document.head.appendChild(dzL); } } catch (e) { }          // dizayn ko'rish rejimi (?dizayn=a|b|c) — oddiy foydalanuvchiga ta'sir qilmaydi
   var S = window.KalkiFit, Dt = S && S.dates; if (!S || !window.RzKit) return;
   var LS = 'kalki_fit', LS_IMPORT = 'kalki_fit_import', LS_CID = 'kalki_fit_cid', DAY_MS = 86400000;
   var OLD = { 'kalki_fit': 'kalki_salomat', 'kalki_fit_import': 'kalki_salomat_import', 'kalki_fit_cid': 'kalki_salomat_cid' };   // eski nom (Salomat): preview foydalanuvchilari ma'lumoti yo'qolmasin
