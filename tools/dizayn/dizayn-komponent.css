@@ -55,7 +55,7 @@ html[data-dz=b] .rz.sl .sl-adv{padding-left:22px}
 html[data-dz=b] .rz.sl .sl-meal{border-radius:22px}
 html[data-dz=b] .rz.sl .wd.on{background:linear-gradient(160deg,#D8481A,#A02E14);color:#fff;box-shadow:0 8px 18px -8px rgba(168,46,18,.6)}
 html[data-dz=b] .rz.sl .wd.on :is(.w,b){color:#fff}
-/* ===== C — «Premium minimal»: oq fon, kuchli tipografiya, qalin makro chiziqlar, nozik chegaralar ===== */
+/* ===== C — «nafis minimal»: oq fon, kuchli tipografiya, qalin makro chiziqlar, nozik chegaralar ===== */
 html[data-dz=c] .rz.sl .sl-big{background:var(--card);border:1.5px solid var(--line);box-shadow:none;border-radius:26px}
 html[data-dz=c] .rz.sl .rz-card,html[data-dz=c] .rz.sl .sl-meal{border:1.5px solid var(--line);box-shadow:none;border-radius:22px}
 html[data-dz=c] .rz.sl .sl-hd2 .sl-h1{font-size:38px;font-weight:800;letter-spacing:-.035em}
