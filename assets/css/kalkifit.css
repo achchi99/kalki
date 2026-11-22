@@ -2274,7 +2274,7 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz.sl .sl-meal.tl-m::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;border-radius:0 4px 4px 0;background:var(--ml-b)}
 .rz.sl .sl-meal.tl-m[data-m=l]::before{background:var(--ml-l)}.rz.sl .sl-meal.tl-m[data-m=d]::before{background:var(--ml-d)}.rz.sl .sl-meal.tl-m[data-m=s]::before{background:var(--ml-s)}.rz.sl .sl-meal.tl-m.empty::before{opacity:.45}
 .rz.sl :is(#kNum,#kLeft,.kc-h b,.mv b,.ml-k .k,.am b,.sl-secv b,.wd b,.rz-row .v){font-variant-numeric:tabular-nums}
-.rz.sl .sl-bju .tr{height:9px;border-radius:999px}.rz.sl .mk-f{border-radius:999px}.rz.sl .mk-g{width:3px;border-radius:2px}
+.rz.sl .sl-bju .tr{height:7px;border-radius:999px}.rz.sl .mk-f{border-radius:999px}.rz.sl .mk-g{width:3px;border-radius:2px}
 .rz.sl .sl-bju .mv b{font-weight:700}.rz.sl .sl-bju .mh{font-weight:600}
 .rz.sl .sl-sec2 h3{font-weight:700;letter-spacing:-.02em;color:var(--ink)}
 .rz.sl .sl-grp{font-weight:700;letter-spacing:.08em;color:var(--ink);opacity:.8}
