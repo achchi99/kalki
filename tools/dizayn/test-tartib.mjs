@@ -51,7 +51,7 @@ try {
     assert.equal(ex.find((x) => x.k === 'nobf').z, 1, 'nonushtasizda nonushta «—» xira'); assert.match(nb(await p.locator('#rzSheet .tt-hint').innerText()), new RegExp("Raqamlar — sizning kunlik " + F(tgt) + " kkal me'yoringizdan")); } await p.click('#rzSheet [data-act=ttpick][data-k=nobf]'); await p.click('#rzSheet [data-act=ttsave]'); await p.waitForTimeout(600);
   s1 = await stOf(p); assert.equal(s1.profile.tartib, 'nobf'); assert.equal(await p.locator('#ttCard').count(), 0);
   await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(600); assert.match(nb(await p.locator('.pf-grp').innerText()), /Kun tartibi Nonushta qilmayman Oqsil maqsadi \d+ g/);
-  const fr = await p.evaluate(() => { const e = document.querySelector('.sl-feats [data-fk=tartib]'); return e ? e.textContent : ''; }); assert.match(nb(fr), /Kun tartibi/, 'Imkoniyatlar ro\'yxatida');
+  assert.equal(await p.locator('#rzMain .sl-feats').count(), 0, 'v94: Profilda Imkoniyatlar takrori yo\'q');
   await p.click('[data-act=tab][data-v=today]'); await p.waitForTimeout(400); await p.click('.rz-tab[data-v=more]'); await p.waitForTimeout(500);  assert.equal(await p.locator('#rzMain [data-fk=tartib]').count(), 1, 'panel: «Mening taomlarim» yo\'lida'); await p.keyboard.press('Escape'); await p.context().close();
   ok('Kun tartibi: bir martalik karta faqat 5+ kun va ≥ 3 kun ovqat yozganlarga (yopsa qaytmaydi); oynada foiz/chiziq yo\'q — real kkal plitkalari (yig\'indi = me\'yor), nonushtasizda «—»; Profil → «Ovqatlanish»; Imkoniyatlar → «Mening»');
   /* ---- 3. Bugun: ovqat budjetlari va qoldiq o'tkazish (kechqurun ko'p, 19:05) ---- */
