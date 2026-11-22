@@ -2234,4 +2234,4 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sl-calg .c>span{inset:2px;letter-spacing:-.03em;font-size:min(1em,3.6vw)}
 .rz .sl-duo.one .sl-wb .v{white-space:normal;flex-wrap:wrap}
 /* v94: sarlavha (line-height 1.05) harflari katta matnda sana qatoriga tushmasin */
-.rz.sl .sl-hd2 .sl-h1{margin-bottom:.1em}
+.rz.sl .sl-hd2 .sl-h1{margin-bottom:max(0px,calc(.3em - 9px))}
