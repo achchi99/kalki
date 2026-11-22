@@ -230,7 +230,7 @@ BOLIM['afsona'] = async (c, { tag, mk, shot, scan, mainAt }) => { let p;
     const YM = OUT && c.w === 390 && !c.h && c.lang === 'uz' && fs.existsSync(MAKET6);
     p = await mk(st); await p.waitForTimeout(500); if (!(await p.locator('#afTz').count())) fails.push(tag + ' v54: kunning savoli yo\'q');
     else { await p.evaluate(() => { const m = document.getElementById('rzMain'), c2 = document.getElementById('afTz'); m.scrollTop = c2.offsetTop - 300; }); await p.waitForTimeout(250); await scan(p, 'Kunning savoli', '#afTz'); await shot(p, 'v54-kun'); if (YM) await yonma6(p, c.th, 'v54-maket-1', 0);
-      await p.evaluate(() => { localStorage.setItem('kalki_stat_q', '[]'); }); await p.click('[data-act=tab][data-v=profile]'); await p.waitForTimeout(400); await p.click('[data-act=feat][data-fk=afsona]'); await p.waitForTimeout(900);
+      await p.evaluate(() => { localStorage.setItem('kalki_stat_q', '[]'); }); await p.click('.rz-tab[data-v=more]'); await p.waitForTimeout(400); await p.click('[data-act=feat][data-fk=afsona]'); await p.waitForTimeout(900);
       await scan(p, 'Afsona savol', '#afOv'); await shot(p, 'v54-savol'); if (YM) await yonma6(p, c.th, 'v54-maket-2', 1);
       await p.click('#afOv [data-act=afans][data-v=a]'); await p.waitForTimeout(900); await scan(p, 'Afsona javob', '#afOv'); await shot(p, 'v54-javob'); if (YM) await yonma6(p, c.th, 'v54-maket-3', 2); }
     if (p.errs.length) fails.push(tag + ' JS (v54): ' + p.errs[0]); await p.context().close(); }

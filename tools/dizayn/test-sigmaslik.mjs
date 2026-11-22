@@ -37,6 +37,9 @@ const SC = [
   { n: 'pastki-panel', st: () => seed({ food: FULL }), scope: '.rz-nav' },
   { n: 'tarix', st: () => seed({ food: hist.concat(FULL) }), act: async (p) => { await click(p, '[data-act=tab][data-v=history]'); await p.waitForSelector('#tlCard'); return '#rzMain'; } },
   { n: 'tahlil-oynasi', st: () => seed({ food: hist }), act: async (p) => { await click(p, '[data-act=tab][data-v=history]'); await click(p, '#tlCard'); await p.waitForSelector('.tl-main'); return '#rzSheet'; } },
+  /* v97: bo'sh o'tgan kun, karta ekran tagida (pastga aylantirilgan), Tahlil bo'limi pasti */
+  { n: 'kun-tanlangan-bosh', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '#wkStrip .wd:nth-of-type(3)'); await p.waitForTimeout(600); return '#rzMain'; } },
+  { n: 'karta-ekran-tagida', st: () => seed({ food: OVER, steps: 0, ex: 0, water: 3 }), hour: 15, act: async (p) => { await p.evaluate(() => { const m = document.getElementById('rzMain'); m.scrollTop = m.scrollHeight; }); await p.waitForTimeout(300); return '#rzMain'; } },
   { n: 'profil', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '[data-act=tab][data-v=profile]'); return '#rzMain'; } },
 ];
 /* matritsa: WebKit (Safari) — 4 kenglik; Chromium (Android WebView) — tanlab. z = matn kattalashtirish (tor kengliklarda ×1,3) */

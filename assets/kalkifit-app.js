@@ -152,6 +152,8 @@
     hkWaterU: "ml suv — kuniga o'rtacha", hkStepsU: 'qadam — jami', hkMoveT: 'Suv va harakat', hkBestT: 'Eng yaxshi kun', hkStreakU: 'kun ketma-ket yozdingiz', hkFoodT: "Eng ko'p yeyilgan", hkWt: 'Vazn (faqat sizga ko\'rinadi): {d} kg', hkTipT: 'Keyingi haftaga maslahat', hkShare: 'Ulashish', hkClose: 'Yopish', hkAvgT: "o'rtacha kkal/kun", hkNearS: 'maqsadga yaqin kunlar' });
   Object.assign(D.ru, { hkTitle: 'Ваша неделя', hkCardS: 'В среднем {k} ккал · за {n} дн. (сегодня не учитывается)', avgDaysN: 'За {n} дн. (сегодня не учитывается)', avgToday: 'Сегодня пока записано {k} ккал', cmAvgN: 'за {n} дн.', hkCard0: 'Неделя только начинается — загляните', hkHi: 'Ваша неделя', hkDays: 'Еда записана {n} из 7 дней', hkEmpty: 'На этой неделе записей нет. Запишите завтра одну еду — через неделю будет красивый итог.', hkKcalT: 'Калории', hkNearT: 'дн. около цели', hkAvg: 'В среднем {x} ккал/день · цель {g}', hkFew: 'Пока мало данных — записывайте хотя бы одну еду в день, и график заполнится.',
     hkWaterU: 'мл воды — в среднем в день', hkStepsU: 'шагов — всего', hkMoveT: 'Вода и движение', hkBestT: 'Лучший день', hkStreakU: 'дн. подряд с записями', hkFoodT: 'Чаще всего ели', hkWt: 'Вес (видите только вы): {d} кг', hkTipT: 'Совет на следующую неделю', hkShare: 'Поделиться', hkClose: 'Закрыть', hkAvgT: 'ккал/день в среднем', hkNearS: 'дней около цели' });
+  Object.assign(D.uz, { advLinksT: 'Tahlil va maslahatlar' });
+  Object.assign(D.ru, { advLinksT: 'Разборы и подсказки' });
   Object.assign(D.uz, { pgMen: 'Men', pgSet: 'Sozlamalar', pgImk: 'Imkoniyatlar', pgApp: 'Ilova', pgAcc: 'Hisob va zaxira', sIntro: "Tanishtiruvni qayta ko'rish", ftOpen: 'Ochish',
     ft_ovoz: "Ovoz bilan qo'shish", ft_ovozH: "Ayting — ro'yxat o'zi tuziladi", ft_rasm: "Rasm bilan qo'shish", ft_rasmH: 'Taom va porsiya rasmdan aniqlanadi', ft_menyu: 'Menyudan tanlash', ft_menyuH: 'Kafe menyusidan maqsadga mos taomlar',
     ft_yeymiz: 'Nima yesam ekan?', ft_yeymizH: "Uyda tez va sog'lom (60+ retsept), kafe yoki buyurtma", ft_retsept: 'Retseptni yengillashtirish', ft_retseptH: "Retseptning yengilroq varianti", ft_odatdagi: 'Odatdagi ovqatlarim', ft_odatdagiH: "Bir bosishda qo'shish",
@@ -1851,6 +1853,7 @@
     if ((x.food || []).length) { kxAnim = true; var p0 = prefs(), sv = [p0.kxShow, p0.kxClosed]; p0.kxShow = t; delete p0.kxClosed; var kc = kxCardHtml(t); p0.kxShow = sv[0]; if (sv[1] != null) p0.kxClosed = sv[1]; if (sv[0] == null) delete p0.kxShow; h += '<div class="adv-sec"><h3 class="sl-grp">' + esc(T('advXT')) + '</h3>' + kc.replace(/<button type="button" class="rz-x sl-bxx" data-act="kxx"[^>]*>[\s\S]*?<\/button>/, '') + '</div>'; }
     else h += '<div class="adv-sec"><h3 class="sl-grp">' + esc(T('advXT')) + '</h3><section class="rz-card"><p class="rz-mut">' + esc(T('advXE')) + '</p></section></div>';
     h += '<div class="adv-sec">' + advMacroHtml(t) + '</div>';
+    var LA = featList().filter(function (z) { return z.k === 'tahlil' || z.k === 'plato' || z.k === 'yesam' || z.k === 'hafta'; }); if (LA.length) h += '<div class="adv-sec"><h3 class="sl-grp">' + esc(T('advLinksT')) + '</h3><section class="rz-card sl-feats">' + LA.map(function (z) { return featRow(z); }).join('') + '</section></div>';          // v97: tahlillar Maslahat'da ham 1 bosishda
     h += '<section class="rz-card" id="mslSetA"><div class="rz-st">' + esc(T('advSetT')) + '</div>' + segHtml(T('advSetT'), [['hazil', 'mslM_hazil'], ['jiddiy', 'mslM_jiddiy'], ['off', 'mslM_off']].map(function (m) { return { attrs: 'data-act="mslmode" data-v="' + m[0] + '"', on: mslMode() === m[0], text: T(m[1]) }; })) + '</section>';
     setMain(h); kxFx();
   }
@@ -2015,7 +2018,6 @@
     h += '<section class="rz-card">' + row('intro', 'help', T('sIntro'), '') + '</section>';          // v69: «Tanishtiruvni qayta ko'rish» — panel o'rniga Sozlamalar ichida
     h += jokesCardHtml();
     h += '<section class="rz-card" id="mslSet"><div class="rz-st">' + esc(T('mslSetT')) + '</div>' + seg('mslmode', 'v', [['hazil', T('mslM_hazil')], ['jiddiy', T('mslM_jiddiy')], ['off', T('mslM_off')]], mslMode(), T('mslSetT')) + '</section>';
-    h += grp('pgImk') + featsHtml();
     h += grp('pgApp');
     h += '<section class="rz-card">' + (window.KalkiNative && KalkiNative.isAndroidBrowser() ? row('apk', 'download', T('apkT'), T('apkH')) : '') + news.row() + '<span class="rz-aboutrow">' + row('about', 'info', T('sAbout'), '') + '</span></section>';
     h += grp('pgAcc');
