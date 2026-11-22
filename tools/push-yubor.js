@@ -51,7 +51,7 @@ async function eslatmaYubor(q, vp, send, now, dry, deps) {
     for (const a of acts) {
       r.ishlangan |= Q.BIT[a.meal];
       if (a.amal === 'otkaz') add('otkazildi'); if (a.amal !== 'yubor' || sent) continue;
-      const n = Q.MEALS.indexOf(a.meal) + Math.round(Date.parse(L.kun + 'T00:00:00Z') / 86400000), m = Q.matn(TX, r.til, a, n, TR.translit), p = { t: m.t, b: m.b, u: Q.url(r.til, a, L.kun), tag: 'eslatma-' + a.meal };
+      const n = Q.MEALS.indexOf(a.meal) + Math.round(Date.parse(L.kun + 'T00:00:00Z') / 86400000), m = Q.matn(TX, r.til, a, n, TR.translit, Q.uslubOf ? Q.uslubOf(r) : 'jiddiy'), p = { t: m.t, b: m.b, u: Q.url(r.til, a, L.kun), tag: 'eslatma-' + a.meal };
       if (dry) { console.log(' ', r.id.slice(0, 8), L.kun, a.meal, a.kind, p.b); sent = true; r.yuborildi++; continue; }
       try { const res = await send({ endpoint: r0.endpoint, p256dh: r0.p256dh, auth: r0.auth }, p, vp);
         if (res.ok) { ok++; sent = true; r.yuborildi++; add('yuborildi.' + a.meal); }

@@ -1,5 +1,5 @@
 {
- "izoh": "KalkiFit ovqat eslatmalari (v88): matnlar — ilova (Android lokal bildirishnoma) va tools/push-yubor.js --eslatma (veb-push) shu fayldan o'qiydi. ЎЗ — uz matnining translit'i. Har ovqatga 5 variant; kun raqami bo'yicha aylanadi (har kuni boshqacha). {m} — o'tkazib yuborilgan ovqat(lar) nomi.",
+ "izoh": "KalkiFit ovqat eslatmalari (v88): matnlar — ilova (Android lokal bildirishnoma) va tools/push-yubor.js --eslatma (veb-push) shu fayldan o'qiydi. ЎЗ — uz matnining translit'i. Har ovqatga 5 variant; kun raqami bo'yicha aylanadi (har kuni boshqacha). {m} — o'tkazib yuborilgan ovqat(lar) nomi. v95: matn_hazil — maslahatchi «Hazil bilan» uslubida (ilova va veb-push jadvalidagi u='hazil'); matn — jiddiy.",
  "sarlavha": {
   "uz": "KalkiFit",
   "ru": "KalkiFit"
@@ -95,6 +95,82 @@
     "Пусть день будет полным: запишите {m}",
     "Не забыли про {m}? Одно касание",
     "Сегодня {m} ещё нет — добавим?"
+   ]
+  }
+ },
+ "matn_hazil": {
+  "uz": {
+   "b": [
+    "Tong bilan! Nonushta likopchada, men esa daftarda kutyapman",
+    "Nonushta qochib ketmasin — bir bosishda ushlab qolamiz",
+    "Choy damlandimi? Nonushtani yozib qo'yamiz, kun chiroyli boshlansin",
+    "Ertalabki taom yozilmasa, men sog'inaman. Nonushtani qo'shamizmi?",
+    "Nonushta — kunning birinchi qahramoni. Uni yozib qo'yamizmi?"
+   ],
+   "l": [
+    "Tushlik vaqti! Osh bo'lsa ham, salat bo'lsa ham — men yozishga tayyorman",
+    "Tushlik tugadimi? Uni daftarga muhrlab qo'yamiz",
+    "Qoshiqni qo'ydingizmi? Endi tushlikni bir bosishda yozamiz",
+    "Tushlik yozilmasa, kunning o'rtasi bo'sh qoladi. Qo'shamizmi?",
+    "Tushlik haqida menga ham aytib qo'ying — bir bosish kifoya"
+   ],
+   "s": [
+    "Kichik tamaddi ham hisobda katta mehmon. Yozib qo'yamizmi?",
+    "Pechenye jimgina o'tib ketmasin — tamaddini yozamizmi?",
+    "Meva, yong'oq, choy? Tamaddi ham o'z qatorini kutyapti",
+    "Tamaddi qildingizmi? Men sir saqlayman, faqat yozib qo'ying",
+    "Kichkina tamaddi — kichkina yozuv. Bir bosishda tayyor"
+   ],
+   "d": [
+    "Kechki dasturxon yig'ildimi? Kun hisobini birga yopamiz",
+    "Kechki ovqat — kunning oxirgi sahifasi. Yozib qo'yamizmi?",
+    "Kechki ovqatni yozsangiz, men kunni chiroyli yakunlayman",
+    "Kun yopilish arafasida — kechki ovqat hali daftarga kirmagan",
+    "Qozon bo'shadimi? Kechki ovqatni yozib qo'yish vaqti"
+   ],
+   "x": [
+    "Men {m}ni qidiryapman, topolmayapman. Qo'shib qo'yamizmi?",
+    "{M} bugun daftarga kirmay qoldi — hali kech emas",
+    "Kunda bo'sh joy bor: {m}. Bir bosishda to'ldiramiz",
+    "{M} jimgina o'tib ketdimi? Yozib qo'ysak, kun to'liq bo'ladi",
+    "Bugungi {m} hali sir bo'lib turibdi. Ochib qo'yamizmi?"
+   ]
+  },
+  "ru": {
+   "b": [
+    "С добрым утром! Завтрак на тарелке, а я жду его в дневнике",
+    "Завтрак не убежит, если записать его в одно касание",
+    "Чай заварился? Запишем завтрак — пусть день начнётся красиво",
+    "Без записи завтрака я скучаю. Добавим?",
+    "Завтрак — первый герой дня. Запишем его?"
+   ],
+   "l": [
+    "Время обеда! Плов или салат — я готова записать",
+    "Обед позади? Давайте закрепим его в дневнике",
+    "Ложку отложили? Теперь обед в одно касание",
+    "Без обеда середина дня пустует. Запишем?",
+    "Расскажите и мне про обед — хватит одного касания"
+   ],
+   "s": [
+    "Маленький перекус — большой гость в счёте. Запишем?",
+    "Пусть печенье не проскочит незаметно — запишем перекус?",
+    "Фрукты, орешки, чай? Перекус ждёт своей строчки",
+    "Перекусили? Я никому не скажу, просто запишите",
+    "Маленький перекус — маленькая запись. Одно касание"
+   ],
+   "d": [
+    "Ужин на столе? Давайте вместе закроем день",
+    "Ужин — последняя страница дня. Запишем?",
+    "Запишите ужин, а я красиво подведу итог дня",
+    "День почти закрыт, а ужина в дневнике ещё нет",
+    "Казан опустел? Самое время записать ужин"
+   ],
+   "x": [
+    "Ищу {m} и не нахожу. Добавим?",
+    "{M} — сегодня без записи. Ещё не поздно",
+    "В дне есть пробел: {m}. Заполним в одно касание",
+    "Для полного дня не хватает: {m}. Запишем?",
+    "Пока загадка дня: {m}. Раскроем?"
    ]
   }
  }

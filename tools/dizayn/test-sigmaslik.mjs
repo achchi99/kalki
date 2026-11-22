@@ -39,6 +39,10 @@ const SC = [
   { n: 'tahlil-oynasi', st: () => seed({ food: hist }), act: async (p) => { await click(p, '[data-act=tab][data-v=history]'); await click(p, '#tlCard'); await p.waitForSelector('.tl-main'); return '#rzSheet'; } },
   /* v97: bo'sh o'tgan kun, karta ekran tagida (pastga aylantirilgan), Tahlil bo'limi pasti */
   { n: 'kun-tanlangan-bosh', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '#wkStrip .wd:nth-of-type(3)'); await p.waitForTimeout(600); return '#rzMain'; } },
+  /* v95: Lola — savol (3 javob tugmasi), javob pufakchasi, «Maslahat» suhbati (salom + xotira + kartadagi so'z) */
+  { n: 'lola-savol', st: () => seed({ food: bugun([['non', 'b', 300, 8, 2, 60], ['osh', 'l', 500, 15, 20, 60]]) }), hour: 16, scope: '#rzMain', need: '.lola-ans' },
+  { n: 'lola-javob', st: () => seed({ food: bugun([['non', 'b', 300, 8, 2, 60], ['osh', 'l', 500, 15, 20, 60]]) }), hour: 16, act: async (p) => { await click(p, '.lola-ans [data-act=lolaans]'); await p.waitForTimeout(400); return '#rzMain'; } },
+  { n: 'lola-sovet', st: () => seed({ food: hist.concat(FULL) }), hour: 10, act: async (p) => { await click(p, '[data-act=tab][data-v=advice]'); await p.waitForTimeout(500); return '#rzMain'; } },
   { n: 'karta-ekran-tagida', st: () => seed({ food: OVER, steps: 0, ex: 0, water: 3 }), hour: 15, act: async (p) => { await p.evaluate(() => { const m = document.getElementById('rzMain'); m.scrollTop = m.scrollHeight; }); await p.waitForTimeout(300); return '#rzMain'; } },
   { n: 'profil', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '[data-act=tab][data-v=profile]'); return '#rzMain'; } },
 ];

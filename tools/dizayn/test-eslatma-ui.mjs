@@ -110,7 +110,7 @@ try {
   /* 7. veb-push: Profil'dan yoqish → obuna (baliq kuni — yo'q), jadval + vaqt mintaqasi; ovqat yozilsa «yozildi» (faqat belgi); ?eslatma=d — bosildi + oyna */
   p = await open({ web: {}, st: seed() }); await prof(p); await p.click('#remRow [data-act=remtog]'); await p.waitForTimeout(900);
   const ob = p.api.find((x) => x[0] === 'obuna'), es = p.api.find((x) => x[0] === 'eslatma'); assert.ok(ob && ob[1].baliqsiz === true, 'faqat ovqat eslatmasi — baliq kuni yuborilmaydi');
-  assert.deepEqual(es[1].jadval, { b: 510, l: 810, s: null, d: 1170 }); assert.equal(es[1].tz, (await p.evaluate(() => -new Date().getTimezoneOffset())) || 0); assert.equal((await stOf(p)).prefs.rem.on, 1);
+  assert.deepEqual(es[1].jadval, { b: 510, l: 810, s: null, d: 1170, u: 'hazil' });          // v95: u — maslahatchi uslubi (eslatma matni) assert.equal(es[1].tz, (await p.evaluate(() => -new Date().getTimezoneOffset())) || 0); assert.equal((await stOf(p)).prefs.rem.on, 1);
   await p.click('[data-act=tab][data-v=today]'); await quickAdd(p, 'non', 'non'); await p.waitForTimeout(500); const yz = p.api.filter((x) => x[0] === 'yozildi');
   assert.deepEqual(yz.map((x) => Object.keys(x[1]).sort().join(',')), ['endpoint,kun,ovqat'], 'faqat belgi — taom nomi/kkal yo\'q'); assert.equal(yz[0][1].ovqat, 'b'); await p.context().close();
   p = await open({ web: { sub: true, perm: 'granted' }, st: seed({ prefs: { rem: REM({ wsync: T0 }) } }), url: '?eslatma=d&k=' + T0 }); await p.waitForTimeout(800);

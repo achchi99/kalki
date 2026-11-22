@@ -13,6 +13,7 @@ export function jadvalOf(row) { let j = {}; try { j = JSON.parse(row.jadval || '
 export function jadvalTekshir(j) {                      // mijozdan: { b: daqiqa|null, … } → JSON yoki null
   if (!j || typeof j !== 'object') return null; const o = {}; let n = 0;
   for (const k of MEALS) { const v = j[k]; if (v === null || v === undefined || v === false) { o[k] = null; continue; } const t = Math.round(+v); if (!Number.isFinite(t) || t < 0 || t > 1439) return null; o[k] = t; n++; }
+  if (j.u === 'hazil' || j.u === 'jiddiy') o.u = j.u;          // v95: eslatma uslubi (maslahatchi sozlamasi)
   return n ? JSON.stringify(o) : null;
 }
 /* kun almashdi: kechagi natija (yuborildi > 0 bo'lsa bosildimi) → bosilmagan / siyrak; hisoblagichlar nolga. → { row, ev: [[hodisa, kalit]] } */
@@ -39,8 +40,9 @@ export function tanla(row, nowMs) {
   }
   return out;
 }
-export function matn(tx, til, it, n, translit) {        // tx — data/eslatmalar.json
-  const L = til === 'ru' ? 'ru' : 'uz', list = tx.matn[L][it.kind === 'x' ? 'x' : it.meal]; let b = list[Math.abs(n || 0) % list.length];
+export function uslubOf(row) { try { const j = JSON.parse(row.jadval || '{}') || {}; return j.u === 'hazil' ? 'hazil' : 'jiddiy'; } catch (e) { return 'jiddiy'; } }
+export function matn(tx, til, it, n, translit, uslub) {        // tx — data/eslatmalar.json; v95: uslub 'hazil' — tx.matn_hazil
+  const L = til === 'ru' ? 'ru' : 'uz', M = uslub === 'hazil' && tx.matn_hazil && tx.matn_hazil[L] ? tx.matn_hazil : tx.matn, list = M[L][it.kind === 'x' ? 'x' : it.meal]; let b = list[Math.abs(n || 0) % list.length];
   if (it.kind === 'x') { const nm = tx.ovqat[L][it.miss] || ''; b = b.replace('{m}', nm).replace('{M}', nm.charAt(0).toUpperCase() + nm.slice(1)); }
   return { t: tx.sarlavha[L], b: til === 'cyr' && translit ? translit(b.replace(/[‘’ʻ`´]/g, "'")) : b };
 }

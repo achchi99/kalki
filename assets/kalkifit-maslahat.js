@@ -17,8 +17,13 @@
   function r(x) { return Math.round(x); }
 
   /* ---------- makro holati ---------- */
-  function holat(v, g) { var q = g > 0 ? v / g : 0; return q >= OVER - 1e-9 ? 'oshdi' : (q >= 0.85 ? 'joyida' : 'kam'); }
-  function makro(tot, goals) { var o = {}; ['p', 'f', 'c'].forEach(function (k) { var v = num(tot[k]), g = num(goals[k]); o[k] = { v: v, g: g, r: g > 0 ? v / g : 0, st: holat(v, g) }; }); return o; }
+  /* v95: 4 holat — YAGONA manba (Bugun ▾ ✓ ▴, «Maslahat» yorliqlari, makro oynasi, kun xulosasi, matnlar). Ekrandagi butun sonlar bilan hisoblanadi — matn raqamga zid bo'lmaydi:
+     kam < 85 % · deyarli 85–99 % (yana N g) · bajarildi 100–114 % · oshdi ≥ 115 % */
+  var STATES = ['kam', 'deyarli', 'bajarildi', 'oshdi'];
+  function holat(v, g) { var vr = r(num(v)), gr = r(num(g)); if (gr <= 0) return vr > 0 ? 'oshdi' : 'kam'; return vr * 100 >= gr * 115 ? 'oshdi' : vr >= gr ? 'bajarildi' : vr * 100 >= gr * 85 ? 'deyarli' : 'kam'; }
+  function yetdi(st) { return st === 'bajarildi' || st === 'oshdi'; }
+  function belgi(st) { return st === 'bajarildi' ? 'ok' : st === 'oshdi' ? 'up' : 'dn'; }          // ✓ · ▴ · ▾ (deyarli ham ▾ — hali yetmagan)
+  function makro(tot, goals) { var o = {}; ['p', 'f', 'c'].forEach(function (k) { var v = num(tot[k]), g = num(goals[k]), vr = r(v), gr = r(g); o[k] = { v: v, g: g, r: g > 0 ? v / g : 0, st: holat(v, g), left: Math.max(0, gr - vr), x: Math.max(0, vr - gr) }; }); return o; }
   /* bugun shu makroni qaysi taomlar bergan: [{ name, g, kcal }] (bir xil taom qo'shiladi) */
   function manba(foods, k, nameOf, n) {
     var m = {}, order = []; (foods || []).forEach(function (e) { var nm = nameOf ? nameOf(e) : (e.name || e.fid || ''); if (!nm) return; if (!m[nm]) { m[nm] = { name: nm, g: 0, kcal: 0 }; order.push(nm); } m[nm].g += num(e[k]); m[nm].kcal += num(e.kcal); });
@@ -51,6 +56,15 @@
     return null;
   }
 
+  /* ---------- v95: Lola matnlari — assets/kalkifit-maslahat-matn.js (uslub × til × kalit → 5 variant). Hamma maslahatchi matni shu yerdan ---------- */
+  var MATN = null; try { if (typeof module === 'object' && module.exports) MATN = require('./kalkifit-maslahat-matn.js'); } catch (e) { MATN = null; }
+  function lib() { return MATN || (typeof self !== 'undefined' && self.KalkiMaslahatMatn) || null; }
+  function uslub(mode) { return mode === 'hazil' ? 'hazil' : 'jiddiy'; }          // «O'chirilgan» rejimda ko'rinadigan joylar (Tahlil, kun xulosasi) — jiddiy
+  function list(key, lang, mode) { var M = lib(), L = lang === 'ru' ? 'ru' : 'uz', m = uslub(mode); return (M && M[L] && M[L][m] && M[L][m][key]) || []; }
+  function bor(key) { return list(key, 'uz', 'jiddiy').length > 0; }
+  function fillD(s, o) { o = o || {}; return String(s).replace(/\{(\w+)\}/g, function (m, k) { var v = o[k]; if (v == null && k === 'Src' && o.src != null) { v = String(o.src); v = v.charAt(0).toUpperCase() + v.slice(1); } return v != null ? v : ''; }).replace(/\s+([,.!?])/g, '$1').replace(/\s{2,}/g, ' ').trim().replace(/^[a-zа-яё]/, function (c) { return c.toUpperCase(); }); }          // gap boshi — katta harf ({name} boshida bo'lsa ham)
+  /* o = { lang, mode, i | pick(key, n) } */
+  function say(key, data, o) { o = o || {}; var a = list(key, o.lang, o.mode); if (!a.length) return ''; var i = typeof o.i === 'number' ? o.i : (o.pick ? o.pick(key + '.' + uslub(o.mode), a.length) : 0); i = ((num(i) % a.length) + a.length) % a.length; return fillD(a[i], data); }
   /* ---------- matnlar ---------- */
   var TX = {
     uz: {
@@ -91,9 +105,10 @@
   function fill(s, o) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return o[k] != null ? o[k] : m; }); }
   function srcText(src, L) { var nm = (src || []).map(function (x) { return String(x.name).replace(/\s*\([^)]*\)/g, '').trim().toLowerCase(); }); return nm.length ? nm.join(TX[L].va) : (L === 'ru' ? 'еда' : 'ovqat'); }
   /* variant tanlash: jiddiy — 0–2; hazil — 0–5; oxirgi ishlatilgani takrorlanmaydi (last — oxirgi indeks) */
-  function variant(id, mode, last, seed) { var L = TX.uz[id] || [], n = id === 'kam' ? 1 : (mode === 'jiddiy' ? Math.min(3, L.length) : L.length); if (n <= 1) return 0; var i = Math.abs(num(seed)) % n; if (i === last) i = (i + 1) % n; return i; }
+  function variant(id, mode, last, seed) { var n = list('r_' + id, 'uz', mode).length; if (n <= 1) return 0; var i = Math.abs(num(seed)) % n; if (i === last) i = (i + 1) % n; return i; }
   function matn(q, lang, mode, vi) {
     var L = lang === 'ru' ? 'ru' : 'uz', d = q.data || {}, src = srcText(d.src, L), o = { x: d.x, p: d.p, sh: d.sh, k: d.k, min: d.min, src: src, Src: src.charAt(0).toUpperCase() + src.slice(1) };
+    if (bor('r_' + q.id)) return { t: say('rt_' + q.id, o, { lang: L, mode: mode, i: vi || 0 }), b: say('r_' + q.id, o, { lang: L, mode: mode, i: vi || 0 }) };
     return { t: fill(TX[L].t[q.id], o), b: fill(TX[L][q.id][vi || 0], o) };
   }
 
@@ -106,10 +121,12 @@
   };
   function nf(n) { return String(r(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
   /* c = { tot, goals, limit, floor, foods, nameOf, water (ml), waterGoal, steps, stepGoal } → { yaxshi, ogdi, ertaga, k: 'f'|'c'|'p'|'k'|'low'|'0' } */
-  function xulosa(c, lang) {
-    var L = lang === 'ru' ? 'ru' : 'uz', X = XT[L], t = c.tot, g = c.goals, k = num(t.kcal), lim = num(c.limit), good = null, off = null, kk = '0';
+  function xulosa(c, lang, mode, pick) {
+    var L = lang === 'ru' ? 'ru' : 'uz', X0 = XT[L], X = {}; Object.keys(X0).forEach(function (k) { X[k] = bor('x_' + k) ? { key: 'x_' + k } : X0[k]; });
+    var fill = function (s0, o) { return s0 && s0.key ? say(s0.key, o, { lang: L, mode: mode, pick: pick }) : fillD(s0, o); };
+    var t = c.tot, g = c.goals, k = num(t.kcal), lim = num(c.limit), good = null, off = null, kk = '0';
     var low = c.floor > 0 && k > 0 && k < c.floor;
-    if (!low) { if (g.p > 0 && t.p >= g.p) good = fill(X.okP, { v: r(t.p), g: r(g.p) }); else if (lim > 0 && k >= lim * 0.9 && k <= lim * 1.1) good = fill(X.okK, { v: nf(k), g: nf(lim) }); else if (c.waterGoal > 0 && c.water >= c.waterGoal) good = fill(X.okW, { v: nf(c.water) }); else if (c.stepGoal > 0 && c.steps >= c.stepGoal) good = fill(X.okS, { v: nf(c.steps) }); }
+    if (!low) { if (g.p > 0 && yetdi(holat(t.p, g.p))) good = fill(X.okP, { v: r(t.p), g: r(g.p) }); else if (lim > 0 && k >= lim * 0.9 && k <= lim * 1.1) good = fill(X.okK, { v: nf(k), g: nf(lim) }); else if (c.waterGoal > 0 && c.water >= c.waterGoal) good = fill(X.okW, { v: nf(c.water) }); else if (c.stepGoal > 0 && c.steps >= c.stepGoal) good = fill(X.okS, { v: nf(c.steps) }); }
     if (!good) good = fill(X.okN, { n: (c.foods || []).length });
     var devs = [];
     if (low) { off = fill(X.offLow, { k: nf(k), min: nf(c.floor) }); kk = 'low'; }
@@ -117,11 +134,11 @@
       if (g.f > 0 && t.f > g.f * OVER) devs.push({ k: 'f', s: (t.f - g.f) * 9, txt: fill(X.offF, { x: r(t.f - g.f), src: srcText(manba(c.foods, 'f', c.nameOf, 2), L) }) });
       if (g.c > 0 && t.c > g.c * OVER) devs.push({ k: 'c', s: (t.c - g.c) * 4, txt: fill(X.offC, { x: r(t.c - g.c), src: srcText(manba(c.foods, 'c', c.nameOf, 2), L) }) });
       if (lim > 0 && k > lim * OVER) devs.push({ k: 'k', s: k - lim, txt: fill(X.offK, { x: nf(k - lim), src: srcText(manba(c.foods, 'kcal', c.nameOf, 2), L) }) });
-      if (g.p > 0 && t.p < g.p * 0.85) devs.push({ k: 'p', s: (g.p - t.p) * 4, txt: fill(X.offP, { x: r(g.p - t.p) }) });
+      if (g.p > 0 && holat(t.p, g.p) === 'kam') devs.push({ k: 'p', s: (g.p - t.p) * 4, txt: fill(X.offP, { x: r(g.p - t.p) }) });
       devs.sort(function (a, b) { return b.s - a.s; });
-      if (devs.length) { off = devs[0].txt; kk = devs[0].k; } else off = X.off0;
+      if (devs.length) { off = devs[0].txt; kk = devs[0].k; } else off = fill(X.off0, {});
     }
-    var nx = { f: X.nxF, c: X.nxC, p: X.nxP, k: X.nxK, low: X.nxLow, '0': X.nx0 }[kk];
+    var nx = fill({ f: X.nxF, c: X.nxC, p: X.nxP, k: X.nxK, low: X.nxLow, '0': X.nx0 }[kk], {});
     return { yaxshi: good, ogdi: off, ertaga: nx, k: kk, low: low };
   }
 
@@ -147,5 +164,6 @@
     return { n: n, avg: r(avg), findings: F, main: main };
   }
   return { OVER: OVER, PROT_EVE: PROT_EVE, EVE_H: EVE_H, LATE_H: LATE_H, FAT_SH: FAT_SH, MAX_DAY: MAX_DAY, MIN_DAYS: MIN_DAYS, WIN: WIN, CHIP: CHIP, ICON: ICON, TX: TX, XT: XT,
+    STATES: STATES, yetdi: yetdi, belgi: belgi, say: say, list: list, bor: bor, fillD: fillD, lib: lib, uslub: uslub,
     holat: holat, makro: makro, manba: manba, qoida: qoida, variant: variant, matn: matn, srcText: srcText, xulosa: xulosa, tahlil: tahlil };
 });
