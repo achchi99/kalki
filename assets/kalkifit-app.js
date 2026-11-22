@@ -861,8 +861,8 @@
     profil: function (n) { return goTab('profile', function () { n.highlight($('#pfHero') || $('#rzMain')); }); },
     bju: function (n) { return goTab('today', function () { var c = $('#bjuCard'); if (c && c.scrollIntoView) c.scrollIntoView({ block: 'center' }); n.highlight(c); }); },
     week7: function (n) { return goTab('today', function () { n.highlight($('.sl-week7')); }); },
-    yeymiz: function (n) { return goTab('profile', function () { var b = $('[data-act=feat][data-fk=yeymiz]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },          // Profil → Imkoniyatlar
-    retsept: function (n) { return goTab('profile', function () { var b = $('[data-act=feat][data-fk=retsept]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },          // v32: Profil → Imkoniyatlar
+    yeymiz: function (n) { return goTab('more', function () { var b = $('[data-act=feat][data-fk=yeymiz]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },          // Profil → Imkoniyatlar
+    retsept: function (n) { return goTab('more', function () { var b = $('[data-act=feat][data-fk=retsept]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },          // v32: Profil → Imkoniyatlar
     yorliq: function (n) { return goTab('today', function () { openAdd(); openLbl('rasm'); }); },          // v67: «Yorliqdan qo'shish»
     imkoniyatlar: function (n) { return goTab('today', function () { n.highlight($('.rz-tab[data-v=more]')); }); },
     maslahat: function (n) { return goTab('today', function () { n.highlight($('#advCard') || $('#mslCard') || $('.rz-tab[data-v=advice]')); }); },
@@ -877,7 +877,7 @@
     ovoz: function (n) { return goTab('today', function () { openAdd(); setTimeout(function () { n.highlight($('#micBtn') || $('#fdQ')); }, 450); }); },
     source: function (n) { return goTab('today', function () { openAdd(); pickFood('somsa'); setTimeout(function () { n.highlight($('.sl-src')); }, 500); }); },
     vessel: function (n) { return goTab('today', function () { openAdd(); pickFood('osh'); setTimeout(function () { n.highlight($('.sl-vnew')); }, 500); }); },
-    templates: function (n) { return goTab('profile', function () { var b = $('[data-act=feat][data-fk=odatdagi]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },
+    templates: function (n) { return goTab('more', function () { var b = $('[data-act=feat][data-fk=odatdagi]'); if (b && b.scrollIntoView) b.scrollIntoView({ block: 'center' }); n.highlight(b && b.closest('.sl-feat')); }); },
     dayend: function (n) { return goTab('today', function () { var b = $('#dayEnd') || $('#dayEndDone'); if (b) n.highlight(b); else { kit.toast(n.t('hDayEnd')); n.highlight($('.sl-meal') || $('#kcalBtn')); } }); } } });
   function backupJoke() { var l = G && G.pickLine && prefs().jokes !== false && hazilState === 2 ? G.pickLine(jokeCtx(false), 'backup', {}, 'backup') : null; if (l) saveQuiet(); return l ? l.text : ''; }
   function nudges() {
