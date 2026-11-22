@@ -13,7 +13,8 @@ export function jadvalOf(row) { let j = {}; try { j = JSON.parse(row.jadval || '
 export function jadvalTekshir(j) {                      // mijozdan: { b: daqiqa|null, … } → JSON yoki null
   if (!j || typeof j !== 'object') return null; const o = {}; let n = 0;
   for (const k of MEALS) { const v = j[k]; if (v === null || v === undefined || v === false) { o[k] = null; continue; } const t = Math.round(+v); if (!Number.isFinite(t) || t < 0 || t > 1439) return null; o[k] = t; n++; }
-  if (j.u === 'hazil' || j.u === 'jiddiy') o.u = j.u;          // v95: eslatma uslubi (maslahatchi sozlamasi)
+  if (j.u === 'hazil' || j.u === 'jiddiy') o.u = j.u;
+  if (typeof j.n === 'string') { const n = j.n.replace(/\s+/g, ' ').trim(); if (n.length >= 2 && n.length <= 16 && /^[\p{L}'ʻ’ -]+$/u.test(n)) o.n = n; }          // v97: maslahatchi ismi (sarlavha)          // v95: eslatma uslubi (maslahatchi sozlamasi)
   return n ? JSON.stringify(o) : null;
 }
 /* kun almashdi: kechagi natija (yuborildi > 0 bo'lsa bosildimi) → bosilmagan / siyrak; hisoblagichlar nolga. → { row, ev: [[hodisa, kalit]] } */
@@ -40,10 +41,12 @@ export function tanla(row, nowMs) {
   }
   return out;
 }
+export function ismOf(row) { try { const j = JSON.parse(row.jadval || '{}') || {}; return typeof j.n === 'string' && j.n.length >= 2 && j.n.length <= 16 ? j.n : null; } catch (e) { return null; } }
 export function uslubOf(row) { try { const j = JSON.parse(row.jadval || '{}') || {}; return j.u === 'hazil' ? 'hazil' : 'jiddiy'; } catch (e) { return 'jiddiy'; } }
-export function matn(tx, til, it, n, translit, uslub) {        // tx — data/eslatmalar.json; v95: uslub 'hazil' — tx.matn_hazil
+export function matn(tx, til, it, n, translit, uslub, ism) {        // tx — data/eslatmalar.json; v95: uslub 'hazil' — tx.matn_hazil
   const L = til === 'ru' ? 'ru' : 'uz', M = uslub === 'hazil' && tx.matn_hazil && tx.matn_hazil[L] ? tx.matn_hazil : tx.matn, list = M[L][it.kind === 'x' ? 'x' : it.meal]; let b = list[Math.abs(n || 0) % list.length];
   if (it.kind === 'x') { const nm = tx.ovqat[L][it.miss] || ''; b = b.replace('{m}', nm).replace('{M}', nm.charAt(0).toUpperCase() + nm.slice(1)); }
-  return { t: tx.sarlavha[L], b: til === 'cyr' && translit ? translit(b.replace(/[‘’ʻ`´]/g, "'")) : b };
+  const cy = (x) => til === 'cyr' && translit ? translit(String(x).replace(/[‘’ʻ`´]/g, "'")) : x;
+  return { t: ism ? cy(ism) + ' · ' + tx.sarlavha[L] : tx.sarlavha[L], b: cy(b) };
 }
 export function url(til, it, kun) { return (til === 'ru' ? '/ru/kalkifit' : '/kalkifit') + '?eslatma=' + (it.kind === 'x' ? it.miss : it.meal) + '&k=' + kun; }

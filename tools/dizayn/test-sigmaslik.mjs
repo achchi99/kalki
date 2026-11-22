@@ -43,6 +43,7 @@ const SC = [
   { n: 'lola-savol', st: () => seed({ food: bugun([['non', 'b', 300, 8, 2, 60], ['osh', 'l', 500, 15, 20, 60]]) }), hour: 16, scope: '#rzMain', need: '.lola-ans' },
   { n: 'lola-javob', st: () => seed({ food: bugun([['non', 'b', 300, 8, 2, 60], ['osh', 'l', 500, 15, 20, 60]]) }), hour: 16, act: async (p) => { await click(p, '.lola-ans [data-act=lolaans]'); await p.waitForTimeout(400); return '#rzMain'; } },
   { n: 'lola-sovet', st: () => seed({ food: hist.concat(FULL) }), hour: 10, act: async (p) => { await click(p, '[data-act=tab][data-v=advice]'); await p.waitForTimeout(500); return '#rzMain'; } },
+  { n: 'lola-tanlash', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '[data-act=tab][data-v=advice]'); await p.waitForTimeout(400); await p.evaluate(() => { const e = document.getElementById('lolaSetC'); if (e) e.scrollIntoView({ block: 'center' }); }); await p.waitForTimeout(300); return '#lolaSetC'; } },
   { n: 'karta-ekran-tagida', st: () => seed({ food: OVER, steps: 0, ex: 0, water: 3 }), hour: 15, act: async (p) => { await p.evaluate(() => { const m = document.getElementById('rzMain'); m.scrollTop = m.scrollHeight; }); await p.waitForTimeout(300); return '#rzMain'; } },
   { n: 'profil', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '[data-act=tab][data-v=profile]'); return '#rzMain'; } },
 ];

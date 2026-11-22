@@ -62,9 +62,9 @@
   function uslub(mode) { return mode === 'hazil' ? 'hazil' : 'jiddiy'; }          // «O'chirilgan» rejimda ko'rinadigan joylar (Tahlil, kun xulosasi) — jiddiy
   function list(key, lang, mode) { var M = lib(), L = lang === 'ru' ? 'ru' : 'uz', m = uslub(mode); return (M && M[L] && M[L][m] && M[L][m][key]) || []; }
   function bor(key) { return list(key, 'uz', 'jiddiy').length > 0; }
-  function fillD(s, o) { o = o || {}; return String(s).replace(/\{(\w+)\}/g, function (m, k) { var v = o[k]; if (v == null && k === 'Src' && o.src != null) { v = String(o.src); v = v.charAt(0).toUpperCase() + v.slice(1); } return v != null ? v : ''; }).replace(/\s+([,.!?])/g, '$1').replace(/\s{2,}/g, ' ').trim().replace(/(^|[.!?]\s+)([a-zа-яё])/g, function (m, p, c) { return p + c.toUpperCase(); }); }          // gap boshi — katta harf ({name} boshida bo'lsa ham)
+  function fillD(s, o, g) { o = o || {}; return String(s).replace(/\{([^{}|]+)\|([^{}|]+)\}/g, function (m, f, mm) { return g === 'm' ? mm : f; }).replace(/\{(\w+)\}/g, function (m, k) { var v = o[k]; if (v == null && k === 'Src' && o.src != null) { v = String(o.src); v = v.charAt(0).toUpperCase() + v.slice(1); } return v != null ? v : ''; }).replace(/\s+([,.!?])/g, '$1').replace(/\s{2,}/g, ' ').trim().replace(/(^|[.!?]\s+)([a-zа-яё])/g, function (m, p, c) { return p + c.toUpperCase(); }); }          // gap boshi — katta harf ({name} boshida bo'lsa ham)
   /* o = { lang, mode, i | pick(key, n) } */
-  function say(key, data, o) { o = o || {}; var a = list(key, o.lang, o.mode); if (!a.length) return ''; var i = typeof o.i === 'number' ? o.i : (o.pick ? o.pick(key + '.' + uslub(o.mode), a.length) : 0); i = ((num(i) % a.length) + a.length) % a.length; return fillD(a[i], data); }
+  function say(key, data, o) { o = o || {}; var a = list(key, o.lang, o.mode); if (!a.length) return ''; var i = typeof o.i === 'number' ? o.i : (o.pick ? o.pick(key + '.' + uslub(o.mode), a.length) : 0); i = ((num(i) % a.length) + a.length) % a.length; return fillD(a[i], Object.assign({ ism: o.ism || (o.lang === 'ru' ? 'Лола' : 'Lola') }, data), o.g); }          // o.g — maslahatchi jinsi (RU fe'l/sifat: {рада|рад}), o.ism — ismi
   /* ---------- matnlar ---------- */
   var TX = {
     uz: {

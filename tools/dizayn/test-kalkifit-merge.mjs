@@ -49,4 +49,8 @@ T('8 stamp: yangi yozuv u/m oladi; o\'zgarsa m yangilanadi; o\'chirilsa tomb; un
 T('9 eski versiya (u/m/tomb yo\'q) bulut nusxasi bilan birlashadi (import yo\'li)', () => {
   const old = base(); add(old, d0, 'Eski', 100, 7); const raw = JSON.parse(JSON.stringify(old)); delete raw.tomb; delete raw.upd; const r = S.migrate(raw); const l = base(); S.stamp(l, 10); add(l, d1, 'Yangi', 1, 8); S.stamp(l, 11);
   const m = S.mergeStates(l, r); assert.deepEqual(names(m), ['20:Eski', '21:Yangi']); });
-console.log('OK ' + n + '/9 kalkifit-merge');
+T('10 v97: maslahatchi qiyofasi/ismi (prefs.lola) — yangisi ustun, yangida yo\'q bo\'lsa eskisi saqlanadi', () => {
+  const l = base(); l.prefs = Object.assign({}, l.prefs, { lola: { av: 'timur', ism: 'Тимур' } }); S.stamp(l, 10); const r = base(); r.prefs = Object.assign({}, r.prefs); delete r.prefs.lola; S.stamp(r, 20); S.stampReset();
+  assert.deepEqual(S.mergeStates(l, r).prefs.lola, { av: 'timur', ism: 'Тимур' }, 'yangi qurilmada yo\'q — eski tanlov yo\'qolmaydi');
+  const r2 = base(); r2.prefs = Object.assign({}, r2.prefs, { lola: { av: 'mushuk', ism: null } }); S.stamp(r2, 30); S.stampReset(); assert.deepEqual(S.mergeStates(l, r2).prefs.lola, { av: 'mushuk', ism: null }, 'yangisi ustun'); });
+console.log('OK ' + n + '/10 kalkifit-merge');

@@ -40,8 +40,26 @@ for (const L of LS) for (const m of MODES) {
     const other = X[L][m === 'hazil' ? 'jiddiy' : 'hazil'][k]; a.forEach((s) => { assert.ok(!other.includes(s), L + k + ': hazil va jiddiy bir xil: ' + s); const t = M.fillD(s, SAMPLE); assert.ok(!/\{\w+\}/.test(t), L + m + k + ' bo\'sh joy: ' + t); assert.ok(!BAN.test(t), L + m + k + ' taqiqlangan so\'z: ' + t); assert.ok(t.length <= 210, L + m + k + ' uzun: ' + t); if (L === 'uz') assert.ok(!/[а-яё]/i.test(t), 'UZ kirill: ' + t); });
     for (let i = 0; i < a.length; i++) assert.equal(M.say(k, SAMPLE, { lang: L, mode: m, i }), M.fillD(a[i], SAMPLE)); }
 }
+/* v97: HAR kalitning HAR varianti ilova beradigan ma'lumot bilan render qilinadi (uz/ru × hazil/jiddiy × ayol/erkak): { } | undefined NaN null qolmaydi;
+   shablondagi placeholder ilova bermaydigan bo'lsa — yiqiladi (masalan «осталось {left} г» faqat {left} beriladigan kalitda) */
+const RULE = { x: 18, p: 45, sh: 52, k: '1 120', min: '1 500', src: 'somsa va qazi', Src: 'Somsa va qazi' };
+const RE0 = { name: 'tuxum', k: 78, left: '1 560' };
+const DATA = (k) => k.startsWith('rt_') || k.startsWith('r_') ? RULE : ({ s_wait: { n: 1 }, s_day1: {}, s_ok: { k: '838', l: '2 436', left: '1 598' }, re_first: RE0, re_ok: RE0, re_goal: RE0, re_light: RE0, re_over: { ...RE0, x: 120 }, re_pgoal: { ...RE0, p: 131 }, re_fat: { ...RE0, fg: 24 }, re_prot: { ...RE0, pg: 13, pleft: 95 },
+  m_kcal_better: { x: 340 }, m_fat_better: { x: 22 }, m_streak: { n: 4 }, m_pstreak: { n: 3 }, m_prot3: { n: 3 }, m_skipbf: { n: 3 }, m_eve: { n: 3 }, cel_day: { k: '2 310', l: '2 436' }, cel_p: { p: 131, g: 130 }, c_noon: {}, q_full: {}, q_mood: {},
+  qr_full_yes: { left: 640 }, qr_full_mid: { left: 640 }, qr_full_no: { left: 640 }, qr_mood_good: { left: 640 }, qr_mood_ok: { left: 640 }, qr_mood_bad: { left: 640 },
+  x_okP: { v: 131, g: 130 }, x_okK: { v: '2 310', g: '2 436' }, x_okW: { v: '2 250' }, x_okS: { v: '9 400' }, x_okN: { n: 4 }, x_offF: { x: 22, src: 'somsa' }, x_offC: { x: 60, src: 'non' }, x_offK: { x: 340, src: 'osh' }, x_offP: { x: 35 }, x_offLow: { k: 900, min: '1 500' },
+  d_over: { x: 340 }, t_top: { f: 'Osh' } })[k] || (k.startsWith('mk_') ? { left: 19, x: 28, v: 141, g: 160 } : {});
+const leak = /[{}|]|undefined|NaN|null|\s[,.!?]|\s{2}/;
+for (const L of LS) for (const m of MODES) for (const k of KEYS) { const d = DATA(k), allow = new Set(Object.keys(d).concat('ism'));
+  X[L][m][k].forEach((tpl, i) => { (tpl.replace(/\{[^{}|]*\|[^{}|]*\}/g, '').match(/\{(\w+)\}/g) || []).forEach((ph) => assert.ok(allow.has(ph.slice(1, -1)), `${L}/${m}/${k}#${i}: ilova ${ph} bermaydi — «${tpl}»`));
+    for (const g of ['f', 'm']) { const t = M.say(k, d, { lang: L, mode: m, i, g, ism: L === 'ru' ? 'Тимур' : 'Timur' }); assert.ok(t.length > 1 && !leak.test(t), `${L}/${m}/${k}#${i} (${g}): «${t}»`); } }); }
+/* hazil ≠ jiddiy: so'z bo'yicha ≥ 50 % farq (Jaccard ≤ 0,5 — har jiddiy variant bilan; placeholder va 1–2 harfli so'zlar hisobga olinmaydi) */
+const words = (s) => new Set(s.toLowerCase().replace(/\{[^}]*\}/g, ' ').replace(/[^a-zа-яёʻ'’ -]/gi, ' ').split(/\s+/).map((w) => w.replace(/^['’-]+|['’-]+$/g, '')).filter((w) => w.length > 2));
+const jac = (a, b) => { const A = words(a), B = words(b); if (!A.size || !B.size) return 0; let n0 = 0; A.forEach((w) => { if (B.has(w)) n0++; }); return n0 / (A.size + B.size - n0); };
+let jmax = 0; for (const L of LS) for (const k of KEYS) for (const h of X[L].hazil[k]) for (const j of X[L].jiddiy[k]) { const v = jac(h, j); jmax = Math.max(jmax, v); assert.ok(v <= 0.5, `${L}/${k}: hazil jiddiydan kam farq qiladi (${v.toFixed(2)}): «${h}» ~ «${j}»`); }
+log('Har kalit × variant × uz/ru × hazil/jiddiy × ayol/erkak — ilova ma\'lumoti bilan render: { } | undefined NaN null yo\'q, placeholder faqat ilova beradiganlardan; hazil ↔ jiddiy so\'z o\'xshashligi ≤ ' + jmax.toFixed(2) + ' (chegara 0,5)');
 /* qoida kartalari va kun xulosasi — tanlangan uslub to'plamidan (neytralga qaytmaydi) */
-const tplRe = (s) => new RegExp('^' + s.replace(/[.*+?^$()|[\]\\]/g, '\\$&').replace(/\\?\{\w+\\?\}/g, '.*') + '$', 's');
+const tplRe = (s) => new RegExp('^' + s.replace(/[.*+?^$()|[\]\\]/g, '\\$&').replace(/\{[^{}]*\}/g, '.*') + '$', 's');
 const inSet = (t, L, m, key) => X[L][m][key].some((s) => tplRe(s).test(t));
 for (const L of LS) for (const m of MODES) for (const id of ['a', 'b', 'c', 'd', 'e', 'f', 'kam']) for (let i = 0; i < 5; i++) { const t = M.matn({ id, data: { x: 18, p: 45, sh: 52, k: 900, min: 1500, src: [{ name: 'Somsa' }] } }, L, m, i); assert.ok(inSet(t.b, L, m, 'r_' + id) && inSet(t.t, L, m, 'rt_' + id), L + m + id + i + ': ' + t.b); }
 for (let k = 0; k < 40; k++) { const last = k % 5; assert.notEqual(M.variant('a', 'hazil', last, k), last, 'ketma-ket takrorlanmaydi'); }
@@ -58,6 +76,8 @@ const ES = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/eslatmalar.json'), '
 for (const L of LS) for (const k of ['b', 'l', 's', 'd', 'x']) { const a = ES.matn_hazil[L][k]; assert.equal(a.length, 5); assert.equal(new Set(a).size, 5); a.forEach((t) => { assert.ok(!ES.matn[L][k].includes(t)); assert.ok(!BAN.test(t), t); assert.ok(t.length <= 90, t); if (k === 'x') assert.ok(/\{m\}|\{M\}/.test(t), t); }); }
 for (const L of LS) { const h = S.remText(ES, L, { meal: 'l', n: 2 }, 'hazil').b, j = S.remText(ES, L, { meal: 'l', n: 2 }, 'jiddiy').b; assert.ok(ES.matn_hazil[L].l.includes(h) && ES.matn[L].l.includes(j)); assert.ok(ES.matn_hazil[L].x.length && !/\{m\}/.test(Q.matn(ES, L, { kind: 'x', miss: 'b', meal: 'd' }, 1, null, 'hazil').b)); }
 assert.equal(Q.jadvalTekshir({ b: 510, l: null, d: 1170, u: 'hazil' }), '{"b":510,"l":null,"s":null,"d":1170,"u":"hazil"}'); assert.equal(Q.uslubOf({ jadval: '{"b":510,"u":"hazil"}' }), 'hazil'); assert.equal(Q.uslubOf({ jadval: '{"b":510}' }), 'jiddiy');
+assert.equal(S.remText(ES, 'ru', { meal: 'l', n: 2 }, 'hazil', 'Тимур').t, 'Тимур · KalkiFit', 'bildirishnoma sarlavhasida ism'); assert.equal(Q.matn(ES, 'ru', { meal: 'l', kind: 'm' }, 1, null, 'hazil', 'Тимур').t, 'Тимур · KalkiFit');
+assert.equal(Q.jadvalTekshir({ b: 510, u: 'hazil', n: 'Тимур' }), '{"b":510,"l":null,"s":null,"d":null,"u":"hazil","n":"Тимур"}'); assert.equal(Q.jadvalTekshir({ b: 510, n: '<b>x</b>' }), '{"b":510,"l":null,"s":null,"d":null}', 'yaroqsiz ism serverda tashlanadi'); assert.equal(Q.ismOf({ jadval: '{"n":"Лола"}' }), 'Лола');
 log('Matnlar: ' + KEYS.length + ' kalit × uz/ru × hazil/jiddiy (≥ 4 variant, takrorsiz, hazil ≠ jiddiy, taqiqlangan so\'zsiz); qoida kartasi va kun xulosasi tanlangan uslubdan; ilovadagi ' + used.size + ' kalit hammasi bor; eslatmalar (hazil to\'plami, jadvaldagi uslub)');
 
 /* ---------- brauzer ---------- */
@@ -110,4 +130,18 @@ try {
     const tops = await p.evaluate(() => [document.querySelector('.lola-chat').getBoundingClientRect().top, document.getElementById('advMk').getBoundingClientRect().top]); assert.ok(tops[0] < tops[1], 'Lola — makro tahlildan oldin'); await shot(p, 'lola-sovet.png'); assert.deepEqual(p.errs, []); await p.context().close();
     st.prefs.mslMode = 'off'; p = await open({ st }); assert.equal(await p.locator('.lola-h').count(), 0, 'o\'chirilgan — Lola yo\'q'); await p.context().close(); }
   log('«Совет» — suhbat: tepada Lola (salom + bugungi so\'z), keyin makro tahlil; «O\'chirilgan» — Lola ko\'rinmaydi');
+  /* 8. v97: ism va qiyofa — «Совет» sozlamasidan; hamma joyda (karta, «… печатает», Совет); RU fe'l rodi; noto'g'ri ism qabul qilinmaydi; tanlov holatda (zaxiraga) */
+  { const st = seed({ food: [[T0, 'non', 'b', 300, 8, 2, 60], [T0, 'osh', 'l', 500, 15, 20, 60]] }); st.prefs.mslMode = 'jiddiy';
+    const p = await open({ st, hour: 12 }); await p.click('.rz-tab[data-v=advice]'); await p.waitForSelector('#lolaSet'); assert.equal(await p.locator('#lolaSet [data-act=lolaav]').count(), 6, '6 ta qiyofa');
+    await p.click('#lolaSet [data-act=lolaav][data-id=timur]'); await p.waitForTimeout(400); assert.equal(await txt(p, '.lola-chat .lola-n b'), 'Тимур', 'qiyofa almashsa — standart ismi'); assert.ok(await p.locator('.lola-chat .lola-av.av-timur').count() === 1);
+    for (const bad of ['A', 'хуйня', '12345', 'R2D2', '  ']) { await p.fill('#lolaIsmIn', bad); await p.click('[data-act=lolaism]'); await p.waitForTimeout(150); assert.equal(await p.locator('#lolaIsmErr').isVisible(), true, 'noto\'g\'ri ism: ' + bad); }
+    await p.fill('#lolaIsmIn', 'Бахтиёр'); await p.click('[data-act=lolaism]'); await p.waitForTimeout(400); const pr = await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit')).prefs.lola); assert.deepEqual(pr, { av: 'timur', ism: 'Бахтиёр' }, 'holatda (akkaunt zaxirasi) saqlandi');
+    assert.equal(await txt(p, '.lola-chat .lola-n b'), 'Бахтиёр'); await p.click('.rz-tab[data-v=today]'); await p.waitForTimeout(400); assert.equal(await txt(p, '#cardSlot .lola-n b'), 'Бахтиёр', 'Bugun kartasida ham');
+    await p.click('#mainAdd'); await p.waitForTimeout(500); await p.fill('#rzSheet #fdQ', 'яйцо'); await p.waitForTimeout(800); await p.locator('[data-act=fadd]').first().click(); await p.waitForTimeout(300); await p.keyboard.press('Escape'); await p.waitForTimeout(250);
+    assert.equal(await p.locator('#lolaB .lola-dots').getAttribute('aria-label'), 'Бахтиёр печатает…'); await shot(p, 'lola-ism-timur.png'); assert.deepEqual(p.errs, []); await p.context().close();
+    const gm = M.say('cel_p', { p: 131, g: 130 }, { lang: 'ru', mode: 'jiddiy', i: 0, g: 'm' }), gf = M.say('cel_p', { p: 131, g: 130 }, { lang: 'ru', mode: 'jiddiy', i: 0, g: 'f' }); if (/рада/.test(gf)) assert.ok(/\bрад\b/.test(gm) && !/рада/.test(gm), 'RU: erkak qiyofada «рад»: ' + gm); }
+  { const st = seed({ food: [] }); const p = await open({ st, hour: 12 }); await p.evaluate(() => { localStorage.removeItem('kalki_intro_v2'); }); await p.click('.hd-av'); await p.waitForTimeout(500); await p.click('[data-act=intro]'); await p.waitForSelector('#rzIntro:not([hidden])');
+    for (let i = 0; i < 3; i++) { await p.click('#rzIntro [data-act=innext]'); await p.waitForTimeout(250); } assert.equal(await p.locator('#rzIntro #lolaSet [data-act=lolaav]').count(), 6, 'tanishtiruvning 4-qadami — «Выберите своего советника»'); await p.click('#rzIntro [data-act=lolaav][data-id=mushuk]'); await p.waitForTimeout(300); assert.equal(await p.locator('#rzIntro .lola-avb.on').getAttribute('data-id'), 'mushuk'); await p.click('#rzIntro [data-act=ingo]'); await p.waitForTimeout(300);
+    assert.equal(await p.evaluate(() => JSON.parse(localStorage.getItem('kalki_fit')).prefs.lola.av), 'mushuk'); await p.context().close(); }
+  log('Ism va qiyofa: 6 ta (ayol/erkak/neytral), «Совет»dan va tanishtiruvning 4-qadamidan; ism 2–16 harf, haqoratli/raqamli/uzun — rad; hamma joyda darhol (karta, «Бахтиёр печатает…», Совет, bildirishnoma sarlavhasi); RU fe\'l rodi; holatda saqlanadi (zaxira)');
 } catch (e) { console.error(e); process.exitCode = 1; } finally { await b.close(); srv.close(); }

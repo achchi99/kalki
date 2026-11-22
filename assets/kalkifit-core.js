@@ -866,10 +866,10 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   function remSparseDue(log, today) {                 // oldingi 3 kunning har birida eslatma yuborilgan va birortasi bosilmagan
     log = log || {}; for (var i = 1; i <= REM_SPARSE; i++) { var x = log[D.addDays(today, -i)]; if (!x || !(x.s > 0) || x.c) return false; } return true;
   }
-  function remText(tx, lang, it, uslub) {             // tx — data/eslatmalar.json; → { t, b }; v95: uslub 'hazil' — tx.matn_hazil (Lola maslahatchisi uslubi)
+  function remText(tx, lang, it, uslub, ism) {          // v97: ism — maslahatchi ismi (sarlavha: «Lola · KalkiFit»)             // tx — data/eslatmalar.json; → { t, b }; v95: uslub 'hazil' — tx.matn_hazil (Lola maslahatchisi uslubi)
     var L = lang === 'ru' ? 'ru' : 'uz', M = uslub === 'hazil' && tx.matn_hazil && tx.matn_hazil[L] ? tx.matn_hazil : tx.matn, list = M[L][it.kind === 'x' ? 'x' : it.meal], b = list[Math.abs(it.n || 0) % list.length];
     if (it.kind === 'x') { var nm = tx.ovqat[L][it.miss] || ''; b = b.replace('{m}', nm).replace('{M}', nm.charAt(0).toUpperCase() + nm.slice(1)); }
-    return { t: tx.sarlavha[L], b: b };
+    return { t: ism ? String(ism).slice(0, 16) + ' · ' + tx.sarlavha[L] : tx.sarlavha[L], b: b };
   }
   function famVariant(f, sel, sz) {                      // oila + tanlov → oddiy taom ko'rinishi (k,p,f,c,u,e) — mavjud kod (portion/unitGrams) shu bilan ishlaydi
     var fm = f.fam; if (!fm) return f; var vr = famKey(f, sel), g = fm.g[vr] || fm.g[famKey(f, null)], o = {}, k;
@@ -1057,6 +1057,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     var fv = []; (l.favs || []).concat(r.favs || []).forEach(function (x) { if (fv.indexOf(x) < 0) fv.push(x); }); out.favs = fv;
     var tp = {}, tpn = 1; [older, newer].forEach(function (x) { (x.tpls || []).forEach(function (t) { tp[String(t.name).toLowerCase()] = t; }); }); out.tpls = Object.keys(tp).map(function (k) { return tp[k]; }).slice(0, TPL_MAX); var tid = {}; out.tpls.forEach(function (t) { if (tid[t.id]) t.id = seq++; tid[t.id] = 1; });
     var vs = {}; [older, newer].forEach(function (x) { (x.vessels || []).forEach(function (v) { vs[(v.kind || '') + '|' + (v.name || '')] = v; }); }); out.vessels = Object.keys(vs).map(function (k) { return vs[k]; }); var vid = {}; out.vessels.forEach(function (v) { if (vid[v.id]) v.id = seq++; vid[v.id] = 1; });
+    if (older.prefs && older.prefs.lola && typeof older.prefs.lola === 'object' && !(out.prefs && out.prefs.lola)) { out.prefs = out.prefs || {}; out.prefs.lola = jclone(older.prefs.lola); }          // v97: maslahatchi qiyofasi/ismi — yangisi ustun, yangida yo'q bo'lsa eskisi saqlanadi (yo'qolmaydi)
     out.seq = seq; out.tomb = tomb; stamp(out, out.upd); stampReset(); return out;
   }
   function sameState(a, b) {                          // mazmun tengligi (upd/gh/m e'tiborsiz — faqat qiymatlar); birlashtirishdan keyin ortiqcha yuborishning oldini oladi

@@ -101,76 +101,76 @@
  "matn_hazil": {
   "uz": {
    "b": [
-    "Tong bilan! Nonushta likopchada, men esa daftarda kutyapman",
-    "Nonushta qochib ketmasin — bir bosishda ushlab qolamiz",
-    "Choy damlandimi? Nonushtani yozib qo'yamiz, kun chiroyli boshlansin",
-    "Ertalabki taom yozilmasa, men sog'inaman. Nonushtani qo'shamizmi?",
-    "Nonushta — kunning birinchi qahramoni. Uni yozib qo'yamizmi?"
+    "Tong otdi, likopcha ham uyg'ondi. Nonushtani kundalikka kiritamizmi?",
+    "Birinchi qadam — nonushta. Uni daftarga qo'shsak, kun yo'lga chiqadi",
+    "Ertalabki tuxummi, bo'tqami — kim bo'lsa ham, daftarga chaqiramiz",
+    "Nonushta sahnaga chiqdi. Endi uni olqishlab, qayd etamizmi?",
+    "Tongning birinchi sahifasi bo'sh turibdi. Nonushta bilan to'ldiramizmi?"
    ],
    "l": [
-    "Tushlik vaqti! Osh bo'lsa ham, salat bo'lsa ham — men yozishga tayyorman",
-    "Tushlik tugadimi? Uni daftarga muhrlab qo'yamiz",
-    "Qoshiqni qo'ydingizmi? Endi tushlikni bir bosishda yozamiz",
-    "Tushlik yozilmasa, kunning o'rtasi bo'sh qoladi. Qo'shamizmi?",
-    "Tushlik haqida menga ham aytib qo'ying — bir bosish kifoya"
+    "Kunning yarmi ortda, tushlik esa hali daftar eshigida turibdi",
+    "Osh, sho'rva yoki salat — tushlik qahramoni kim bo'ldi? Qayd etamiz",
+    "Tushlik tanaffusi tugadimi? Daftar ham o'z ulushini so'rayapti",
+    "Choy quyildimi? Tushlikni ro'yxatga kiritish payti keldi",
+    "Tushlik — kun o'rtasidagi bekat. Shu bekatni xaritaga belgilaymizmi?"
    ],
    "s": [
-    "Kichik tamaddi ham hisobda katta mehmon. Yozib qo'yamizmi?",
-    "Pechenye jimgina o'tib ketmasin — tamaddini yozamizmi?",
-    "Meva, yong'oq, choy? Tamaddi ham o'z qatorini kutyapti",
-    "Tamaddi qildingizmi? Men sir saqlayman, faqat yozib qo'ying",
-    "Kichkina tamaddi — kichkina yozuv. Bir bosishda tayyor"
+    "Bir hovuch yong'oqmi, bitta olmami? Tamaddi ham hisobda ovozga ega",
+    "Konfet qog'ozi shitirladimi? Tamaddini daftarga taklif qilamiz",
+    "Tamaddi kichkina bo'lsa ham, hisobda o'z kursisi bor. Qo'shamizmi?",
+    "Choy bilan biror shirinlik bo'ldimi? Sirni daftar bilan bo'lishing",
+    "Kun o'rtasidagi mayda tamaddilar ham ro'yxatga tushishni orzu qiladi"
    ],
    "d": [
-    "Kechki dasturxon yig'ildimi? Kun hisobini birga yopamiz",
-    "Kechki ovqat — kunning oxirgi sahifasi. Yozib qo'yamizmi?",
-    "Kechki ovqatni yozsangiz, men kunni chiroyli yakunlayman",
-    "Kun yopilish arafasida — kechki ovqat hali daftarga kirmagan",
-    "Qozon bo'shadimi? Kechki ovqatni yozib qo'yish vaqti"
+    "Kun pardasi yopilmoqda. Kechki ovqatni oxirgi sahna qilib qo'shamizmi?",
+    "Kechki dasturxondan turdingizmi? Kun hisobini muhrlab qo'yamiz",
+    "Kechki ovqat daftarga tushsa, bugungi hikoya baxtli yakun topadi",
+    "Yulduzlar chiqdi, kechki ovqat esa hali kundalik ostonasida turibdi",
+    "Kechqurun tinch: faqat kechki ovqat kundalik eshigini taqillatyapti"
    ],
    "x": [
-    "Men {m}ni qidiryapman, topolmayapman. Qo'shib qo'yamizmi?",
-    "{M} bugun daftarga kirmay qoldi — hali kech emas",
-    "Kunda bo'sh joy bor: {m}. Bir bosishda to'ldiramiz",
-    "{M} jimgina o'tib ketdimi? Yozib qo'ysak, kun to'liq bo'ladi",
-    "Bugungi {m} hali sir bo'lib turibdi. Ochib qo'yamizmi?"
+    "{M} bugun daftar bilan berkinmachoq o'ynadi. Topib qo'yamizmi?",
+    "Kun jumbog'ida bitta bo'lak yo'q: {m}. Joyiga qo'yamizmi?",
+    "{M} kundalikka kelmay, kechikib qoldi. Hali eshik ochiq",
+    "Bugungi xaritada oq dog' bor — {m}. Uni chizib qo'yamizmi?",
+    "{M} haqida daftar hech narsa bilmaydi. Unga aytib qo'yamizmi?"
    ]
   },
   "ru": {
    "b": [
-    "С добрым утром! Завтрак на тарелке, а я жду его в дневнике",
-    "Завтрак не убежит, если записать его в одно касание",
-    "Чай заварился? Запишем завтрак — пусть день начнётся красиво",
-    "Без записи завтрака я скучаю. Добавим?",
-    "Завтрак — первый герой дня. Запишем его?"
+    "Утро проснулось, тарелка тоже. Отметим завтрак в дневнике?",
+    "День стартует с завтрака — давайте зафиксируем старт",
+    "Каша, яйцо или сырники — кто сегодня открыл день? Внесём в дневник",
+    "Завтрак вышел на сцену. Поаплодируем и отметим?",
+    "Первая страница дня пока пустая. Заполним её завтраком?"
    ],
    "l": [
-    "Время обеда! Плов или салат — я готова записать",
-    "Обед позади? Давайте закрепим его в дневнике",
-    "Ложку отложили? Теперь обед в одно касание",
-    "Без обеда середина дня пустует. Запишем?",
-    "Расскажите и мне про обед — хватит одного касания"
+    "Полдня позади, а обед всё ещё стоит у дверей дневника",
+    "Плов, шурпа или салат — кто стал героем обеда? Отметим",
+    "Обеденный перерыв закончился? Дневник тоже просит свою порцию",
+    "Чай после обеда налит? Самое время внести обед в список",
+    "Обед — остановка в середине дня. Отметим её на карте?"
    ],
    "s": [
-    "Маленький перекус — большой гость в счёте. Запишем?",
-    "Пусть печенье не проскочит незаметно — запишем перекус?",
-    "Фрукты, орешки, чай? Перекус ждёт своей строчки",
-    "Перекусили? Я никому не скажу, просто запишите",
-    "Маленький перекус — маленькая запись. Одно касание"
+    "Горсть орехов или яблоко? У перекуса тоже есть право голоса",
+    "Зашуршала обёртка от конфеты? Пригласим перекус в дневник",
+    "Перекус маленький, но и у него есть своё место в счёте. Добавим?",
+    "К чаю что-то сладкое? Поделитесь секретом с дневником",
+    "Мелкие перекусы тоже мечтают попасть в список. Порадуем их?"
    ],
    "d": [
-    "Ужин на столе? Давайте вместе закроем день",
-    "Ужин — последняя страница дня. Запишем?",
-    "Запишите ужин, а я красиво подведу итог дня",
-    "День почти закрыт, а ужина в дневнике ещё нет",
-    "Казан опустел? Самое время записать ужин"
+    "Занавес дня опускается. Добавим ужин как финальную сцену?",
+    "Из-за стола уже встали? Запечатаем итог дня",
+    "Внесёте ужин — и у сегодняшней истории будет счастливый конец",
+    "Звёзды зажглись, а ужина в дневнике ещё нет",
+    "Вечер тихий: только ужин стучится в дверь дневника"
    ],
    "x": [
-    "Ищу {m} и не нахожу. Добавим?",
-    "{M} — сегодня без записи. Ещё не поздно",
-    "В дне есть пробел: {m}. Заполним в одно касание",
-    "Для полного дня не хватает: {m}. Запишем?",
-    "Пока загадка дня: {m}. Раскроем?"
+    "Кто прячется от дневника? {M}. Найдём?",
+    "В пазле дня не хватает кусочка: {m}. Вставим на место?",
+    "Опоздали к дневнику: {m}. Дверь ещё открыта",
+    "На карте дня белое пятно — {m}. Дорисуем?",
+    "Дневник ничего не знает про {m}. Расскажем ему?"
    ]
   }
  }

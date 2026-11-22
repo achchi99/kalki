@@ -62,7 +62,7 @@ try {
   log('KalkiFit kartasi: «Android uchun yuklash» (UZ/ЎЗ/RU, Pixel 7 + Galaxy S9+ 360 px) — ikkinchi darajali, karta ichida sig\'adi, havola versiya.json dan; iPhone/iPad\'da yashirin; versiya.json yo\'q bo\'lsa /ilova/');
 
   /* ---- iPhone 15: standalone va Safari — status bar hududi ilova foni, theme-color, manifest, qattiq panel, body scroll yo'q ---- */
-  const BGS = { rozgor: { light: 'rgb(247, 245, 242)', dark: 'rgb(24, 25, 28)' }, kalkifit: { light: 'rgb(247, 248, 250)', dark: 'rgb(17, 19, 22)' } }; const HEX = { rozgor: ['#F7F5F2', '#18191C'], kalkifit: ['#F7F8FA', '#111316'] };  /* v69: KalkiFit grafit fon */
+  const BGS = { rozgor: { light: 'rgb(247, 245, 242)', dark: 'rgb(24, 25, 28)' }, kalkifit: { light: 'rgb(251, 243, 234)', dark: 'rgb(20, 16, 12)' } }; const HEX = { rozgor: ['#F7F5F2', '#18191C'], kalkifit: ['#FBF3EA', '#14100C'] };  /* v69: KalkiFit grafit fon */
   for (const app of ['kalkifit', 'rozgor']) { const A = APPS[app];
     for (const standalone of [true, false]) for (const scheme of ['light', 'dark']) {
       const c = await b.newContext({ ...devices['iPhone 15'], colorScheme: scheme, serviceWorkers: 'block' });

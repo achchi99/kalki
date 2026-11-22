@@ -20,9 +20,11 @@
   };
   function T(k, o) { return A.T(k, o); }
   function esc(s) { return A.esc(s); }
-  var N = 3;
+  var N = 3;          // v97: + 4-qadam «Maslahatchingizni tanlang» (qiyofa va ism; o'tkazib yuborilsa — standart Lola)
+  function nn() { return A && A.lolaPick && A.lolaPick() ? 4 : 3; }
   function android() { try { var K = window.KalkiNative; return !!(K && K.isApp && K.isApp() && K.qadam && K.qadam.ok && K.qadam.ok()); } catch (e) { return false; } }
   function art(i) {
+    if (i === 3) return '<div class="in-a in-a4">' + A.lolaPick() + '</div>';
     if (i === 0) return '<div class="in-a in-a1"><div class="in-trio"><span class="in-c mic">' + A.ico('mic') + '</span><span class="in-c">' + A.ico('cam') + '</span><span class="in-c">' + A.ico('img') + '</span></div>' +
       '<div class="in-say"><span class="in-wv" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>' + esc(T('inSay')) + '</span></div>' +
       '<div class="in-rows"><div class="in-r r1"><b>' + esc(T('inM1b')) + '</b><span>180 ' + esc(A.T('kcal')) + '</span></div><div class="in-r r2"><b>' + esc(T('inM1')) + '</b><span>475 ' + esc(A.T('kcal')) + '</span></div></div></div>';
@@ -30,9 +32,9 @@
       '<div class="in-gl"><div class="in-glass"><i class="wv"></i></div><b>' + esc(T('inWt')) + '</b><span class="in-tea">' + esc(T('inTea')) + '</span></div></div>';
     return '<div class="in-a in-a3"><div class="in-story"><div class="in-bars"><i class="on"></i><i></i><i></i><i></i></div><small>' + esc(T('inWk')) + '</small><b class="n">1 864</b><span>' + esc(T('inWkA')) + '</span><b class="n2">5 / 7</b><span>' + esc(T('inWkB')) + '</span></div></div>';
   }
-  function title(i) { return i === 1 && !android() ? T('inT2w') : T('inT' + (i + 1)); }
+  function title(i) { return i === 3 ? A.T('inT4') : i === 1 && !android() ? T('inT2w') : T('inT' + (i + 1)); }
   function html() {
-    var dots = ''; for (var i = 0; i < N; i++) dots += '<i' + (i === idx ? ' class="on"' : '') + '></i>';
+    N = nn(); var dots = ''; for (var i = 0; i < N; i++) dots += '<i' + (i === idx ? ' class="on"' : '') + '></i>';
     var lastS = idx === N - 1;
     return '<div class="in-top"><button type="button" class="sl-txtbtn" data-act="inskip">' + esc(T('inSkip')) + '</button></div>' +
       '<div class="in-body" key="' + idx + '"><div class="in-art">' + art(idx) + '</div><h2 class="in-h" id="inH">' + esc(title(idx)) + '</h2></div>' +
@@ -61,5 +63,5 @@
     A = api; Object.keys(D).forEach(function (l) { Object.keys(D[l]).forEach(function (k) { api.D[l][k] = D[l][k]; }); });
     document.addEventListener('keydown', function (e) { if (open && e.key === 'Escape') { e.preventDefault(); close(); } });
   }
-  window.KalkiIntroUI = { init: init, show: show, isOpen: function () { return open; }, act: act };
+  window.KalkiIntroUI = { init: init, show: show, isOpen: function () { return open; }, act: act, redraw: function () { if (open) draw(false); } };
 })();
