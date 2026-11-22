@@ -123,7 +123,7 @@ html[data-theme=dark] .sl-cal,html[data-theme=dark] .sl-hero{--c-nearb:#57C48A;-
 .sl-vbar{margin-top:6px}.sl-vbar .rz-actions{margin-top:2px}
 /* ===================== KalkiFit dizayn tokenlari (maket asosida) — BITTA joyda ===================== */
 /* Qorong'i/Och: Avto (tizim sozlamasi) yoki Profil → Mavzu (<html data-theme="dark|light">). Matn kontrasti WCAG AA — test-kalkifit-soddalik.mjs (axe) tekshiradi. */
-.sl{--onhero:#FFFFFF;--hero1:#F5683A;--hero2:#E85A2C;--hero3:#D4501F;--bg:#F7F8FA;--card:#FFFFFF;--soft:#F2F4F7;--line:#ECEEF2;--line2:#DFE3EA;--track:#ECEEF2;--ink:#20242B;--mut:#657083;--mut2:#657083;--vessel:#FFF6F1;--field:#F2F4F7;--nav:rgba(255,255,255,.96);
+.sl{--lola-on:#FFFFFF;--lola-leaf:#8BE0A0;--lola-face:rgba(255,255,255,.16);--lola-cheek:rgba(255,190,190,.6);--lola-i1:#4C8DF6;--lola-i2:#2D67C4;--lola-g1:#16A97A;--lola-g2:#0B7A55;--lola-w1:#E39A2C;--lola-w2:#B8680F;--lola-a1:#F5683A;--lola-a2:#C83E10;--onhero:#FFFFFF;--hero1:#F5683A;--hero2:#E85A2C;--hero3:#D4501F;--bg:#F7F8FA;--card:#FFFFFF;--soft:#F2F4F7;--line:#ECEEF2;--line2:#DFE3EA;--track:#ECEEF2;--ink:#20242B;--mut:#657083;--mut2:#657083;--vessel:#FFF6F1;--field:#F2F4F7;--nav:rgba(255,255,255,.96);
   --btn:#FFFFFF;--fill:#F5683A;--man2:#FF9A5C;--bline:var(--fill);--acc2:#C83E10;--acc:#C83E10;--onacc:#20242B;--on:#FFFFFF;--onbtn:#20242B;--accink:#C83E10;--accsoft:#FFF1EA;--over:#C62F2F;--p:#5B8DEF;--f:#F2B33D;--c:#3DBE8B;--pink:#2F5FD0;--fink:#7A5200;--cink:#0B7A55;--water:#4FA9E8;--waterink:#1F7FC0;--step:#3DBE8B;--ok:#0E8F63;--danger:#C0392B;--err:#C0392B;--on-err:#fff;--toast-acc:#FF9A5C;--fav:#D6336C;--flame:#F5683A;--gold:#F2B33D;--av1:#F5683A;--av2:#FF9A5C;--photo-bg:#F2F4F7;--vk-d:#3A1408;--vk-n:#1A0A05;--liq1:#FF9A5C;--liq2:#F5683A;--liq3:#FFC9A8;--lv-strong:#2E9E63;--lv-mod:#E3A008;--lv-low:#D2553A;--lv-not:#5B6470;--tl:24%;--r:var(--r-c);--shadow:none;--segon-bg:var(--card);--segon-ink:var(--ink);--segon-line:transparent;--page-bg:#F7F8FA;--gr:#20242B;--ongr:#FFFFFF;--gr2:#2A2E35;--imk:#20242B;--sel-bg:#FFF1EA;--dg:#2BB673;--db:#4C8DF0;--da:#F2B233;--vi:#5B3FD6;--vi-bg:#F1EDFF;--ff-h:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;--ff-b:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
   
   /* v69 DIZAYN TIZIMI — tipografiya, kartalar, tugma: BU YERDA (butun ilova shu tokenlardan) */
@@ -2245,13 +2245,13 @@ html.fs-big .rz .ft-qb small{font-size:11px;letter-spacing:-.02em}html.fs-big .r
 .rz .sl-morec .yg-row .m b{display:-webkit-box}
 .rz .sl-morec .yg-row .yg-dot{display:inline-block;vertical-align:middle}
 /* ===== v95 LOLA — jonli maslahatchi: avatar (ifoda: xursand / o'ylanyapti / xavotirda, yengil «nafas»), pufakchalar, «yozyapti…» (balandlik oldindan band — siljish yo'q) ===== */
-.rz .sl-adv.lola{--tn1:#4C8DF6;--tn2:#2D67C4;display:flex;flex-direction:column;gap:8px}
-.rz .sl-adv.lola[data-tone=good]{--tn1:#16A97A;--tn2:#0B7A55}.rz .sl-adv.lola[data-tone=warn]{--tn1:#E39A2C;--tn2:#B8680F}
+.rz .sl-adv.lola{--tn1:var(--lola-i1);--tn2:var(--lola-i2);display:flex;flex-direction:column;gap:8px}
+.rz .sl-adv.lola[data-tone=good]{--tn1:var(--lola-g1);--tn2:var(--lola-g2)}.rz .sl-adv.lola[data-tone=warn]{--tn1:var(--lola-w1);--tn2:var(--lola-w2)}
 .rz .lola-h{display:flex;align-items:center;gap:10px;min-width:0;padding-right:34px}
 .rz .lola-n{display:flex;flex-direction:column;min-width:0;flex:1}.rz .lola-n b{font-size:var(--t-m);font-weight:700;line-height:1.2}.rz .lola-n small{font-size:var(--t-xs);color:var(--mut);line-height:1.3}
-.rz .adv-av.lola-av{position:relative;flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,var(--tn1,#F5683A),var(--tn2,#C83E10));color:#fff;box-shadow:0 6px 14px -8px var(--tn2,#C83E10)}
+.rz .adv-av.lola-av{position:relative;flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,var(--tn1,var(--lola-a1)),var(--tn2,var(--lola-a2)));color:var(--lola-on);box-shadow:0 6px 14px -8px var(--tn2,var(--lola-a2))}
 .rz .lola-av svg{width:36px;height:36px;transform-origin:50% 62%;animation:lolaBr calc(var(--mo-slow) * 13) ease-in-out infinite}
-.rz .lola-av .lf{fill:rgba(255,255,255,.16);stroke:none}.rz .lola-av .lv{fill:#8BE0A0;stroke:none}.rz .lola-av .fl{fill:currentColor;stroke:none}.rz .lola-av .lch{fill:rgba(255,190,190,.6);stroke:none}
+.rz .lola-av .lf{fill:var(--lola-face);stroke:none}.rz .lola-av .lv{fill:var(--lola-leaf);stroke:none}.rz .lola-av .fl{fill:currentColor;stroke:none}.rz .lola-av .lch{fill:var(--lola-cheek);stroke:none}
 .rz .lola-av .lfc{display:none}.rz .lola-av[data-mood=happy] .lf-happy,.rz .lola-av[data-mood=think] .lf-think,.rz .lola-av[data-mood=worry] .lf-worry{display:inline}
 .rz .lola-av[data-mood=worry] .lch,.rz .lola-av[data-mood=think] .lch{opacity:.35}
 @keyframes lolaBr{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}

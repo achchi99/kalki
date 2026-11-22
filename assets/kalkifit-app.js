@@ -1418,7 +1418,9 @@
   }
   function lolaEv(t) { var L = lolaSt(); return L.ev && L.ev.d === t && Date.now() - L.ev.at < 40 * 60000 && S.dayOf(st, t) && (S.dayOf(st, t).food || []).some(function (e) { return e.id === L.ev.id; }) ? L.ev : null; }
   /* xotira: kecha va so'nggi kunlar (bugungi yozuvlar bilan solishtiriladi) */
-  function lolaMem(t) {
+  var lolaMemC = { k: '' };
+  function lolaMem(t) { var ck = t + '|' + st.seq + '|' + lolaHour() + '|' + Object.keys(st.days).length; if (lolaMemC.k === ck) return lolaMemC.v; lolaMemC = { k: ck, v: lolaMem0(t) }; return lolaMemC.v; }          // render'da qayta hisoblanmaydi (yozuv/soat o'zgarmaguncha)
+  function lolaMem0(t) {
     var pl = planNow(), h = lolaHour(), x = S.dayOf(st, t) || { food: [] }, f = x.food || [], tot = S.sumEntries(f), lim = S.dayPlan(st, t).limit, fl = S.FLOOR[st.profile.sex === 'f' ? 'f' : 'm'], days = [];
     for (var i = 1; i <= 14; i++) { var d = Dt.addDays(t, -i), y = S.dayOf(st, d); days.push(y && (y.food || []).length ? { d: d, f: y.food, tot: S.sumEntries(y.food), lim: S.dayPlan(st, d).limit } : null); }
     var run = function (ok) { var n = 0; for (var j = 0; j < days.length && days[j] && ok(days[j]); j++) n++; return n; };
