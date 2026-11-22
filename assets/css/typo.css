@@ -143,3 +143,8 @@ body.v2.typo2 .row2>*,body.v2.typo2 .row3>*,body.v2.typo2 .field{min-width:0}
 body.v2.typo2 .input-shell{max-width:100%;min-width:0}
 body.v2.typo2 .input-shell select,body.v2.typo2 .input-shell input{min-width:0;max-width:100%}
 @media (max-width:480px){body.v2.typo2 .seg.mini{display:flex;width:100%}body.v2.typo2 .seg.mini button{flex:1 1 auto}}
+
+/* 320 px: natija tugmalari (RU «График платежей» va h.k.) bir ustunda — matn ellipsis bilan kesilmasin (sinov mashinasida Manrope yo'q — zaxira shrift kengroq) */
+@media (max-width:340px){body.v2.typo2 .receipt-actions:not(#docPreview .receipt-actions){grid-template-columns:1fr}}
+/* tor ekran: uzun bitta so'zli sarlavha («Политика конфиденциальности») ekrandan chiqmasin */
+@media (max-width:380px){body.v2 h1{overflow-wrap:break-word;hyphens:auto}}

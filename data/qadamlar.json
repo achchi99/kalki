@@ -142,16 +142,16 @@
   ],
   "gisht-kalkulyator": [
    {
-    "uz": "Material turi va devor qalinligini tanlang.",
-    "ru": "Выберите материал и толщину стены."
+    "uz": "Material va devor qalinligi.",
+    "ru": "Материал и толщина стены."
    },
    {
-    "uz": "Devor o'lchami va eshik-derazani yozing.",
-    "ru": "Введите размеры стены, двери и окна."
+    "uz": "Devor, eshik va deraza o'lchami.",
+    "ru": "Размеры стены, двери и окна."
    },
    {
-    "uz": "G'isht yoki blok soni va narxi chiqadi.",
-    "ru": "Увидите количество кирпича и цену."
+    "uz": "G'isht soni va narxi chiqadi.",
+    "ru": "Количество кирпича и цена."
    }
   ],
   "grant-ololmadim": [
@@ -766,7 +766,7 @@
     "ru": "Введите заказчика и подрядчика."
    },
    {
-    "uz": "Hajm, muddat, to'lovni yozing — summa hisoblanadi.",
+    "uz": "Hajm, muddat, to'lovni yozing.",
     "ru": "Объём, срок, оплата — сумма посчитается."
    }
   ],
@@ -906,7 +906,7 @@
     "ru": "Введите условия рассрочки и кредита."
    },
    {
-    "uz": "Jami to'lov va nasiyaning haqiqiy yillik stavkasi chiqadi.",
+    "uz": "Jami to'lov va haqiqiy stavka chiqadi.",
     "ru": "Увидите итог и реальную годовую ставку рассрочки."
    }
   ],
