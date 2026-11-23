@@ -4503,6 +4503,70 @@
     "uz": "Sut 2%: USDA FoodData Central, fdc_id {fdc} («Milk, reduced fat, 2% milkfat»). Brendga qarab ±10% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
     "ru": "Молоко 2%: USDA FoodData Central, fdc_id {fdc} («Milk, reduced fat, 2%»). В зависимости от марки ±10% — проверяйте упаковку."
    }
+  },
+  {
+   "id": "tvorog.f1",
+   "nom": "Tvorog 1%",
+   "ingr": [
+    {
+     "m": "tvorog_1",
+     "g": 500
+    }
+   ],
+   "taxminiy": false,
+   "manba": {
+    "uz": "Tvorog 1%: USDA FoodData Central, fdc_id {fdc} («Cheese, cottage, lowfat, 1% milkfat»). Brendga qarab ±10% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Творог 1%: USDA FoodData Central, fdc_id {fdc} («Cheese, cottage, lowfat, 1% milkfat»). В зависимости от марки ±10% — проверяйте упаковку."
+   }
+  },
+  {
+   "id": "tvorog.f2",
+   "nom": "Tvorog 2%",
+   "ingr": [
+    {
+     "m": "suzma",
+     "g": 500
+    }
+   ],
+   "taxminiy": false,
+   "manba": {
+    "uz": "Tvorog 2%: USDA FoodData Central, fdc_id {fdc} («Cheese, cottage, lowfat, 2% milkfat»). Brendga qarab ±10% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Творог 2%: USDA FoodData Central, fdc_id {fdc} («Cheese, cottage, lowfat, 2% milkfat»). В зависимости от марки ±10% — проверяйте упаковку."
+   }
+  },
+  {
+   "id": "qatiq.f15",
+   "nom": "Qatiq 1,5%",
+   "ingr": [
+    {
+     "m": "yogurt_low",
+     "g": 500
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Qatiq 1,5%: kam yog'li tabiiy yogurt (USDA FoodData Central, fdc_id {fdc}, ~1,5% yog') tarkibi olingan. Qatiq va yogurt tarkibi deyarli bir xil; ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Катык 1,5%: взят состав йогурта нежирного натурального (USDA FoodData Central, fdc_id {fdc}, ~1,5% жира). Катык и йогурт близки по составу; возможно отклонение ±15% — проверяйте упаковку."
+   }
+  },
+  {
+   "id": "qatiq.f25",
+   "nom": "Qatiq 2,5%",
+   "ingr": [
+    {
+     "m": "qatiq",
+     "g": 300
+    },
+    {
+     "m": "yogurt_low",
+     "g": 200
+    }
+   ],
+   "taxminiy": true,
+   "manba": {
+    "uz": "Qatiq 2,5%: USDA FoodData Central (fdc_id {fdc}) dagi to'liq yog'li (3,25%) va kam yog'li (~1,5%) tabiiy yogurt yog'liligi bo'yicha aralashtirilgan (60/40). ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Катык 2,5%: смесь натурального йогурта цельного (3,25%) и нежирного (~1,5%) из USDA FoodData Central (fdc_id {fdc}) по жирности (60/40). Возможно отклонение ±15% — проверяйте упаковку."
+   }
   }
  ]
 }

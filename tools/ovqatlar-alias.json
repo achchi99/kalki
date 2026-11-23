@@ -82,7 +82,16 @@
   "лагман с мясом",
   "лагман жареный",
   "лагман суп",
-  "qovurma lag'mon"
+  "qovurma lag'mon",
+  "padlifkali lagmon",
+  "padlivkali lagmon",
+  "podlivkali lagmon",
+  "podlivka lagmon",
+  "lag'mon podlivka bilan",
+  "lagmon podlivka bilan",
+  "лагман с подливой",
+  "лагман с подливкой",
+  "лагман подлива"
  ],
  "shurva": [
   "sho'rva",
@@ -100,7 +109,16 @@
   "shorva",
   "шурпа баранья",
   "шурпа из баранины",
-  "шурпа говяжья"
+  "шурпа говяжья",
+  "suyak sho'rva",
+  "suyak shurva",
+  "suvak sho'rva",
+  "suvak shurva",
+  "suyak shorva",
+  "suyakli sho'rva",
+  "суповая кость",
+  "костный бульон",
+  "бульон на кости"
  ],
  "mastava": [
   "mastoba",
@@ -496,7 +514,10 @@
   "brinza",
   "брынза",
   "bryndza",
-  "feta"
+  "feta",
+  "feta pishlog'i",
+  "фета",
+  "сыр фета"
  ],
  "tvorog5": [
   "tvorog",
@@ -515,7 +536,8 @@
   "сливочное масло",
   "maslo slivochnoe",
   "saryog",
-  "butter"
+  "butter",
+  "масло сливочное 82%"
  ],
  "yogurt-meva": [
   "mevali yogurt",
@@ -737,7 +759,16 @@
   "овсянка",
   "ovsyanka",
   "oatmeal",
-  "suli yormasi"
+  "suli yormasi",
+  "afisyanka",
+  "afsyanka",
+  "afisyanka kasha",
+  "afisyanka bo'tqa",
+  "ovsyanka kasha",
+  "ovsyanka bo'tqa",
+  "овсяная каша",
+  "овсянка на воде",
+  "овсянка кашa"
  ],
  "manka": [
   "manka bo'tqa",
@@ -1272,7 +1303,13 @@
   "lays 90",
   "lays",
   "лейс",
-  "чипсы"
+  "чипсы",
+  "xrustyashiy kartoshka",
+  "xrusty chipsi",
+  "хрустящий картофель",
+  "чипсы хрустящие",
+  "xrustyashie chipsi",
+  "chipsi"
  ],
  "chips-nachos": [
   "doritos",
@@ -1335,7 +1372,11 @@
   "vafli qaymoqli"
  ],
  "ryajenka": [
-  "данон ряженка"
+  "данон ряженка",
+  "ryajenka 3,2",
+  "ryajenka 3.2",
+  "ряженка 3,2%",
+  "ряженка 3.2%"
  ],
  "aktimel": [
   "данон",
@@ -1423,5 +1464,103 @@
   "sarig'isiz tuxum",
   "tuxum oqsili",
   "яичные белки"
+ ],
+ "suli-sutli": [
+  "ovsyanka sutda",
+  "ovsyanka na moloke",
+  "afisyanka sutda",
+  "овсянка на молоке",
+  "овсяная каша на молоке"
+ ],
+ "turp": [
+  "turub",
+  "turup",
+  "turpi"
+ ],
+ "turp-oq": [
+  "turub",
+  "turup",
+  "редька",
+  "redka",
+  "белая редька",
+  "oq turub"
+ ],
+ "pirojki-duxovka-gosht": [
+  "go'shtli pirog",
+  "goshtli pirog",
+  "gushtliy perok",
+  "gushtli perok",
+  "gushtli pirog",
+  "go'shtli perok",
+  "go'shtli pirojok",
+  "goshtli pirojok",
+  "пирожок с мясом",
+  "пирог с мясом",
+  "go'shtli pirozhok"
+ ],
+ "gumma": [
+  "go'shtli pirog",
+  "goshtli pirog",
+  "gushtliy perok",
+  "gushtli perok",
+  "qovurilgan go'shtli pirog",
+  "qovurilgan pirozhok go'shtli",
+  "пирожок с мясом жареный",
+  "жареный пирожок с мясом"
+ ],
+ "guruch-xlebets": [
+  "xrustyashiy xlebtsi",
+  "xrustyashie xlebtsi",
+  "xrusty xlebtsi",
+  "хрустящие хлебцы",
+  "хрустящий хлебец",
+  "xlebtsi",
+  "xlebsi",
+  "хлебцы"
+ ],
+ "zefir": [
+  "zefirka",
+  "зефир белый",
+  "zefir shirinlik"
+ ],
+ "mol-qiyma-xom": [
+  "qiyma 15",
+  "qiyma 15%",
+  "фарш 15%",
+  "фарш говяжий 15%",
+  "85/15 qiyma"
+ ],
+ "pishloq-gauda": [
+  "gauda 48",
+  "pishloq 48",
+  "сыр гауда 48%"
+ ],
+ "qaymoq-10": [
+  "qaymoq 10",
+  "qaymoq 10%",
+  "сливки 10"
+ ],
+ "qaymoq-yogli": [
+  "qaymoq 33",
+  "qaymoq 33%",
+  "qaymoq 35",
+  "сливки 33%",
+  "сливки 35%"
+ ],
+ "non-bugdoy": [
+  "butun donli non",
+  "to'liq donli non",
+  "butun don noni",
+  "цельнозерновой хлеб",
+  "whole wheat bread"
+ ],
+ "non-jovdar": [
+  "javdar non",
+  "javdar noni",
+  "rye bread"
+ ],
+ "tovuq-jigar": [
+  "tovuq jigar",
+  "tovuq jigari"
  ]
 }

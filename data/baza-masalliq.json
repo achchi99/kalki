@@ -552,6 +552,26 @@
    "uz": "sut 2%",
    "ru": "молоко 2%"
   },
+  "tvorog_1": {
+   "nom": "Tvorog (1% yog')",
+   "usda": 173417,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "tvorog 1%",
+   "ru": "творог 1%"
+  },
+  "yogurt_low": {
+   "nom": "Yogurt (tabiiy, kam yog'li ~1,5%)",
+   "usda": 170886,
+   "yield": {
+    "q": 1.0,
+    "tarif": true
+   },
+   "uz": "yogurt kam yog'li",
+   "ru": "йогурт нежирный"
+  },
   "qaymoq_yarim": {
    "nom": "Qaymoq (half-and-half, ~11,5% yog')",
    "usda": 171255,

@@ -42,11 +42,52 @@ selyodka-shuba|Selyodka pod shuboy (po'stin ostidagi seld)|Селёдка под
 lapsha-udon|Udon / soba (pishgan lapsha)|Удон / соба (варёная лапша)|udon,soba,удон,соба,yapon lapsha,японская лапша|g|porsiya:250,likop:300|m:u:168919*100
 vok-lapsha|Vok (tovuq va sabzavotli lapsha)|Вок с курицей и овощами|vok,wok,вок,vok lapsha,вок лапша|q|porsiya:350|m:u:168919*50+u:171477*20+u:170393*10+u:170000*5+u:171025*5+suv*10
 bruschetta|Bruschetta (pomidor, mozzarella)|Брускетта|bruschetta,brusketta,брускетта|q|dona:60|m:u:174924*45+u:170457*40+u:171025*6+u:170845*9
+ismaloqli-pirog|Ismaloqli pirog (uyda pishirilgan)|Пирог со шпинатом (домашний)|ismaloq uy pichagi,ismaloqli uy pirogi,ismaloqli pishiriq,ismaloq pishiriq,ismaloq pirog,ismaloqli pirog,ismaloqli perok,пирог со шпинатом,шпинатный пирог,пирожок со шпинатом,spinach pie|n|bolak:110,dona:90|m:u:168894*28+u:171025*6+u:171287*12+u:168463*38+u:173420*12+u:170000*4
+tovuq-kari|Tovuqli karri (sousli)|Карри с курицей|kari,karri,curry,tovuq kari,tovuqli kari,kuritsa kari,курица карри,карри,чикен карри,chicken curry|q|porsiya:300,likop:300,kosa:300|m:u:171477*35+u:170000*15+u:170457*12+u:170173*20+u:171413*3+u:170924*1.5+suv*13.5
+chizkeyk-san-sebastyan|San-Sebastyan chizkeyki (basklarcha)|Баскский чизкейк (Сан-Себастьян)|san sebastian,san-sebastyan,san sebastyan,san sebastian chizkeyk,basklarcha chizkeyk,burnt cheesecake,баскский чизкейк,сан себастьян,сан-себастьян чизкейк|h|bolak:120,dona:120|m:u:173418*42+u:170859*22+u:171287*16+u:169655*15+u:168894*1.5
+labne|Labne (suzilgan qatiq pishlog'i)|Лабне (сыр из кефира/йогурта)|labne,labneh,labna,лабне,лабнэ,лабна,suzilgan qatiq,suzilgan yogurt pishloq|s|porsiya:60,qoshiq:30|y:gobaladi-labneh
+yogurt-kam|Yogurt (tabiiy, kam yog'li 1,5%)|Йогурт натуральный нежирный (1,5%)|yogurt 1.5,yogurt 1.5,yogurt kam yog'li,kam yog'li yogurt,йогурт 1.5%,йогурт нежирный,йогурт натуральный 1.5%|s|stakan:200,dona:125|u:170886
+yogurt-yogsiz|Yogurt (tabiiy, yog'siz)|Йогурт натуральный обезжиренный|yogurt 0,yogurt yog'siz,yog'siz yogurt,йогурт 0%,йогурт обезжиренный|s|stakan:200,dona:125|u:170887
+yogurt-yunon-5|Yunon yogurti (to'liq yog'li, 5%)|Греческий йогурт 5%|yunon yogurti 5,yunon yogurti to'liq yog'li,греческий йогурт 5%,греческий йогурт цельный,yunon yogurt 5|s|stakan:150,qoshiq:30|u:171304
+yogurt-ichimlik|Yogurt ichimlik (tabiiy)|Питьевой йогурт натуральный|ichimlik yogurt,yogurt ichimlik,piyoladagi yogurt,drinking yogurt,питьевой йогурт,йогурт питьевой,йогурт питьевой натуральный|i|stakan:250,shisha:330|m:u:170886*70+u:172205*30
+ryajenka-25|Ryajenka 2,5%|Ряженка 2,5%|ryajenka 2.5,ryajenka 2.5,ряженка 2.5%,ряженка 2.5|i|stakan:250|y:ryajenka-krasnaya-tsena-25
+ryajenka-4|Ryajenka 4%|Ряженка 4%|ryajenka 4,ryajenka 4%,ряженка 4%,ряженка 4|i|stakan:250|y:ryajenka-vkusnoteevo-4
+sariyog-725|Sariyog' 72,5% (dehqon)|Масло сливочное 72,5% (крестьянское)|sariyog 72.5,sariyog 72.5,sariyog 72,масло 72.5%,сливочное масло 72.5%,масло крестьянское,krestyanskoe maslo,dehqon sariyog'i|s|qoshiq:12,choyq:5,bolak:10|y:sariyog-krestyanskoe-725
+sariyog-825|Sariyog' 82,5% (an'anaviy)|Масло сливочное 82,5% (традиционное)|sariyog 82.5,sariyog 82.5,sariyog 82,масло 82.5%,сливочное масло 82.5%,масло традиционное,an'anaviy sariyog'|s|qoshiq:12,choyq:5,bolak:10|y:sariyog-ruzskoe-825
+pishloq-edam|Edam pishlog'i (45%)|Сыр эдам (45%)|edam,эдам,pishloq 45,pishloq 45%,сыр 45%,qattiq pishloq 45|s|tilim:20,bolak:30|y:edam-kroon
+pishloq-rossiya|Rossiya pishlog'i (≈50%)|Сыр Российский (≈50%)|rossiyskiy pishloq,rossiya pishlog'i,pishloq 50,pishloq 50%,сыр российский,сыр 50%,qattiq pishloq 50|s|tilim:20,bolak:30|y:syr-rossiyskiy-kr
+pishloq-adigey|Adigey pishlog'i|Сыр адыгейский|adigey pishlog'i,adigey,adygeysky,adigeyskiy,адыгейский сыр,сыр адыгейский,адыгейский|s|bolak:50,porsiya:100|y:adygeysky-vkusvil
+mozzarella-kam|Mozzarella (kam yog'li)|Моцарелла (частично обезжиренная)|mozzarella kam yog'li,моцарелла нежирная,моцарелла лайт,mozzarella light|s|bolak:30,tilim:20,porsiya:100|u:170847
+qaymoq-20|Qaymoq (20%, yengil)|Сливки 20%|qaymoq 20,qaymoq 20%,сливки 20%,сливки 20,yengil qaymoq|s|qoshiq:15,stakan:200|u:170857
+mol-file-xom|Mol go'shti — file (xom)|Говядина вырезка (сырая)|mol file,file go'sht,mol go'shti file,вырезка говяжья,говяжья вырезка,вырезка,tenderloin|m|porsiya:150,dona:200|u:169542
+mol-antrekot-xom|Mol go'shti — antrekot (ribay, xom)|Говядина антрекот (рибай, сырая)|antrekot,mol antrekot,ribay,ribeye,рибай,антрекот,стейк рибай|m|porsiya:200,dona:250|u:168612
+mol-yelka-xom|Mol go'shti — yelka (xom)|Говядина лопатка (сырая)|mol yelka,yelka go'sht,говяжья лопатка сырая,mol yelka xom|m|porsiya:150|u:168668
+mol-son-xom|Mol go'shti — son (xom)|Говядина окорок (задняя часть, сырая)|mol son,son go'sht mol,говядина задняя часть,говяжий окорок сырой,mol son xom|m|porsiya:150|u:168646
+mol-tosh-xom|Mol go'shti — to'sh (xom)|Говядина грудинка (сырая)|mol tosh xom,brisket,mol to'sh xom,говяжья грудинка сырая|m|porsiya:150|u:168664
+mol-qiyma-5|Mol qiymasi 5% yog' (xom)|Фарш говяжий 5% жира (сырой)|qiyma 5,qiyma 5%,mol qiyma 5,фарш 5%,фарш говяжий 5%,95/5 qiyma|m|porsiya:100,qoshiq:30|u:171790
+mol-qiyma-10|Mol qiymasi 10% yog' (xom)|Фарш говяжий 10% жира (сырой)|qiyma 10,qiyma 10%,mol qiyma 10,фарш 10%,фарш говяжий 10%,90/10 qiyma|m|porsiya:100,qoshiq:30|u:174030
+mol-qiyma-20|Mol qiymasi 20% yog' (xom)|Фарш говяжий 20% жира (сырой)|qiyma 20,qiyma 20%,mol qiyma 20,фарш 20%,фарш говяжий 20%,80/20 qiyma|m|porsiya:100,qoshiq:30|u:174036
+qoy-son-xom|Qo'y go'shti — son (xom)|Баранина задняя часть (сырая)|qo'y son xom,qoy son xom,баранина нога сырая,баранья нога сырая|m|porsiya:150|u:172549
+qoy-yelka-xom|Qo'y go'shti — yelka (xom)|Баранина лопатка (сырая)|qoy yelka,баранья лопатка сырая,qo'y yelka xom|m|porsiya:150|u:172496
+qoy-bel-xom|Qo'y go'shti — bel (xom)|Баранина поясница (сырая)|qo'y bel,qoy bel,баранья корейка,корейка баранья,qo'y kotleti xom|m|porsiya:150|u:172551
+qoy-boldir-xom|Qo'y go'shti — boldir (xom)|Баранина голяшка (сырая)|qo'y boldir,qoy boldir,баранья голяшка,голяшка|m|porsiya:150|u:172481
+tovuq-kanat-xom|Tovuq qanoti (xom, terili)|Куриные крылья (сырые, с кожей)|tovuq qanot xom,tovuq qanoti xom,куриные крылья сырые,куриное крыло|m|dona:40,porsiya:150|u:172390
+tovuq-boldir-xom|Tovuq boldiri (xom, terili)|Куриная голень (сырая, с кожей)|tovuq boldir,tovuq boldiri xom,куриная голень,голень куриная,голень|m|dona:100,porsiya:150|u:172373
+tovuq-jigar-xom|Tovuq jigari (xom)|Куриная печень (сырая)|tovuq jigar xom,куриная печень сырая,куриная печень|m|porsiya:100|u:171060
+tovuq-yurak-xom|Tovuq yuragi (xom)|Куриные сердечки (сырые)|tovuq yurak xom,куриные сердечки,куриное сердце|m|porsiya:100|u:171458
+tovuq-oshqozon-xom|Tovuq oshqozoni (xom)|Куриные желудки (сырые)|tovuq oshqozon xom,куриные желудки,куриный желудок|m|porsiya:100|u:171456
+tovuq-kokrak-terili-xom|Tovuq ko'kragi (xom, terili)|Куриная грудка с кожей (сырая)|tovuq ko'krak terili,tovuq kokrak terili,куриная грудка с кожей|m|dona:250,porsiya:150|u:171474
+tovuq-qiyma-xom|Tovuq qiymasi (xom)|Фарш куриный (сырой)|tovuq qiyma,tovuq qiymasi,фарш куриный,куриный фарш|m|porsiya:100,qoshiq:30|u:171116
+kurka-qiyma-xom|Kurka qiymasi (xom)|Фарш индейки (сырой)|kurka qiyma xom,фарш индейки,индюшиный фарш|m|porsiya:100,qoshiq:30|u:171505
+kolbasa-mol-kam-yogli|Kolbasa (mol go'shtli, kam yog'li)|Колбаса говяжья нежирная|kolbasa kam yog'li,колбаса нежирная,колбаса диетическая,bolonya kam yog'li|m|tilim:20,bolak:30|u:168101
+sosiska-mol-kam-yogli|Sosiska (mol go'shtli, kam yog'li)|Сосиски говяжьи нежирные|sosiska kam yog'li,сосиски нежирные,сосиски говяжьи|m|dona:50|u:167696
+sosiska-kurka|Kurka sosiskasi|Сосиски из индейки|kurka sosiska,сосиски из индейки,индюшиные сосиски|m|dona:50|u:171625
+pastrami-kurka|Kurka pastramisi|Пастрома из индейки|pastrami kurka,pastroma,пастрома,пастрами индейка|m|tilim:20,bolak:30|u:172927
 `;
 const rows = T.trim().split('\n').map((l) => l.split('|'));
 const L = (x) => x.trim().split(/\s+/);
-const TEG = { sut: L(`somsa-pishloq chuchvara-qatiq mokka choy-qaymoqli ryajenka prostokvasha aktimel shokolad-batonchik sosiskali-bulochka roll-filadelfiya yunon-salat bruschetta pishmaniye`),
-  tuxum: L(`chapati nishalda shakshuka bibimbap`), yongoq: L(`shokolad-batonchik`), baliq: L(`sushi-nigiri roll-filadelfiya roll-kaliforniya roll-tempura selyodka-shuba`), choshqa: [],
-  glyuten: L(`chuchvara-qovurma chuchvara-qatiq kuksi somsa-jigar somsa-dumba somsa-pishloq chapati pishmaniye xalvaitar shokolad-batonchik sosiskali-bulochka funchoza vok-lapsha lapsha-udon bruschetta`) };
+const TEG = { sut: L(`somsa-pishloq chuchvara-qatiq mokka choy-qaymoqli ryajenka prostokvasha aktimel shokolad-batonchik sosiskali-bulochka roll-filadelfiya yunon-salat bruschetta pishmaniye labne ismaloqli-pirog chizkeyk-san-sebastyan yogurt-kam yogurt-yogsiz yogurt-yunon-5 yogurt-ichimlik ryajenka-25 ryajenka-4 sariyog-725 sariyog-825 pishloq-edam pishloq-rossiya pishloq-adigey mozzarella-kam qaymoq-20`),
+  tuxum: L(`chapati nishalda shakshuka bibimbap ismaloqli-pirog chizkeyk-san-sebastyan`), yongoq: L(`shokolad-batonchik`), baliq: L(`sushi-nigiri roll-filadelfiya roll-kaliforniya roll-tempura selyodka-shuba`), choshqa: [],
+  glyuten: L(`chuchvara-qovurma chuchvara-qatiq kuksi somsa-jigar somsa-dumba somsa-pishloq chapati pishmaniye xalvaitar shokolad-batonchik sosiskali-bulochka funchoza vok-lapsha lapsha-udon bruschetta ismaloqli-pirog chizkeyk-san-sebastyan`) };
 const OQSIL = {};
 module.exports = rows; module.exports.TEG = TEG; module.exports.OQSIL = OQSIL;

@@ -821,6 +821,72 @@
      "p": {
       "tarkibi": "yogli"
      }
+    },
+    {
+     "q": "suyak sho'rva",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
+    },
+    {
+     "q": "suyak shurva",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
+    },
+    {
+     "q": "suvak sho'rva",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
+    },
+    {
+     "q": "suvak shurva",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
+    },
+    {
+     "q": "suyak shorva",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
+    },
+    {
+     "q": "suyakli sho'rva",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
+    },
+    {
+     "q": "суповая кость",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
+    },
+    {
+     "q": "костный бульон",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
+    },
+    {
+     "q": "бульон на кости",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
+    },
+    {
+     "q": "suyak buloni",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
+    },
+    {
+     "q": "bulyon",
+     "p": {
+      "tarkibi": "qaynatma"
+     }
     }
    ]
   },
@@ -1451,14 +1517,24 @@
      "r": "Жирность",
      "o": [
       {
-       "id": "odatiy",
-       "n": "odatiy",
-       "r": "обычный"
-      },
-      {
        "id": "yogsiz",
        "n": "yog'siz",
        "r": "обезжиренный"
+      },
+      {
+       "id": "f15",
+       "n": "1,5%",
+       "r": "1,5%"
+      },
+      {
+       "id": "f25",
+       "n": "2,5%",
+       "r": "2,5%"
+      },
+      {
+       "id": "odatiy",
+       "n": "3,2%",
+       "r": "3,2%"
       }
      ],
      "d": "odatiy"
@@ -1466,17 +1542,171 @@
    ],
    "grid": [
     {
-     "v": "odatiy",
-     "from": "qatiq"
-    },
-    {
      "v": "yogsiz",
      "rc": "qatiq.yogsiz"
+    },
+    {
+     "v": "f15",
+     "rc": "qatiq.f15"
+    },
+    {
+     "v": "f25",
+     "rc": "qatiq.f25"
+    },
+    {
+     "v": "odatiy",
+     "from": "qatiq"
     }
    ],
    "alias_old": {
     "qatiq-yogsiz": "yogsiz"
-   }
+   },
+   "sy": [
+    {
+     "q": "qatiq",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "qatiq 1,5",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "qatiq 1.5",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "qatiq 1",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "qatiq 2,5",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "qatiq 2.5",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "qatiq 2",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "qatiq 3,2",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "qatiq 3.2",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "qatiq 3",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "qatiq 0",
+     "p": {
+      "yogliligi": "yogsiz"
+     }
+    },
+    {
+     "q": "катык",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "катык 1,5",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "катык 1.5",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "катык 1",
+     "p": {
+      "yogliligi": "f15"
+     }
+    },
+    {
+     "q": "катык 2,5",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "катык 2.5",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "катык 2",
+     "p": {
+      "yogliligi": "f25"
+     }
+    },
+    {
+     "q": "катык 3,2",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "катык 3.2",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "катык 3",
+     "p": {
+      "yogliligi": "odatiy"
+     }
+    },
+    {
+     "q": "катык 0",
+     "p": {
+      "yogliligi": "yogsiz"
+     }
+    },
+    {
+     "q": "yog'siz qatiq",
+     "p": {
+      "yogliligi": "yogsiz"
+     }
+    },
+    {
+     "q": "обезжиренный катык",
+     "p": {
+      "yogliligi": "yogsiz"
+     }
+    }
+   ]
   },
   {
    "id": "tvorog5",
@@ -1492,6 +1722,16 @@
        "id": "0",
        "n": "0%",
        "r": "0%"
+      },
+      {
+       "id": "1",
+       "n": "1%",
+       "r": "1%"
+      },
+      {
+       "id": "2",
+       "n": "2%",
+       "r": "2%"
       },
       {
        "id": "5",
@@ -1517,6 +1757,14 @@
     {
      "v": "0",
      "from": "tvorog0"
+    },
+    {
+     "v": "1",
+     "rc": "tvorog.f1"
+    },
+    {
+     "v": "2",
+     "rc": "tvorog.f2"
     },
     {
      "v": "5",
@@ -1623,6 +1871,102 @@
     },
     {
      "q": "жирный творог",
+     "p": {
+      "yogliligi": "18"
+     }
+    },
+    {
+     "q": "tvorog 1",
+     "p": {
+      "yogliligi": "1"
+     }
+    },
+    {
+     "q": "творог 1",
+     "p": {
+      "yogliligi": "1"
+     }
+    },
+    {
+     "q": "tvorog 1%",
+     "p": {
+      "yogliligi": "1"
+     }
+    },
+    {
+     "q": "творог 1%",
+     "p": {
+      "yogliligi": "1"
+     }
+    },
+    {
+     "q": "tvorog 2",
+     "p": {
+      "yogliligi": "2"
+     }
+    },
+    {
+     "q": "творог 2",
+     "p": {
+      "yogliligi": "2"
+     }
+    },
+    {
+     "q": "tvorog 2%",
+     "p": {
+      "yogliligi": "2"
+     }
+    },
+    {
+     "q": "творог 2%",
+     "p": {
+      "yogliligi": "2"
+     }
+    },
+    {
+     "q": "tvorog 0%",
+     "p": {
+      "yogliligi": "0"
+     }
+    },
+    {
+     "q": "творог 0%",
+     "p": {
+      "yogliligi": "0"
+     }
+    },
+    {
+     "q": "tvorog 5%",
+     "p": {
+      "yogliligi": "5"
+     }
+    },
+    {
+     "q": "творог 5%",
+     "p": {
+      "yogliligi": "5"
+     }
+    },
+    {
+     "q": "tvorog 9%",
+     "p": {
+      "yogliligi": "9"
+     }
+    },
+    {
+     "q": "творог 9%",
+     "p": {
+      "yogliligi": "9"
+     }
+    },
+    {
+     "q": "tvorog 18%",
+     "p": {
+      "yogliligi": "18"
+     }
+    },
+    {
+     "q": "творог 18%",
      "p": {
       "yogliligi": "18"
      }

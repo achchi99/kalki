@@ -549,6 +549,33 @@
     "174036",
     "175042",
     "175043"
+   ],
+   "2026-11-24-v100": [
+    "167696",
+    "168101",
+    "168612",
+    "168646",
+    "168664",
+    "169542",
+    "170847",
+    "170886",
+    "170887",
+    "170924",
+    "171060",
+    "171116",
+    "171304",
+    "171456",
+    "171458",
+    "171474",
+    "171505",
+    "171625",
+    "171790",
+    "172373",
+    "172481",
+    "172549",
+    "172551",
+    "172927",
+    "173417"
    ]
   }
  },
@@ -10631,6 +10658,519 @@
      "nom": "packet",
      "miqdor": 1.0,
      "g": 7.2
+    }
+   ]
+  },
+  "170924": {
+   "d": "Spices, curry powder",
+   "kcal": 325.0,
+   "p": 14.29,
+   "suv": 8.8,
+   "f": 14.01,
+   "c": 55.83,
+   "o": [
+    {
+     "nom": "tsp",
+     "miqdor": 1.0,
+     "g": 2.0
+    },
+    {
+     "nom": "tbsp",
+     "miqdor": 1.0,
+     "g": 6.3
+    }
+   ]
+  },
+  "167696": {
+   "d": "Frankfurter, beef, low fat",
+   "c": 1.6,
+   "suv": 63.8,
+   "p": 12.0,
+   "kcal": 140.0,
+   "f": 9.5,
+   "o": [
+    {
+     "nom": "frankfurter",
+     "miqdor": 1.0,
+     "g": 57.0
+    },
+    {
+     "nom": "cup, sliced",
+     "miqdor": 1.0,
+     "g": 151.0
+    }
+   ]
+  },
+  "168101": {
+   "d": "Bologna, beef, low fat",
+   "c": 5.2,
+   "kcal": 204.0,
+   "f": 14.8,
+   "suv": 65.0,
+   "p": 11.8,
+   "o": [
+    {
+     "nom": "slice",
+     "miqdor": 1.0,
+     "g": 28.0
+    },
+    {
+     "nom": "cubic inch",
+     "miqdor": 1.0,
+     "g": 14.0
+    },
+    {
+     "nom": "slice, medium",
+     "miqdor": 1.0,
+     "g": 28.0
+    },
+    {
+     "nom": "slice, thick",
+     "miqdor": 1.0,
+     "g": 43.0
+    },
+    {
+     "nom": "slice, thin",
+     "miqdor": 1.0,
+     "g": 14.0
+    }
+   ]
+  },
+  "168612": {
+   "d": "Beef, rib, eye, small end (ribs 10-12), separable lean and fat, trimmed to 0\" fat, choice, raw",
+   "p": 17.51,
+   "f": 22.07,
+   "c": 0.0,
+   "kcal": 274.0,
+   "suv": 58.03,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "lb",
+     "miqdor": 1.0,
+     "g": 453.6
+    }
+   ]
+  },
+  "168646": {
+   "d": "Beef, round, tip round, roast, separable lean and fat, trimmed to 0\" fat, choice, raw",
+   "p": 20.16,
+   "suv": 71.4,
+   "f": 7.73,
+   "c": 0.0,
+   "kcal": 156.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "roast",
+     "miqdor": 1.0,
+     "g": 1392.0
+    }
+   ]
+  },
+  "168664": {
+   "d": "Beef, brisket, whole, separable lean and fat, trimmed to 1/8\" fat, all grades, raw",
+   "c": 0.56,
+   "kcal": 253.0,
+   "p": 18.42,
+   "suv": 61.08,
+   "f": 19.06,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "lb",
+     "miqdor": 1.0,
+     "g": 453.6
+    }
+   ]
+  },
+  "169542": {
+   "d": "Beef, tenderloin, steak, separable lean and fat, trimmed to 1/8\" fat, all grades, raw",
+   "suv": 61.52,
+   "f": 18.16,
+   "p": 19.61,
+   "kcal": 247.0,
+   "c": 0.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "steak",
+     "miqdor": 1.0,
+     "g": 164.0
+    }
+   ]
+  },
+  "170847": {
+   "d": "Cheese, mozzarella, part skim milk",
+   "kcal": 254.0,
+   "f": 15.92,
+   "suv": 53.78,
+   "p": 24.26,
+   "c": 2.77,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    }
+   ]
+  },
+  "170886": {
+   "d": "Yogurt, plain, low fat",
+   "kcal": 63.0,
+   "suv": 85.07,
+   "f": 1.55,
+   "c": 7.04,
+   "p": 5.25,
+   "o": [
+    {
+     "nom": "container (6 oz)",
+     "miqdor": 1.0,
+     "g": 170.0
+    },
+    {
+     "nom": "container (8 oz)",
+     "miqdor": 1.0,
+     "g": 227.0
+    },
+    {
+     "nom": "container (4 oz)",
+     "miqdor": 0.5,
+     "g": 113.0
+    },
+    {
+     "nom": "cup (8 fl oz)",
+     "miqdor": 1.0,
+     "g": 245.0
+    }
+   ]
+  },
+  "170887": {
+   "d": "Yogurt, plain, skim milk",
+   "kcal": 56.0,
+   "p": 5.73,
+   "f": 0.18,
+   "c": 7.68,
+   "suv": 85.23,
+   "o": [
+    {
+     "nom": "container (6 oz)",
+     "miqdor": 1.0,
+     "g": 170.0
+    },
+    {
+     "nom": "container (8 oz)",
+     "miqdor": 1.0,
+     "g": 227.0
+    },
+    {
+     "nom": "cup (8 fl oz)",
+     "miqdor": 1.0,
+     "g": 245.0
+    }
+   ]
+  },
+  "171060": {
+   "d": "Chicken, liver, all classes, raw",
+   "p": 16.92,
+   "f": 4.83,
+   "suv": 76.46,
+   "c": 0.73,
+   "kcal": 119.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "liver",
+     "miqdor": 1.0,
+     "g": 44.0
+    }
+   ]
+  },
+  "171116": {
+   "d": "Chicken, ground, raw",
+   "f": 8.1,
+   "suv": 73.24,
+   "p": 17.44,
+   "c": 0.04,
+   "kcal": 143.0,
+   "o": [
+    {
+     "nom": "oz crumbled",
+     "miqdor": 4.0,
+     "g": 113.0
+    }
+   ]
+  },
+  "171304": {
+   "d": "Yogurt, Greek, plain, whole milk",
+   "p": 9.0,
+   "f": 5.0,
+   "c": 3.98,
+   "kcal": 97.0,
+   "suv": 81.3
+  },
+  "171456": {
+   "d": "Chicken, gizzard, all classes, raw",
+   "p": 17.66,
+   "f": 2.06,
+   "suv": 79.33,
+   "c": 0.0,
+   "kcal": 94.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "lb",
+     "miqdor": 1.0,
+     "g": 453.0
+    }
+   ]
+  },
+  "171458": {
+   "d": "Chicken, heart, all classes, raw",
+   "p": 15.55,
+   "f": 9.33,
+   "c": 0.71,
+   "kcal": 153.0,
+   "suv": 73.56,
+   "o": [
+    {
+     "nom": "heart",
+     "miqdor": 1.0,
+     "g": 6.1
+    },
+    {
+     "nom": "unit (yield from 1 lb ready-to-cook chicken)",
+     "miqdor": 1.0,
+     "g": 1.8
+    }
+   ]
+  },
+  "171474": {
+   "d": "Chicken, broilers or fryers, breast, meat and skin, raw",
+   "p": 20.85,
+   "f": 9.25,
+   "c": 0.0,
+   "kcal": 172.0,
+   "suv": 69.46,
+   "o": [
+    {
+     "nom": "breast, bone removed (yield from 1 lb ready-to-cook chicken)",
+     "miqdor": 0.5,
+     "g": 87.0
+    },
+    {
+     "nom": "breast, bone removed",
+     "miqdor": 0.5,
+     "g": 145.0
+    }
+   ]
+  },
+  "171505": {
+   "d": "Turkey, Ground, raw",
+   "f": 7.66,
+   "suv": 72.36,
+   "p": 19.66,
+   "kcal": 148.0,
+   "c": 0.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "lb",
+     "miqdor": 1.0,
+     "g": 453.6
+    },
+    {
+     "nom": "patty, 4 oz",
+     "miqdor": 1.0,
+     "g": 114.0
+    }
+   ]
+  },
+  "171625": {
+   "d": "Frankfurter, turkey",
+   "c": 3.81,
+   "kcal": 223.0,
+   "p": 12.23,
+   "f": 17.29,
+   "suv": 62.99,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "frankfurter",
+     "miqdor": 1.0,
+     "g": 45.0
+    }
+   ]
+  },
+  "171790": {
+   "d": "Beef, ground, 95% lean meat / 5% fat, raw",
+   "p": 21.41,
+   "f": 5.0,
+   "c": 0.0,
+   "suv": 73.24,
+   "kcal": 137.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    }
+   ]
+  },
+  "172373": {
+   "d": "Chicken, broilers or fryers, drumstick, meat and skin, raw",
+   "f": 9.2,
+   "kcal": 161.0,
+   "p": 18.08,
+   "suv": 72.46,
+   "c": 0.11,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "drumstick with skin",
+     "miqdor": 1.0,
+     "g": 133.0
+    },
+    {
+     "nom": "drumstick",
+     "miqdor": 1.0,
+     "g": 130.0
+    }
+   ]
+  },
+  "172481": {
+   "d": "Lamb, foreshank, separable lean and fat, trimmed to 1/4\" fat, choice, raw",
+   "p": 18.91,
+   "suv": 67.01,
+   "f": 13.38,
+   "c": 0.0,
+   "kcal": 201.0,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "lb",
+     "miqdor": 1.0,
+     "g": 453.6
+    }
+   ]
+  },
+  "172549": {
+   "d": "Lamb, leg, sirloin half, separable lean and fat, trimmed to 1/8\" fat, choice, raw",
+   "p": 17.21,
+   "f": 20.8,
+   "c": 0.0,
+   "kcal": 261.0,
+   "suv": 61.32,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "lb",
+     "miqdor": 1.0,
+     "g": 453.6
+    }
+   ]
+  },
+  "172551": {
+   "d": "Lamb, loin, separable lean and fat, trimmed to 1/8\" fat, choice, raw",
+   "p": 17.18,
+   "f": 22.75,
+   "c": 0.0,
+   "kcal": 279.0,
+   "suv": 59.55,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "steak, excluding refuse (yield from 1 raw steak, with refuse, weighing 102 g)",
+     "miqdor": 1.0,
+     "g": 79.0
+    }
+   ]
+  },
+  "172927": {
+   "d": "Pastrami, turkey",
+   "f": 6.21,
+   "suv": 71.73,
+   "p": 16.3,
+   "c": 3.34,
+   "kcal": 139.0,
+   "o": [
+    {
+     "nom": "slices",
+     "miqdor": 2.0,
+     "g": 57.0
+    },
+    {
+     "nom": "package (8 oz)",
+     "miqdor": 1.0,
+     "g": 227.0
+    }
+   ]
+  },
+  "173417": {
+   "d": "Cheese, cottage, lowfat, 1% milkfat",
+   "kcal": 72.0,
+   "p": 12.39,
+   "suv": 82.48,
+   "f": 1.02,
+   "c": 2.72,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 4.0,
+     "g": 113.0
+    },
+    {
+     "nom": "cup (not packed)",
+     "miqdor": 1.0,
+     "g": 226.0
     }
    ]
   }
