@@ -80,7 +80,7 @@ Keyin (v100):
 ### Qo'shilgan mahsulotlar (guruhlar bo'yicha)
 | Guruh | Soni | Nimalar | Manba |
 |---|---|---|---|
-| Tvorog (oila variantlari) | +2 | 1 %, 2 % | USDA 173417, 172182 |
+| Tvorog (oila variantlari) | +2 | 1 %, 2 % | yorliq (OFF: Savushkin 4810268045080; 4810770004100) — 0 % va 5–18 % bilan bir xil MDH tvorog turi |
 | Qatiq (oila variantlari) | +2 | 1,5 %, 2,5 % (3,2 % va yog'siz bor edi) | USDA 170886 + 171284 |
 | Yogurt | +4 | kam yog'li 1,5 %, yog'siz, yunon 5 %, ichimlik | USDA 170886, 170887, 171304 |
 | Ryajenka | +2 | 2,5 %, 4 % | yorliq (OFF) |

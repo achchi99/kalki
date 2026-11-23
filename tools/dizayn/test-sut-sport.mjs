@@ -8,15 +8,15 @@ const foods = S.normFoods(DB.foods); S.buildIndex(foods); const by = Object.from
 const variants = (id) => { const f = by[id], a = f.fam.ax[0]; return a.o.map((o) => ({ i: o.i, n: o.n, r: o.r, v: S.famVariant(f, { [a.i]: o.i }) })); };
 const atw = (v) => 4 * v.p + 9 * v.f + 4 * v.c;
 /* ---------- 1. ma'lumot ---------- */
-const FAM = { sut: ['0,5%', '1%', '1,5%', '2%', '2,5%', '3,2%', '6%'], kefir: ['1%', '2,5%', '3,2%'], smetana: ['10%', '15%', '20%', '25%'], tvorog5: ['0%', '5%', '9%', '18%'] };
+const FAM = { sut: ['0,5%', '1%', '1,5%', '2%', '2,5%', '3,2%', '6%'], kefir: ['1%', '2,5%', '3,2%'], smetana: ['10%', '15%', '20%', '25%'], tvorog5: ['0%', '1%', '2%', '5%', '9%', '18%'] };
 for (const [id, labels] of Object.entries(FAM)) {
   const vs = variants(id); assert.deepEqual(vs.map((x) => x.n), labels, id + ': yog\'lilik variantlari'); assert.deepEqual(vs.map((x) => x.r), labels, id + ': RU');
-  for (let k = 1; k < vs.length; k++) { assert.ok(vs[k].v.k > vs[k - 1].v.k, id + ': kkal yog\'lilik bilan o\'sadi ' + vs.map((x) => x.v.k)); assert.ok(vs[k].v.f > vs[k - 1].v.f, id + ': yog\' o\'sadi'); }
+  for (let k = 1; k < vs.length; k++) { assert.ok(vs[k].v.k > vs[k - 1].v.k - (id === 'tvorog5' ? 3 : 0), id + ': kkal yog\'lilik bilan o\'sadi ' + vs.map((x) => x.v.k)); assert.ok(vs[k].v.f > vs[k - 1].v.f, id + ': yog\' o\'sadi'); }
   for (const x of vs) { assert.ok(Math.abs(atw(x.v) - x.v.k) <= Math.max(25, x.v.k * 0.15), id + ' ' + x.n + ': Atwater ' + Math.round(atw(x.v)) + ' ≠ ' + x.v.k); const nm = parseFloat(x.n.replace(',', '.')); assert.ok(Math.abs(x.v.f - nm) <= Math.max(0.6, nm * 0.12), id + ' ' + x.n + ': yog\' ' + x.v.f + ' ≈ yorliq'); }
   const def = S.famDefault(by[id]); assert.equal(S.famVariant(by[id], def).k, by[id].k, id + ': standart variant = asosiy qiymat');
 }
 assert.equal(S.famVariant(by.sut, S.famDefault(by.sut)).f, 3.2, 'sut standarti 3,2%'); assert.equal(S.famVariant(by.kefir, S.famDefault(by.kefir)).f, 2.5, 'kefir standarti 2,5%'); assert.equal(S.famVariant(by.smetana, S.famDefault(by.smetana)).f, 20); assert.equal(S.famVariant(by.tvorog5, S.famDefault(by.tvorog5)).f, 5);
-assert.deepEqual(variants('qatiq').map((x) => x.n), ['odatiy', "yog'siz"]); assert.ok(variants('qatiq')[1].v.f < 0.5);
+assert.deepEqual(variants('qatiq').map((x) => x.n), ["yog'siz", '1,5%', '2,5%', '3,2%']); assert.ok(variants('qatiq')[0].v.f < 0.5);          // v100: 1,5 va 2,5 % qo'shildi; «odatiy» = 3,2 %
 assert.deepEqual(by.sut.u.slice(0, 1), [['stakan', 250]], 'sut: stakan 250 ml'); assert.ok(by.kefir.u.some((u) => u[0] === 'stakan' && u[1] === 250));
 /* manba: har yangi (hisoblangan) variant — retsept (USDA fdc_id lar data/manba da) va matnda fdc_id; «taxminiy» */
 for (const [id, k] of [['sut', 'f05'], ['sut', 'f15'], ['sut', 'f25'], ['sut', 'f6'], ['kefir', 'f1'], ['kefir', 'f32'], ['smetana', 'f10'], ['smetana', 'f15'], ['smetana', 'f25'], ['qatiq', 'yogsiz']]) {

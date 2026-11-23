@@ -4515,8 +4515,8 @@
    ],
    "taxminiy": false,
    "manba": {
-    "uz": "Tvorog 1%: USDA FoodData Central, fdc_id {fdc} («Cheese, cottage, lowfat, 1% milkfat»). Brendga qarab ±10% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
-    "ru": "Творог 1%: USDA FoodData Central, fdc_id {fdc} («Cheese, cottage, lowfat, 1% milkfat»). В зависимости от марки ±10% — проверяйте упаковку."
+    "uz": "Tvorog 1%: ishlab chiqaruvchi yorlig'i (Savushkin, Open Food Facts shtrix-kod 4810268045080), 100 g uchun. Brendga qarab ±10% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Творог 1%: по этикетке производителя (Савушкин, Open Food Facts, штрихкод 4810268045080), на 100 г. В зависимости от марки ±10% — проверяйте упаковку."
    }
   },
   {
@@ -4524,14 +4524,14 @@
    "nom": "Tvorog 2%",
    "ingr": [
     {
-     "m": "suzma",
+     "m": "tvorog_2",
      "g": 500
     }
    ],
    "taxminiy": false,
    "manba": {
-    "uz": "Tvorog 2%: USDA FoodData Central, fdc_id {fdc} («Cheese, cottage, lowfat, 2% milkfat»). Brendga qarab ±10% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
-    "ru": "Творог 2%: USDA FoodData Central, fdc_id {fdc} («Cheese, cottage, lowfat, 2% milkfat»). В зависимости от марки ±10% — проверяйте упаковку."
+    "uz": "Tvorog 2%: ishlab chiqaruvchi yorlig'i (Open Food Facts shtrix-kod 4810770004100), 100 g uchun. Brendga qarab ±10% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Творог 2%: по этикетке производителя (Open Food Facts, штрихкод 4810770004100), на 100 г. В зависимости от марки ±10% — проверяйте упаковку."
    }
   },
   {

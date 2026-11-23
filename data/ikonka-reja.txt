@@ -770,3 +770,44 @@
 9|v87-vafli-shakarsiz|dessert or sweet: Вафли без сахара (Vafli (shakarsiz, poliollar bilan)), realistic single serving, top-down three-quarter view, no text.|vafli-shakarsiz
 9|v87-tomat-pasta|sauce or condiment: Томатная паста (Tomat pastasi), realistic single serving, top-down three-quarter view, no text.|tomat-pasta
 9|v87-balzamik|sauce or condiment: Бальзамический уксус (Balzamik sirka), realistic single serving, top-down three-quarter view, no text.|balzamik
+9|v100-ismaloqli-pirog|dish or baked good: Пирог со шпинатом (домашний) (Ismaloqli pirog (uyda pishirilgan)), realistic single serving, top-down three-quarter view, no text.|ismaloqli-pirog
+9|v100-tovuq-kari|meat or poultry: Карри с курицей (Tovuqli karri (sousli)), realistic single serving, top-down three-quarter view, no text.|tovuq-kari
+9|v100-chizkeyk-san-sebastyan|dish or baked good: Баскский чизкейк (Сан-Себастьян) (San-Sebastyan chizkeyki (basklarcha)), realistic single serving, top-down three-quarter view, no text.|chizkeyk-san-sebastyan
+9|v100-labne|dairy product: Лабне (сыр из кефира/йогурта) (Labne (suzilgan qatiq pishlog'i)), realistic single serving, top-down three-quarter view, no text.|labne
+9|v100-yogurt-kam|dairy product: Йогурт натуральный нежирный (1,5%) (Yogurt (tabiiy, kam yog'li 1,5%)), realistic single serving, top-down three-quarter view, no text.|yogurt-kam
+9|v100-yogurt-yogsiz|dairy product: Йогурт натуральный обезжиренный (Yogurt (tabiiy, yog'siz)), realistic single serving, top-down three-quarter view, no text.|yogurt-yogsiz
+9|v100-yogurt-yunon-5|dairy product: Греческий йогурт 5% (Yunon yogurti (to'liq yog'li, 5%)), realistic single serving, top-down three-quarter view, no text.|yogurt-yunon-5
+9|v100-yogurt-ichimlik|dairy product: Питьевой йогурт натуральный (Yogurt ichimlik (tabiiy)), realistic single serving, top-down three-quarter view, no text.|yogurt-ichimlik
+9|v100-ryajenka-25|dairy product: Ряженка 2,5% (Ryajenka 2,5%), realistic single serving, top-down three-quarter view, no text.|ryajenka-25
+9|v100-ryajenka-4|dairy product: Ряженка 4% (Ryajenka 4%), realistic single serving, top-down three-quarter view, no text.|ryajenka-4
+9|v100-sariyog-725|dairy product: Масло сливочное 72,5% (крестьянское) (Sariyog' 72,5% (dehqon)), realistic single serving, top-down three-quarter view, no text.|sariyog-725
+9|v100-sariyog-825|dairy product: Масло сливочное 82,5% (традиционное) (Sariyog' 82,5% (an'anaviy)), realistic single serving, top-down three-quarter view, no text.|sariyog-825
+9|v100-pishloq-edam|dairy product: Сыр эдам (45%) (Edam pishlog'i (45%)), realistic single serving, top-down three-quarter view, no text.|pishloq-edam
+9|v100-pishloq-rossiya|dairy product: Сыр Российский (≈50%) (Rossiya pishlog'i (≈50%)), realistic single serving, top-down three-quarter view, no text.|pishloq-rossiya
+9|v100-pishloq-adigey|dairy product: Сыр адыгейский (Adigey pishlog'i), realistic single serving, top-down three-quarter view, no text.|pishloq-adigey
+9|v100-mozzarella-kam|dairy product: Моцарелла (частично обезжиренная) (Mozzarella (kam yog'li)), realistic single serving, top-down three-quarter view, no text.|mozzarella-kam
+9|v100-qaymoq-20|dairy product: Сливки 20% (Qaymoq (20%, yengil)), realistic single serving, top-down three-quarter view, no text.|qaymoq-20
+9|v100-mol-file-xom|meat or poultry: Говядина вырезка (сырая) (Mol go'shti — file (xom)), realistic single serving, top-down three-quarter view, no text.|mol-file-xom
+9|v100-mol-antrekot-xom|meat or poultry: Говядина антрекот (рибай, сырая) (Mol go'shti — antrekot (ribay, xom)), realistic single serving, top-down three-quarter view, no text.|mol-antrekot-xom
+9|v100-mol-yelka-xom|meat or poultry: Говядина лопатка (сырая) (Mol go'shti — yelka (xom)), realistic single serving, top-down three-quarter view, no text.|mol-yelka-xom
+9|v100-mol-son-xom|meat or poultry: Говядина окорок (задняя часть, сырая) (Mol go'shti — son (xom)), realistic single serving, top-down three-quarter view, no text.|mol-son-xom
+9|v100-mol-tosh-xom|meat or poultry: Говядина грудинка (сырая) (Mol go'shti — to'sh (xom)), realistic single serving, top-down three-quarter view, no text.|mol-tosh-xom
+9|v100-mol-qiyma-5|meat or poultry: Фарш говяжий 5% жира (сырой) (Mol qiymasi 5% yog' (xom)), realistic single serving, top-down three-quarter view, no text.|mol-qiyma-5
+9|v100-mol-qiyma-10|meat or poultry: Фарш говяжий 10% жира (сырой) (Mol qiymasi 10% yog' (xom)), realistic single serving, top-down three-quarter view, no text.|mol-qiyma-10
+9|v100-mol-qiyma-20|meat or poultry: Фарш говяжий 20% жира (сырой) (Mol qiymasi 20% yog' (xom)), realistic single serving, top-down three-quarter view, no text.|mol-qiyma-20
+9|v100-qoy-son-xom|meat or poultry: Баранина задняя часть (сырая) (Qo'y go'shti — son (xom)), realistic single serving, top-down three-quarter view, no text.|qoy-son-xom
+9|v100-qoy-yelka-xom|meat or poultry: Баранина лопатка (сырая) (Qo'y go'shti — yelka (xom)), realistic single serving, top-down three-quarter view, no text.|qoy-yelka-xom
+9|v100-qoy-bel-xom|meat or poultry: Баранина поясница (сырая) (Qo'y go'shti — bel (xom)), realistic single serving, top-down three-quarter view, no text.|qoy-bel-xom
+9|v100-qoy-boldir-xom|meat or poultry: Баранина голяшка (сырая) (Qo'y go'shti — boldir (xom)), realistic single serving, top-down three-quarter view, no text.|qoy-boldir-xom
+9|v100-tovuq-kanat-xom|meat or poultry: Куриные крылья (сырые, с кожей) (Tovuq qanoti (xom, terili)), realistic single serving, top-down three-quarter view, no text.|tovuq-kanat-xom
+9|v100-tovuq-boldir-xom|meat or poultry: Куриная голень (сырая, с кожей) (Tovuq boldiri (xom, terili)), realistic single serving, top-down three-quarter view, no text.|tovuq-boldir-xom
+9|v100-tovuq-jigar-xom|meat or poultry: Куриная печень (сырая) (Tovuq jigari (xom)), realistic single serving, top-down three-quarter view, no text.|tovuq-jigar-xom
+9|v100-tovuq-yurak-xom|meat or poultry: Куриные сердечки (сырые) (Tovuq yuragi (xom)), realistic single serving, top-down three-quarter view, no text.|tovuq-yurak-xom
+9|v100-tovuq-oshqozon-xom|meat or poultry: Куриные желудки (сырые) (Tovuq oshqozoni (xom)), realistic single serving, top-down three-quarter view, no text.|tovuq-oshqozon-xom
+9|v100-tovuq-kokrak-terili-xom|meat or poultry: Куриная грудка с кожей (сырая) (Tovuq ko'kragi (xom, terili)), realistic single serving, top-down three-quarter view, no text.|tovuq-kokrak-terili-xom
+9|v100-tovuq-qiyma-xom|meat or poultry: Фарш куриный (сырой) (Tovuq qiymasi (xom)), realistic single serving, top-down three-quarter view, no text.|tovuq-qiyma-xom
+9|v100-kurka-qiyma-xom|meat or poultry: Фарш индейки (сырой) (Kurka qiymasi (xom)), realistic single serving, top-down three-quarter view, no text.|kurka-qiyma-xom
+9|v100-kolbasa-mol-kam-yogli|meat or poultry: Колбаса говяжья нежирная (Kolbasa (mol go'shtli, kam yog'li)), realistic single serving, top-down three-quarter view, no text.|kolbasa-mol-kam-yogli
+9|v100-sosiska-mol-kam-yogli|meat or poultry: Сосиски говяжьи нежирные (Sosiska (mol go'shtli, kam yog'li)), realistic single serving, top-down three-quarter view, no text.|sosiska-mol-kam-yogli
+9|v100-sosiska-kurka|meat or poultry: Сосиски из индейки (Kurka sosiskasi), realistic single serving, top-down three-quarter view, no text.|sosiska-kurka
+9|v100-pastrami-kurka|meat or poultry: Пастрома из индейки (Kurka pastramisi), realistic single serving, top-down three-quarter view, no text.|pastrami-kurka
