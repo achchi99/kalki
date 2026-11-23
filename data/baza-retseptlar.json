@@ -4513,10 +4513,10 @@
      "g": 500
     }
    ],
-   "taxminiy": false,
+   "taxminiy": true,
    "manba": {
-    "uz": "Tvorog 1%: ishlab chiqaruvchi yorlig'i (Savushkin, Open Food Facts shtrix-kod 4810268045080), 100 g uchun. Brendga qarab ±10% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
-    "ru": "Творог 1%: по этикетке производителя (Савушкин, Open Food Facts, штрихкод 4810268045080), на 100 г. В зависимости от марки ±10% — проверяйте упаковку."
+    "uz": "Tvorog 1%: Tvorog 0% (rus tvorogining o'rtacha jadval qiymati: 88 kkal, 0,6 g yog', 18 g oqsil) + yog' farqi 0,4 g × 9 kkal/g = 92 kkal. Bir xil tvorog turi bo'yicha izchil (0 → 1 → 2 → 5 → 9 → 18 %); ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Творог 1%: творог 0% (средние табличные значения русского творога: 88 ккал, 0,6 г жира, 18 г белка) + разница жира 0,4 г × 9 ккал/г = 92 ккал. Согласовано по одному виду творога (0 → 1 → 2 → 5 → 9 → 18 %); возможно отклонение ±15% — проверяйте упаковку."
    }
   },
   {
@@ -4528,10 +4528,10 @@
      "g": 500
     }
    ],
-   "taxminiy": false,
+   "taxminiy": true,
    "manba": {
-    "uz": "Tvorog 2%: ishlab chiqaruvchi yorlig'i (Open Food Facts shtrix-kod 4810770004100), 100 g uchun. Brendga qarab ±10% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
-    "ru": "Творог 2%: по этикетке производителя (Open Food Facts, штрихкод 4810770004100), на 100 г. В зависимости от марки ±10% — проверяйте упаковку."
+    "uz": "Tvorog 2%: Tvorog 0% (rus tvorogining o'rtacha jadval qiymati: 88 kkal, 0,6 g yog', 18 g oqsil) + yog' farqi 1,4 g × 9 kkal/g = 101 kkal. Bir xil tvorog turi bo'yicha izchil (0 → 1 → 2 → 5 → 9 → 18 %); ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Творог 2%: творог 0% (средние табличные значения русского творога: 88 ккал, 0,6 г жира, 18 г белка) + разница жира 1,4 г × 9 ккал/г = 101 ккал. Согласовано по одному виду творога (0 → 1 → 2 → 5 → 9 → 18 %); возможно отклонение ±15% — проверяйте упаковку."
    }
   },
   {
@@ -4539,14 +4539,18 @@
    "nom": "Qatiq 1,5%",
    "ingr": [
     {
-     "m": "yogurt_low",
-     "g": 500
+     "m": "qatiq",
+     "g": 230
+    },
+    {
+     "m": "sut_0",
+     "g": 270
     }
    ],
    "taxminiy": true,
    "manba": {
-    "uz": "Qatiq 1,5%: kam yog'li tabiiy yogurt (USDA FoodData Central, fdc_id {fdc}, ~1,5% yog') tarkibi olingan. Qatiq va yogurt tarkibi deyarli bir xil; ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
-    "ru": "Катык 1,5%: взят состав йогурта нежирного натурального (USDA FoodData Central, fdc_id {fdc}, ~1,5% жира). Катык и йогурт близки по составу; возможно отклонение ±15% — проверяйте упаковку."
+    "uz": "Qatiq 1,5%: USDA FoodData Central (fdc_id {fdc}) dagi to'liq yog'li (3,25%) tabiiy yogurt va yog'siz sut yog'liligi bo'yicha aralashtirilgan (46/54) — bitta manba, yog' farqi bo'yicha izchil (yog'siz 35 → 1,5 % → 2,5 % → 3,2 %). ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Катык 1,5%: смесь натурального йогурта цельного (3,25%) и обезжиренного молока из USDA FoodData Central (fdc_id {fdc}) по жирности (46/54) — один источник, согласовано по жирности (обезжиренный 35 → 1,5 % → 2,5 % → 3,2 %). Возможно отклонение ±15% — проверяйте упаковку."
    }
   },
   {
@@ -4555,17 +4559,17 @@
    "ingr": [
     {
      "m": "qatiq",
-     "g": 300
+     "g": 370
     },
     {
-     "m": "yogurt_low",
-     "g": 200
+     "m": "sut_0",
+     "g": 130
     }
    ],
    "taxminiy": true,
    "manba": {
-    "uz": "Qatiq 2,5%: USDA FoodData Central (fdc_id {fdc}) dagi to'liq yog'li (3,25%) va kam yog'li (~1,5%) tabiiy yogurt yog'liligi bo'yicha aralashtirilgan (60/40). ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
-    "ru": "Катык 2,5%: смесь натурального йогурта цельного (3,25%) и нежирного (~1,5%) из USDA FoodData Central (fdc_id {fdc}) по жирности (60/40). Возможно отклонение ±15% — проверяйте упаковку."
+    "uz": "Qatiq 2,5%: USDA FoodData Central (fdc_id {fdc}) dagi to'liq yog'li (3,25%) tabiiy yogurt va yog'siz sut yog'liligi bo'yicha aralashtirilgan (74/26) — bitta manba, yog' farqi bo'yicha izchil. ±15% farq bo'lishi mumkin — qadoq yorlig'ini tekshiring.",
+    "ru": "Катык 2,5%: смесь натурального йогурта цельного (3,25%) и обезжиренного молока из USDA FoodData Central (fdc_id {fdc}) по жирности (74/26) — один источник, согласовано по жирности. Возможно отклонение ±15% — проверяйте упаковку."
    }
   }
  ]

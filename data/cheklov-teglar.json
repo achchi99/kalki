@@ -2009,7 +2009,9 @@
   "qatiq": [
    "sut"
   ],
-  "qatiq#f15": [],
+  "qatiq#f15": [
+   "sut"
+  ],
   "qatiq#f25": [
    "sut"
   ],

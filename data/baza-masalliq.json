@@ -553,8 +553,8 @@
    "ru": "молоко 2%"
   },
   "tvorog_1": {
-   "nom": "Tvorog 1% (Savushkin yorlig'i)",
-   "qol": {"k": 86, "p": 18, "f": 1, "c": 1.3},
+   "nom": "Tvorog 1% (0% dan yog' farqi bo'yicha hisob)",
+   "qol": {"k": 92, "p": 18, "f": 1, "c": 1.8},
    "yield": {
     "q": 1.0,
     "tarif": true
@@ -563,8 +563,8 @@
    "ru": "творог 1%"
   },
   "tvorog_2": {
-   "nom": "Tvorog 2% (yorliq)",
-   "qol": {"k": 87, "p": 16, "f": 2, "c": 1.3},
+   "nom": "Tvorog 2% (0% dan yog' farqi bo'yicha hisob)",
+   "qol": {"k": 101, "p": 18, "f": 2, "c": 1.8},
    "yield": {
     "q": 1.0,
     "tarif": true

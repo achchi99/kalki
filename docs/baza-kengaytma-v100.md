@@ -80,12 +80,12 @@ Keyin (v100):
 ### Qo'shilgan mahsulotlar (guruhlar bo'yicha)
 | Guruh | Soni | Nimalar | Manba |
 |---|---|---|---|
-| Tvorog (oila variantlari) | +2 | 1 %, 2 % | yorliq (OFF: Savushkin 4810268045080; 4810770004100) — 0 % va 5–18 % bilan bir xil MDH tvorog turi |
-| Qatiq (oila variantlari) | +2 | 1,5 %, 2,5 % (3,2 % va yog'siz bor edi) | USDA 170886 + 171284 |
-| Yogurt | +4 | kam yog'li 1,5 %, yog'siz, yunon 5 %, ichimlik | USDA 170886, 170887, 171304 |
+| Tvorog (oila variantlari) | +2 | 1 %, 2 % | hisob: tvorog 0 % (88 kkal) + yog' farqi × 9 kkal/g → 92 va 101 kkal (0 → 1 → 2 → 5 → 9 → 18 % izchil) |
+| Qatiq (oila variantlari) | +2 | 1,5 %, 2,5 % (3,2 % va yog'siz bor edi) | USDA 171284 (yogurt 3,25 %) + 173432 (yog'siz sut) aralashmasi |
+| Yogurt | +4 | kam yog'li 1,5 %, yog'siz, yunon 5 %, ichimlik | USDA: sut tarkibi (1,5 % — 173441+172205, yog'siz — 173432), 171304, 170886 |
 | Ryajenka | +2 | 2,5 %, 4 % | yorliq (OFF) |
 | Qaymoq | +1 | 20 % | USDA 170857 |
-| Sariyog' | +2 | 72,5 %, 82,5 % | yorliq (OFF) |
+| Sariyog' | +2 | 72,5 %, 82,5 % | USDA sariyog' 173410 + sut 171265 (72,5 %) / sut yog'i 173412 (82,5 %) — bitta manba |
 | Pishloq | +4 | Edam (45 %), Rossiya (≈50 %), Adigey, Mozzarella kam yog'li | yorliq (OFF), USDA 170847 |
 | Mol go'shti | +8 | file, antrekot, yelka, son, to'sh (xom); qiyma 5/10/20 % | USDA |
 | Qo'y go'shti | +4 | son, yelka, bel, boldir (xom) | USDA |
@@ -105,3 +105,7 @@ Yorma va non: bo'sh slot yo'q (xom/pishgan juftliklar bor edi); «butun donli»,
 
 ### Fayllar
 `assets/kalkifit-core.js` (qidiruv, parseText), `assets/kalkifit-app.js` («Balki», tvorog yog'lilik qatorlari), `tools/ovqatlar-kengaytma6.js` (yangi taomlar), `tools/ovqatlar-alias.json` (sinonimlar), `data/baza-oilalar.json|baza-retseptlar.json|baza-masalliq.json` (oila variantlari), `data/manba/yorliq.json` (+8 yorliq), `data/manba/usda-sr-legacy.json` (+25 USDA id; `tools/usda-qoshimcha.py` endi baza-masalliq.json ni ham o'qiydi), `tools/baza-bitta-variant.js`, `tools/test-qidiruv-xato.js`, `admin/kalkifit-statistika.html` («Endi» ustuni).
+
+## Yog'lilik bo'yicha monotonlik (tuzatish)
+Barcha yog'lilik qatorlarida kkal va yog' qat'iy o'sadi (Δkkal ≥ 3·Δyog', ≤ 11·Δyog' + 10): `tools/test-yoglilik-monoton.js` (barcha «yogliligi» oilalari + taomlar qatorlari + nomdagi «N %» guruhlari).
+Tuzatilganlar: tvorog 1 % (86→92) va 2 % (87→101) — 0 % dan yog' farqi × 9 kkal/g; qatiq 1,5/2,5 % (63/62→47/54) va yogurt kam yog'li (63→46) — USDA sut/yogurt aralashmasi (yog' bo'yicha izchil); sariyog' 72,5 va 82,5 % (662/748 → 644/729) — bitta USDA manbasi.
