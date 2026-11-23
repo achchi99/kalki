@@ -2968,7 +2968,7 @@
     var head = multiHtml(q, list.length);
     qjNote(q, !!list.length || !!(head && !multiMiss));
     if (!list.length) { if (!head || multiMiss) qtNote(q); return head && !multiMiss ? head : head + noneHtml(); }          // v68: gap to'liq tanilgan — faqat «Hammasini qo'shish» («Topilmadi» yo'q)
-    var FATX = { sut: 1, kefir: 1, qatiq: 1, smetana: 1, tvorog5: 1 }, noNum = !/\d/.test(qn);          // sut mahsulotlari: yog'liligi yozilmagan bo'lsa — har variant alohida qator (0,5% → 6%, tartib bilan)
+    var FATX = { sut: 1, kefir: 1, qatiq: 1, smetana: 1 }, noNum = !/\d/.test(qn);          // sut mahsulotlari: yog'liligi yozilmagan bo'lsa — har variant alohida qator (0,5% → 6%, tartib bilan)
     var own = '<button type="button" class="sl-txtbtn kq-own" data-act="fcustom">' + ico('plus', 'sl-inl') + esc(T('qOwn')) + '</button>';          // topilgani mos kelmasa — o'z taomi (ro'yxat oxirida, sokin havola)
     var fzNote = all.fuzzy ? '<p class="kq-tip kq-fz">' + ico('spark', 'sl-inl') + esc(T('qFz')) + '</p>' : '';          // v100: imlo xatosiga chidamli moslik — «Balki: …» (aniq natija bo'lmaganda)
     return head + fzNote + list.map(function (f) { if (noNum && f.fam && FATX[f.fam.id] && f.fam.ax && f.fam.ax[0] && f.fam.ax[0].i === 'yogliligi') { var ax = f.fam.ax[0]; return ax.o.map(function (o) { var pk = {}; pk[ax.i] = o.i; return foodRow(f, pk, 'qidiruv', pre); }).join(''); } return foodRow(f, f.fam ? S.famPick(f, qn) : null, 'qidiruv', pre); }).join('') + own;
