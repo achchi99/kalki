@@ -2,6 +2,16 @@
   "app": "rozgor",
   "items": [
     {
+      "v": 5,
+      "d": "2026-11-23",
+      "items": [
+        {
+          "uz": "Email bilan kirganlarga «zaxira vaqti» eslatmasi endi chiqmaydi — ma'lumot o'zi saqlanadi.",
+          "ru": "Тем, кто вошёл по почте, напоминание о копии больше не показывается — данные сохраняются сами."
+        }
+      ]
+    },
+    {
       "v": 4,
       "d": "2026-10-19",
       "items": [

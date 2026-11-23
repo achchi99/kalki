@@ -123,6 +123,7 @@
     };
     bk.remindDue = function () {      // haftalik eslatma: oxirgi zaxiradan 7 kun va ≥3 kunlik ma'lumot (akkaunt bilan avtomatik saqlanayotganlarga CHIQMAYDI)
       if (cfg.autoSaved && cfg.autoSaved()) return false;
+      if (cfg.loggedIn && cfg.loggedIn()) return false;      // v99: akkauntga kirgan — bulutga avtomatik saqlanadi, «zaxira vaqti» eslatmasi umuman chiqmaydi
       if (!cfg.hasData || !cfg.hasData()) return false; if ((cfg.dayCount ? cfg.dayCount() : 0) < 3) return false;
       var lb = (cfg.getLast ? cfg.getLast() : 0) || (cfg.created ? cfg.created() : 0) || 0; return Date.now() - lb > 7 * DAY;
     };
