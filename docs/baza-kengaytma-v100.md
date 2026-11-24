@@ -109,3 +109,13 @@ Yorma va non: bo'sh slot yo'q (xom/pishgan juftliklar bor edi); «butun donli»,
 ## Yog'lilik bo'yicha monotonlik (tuzatish)
 Barcha yog'lilik qatorlarida kkal va yog' qat'iy o'sadi (Δkkal ≥ 3·Δyog', ≤ 11·Δyog' + 10): `tools/test-yoglilik-monoton.js` (barcha «yogliligi» oilalari + taomlar qatorlari + nomdagi «N %» guruhlari).
 Tuzatilganlar: tvorog 1 % (86→92) va 2 % (87→101) — 0 % dan yog' farqi × 9 kkal/g; qatiq 1,5/2,5 % (63/62→47/54) va yogurt kam yog'li (63→46) — USDA sut/yogurt aralashmasi (yog' bo'yicha izchil); sariyog' 72,5 va 82,5 % (662/748 → 644/729) — bitta USDA manbasi.
+
+## Onigiri (+4 taom)
+| Taom | kkal/100 g | kkal/dona | Manba |
+|---|---|---|---|
+| Onigiri (tunets-mayonez bilan) | 226 | 249 (110 g) | Lawson yorlig'i (OFF 2303957952452) |
+| Onigiri (losos bilan) | 195 | 215 (110 g) | Mitsuwa yorlig'i (OFF 0410050000019) |
+| Onigiri (tovuq, teriyaki) | 162 | 178 (110 g) | Kizvna yorlig'i (OFF 8588008627051) |
+| Onigiri (oddiy, guruch va nori) | 126 | 126 (100 g) | retsept hisobi: USDA 168882 (qisqa donli guruch, pishgan) 96 g + nori 168458 4 g |
+
+Sinonimlar: onigiri, onigri, anigiri, omusubi, онигири, рисовый шарик, «онигири с тунцом/лососем/курицей». Guruh: guruch (+ baliq / tovuq). Qidiruvda tartib: tunets-mayonez → losos → tovuq → oddiy (`POP`).

@@ -811,3 +811,7 @@
 9|v100-sosiska-mol-kam-yogli|meat or poultry: Сосиски говяжьи нежирные (Sosiska (mol go'shtli, kam yog'li)), realistic single serving, top-down three-quarter view, no text.|sosiska-mol-kam-yogli
 9|v100-sosiska-kurka|meat or poultry: Сосиски из индейки (Kurka sosiskasi), realistic single serving, top-down three-quarter view, no text.|sosiska-kurka
 9|v100-pastrami-kurka|meat or poultry: Пастрома из индейки (Kurka pastramisi), realistic single serving, top-down three-quarter view, no text.|pastrami-kurka
+9|v100-onigiri-tunets|Japanese rice ball onigiri: Онигири с тунцом и майонезом (Onigiri tunets-mayonez bilan), realistic single triangular rice ball wrapped in a strip of nori, on a small plate, top-down three-quarter view, no text.|onigiri-tunets
+9|v100-onigiri-losos|Japanese rice ball onigiri: Онигири с лососем (Onigiri losos bilan), realistic single triangular rice ball wrapped in a strip of nori, on a small plate, top-down three-quarter view, no text.|onigiri-losos
+9|v100-onigiri-tovuq|Japanese rice ball onigiri: Онигири с курицей терияки (Onigiri tovuq, teriyaki), realistic single triangular rice ball wrapped in a strip of nori, on a small plate, top-down three-quarter view, no text.|onigiri-tovuq
+9|v100-onigiri-oddiy|Japanese rice ball onigiri: Онигири простой (Onigiri oddiy), realistic single triangular rice ball wrapped in a strip of nori, on a small plate, top-down three-quarter view, no text.|onigiri-oddiy

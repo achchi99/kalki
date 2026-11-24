@@ -60,4 +60,11 @@ for (const id of NEW) { const f = foods.find((x) => x.id === id); assert.ok(f.m 
   const at = 4 * f.p + 4 * f.c + 9 * f.f; if (f.k > 30) assert.ok(Math.abs(at - f.k) / f.k <= 0.15, id + ': Atwater ±15%: ' + f.k + ' vs ' + Math.round(at)); }
 const pork = foods.filter((f) => !f.h && /cho'?chqa|свинин|pork|bekon|pepperoni/i.test((f.n + ' ' + f.r + ' ' + (f.a || []).join(' ')))).map((f) => f.id); NEW.forEach((i) => assert.ok(!pork.includes(i), i + ': cho\'chqa yo\'q'));
 ok('Yangi ' + NEW.length + ' taom: uz+ru nom, manba (USDA / yorliq / hisob) va bayoni bor, Atwater ±15 %, «A / B» nom yo\'q, cho\'chqa/halol yo\'q');
+/* ---- 6. onigiri: «onigiri» yozilsa hamma variant; manba, dona og'irligi ---- */
+const ON = ['onigiri-tunets', 'onigiri-losos', 'onigiri-tovuq', 'onigiri-oddiy'];
+for (const q of ['onigiri', 'onigri', 'anigiri', 'онигири', 'рисовый шарик', 'omusubi']) { const t = top(q, 10).map((x) => x.id); const miss = ON.filter((i) => !t.includes(i)); assert.deepEqual(miss, [], q + ': hamma onigiri chiqsin (yo\'q: ' + miss + ')'); assert.equal(t[0], 'onigiri-tunets', q + ': eng ommabop — tunets-mayonez birinchi'); }
+for (const [q, id] of [['онигири с тунцом', 'onigiri-tunets'], ['tuna mayo onigiri', 'onigiri-tunets'], ['onigiri salmon', 'onigiri-losos'], ['онигири с лососем', 'onigiri-losos'], ['onigiri teriyaki', 'onigiri-tovuq'], ['онигири с курицей', 'onigiri-tovuq'], ['plain onigiri', 'onigiri-oddiy']]) assert.equal(top(q, 1)[0].id, id, q);
+for (const id of ON) { const f = foods.find((x) => x.id === id); assert.equal(S.unitGrams(f, 'dona') >= 100 && S.unitGrams(f, 'dona') <= 120, true, id + ': dona 100–120 g'); assert.ok(f.ms && f.ms.u && f.ms.r && /(Lawson|Mitsuwa|Kizvna|USDA)/.test(f.ms.u + f.m), id + ': manba'); assert.ok(/ \/ /.test(f.n + f.r) === false); assert.ok(f.gr && f.gr.includes('guruch'), id + ': guruh guruch'); }
+assert.ok(parse('onigiri tunets 2 dona').items[0].fid === 'onigiri-tunets' && parse('2 onigiri losos').items[0].qty === 2);
+ok('Onigiri: «onigiri/onigri/anigiri/онигири/рисовый шарик/omusubi» — 4 variant (tunets-mayonez birinchi); sinonimlar; dona 100–120 g; manba yorliq (Lawson, Mitsuwa, Kizvna) / retsept hisobi (USDA); guruh «guruch»');
 console.log('qidiruv-xato: ' + n + ' guruh OK');

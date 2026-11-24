@@ -920,6 +920,36 @@
    "p": 17,
    "f": 18,
    "c": 0
+  },
+  "lawson-onigiri-tuna-mayo": {
+   "nom": "Tuna Mayo Onigiri (Lawson)",
+   "brand": "Lawson",
+   "code": "2303957952452",
+   "qadoq": "1 dona ≈ 110 g",
+   "k": 226,
+   "p": 4.2,
+   "f": 7.7,
+   "c": 35.7
+  },
+  "mitsuwa-onigiri-losos": {
+   "nom": "Rice Ball - Salmon (Mitsuwa)",
+   "brand": "Mitsuwa",
+   "code": "0410050000019",
+   "qadoq": "1 dona ≈ 110 g",
+   "k": 195,
+   "p": 5.3,
+   "f": 3.5,
+   "c": 33.6
+  },
+  "kizvna-onigiri-teriyaki": {
+   "nom": "Onigiry Teriyaki Chicken (Kizvna)",
+   "brand": "Kizvna",
+   "code": "8588008627051",
+   "qadoq": "1 dona ≈ 110 g",
+   "k": 162,
+   "p": 5,
+   "f": 1.3,
+   "c": 32
   }
  }
 }

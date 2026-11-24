@@ -19,6 +19,7 @@ const RE = {
   shirinlik: /shirin|сладк|tort|торт|pirog|пирог|pirojn|пирожн|shokolad|шокол|konfet|конфет|muzqaymoq|морожен|halva|халв|pahlava|пахлав|chak-?chak|чак-?чак|navvot|нават|asal|мёд|мед\b|murabbo|варень|джем|keks|кекс|muffin|маффин|brauni|брауни|chizkeyk|чизкейк|tiramisu|тирамису|napoleon|наполеон|medovik|медовик|ekler|эклер|ponchik|пончик|donut|vafli|sumalak|сумаляк|nishalda|pishmaniye|xalvaitar|holvaytar|shakar|сахар|lokum|рахат|zefir|зефир|marmelad|мармелад|desert|десерт/i
 };
 const Q = {          // qo'lda: avtomatik noto'g'ri tushadiganlar (id → guruhlar)
+  'onigiri-tunets': ['guruch', 'baliq'], 'onigiri-losos': ['guruch', 'baliq'], 'onigiri-tovuq': ['guruch', 'tovuq'], 'onigiri-oddiy': ['guruch'],          // v100: onigiri (guruch tamaddisi)
   dimlama: ['sabzavot', 'qizil_gosht'], 'dimlama-tovuq': ['sabzavot', 'tovuq'], halim: ['guruch', 'qizil_gosht'], sumalak: ['shirinlik'], achichuk: ['sabzavot'], jiz: ['qizil_gosht'], 'kafe-jiz': ['qizil_gosht'],
   'sut-oshi': ['sut', 'xamir'], shirguruch: ['guruch', 'sut'], okroshka: ['sabzavot', 'sut'], 'ganfan': ['guruch', 'qizil_gosht'], 'qatiq-salat': ['sut', 'sabzavot'], 'suzma-salat': ['sut', 'sabzavot'],
   'omlet-sabzavot': ['tuxum', 'sabzavot'], 'tuxum-barak': ['xamir', 'tuxum'], 'tr-menemen': ['tuxum', 'sabzavot'], 'tr-cacik': ['sut', 'sabzavot'], 'tr-mucver': ['sabzavot', 'tuxum'], qoymoq: ['tuxum', 'xamir'],
