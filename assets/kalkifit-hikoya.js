@@ -68,6 +68,7 @@
     if (line) h += '<p class="hk-sub hk-mline">' + esc(line) + '</p>';
     var dl = ['p'].concat(top && top !== 'p' ? [top] : []).filter(function (k) { return V[k] && V[k].g; });
     h += dl.map(function (k) { return '<p class="hk-pill">' + svgI(k === 'p' ? 'shield' : 'target') + '<span>' + esc(t('wrMbDays_' + k, { n: V[k].ok, t: V[k].n })) + '</span></p>'; }).join('');
+    if (o.fb && o.fb.n) h += '<p class="hk-sub hk-fb">' + esc(t('fbWk', { v: o.fb.v, g: o.fb.g })) + '</p>';          // v102: kletchatka — kuniga o'rtacha
     return h;
   }
   function sMacros(m, o) { return '<p class="hk-k">' + esc(o.t('wrMbK')) + '</p>' + mbHtml(m, o); }

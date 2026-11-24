@@ -10,9 +10,9 @@
 (function (root, factory) { if (typeof module === 'object' && module.exports) module.exports = factory(); else root.KalkiMaslahat = factory(); })(typeof self !== 'undefined' ? self : this, function () {
   'use strict';
   var OVER = 1.15, PROT_EVE = 0.6, EVE_H = 17, LATE_H = 19, FAT_SH = 0.45, MAX_DAY = 2, MIN_DAYS = 4, WIN = 14;
-  var NEG = { a: 1, b: 1, d: 1, e: 1 }, DEFICIT = { b: 1, c: 1 };
-  var CHIP = { a: ['tovuq', 'baliq', 'sabzavot'], b: ['tuxum', 'sut', 'tovuq'], c: ['tovuq', 'baliq', 'sut', 'tuxum'], d: ['baliq', 'tovuq', 'dukkakli'], e: ['sabzavot', 'meva'], f: [], kam: [] };
-  var ICON = { a: 'yog', b: 'don', c: 'mushak', d: 'yog', e: 'tarozi', f: 'yulduz', kam: 'ogoh' };
+  var NEG = { a: 1, b: 1, d: 1, e: 1 }, DEFICIT = { b: 1, c: 1, g: 1 };
+  var CHIP = { g: ['sabzavot', 'dukkakli', 'meva'], a: ['tovuq', 'baliq', 'sabzavot'], b: ['tuxum', 'sut', 'tovuq'], c: ['tovuq', 'baliq', 'sut', 'tuxum'], d: ['baliq', 'tovuq', 'dukkakli'], e: ['sabzavot', 'meva'], f: [], kam: [] };
+  var ICON = { g: 'don', a: 'yog', b: 'don', c: 'mushak', d: 'yog', e: 'tarozi', f: 'yulduz', kam: 'ogoh' };
   function num(x) { var n = Number(x); return isFinite(n) ? n : 0; }
   function r(x) { return Math.round(x); }
 
@@ -20,10 +20,12 @@
   /* v95: 4 holat — YAGONA manba (Bugun ▾ ✓ ▴, «Maslahat» yorliqlari, makro oynasi, kun xulosasi, matnlar). Ekrandagi butun sonlar bilan hisoblanadi — matn raqamga zid bo'lmaydi:
      kam < 85 % · deyarli 85–99 % (yana N g) · bajarildi 100–114 % · oshdi ≥ 115 % */
   var STATES = ['kam', 'deyarli', 'bajarildi', 'oshdi'];
-  function holat(v, g) { var vr = r(num(v)), gr = r(num(g)); if (gr <= 0) return vr > 0 ? 'oshdi' : 'kam'; return vr * 100 >= gr * 115 ? 'oshdi' : vr >= gr ? 'bajarildi' : vr * 100 >= gr * 85 ? 'deyarli' : 'kam'; }
+  function holat(v, g, k) { var vr = r(num(v)), gr = r(num(g)); if (gr <= 0) return vr > 0 ? (k === 'p' ? 'bajarildi' : 'oshdi') : 'kam'; var st = vr * 100 >= gr * 115 ? 'oshdi' : vr >= gr ? 'bajarildi' : vr * 100 >= gr * 85 ? 'deyarli' : 'kam'; return k === 'p' && st === 'oshdi' ? 'bajarildi' : st; }          // v102: oqsil maqsaddan oshsa ham «bajarildi» (yashil ✓) — ogohlantirish emas; yog'/uglevod — «ko'p» qoladi
+  var PROT_HI = 2.5;          // g/kg — undan yuqori oqsil: faqat yumshoq ma'lumot (oqsilYuqori)
+  function oqsilYuqori(v, kg) { return num(kg) > 0 && num(v) > PROT_HI * num(kg); }
   function yetdi(st) { return st === 'bajarildi' || st === 'oshdi'; }
   function belgi(st) { return st === 'bajarildi' ? 'ok' : st === 'oshdi' ? 'up' : 'dn'; }          // ✓ · ▴ · ▾ (deyarli ham ▾ — hali yetmagan)
-  function makro(tot, goals) { var o = {}; ['p', 'f', 'c'].forEach(function (k) { var v = num(tot[k]), g = num(goals[k]), vr = r(v), gr = r(g); o[k] = { v: v, g: g, r: g > 0 ? v / g : 0, st: holat(v, g), left: Math.max(0, gr - vr), x: Math.max(0, vr - gr) }; }); return o; }
+  function makro(tot, goals) { var o = {}; ['p', 'f', 'c'].forEach(function (k) { var v = num(tot[k]), g = num(goals[k]), vr = r(v), gr = r(g); o[k] = { v: v, g: g, r: g > 0 ? v / g : 0, st: holat(v, g, k), left: Math.max(0, gr - vr), x: Math.max(0, vr - gr) }; }); return o; }
   /* bugun shu makroni qaysi taomlar bergan: [{ name, g, kcal }] (bir xil taom qo'shiladi) */
   function manba(foods, k, nameOf, n) {
     var m = {}, order = []; (foods || []).forEach(function (e) { var nm = nameOf ? nameOf(e) : (e.name || e.fid || ''); if (!nm) return; if (!m[nm]) { m[nm] = { name: nm, g: 0, kcal: 0 }; order.push(nm); } m[nm].g += num(e[k]); m[nm].kcal += num(e.kcal); });
@@ -42,6 +44,7 @@
     var fatSh = k > 0 ? t.f * 9 / k : 0;
     if (lim > 0 && k >= lim * 0.85 && k <= lim * OVER && fatSh > FAT_SH) cands.push({ id: 'd', data: { sh: r(fatSh * 100), src: manba(c.foods, 'f', c.nameOf, 2) } });
     if (lim > 0 && k >= lim * OVER) cands.push({ id: 'e', data: { x: r(k - lim), src: manba(c.foods, 'kcal', c.nameOf, 2) } });
+    var fb = c.fb; if (fb && fb.goal > 0 && h >= EVE_H && c.foods.length >= 2 && fb.unk * 2 <= fb.n && fb.g < fb.goal * 0.6) cands.push({ id: 'g', data: { x: r(fb.goal - fb.g), top: fb.top || '' } });          // v102: kletchatka kam (kechqurun; noma'lum taomlar yarmidan ko'p bo'lsa — aytilmaydi)
     if (h >= LATE_H && lim > 0 && k >= lim * 0.9 && k <= lim * 1.1 && ['p', 'f', 'c'].every(function (m) { return g[m] > 0 && t[m] >= g[m] * 0.85 && t[m] <= g[m] * OVER; }) && !(c.floor > 0 && k < c.floor)) cands.push({ id: 'f', data: {} });
     for (var i = 0; i < cands.length; i++) {
       var q = cands[i];
@@ -107,7 +110,7 @@
   /* variant tanlash: jiddiy — 0–2; hazil — 0–5; oxirgi ishlatilgani takrorlanmaydi (last — oxirgi indeks) */
   function variant(id, mode, last, seed) { var n = list('r_' + id, 'uz', mode).length; if (n <= 1) return 0; var i = Math.abs(num(seed)) % n; if (i === last) i = (i + 1) % n; return i; }
   function matn(q, lang, mode, vi) {
-    var L = lang === 'ru' ? 'ru' : 'uz', d = q.data || {}, src = srcText(d.src, L), o = { x: d.x, p: d.p, sh: d.sh, k: d.k, min: d.min, src: src, Src: src.charAt(0).toUpperCase() + src.slice(1) };
+    var L = lang === 'ru' ? 'ru' : 'uz', d = q.data || {}, src = srcText(d.src, L), o = { x: d.x, p: d.p, sh: d.sh, k: d.k, min: d.min, top: d.top, src: src, Src: src.charAt(0).toUpperCase() + src.slice(1) };
     if (bor('r_' + q.id)) return { t: say('rt_' + q.id, o, { lang: L, mode: mode, i: vi || 0 }), b: say('r_' + q.id, o, { lang: L, mode: mode, i: vi || 0 }) };
     return { t: fill(TX[L].t[q.id], o), b: fill(TX[L][q.id][vi || 0], o) };
   }
@@ -126,7 +129,7 @@
     var fill = function (s0, o) { return s0 && s0.key ? say(s0.key, o, { lang: L, mode: mode, pick: pick }) : fillD(s0, o); };
     var t = c.tot, g = c.goals, k = num(t.kcal), lim = num(c.limit), good = null, off = null, kk = '0';
     var low = c.floor > 0 && k > 0 && k < c.floor;
-    if (!low) { if (g.p > 0 && yetdi(holat(t.p, g.p))) good = fill(X.okP, { v: r(t.p), g: r(g.p) }); else if (lim > 0 && k >= lim * 0.9 && k <= lim * 1.1) good = fill(X.okK, { v: nf(k), g: nf(lim) }); else if (c.waterGoal > 0 && c.water >= c.waterGoal) good = fill(X.okW, { v: nf(c.water) }); else if (c.stepGoal > 0 && c.steps >= c.stepGoal) good = fill(X.okS, { v: nf(c.steps) }); }
+    if (!low) { if (g.p > 0 && yetdi(holat(t.p, g.p, 'p'))) good = fill(X.okP, { v: r(t.p), g: r(g.p) }); else if (lim > 0 && k >= lim * 0.9 && k <= lim * 1.1) good = fill(X.okK, { v: nf(k), g: nf(lim) }); else if (c.waterGoal > 0 && c.water >= c.waterGoal) good = fill(X.okW, { v: nf(c.water) }); else if (c.stepGoal > 0 && c.steps >= c.stepGoal) good = fill(X.okS, { v: nf(c.steps) }); }
     if (!good) good = fill(X.okN, { n: (c.foods || []).length });
     var devs = [];
     if (low) { off = fill(X.offLow, { k: nf(k), min: nf(c.floor) }); kk = 'low'; }
@@ -134,7 +137,7 @@
       if (g.f > 0 && t.f > g.f * OVER) devs.push({ k: 'f', s: (t.f - g.f) * 9, txt: fill(X.offF, { x: r(t.f - g.f), src: srcText(manba(c.foods, 'f', c.nameOf, 2), L) }) });
       if (g.c > 0 && t.c > g.c * OVER) devs.push({ k: 'c', s: (t.c - g.c) * 4, txt: fill(X.offC, { x: r(t.c - g.c), src: srcText(manba(c.foods, 'c', c.nameOf, 2), L) }) });
       if (lim > 0 && k > lim * OVER) devs.push({ k: 'k', s: k - lim, txt: fill(X.offK, { x: nf(k - lim), src: srcText(manba(c.foods, 'kcal', c.nameOf, 2), L) }) });
-      if (g.p > 0 && holat(t.p, g.p) === 'kam') devs.push({ k: 'p', s: (g.p - t.p) * 4, txt: fill(X.offP, { x: r(g.p - t.p) }) });
+      if (g.p > 0 && holat(t.p, g.p, 'p') === 'kam') devs.push({ k: 'p', s: (g.p - t.p) * 4, txt: fill(X.offP, { x: r(g.p - t.p) }) });
       devs.sort(function (a, b) { return b.s - a.s; });
       if (devs.length) { off = devs[0].txt; kk = devs[0].k; } else off = fill(X.off0, {});
     }
@@ -165,5 +168,5 @@
   }
   return { OVER: OVER, PROT_EVE: PROT_EVE, EVE_H: EVE_H, LATE_H: LATE_H, FAT_SH: FAT_SH, MAX_DAY: MAX_DAY, MIN_DAYS: MIN_DAYS, WIN: WIN, CHIP: CHIP, ICON: ICON, TX: TX, XT: XT,
     STATES: STATES, yetdi: yetdi, belgi: belgi, say: say, list: list, bor: bor, fillD: fillD, lib: lib, uslub: uslub,
-    holat: holat, makro: makro, manba: manba, qoida: qoida, variant: variant, matn: matn, srcText: srcText, xulosa: xulosa, tahlil: tahlil };
+    holat: holat, oqsilYuqori: oqsilYuqori, makro: makro, manba: manba, qoida: qoida, variant: variant, matn: matn, srcText: srcText, xulosa: xulosa, tahlil: tahlil };
 });

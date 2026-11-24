@@ -348,7 +348,8 @@ if (fs.existsSync(EXTRA)) for (const x of JSON.parse(fs.readFileSync(EXTRA, 'utf
 require('./baza-tuzatish.js').pre(out);          // v78: nomlar, birliklar, eski id'larni yashirish
 const V2 = require('./baza-v2.js').apply(out);
 { const T = require('./baza-tuzatish.js').post(V2.foods); console.log('ishonch (v78): tekshirilgan', T.tekshirilgan, '| yiqilgan', T.yiqilgan.length); T.yiqilgan.forEach((x) => console.log('  ', x.id, x.sabab.join('; '))); }
-{ const n = require('./ovqat-guruh.js').qoy(V2.foods); console.log('guruh teglari (v87):', n); }          // v87: har taomga guruh (bir xillik maslahati)
+{ const n = require('./ovqat-guruh.js').qoy(V2.foods); console.log('guruh teglari (v87):', n); }
+{ const k = require('./kletchatka.js').qoy(V2.foods); console.log('kletchatka (v102): manbali', k.manbali, '| noma\'lum', k.nomalum, '| USDA', k.u, '· yorliq', k.y, '· hisob', k.r, '· tarkibi bo\'yicha 0', k.t); }          // v87: har taomga guruh (bir xillik maslahati)
 // v73: baza-v2/retsept bosqichida qo'shilgan taomlarga ham sinonimlar (ALIAS) qo'llanadi
 V2.foods.forEach((o) => { if (!ALIAS[o.i]) return; const have = new Set([o.n, o.r].concat(o.a || []).map(normA)); o.a = o.a || []; ALIAS[o.i].forEach((a) => { const k = normA(a); if (k && !have.has(k)) { have.add(k); o.a.push(a); } }); });
       // baza v2: oilalar/omillar, birliklar (b), manba, retseptdan hisoblangan qiymatlar

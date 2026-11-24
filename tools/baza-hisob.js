@@ -37,6 +37,17 @@ function calc(rec0, useSk) {
   const m = rec.yield_g || mass, r1 = (x) => Math.round(x / m * 1000) / 10;
   return { k: Math.round(k / m * 100), p: r1(p), f: r1(f), c: r1(c), yield_g: Math.round(m), raw, taxminYield: Math.round(taxminMass / mass * 100), skCov: useSk ? Math.round(cov / raw * 100) : 100 };
 }
+/* v102: kletchatka (g/100 g tayyor taom) — masalliqlarning USDA «fib» qiymatidan, xuddi shu yield bilan. Biror masalliqda qiymat yo'q bo'lsa — null (noma'lum, 0 emas). */
+function kletchatka(rid) {
+  const r0 = rets.find((r) => r.id === rid); if (!r0) return null; const rec = r0.kalibr ? Object.assign({}, r0, { ingr: r0.kalibr.ingr, yield_g: r0.kalibr.yield_g }) : r0;
+  let fb = 0, mass = 0;
+  for (const l of rec.ingr) {
+    const m = mas[l.m]; if (!m) return null; const y = yieldK(l.m, l); mass += l.g * y.q;
+    let v; if (m.qol) v = m.qol.fb; else if (!m.usda) v = 0; else v = nutU(m.usda).fib;
+    if (v == null) return null; fb += v * l.g / 100;
+  }
+  const M = rec.yield_g || mass; return M > 0 ? Math.round(fb / M * 1000) / 10 : null;
+}
 function hisob() {
   return rets.map((r) => {
     const a = calc(r, false), s = r.ikki_manba && !r.kalibr ? calc(r, true) : null, avg = (x, y) => (s ? (x + y) / 2 : x);
@@ -78,4 +89,4 @@ if (require.main === module) {
   console.log('id'.padEnd(26), 'eski'.padStart(5), 'USDA'.padStart(5), 'Skur.'.padStart(5), 'yangi'.padStart(5), 'farq%'.padStart(6), ' belgi');
   H.forEach((h) => console.log(h.id.padEnd(26), String(h.old == null ? '—' : h.old).padStart(5), String(h.usda.k).padStart(5), String(h.sk ? h.sk.k : '—').padStart(5), String(h.k).padStart(5), String(h.farq == null ? '—' : (h.farq > 0 ? '+' : '') + h.farq).padStart(6), ' ' + (h.farq != null && Math.abs(h.farq) > 30 ? 'O\'ZGARTIRMA (>30%)' : (h.farq != null && Math.abs(h.farq) > 15 ? '>15%' : ''))));
 }
-module.exports = { hisob, calc, olchovlar, kalibrlash };
+module.exports = { hisob, calc, olchovlar, kalibrlash, kletchatka };

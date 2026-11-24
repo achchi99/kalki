@@ -112,8 +112,8 @@
     var macros = { n: fullN, p: fullN ? Math.round(sp / fullN) : 0, f: fullN ? Math.round(sf / fullN) : 0, c: fullN ? Math.round(sc / fullN) : 0, sh: [kP / kT, kF / kT, kC / kT], protDays: protDays, protGoal: Math.round(pg) };
     /* v98: me'yorga nisbatan (holat — MS.holat, YAGONA manba): har makro { v (haftalik o'rtacha), g (me'yor), pct (−26 / +41), st, ok (me'yorda bo'lgan kunlar: oqsil — yetgan, yog'/uglevod — 85–114 %) }; top — eng katta og'ish */
     var MSm = msOf(), gl = pl.macros || {}, vs = { p: macros.p, f: macros.f, c: macros.c }, vsN = {};
-    ['p', 'f', 'c'].forEach(function (k) { var g = Math.round(+gl[k] || 0), v = vs[k], st = g ? (MSm ? MSm.holat(v, g) : (v >= g * 1.15 ? 'oshdi' : v >= g ? 'bajarildi' : v >= g * 0.85 ? 'deyarli' : 'kam')) : 'kam';
-      var okD = g ? full.filter(function (r) { var s1 = MSm ? MSm.holat(r[k], g) : null; return k === 'p' ? (s1 === 'bajarildi' || s1 === 'oshdi') : (s1 === 'deyarli' || s1 === 'bajarildi'); }).length : 0;
+    ['p', 'f', 'c'].forEach(function (k) { var g = Math.round(+gl[k] || 0), v = vs[k], st = g ? (MSm ? MSm.holat(v, g, k) : (v >= g * 1.15 ? 'oshdi' : v >= g ? 'bajarildi' : v >= g * 0.85 ? 'deyarli' : 'kam')) : 'kam';
+      var okD = g ? full.filter(function (r) { var s1 = MSm ? MSm.holat(r[k], g, k) : null; return k === 'p' ? (s1 === 'bajarildi' || s1 === 'oshdi') : (s1 === 'deyarli' || s1 === 'bajarildi'); }).length : 0;
       vsN[k] = { v: v, g: g, pct: g ? Math.round((v - g) / g * 100) : 0, st: st, ok: okD, n: fullN }; });
     macros.vs = vsN; macros.top = ['p', 'f', 'c'].filter(function (k) { return vsN[k].g; }).sort(function (a2, b2) { return Math.abs(vsN[b2].pct) - Math.abs(vsN[a2].pct); })[0] || null;
     /* ---- suv ---- */

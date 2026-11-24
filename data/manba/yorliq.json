@@ -13,7 +13,8 @@
    "k": 531,
    "p": 6,
    "f": 30,
-   "c": 58
+   "c": 58,
+   "fib": 2.8
   },
   "barni": {
    "nom": "Barni Milk filling",
@@ -23,7 +24,8 @@
    "k": 394,
    "p": 5,
    "f": 16,
-   "c": 60
+   "c": 60,
+   "fib": 1.3
   },
   "bombbar-60": {
    "nom": "Chocolate hazelnut protein bar",
@@ -33,7 +35,8 @@
    "k": 328,
    "p": 33,
    "f": 13.6,
-   "c": 6.9
+   "c": 6.9,
+   "fib": 33
   },
   "cola-zero": {
    "nom": "Coca-Cola Zero",
@@ -43,7 +46,8 @@
    "k": 0,
    "p": 0,
    "f": 0,
-   "c": 0
+   "c": 0,
+   "fibYoq": 1
   },
   "doshirak": {
    "nom": "Cheese рамен",
@@ -53,7 +57,8 @@
    "k": 418,
    "p": 9.5,
    "f": 12,
-   "c": 68
+   "c": 68,
+   "fibYoq": 1
   },
   "fanta": {
    "nom": "Fanta orange 1.5l",
@@ -63,7 +68,8 @@
    "k": 48,
    "p": 0,
    "f": 0,
-   "c": 11.7
+   "c": 11.7,
+   "fib": 0
   },
   "fanta-zero": {
    "nom": "Fanta zero orange",
@@ -73,7 +79,8 @@
    "k": 3,
    "p": 0,
    "f": 0,
-   "c": 0.4
+   "c": 0.4,
+   "fibYoq": 1
   },
   "fitness-bar-40": {
    "nom": "Protein bar батончик глазированный с дробленным фундуком",
@@ -83,7 +90,8 @@
    "k": 373,
    "p": 16,
    "f": 19,
-   "c": 22
+   "c": 22,
+   "fib": 25
   },
   "kinder-bueno": {
    "nom": "Kinder bueno",
@@ -93,7 +101,8 @@
    "k": 572,
    "p": 8.6,
    "f": 37.3,
-   "c": 49.5
+   "c": 49.5,
+   "fib": 2
   },
   "kinder-choc": {
    "nom": "Kinder Chocolate",
@@ -103,7 +112,8 @@
    "k": 566,
    "p": 8.7,
    "f": 35,
-   "c": 53.5
+   "c": 53.5,
+   "fib": 0
   },
   "lays": {
    "nom": "Gourmet Original",
@@ -113,7 +123,8 @@
    "k": 523,
    "p": 5,
    "f": 31,
-   "c": 54
+   "c": 54,
+   "fib": 1.3
   },
   "mars": {
    "nom": "Mars",
@@ -123,7 +134,8 @@
    "k": 443,
    "p": 4.5,
    "f": 16,
-   "c": 70
+   "c": 70,
+   "fibYoq": 1
   },
   "milka": {
    "nom": "Milka au lait du pays alpin",
@@ -133,7 +145,8 @@
    "k": 539,
    "p": 6.5,
    "f": 31,
-   "c": 57
+   "c": 57,
+   "fib": 2.3
   },
   "pepsi-zero": {
    "nom": "Pepsi Zero Zucker",
@@ -143,7 +156,8 @@
    "k": 0,
    "p": 0,
    "f": 0,
-   "c": 0
+   "c": 0,
+   "fibYoq": 1
   },
   "plavlenniy": {
    "nom": "Hochland плавленый сыр",
@@ -153,7 +167,8 @@
    "k": 291,
    "p": 9.8,
    "f": 25.8,
-   "c": 4.8
+   "c": 4.8,
+   "fibYoq": 1
   },
   "plombir-stakan": {
    "nom": "Мороженное пломбир ванильный",
@@ -163,7 +178,8 @@
    "k": 240,
    "p": 3.5,
    "f": 15,
-   "c": 22
+   "c": 22,
+   "fibYoq": 1
   },
   "pringles": {
    "nom": "Pringles Original",
@@ -173,7 +189,8 @@
    "k": 528,
    "p": 6.2,
    "f": 31,
-   "c": 54
+   "c": 54,
+   "fib": 4.1
   },
   "protein-shake-rtd": {
    "nom": "High Quality Protein",
@@ -183,7 +200,8 @@
    "k": 44,
    "p": 8.8,
    "f": 0.7,
-   "c": 1.2
+   "c": 1.2,
+   "fib": 0.3
   },
   "pryanik": {
    "nom": "Тульский пряник со сгущеным молоком смотка",
@@ -193,7 +211,8 @@
    "k": 380,
    "p": 7,
    "f": 8,
-   "c": 69
+   "c": 69,
+   "fibYoq": 1
   },
   "rojok": {
    "nom": "Мороженое пломбир с черничным наполнителем в вафельном стаканчике с глазурью зол",
@@ -203,7 +222,8 @@
    "k": 262,
    "p": 3.7,
    "f": 12.6,
-   "c": 32.7
+   "c": 32.7,
+   "fibYoq": 1
   },
   "sirok-glaz": {
    "nom": "Сырок творожный глазированный в бельгийском молочном шоколаде с молоком сгущёным",
@@ -213,7 +233,8 @@
    "k": 410,
    "p": 7.9,
    "f": 26.3,
-   "c": 35.3
+   "c": 35.3,
+   "fibYoq": 1
   },
   "adrenaline": {
    "nom": "Passion Fruit Energy Drink",
@@ -223,7 +244,8 @@
    "k": 51,
    "p": 0.3,
    "f": 0,
-   "c": 12.2
+   "c": 12.2,
+   "fibYoq": 1
   },
   "bombbar-cookie": {
    "nom": "Fitness cookie",
@@ -233,7 +255,8 @@
    "k": 368,
    "p": 11.2,
    "f": 22,
-   "c": 24.5
+   "c": 24.5,
+   "fib": 30.3
   },
   "kizk-rojok": {
    "nom": "Мороженое пломбир ванильный в вафельном рожке 15%",
@@ -299,7 +322,8 @@
    "k": 260,
    "p": 3.7,
    "f": 12.1,
-   "c": 34.2
+   "c": 34.2,
+   "fibYoq": 1
   },
   "7days-kruassan-kakao": {
    "nom": "7DAYS Croissant with Cocoa Filling",
@@ -309,7 +333,8 @@
    "k": 453,
    "p": 5.3,
    "f": 28,
-   "c": 42.7
+   "c": 42.7,
+   "fib": 1.3
   },
   "lotus-biscoff": {
    "nom": "Lotus Biscoff (karamelli pechenye)",
@@ -319,7 +344,8 @@
    "k": 484,
    "p": 4.9,
    "f": 19,
-   "c": 72.6
+   "c": 72.6,
+   "fib": 1.3
   },
   "yubileynoe-molochnoe": {
    "nom": "Юбилейное молочное (печенье)",
@@ -329,7 +355,8 @@
    "k": 460,
    "p": 8.1,
    "f": 17.5,
-   "c": 66.5
+   "c": 66.5,
+   "fib": 0
   },
   "fuze-tea": {
    "nom": "Fuze Tea (muzli choy, shakarli)",
@@ -339,7 +366,8 @@
    "k": 38,
    "p": 0,
    "f": 0,
-   "c": 9.3
+   "c": 9.3,
+   "fibYoq": 1
   },
   "tarxun-chernogolovka": {
    "nom": "Напиток безалкогольный сильногазированный \"Тархун\"",
@@ -349,7 +377,8 @@
    "k": 20,
    "p": 0,
    "f": 0,
-   "c": 4.6
+   "c": 4.6,
+   "fibYoq": 1
   },
   "ikra-baqlajon": {
    "nom": "Икра баклажанная «нежная»",
@@ -359,7 +388,8 @@
    "k": 85,
    "p": 1.2,
    "f": 5,
-   "c": 8.2
+   "c": 8.2,
+   "fibYoq": 1
   },
   "ikra-qovoqcha": {
    "nom": "Икра Кабачковая",
@@ -369,7 +399,8 @@
    "k": 110,
    "p": 2,
    "f": 5.5,
-   "c": 14
+   "c": 14,
+   "fibYoq": 1
   },
   "raffaello": {
    "nom": "Raffaello",
@@ -379,7 +410,8 @@
    "k": 627,
    "p": 7.4,
    "f": 48.3,
-   "c": 38.6
+   "c": 38.6,
+   "fibYoq": 1
   },
   "ferrero-rocher": {
    "nom": "Ferrero Rocher",
@@ -389,7 +421,8 @@
    "k": 603,
    "p": 8.2,
    "f": 43,
-   "c": 48.4
+   "c": 48.4,
+   "fib": 1
   },
   "toblerone": {
    "nom": "Toblerone",
@@ -399,7 +432,8 @@
    "k": 529,
    "p": 5.6,
    "f": 29.5,
-   "c": 67
+   "c": 67,
+   "fib": 2.4
   },
   "merci": {
    "nom": "Merci",
@@ -409,7 +443,8 @@
    "k": 573,
    "p": 8,
    "f": 37.5,
-   "c": 49.2
+   "c": 49.2,
+   "fib": 3.2
   },
   "toffifee": {
    "nom": "Toffifee",
@@ -419,7 +454,8 @@
    "k": 522,
    "p": 6,
    "f": 28.8,
-   "c": 59
+   "c": 59,
+   "fibYoq": 1
   },
   "lion": {
    "nom": "Lion",
@@ -429,7 +465,8 @@
    "k": 505,
    "p": 7.9,
    "f": 25.5,
-   "c": 59.6
+   "c": 59.6,
+   "fib": 2.4
   },
   "haribo-mix": {
    "nom": "Haribo fantastic mix",
@@ -439,7 +476,8 @@
    "k": 345,
    "p": 5.8,
    "f": 0.5,
-   "c": 79
+   "c": 79,
+   "fibYoq": 1
   },
   "chupa-chups": {
    "nom": "Tubo 150 Sucettes Acidule Chupa Chups",
@@ -449,7 +487,8 @@
    "k": 387,
    "p": 0,
    "f": 0.2,
-   "c": 95
+   "c": 95,
+   "fibYoq": 1
   },
   "roshen-nuga": {
    "nom": "Roshen Ciocolată cu lapte și nuga de alune",
@@ -459,7 +498,8 @@
    "k": 470,
    "p": 4.5,
    "f": 21,
-   "c": 66
+   "c": 66,
+   "fib": 0
   },
   "roshen-karamel": {
    "nom": "Карамель льодяникова Льодяник мікс",
@@ -469,7 +509,8 @@
    "k": 390,
    "p": 0,
    "f": 0,
-   "c": 97
+   "c": 97,
+   "fibYoq": 1
   },
   "mishka-kosolapiy": {
    "nom": "Конфеты Мишка косолапый",
@@ -479,7 +520,8 @@
    "k": 540,
    "p": 6,
    "f": 30,
-   "c": 59
+   "c": 59,
+   "fib": 3.4
   },
   "grilyazh-rotfront": {
    "nom": "Грильяж смотка в пачках",
@@ -489,7 +531,8 @@
    "k": 520,
    "p": 5.5,
    "f": 26,
-   "c": 64
+   "c": 64,
+   "fibYoq": 1
   },
   "alpen-gold-maxfun": {
    "nom": "Alpen gold max fun",
@@ -499,7 +542,8 @@
    "k": 502,
    "p": 5.2,
    "f": 24,
-   "c": 64
+   "c": 64,
+   "fib": 2.5
   },
   "alpen-gold-oreo": {
    "nom": "Oreo - Alpen Gold Oreo - 95 G",
@@ -509,7 +553,8 @@
    "k": 540,
    "p": 5.1,
    "f": 32,
-   "c": 59
+   "c": 59,
+   "fib": 1.6
   },
   "milka-funduk": {
    "nom": "Шоколад молочный «Милка» с цельным фундуком",
@@ -519,7 +564,8 @@
    "k": 551,
    "p": 7.6,
    "f": 36,
-   "c": 50
+   "c": 50,
+   "fib": 3.3
   },
   "snickers-oq": {
    "nom": "Snickers «Белый»",
@@ -529,7 +575,8 @@
    "k": 504,
    "p": 8.3,
    "f": 26.5,
-   "c": 57.7
+   "c": 57.7,
+   "fibYoq": 1
   },
   "snickers-krisper": {
    "nom": "SNICKERS КРИСПЕР",
@@ -539,7 +586,8 @@
    "k": 480,
    "p": 6.8,
    "f": 22,
-   "c": 61.1
+   "c": 61.1,
+   "fibYoq": 1
   },
   "tuc-smetana": {
    "nom": "Крекеры TUC сметана-лук",
@@ -549,7 +597,8 @@
    "k": 495,
    "p": 8.5,
    "f": 22,
-   "c": 65
+   "c": 65,
+   "fib": 1.5
   },
   "cheetos-pishloq": {
    "nom": "Сыр",
@@ -559,7 +608,8 @@
    "k": 470,
    "p": 7,
    "f": 22,
-   "c": 62
+   "c": 62,
+   "fib": 0.5
   },
   "kirieshki": {
    "nom": "Кириешки салями",
@@ -569,7 +619,8 @@
    "k": 390,
    "p": 10,
    "f": 10,
-   "c": 64
+   "c": 64,
+   "fibYoq": 1
   },
   "belvita": {
    "nom": "Печенье утреннее Мёд и фундук",
@@ -579,7 +630,8 @@
    "k": 457.8,
    "p": 7.6,
    "f": 16,
-   "c": 68.9
+   "c": 68.9,
+   "fibYoq": 1
   },
   "mirinda": {
    "nom": "Mirinda orange flavour",
@@ -589,7 +641,8 @@
    "k": 49.4,
    "p": 0,
    "f": 0,
-   "c": 12.2
+   "c": 12.2,
+   "fibYoq": 1
   },
   "rich-sharbat": {
    "nom": "Ананасовый сок 100%",
@@ -599,7 +652,8 @@
    "k": 44,
    "p": 0,
    "f": 0,
-   "c": 11
+   "c": 11,
+   "fibYoq": 1
   },
   "lipton-ice-tea": {
    "nom": "Lipton Ice Tea Original Sparkling",
@@ -609,7 +663,8 @@
    "k": 20.3,
    "p": 0,
    "f": 0,
-   "c": 4.5
+   "c": 4.5,
+   "fibYoq": 1
   },
   "j7-apelsin": {
    "nom": "Fresh Taste Сок апельсиновый с мякотью",
@@ -619,7 +674,8 @@
    "k": 35,
    "p": 0,
    "f": 0,
-   "c": 9
+   "c": 9,
+   "fibYoq": 1
   },
   "flash-up": {
    "nom": "Flash UP Energy",
@@ -629,7 +685,8 @@
    "k": 50,
    "p": 0,
    "f": 0,
-   "c": 12.5
+   "c": 12.5,
+   "fibYoq": 1
   },
   "gorilla": {
    "nom": "Gorilla Mint",
@@ -639,7 +696,8 @@
    "k": 47,
    "p": 0,
    "f": 0,
-   "c": 11.6
+   "c": 11.6,
+   "fibYoq": 1
   },
   "burn": {
    "nom": "Burn Original",
@@ -649,7 +707,8 @@
    "k": 56,
    "p": 0,
    "f": 0,
-   "c": 13.5
+   "c": 13.5,
+   "fibYoq": 1
   },
   "nesquik-kakao": {
    "nom": "nesquick",
@@ -659,7 +718,8 @@
    "k": 368,
    "p": 8.7,
    "f": 4.6,
-   "c": 73
+   "c": 73,
+   "fib": 8.4
   },
   "activia": {
    "nom": "Биойогурт Активиа",
@@ -669,7 +729,8 @@
    "k": 78,
    "p": 4.8,
    "f": 3.5,
-   "c": 6.7
+   "c": 6.7,
+   "fib": 0
   },
   "danissimo-shokolad": {
    "nom": "Даниссимо Творожный с изысканным шоколадом",
@@ -679,7 +740,8 @@
    "k": 152,
    "p": 5.6,
    "f": 6.7,
-   "c": 17.4
+   "c": 17.4,
+   "fibYoq": 1
   },
   "chudo-tvorojok": {
    "nom": "творожок 2 слоя черника",
@@ -689,7 +751,8 @@
    "k": 135,
    "p": 4.3,
    "f": 4.2,
-   "c": 20
+   "c": 20,
+   "fibYoq": 1
   },
   "agusha-tvorog": {
    "nom": "Творог детский классический",
@@ -699,7 +762,8 @@
    "k": 89,
    "p": 8.5,
    "f": 4.5,
-   "c": 3.5
+   "c": 3.5,
+   "fibYoq": 1
   },
   "ehrmann-uz": {
    "nom": "Grand Cocktail",
@@ -709,7 +773,8 @@
    "k": 100,
    "p": 3,
    "f": 4,
-   "c": 13
+   "c": 13,
+   "fibYoq": 1
   },
   "ehrmann-protein-puding": {
    "nom": "Пудинг молочный «High Protein» со вкусом шоколада",
@@ -719,7 +784,8 @@
    "k": 80,
    "p": 10,
    "f": 1.5,
-   "c": 6
+   "c": 6,
+   "fibYoq": 1
   },
   "ehrmann-grand-dessert": {
    "nom": "Grand Desert шоколад",
@@ -729,7 +795,8 @@
    "k": 130,
    "p": 2.6,
    "f": 5.2,
-   "c": 17.3
+   "c": 17.3,
+   "fibYoq": 1
   },
   "president-smetana": {
    "nom": "Сметана",
@@ -739,7 +806,8 @@
    "k": 205,
    "p": 2.4,
    "f": 20,
-   "c": 3.8
+   "c": 3.8,
+   "fibYoq": 1
   },
   "president-plavleniy": {
    "nom": "сыр плавленый Сливочный PRESIDENT 45%",
@@ -749,7 +817,8 @@
    "k": 204,
    "p": 7.8,
    "f": 17,
-   "c": 5
+   "c": 5,
+   "fibYoq": 1
   },
   "president-brynza": {
    "nom": "Сыр Брынза",
@@ -759,7 +828,8 @@
    "k": 213,
    "p": 12,
    "f": 16.7,
-   "c": 3.7
+   "c": 3.7,
+   "fibYoq": 1
   },
   "valio-yogurt-ichimlik": {
    "nom": "Йогурт питьевой натуральный 0.4%",
@@ -769,7 +839,8 @@
    "k": 36,
    "p": 3.2,
    "f": 0.4,
-   "c": 4.8
+   "c": 4.8,
+   "fibYoq": 1
   },
   "valio-tvorog-shaftoli": {
    "nom": "Творог с персиком",
@@ -779,7 +850,8 @@
    "k": 110,
    "p": 7.1,
    "f": 3.5,
-   "c": 13.4
+   "c": 13.4,
+   "fibYoq": 1
   },
   "domik-qaymoq20": {
    "nom": "Сливки Домик в деревне 20%",
@@ -789,7 +861,8 @@
    "k": 205,
    "p": 2.5,
    "f": 20,
-   "c": 3.7
+   "c": 3.7,
+   "fibYoq": 1
   },
   "inmarko-fishka": {
    "nom": "Эскимо Фишка сгущёнка",
@@ -799,7 +872,8 @@
    "k": 285,
    "p": 3.2,
    "f": 17.4,
-   "c": 28.9
+   "c": 28.9,
+   "fibYoq": 1
   },
   "protein-rex-kokos": {
    "nom": "Strong Coconut Protein Bar",
@@ -809,7 +883,8 @@
    "k": 355,
    "p": 35,
    "f": 14,
-   "c": 19
+   "c": 19,
+   "fib": 16
   },
   "protein-rex-tiramisu": {
    "nom": "Proteinbarre tiramisu",
@@ -819,7 +894,8 @@
    "k": 316.7,
    "p": 33.3,
    "f": 11.7,
-   "c": 8.3
+   "c": 8.3,
+   "fib": 21.7
   },
   "fitkit-protein-cake": {
    "nom": "Protein Cake",
@@ -829,7 +905,8 @@
    "k": 280.7,
    "p": 25.7,
    "f": 6.4,
-   "c": 36.8
+   "c": 36.8,
+   "fib": 13.6
   },
   "on-gold-whey": {
    "nom": "Gold Standard 100% Whey Vanilla Ice Cream",
@@ -839,7 +916,8 @@
    "k": 378,
    "p": 79,
    "f": 4.2,
-   "c": 5.6
+   "c": 5.6,
+   "fib": 0
   },
   "matcha-kukun": {
    "nom": "Matcha Green Tea Powder Grade A",
@@ -849,7 +927,8 @@
    "k": 315,
    "p": 32,
    "f": 0.6,
-   "c": 31
+   "c": 31,
+   "fib": 29
   },
   "vafli-shakarsiz": {
    "nom": "Gullón Zero wafer vanilla (shakarsiz, poliollar bilan)",
@@ -859,7 +938,8 @@
    "k": 432,
    "p": 3,
    "f": 22,
-   "c": 63
+   "c": 63,
+   "fib": 10
   },
   "gobaladi-labneh": {
    "nom": "Go Baladi Labneh (labne)",
@@ -869,7 +949,8 @@
    "k": 175,
    "p": 9.5,
    "f": 12,
-   "c": 6
+   "c": 6,
+   "fibYoq": 1
   },
   "ryajenka-vkusnoteevo-4": {
    "nom": "Ряженка 4% (Вкуснотеево)",
@@ -879,7 +960,8 @@
    "k": 65,
    "p": 3,
    "f": 4,
-   "c": 4.2
+   "c": 4.2,
+   "fibYoq": 1
   },
   "ryajenka-krasnaya-tsena-25": {
    "nom": "Ряженка 2,5% (Красная Цена)",
@@ -889,7 +971,8 @@
    "k": 51,
    "p": 3,
    "f": 2.5,
-   "c": 4.2
+   "c": 4.2,
+   "fibYoq": 1
   },
   "edam-kroon": {
    "nom": "Edam pishlog'i (Queso Edam Bola Tierno)",
@@ -899,7 +982,8 @@
    "k": 324,
    "p": 26,
    "f": 24,
-   "c": 0
+   "c": 0,
+   "fib": 0
   },
   "syr-rossiyskiy-kr": {
    "nom": "Сыр фасованный Российский (≈50%)",
@@ -909,7 +993,8 @@
    "k": 355,
    "p": 24.5,
    "f": 28.5,
-   "c": 2.7
+   "c": 2.7,
+   "fibYoq": 1
   },
   "adygeysky-vkusvil": {
    "nom": "Сыр Адыгейский (Vkusvil)",
@@ -919,7 +1004,8 @@
    "k": 228,
    "p": 17,
    "f": 18,
-   "c": 0
+   "c": 0,
+   "fibYoq": 1
   },
   "lawson-onigiri-tuna-mayo": {
    "nom": "Tuna Mayo Onigiri (Lawson)",
@@ -929,7 +1015,8 @@
    "k": 226,
    "p": 4.2,
    "f": 7.7,
-   "c": 35.7
+   "c": 35.7,
+   "fib": 1.7
   },
   "mitsuwa-onigiri-losos": {
    "nom": "Rice Ball - Salmon (Mitsuwa)",
@@ -939,7 +1026,8 @@
    "k": 195,
    "p": 5.3,
    "f": 3.5,
-   "c": 33.6
+   "c": 33.6,
+   "fibYoq": 1
   },
   "kizvna-onigiri-teriyaki": {
    "nom": "Onigiry Teriyaki Chicken (Kizvna)",
@@ -949,7 +1037,8 @@
    "k": 162,
    "p": 5,
    "f": 1.3,
-   "c": 32
+   "c": 32,
+   "fibYoq": 1
   }
  }
 }

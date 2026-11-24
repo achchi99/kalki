@@ -42,7 +42,7 @@ for (const L of LS) for (const m of MODES) {
 }
 /* v97: HAR kalitning HAR varianti ilova beradigan ma'lumot bilan render qilinadi (uz/ru × hazil/jiddiy × ayol/erkak): { } | undefined NaN null qolmaydi;
    shablondagi placeholder ilova bermaydigan bo'lsa — yiqiladi (masalan «осталось {left} г» faqat {left} beriladigan kalitda) */
-const RULE = { x: 18, p: 45, sh: 52, k: '1 120', min: '1 500', src: 'somsa va qazi', Src: 'Somsa va qazi' };
+const RULE = { x: 18, p: 45, sh: 52, k: '1 120', min: '1 500', top: 'grechka, loviya, olma', src: 'somsa va qazi', Src: 'Somsa va qazi' };          // v102: {top} — kletchatka qoidasi (g) uchun taomlar
 const RE0 = { name: 'tuxum', k: 78, left: '1 560' };
 const DATA = (k) => k.startsWith('rt_') || k.startsWith('r_') ? RULE : ({ s_wait: { n: 1 }, s_day1: {}, s_ok: { k: '838', l: '2 436', left: '1 598' }, re_first: RE0, re_ok: RE0, re_goal: RE0, re_light: RE0, re_over: { ...RE0, x: 120 }, re_pgoal: { ...RE0, p: 131 }, re_fat: { ...RE0, fg: 24 }, re_prot: { ...RE0, pg: 13, pleft: 95 },
   m_kcal_better: { x: 340 }, m_fat_better: { x: 22 }, m_streak: { n: 4 }, m_pstreak: { n: 3 }, m_prot3: { n: 3 }, m_skipbf: { n: 3 }, m_eve: { n: 3 }, cel_day: { k: '2 310', l: '2 436' }, cel_p: { p: 131, g: 130 }, c_noon: {}, q_full: {}, q_mood: {},
@@ -94,7 +94,7 @@ const stP = (prof) => { const s0 = seed({ profile: prof }); return S.plan(s0.pro
 const txt = async (p, s) => (await p.locator(s).first().innerText()).replace(/\s+/g, ' ').trim();
 try {
   /* 4. Bugun belgisi va «Maslahat» yorlig'i — bir xil manba (chegaralarda) */
-  const PG = stP({}); for (const [v, want] of [[Math.round(PG * 0.88), 'deyarli'], [PG - 0.6, 'deyarli'], [PG - 0.4, 'bajarildi'], [PG, 'bajarildi'], [Math.round(PG * 0.8), 'kam'], [Math.round(PG * 1.2), 'oshdi']]) {
+  const PG = stP({}); for (const [v, want] of [[Math.round(PG * 0.88), 'deyarli'], [PG - 0.6, 'deyarli'], [PG - 0.4, 'bajarildi'], [PG, 'bajarildi'], [Math.round(PG * 0.8), 'kam'], [Math.round(PG * 1.2), 'bajarildi']]) {
     const st = seed({ food: [[T0, 'non', 'b', 400, 0, 5, 60], [T0, 'tovuq', 'l', 600, v, 10, 0]] }); st.prefs.mslMode = 'jiddiy';
     const p = await open({ st }); const row = await p.locator('#bjuCard .mk-row[data-m=p]').evaluate((e) => [e.className.match(/mk-(kam|deyarli|bajarildi|oshdi)/)[1], e.querySelector('.mk-st').className, e.getAttribute('aria-label')]);
     assert.equal(row[0], want, v + '/' + PG + ' Bugun'); assert.ok(row[1].includes(want === 'bajarildi' ? 'mk-ok' : want === 'oshdi' ? 'mk-up' : 'mk-dn'), 'belgi: ' + row[1]);

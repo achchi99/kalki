@@ -309,6 +309,13 @@
     "Kundalikka besh qo'yildi: likopcha imtihonni a'lo topshirdi. Ertaga ham shu darsni takrorlaymiz.",
     "Bugun boshqotirmaning har bir bo'lagi o'z joyiga tushdi. Zo'r ish — men chin dildan xursandman!"
    ],
+   "r_g": [
+    "Ichakingiz kechki menyuga sharh qoldirdi: «Yana {x} g kletchatka, iltimos». Tavsiyasi: {top}.",
+    "Kletchatka bugun ziyofatga kechikdi — {x} g. Taklifnoma yuboramiz: {top}.",
+    "Tola xazinasi {x} g to'lmay turibdi. Bir likopcha sabzavot — va sandiq yopiladi. Variantlar: {top}.",
+    "Bugungi menyu biroz «silliq» bo'ldi: tolaga {x} g yetmayapti. Qo'shimcha qahramonlar: {top}.",
+    "Ichak jamoasi sabzavot ko'rmay sog'indi — {x} g kletchatka kerak. Navbatda: {top}."
+   ],
    "r_kam": [
     "Organizm yoqilg'i so'rayapti: hozircha {k} kkal, xavfsiz chegara esa {min} kkal. Iltimos, yana bir issiq, to'yimli taom qo'shing.",
     "Quvvat chirog'i qizarib qoldi — {k} kkal, kamida {min} kkal bo'lgani yaxshi. Bir likopcha osh yoki sho'rva hozir ayni muddao.",
@@ -413,6 +420,13 @@
     "Makrolar valsi",
     "Kundalikda besh",
     "Boshqotirma yig'ildi"
+   ],
+   "rt_g": [
+    "Tola chaqiryapti",
+    "Kletchatka navbatda",
+    "Ichak sabzavot so'rayapti",
+    "Tolaga {x} g qarz",
+    "Kletchatka kutyapti"
    ],
    "rt_kam": [
     "Organizm yoqilg'i so'rayapti",
@@ -1018,6 +1032,13 @@
     "Kun to'g'ri tuzilgan: yetarli oqsil, me'yordagi yog' va uglevod. Siz ajoyib ish qildingiz.",
     "Hamma ko'rsatkich joyida. Bugungi tanlovlaringiz aniq va o'ylangan — shunday davom eting."
    ],
+   "r_g": [
+    "Bugun kletchatka me'yoridan {x} g kam. Kechki ovqatga sabzavot, yorma yoki dukkakli qo'shing: masalan, {top}.",
+    "Tolaga hali {x} g kerak. Bir likopcha sabzavot yoki bir hovuch meva farqni ancha qisqartiradi — {top} mos keladi.",
+    "Kletchatka ichak ishini yaxshilaydi va to'q tutadi; bugun {x} g yetmayapti. Qulay tanlov: {top}.",
+    "Me'yorga yetish uchun yana {x} g kletchatka. Oq non o'rniga to'liq donli non, garnirga grechka yoki loviya oling: {top}.",
+    "Bugungi ovqatlarda tola kam — yana {x} g. Ertaga nonushtaga suli, tushlikka sabzavot qo'shsak bo'ladi; hozir esa {top} yaxshi."
+   ],
    "r_kam": [
     "Bugun hozircha {k} kkal — bu xavfsiz chegaradan ({min} kkal) past. Juda kam yeyish sog'liqqa zarar; yana bir to'yimli taom qo'shing.",
     "Bugungi jami {k} kkal, pastki xavfsiz chegara esa {min} kkal. Kechki ovqatni to'liq va to'yimli qilishingizni so'rayman.",
@@ -1122,6 +1143,13 @@
     "Kun maqsadga mos o'tdi",
     "Ajoyib muvozanat",
     "Kaloriya va makrolar joyida"
+   ],
+   "rt_g": [
+    "Kletchatka kam",
+    "Tolaga {x} g yetmayapti",
+    "Kletchatkaga e'tibor",
+    "Bugun tola oz",
+    "Kletchatka: yana {x} g"
    ],
    "rt_kam": [
     "Juda kam yeyapsiz",
@@ -1729,6 +1757,13 @@
     "В дневнике пятёрка: тарелка сдала экзамен на отлично. Завтра повторим урок.",
     "Пазл дня сложился — каждый кусочек на своём месте. Мне за вас по-настоящему приятно!"
    ],
+   "r_g": [
+    "Кишечник оставил отзыв к ужину: «Ещё {x} г клетчатки, пожалуйста». Рекомендует: {top}.",
+    "Клетчатка опоздала на сегодняшний праздник — {x} г. Отправляем приглашение: {top}.",
+    "Копилка клетчатки недобрала {x} г. Тарелка овощей — и копилка закрыта. Варианты: {top}.",
+    "Сегодняшнее меню вышло слишком «гладким»: клетчатки не хватает {x} г. Подкрепление: {top}.",
+    "Команда кишечника соскучилась по овощам — нужно {x} г клетчатки. На очереди: {top}."
+   ],
    "r_kam": [
     "Организм просит топлива: пока {k} ккал, а безопасный минимум — {min} ккал. Тёплая сытная тарелка сейчас очень выручит.",
     "Лампочка энергии мигает красным: {k} ккал при минимуме {min} ккал. Тарелка супа или плова будет в самый раз.",
@@ -1833,6 +1868,13 @@
     "Вальс трёх макросов",
     "Пятёрка в дневнике",
     "Пазл дня сложился"
+   ],
+   "rt_g": [
+    "Клетчатка зовёт",
+    "Клетчатка в очереди",
+    "Кишечник просит овощей",
+    "Долг клетчатке: {x} г",
+    "Клетчатка ждёт"
    ],
    "rt_kam": [
     "Организм просит топлива",
@@ -2438,6 +2480,13 @@
     "День выстроен правильно: достаточно белка, жиры и углеводы в норме. Вы отлично справились.",
     "Все показатели на месте. Ваш выбор сегодня был точным и продуманным — так держать."
    ],
+   "r_g": [
+    "Сегодня клетчатки на {x} г меньше нормы. Добавьте к ужину овощи, крупу или бобовые: например, {top}.",
+    "До нормы клетчатки не хватает {x} г. Тарелка овощей или горсть фруктов заметно сократит разрыв — подойдут {top}.",
+    "Клетчатка помогает кишечнику и дольше держит сытость; сегодня не хватает {x} г. Удобный выбор: {top}.",
+    "Чтобы добрать норму, нужно ещё {x} г клетчатки. Вместо белого хлеба — цельнозерновой, на гарнир — гречка или фасоль: {top}.",
+    "В сегодняшней еде мало клетчатки — ещё {x} г. Завтра можно начать с овсянки и добавить овощи в обед, а сейчас подойдут {top}."
+   ],
    "r_kam": [
     "Сегодня пока {k} ккал — это ниже безопасной границы ({min} ккал). Слишком мало еды вредно для здоровья; добавьте ещё один сытный приём пищи.",
     "За сегодня {k} ккал, а нижняя безопасная граница — {min} ккал. Прошу вас сделать ужин полноценным и сытным.",
@@ -2542,6 +2591,13 @@
     "День точно по плану",
     "Отличный баланс",
     "Калории и макросы в норме"
+   ],
+   "rt_g": [
+    "Мало клетчатки",
+    "Клетчатки не хватает {x} г",
+    "Обратите внимание на клетчатку",
+    "Сегодня мало клетчатки",
+    "Клетчатка: ещё {x} г"
    ],
    "rt_kam": [
     "Вы едите слишком мало",

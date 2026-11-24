@@ -554,7 +554,7 @@
   },
   "tvorog_1": {
    "nom": "Tvorog 1% (0% dan yog' farqi bo'yicha hisob)",
-   "qol": {"k": 92, "p": 18, "f": 1, "c": 1.8},
+   "qol": {"k": 92, "p": 18, "f": 1, "c": 1.8, "fb": 0},
    "yield": {
     "q": 1.0,
     "tarif": true
@@ -564,7 +564,7 @@
   },
   "tvorog_2": {
    "nom": "Tvorog 2% (0% dan yog' farqi bo'yicha hisob)",
-   "qol": {"k": 101, "p": 18, "f": 2, "c": 1.8},
+   "qol": {"k": 101, "p": 18, "f": 2, "c": 1.8, "fb": 0},
    "yield": {
     "q": 1.0,
     "tarif": true
@@ -635,7 +635,7 @@
   "protein_whey": {
    "nom": "Protein kukuni (whey konsentrat, odatiy yorliq qiymati)",
    "usda": 173180,
-   "qol": {"k": 400, "p": 78, "f": 6, "c": 8},
+   "qol": {"k": 400, "p": 78, "f": 6, "c": 8, "fb": 0},
    "yield": {
     "q": 1.0,
     "tarif": true
