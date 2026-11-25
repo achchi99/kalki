@@ -172,5 +172,5 @@
   }
   return { OVER: OVER, PROT_EVE: PROT_EVE, EVE_H: EVE_H, LATE_H: LATE_H, FAT_SH: FAT_SH, MAX_DAY: MAX_DAY, MIN_DAYS: MIN_DAYS, WIN: WIN, CHIP: CHIP, ICON: ICON, TX: TX, XT: XT,
     STATES: STATES, yetdi: yetdi, belgi: belgi, say: say, list: list, bor: bor, fillD: fillD, lib: lib, uslub: uslub,
-    holat: holat, oqsilYuqori: oqsilYuqori, makro: makro, manba: manba, qoida: qoida, variant: variant, matn: matn, srcText: srcText, xulosa: xulosa, tahlil: tahlil };
+    holat: holat, plRu: plRu, oqsilYuqori: oqsilYuqori, makro: makro, manba: manba, qoida: qoida, variant: variant, matn: matn, srcText: srcText, xulosa: xulosa, tahlil: tahlil };
 });

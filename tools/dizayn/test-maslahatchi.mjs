@@ -38,7 +38,7 @@ for (const L of LS) for (const m of MODES) {
   assert.deepEqual(Object.keys(X[L][m]).sort(), KEYS.slice().sort(), L + m + ': kalitlar to\'plami bir xil');
   for (const k of KEYS) { const a = X[L][m][k]; assert.ok(Array.isArray(a) && a.length >= 4, L + m + k + ' ≥ 4 variant'); assert.equal(new Set(a).size, a.length, L + m + k + ' takror');
     const other = X[L][m === 'hazil' ? 'jiddiy' : 'hazil'][k]; a.forEach((s) => { assert.ok(!other.includes(s), L + k + ': hazil va jiddiy bir xil: ' + s); const t = M.fillD(s, SAMPLE); assert.ok(!/\{\w+\}/.test(t), L + m + k + ' bo\'sh joy: ' + t); assert.ok(!BAN.test(t), L + m + k + ' taqiqlangan so\'z: ' + t); assert.ok(t.length <= 210, L + m + k + ' uzun: ' + t); if (L === 'uz') assert.ok(!/[а-яё]/i.test(t), 'UZ kirill: ' + t); });
-    for (let i = 0; i < a.length; i++) assert.equal(M.say(k, SAMPLE, { lang: L, mode: m, i }), M.fillD(a[i], SAMPLE)); }
+    for (let i = 0; i < a.length; i++) assert.equal(M.say(k, SAMPLE, { lang: L, mode: m, i }), L === 'ru' ? M.plRu(M.fillD(a[i], SAMPLE)) : M.fillD(a[i], SAMPLE)); }          // v103: ruscha son kelishigi (3 раза)
 }
 /* v97: HAR kalitning HAR varianti ilova beradigan ma'lumot bilan render qilinadi (uz/ru × hazil/jiddiy × ayol/erkak): { } | undefined NaN null qolmaydi;
    shablondagi placeholder ilova bermaydigan bo'lsa — yiqiladi (masalan «осталось {left} г» faqat {left} beriladigan kalitda) */
