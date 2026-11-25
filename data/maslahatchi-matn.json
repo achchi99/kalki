@@ -50,6 +50,55 @@
     "Kaloriya o'sha kuni {x} kkal sayr qilib ketgan. Yo'l davom etadi, xotirjam.",
     "Marafonda bitta sekin chaqirim natijani hal qilmaydi — bu kun shunchaki {x} kkal ustama."
    ],
+   "ef_a": [
+    "Yog'lar bugun ziyofat qilishdi (+{x} g): to'qlik tez tarqab ketishi, kechqurun esa ishtaha qaytib kelishi mumkin.",
+    "Yog' bugun +{x} g: kaloriyani shoshib yeb qo'yadi-yu, to'qlikni olib kelishni unutadi — kechki ochlik mehmonga kelishi ehtimol.",
+    "+{x} g yog' — kaloriya hamyoni tez bo'shaydi, ishtaha esa «hali to'ymadim» deb turib olishi mumkin.",
+    "Bugun yog' sahnani egallab oldi (+{x} g): kaloriya sarflandi, to'qlik esa kechikkan poyezddek, kechqurun och qolish ehtimoli bor.",
+    "Yog' bugun «men ham bormanku!» dedi (+{x} g); u to'qlikka sust xizmat qiladi, shuning uchun kechki ochlik eshik qoqishi mumkin."
+   ],
+   "ef_b": [
+    "Uglevodlar bugun raketadek uchirdi, lekin oqsilsiz qo'nish tez bo'ladi — ochlik erta qaytishi mumkin.",
+    "Non-shirinlik jamoasi g'alaba qildi, oqsil zaxirada o'tirdi: energiya chaqnab, keyin tez so'nishi ehtimol.",
+    "Uglevod — tez yonuvchi o'tin: alanga baland, ammo issiqlik uzoq turmasligi va ishtaha yana taqillashi mumkin.",
+    "Bugun likopcha shirinroq tomonga og'di; mushaklar esa oqsil «pochta»sini kutib qolishi ehtimol.",
+    "Uglevod tez kayf beradi, oqsil esa jim qorovul — u bo'lmasa to'qlik ertaroq ta'tilga chiqishi mumkin."
+   ],
+   "ef_c": [
+    "Kech kirdi, oqsil esa hali {p} g qarzdor; kaloriya tanqisligida mushaklar «bizni ham unutmang» deyishi mumkin.",
+    "Oqsil {p} g yo'lda qoldi — u kelmasa, yo'qotilgan vazn orasiga mushak ham qo'shilib ketishi ehtimol.",
+    "Kechki navbatchi oqsil {p} g kam keldi: mushaklar xavotirda, to'qlik ham to'liq bo'lmasligi mumkin.",
+    "{p} g oqsil hali chiptasini olmagan; tanqislik kunlarida usiz mushak ham «ketaman» deb qolishi ehtimol.",
+    "Oqsil kechki marraga {p} g yetmay turibdi — mushaklarni qo'riqlaydigan soqchi kamlik qilishi mumkin."
+   ],
+   "ef_d": [
+    "Kaloriya joyida, lekin uning {sh}% ini yog' egallab oldi — oqsil va kletchatkaga stul qolmagan bo'lishi mumkin.",
+    "Yog' bugun kaloriya uyining {sh}% iga ega bo'ldi: qolgan ijarachilar — oqsil va sabzavot — siqilib qolishi ehtimol.",
+    "Likopchaning {sh}% i yog'ga tegdi; to'qlik bunday «monopoliya»ni unchalik yoqtirmasligi mumkin.",
+    "Hisob joyida, ammo tarkib bir tomonlama: {sh}% yog' — oqsil va ko'katlar navbatda qolib ketgan bo'lishi ehtimol.",
+    "Yog' bugun aksiyalarning {sh}% iga egalik qildi; uzoq muddatda yurak bunday «direktor»ni yoqtirmasligi mumkin."
+   ],
+   "fx_carb": [
+    "Uglevodlar dam olsin, oqsil smenaga chiqsin: {fix}.",
+    "Shirin bayramdan keyin jiddiy mehmon: {fix} — ishtaha rahmat aytadi.",
+    "Nonlar navbatini oqsilga bersin: {fix} likopchani tenglaydi.",
+    "Kechki menyu qayta yozildi: {fix}, shirinlik esa ertaga.",
+    "Oqsil va ko'katlarning qasos kechasi: {fix}."
+   ],
+   "fx_fat": [
+    "Kunning qolganini qutqaruvchi jamoa: {fix} — yog'siz, lekin qahramonona.",
+    "Yog'dan keyingi tinchlantiruvchi reja: {fix}. Likopcha nafas rostlaydi.",
+    "Endi navbat yengil vaznlilarga: {fix} sahnaga chiqsin.",
+    "Kechki ovqatda «tartib-intizom» bo'limi: {fix}.",
+    "Yog' shovqinidan so'ng sokin musiqa: {fix} — to'qlik ham, muvozanat ham."
+   ],
+   "fx_prot": [
+    "Oqsilni marraga olib boruvchi taksi: {fix}.",
+    "Kechki qahramon tayyor: {fix} — oqsil kemtigini yamaydi.",
+    "Mushaklar uchun kechki sovg'a: {fix}.",
+    "Oqsil xazinasini to'ldiramiz: {fix}, xolos.",
+    "Oxirgi zarb: {fix} — va oqsil jadvali chiroyli yopiladi."
+   ],
    "g_day": [
     "Kun tepaga chiqdi — tushlik eshik oldida navbat kutib turibdi.",
     "Kunning ikkinchi taymi boshlandi, tushlik — asosiy hujumchi!",
@@ -210,6 +259,20 @@
     "Oqsil bugun shijoatini jilovlay olmadi: +{x} g. Xavotirsiz, umumiy hisob chegarada qolsin.",
     "Oqsil darsdan keyin ham qolib ketdi — +{x} g. Yomon emas, kaloriya soatiga ko'z tashlang.",
     "Oqsil mehmonga sovg'a bilan keldi: +{x} g. Rahmat, faqat kaloriya hamyonini ham sanaymiz."
+   ],
+   "pt_fat": [
+    "Sizning ma'lumotingiz bo'yicha, yog'li kundan keyin {n} holatdan {k} tasida ertangi kaloriya ham «davom etamiz» degan.",
+    "Kichik detektivlik: sizning ma'lumotingiz bo'yicha yog'li kunning ertasi {n} martadan {k} marta rejadan chiqib ketgan.",
+    "Yog'li kun ertangi kunga «salom» yo'llaydi — sizning ma'lumotingiz bo'yicha {n} holatdan {k} tasida.",
+    "Sizning ma'lumotingiz bo'yicha naqsh bor: yog' mo'l kundan so'ng {k}/{n} holatda ertasi ham ishtaha baland bo'lgan.",
+    "Statistika sirini ochdi: sizning ma'lumotingiz bo'yicha yog'li kundan keyin {n} tadan {k} ta ertangi kun rejadan oshgan."
+   ],
+   "pt_prot": [
+    "Sizning ma'lumotingiz bo'yicha oqsil to'kis kunlari kechki ovqat odatda {x} kkal kamtarroq — oqsil kechki ishtahani jilovlaydi.",
+    "Oqsil — kechki ovqatning tinchlantiruvchisi: sizning ma'lumotingiz bo'yicha u bor kunlari kechki likopcha {x} kkal yengilroq.",
+    "Sizning ma'lumotingiz bo'yicha qiziq fakt: oqsil to'la kunlarda kechqurun taxminan {x} kkal kam ketgan.",
+    "Oqsil kunduzi ishlasa, kechqurun dam olasiz: sizning ma'lumotingiz bo'yicha kechki ovqat odatda {x} kkal kichikroq.",
+    "Sirli naqsh, sizning ma'lumotingiz bo'yicha: oqsil joyida — kechki dasturxon taxminan {x} kkal ixchamroq."
    ],
    "q_full": [
     "Oshqozoningiz qanday hisobot beryapti: to'qmisiz?",
@@ -379,6 +442,13 @@
     "Oqsil xazinasi boyidi: {name}, {pg} g. Sandiq to'lishiga {pleft} g.",
     "Oqsil zinapoyasida yana bir pog'ona: {name}, {pg} g. Tepagacha {pleft} g."
    ],
+   "rep_dish": [
+    "{dish} bu hafta {n} marta mehmon bo'ldi va yog' reytingida birinchi o'rinni oldi; ba'zan o'rniga {alt} bo'lsa-chi?",
+    "{dish} — haftaning yulduzi: {n} marta sahnada, yog'ning asosiy manbai. Ba'zida {alt} ham kichik rol o'ynasin.",
+    "{dish} sizni {n} marta sog'inib keldi, yog' ham birga keldi. Goh-goh dasturxonga {alt} ham chiqib tursin.",
+    "Haftaning eng sodiq mehmoni — {dish} ({n} marta), yog' ham shu mehmondan. Taqiq yo'q, shunchaki ba'zan {alt} ham yaxshi.",
+    "{dish} {n} martalik kontsert berdi va yog' bo'yicha bosh rol unda. Navbatdagi sahnaga {alt} ham chiqib tursin."
+   ],
    "rt_a": [
     "Yog'lar to'y qilyapti: +{x} g",
     "Yog' tezlikni oshirdi: +{x} g",
@@ -455,6 +525,69 @@
     "Hozircha men tomoshabinman: sahnaga yana {n} ta taom chiqsin, keyin taqriz yozaman.",
     "Jadvalimda {n} ta bo'sh katak bor. To'ldirsangiz, darhol tahlilga kirishaman.",
     "Suratim hali xira: yana {n} ta taom — va kadr tiniqlashadi."
+   ],
+   "sw_flat": [
+    "Tarozi {dw} kg da sayr qilib yuribdi; bunga ko'pincha suv va kechki palov hajmi sabab, katta manzarani kuting.",
+    "{dw} kg — tarozi bu hafta hazillashdi. Suv va kechki palov ham og'irlik qiladi; trend esa haftalar davomida ko'rinadi.",
+    "Tarozi raqami {dw} kg ga qimirladi, xolos: suv ham o'z hissasini qo'shadi, haqiqiy yo'nalishni bir necha hafta ko'rsatadi.",
+    "Bu hafta tarozi qaysarlik qildi ({dw} kg). Suv va tuz shunday sirlar qiladi — uzoqroq masofaga qarang.",
+    "{dw} kg: tarozining kayfiyati o'zgaruvchan. Uni bir hafta emas, bir necha haftalik trendga qarab baholang."
+   ],
+   "sw_low": [
+    "{t} kundan {n} tasida likopcha juda kamtarin bo'ldi; kam yeyish musobaqasida sovrin yo'q.",
+    "{n} kun ({t} dan) ovqat dietadan ham qattiqroq tejaldi — organizm «maosh kechikdi» deyishi mumkin.",
+    "Bu hafta {n}/{t} kun likopcha juda yupqa keldi. Kamroq — har doim ham yaxshiroq emas!",
+    "{t} kunning {n} tasida kaloriya ta'tilga chiqib ketdi; uni ishga qaytaramiz.",
+    "Tejamkorlik yaxshi, lekin {n} kun ({t} dan) haddan oshdi — tana yoqilg'isiz uzoq yurmaydi."
+   ],
+   "sw_mus": [
+    "Tarozi {dw} kg yengillashdi; oqsil kam kelgani uchun taxminan {a}–{b} kg mushak ham yo'lga chiqqan bo'lishi mumkin (oqsil bilan ~{c}–{d} kg).",
+    "−{dw} kg! Ammo oqsil ko'p kun dars qoldirdi: ehtimol, taxminan {a}–{b} kg mushak ham ketgan; oqsil me'yorda bo'lsa, {c}–{d} kg atrofida bo'lardi.",
+    "Vazn {dw} kg tushdi, biroq mushaklar oqsil kutib qolishdi: taxminan {a}–{b} kg ulardan bo'lishi mumkin, oqsil bilan esa ehtimol {c}–{d} kg.",
+    "{dw} kg xayr-xo'sh qildi; oqsil kamligi sababli uning taxminan {a}–{b} kg i mushak bo'lishi mumkin, yetarli oqsilda esa {c}–{d} kg chamasi.",
+    "Tarozi quvontirdi: −{dw} kg. Oqsil tanqisligida mushak ulushi taxminan {a}–{b} kg bo'lishi mumkin; oqsil joyida bo'lsa — taxminan {c}–{d} kg."
+   ],
+   "sw_mus_ok": [
+    "Tarozi {dw} kg yengillashdi, oqsil esa soqchilikda turdi — mushak ulushi ehtimol kichik, taxminan {c}–{d} kg.",
+    "−{dw} kg va oqsil navbatchiligi a'lo: mushaklar asosan joyida qolgan bo'lsa kerak (taxminan {c}–{d} kg).",
+    "{dw} kg xayrlashdi, mushaklar esa oqsil qalqoni ortida turdi: ulardan ehtimol atigi {c}–{d} kg ketgan.",
+    "Oqsil bu hafta yaxshi qo'riqchi bo'ldi: {dw} kg orasida mushaklardan ehtimol faqat {c}–{d} kg chamasi.",
+    "Oqsil dars qoldirmadi, shuning uchun tushgan {dw} kg orasida mushaklar ozchilikda — chamasi {c}–{d} kg."
+   ],
+   "sw_now": [
+    "Tarozi bu hafta ta'tilda edi. Eslatma: kaloriya tanqisligida oqsil mushaklarning qo'riqchisi, oqsil va kletchatka esa ishtahani tinch tutadi.",
+    "Vazn yozuvlari yo'q — tarozi yashirinib oldi. Oqsil yetarli bo'lsa, ketayotgan vazn ko'proq yog' hisobidan bo'lishi mumkin.",
+    "Bu hafta tarozi bilan uchrashuv bo'lmadi. Bilib qo'ying: oqsil mushakka «qolaver» deydi, tolali taom esa ochlikka «shoshma».",
+    "Tarozi jim. Lekin qoida gapiradi: tanqislikda oqsil mushakni asraydi, tola va oqsil to'qlikni uzaytiradi.",
+    "Vazn kiritilmadi, tarozi chang bosmasin! Oqsil — mushak soqchisi, sabzavot — to'qlik do'sti."
+   ],
+   "sw_ok": [
+    "Kaloriyada {t} kundan {n} tasi nishonga tegdi — barakalla, mergan!",
+    "{n}/{t} kun rejada: kaloriya intizomi bo'yicha oltin medal sizda.",
+    "Bu hafta kaloriya {t} kunning {n} tasida itoatkor bo'ldi — zo'r ish!",
+    "{t} kundan {n} kunida hisob-kitob soatdek aniq yurdi. Barakalla!",
+    "Kaloriya bilan do'stlik mustahkam: {t} kunning {n} tasi rejada. Zo'r!"
+   ],
+   "sw_over": [
+    "Kaloriya {t} kundan {n} tasida chegaradan sakrab o'tdi — sport ruhi bor, lekin yo'nalish boshqa.",
+    "{n} kun ({t} dan) likopcha saxiylik qildi. Keyingi hafta biroz tejamkorroq bo'lamiz.",
+    "Haftada {n} marta kaloriya «yana bittadan» dedi — {t} kun ichida. Hech gap emas, davom etamiz.",
+    "Rejadan oshgan kunlar: {n}/{t}. To'ylar va mehmondorchilik mavsumi bo'lsa kerak.",
+    "{t} kunning {n} tasida kaloriya qo'shimcha vaqt o'ynadi; yangi hafta — yangi o'yin."
+   ],
+   "sw_tarkib": [
+    "Tarkib bo'yicha: oqsil {t} kundan {p} tasida kechikdi, yog' {f} kun ortiqcha shoshildi — keyingi bosqich shu yerda.",
+    "Oqsil {p} kun ({t} dan) dars qoldirdi, yog' esa {f} kun ortiqcha faol bo'ldi; endi tarkibni tartibga solamiz.",
+    "Hafta hisoboti: oqsil {p}/{t} kun uyquda, yog' {f}/{t} kun bazmda. Navbatdagi qadam — ularni almashtirish.",
+    "Kaloriya bilan kelishdik, endi tarkib: {p} kun oqsil kam, {f} kun yog' ko'p ({t} kundan).",
+    "{t} kunda oqsil {p} marta yetmadi, yog' {f} marta toshdi — keyingi daraja ochildi: tarkib."
+   ],
+   "sw_tarkib_ok": [
+    "Oqsil va yog' bu hafta ahil qo'shnilardek yashadi — ko'p kunlari me'yorda.",
+    "Makrolar jamoasi bu hafta intizomli o'ynadi: hakam hushtak chalmadi.",
+    "Tarkib bo'yicha hafta tinch o'tdi — oqsil ham, yog' ham o'z yo'lagida yurdi.",
+    "Likopchadagi muvozanat bu hafta sirk artistinikidek edi. Qoyil!",
+    "Oqsil va yog' haftani deyarli har kuni «a'lo» baho bilan yopishdi."
    ],
    "t_dam": [
     "Shanba-yakshanba hisobda mehmondek emas, uy egasidek o'tiribdi. Bitta qoida tartib beradi: shirinlik — bir marta.",
@@ -773,6 +906,55 @@
     "O'sha kun +{x} kkal. Xotirjam davom etsak bo'ladi.",
     "Bu kunda kaloriya {x} kkal oshgan — tashvishga o'rin yo'q."
    ],
+   "ef_a": [
+    "Yog' me'yordan {x} g ortiq: bunday kunlarda to'yinish tezroq o'tadi va kechqurun ochlik sezilishi ehtimoli yuqoriroq.",
+    "Ortiqcha {x} g yog' ko'p kaloriya beradi, ammo uzoq to'yintirmaydi — kechki ishtaha kuchayishi mumkin.",
+    "Me'yordan {x} g ortiq yog' kaloriyaning katta qismini oladi, lekin oqsil va kletchatkadek to'yintirmasligi mumkin.",
+    "To'yingan yog' muntazam ko'p bo'lsa, uzoq muddatda yurak va tomirlar uchun foydali emas; bugungi {x} g ortiqchani keyingi taomlarda muvozanatlang.",
+    "Yog' me'yordan {x} g ko'p kunlari to'yinish qisqa davom etadi va ertasi kuni ko'proq yeyish ehtimoli bor; bu tashxis emas, kuzatuv."
+   ],
+   "ef_b": [
+    "Uglevod ko'p, oqsil kam bo'lgan kunda energiya tez ko'tariladi, lekin ochlik odatda ertaroq qaytadi.",
+    "Oqsil kam bo'lsa, to'yinish sustroq bo'lishi va mushaklar kerakli qurilish materialini olmasligi mumkin.",
+    "Bugun uglevodlar me'yordan yuqori, oqsil esa past: bu kombinatsiya ko'pincha to'yinish vaqtini qisqartiradi.",
+    "Tez hazm bo'ladigan uglevodlar qisqa muddatli kuch beradi; keyingi taomga oqsil qo'shish to'yinishni uzaytirishi ehtimol.",
+    "Oqsil yetishmasa mushaklarni saqlash qiyinroq bo'lishi mumkin, uglevod ortiqligi esa ochlikni tezroq qaytarishi ehtimol."
+   ],
+   "ef_c": [
+    "Kechqurun ham oqsil {p} g kam: kaloriya tanqisligida yo'qotilgan vaznning kattaroq qismi mushak bo'lishi mumkin.",
+    "Oqsilga hali {p} g yetmaydi; tanqislik paytida yetarli oqsil mushakni saqlashga yordam beradi, aks holda ko'proq mushak ketishi ehtimol.",
+    "Bugungi oqsil {p} g past — bu to'yinishni ham pasaytirishi va mushak saqlanishini qiyinlashtirishi mumkin.",
+    "{p} g oqsil yetishmasligi tufayli kechki to'yinish sustroq bo'lishi, kamaygan vaznda esa mushak ulushi taxminan ortishi mumkin.",
+    "Kaloriyani kamaytirganda oqsil muhim: bugun {p} g yetmayapti, shuning uchun mushak yo'qotish ehtimoli biroz yuqoriroq."
+   ],
+   "ef_d": [
+    "Kaloriya me'yorda, biroq uning {sh}% i yog'dan keldi: oqsil va kletchatka uchun joy kam, to'yinish pastroq bo'lishi mumkin.",
+    "Energiyaning {sh}% i yog'dan — bu ko'p; to'yingan yog' muntazam yuqori bo'lsa, uzoq muddatda yurak va tomirlarga yaxshi emas.",
+    "Umumiy kaloriya yaxshi, lekin yog' ulushi {sh}%: shunday kunlarda oqsil va tolali ovqat kamroq bo'lishi ehtimol.",
+    "Yog' {sh}% ni tashkil qildi; oqsil va sabzavotni ko'paytirish to'yinishni yaxshilashi mumkin.",
+    "Yarmidan ko'pi ({sh}%) yog'dan kelgan kun to'yinish jihatidan sustroq bo'lishi mumkin; ertaga oqsil va sabzavot ulushini oshirib ko'ring."
+   ],
+   "fx_carb": [
+    "Kunning qolgan qismiga oqsilli taom va sabzavot tanlang, masalan {fix}.",
+    "Keyingi ovqatda uglevodni kamaytirib, {fix} qo'shsangiz, to'yinish uzoqroq saqlanadi.",
+    "Oqsilni to'ldirish uchun {fix} mos keladi.",
+    "Tavsiya: kechki ovqatga {fix} — bu oqsil va kletchatka beradi.",
+    "Non va shirinlik o'rniga hozir {fix} yeyish muvozanatni tiklashga yordam beradi."
+   ],
+   "fx_fat": [
+    "Kunning qolgan qismida yog'sizroq tanlang: masalan, {fix}.",
+    "Muvozanat uchun keyingi taomga {fix} mos keladi.",
+    "Kechki ovqatni yengil oqsil va sabzavotdan qiling — {fix} yaxshi variant.",
+    "Bugungi yog' ortiqchasini {fix} bilan tenglashtirish mumkin.",
+    "Qolgan kaloriyani oqsil va tolaga sarflang: {fix} kifoya qiladi."
+   ],
+   "fx_prot": [
+    "Oqsil yetishmovchiligini kechqurun {fix} bilan yopish mumkin.",
+    "Kechki ovqatga {fix} qo'shing — bu kunlik oqsil maqsadiga yaqinlashtiradi.",
+    "Oqsilni to'ldirish uchun yaxshi tanlov: {fix}.",
+    "Uxlashdan oldin yengil variant — {fix}; u oqsil beradi va to'yintiradi.",
+    "Qolgan oqsilni olish uchun {fix} yetarli bo'lishi mumkin."
+   ],
    "g_day": [
     "Kuningiz xayrli o'tsin. Tushlikni yozib borsangiz, hisobni aniq yuritaman.",
     "Kun yarmi — suv ichishni unutmang.",
@@ -933,6 +1115,20 @@
     "Oqsil {x} g ortiq — bu odatda xavfsiz. Kunlik kaloriyani ham hisobga olsak yaxshi.",
     "Oqsil ko'p bo'ldi. To'qlik uchun yaxshi, ammo kaloriya me'yoridan chiqmaslik muhim.",
     "Maqsaddan {x} g ko'p oqsil — tashvishga o'rin yo'q. Kaloriya balansini kuzatib boring."
+   ],
+   "pt_fat": [
+    "Sizning ma'lumotingiz bo'yicha, yog' me'yordan oshgan kunlardan keyin {k} holatda (jami {n}) kaloriya rejadan yuqori bo'lgan.",
+    "Sizning ma'lumotingiz bo'yicha: {n} ta yuqori yog'li kunning {k} tasidan so'ng ertasi kaloriya ortiqcha bo'lgan — bu to'yinish bilan bog'liq bo'lishi mumkin.",
+    "Kuzatuv sizning ma'lumotingiz bo'yicha: yuqori yog'dan keyingi kun {k}/{n} marta maqsaddan oshgan. Ertasiga oqsilli nonushta yordam berishi ehtimol.",
+    "Sizning ma'lumotingiz bo'yicha bog'liqlik bor: yog'li kunlarning ertasi {n} tadan {k} holatda me'yordan ortiq kaloriya bilan o'tgan.",
+    "Shaxsiy tahlil (sizning ma'lumotingiz bo'yicha): yog' ko'p bo'lgan kundan keyin ertangi iste'mol {k} marta ({n} dan) yuqori chiqdi."
+   ],
+   "pt_prot": [
+    "Sizning ma'lumotingiz bo'yicha, oqsil maqsadiga yetgan kunlarda kechki taom o'rtacha {x} kkal kam bo'lgan.",
+    "Sizning ma'lumotingiz bo'yicha yetarli oqsil iste'mol qilingan kunlari kechki taom o'rtacha {x} kkal kamroq — oqsil to'yinishni uzaytiradi.",
+    "Kuzatuv (sizning ma'lumotingiz bo'yicha): oqsil me'yorda bo'lgan kunlarda kechqurun o'rtacha {x} kkal kamroq iste'mol qilgansiz.",
+    "Sizning ma'lumotingiz bo'yicha oqsil yetarli bo'lsa, kechki iste'mol taxminan {x} kkal past bo'ladi; kunduzgi oqsil buni qo'llab-quvvatlaydi.",
+    "Sizning ma'lumotingiz bo'yicha, oqsil yetarli bo'lgan kunlar kechki taomi boshqa kunlarga qaraganda o'rtacha {x} kkal kamroq."
    ],
    "q_full": [
     "Bugungi ovqatlardan keyin o'zingizni to'q his qilyapsizmi?",
@@ -1102,6 +1298,13 @@
     "Oqsil bo'yicha yaxshi qadam: {name}dan {pg} g, maqsadgacha {pleft} g.",
     "Bugungi maqsadgacha {pleft} g: {name} oqsilga boy, {pg} g."
    ],
+   "rep_dish": [
+    "Bu hafta {dish} {n} marta yeyilgan va yog'ning asosiy manbai bo'lgan. Uni taqiqlash shart emas — ba'zida {alt} tanlab ko'ring.",
+    "Haftalik yog'ning katta qismi {dish}dan ({n} marta) keldi. Vaqti-vaqti bilan {alt} muqobil variant bo'lishi mumkin.",
+    "{dish} haftada {n} marta — yog' shu taomdan eng ko'p keldi. Yaxshi almashtirish: ba'zan {alt}.",
+    "Yog' bo'yicha asosiy manba — {dish}, bu hafta {n} marta. Haftada bir-ikki marta uni {alt} bilan almashtirish mumkin.",
+    "{dish} sizga yoqishi tushunarli ({n} marta); yog'ni kamaytirish uchun goho {alt} variantini qo'shing."
+   ],
    "rt_a": [
     "Yog' maqsaddan {x} g ko'p",
     "Yog': +{x} g ortiqcha",
@@ -1178,6 +1381,69 @@
     "Kunning manzarasi hali to'liq emas. Yana {n} ta ovqatdan so'ng tahlil qilaman.",
     "Yana {n} ta ovqat kiritilgach, bugungi tarkib bo'yicha tavsiya beraman.",
     "Hozircha ma'lumot oz. Yana {n} ta ovqat qo'shilsa, kun bo'yicha xulosa chiqaraman."
+   ],
+   "sw_flat": [
+    "Bu hafta vazn {dw} kg o'zgardi. Haftalik tebranishlar ko'pincha suv va ovqat hajmiga bog'liq, shuning uchun bir necha haftalik trendga qarang.",
+    "Vazndagi {dw} kg o'zgarish odatiy hol: organizmdagi suv miqdori kundan kunga farq qiladi. Natijani 3–4 hafta bo'yicha baholang.",
+    "{dw} kg farq — kichik o'zgarish; tuz, suyuqlik va ichakdagi ovqat vaznga ta'sir qiladi. Uzoq muddatli tendensiya muhimroq.",
+    "Haftalik natija: {dw} kg. Bir haftalik ma'lumot ishonchli emas; o'rtacha trendni bir necha hafta kuzatish aniqroq.",
+    "Vazn bu hafta deyarli o'zgarmadi yoki oshdi ({dw} kg). Bu ko'pincha suv bilan bog'liq — rejani davom ettiring va haftalar o'tib solishtiring."
+   ],
+   "sw_low": [
+    "{t} kundan {n} kunida kaloriya xavfsiz minimumdan past bo'ldi; juda kam yeyish natijani yaxshilamaydi.",
+    "{n} kun ({t} kundan) me'yordan ancha kam iste'mol qilindi — bu holsizlik va mushak yo'qotishiga olib kelishi mumkin.",
+    "Haftaning {n}/{t} kunida kaloriya juda past edi. Barqaror, yetarli ovqatlanish foydaliroq.",
+    "Xavfsiz chegaradan past kunlar: {n} ta, jami {t}. Ehtimol, ba'zi taomlar yozilmagandir.",
+    "Juda past kaloriya {t} kundan {n} tasida qayd etildi; keyingi hafta kamida me'yorning pastki chegarasiga yeting."
+   ],
+   "sw_mus": [
+    "Bu hafta vazn {dw} kg kamaydi, oqsil esa tez-tez yetmadi: shundan taxminan {a}–{b} kg mushak bo'lishi mumkin; me'yordagi oqsilda ehtimol {c}–{d} kg.",
+    "Vazn {dw} kg ga pasaydi. Oqsil yetishmagani sababli mushak qismi taxminan {a}–{b} kg bo'lishi mumkin, yetarli oqsilda esa taxminan {c}–{d} kg.",
+    "Yo'qotilgan {dw} kg ning taxminan {a}–{b} kg qismi mushak bo'lishi mumkin, chunki oqsil ko'p kun past edi; oqsil me'yorda bo'lsa, ehtimol {c}–{d} kg.",
+    "Haftalik o'zgarish: −{dw} kg. Oqsil yetishmagan kunlar ko'p bo'lgani uchun mushak yo'qotilishi taxminan {a}–{b} kg, oqsil yetarli bo'lsa ehtimol {c}–{d} kg.",
+    "Oqsil tez-tez maqsaddan past bo'ldi: {dw} kg ichida mushak taxminan {a}–{b} kg bo'lishi mumkin; yetarli oqsil bu qismni ehtimol {c}–{d} kg gacha kamaytiradi."
+   ],
+   "sw_mus_ok": [
+    "Bu hafta vazn {dw} kg tushdi va oqsil asosan yetarli edi, shuning uchun mushak ulushi ehtimol kichik — taxminan {c}–{d} kg.",
+    "Yo'qotilgan {dw} kg ning mushakka to'g'ri keladigan qismi taxminan {c}–{d} kg bo'lishi mumkin; yetarli oqsil bunga yordam bergan.",
+    "Oqsil ko'p kunlari me'yorda bo'ldi: {dw} kg kamayishning taxminan {c}–{d} kg i mushak bo'lishi ehtimol, bu kichik ulush.",
+    "Natija: −{dw} kg; yetarli oqsil tufayli mushak yo'qotilishi ehtimol kam, taxminan {c}–{d} kg.",
+    "Vaznning {dw} kg ga kamayishida mushak hissasi taxminan {c}–{d} kg bo'lishi mumkin — oqsilni shu darajada ushlab turing."
+   ],
+   "sw_now": [
+    "Bu hafta vazn kiritilmagan. Kaloriya tanqisligida yetarli oqsil mushakni saqlashga yordam beradi, shunda yo'qotilgan vaznning ko'proq qismi yog' bo'lishi mumkin.",
+    "Vazn yozuvi yo'q, shuning uchun umumiy eslatma: oqsil va kletchatka uzoq to'yintiradi, oqsil esa ozish paytida mushakni himoya qiladi.",
+    "Haftalik vazn ma'lumoti yo'q. Ma'lumki, yetarli oqsil bilan kamaygan vazn asosan yog' hisobiga bo'lishi ehtimoli yuqori.",
+    "Tarozida o'lchab, natijani kiriting — shunda mushak va yog' nisbatini taxminan baholaymiz. Hozircha: oqsil va tola to'yinishni ushlaydi.",
+    "Vazn qayd etilmagan. Umumiy tavsiya: kaloriya kam davrda har kuni yetarli oqsil iste'mol qiling va sabzavotni unutmang — bu to'yinishni yaxshilaydi."
+   ],
+   "sw_ok": [
+    "Bu hafta {t} kundan {n} kunida kaloriya reja doirasida bo'ldi — yaxshi natija.",
+    "Kaloriya bo'yicha zo'r: {n} kun ({t} kundan) maqsadga mos.",
+    "{n} kun me'yorda, jami {t} kundan; barqarorlik eng muhim omil.",
+    "Haftalik xulosa: {t} kundan {n} tasida kaloriya rejaga to'g'ri keldi. Davom eting.",
+    "Kaloriyani nazorat qilish yaxshi ketmoqda: {n}/{t} kun reja ichida."
+   ],
+   "sw_over": [
+    "{t} kundan {n} kunida kaloriya rejadan yuqori bo'ldi. Qaysi taomlar sabab bo'lganini ko'rib chiqish foydali.",
+    "Bu hafta {n} kun ({t} kundan) me'yordan oshdi; kichik tuzatishlar yetarli bo'lishi mumkin.",
+    "Kaloriya ortiqcha bo'lgan kunlar soni: {n} ta, jami {t}. Kechki porsiyalarga e'tibor bering.",
+    "{n}/{t} kun maqsaddan yuqori — bu normal holat, asosiysi haftalik o'rtacha.",
+    "Ortiqcha kunlar {t} tadan {n} ta; ovqatni oldindan rejalash yordam berishi mumkin."
+   ],
+   "sw_tarkib": [
+    "Haftalik tahlil: oqsil {p} kun yetishmadi, yog' {f} kun oshdi (jami {t} kun). Endi e'tiborni tarkibga qaratsa bo'ladi.",
+    "{t} kunning {p} tasida oqsil past, {f} tasida yog' yuqori edi; tarkibni yaxshilash navbatdagi maqsad.",
+    "Makrolar: oqsil maqsaddan past — {p} kun, yog' maqsaddan yuqori — {f} kun ({t} kundan). Navbatdagi vazifa — nisbatlarni tekislash.",
+    "Oqsil {p}, yog' esa {f} kun me'yordan chetga chiqdi ({t} kun ichida); keyingi bosqichda shularga ishlaymiz.",
+    "Kaloriyadan tashqari tarkib ham muhim: {t} kundan {p} kun oqsil yetarli emas, {f} kun yog' ortiq."
+   ],
+   "sw_tarkib_ok": [
+    "Bu hafta oqsil va yog' ko'pchilik kunlarda me'yor ichida bo'ldi — tarkib yaxshi.",
+    "Ovqat tarkibi asosan muvozanatli: oqsil yetarli, yog' ortiqcha emas edi.",
+    "Haftaning aksariyat kunlarida makrolar maqsadga mos keldi. Shu tarzda davom eting.",
+    "Tarkib bo'yicha natija yaxshi: oqsil va yog' odatda belgilangan doirada.",
+    "Ko'p kunlari oqsil yetarli, yog' esa normada bo'ldi — bu to'yinish va mushaklar uchun foydali."
    ],
    "t_dam": [
     "Dam olish kunlari kaloriya ko'proq. Shanba-yakshanba uchun bitta oddiy qoida yetadi, masalan, shirinlik bir marta.",
@@ -1498,6 +1764,55 @@
     "Калории в тот день ушли погулять на {x} ккал. Дорога продолжается, всё в порядке.",
     "В марафоне один медленный километр ничего не решает — тут всего лишь +{x} ккал."
    ],
+   "ef_a": [
+    "Жиры сегодня гуляют на широкую ногу (+{x} г): сытость от них уходит быстро, а к вечеру аппетит может вернуться с друзьями.",
+    "Лишние {x} г жира съедают калории с аппетитом, а сытость оставляют на потом — вечером, вероятно, снова захочется есть.",
+    "+{x} г жира: кошелёк калорий пустеет, а аппетит всё ещё может спрашивать «а где ужин?».",
+    "Сегодня жиры перетянули одеяло (+{x} г): калории потрачены, а сытость, похоже, опоздала на поезд.",
+    "Жирное блюдо (+{x} г жира) обаятельно, но верность сытости не хранит — вечерний перекус, вероятно, уже строит планы."
+   ],
+   "ef_b": [
+    "Углеводы сегодня запустили ракету, но без белка посадка будет быстрой — аппетит может вернуться раньше.",
+    "Команда хлеба и сладкого победила, белок просидел на скамейке: энергия вспыхнет и, вероятно, быстро погаснет.",
+    "Углеводы — как сухие дрова: пламя высокое, тепла ненадолго, и аппетит может снова напомнить о себе.",
+    "Тарелка сегодня склонилась к сладкому, а мышцы, вероятно, так и ждут посылку с белком.",
+    "Углеводы дарят быстрый кайф, белок — тихий охранник сытости; без него она может уйти в отпуск пораньше."
+   ],
+   "ef_c": [
+    "Вечер уже наступил, а белок всё ещё должен {p} г; при дефиците калорий мышцы могут обидеться, что про них забыли.",
+    "{p} г белка застряли в пробке — без них в уходящих килограммах, вероятно, окажется и часть мышц.",
+    "Вечерний дежурный белок недосчитался {p} г: мышцы волнуются, да и сытость может оказаться неполной.",
+    "{p} г белка так и не купили билет; в дни дефицита без него мышцы могут собрать чемоданы.",
+    "До вечернего финиша белку не хватает {p} г — охрана мышц, похоже, работает не в полном составе."
+   ],
+   "ef_d": [
+    "Калории на месте, но {sh}% из них забрал жир — белку и клетчатке, похоже, не досталось стульев.",
+    "Жир сегодня владеет {sh}% калорийной квартиры: остальным жильцам — белку и овощам — может быть тесновато.",
+    "{sh}% тарелки ушло жиру; сытость такую монополию, вероятно, не одобряет.",
+    "Счёт сходится, а состав однобокий: {sh}% жира, белок и зелень, похоже, остались в очереди.",
+    "Жир сегодня держит {sh}% акций; в долгую сердцу такой директор может не понравиться."
+   ],
+   "fx_carb": [
+    "Углеводы — на перерыв, белок — на смену: {fix}.",
+    "После сладкого праздника — серьёзный гость: {fix}, и сытость скажет спасибо.",
+    "Пусть хлебушек уступит очередь белку: {fix} выровняют тарелку.",
+    "Вечернее меню переписано: {fix}, а десерт — в другой раз.",
+    "Вечер реванша белка и зелени: {fix}."
+   ],
+   "fx_fat": [
+    "Спасательная команда на остаток дня: {fix} — без жира, зато геройски.",
+    "Успокоительный план после жирного: {fix}. Тарелка переведёт дух.",
+    "Теперь очередь лёгкой весовой категории: на сцену выходят {fix}.",
+    "Вечерний раздел «порядок и дисциплина»: {fix}.",
+    "После жирного шума — тихая музыка: {fix}, и сытость, и баланс."
+   ],
+   "fx_prot": [
+    "Такси до белкового финиша подано: {fix}.",
+    "Вечерний герой готов: {fix} закроют белковую брешь.",
+    "Вечерний подарок для мышц: {fix}.",
+    "Пополняем белковую казну: {fix} — и готово.",
+    "Финальный аккорд: {fix}, и таблица белка красиво закрыта."
+   ],
    "g_day": [
     "Солнце в зените, а обед уже стучится в дверь.",
     "Начался второй тайм дня, и обед — главный нападающий!",
@@ -1658,6 +1973,20 @@
     "Белок работал с рвением через край: +{x} г. Тревожиться незачем, пусть общий счёт уложится в рамки.",
     "Белок остался на продлёнку: +{x} г. Это не беда, только загляните на калорийные часы.",
     "Белок пришёл в гости с подарком: +{x} г. Спасибо, но калорийный кошелёк тоже посчитаем."
+   ],
+   "pt_fat": [
+    "По вашим данным, после жирного дня следующий день {k} раз из {n} тоже говорил «продолжаем банкет».",
+    "Немного детективной работы: по вашим данным, на следующий день после жирного {k} из {n} раз план уплывал.",
+    "Жирный день передаёт привет завтрашнему — по вашим данным, так было в {k} случаях из {n}.",
+    "По вашим данным есть закономерность: после щедрого на жир дня аппетит наутро шалил {k}/{n} раз.",
+    "Статистика раскрыла секрет: по вашим данным, за жирным днём {k} раз из {n} шёл день сверх плана."
+   ],
+   "pt_prot": [
+    "По вашим данным, в дни с хорошим белком ужин обычно скромнее на {x} ккал — белок держит вечерний аппетит в узде.",
+    "Белок — успокоительное для ужина: по вашим данным, когда его хватает, вечерняя тарелка легче на {x} ккал.",
+    "Любопытный факт по вашим данным: в белковые дни вечером уходило на {x} ккал меньше.",
+    "Белок работает днём — вечером вы отдыхаете: по вашим данным, ужин компактнее на {x} ккал.",
+    "Тайная закономерность, по вашим данным: белок в норме — вечерний стол примерно на {x} ккал скромнее."
    ],
    "q_full": [
     "Что докладывает желудок: вы сыты?",
@@ -1827,6 +2156,13 @@
     "Белковая сокровищница богатеет: {name}, {pg} г. Сундук заполнится через {pleft} г.",
     "Ещё одна ступенька белковой лестницы: {name}, {pg} г. До вершины {pleft} г."
    ],
+   "rep_dish": [
+    "{dish} — гость недели: {n} визитов и первое место по жирам. Может, иногда на сцену выйдет {alt}?",
+    "Звезда недели — {dish}: {n} выходов на сцену и главный источник жира. Пусть иногда и {alt} получит роль.",
+    "{dish} и жир приходили вместе {n} раз. Время от времени дайте шанс и такому варианту: {alt}.",
+    "Самый верный гость недели — {dish} ({n} раз), и жир тоже от этого гостя. Никаких запретов, просто иногда хорош и {alt}.",
+    "У блюда «{dish}» {n} концертов за неделю и главная партия по жирам; в следующей программе может появиться {alt}."
+   ],
    "rt_a": [
     "Жиры на вечеринке: +{x} г",
     "Спидометр жиров: +{x} г",
@@ -1903,6 +2239,69 @@
     "Сейчас я зритель в зале. Записей до моей рецензии: {n}.",
     "В моей таблице пустых клеток: {n}. Заполните их — и сразу разберу день.",
     "Снимок дня ещё размытый: до резкости записей — {n}."
+   ],
+   "sw_flat": [
+    "Весы гуляют около {dw} кг; чаще всего это вода и вчерашний плов внутри — подождите общей картины.",
+    "{dw} кг — весы на этой неделе пошутили. Вода и поздний ужин тоже весят; тренд виден за несколько недель.",
+    "Цифра на весах сдвинулась на {dw} кг, только и всего: вода вносит свою лепту, настоящее направление покажут несколько недель.",
+    "Весы на этой неделе упрямились ({dw} кг). Вода и соль любят такие фокусы — смотрите на дистанцию подлиннее.",
+    "{dw} кг: у весов переменчивое настроение. Оценивайте не одну неделю, а тренд за несколько."
+   ],
+   "sw_low": [
+    "В {n} из {t} дней тарелка была слишком скромной; в соревновании «кто меньше съест» призов не дают.",
+    "{n} дней из {t} еду экономили слишком строго — организм может сказать «задержали зарплату».",
+    "На этой неделе {n}/{t} дней еды было совсем мало. Меньше — не всегда лучше!",
+    "{n} из {t} дней калории ушли в отпуск; пора вернуть их на работу.",
+    "Экономия — дело хорошее, но {n} дней из {t} это перебор: без топлива далеко не уедешь."
+   ],
+   "sw_mus": [
+    "Весы показали −{dw} кг, но белок часто опаздывал: примерно {a}–{b} кг могли составить мышцы (с белком — около {c}–{d} кг).",
+    "Минус {dw} кг! Но белок частенько прогуливал: вероятно, примерно {a}–{b} кг пришлись на мышцы; при норме белка было бы около {c}–{d} кг.",
+    "Вес ушёл на {dw} кг, а мышцы так и ждали белка: примерно {a}–{b} кг могли быть их, с белком — вероятно, {c}–{d} кг.",
+    "{dw} кг помахали рукой; из-за нехватки белка примерно {a}–{b} кг могли быть мышцами, при достатке — где-то {c}–{d} кг.",
+    "Весы порадовали: −{dw} кг. Без белка мышцы, похоже, тоже собрали вещи — примерно {a}–{b} кг, а с белком было бы примерно {c}–{d} кг."
+   ],
+   "sw_mus_ok": [
+    "Весы показали −{dw} кг, а белок стоял на посту — мышечная доля, вероятно, маленькая, примерно {c}–{d} кг.",
+    "Минус {dw} кг и образцовое дежурство белка: мышцы, похоже, почти все на месте (примерно {c}–{d} кг).",
+    "{dw} кг попрощались, а мышцы стояли за белковым щитом: их ушло, вероятно, всего {c}–{d} кг.",
+    "Белок на этой неделе был отличным охранником: из {dw} кг мышц ушло, похоже, лишь {c}–{d} кг.",
+    "Белок не прогуливал, поэтому среди ушедших {dw} кг мышцы в меньшинстве — примерно {c}–{d} кг."
+   ],
+   "sw_now": [
+    "Весы на этой неделе были в отпуске. Напомним: при дефиците белок — охранник мышц, а белок с клетчаткой держат аппетит в мире.",
+    "Записей веса нет — весы спрятались. При достатке белка уходящие килограммы, вероятно, больше идут из жира.",
+    "Свидания с весами на этой неделе не было. Запомните: белок говорит мышцам «останьтесь», а клетчатка аппетиту — «не спеши».",
+    "Весы молчат. Зато правило говорит: при дефиците белок бережёт мышцы, а клетчатка и белок продлевают сытость.",
+    "Вес не записан — не дайте весам запылиться! Белок — страж мышц, овощи — друзья сытости."
+   ],
+   "sw_ok": [
+    "По калориям {n} из {t} дней — точно в цель. Молодец, снайпер!",
+    "{n}/{t} дней в плане: золотая медаль за калорийную дисциплину ваша.",
+    "Калории на этой неделе вели себя послушно {n} дней из {t} — отличная работа!",
+    "{n} дней из {t} расчёт шёл как швейцарские часы. Молодец!",
+    "Дружба с калориями крепнет: {n} из {t} дней по плану. Так держать!"
+   ],
+   "sw_over": [
+    "Калории {n} дней из {t} перепрыгнули планку — спортивный дух есть, но не в ту сторону.",
+    "{n} дней из {t} тарелка была щедрой. На следующей неделе чуть поэкономнее.",
+    "{n} раз за {t} дней калории говорили «ещё кусочек». Ничего страшного, едем дальше.",
+    "Дни сверх плана: {n}/{t}. Похоже, сезон свадеб и гостей.",
+    "В {n} из {t} дней калории играли в овертайме; новая неделя — новая игра."
+   ],
+   "sw_tarkib": [
+    "По составу: белок опаздывал {p} дней из {t}, жир торопился {f} дней — следующий уровень где-то тут.",
+    "Белок прогулял {p} дней, жир перестарался {f} дней (из {t}); пора навести порядок в составе.",
+    "Отчёт недели: белок дремал {p}/{t}, жир кутил {f}/{t}. Следующий шаг — поменять их ролями.",
+    "С калориями договорились, теперь состав: белок отставал {p} дней, жир перебирал {f} дней (из {t}).",
+    "За {t} дней белка не хватило {p} раз, жир перелился {f} раз — открыт новый уровень: состав."
+   ],
+   "sw_tarkib_ok": [
+    "Белок с жиром на этой неделе жили как дружные соседи — почти всегда в норме.",
+    "Команда макросов сыграла дисциплинированно: судье свистеть не пришлось.",
+    "Неделя по составу прошла спокойно — и белок, и жир держались своей полосы.",
+    "Баланс на тарелке на этой неделе — как у циркового канатоходца. Браво!",
+    "Белок и жир закрыли неделю почти на пятёрку."
    ],
    "t_dam": [
     "Выходные приходят к калориям в гости и остаются с ночёвкой. Выручит одно правило на субботу и воскресенье: сладкое — разок.",
@@ -2221,6 +2620,55 @@
     "В тот день +{x} ккал. Можно спокойно продолжать.",
     "Калории в этот день выше нормы на {x} ккал — повода для беспокойства нет."
    ],
+   "ef_a": [
+    "Жиров на {x} г больше нормы: в такие дни сытость обычно проходит быстрее, и вечером вероятнее захочется есть.",
+    "Избыток жира ({x} г сверх нормы) даёт много калорий, но насыщает ненадолго — аппетит вечером может усилиться.",
+    "Лишние {x} г жира занимают большую часть калорий, при этом могут насыщать хуже, чем белок и клетчатка.",
+    "Если насыщенных жиров регулярно много, в долгосрочной перспективе это не полезно для сердца и сосудов; сегодняшние +{x} г можно уравновесить позже.",
+    "Когда жира на {x} г больше нормы, вероятность переесть на следующий день выше; это наблюдение, а не диагноз."
+   ],
+   "ef_b": [
+    "Когда углеводов много, а белка мало, энергия быстро поднимается, но сытость обычно уходит раньше.",
+    "При недостатке белка насыщение может быть слабее, а мышцы получают меньше строительного материала.",
+    "Сегодня углеводы выше нормы, белок — ниже: такое сочетание часто сокращает период сытости.",
+    "Быстрые углеводы дают кратковременный подъём сил; белок в следующем приёме пищи, вероятно, продлит насыщение.",
+    "Нехватка белка может затруднить сохранение мышц, а избыток углеводов — ускорить возвращение аппетита."
+   ],
+   "ef_c": [
+    "Вечером белка по-прежнему не хватает {p} г: при дефиците калорий большая часть потерянного веса может прийтись на мышцы.",
+    "До нормы белка ещё {p} г; при дефиците достаточный белок помогает сохранить мышцы, иначе их потеря, вероятно, больше.",
+    "Белок сегодня ниже на {p} г — это может снизить сытость и затруднить сохранение мышечной массы.",
+    "Из-за нехватки {p} г белка вечерняя сытость может быть слабее, а доля мышц в снижении веса — примерно выше.",
+    "При сниженной калорийности белок особенно важен: сегодня не хватает {p} г, поэтому риск потери мышц немного выше."
+   ],
+   "ef_d": [
+    "Калорийность в норме, но {sh}% энергии пришлось на жиры: места для белка и клетчатки мало, насыщение может быть ниже.",
+    "Доля жиров — {sh}%, это много; если насыщенных жиров регулярно много, в долгосрочной перспективе это не лучше для сердца и сосудов.",
+    "Общие калории хорошие, но доля жира {sh}%: в такие дни белка и продуктов с клетчаткой, вероятно, меньше.",
+    "Жиры составили {sh}%; если добавить белка и овощей, сытость, скорее всего, улучшится.",
+    "Больше половины энергии ({sh}%) из жиров — день может оказаться менее сытным; завтра попробуйте увеличить долю белка и овощей."
+   ],
+   "fx_carb": [
+    "На остаток дня выберите белковое блюдо и овощи, например {fix}.",
+    "В следующем приёме пищи уменьшите углеводы и добавьте {fix} — так сытость продержится дольше.",
+    "Чтобы восполнить белок, подойдут {fix}.",
+    "Рекомендация на ужин: {fix} — это белок и клетчатка.",
+    "Вместо хлеба и сладкого сейчас лучше съесть {fix}, чтобы вернуть баланс."
+   ],
+   "fx_fat": [
+    "На остаток дня выберите что-то менее жирное, например {fix}.",
+    "Для баланса к следующему приёму пищи подойдут {fix}.",
+    "Ужин лучше собрать из лёгкого белка и овощей — хороший вариант: {fix}.",
+    "Сегодняшний избыток жира можно уравновесить так: {fix}.",
+    "Оставшиеся калории лучше отдать белку и клетчатке: хватит {fix}."
+   ],
+   "fx_prot": [
+    "Чтобы добрать белок вечером, подойдёт {fix}.",
+    "Добавьте к ужину {fix} — это приблизит вас к дневной цели по белку.",
+    "Хороший выбор для восполнения белка: {fix}.",
+    "Лёгкий вариант перед сном — {fix}: белок и сытость.",
+    "Для оставшегося белка, вероятно, будет достаточно: {fix}."
+   ],
    "g_day": [
     "Хорошего дня. Записывайте обед — так подсчёт будет точнее.",
     "Здравствуйте! Середина дня — не забывайте про воду.",
@@ -2381,6 +2829,20 @@
     "Белок выше цели на {x} г — как правило, это безопасно. Важно, чтобы калории остались в норме.",
     "Белка много. Для сытости это хорошо, но калории лучше держать в пределах нормы.",
     "На {x} г белка больше цели — повода для тревоги нет. Просто следите за балансом калорий."
+   ],
+   "pt_fat": [
+    "По вашим данным, после дней с превышением жиров калории на следующий день были выше плана в {k} случаях из {n}.",
+    "По вашим данным: из {n} дней с высоким жиром после {k} следующий день превышал калорийность — возможно, сытость уходила быстрее.",
+    "Наблюдение по вашим данным: день после жирного {k}/{n} раз выходил за цель. Белковый завтрак на следующий день, вероятно, поможет.",
+    "По вашим данным видна связь: в {k} из {n} случаев за днём с избытком жиров следовало превышение калорий.",
+    "Личный анализ (по вашим данным): после дня с большим количеством жира потребление назавтра было выше в {k} случаях из {n}."
+   ],
+   "pt_prot": [
+    "По вашим данным, в дни, когда цель по белку достигнута, ужин в среднем был на {x} ккал меньше.",
+    "По вашим данным, при достаточном белке вечерний приём пищи в среднем меньше на {x} ккал — белок продлевает сытость.",
+    "Наблюдение (по вашим данным): в дни с нормой белка вечером вы съедали в среднем на {x} ккал меньше.",
+    "По вашим данным, при достаточном белке вечернее потребление примерно на {x} ккал ниже; белок днём это поддерживает.",
+    "По вашим данным, ужин в дни с достаточным белком в среднем на {x} ккал меньше, чем в остальные дни."
    ],
    "q_full": [
     "Чувствуете ли вы сытость после сегодняшней еды?",
@@ -2550,6 +3012,13 @@
     "Шаг к цели: +{pg} г белка ({name}), осталось {pleft} г.",
     "Богато белком: {name}, {pg} г. До сегодняшней цели {pleft} г."
    ],
+   "rep_dish": [
+    "На этой неделе {dish} — {n} раз и основной источник жиров. Отказываться не нужно — иногда попробуйте вариант: {alt}.",
+    "Большая часть жиров за неделю — из блюда «{dish}» ({n} раз). Время от времени альтернативой может стать {alt}.",
+    "{dish} — {n} раз за неделю, и именно оттуда больше всего жира. Хорошая замена иногда: {alt}.",
+    "Главный источник жиров — {dish}, на этой неделе {n} раз. Раз-другой в неделю это блюдо можно заменить: {alt}.",
+    "Понятно, что {dish} нравится ({n} раз); чтобы снизить жиры, иногда добавляйте вариант: {alt}."
+   ],
    "rt_a": [
     "Жиры выше цели на {x} г",
     "Жиров на {x} г больше",
@@ -2626,6 +3095,69 @@
     "Картина дня пока неполная. Записей до анализа: {n}.",
     "Когда записей станет больше (осталось: {n}), я дам рекомендацию по составу дня.",
     "Данных пока мало. Добавьте записи — осталось {n}, и я подведу итог дня."
+   ],
+   "sw_flat": [
+    "За неделю вес изменился на {dw} кг. Недельные колебания часто связаны с водой и объёмом еды, поэтому ориентируйтесь на тренд за несколько недель.",
+    "Изменение веса на {dw} кг — обычное дело: количество воды в организме меняется день ото дня. Результат лучше оценивать за 3–4 недели.",
+    "Разница {dw} кг небольшая; соль, жидкость и содержимое кишечника влияют на вес. Долгосрочная тенденция важнее.",
+    "Итог недели: {dw} кг. Данные одной недели ненадёжны, средний тренд за несколько недель точнее.",
+    "Вес почти не изменился или вырос ({dw} кг). Часто это вода — продолжайте план и сравнивайте спустя пару недель."
+   ],
+   "sw_low": [
+    "В {n} днях из {t} калорийность была ниже безопасного минимума; есть слишком мало — не значит лучше.",
+    "{n} дней из {t} питание было заметно ниже нормы — это может вести к слабости и потере мышц.",
+    "Калории были очень низкими {n} дней из {t}. Стабильное и достаточное питание полезнее.",
+    "Дней ниже безопасной границы: {n} из {t}. Возможно, часть блюд не записана.",
+    "Очень низкая калорийность отмечена в {n} из {t} дней; на следующей неделе старайтесь есть хотя бы по нижней границе нормы."
+   ],
+   "sw_mus": [
+    "За неделю вес снизился на {dw} кг, при этом белка часто не хватало: примерно {a}–{b} кг из них могли быть мышцы; при нормальном белке — вероятно, {c}–{d} кг.",
+    "Ваш вес уменьшился на {dw} кг. Из-за недостатка белка доля мышц может составлять примерно {a}–{b} кг, при достаточном белке — примерно {c}–{d} кг.",
+    "Из потерянных {dw} кг примерно {a}–{b} кг могли прийтись на мышцы, так как белок много дней был низким; при норме белка — вероятно, {c}–{d} кг.",
+    "Изменение за неделю: −{dw} кг. Белка не хватало во многие дни, поэтому потеря мышц может быть примерно {a}–{b} кг, а при норме — вероятно, {c}–{d} кг.",
+    "Белок часто был ниже цели: в {dw} кг мышцы могут занимать примерно {a}–{b} кг; достаточный белок, вероятно, снизил бы эту долю до {c}–{d} кг."
+   ],
+   "sw_mus_ok": [
+    "На этой неделе вес снизился на {dw} кг, белка в основном хватало, поэтому доля мышц, вероятно, небольшая — примерно {c}–{d} кг.",
+    "Из потерянных {dw} кг на мышцы может приходиться примерно {c}–{d} кг; достаточный белок этому помог.",
+    "Белок большинство дней был в норме: из снижения на {dw} кг мышцы, вероятно, составляют лишь около {c}–{d} кг.",
+    "Итог: −{dw} кг; благодаря достаточному белку потеря мышц, вероятно, невелика, примерно {c}–{d} кг.",
+    "При снижении веса на {dw} кг мышечная часть может быть примерно {c}–{d} кг — держите белок на том же уровне."
+   ],
+   "sw_now": [
+    "На этой неделе вес не внесён. При дефиците калорий достаточный белок помогает сохранить мышцы, так что большая часть потерянного веса может приходиться на жир.",
+    "Записей веса нет, поэтому общее напоминание: белок и клетчатка дольше насыщают, а белок при снижении веса защищает мышцы.",
+    "Данных о весе за неделю нет. Известно, что при достаточном белке снижение веса, вероятно, в основном идёт за счёт жира.",
+    "Взвесьтесь и внесите результат — тогда примерно оценим соотношение мышц и жира. Пока: белок и клетчатка поддерживают сытость.",
+    "Вес не отмечен. Общая рекомендация: в период сниженной калорийности ежедневно получайте достаточно белка и не забывайте об овощах."
+   ],
+   "sw_ok": [
+    "На этой неделе калории были в рамках плана {n} дней из {t} — хороший результат.",
+    "Калории — молодец: {n} дней из {t} соответствовали цели.",
+    "{n} дней в норме из {t}; стабильность — главное.",
+    "Итог недели: в {n} из {t} дней калорийность совпала с планом. Продолжайте.",
+    "Контроль калорий идёт хорошо: {n}/{t} дней в пределах плана."
+   ],
+   "sw_over": [
+    "В {n} днях из {t} калории были выше плана. Полезно посмотреть, какие блюда к этому привели.",
+    "На этой неделе {n} дней из {t} выше нормы; вероятно, хватит небольших корректировок.",
+    "Количество дней с избытком калорий: {n} из {t}. Обратите внимание на вечерние порции.",
+    "{n}/{t} дней выше цели — это нормально, важнее среднее за неделю.",
+    "Дней с превышением — {n} из {t}; заранее спланированное меню может помочь."
+   ],
+   "sw_tarkib": [
+    "Итог недели: белка было мало {p} дней, жиров больше нормы — {f} дней (всего {t}). Теперь можно сосредоточиться на составе.",
+    "В {p} из {t} дней белок был ниже цели, в {f} — жиры выше; улучшение состава — следующая задача.",
+    "Макросы: белок ниже цели — {p} дней, жиры выше цели — {f} дней из {t}. Дальше — выравнивать пропорции.",
+    "Белок и жиры отклонялись от нормы {p} и {f} дней соответственно (из {t}); над этим и поработаем дальше.",
+    "Кроме калорий важен и состав: из {t} дней белка недоставало {p}, жиров было слишком много {f}."
+   ],
+   "sw_tarkib_ok": [
+    "На этой неделе белок и жиры в большинство дней были в пределах нормы — состав хороший.",
+    "Питание в основном сбалансировано: белка хватало, жиров не было в избытке.",
+    "В большинство дней недели макронутриенты соответствовали цели. Продолжайте в том же духе.",
+    "По составу результат хороший: белок и жиры обычно в заданных рамках.",
+    "Чаще всего белка было достаточно, а жиры — в норме; это хорошо для сытости и мышц."
    ],
    "t_dam": [
     "В выходные калорий больше. На субботу и воскресенье достаточно одного простого правила, например сладкое один раз.",

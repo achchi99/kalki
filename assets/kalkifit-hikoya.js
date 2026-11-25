@@ -67,8 +67,9 @@
         + '<div class="hk-mb-t" role="img" aria-label="' + esc(t({ p: 'mP', f: 'mF', c: 'mC' }[r.k]) + ': ' + t('wrMbOf', { v: nf(x.v), g: nf(x.g) }) + ', ' + pctS(x.pct)) + '"><i class="f" style="--w:' + r.fill.toFixed(4) + '"></i>' + (r.over > 0 ? '<i class="o" style="--l:' + (r.norm * 100).toFixed(2) + '%;--w:' + r.over.toFixed(4) + '"></i>' : '') + '<b class="n" style="left:' + (r.norm * 100).toFixed(2) + '%"></b></div></div>'; }).join('') + '</div>';
     if (line) h += '<p class="hk-sub hk-mline">' + esc(line) + '</p>';
     var dl = ['p'].concat(top && top !== 'p' ? [top] : []).filter(function (k) { return V[k] && V[k].g; });
+    var hasSw = o.sw && o.sw.length && cls !== 'run'; if (hasSw) dl = [];          // v103: hafta xulosasi tarkibni (oqsil/yog' kunlari) aytadi — kunlar pilyulalari takrorlanmaydi
     h += dl.map(function (k) { return '<p class="hk-pill">' + svgI(k === 'p' ? 'shield' : 'target') + '<span>' + esc(t('wrMbDays_' + k, { n: V[k].ok, t: V[k].n })) + '</span></p>'; }).join('');
-    if (o.sw && o.sw.length && cls !== 'run') h += '<div class="hk-sw">' + o.sw.slice(0, 3).map(function (l) { return '<p class="hk-sub">' + esc(l) + '</p>'; }).join('') + '</div>';          // v103: hafta xulosasi (kaloriya · tarkib · oqibat)
+    if (o.sw && o.sw.length && cls !== 'run') h += '<div class="hk-sw">' + o.sw.slice(1, 3).map(function (l) { return '<p class="hk-sub">' + esc(l) + '</p>'; }).join('') + '</div>';          // v103: hafta xulosasi (kaloriya · tarkib · oqibat)
     if (o.fb && o.fb.n) h += '<p class="hk-sub hk-fb">' + esc(t('fbWk', { v: o.fb.v, g: o.fb.g })) + '</p>';          // v102: kletchatka — kuniga o'rtacha
     return h;
   }

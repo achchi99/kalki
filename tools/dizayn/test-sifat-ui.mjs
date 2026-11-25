@@ -18,7 +18,7 @@ try {
     ok(lang + ': halqa yonida sifat bali ' + ch + '; «i» — 5 komponent va ochkolari, formula');
     await p.keyboard.press('Escape'); await p.waitForTimeout(400);
     /* 2. maslahatchi kartasi: ta'sir + aniq to'g'rilash */
-    const card = await p.locator('#mslCard').count() ? await txt(p, '#mslB') : ''; if (card) { assert.match(card, lang === 'ru' ? /\d+ г [а-яё]/ : /\d+ g [a-z']/i, 'aniq taom va gramm: ' + card); ok(lang + ': maslahatchi kartasi — «' + card.slice(0, 120) + '…»'); }
+    const qid = await p.locator('#mslCard').count() ? await p.locator('#mslCard').getAttribute('data-q') : null, card = /^[abcd]$/.test(qid || '') ? await txt(p, '#mslB') : ''; if (card) { assert.match(card, lang === 'ru' ? /\d+ г [а-яё]/ : /\d+ g [a-z']/i, 'aniq taom va gramm: ' + card); ok(lang + ': maslahatchi kartasi — «' + card.slice(0, 120) + '…»'); }
     /* 3. Tahlil */
     await p.click('[data-act=tab][data-v=history]'); await p.waitForSelector('#tlSq'); assert.equal(await p.locator('#tlSq .sq-ch .bg').count(), 4, '4 hafta'); assert.ok(await p.locator('#tlSq .sq-ch .q').count() >= 2);
     const sw = await txt(p, '#tlSw'); assert.match(sw, lang === 'ru' ? /(калори|план)/i : /(kaloriya|reja)/i); assert.match(sw, lang === 'ru' ? /белк/i : /oqsil/i); assert.match(sw, /0,\d/, 'mushak diapazoni: ' + sw); assert.ok(/(qozon|казан)/i.test(sw), 'takroriy taom: ' + sw);
