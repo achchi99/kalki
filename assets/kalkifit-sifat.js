@@ -31,23 +31,45 @@
   }
   function hafta(days) { var l = (days || []).map(kun).filter(function (r) { return r.full && r.ball != null; }); return { ball: l.length ? Math.round(l.reduce(function (a, r) { return a + r.ball; }, 0) / l.length) : null, n: l.length }; }
   /* haftalik xulosa: days — to'liq kunlar ({kcal, lim, floor, p, gp, f, gf}); o.weights [{d,kg}], o.end (YYYY-MM-DD), o.addDays(d, n) → maslahatchi kalitlari + raqamlar */
-  function avgIn(ws, a, b) { var s = 0, n = 0; (ws || []).forEach(function (w) { if (w.d >= a && w.d <= b) { s += num(w.kg); n++; } }); return n ? s / n : null; }
+  /* v104: vazn TRENDI — haftalik farq emas (suv ±1 kg). Oxirgi TW kun ichidagi yozuvlar, kamida T_N ta va T_SPAN kun oralig'ida → chiziqli regressiya (eng kichik kvadratlar);
+     o'zgarish = qiyalik × oraliq. Mushak ulushi faqat trend bo'yicha yo'qotish ≥ T_MIN kg bo'lsa. docs/ovqat-sifati.md */
   var MUS_LOW = [0.25, 0.30], MUS_OK = [0.10, 0.15];          // oqsil kam / yetarli bo'lganda yo'qotilgan vaznning mushak ulushi (taxminiy diapazon; docs/ovqat-sifati.md)
-  function r1(x) { return Math.max(0.1, Math.round(x * 10) / 10); }
+  var TW = 28, T_N = 4, T_SPAN = 14, T_MIN = 0.5;
+  function dn(d) { var m = /^(\d{4})-(\d\d)-(\d\d)/.exec(d || ''); return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) / 864e5 : NaN; }
+  function trend(ws, end, A) {
+    var from = A ? A(end, -(TW - 1)) : '', by = {};
+    (ws || []).forEach(function (w) { var kg = num(w && w.kg); if (w && w.d >= from && w.d <= end && kg > 0) by[w.d] = kg; });          // bir kunda bir nechta — oxirgisi
+    var L = Object.keys(by).sort(); if (!L.length) return { n: 0 };
+    var span = Math.round(dn(L[L.length - 1]) - dn(L[0])); if (L.length < T_N || span < T_SPAN) return { n: L.length, span: span };
+    var x0 = dn(L[0]), X = L.map(function (d) { return dn(d) - x0; }), Y = L.map(function (d) { return by[d]; }), n = L.length, mx = 0, my = 0, sxx = 0, sxy = 0, i;
+    for (i = 0; i < n; i++) { mx += X[i] / n; my += Y[i] / n; }
+    for (i = 0; i < n; i++) { sxx += (X[i] - mx) * (X[i] - mx); sxy += (X[i] - mx) * (Y[i] - my); }
+    var k = sxx ? sxy / sxx : 0; return { n: n, span: span, from: L[0], to: L[n - 1], slope: k, dw: k * span };
+  }
+  var TXT = { uz: { oz: 'juda oz', upto: '{b} kg gacha', one: '~{a} kg', rng: '{a}–{b} kg' }, ru: { oz: 'совсем немного', upto: 'до {b} кг', one: '~{a} кг', rng: '{a}–{b} кг' } };
+  function c1(x) { return String(Math.round(x * 10) / 10).replace('.', ','); }          // 0,1 kg aniqlik — 0,06 kabi soxta aniqlik yo'q
+  function diap(x, y, lang) {
+    var T = TXT[lang] || TXT.uz, a = Math.round(x * 10) / 10, b = Math.round(y * 10) / 10, f = function (s) { return s.replace('{a}', c1(a)).replace('{b}', c1(b)); };
+    if (y < 0.1) return T.oz; if (x < 0.1) return f(T.upto); return a === b ? f(T.one) : f(T.rng);
+  }
   function xulosa(days, o) {
-    o = o || {}; var t = (days || []).length, ok = 0, over = 0, low = 0, pKam = 0, fOshdi = 0;
-    (days || []).forEach(function (x) { var k = num(x.kcal), lim = num(x.lim); if (x.floor > 0 && k < x.floor) low++; else if (lim > 0 && k > lim * 1.1) over++; else ok++; if (x.gp > 0 && num(x.p) < x.gp * 0.9) pKam++; if (x.gf > 0 && num(x.f) >= x.gf * 1.15) fOshdi++; });
-    var out = { t: t, ok: ok, over: over, low: low, pKam: pKam, fOshdi: fOshdi, dw: null, mus: null, keys: [] }; if (!t) return out;
+    o = o || {}; var t = (days || []).length, ok = 0, over = 0, low = 0, pKam = 0, fOshdi = 0, pk = function (x) { return x.gp > 0 && num(x.p) < x.gp * 0.9; };
+    (days || []).forEach(function (x) { var k = num(x.kcal), lim = num(x.lim); if (x.floor > 0 && k < x.floor) low++; else if (lim > 0 && k > lim * 1.1) over++; else ok++; if (pk(x)) pKam++; if (x.gf > 0 && num(x.f) >= x.gf * 1.15) fOshdi++; });
+    var out = { t: t, ok: ok, over: over, low: low, pKam: pKam, fOshdi: fOshdi, dw: null, mus: null, tr: null, keys: [] }; if (!t) return out;
     out.keys.push(ok >= Math.ceil(t * 0.7) ? { k: 'sw_ok', d: { n: ok, t: t } } : over >= low ? { k: 'sw_over', d: { n: over, t: t } } : { k: 'sw_low', d: { n: low, t: t } });          // maqtov — kamida 70 % kun reja ichida
     out.keys.push(pKam || fOshdi ? { k: 'sw_tarkib', d: { p: pKam, f: fOshdi, t: t } } : { k: 'sw_tarkib_ok', d: {} });
-    var e = o.end, A = o.addDays, cur = e && A ? avgIn(o.weights, A(e, -6), e) : null, prev = e && A ? avgIn(o.weights, A(e, -13), A(e, -7)) : null;
-    if (cur != null && prev != null) {
-      var dw = Math.round((cur - prev) * 10) / 10; out.dw = dw; var lost = -dw, fmt = function (x) { return String(r1(x)).replace('.', ','); }, lo = function (x) { return String(Math.max(0.1, Math.floor(x * 10 + 1e-9) / 10)).replace('.', ','); }, hi = function (x) { return String(Math.max(0.1, Math.ceil(x * 10 - 1e-9) / 10)).replace('.', ','); };          // diapazon: pastki — pastga, yuqori — yuqoriga yaxlitlanadi
-      var rng = function (x, y) { var a = lo(x), b = hi(y); if (a === b) { a = String(Math.round(x * 100) / 100).replace('.', ','); b = String(Math.round(y * 100) / 100).replace('.', ','); } return [a, b]; };          // diapazon bir xil bo'lib qolsa — 2 xona
-      if (lost >= 0.2 && pKam * 2 >= t) { var R1 = rng(lost * MUS_LOW[0], lost * MUS_LOW[1]), R2 = rng(lost * MUS_OK[0], lost * MUS_OK[1]); out.mus = { a: R1[0], b: R1[1], c: R2[0], d: R2[1] }; out.keys.push({ k: 'sw_mus', d: Object.assign({ dw: fmt(lost) }, out.mus) }); }
-      else if (lost >= 0.2) { var R3 = rng(lost * MUS_OK[0], lost * MUS_OK[1]); out.mus = { c: R3[0], d: R3[1] }; out.keys.push({ k: 'sw_mus_ok', d: { dw: fmt(lost), c: out.mus.c, d: out.mus.d } }); }
-      else out.keys.push({ k: 'sw_flat', d: { dw: (dw > 0 ? '+' : '') + String(dw).replace('.', ',') } });
-    } else out.keys.push({ k: 'sw_now', d: {} });
+    var e = o.end, lang = o.lang === 'ru' ? 'ru' : 'uz', tr = e && o.addDays ? trend(o.weights, e, o.addDays) : { n: 0 }; out.tr = tr;
+    if (!tr.n) { out.keys.push({ k: 'sw_now', d: {} }); return out; }
+    if (tr.dw == null) { out.keys.push({ k: 'sw_kam', d: {} }, { k: 'sw_suv', d: {} }); return out; }
+    var dw = Math.round(tr.dw * 10) / 10, lost = -tr.dw, nd = tr.span + 1; out.dw = dw;
+    if (lost >= T_MIN) {
+      var TD = (o.trendDays || days || []).filter(function (x) { return !x.d || x.d >= tr.from && x.d <= tr.to; }), tp = 0;          // oqsil kam kunlar ulushi — SHU trend davri bo'yicha
+      TD.forEach(function (x) { if (pk(x)) tp++; }); out.pT = { k: tp, n: TD.length };
+      var cd = diap(lost * MUS_OK[0], lost * MUS_OK[1], lang);
+      if (TD.length && tp * 2 >= TD.length) { out.mus = { ab: diap(lost * MUS_LOW[0], lost * MUS_LOW[1], lang), cd: cd }; out.keys.push({ k: 'sw_mus', d: { n: nd, dw: c1(lost), ab: out.mus.ab, cd: cd } }); }
+      else { out.mus = { cd: cd }; out.keys.push({ k: 'sw_mus_ok', d: { n: nd, dw: c1(lost), cd: cd } }); }
+    } else out.keys.push({ k: 'sw_flat', d: { n: nd, dw: dw > 0 ? '+' + c1(dw) : dw < 0 ? '−' + c1(-dw) : '0' } });
+    out.keys.push({ k: 'sw_suv', d: {} });
     return out;
   }
   /* shaxsiy naqshlar (kamida 14 kunlik ma'lumot; faqat statistik ma'noli bo'lsa): days — sana bo'yicha tartiblangan to'liq kunlar ({d, kcal, lim, f, gf, p, gp, dinner}) */
@@ -74,5 +96,5 @@
     return (foods || []).filter(function (x) { return x !== f && !x.h && !x.tm && !x.custom && x.id !== f.id && (x.gr || [])[0] === g && x.t === f.t && num(x.f) <= num(f.f) * 0.7 && num(x.k) >= num(f.k) * 0.5 && num(x.p) >= 3; })
       .sort(function (a, b) { return (b.t === 'o' ? 1 : 0) - (a.t === 'o' ? 1 : 0) || (b.top ? 1 : 0) - (a.top ? 1 : 0) || num(a.f) - num(b.f); }).slice(0, n || 3);
   }
-  return { W: W, kun: kun, hafta: hafta, xulosa: xulosa, naqsh: naqsh, takror: takror, muqobil: muqobil, MUS_LOW: MUS_LOW, MUS_OK: MUS_OK };
+  return { W: W, kun: kun, hafta: hafta, xulosa: xulosa, naqsh: naqsh, takror: takror, muqobil: muqobil, MUS_LOW: MUS_LOW, MUS_OK: MUS_OK, trend: trend, diap: diap, T_MIN: T_MIN };
 });

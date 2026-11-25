@@ -527,11 +527,16 @@
     "Suratim hali xira: yana {n} ta taom — va kadr tiniqlashadi."
    ],
    "sw_flat": [
-    "Tarozi {dw} kg da sayr qilib yuribdi; bunga ko'pincha suv va kechki palov hajmi sabab, katta manzarani kuting.",
-    "{dw} kg — tarozi bu hafta hazillashdi. Suv va kechki palov ham og'irlik qiladi; trend esa haftalar davomida ko'rinadi.",
-    "Tarozi raqami {dw} kg ga qimirladi, xolos: suv ham o'z hissasini qo'shadi, haqiqiy yo'nalishni bir necha hafta ko'rsatadi.",
-    "Bu hafta tarozi qaysarlik qildi ({dw} kg). Suv va tuz shunday sirlar qiladi — uzoqroq masofaga qarang.",
-    "{dw} kg: tarozining kayfiyati o'zgaruvchan. Uni bir hafta emas, bir necha haftalik trendga qarab baholang."
+    "{n} kunlik chiziq {dw} kg da tinch suzmoqda. Tarozi o'ylanib qoldi, biz ham shoshmaymiz.",
+    "Grafik deyarli tekis: {dw} kg. Oqsil-soqchini joyida saqlang, burilish bo'lsa birinchi bo'lib ko'ramiz.",
+    "{dw} kg — chiziq dam olyapti ({n} kun). Xulosa chiqarishga hali erta.",
+    "Tarozi chizig'i {dw} kg atrofida aylanmoqda. Sabr qilamiz: haqiqiy yo'nalish haftalar o'tib ochiladi."
+   ],
+   "sw_kam": [
+    "Tarozi bilan hali yaxshi tanishmadik: chiziq uchun 2 haftada 4 ta uchrashuv kerak. Hozircha oqsil mushaklar soqchisi.",
+    "Grafikka nuqtalar yetishmayapti — chiziq chizish uchun ko'proq tortilish kerak. Ertalab, nonushtadan oldin tarozi kutadi!",
+    "Bir-ikki raqamdan yo'l xaritasi chiqmaydi. Yana bir necha tortilish — va yo'nalish o'zini ko'rsatadi.",
+    "Tarozi daftari hali yupqa. Haftada 2–3 sahifa qo'shing, keyin mushak va yog'ni chamalaymiz."
    ],
    "sw_low": [
     "{t} kundan {n} tasida likopcha juda kamtarin bo'ldi; kam yeyish musobaqasida sovrin yo'q.",
@@ -541,18 +546,16 @@
     "Tejamkorlik yaxshi, lekin {n} kun ({t} dan) haddan oshdi — tana yoqilg'isiz uzoq yurmaydi."
    ],
    "sw_mus": [
-    "Tarozi {dw} kg yengillashdi; oqsil kam kelgani uchun taxminan {a}–{b} kg mushak ham yo'lga chiqqan bo'lishi mumkin (oqsil bilan ~{c}–{d} kg).",
-    "−{dw} kg! Ammo oqsil ko'p kun dars qoldirdi: ehtimol, taxminan {a}–{b} kg mushak ham ketgan; oqsil me'yorda bo'lsa, {c}–{d} kg atrofida bo'lardi.",
-    "Vazn {dw} kg tushdi, biroq mushaklar oqsil kutib qolishdi: taxminan {a}–{b} kg ulardan bo'lishi mumkin, oqsil bilan esa ehtimol {c}–{d} kg.",
-    "{dw} kg xayr-xo'sh qildi; oqsil kamligi sababli uning taxminan {a}–{b} kg i mushak bo'lishi mumkin, yetarli oqsilda esa {c}–{d} kg chamasi.",
-    "Tarozi quvontirdi: −{dw} kg. Oqsil tanqisligida mushak ulushi taxminan {a}–{b} kg bo'lishi mumkin; oqsil joyida bo'lsa — taxminan {c}–{d} kg."
+    "{n} kunlik yo'l: tarozi chizig'i −{dw} kg! Faqat oqsil tez-tez dars qoldirdi — mushaklar ham {ab} berib yuborgan bo'lishi mumkin (oqsil bilan {cd}).",
+    "Silliq chiziq {dw} kg pastga tushdi, ammo oqsil navbatchilikka kech qoldi: mushaklar ulushi chamasi {ab}, oqsil hamroh bo'lsa {cd}.",
+    "{n} kun — {dw} kg xayrlashdi. Mushaklar oqsil kutib qoldi va {ab} ular hisobidan; to'la oqsilda bu {cd} bo'lardi.",
+    "Grafik quvontirdi: −{dw} kg. Lekin oqsilsiz kunlarda mushaklar ham jomadon yig'di — ular hissasi {ab}; oqsil soqchi bo'lsa {cd}."
    ],
    "sw_mus_ok": [
-    "Tarozi {dw} kg yengillashdi, oqsil esa soqchilikda turdi — mushak ulushi ehtimol kichik, taxminan {c}–{d} kg.",
-    "−{dw} kg va oqsil navbatchiligi a'lo: mushaklar asosan joyida qolgan bo'lsa kerak (taxminan {c}–{d} kg).",
-    "{dw} kg xayrlashdi, mushaklar esa oqsil qalqoni ortida turdi: ulardan ehtimol atigi {c}–{d} kg ketgan.",
-    "Oqsil bu hafta yaxshi qo'riqchi bo'ldi: {dw} kg orasida mushaklardan ehtimol faqat {c}–{d} kg chamasi.",
-    "Oqsil dars qoldirmadi, shuning uchun tushgan {dw} kg orasida mushaklar ozchilikda — chamasi {c}–{d} kg."
+    "{n} kunlik chiziq −{dw} kg! Oqsil soqchilikda turdi, mushaklardan {cd} ketgan, xolos.",
+    "Grafik {dw} kg pastladi, oqsil esa qalqon bo'ldi: mushaklar hissasi {cd}.",
+    "{n} kun ichida {dw} kg jo'nadi, mushaklar oqsil panohida qoldi — ulardan {cd}.",
+    "Oqsil navbatchiligi a'lo: {dw} kg ketdi, mushaklar ulushi chamasi {cd}."
    ],
    "sw_now": [
     "Tarozi bu hafta ta'tilda edi. Eslatma: kaloriya tanqisligida oqsil mushaklarning qo'riqchisi, oqsil va kletchatka esa ishtahani tinch tutadi.",
@@ -574,6 +577,12 @@
     "Haftada {n} marta kaloriya «yana bittadan» dedi — {t} kun ichida. Hech gap emas, davom etamiz.",
     "Rejadan oshgan kunlar: {n}/{t}. To'ylar va mehmondorchilik mavsumi bo'lsa kerak.",
     "{t} kunning {n} tasida kaloriya qo'shimcha vaqt o'ynadi; yangi hafta — yangi o'yin."
+   ],
+   "sw_suv": [
+    "Suv — tarozining hazilkash sherigi: ±1 kg o'ynatadi. Biz esa 2+ hafta chizig'iga ishonamiz.",
+    "Tarozi haftada ±1 kg suv raqsini tushadi — biz raqsga emas, 2 haftalik yo'nalishga qaraymiz.",
+    "Bir stakan suv va sho'r kechki ovqat tarozini ±1 kg chalg'itadi. Shu bois 2+ hafta yo'nalishi hakam.",
+    "Tarozi kayfiyatli: suv uni ±1 kg tebratadi. Ishonchli gapni faqat 2+ haftalik chiziq aytadi."
    ],
    "sw_tarkib": [
     "Tarkib bo'yicha: oqsil {t} kundan {p} tasida kechikdi, yog' {f} kun ortiqcha shoshildi — keyingi bosqich shu yerda.",
@@ -1383,11 +1392,16 @@
     "Hozircha ma'lumot oz. Yana {n} ta ovqat qo'shilsa, kun bo'yicha xulosa chiqaraman."
    ],
    "sw_flat": [
-    "Bu hafta vazn {dw} kg o'zgardi. Haftalik tebranishlar ko'pincha suv va ovqat hajmiga bog'liq, shuning uchun bir necha haftalik trendga qarang.",
-    "Vazndagi {dw} kg o'zgarish odatiy hol: organizmdagi suv miqdori kundan kunga farq qiladi. Natijani 3–4 hafta bo'yicha baholang.",
-    "{dw} kg farq — kichik o'zgarish; tuz, suyuqlik va ichakdagi ovqat vaznga ta'sir qiladi. Uzoq muddatli tendensiya muhimroq.",
-    "Haftalik natija: {dw} kg. Bir haftalik ma'lumot ishonchli emas; o'rtacha trendni bir necha hafta kuzatish aniqroq.",
-    "Vazn bu hafta deyarli o'zgarmadi yoki oshdi ({dw} kg). Bu ko'pincha suv bilan bog'liq — rejani davom ettiring va haftalar o'tib solishtiring."
+    "So'nggi {n} kun trendi: {dw} kg. Bu juda kichik o'zgarish, shuning uchun mushak va yog' ulushini hisoblamaymiz.",
+    "{n} kunlik silliqlangan vazn {dw} kg o'zgardi. Aniq baho uchun kamida 0,5 kg trend kerak; hozircha kuzatishni davom ettiring.",
+    "Trend bo'yicha o'zgarish {dw} kg ({n} kun). Oqsilni me'yorda ushlang: vazn kamaya boshlaganda u mushakni saqlashga yordam beradi.",
+    "Uzoqroq kuzatuv ({n} kun) {dw} kg farqni ko'rsatdi — ma'noli xulosa uchun yetarli emas. Haftada 2–3 marta tortilib boring."
+   ],
+   "sw_kam": [
+    "Trend uchun kamida 2 hafta ichida 4 ta vazn yozuvi kerak. Hozircha umumiy qoida: yetarli oqsil ozish paytida mushakni saqlashga yordam beradi.",
+    "Vazn yozuvlari hali kam, shuning uchun mushak ulushini baholamaymiz. Haftada 2–3 marta ertalab tortilib, natijani kiriting.",
+    "Ishonchli xulosa uchun 14+ kunlik trend kerak. Shu orada oqsilni me'yorda ushlang — kamaygan vazn ko'proq yog' hisobidan bo'ladi.",
+    "Ma'lumot yetarli emas: bir necha tortilish trendni ko'rsatmaydi. 2 hafta davomida kamida 4 marta vaznni yozib boring."
    ],
    "sw_low": [
     "{t} kundan {n} kunida kaloriya xavfsiz minimumdan past bo'ldi; juda kam yeyish natijani yaxshilamaydi.",
@@ -1397,18 +1411,16 @@
     "Juda past kaloriya {t} kundan {n} tasida qayd etildi; keyingi hafta kamida me'yorning pastki chegarasiga yeting."
    ],
    "sw_mus": [
-    "Bu hafta vazn {dw} kg kamaydi, oqsil esa tez-tez yetmadi: shundan taxminan {a}–{b} kg mushak bo'lishi mumkin; me'yordagi oqsilda ehtimol {c}–{d} kg.",
-    "Vazn {dw} kg ga pasaydi. Oqsil yetishmagani sababli mushak qismi taxminan {a}–{b} kg bo'lishi mumkin, yetarli oqsilda esa taxminan {c}–{d} kg.",
-    "Yo'qotilgan {dw} kg ning taxminan {a}–{b} kg qismi mushak bo'lishi mumkin, chunki oqsil ko'p kun past edi; oqsil me'yorda bo'lsa, ehtimol {c}–{d} kg.",
-    "Haftalik o'zgarish: −{dw} kg. Oqsil yetishmagan kunlar ko'p bo'lgani uchun mushak yo'qotilishi taxminan {a}–{b} kg, oqsil yetarli bo'lsa ehtimol {c}–{d} kg.",
-    "Oqsil tez-tez maqsaddan past bo'ldi: {dw} kg ichida mushak taxminan {a}–{b} kg bo'lishi mumkin; yetarli oqsil bu qismni ehtimol {c}–{d} kg gacha kamaytiradi."
+    "So'nggi {n} kunlik trend bo'yicha vazn {dw} kg kamaydi. Oqsil ko'p kun yetmadi, shuning uchun mushak ulushi — {ab}; me'yordagi oqsilda — {cd}.",
+    "Trend: −{dw} kg ({n} kun). Oqsil yetishmagan kunlar ko'p edi: shundan mushakka {ab} to'g'ri kelgan bo'lishi mumkin, oqsil yetarli bo'lganda — {cd}.",
+    "{n} kun davomida silliqlangan vazn {dw} kg pasaydi. Oqsil past kunlar sababli mushak yo'qotilishi taxminiy baho bo'yicha {ab}; oqsil me'yorda bo'lsa — {cd}.",
+    "Uzoqroq kuzatuv ({n} kun) {dw} kg kamayishni ko'rsatdi. Oqsil tez-tez kam bo'lgani uchun mushak hissasi — {ab}; yetarli oqsil bilan — {cd}."
    ],
    "sw_mus_ok": [
-    "Bu hafta vazn {dw} kg tushdi va oqsil asosan yetarli edi, shuning uchun mushak ulushi ehtimol kichik — taxminan {c}–{d} kg.",
-    "Yo'qotilgan {dw} kg ning mushakka to'g'ri keladigan qismi taxminan {c}–{d} kg bo'lishi mumkin; yetarli oqsil bunga yordam bergan.",
-    "Oqsil ko'p kunlari me'yorda bo'ldi: {dw} kg kamayishning taxminan {c}–{d} kg i mushak bo'lishi ehtimol, bu kichik ulush.",
-    "Natija: −{dw} kg; yetarli oqsil tufayli mushak yo'qotilishi ehtimol kam, taxminan {c}–{d} kg.",
-    "Vaznning {dw} kg ga kamayishida mushak hissasi taxminan {c}–{d} kg bo'lishi mumkin — oqsilni shu darajada ushlab turing."
+    "So'nggi {n} kun trendi: vazn {dw} kg kamaydi, oqsil esa asosan yetarli edi. Mushak ulushi kichik — {cd}.",
+    "{n} kunlik silliqlangan vazn {dw} kg pasaydi. Yetarli oqsil tufayli mushakka to'g'ri keladigan qismi — {cd}.",
+    "Trend bo'yicha −{dw} kg ({n} kun). Oqsil ko'p kunlari me'yorda bo'lgani uchun mushak yo'qotilishi taxminiy baho bo'yicha {cd}.",
+    "Uzoqroq kuzatuv ({n} kun) {dw} kg kamayishni ko'rsatdi; oqsil yetarli edi, shuning uchun mushak hissasi — {cd}."
    ],
    "sw_now": [
     "Bu hafta vazn kiritilmagan. Kaloriya tanqisligida yetarli oqsil mushakni saqlashga yordam beradi, shunda yo'qotilgan vaznning ko'proq qismi yog' bo'lishi mumkin.",
@@ -1430,6 +1442,12 @@
     "Kaloriya ortiqcha bo'lgan kunlar soni: {n} ta, jami {t}. Kechki porsiyalarga e'tibor bering.",
     "{n}/{t} kun maqsaddan yuqori — bu normal holat, asosiysi haftalik o'rtacha.",
     "Ortiqcha kunlar {t} tadan {n} ta; ovqatni oldindan rejalash yordam berishi mumkin."
+   ],
+   "sw_suv": [
+    "Haftalik tarozi suv hisobiga ±1 kg o'zgaradi, shuning uchun 2+ hafta trendiga qaraymiz.",
+    "Organizmdagi suv bir haftada vaznni ±1 kg siljitadi — shu sababli xulosani kamida 2 haftalik trenddan chiqaramiz.",
+    "Bir haftalik raqam ishonchsiz: suv ±1 kg farq beradi. Biz 14+ kunlik silliqlangan trendni hisoblaymiz.",
+    "Eslatma: tuz, suyuqlik va ovqat hajmi tarozini ±1 kg tebratadi, shuning uchun 2 haftadan uzoq trendga tayanamiz."
    ],
    "sw_tarkib": [
     "Haftalik tahlil: oqsil {p} kun yetishmadi, yog' {f} kun oshdi (jami {t} kun). Endi e'tiborni tarkibga qaratsa bo'ladi.",
@@ -2241,11 +2259,16 @@
     "Снимок дня ещё размытый: до резкости записей — {n}."
    ],
    "sw_flat": [
-    "Весы гуляют около {dw} кг; чаще всего это вода и вчерашний плов внутри — подождите общей картины.",
-    "{dw} кг — весы на этой неделе пошутили. Вода и поздний ужин тоже весят; тренд виден за несколько недель.",
-    "Цифра на весах сдвинулась на {dw} кг, только и всего: вода вносит свою лепту, настоящее направление покажут несколько недель.",
-    "Весы на этой неделе упрямились ({dw} кг). Вода и соль любят такие фокусы — смотрите на дистанцию подлиннее.",
-    "{dw} кг: у весов переменчивое настроение. Оценивайте не одну неделю, а тренд за несколько."
+    "Линия за {n} дней спокойно плывёт около {dw} кг. Весы задумались — и мы не торопимся.",
+    "График почти ровный: {dw} кг. Держите белок-охранника на посту — поворот увидим первыми.",
+    "{dw} кг — линия отдыхает ({n} дней). Делать выводы ещё рано.",
+    "Весы кружат возле {dw} кг. Запасёмся терпением: настоящее направление откроется через недели."
+   ],
+   "sw_kam": [
+    "С весами мы пока едва знакомы: для линии нужно 4 встречи за 2 недели. А белок тем временем охраняет мышцы.",
+    "Графику не хватает точек — чтобы провести линию, взвешивайтесь чаще. Утром, до завтрака, весы ждут!",
+    "По паре цифр карту маршрута не нарисуешь. Ещё несколько взвешиваний — и направление покажется.",
+    "Тетрадка весов пока тонкая. Добавляйте 2–3 страницы в неделю, и мы прикинем мышцы и жир."
    ],
    "sw_low": [
     "В {n} из {t} дней тарелка была слишком скромной; в соревновании «кто меньше съест» призов не дают.",
@@ -2255,18 +2278,16 @@
     "Экономия — дело хорошее, но {n} дней из {t} это перебор: без топлива далеко не уедешь."
    ],
    "sw_mus": [
-    "Весы показали −{dw} кг, но белок часто опаздывал: примерно {a}–{b} кг могли составить мышцы (с белком — около {c}–{d} кг).",
-    "Минус {dw} кг! Но белок частенько прогуливал: вероятно, примерно {a}–{b} кг пришлись на мышцы; при норме белка было бы около {c}–{d} кг.",
-    "Вес ушёл на {dw} кг, а мышцы так и ждали белка: примерно {a}–{b} кг могли быть их, с белком — вероятно, {c}–{d} кг.",
-    "{dw} кг помахали рукой; из-за нехватки белка примерно {a}–{b} кг могли быть мышцами, при достатке — где-то {c}–{d} кг.",
-    "Весы порадовали: −{dw} кг. Без белка мышцы, похоже, тоже собрали вещи — примерно {a}–{b} кг, а с белком было бы примерно {c}–{d} кг."
+    "Линия за {n} дней ушла вниз на {dw} кг! Но белок частенько прогуливал — мышцы могли отдать {ab} (с белком — {cd}).",
+    "Минус {dw} кг по графику, только белок опаздывал на дежурство: мышцам досталось {ab}, а с ним было бы {cd}.",
+    "{n} дней — и {dw} кг помахали рукой. Мышцы ждали белка и, похоже, отдали {ab}; при полном белке — {cd}.",
+    "График порадовал: −{dw} кг. Но в дни без белка мышцы тоже собирали чемоданы: им пришлось отдать {ab}, с белком-охранником — {cd}."
    ],
    "sw_mus_ok": [
-    "Весы показали −{dw} кг, а белок стоял на посту — мышечная доля, вероятно, маленькая, примерно {c}–{d} кг.",
-    "Минус {dw} кг и образцовое дежурство белка: мышцы, похоже, почти все на месте (примерно {c}–{d} кг).",
-    "{dw} кг попрощались, а мышцы стояли за белковым щитом: их ушло, вероятно, всего {c}–{d} кг.",
-    "Белок на этой неделе был отличным охранником: из {dw} кг мышц ушло, похоже, лишь {c}–{d} кг.",
-    "Белок не прогуливал, поэтому среди ушедших {dw} кг мышцы в меньшинстве — примерно {c}–{d} кг."
+    "Линия за {n} дней: −{dw} кг! Белок стоял на страже, мышцы отдали {cd}, не больше.",
+    "График опустился на {dw} кг, а белок держал щит: мышцам досталось {cd}.",
+    "{n} дней — и {dw} кг ушли, а мышцы прятались за белком: с них {cd}.",
+    "Белок дежурил на отлично: ушло {dw} кг, мышечная часть — {cd}."
    ],
    "sw_now": [
     "Весы на этой неделе были в отпуске. Напомним: при дефиците белок — охранник мышц, а белок с клетчаткой держат аппетит в мире.",
@@ -2288,6 +2309,12 @@
     "{n} раз за {t} дней калории говорили «ещё кусочек». Ничего страшного, едем дальше.",
     "Дни сверх плана: {n}/{t}. Похоже, сезон свадеб и гостей.",
     "В {n} из {t} дней калории играли в овертайме; новая неделя — новая игра."
+   ],
+   "sw_suv": [
+    "Вода — весёлая напарница весов: гоняет цифру на ±1 кг. Поэтому верим линии за 2+ недели.",
+    "Весы каждую неделю танцуют водный танец на ±1 кг, а мы смотрим не на танец, а на курс за 2 недели.",
+    "Стакан воды и солёный ужин сбивают весы на ±1 кг. Поэтому судья — линия за 2+ недели.",
+    "Недельные весы — с настроением: вода раскачивает их на ±1 кг. Правду скажет только линия за 2+ недели."
    ],
    "sw_tarkib": [
     "По составу: белок опаздывал {p} дней из {t}, жир торопился {f} дней — следующий уровень где-то тут.",
@@ -3097,11 +3124,16 @@
     "Данных пока мало. Добавьте записи — осталось {n}, и я подведу итог дня."
    ],
    "sw_flat": [
-    "За неделю вес изменился на {dw} кг. Недельные колебания часто связаны с водой и объёмом еды, поэтому ориентируйтесь на тренд за несколько недель.",
-    "Изменение веса на {dw} кг — обычное дело: количество воды в организме меняется день ото дня. Результат лучше оценивать за 3–4 недели.",
-    "Разница {dw} кг небольшая; соль, жидкость и содержимое кишечника влияют на вес. Долгосрочная тенденция важнее.",
-    "Итог недели: {dw} кг. Данные одной недели ненадёжны, средний тренд за несколько недель точнее.",
-    "Вес почти не изменился или вырос ({dw} кг). Часто это вода — продолжайте план и сравнивайте спустя пару недель."
+    "Тренд за {n} дней: {dw} кг. Изменение слишком маленькое, поэтому долю мышц и жира не считаем.",
+    "Сглаженный вес за {n} дней изменился на {dw} кг. Для оценки нужен тренд от 0,5 кг; пока просто продолжайте наблюдать.",
+    "По тренду за {n} дней — {dw} кг. Держите белок в норме: когда вес начнёт снижаться, он поможет сохранить мышцы.",
+    "Наблюдение за {n} дней показало {dw} кг — для выводов этого мало. Взвешивайтесь 2–3 раза в неделю."
+   ],
+   "sw_kam": [
+    "Для тренда нужно минимум 4 записи веса за 2 недели. Пока общее правило: достаточный белок помогает сохранить мышцы при снижении веса.",
+    "Записей веса пока мало, поэтому долю мышц не оцениваем. Взвешивайтесь 2–3 раза в неделю утром и вносите результат.",
+    "Для надёжного вывода нужен тренд от 14 дней. А пока держите белок в норме — тогда уходить будет больше жира.",
+    "Данных недостаточно: пара взвешиваний не показывает тренд. Записывайте вес хотя бы 4 раза за 2 недели."
    ],
    "sw_low": [
     "В {n} днях из {t} калорийность была ниже безопасного минимума; есть слишком мало — не значит лучше.",
@@ -3111,18 +3143,16 @@
     "Очень низкая калорийность отмечена в {n} из {t} дней; на следующей неделе старайтесь есть хотя бы по нижней границе нормы."
    ],
    "sw_mus": [
-    "За неделю вес снизился на {dw} кг, при этом белка часто не хватало: примерно {a}–{b} кг из них могли быть мышцы; при нормальном белке — вероятно, {c}–{d} кг.",
-    "Ваш вес уменьшился на {dw} кг. Из-за недостатка белка доля мышц может составлять примерно {a}–{b} кг, при достаточном белке — примерно {c}–{d} кг.",
-    "Из потерянных {dw} кг примерно {a}–{b} кг могли прийтись на мышцы, так как белок много дней был низким; при норме белка — вероятно, {c}–{d} кг.",
-    "Изменение за неделю: −{dw} кг. Белка не хватало во многие дни, поэтому потеря мышц может быть примерно {a}–{b} кг, а при норме — вероятно, {c}–{d} кг.",
-    "Белок часто был ниже цели: в {dw} кг мышцы могут занимать примерно {a}–{b} кг; достаточный белок, вероятно, снизил бы эту долю до {c}–{d} кг."
+    "По тренду за {n} дней вес снизился на {dw} кг. Белка часто не хватало, поэтому на мышцы могло прийтись {ab}; при норме белка — {cd}.",
+    "Тренд за {n} дней: −{dw} кг. Дней с нехваткой белка было много, и доля мышц, по оценке, составила {ab} (при достаточном белке — {cd}).",
+    "Сглаженный вес за {n} дней снизился на {dw} кг. Из-за дней с низким белком мышцы могли потерять {ab}; с нормой белка было бы {cd}.",
+    "Наблюдение за {n} дней показало −{dw} кг. Белок часто был ниже нормы, так что вклад мышц — {ab}, а при норме было бы {cd}."
    ],
    "sw_mus_ok": [
-    "На этой неделе вес снизился на {dw} кг, белка в основном хватало, поэтому доля мышц, вероятно, небольшая — примерно {c}–{d} кг.",
-    "Из потерянных {dw} кг на мышцы может приходиться примерно {c}–{d} кг; достаточный белок этому помог.",
-    "Белок большинство дней был в норме: из снижения на {dw} кг мышцы, вероятно, составляют лишь около {c}–{d} кг.",
-    "Итог: −{dw} кг; благодаря достаточному белку потеря мышц, вероятно, невелика, примерно {c}–{d} кг.",
-    "При снижении веса на {dw} кг мышечная часть может быть примерно {c}–{d} кг — держите белок на том же уровне."
+    "По тренду за {n} дней вес снизился на {dw} кг, а белка в основном хватало. На мышцы, по оценке, пришлось {cd}.",
+    "Сглаженный вес за {n} дней: −{dw} кг. Благодаря достаточному белку мышечная доля невелика — {cd}.",
+    "Тренд за {n} дней показал −{dw} кг. Белок большую часть дней был в норме, поэтому потеря мышц — {cd}.",
+    "Наблюдение за {n} дней: вес ниже на {dw} кг. Белка хватало, и вклад мышц, по оценке, — {cd}."
    ],
    "sw_now": [
     "На этой неделе вес не внесён. При дефиците калорий достаточный белок помогает сохранить мышцы, так что большая часть потерянного веса может приходиться на жир.",
@@ -3144,6 +3174,12 @@
     "Количество дней с избытком калорий: {n} из {t}. Обратите внимание на вечерние порции.",
     "{n}/{t} дней выше цели — это нормально, важнее среднее за неделю.",
     "Дней с превышением — {n} из {t}; заранее спланированное меню может помочь."
+   ],
+   "sw_suv": [
+    "За неделю вес на весах меняется на ±1 кг из-за воды, поэтому смотрим на тренд за 2+ недели.",
+    "Вода в организме сдвигает вес на ±1 кг за неделю, поэтому выводы делаем по тренду минимум за 2 недели.",
+    "Недельная цифра ненадёжна: вода даёт разницу ±1 кг. Мы считаем сглаженный тренд за 14+ дней.",
+    "Важно: соль, жидкость и объём еды колеблют весы на ±1 кг, поэтому опираемся на тренд дольше 2 недель."
    ],
    "sw_tarkib": [
     "Итог недели: белка было мало {p} дней, жиров больше нормы — {f} дней (всего {t}). Теперь можно сосредоточиться на составе.",

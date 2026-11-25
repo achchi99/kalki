@@ -19,14 +19,31 @@ assert.equal(Q.hafta([base, Object.assign({}, base, { p: 60 }), Object.assign({}
 ok('Kunlik bal: ideal 100; oqsil oshishi jarima emas; yog\' 115 % → 20, 160 % → 0; kaloriya ±10 % → 20, 35 % → 0, minimumdan kam ≤ 5; muntazamlik 10/6/3; kletchatka noma\'lum — qayta normallanadi; haftalik — to\'liq kunlar');
 /* 2. haftalik xulosa */
 const T0 = '2026-11-20', A = D.addDays, wk = (o) => Array.from({ length: 7 }, (_, i) => Object.assign({ d: A(T0, -6 + i) }, base, o));
-const wts = (a, b) => [A(T0, -13), A(T0, -10), A(T0, -8)].map((d) => ({ d, kg: a })).concat([A(T0, -5), A(T0, -2), T0].map((d) => ({ d, kg: b })));
-let X = Q.xulosa(wk({ p: 70, f: 80 }), { weights: wts(90, 89), end: T0, addDays: A });
-assert.deepEqual([X.ok, X.pKam, X.fOshdi], [7, 7, 7]); assert.deepEqual(X.keys.map((k) => k.k), ['sw_ok', 'sw_tarkib', 'sw_mus']);
-assert.deepEqual(X.mus, { a: '0,2', b: '0,3', c: '0,1', d: '0,2' }); assert.equal(X.keys[2].d.dw, '1');
-X = Q.xulosa(wk({}), { weights: wts(90, 89), end: T0, addDays: A }); assert.deepEqual(X.keys.map((k) => k.k), ['sw_ok', 'sw_tarkib_ok', 'sw_mus_ok']);
-X = Q.xulosa(wk({ kcal: 2300 }), { weights: wts(90, 90.4), end: T0, addDays: A }); assert.deepEqual(X.keys.map((k) => k.k), ['sw_over', 'sw_tarkib_ok', 'sw_flat']); assert.equal(X.keys[2].d.dw, '+0,4');
-X = Q.xulosa(wk({ kcal: 900 }), { weights: [], end: T0, addDays: A }); assert.deepEqual(X.keys.map((k) => k.k), ['sw_low', 'sw_tarkib_ok', 'sw_now']);
-ok('Haftalik xulosa: kaloriya (reja/ortiq/kam), tarkib (oqsil kam, yog\' ko\'p kunlar), vazn: −1 kg va oqsil kam → mushak ≈ 0,2–0,3 kg (25–30 %), me\'yorda bo\'lganda ≈ 0,1–0,2 kg (10–15 %); vazn yo\'q — umumiy tushuntirish');
+/* v104: vazn — 14+ kunlik TREND (regressiya), haftalik farq emas */
+const lin = (from, to, days, noise) => Array.from({ length: days }, (_, i) => ({ d: A(T0, -(days - 1) + i), kg: Math.round((from + (to - from) * i / (days - 1) + (noise ? noise(i) : 0)) * 10) / 10 }));
+const keys = (X) => X.keys.map((k) => k.k); const pd = (n, lowFirst) => Array.from({ length: n }, (_, i) => Object.assign({ d: A(T0, -(n - 1) + i) }, base, i < lowFirst ? { p: 70 } : {}));
+const opt = (w, o) => Object.assign({ weights: w, end: T0, addDays: A }, o || {});
+// kam ma'lumot
+assert.deepEqual(keys(Q.xulosa(wk({}), opt([]))), ['sw_ok', 'sw_tarkib_ok', 'sw_now'], 'vazn yo\'q');
+assert.deepEqual(keys(Q.xulosa(wk({}), opt([{ d: A(T0, -20), kg: 91 }, { d: A(T0, -10), kg: 90 }, { d: T0, kg: 88 }]))), ['sw_ok', 'sw_tarkib_ok', 'sw_kam', 'sw_suv'], '3 yozuv — trend yo\'q (−3 kg bo\'lsa ham)');
+assert.deepEqual(keys(Q.xulosa(wk({}), opt(lin(91, 88, 10)))), ['sw_ok', 'sw_tarkib_ok', 'sw_kam', 'sw_suv'], '10 kun (< 14) — trend yo\'q');
+assert.deepEqual(keys(Q.xulosa(wk({}), opt([{ d: A(T0, -40), kg: 95 }, { d: A(T0, -35), kg: 94 }, { d: A(T0, -13), kg: 90 }, { d: T0, kg: 89 }]))), ['sw_ok', 'sw_tarkib_ok', 'sw_kam', 'sw_suv'], '28 kundan eski yozuvlar hisobga olinmaydi');
+// shovqin: ±1 kg tebranish, trend 0 — eski haftalik usul (shu hafta 89,x vs o'tgan 90,x) mushak taxminini chiqarardi
+const zz = (i) => [1, -1, 0.6, -0.8, 0.9, -1, 0.3][i % 7];
+const noisy = lin(90, 90, 28, (i) => zz(i) + (i >= 21 || i < 7 ? -0.9 : 0.5));          // 1- va oxirgi hafta past (suv): haftalik farq −1,4 kg, trend ≈ 0
+const N1 = Q.xulosa(wk({ p: 70 }), opt(noisy)); assert.ok(Math.abs(N1.tr.dw) < 0.5, 'shovqin trendi ' + N1.tr.dw); assert.deepEqual(keys(N1).slice(2), ['sw_flat', 'sw_suv']); assert.equal(N1.mus, null, 'shovqinda mushak taxmini YO\'Q');
+const sin = lin(90, 90, 28, (i) => Math.sin(i * 2.4) * 1); const N2 = Q.xulosa(wk({}), opt(sin)); assert.ok(Math.abs(N2.tr.dw) < 0.5, 'sinus ' + N2.tr.dw); assert.equal(keys(N2)[2], 'sw_flat');
+// haqiqiy trend: 21 kunda −1,4 kg (±0,6 shovqin); oqsil 3 haftaning 2 tasida kam, oxirgi haftada me'yorda → trend davri bo'yicha ≥ 50 % → sw_mus
+const real = lin(90, 88.6, 22, (i) => [0.6, -0.4, 0.2, -0.6, 0.3, 0, -0.2][i % 7]);
+const R = Q.xulosa(wk({}), opt(real, { trendDays: pd(22, 15) })); assert.ok(R.tr.dw < -1.1 && R.tr.dw > -1.7, 'trend ' + R.tr.dw); assert.equal(keys(R)[2], 'sw_mus', 'oqsil ulushi trend davri bo\'yicha (bitta hafta emas)'); assert.deepEqual(R.pT, { k: 15, n: 22 });
+assert.equal(keys(Q.xulosa(wk({}), opt(real, { trendDays: pd(22, 0) })))[2], 'sw_mus_ok'); assert.equal(keys(Q.xulosa(wk({ p: 70 }), opt(real, { trendDays: pd(22, 5) })))[2], 'sw_mus_ok', 'shu hafta oqsil kam, lekin trend davrida ozchilik');
+// yaxlitlash: 0,1 kg; 0,1 dan kami — «juda oz»; 0,06 kabi soxta aniqlik yo'q
+const R6 = Q.xulosa(wk({}), opt(lin(90, 89.4, 21), { trendDays: pd(21, 0) })); assert.equal(R6.keys[2].d.cd, 'juda oz'); assert.equal(R6.keys[2].d.dw, '0,6');
+assert.equal(Q.xulosa(wk({}), opt(lin(90, 89.4, 21), { trendDays: pd(21, 21), lang: 'ru' })).keys[2].d.cd, 'совсем немного');
+assert.equal(Q.diap(0.08, 0.12, 'uz'), '0,1 kg gacha'); assert.equal(Q.diap(0.08, 0.12, 'ru'), 'до 0,1 кг'); assert.equal(Q.diap(0.25, 0.3, 'uz'), '0,3 kg'.replace('0,3', '~0,3')); assert.equal(Q.diap(0.2, 0.36, 'ru'), '0,2–0,4 кг'); assert.equal(Q.diap(0.05, 0.075, 'uz'), 'juda oz');
+assert.equal(Q.xulosa(wk({}), opt(lin(90, 89.6, 21))).keys[2].k, 'sw_flat', '−0,4 kg trend (< 0,5) — faqat umumiy');
+for (let L = 0.5; L <= 3; L += 0.05) for (const pl of [0, 21]) { const X = Q.xulosa(wk({}), opt(lin(90, 90 - L, 21), { trendDays: pd(21, pl), lang: 'uz' })); const s = JSON.stringify(X.keys); assert.ok(!/\d,\d\d/.test(s), 'soxta aniqlik: ' + s); }
+ok('Vazn trendi (≥ 4 yozuv, ≥ 14 kun, 28 kunlik oyna, regressiya): kam ma\'lumot → sw_kam; ±1 kg shovqin (trend ≈ ' + N1.tr.dw.toFixed(2) + ') → mushak taxmini yo\'q; −1,4 kg trend → mushak; oqsil ulushi trend davri bo\'yicha (15/22); < 0,5 kg → umumiy; 0,1 kg yaxlitlash, «juda oz»; suv ±1 kg izohi');
 /* 3. shaxsiy naqshlar */
 const days = (N, fn) => Array.from({ length: N }, (_, i) => Object.assign({ d: A(T0, -N + 1 + i) }, base, fn(i)));
 let P = Q.naqsh(days(20, (i) => (i % 2 ? { f: 90, kcal: 1800 } : { f: 50, kcal: 2100 })), A); assert.deepEqual(P.map((x) => x.k), ['pt_fat'], JSON.stringify(P)); assert.equal(P[0].d.n, 9);
@@ -42,8 +59,8 @@ assert.equal(Q.takror([{ f: 100, gf: 60, food: [kk(60)] }, { f: 40, gf: 60, food
 const alt = Q.muqobil(by['qozon-kabob'], foods, 3); assert.ok(alt.length >= 2, 'muqobil: ' + alt.map((f) => f.id)); alt.forEach((f) => { assert.ok(f.f <= by['qozon-kabob'].f * 0.7, f.id + ' yog\'i kam'); assert.ok(!f.tm && !f.h); });
 ok('Takroriy taom: qozon-kabob 3 marta va yog\'ning asosiy manbai → izoh; muqobillar (yog\'i ≥ 30 % kam): ' + alt.map((f) => f.n).join(', '));
 /* 5. matnlar: render (uz/ru × hazil/jiddiy) va taqiqlangan vazn da'volari */
-const NEWK = ['ef_a', 'ef_b', 'ef_c', 'ef_d', 'fx_fat', 'fx_carb', 'fx_prot', 'sw_ok', 'sw_over', 'sw_low', 'sw_tarkib', 'sw_tarkib_ok', 'sw_mus', 'sw_mus_ok', 'sw_flat', 'sw_now', 'pt_fat', 'pt_prot', 'rep_dish'];
-const DATA = { x: 18, p: 45, sh: 52, fix: '200 g tovuq ko\'kragi va 150 g bodring', n: 5, t: 7, f: 4, dw: '0,8', a: '0,2', b: '0,2', c: '0,1', d: '0,1', k: 3, dish: 'Qozon kabob', alt: 'dimlama, mastava' };
+const NEWK = ['ef_a', 'ef_b', 'ef_c', 'ef_d', 'fx_fat', 'fx_carb', 'fx_prot', 'sw_ok', 'sw_over', 'sw_low', 'sw_tarkib', 'sw_tarkib_ok', 'sw_mus', 'sw_mus_ok', 'sw_flat', 'sw_now', 'sw_kam', 'sw_suv', 'pt_fat', 'pt_prot', 'rep_dish'];
+const DATA = { x: 18, p: 45, sh: 52, fix: '200 g tovuq ko\'kragi va 150 g bodring', n: 5, t: 7, f: 4, dw: '0,8', ab: '0,2–0,3 kg', cd: 'juda oz', k: 3, dish: 'Qozon kabob', alt: 'dimlama, mastava' };
 const M = require('../assets/kalkifit-maslahat-matn.js'); let cnt = 0;
 for (const L of ['uz', 'ru']) for (const m of ['hazil', 'jiddiy']) for (const k of NEWK) { const a = M[L][m][k]; assert.ok(a && a.length >= 4, L + m + k); a.forEach((tpl, i) => { const t = MS.say(k, DATA, { lang: L, mode: m, i }); cnt++; assert.ok(t && !/[{}]|undefined|NaN/.test(t), L + m + k + i + ': ' + t); }); }
 const BAN = [/kam ozd|ko'?p ozd|ozmaysiz|ozolmaysiz|ozish sekinlash/i, /меньше похуд|больше похуд|не похуде|похудели бы|сбросили бы|сброс[а-я]* меньше/i, /yog'?\s*(tufayli|sababli)[^.]*\d+([.,]\d+)?\s*kg/i, /из-за жир[а-я]*[^.]*\d+([.,]\d+)?\s*кг/i, /halol|ҳалол/i];

@@ -24,8 +24,8 @@ Ko'rsatiladigan oqibatlar (hammasi «taxminan / ehtimol» ohangida, diagnoz emas
 ## Haftalik xulosa
 - Kaloriya: reja ichida (xavfsiz minimum … reja + 10 %), ortiq (> reja + 10 %), juda kam (< xavfsiz minimum) kunlar soni.
 - Tarkib: oqsil < 90 % maqsad kunlar, yog' ≥ 115 % maqsad kunlar.
-- Vazn: shu 7 kunlik o'rtacha − oldingi 7 kunlik o'rtacha (ikkalasida ham yozuv bo'lsa).
-- Mushak ulushi (faqat vazn kamaygan bo'lsa, ≥ 0,2 kg): oqsil kunlarning yarmida yoki ko'pida kam — **≈ 25–30 %**; oqsil yetarli — **≈ 10–15 %**. «Agar oqsil me'yorda bo'lganda» solishtiruvi faqat shu tarkib bo'yicha, umumiy vazn o'zgarishi bir xil qoladi.
+- Vazn (v104): **trend**, haftalik farq emas — tarozi bir haftada suv, tuz va ichakdagi ovqat hisobiga ±1 kg tebranadi. Oxirgi 28 kun ichidagi yozuvlar (bir kunda bir nechta — oxirgisi), kamida **4 ta** va birinchi–oxirgi orasi **≥ 14 kun** bo'lsa — chiziqli regressiya (eng kichik kvadratlar); o'zgarish = qiyalik × oraliq. Kam bo'lsa — `sw_kam` (nima kerakligi), yozuv yo'q — `sw_now`. Vazn qatori bilan birga doim `sw_suv` izohi («±1 kg suv, shuning uchun 2+ hafta trendi»).
+- Mushak ulushi — faqat trend bo'yicha yo'qotish **≥ 0,5 kg** bo'lsa (aks holda `sw_flat` — umumiy tushuntirish). Oqsil kam kunlar (< 90 % maqsad) ulushi **shu trend davri** bo'yicha (bitta hafta emas): yarmi yoki ko'pi — **≈ 25–30 %** (`sw_mus`, me'yordagi oqsil bilan solishtiruv), aks holda **≈ 10–15 %** (`sw_mus_ok`). Raqamlar 0,1 kg ga yaxlitlanadi: ikkalasi 0,1 dan kam — «juda oz» / «совсем немного»; pastkisi 0,1 dan kam — «0,1 kg gacha»; bir xil — «~0,3 kg». Umumiy vazn o'zgarishi haqida «oqsil tufayli ko'proq ozardingiz» degan gap yo'q.
 
 ## Shaxsiy naqshlar (kamida 14 to'liq kun)
 - «Yog' ko'p kundan keyin kaloriya oshishi»: yog' ≥ 115 % bo'lgan kunlardan keyingi kun > reja + 10 % holatlari. Ko'rsatiladi, agar n ≥ 4, ulush ≥ 60 % va boshqa kunlardan keyingi ulushdan ≥ 25 punkt yuqori.
