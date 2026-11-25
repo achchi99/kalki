@@ -111,7 +111,18 @@
   // foydalanuvchi buni bug sifatida xabar qilgan: yangi brauzerdan kalki.uz'ga
   // kirilganda ham, Google orqali kirilganda ham standart RU ochilib qolgan
   // edi. Standart til FAQAT foydalanuvchi o'zi til tugmasini bosgach o'zgaradi.)
+  // v105: KalkiFit bildirishnoma havolasi (?eslatma= / ?hafta=) obuna paytidagi tilda qolgan bo'lishi mumkin —
+  // foydalanuvchi keyin tilni almashtirgan bo'lsa, uning tanloviga o'tamiz (tanlov USTIGA yozilmaydi).
+  function notifRedirect() {
+    var path = w.location.pathname, q = w.location.search || '', want = read();
+    if (!/^\/(ru\/)?kalkifit(\.html)?$/.test(path) || !/[?&](eslatma|hafta)=/.test(q) || !valid(want)) return false;
+    var cur = fromUrl() || fromPath() || 'uz'; if (cur === want) return false;
+    var rest = stripLangParam(q); if (want === 'cyr') rest.push('lang=cyr');
+    ls(function () { w.location.replace((want === 'ru' ? '/ru/kalkifit' : '/kalkifit') + (rest.length ? '?' + rest.join('&') : '') + (w.location.hash || '')); });
+    return true;
+  }
   function decide() {
+    if (notifRedirect()) return read();
     var u = fromUrl();
     if (u) { write(u); return u; }
     var p = fromPath();

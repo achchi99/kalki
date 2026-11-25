@@ -61,6 +61,7 @@ const ASSETS = [
   '/assets/kalkifit-hikoya.js',
   '/assets/kalkifit-plato.js',
   '/assets/kalkifit-maslahat-matn.js',
+  '/assets/kalkifit-ism.js',
   '/assets/kalkifit-maslahat.js',
   '/assets/kalkifit-afsona.js',
   '/assets/kalkifit-menyu.js',

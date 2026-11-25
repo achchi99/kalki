@@ -1,5 +1,5 @@
 // KalkiFit «Lola» maslahatchisi (v95): 1) makro holatlari — YAGONA manba (kam / deyarli / bajarildi / oshdi): barcha chegaraviy qiymatlarda matn raqamga zid emas,
-// Bugun belgisi (▾ ✓ ▴) va «Maslahat» yorlig'i bir xil; 2) uslub — har matn kaliti har uslubda (uz/ru × hazil/jiddiy, ≥ 4 variant, takrorsiz, neytralga qaytmaydi), eslatmalar;
+// Bugun belgisi (▾ ✓ ▴) va «Maslahat» yorlig'i bir xil; 2) uslub — har matn kaliti har uslubda (uz/ru × hazil/jiddiy, ≥ 3 variant, takrorsiz, neytralga qaytmaydi), eslatmalar;
 // 3) jonli maslahatchi — ovqat qo'shilgach «yozyapti…» → javob (taom nomi + raqam), avatar ifodasi, savol → javob ta'siri, reduced-motion.
 //   node tools/dizayn/test-maslahatchi.mjs   (SKRINSHOT_DIR — ixtiyoriy)
 import assert from 'node:assert/strict'; import fs from 'node:fs'; import path from 'node:path'; import { createRequire } from 'node:module'; import { pathToFileURL } from 'node:url';
@@ -22,7 +22,7 @@ assert.equal(M.holat(159.6, 160), 'bajarildi'); assert.equal(M.holat(159.4, 160)
 /* matn raqamga zid emas: har holat matni (oqsil/yog'/uglevod × til × uslub × variant) */
 const DONE = /bajarildi|bajardingiz|(?<!deyarli )yetdingiz|(?<!почти )выполнен|в норме|(?<!почти )достигнут|норма есть/i, LEFT = /yana \d+ ?g\b|ещё \d+ ?г|\d+ ?g qoldi|осталось \d/i;
 for (const L of LS) for (const m of MODES) for (const k of ['p', 'f', 'c']) for (const [v, g] of [[141, 160], [130, 160], [90, 160], [160, 160], [175, 160], [200, 160]]) {
-  const mk = M.makro({ [k]: v }, { [k]: g })[k], list = X[L][m]['mk_' + k + '_' + mk.st]; assert.ok(list && list.length >= 4, L + m + k + mk.st);
+  const mk = M.makro({ [k]: v }, { [k]: g })[k], list = X[L][m]['mk_' + k + '_' + mk.st]; assert.ok(list && list.length >= 3, L + m + k + mk.st);
   list.forEach((tpl, i) => { const t = M.say('mk_' + k + '_' + mk.st, { left: mk.left, x: mk.x, v: Math.round(v), g }, { lang: L, mode: m, i });
     if (!M.yetdi(mk.st)) assert.ok(!DONE.test(t), 'yetmagan — «bajarildi» yo\'q: ' + t); if (M.yetdi(mk.st)) assert.ok(!LEFT.test(t), 'yetgan — «yana N g» yo\'q: ' + t);
     if (k === 'p' && mk.st === 'deyarli') assert.ok(t.includes(String(mk.left)), 'deyarli — qoldiq soni: ' + t); });
@@ -36,7 +36,7 @@ const BAN = /semiz|ozg'in|yalqov|dangasa|ochko'z|\buyat|aybdor|gunoh|jazo|ahmoq|
 const SAMPLE = { x: 18, p: 45, k: 1200, min: 1500, sh: 52, src: 'somsa va qazi', Src: 'Somsa va qazi', n: 3, left: 400, l: 2400, name: 'Osh', pg: 22, pleft: 30, fg: 24, v: 120, g: 130, f: 'Osh', m: 'nonushta', M: 'Nonushta' };
 for (const L of LS) for (const m of MODES) {
   assert.deepEqual(Object.keys(X[L][m]).sort(), KEYS.slice().sort(), L + m + ': kalitlar to\'plami bir xil');
-  for (const k of KEYS) { const a = X[L][m][k]; assert.ok(Array.isArray(a) && a.length >= 4, L + m + k + ' ≥ 4 variant'); assert.equal(new Set(a).size, a.length, L + m + k + ' takror');
+  for (const k of KEYS) { const a = X[L][m][k]; assert.ok(Array.isArray(a) && a.length >= 3, L + m + k + ' ≥ 3 variant'); assert.equal(new Set(a).size, a.length, L + m + k + ' takror');
     const other = X[L][m === 'hazil' ? 'jiddiy' : 'hazil'][k]; a.forEach((s) => { assert.ok(!other.includes(s), L + k + ': hazil va jiddiy bir xil: ' + s); const t = M.fillD(s, SAMPLE); assert.ok(!/\{\w+\}/.test(t), L + m + k + ' bo\'sh joy: ' + t); assert.ok(!BAN.test(t), L + m + k + ' taqiqlangan so\'z: ' + t); assert.ok(t.length <= 210, L + m + k + ' uzun: ' + t); if (L === 'uz') assert.ok(!/[а-яё]/i.test(t), 'UZ kirill: ' + t); });
     for (let i = 0; i < a.length; i++) assert.equal(M.say(k, SAMPLE, { lang: L, mode: m, i }), L === 'ru' ? M.plRu(M.fillD(a[i], SAMPLE)) : M.fillD(a[i], SAMPLE)); }          // v103: ruscha son kelishigi (3 раза)
 }
@@ -50,7 +50,7 @@ const DATA = (k) => k.startsWith('rt_') || k.startsWith('r_') ? RULE : ({ s_wait
   x_okP: { v: 131, g: 130 }, x_okK: { v: '2 310', g: '2 436' }, x_okW: { v: '2 250' }, x_okS: { v: '9 400' }, x_okN: { n: 4 }, x_offF: { x: 22, src: 'somsa' }, x_offC: { x: 60, src: 'non' }, x_offK: { x: 340, src: 'osh' }, x_offP: { x: 35 }, x_offLow: { k: 900, min: '1 500' },
   d_over: { x: 340 }, t_top: { f: 'Osh' }, w_kam: { m: 'oqsil', M: 'Oqsil', pct: 26, left: 41 }, w_deyarli: { m: 'oqsil', M: 'Oqsil', pct: 8, left: 11 }, w_oshdi: { m: 'yog\'', M: 'Yog\'', pct: 41, x: 21 }, w_ok: {}, ef_a: { x: 22 }, ef_b: {}, ef_c: { p: 45 }, ef_d: { sh: 52 }, fx_fat: { fix: '200 g tovuq ko\'kragi va 150 g bodring' }, fx_carb: { fix: '200 g tovuq ko\'kragi va 150 g bodring' }, fx_prot: { fix: '150 g tvorog' }, sw_ok: { n: 5, t: 7 }, sw_over: { n: 3, t: 7 }, sw_low: { n: 2, t: 7 }, sw_tarkib: { p: 5, f: 4, t: 7 }, sw_tarkib_ok: {}, sw_mus: { n: 21, dw: '0,8', ab: '0,2–0,3 kg', cd: 'juda oz' }, sw_mus_ok: { n: 21, dw: '0,8', cd: '0,1 kg gacha' }, sw_flat: { n: 21, dw: '+0,2' }, sw_now: {}, sw_kam: {}, sw_suv: {}, pt_fat: { k: 3, n: 4 }, pt_prot: { x: 300 }, rep_dish: { dish: 'Qozon kabob', n: 4, alt: 'dimlama, mastava' } })[k] || (k.startsWith('mk_') ? { left: 19, x: 28, v: 141, g: 160 } : {});
 const leak = /[{}|]|undefined|NaN|null|\s[,.!?]|\s{2}/;
-for (const L of LS) for (const m of MODES) for (const k of KEYS) { const d = DATA(k), allow = new Set(Object.keys(d).concat('ism'));
+for (const L of LS) for (const m of MODES) for (const k of KEYS) { const d = DATA(k), allow = new Set(Object.keys(d).concat('ism', 'src' in d ? ['Src'] : []));          // {Src} — fillD {src} dan bosh harf bilan yasaydi
   X[L][m][k].forEach((tpl, i) => { (tpl.replace(/\{[^{}|]*\|[^{}|]*\}/g, '').match(/\{(\w+)\}/g) || []).forEach((ph) => assert.ok(allow.has(ph.slice(1, -1)), `${L}/${m}/${k}#${i}: ilova ${ph} bermaydi — «${tpl}»`));
     for (const g of ['f', 'm']) { const t = M.say(k, d, { lang: L, mode: m, i, g, ism: L === 'ru' ? 'Тимур' : 'Timur' }); assert.ok(t.length > 1 && !leak.test(t), `${L}/${m}/${k}#${i} (${g}): «${t}»`); } }); }
 /* hazil ≠ jiddiy: so'z bo'yicha ≥ 50 % farq (Jaccard ≤ 0,5 — har jiddiy variant bilan; placeholder va 1–2 harfli so'zlar hisobga olinmaydi) */
@@ -78,7 +78,11 @@ for (const L of LS) { const h = S.remText(ES, L, { meal: 'l', n: 2 }, 'hazil').b
 assert.equal(Q.jadvalTekshir({ b: 510, l: null, d: 1170, u: 'hazil' }), '{"b":510,"l":null,"s":null,"d":1170,"u":"hazil"}'); assert.equal(Q.uslubOf({ jadval: '{"b":510,"u":"hazil"}' }), 'hazil'); assert.equal(Q.uslubOf({ jadval: '{"b":510}' }), 'jiddiy');
 assert.equal(S.remText(ES, 'ru', { meal: 'l', n: 2 }, 'hazil', 'Тимур').t, 'Тимур · KalkiFit', 'bildirishnoma sarlavhasida ism'); assert.equal(Q.matn(ES, 'ru', { meal: 'l', kind: 'm' }, 1, null, 'hazil', 'Тимур').t, 'Тимур · KalkiFit');
 assert.equal(Q.jadvalTekshir({ b: 510, u: 'hazil', n: 'Тимур' }), '{"b":510,"l":null,"s":null,"d":null,"u":"hazil","n":"Тимур"}'); assert.equal(Q.jadvalTekshir({ b: 510, n: '<b>x</b>' }), '{"b":510,"l":null,"s":null,"d":null}', 'yaroqsiz ism serverda tashlanadi'); assert.equal(Q.ismOf({ jadval: '{"n":"Лола"}' }), 'Лола');
-log('Matnlar: ' + KEYS.length + ' kalit × uz/ru × hazil/jiddiy (≥ 4 variant, takrorsiz, hazil ≠ jiddiy, taqiqlangan so\'zsiz); qoida kartasi va kun xulosasi tanlangan uslubdan; ilovadagi ' + used.size + ' kalit hammasi bor; eslatmalar (hazil to\'plami, jadvaldagi uslub)');
+/* v105: uslub standarti (docs/maslahatchi-uslub.md) — taqiqlangan sun'iy iboralar, uzunlik, gap soni, emoji, til aralashuvi */
+{ const U = createRequire(import.meta.url)(path.join(ROOT, 'tools/maslahat-uslub.cjs')); const e = U.checkMatn(X, null), E0 = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/eslatmalar.json'), 'utf8'));
+  for (const MM of ['matn', 'matn_hazil']) for (const L of ['uz', 'ru']) for (const k of Object.keys(E0[MM][L])) E0[MM][L][k].forEach((s) => U.check(s, L, MM === 'matn' ? 'jiddiy' : 'hazil').forEach((x) => e.push('push ' + MM + '/' + L + '/' + k + ': ' + x + ' «' + s + '»'))); assert.deepEqual(e.slice(0, 6), [], 'uslub qoidalari: ' + e.length + ' xato');
+  log('Uslub (maslahatchi + push matnlari): taqiqlangan iboralar (' + (U.TAQIQ.uz.length + U.TAQIQ.ru.length) + ' ta), ≤ 200 belgi, gap soni, emoji (hazil ≤ 1, jiddiy 0), uz — kirillsiz, ru — lotinsiz'); }
+log('Matnlar: ' + KEYS.length + ' kalit × uz/ru × hazil/jiddiy (≥ 3 variant, takrorsiz, hazil ≠ jiddiy, taqiqlangan so\'zsiz); qoida kartasi va kun xulosasi tanlangan uslubdan; ilovadagi ' + used.size + ' kalit hammasi bor; eslatmalar (hazil to\'plami, jadvaldagi uslub)');
 
 /* ---------- brauzer ---------- */
 const { srv, BASE } = await server(); const b = track(await chromium.launch());

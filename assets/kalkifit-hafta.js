@@ -40,6 +40,9 @@
      ===================================================================================================================================================== */
   var KG_KCAL = 7700, FAT_PACK_G = 200, EVEN_TOL = 300, LOW_DAY_DEFICIT = 1000;          // 1 kg yog' ≈ 7700 kkal; sariyog' paketi 200 g; «taxminan teng» ±300 kkal; kuniga >1000 kkal defitsit — ogohlantirish
   /* O'zbekiston shaharlari orasidagi taxminiy yo'l masofalari (km) — «Haftangiz» harakat slaydi taqqoslashi uchun BITTA joyda */
+  /* v105: shahar nomlari ruscha (slayd/ulashish — joriy tilda; uz nomi kalit) */
+  var CITY_RU = { Xiva: 'Хива', Urganch: 'Ургенч', Toshkent: 'Ташкент', Chirchiq: 'Чирчик', Qarshi: 'Карши', Muborak: 'Мубарек', Samarqand: 'Самарканд', Jizzax: 'Джизак', Guliston: 'Гулистан', Buxoro: 'Бухара', Navoiy: 'Навои', Andijon: 'Андижан', "Farg'ona": 'Фергана' };
+  function city(n, lang) { return lang === 'ru' && CITY_RU[n] ? CITY_RU[n] : n; }
   var ROUTES = [['Xiva', 'Urganch', 35], ['Toshkent', 'Chirchiq', 30], ['Qarshi', 'Muborak', 60], ['Samarqand', 'Jizzax', 120], ['Toshkent', 'Guliston', 110], ['Buxoro', 'Navoiy', 100], ['Andijon', "Farg'ona", 130], ['Samarqand', 'Buxoro', 270], ['Toshkent', 'Samarqand', 300], ['Toshkent', 'Andijon', 330], ['Toshkent', 'Buxoro', 570]];
   /* qiziqarli taqqoslash: [taom id, birlik, ko'plik shakli kalit] — kkal bazadan (ctx.kcalUnit); tasodifiy biri (hafta sanasi bo'yicha barqaror) */
   var FUN = [['somsa', 'dona'], ['osh', 'kosa'], ['lagmon', 'kosa'], ['manti', 'dona'], ['non', 'bolak'], ['banan', 'dona'], ['pitsa', 'bolak']];
@@ -142,6 +145,6 @@
     var few = loggedN <= 2, k = ['intro', 'days']; if (loggedN) k.push('kcal'); if (lost.state !== 'none') k.push('lost'); if (fun && !few) k.push('fun'); if (top.length && !few) k.push('top'); if (fullN && !few) k.push('macros'); if (wTot > 0 && !few) k.push('water'); if (stepsSum > 0 || exMin > 0) k.push('move');          // 1–2 kun yozilgan hafta: iliq qisqa versiya
     if (weight.has) k.push('weight'); if (vs.length) k.push('vs'); if (m.badges.length) k.push('badges'); k.push('goal', 'final'); m.kinds = k; return m;
   }
-  var api = { summary: summary, dueEnd: dueEnd, model: model, weekEnds: weekEnds, routeOf: routeOf, pickGoal: pickGoal, evalGoal: evalGoal, BADGES: BADGES, ROUTES: ROUTES, FUN: FUN, KG_KCAL: KG_KCAL, FAT_PACK_G: FAT_PACK_G, EVEN_TOL: EVEN_TOL, LOW_DAY_DEFICIT: LOW_DAY_DEFICIT };
+  var api = { city: city, CITY_RU: CITY_RU, summary: summary, dueEnd: dueEnd, model: model, weekEnds: weekEnds, routeOf: routeOf, pickGoal: pickGoal, evalGoal: evalGoal, BADGES: BADGES, ROUTES: ROUTES, FUN: FUN, KG_KCAL: KG_KCAL, FAT_PACK_G: FAT_PACK_G, EVEN_TOL: EVEN_TOL, LOW_DAY_DEFICIT: LOW_DAY_DEFICIT };
   if (typeof module === 'object' && module.exports) module.exports = api; else root.KalkiHafta = api;
 })(typeof window !== 'undefined' ? window : this);

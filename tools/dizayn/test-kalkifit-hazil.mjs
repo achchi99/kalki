@@ -10,6 +10,7 @@ for (const it of J0.items) { const h = (J.states[it.holat] = J.states[it.holat] 
 const NEW = ['day_morning', 'breakfast', 'water_none', 'water_half', 'water_ok', 'zero_steps', 'steps_couch', 'steps_goal', 'late_food', 'food_sweet', 'food_fast', 'protein_low', 'over', 'on_target', 'streak', 'comeback', 'food_osh', 'tea', 'bread_much', 'weekend', 'fish_day', 'day_any', 'ichimlik_suvga_qoshildi', 'hafta_xulosa'];
 let n = 0; const log = (m) => { n++; console.log('OK  ', n + '.', m); };
 const BAN = G.BANNED.map((w) => new RegExp(w, 'i'));
+{ const U = require(path.join(ROOT, 'tools/maslahat-uslub.cjs')), e = U.checkHazil(J0); assert.deepEqual(e.slice(0, 5), [], 'uslub standarti (docs/maslahatchi-uslub.md): ' + e.length + ' xato'); }          // v105: taqiqlangan sun'iy iboralar, emoji, til aralashuvi
 const URGE = [/to'lmay|to'ldir|yetishma|yetmayap|kam yed|kam ovqat|yetarli yem|\byeng\b|ko'proq yeng|ovqat yeng/i, /не наполн|недоед|недостаточно|мало съел|мало ел|не хватает|съешьте|поешьте|ешьте|доешь/i];
 const BODY_EXTRA = [...URGE, /tartibli|молодец|умница|ortiqcha yedingiz|переели|limit|лимит/i, /ovqat(ni)? (yeb|tashla)/i, /ochlik|och qol|och yur/i, /yeb qo'y/i, /\bsemir|\bozib\b/i, /vazningiz|tanangiz|qorning/i, /\bdiyeta|ekstremal/i, /(?:сидит|держи) диет/i, /не ешь|голода/i];
 

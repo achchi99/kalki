@@ -3,6 +3,7 @@
  * Qator (push_eslatma): { tz, jadval: '{"b":510,"l":810,"s":null,"d":1170}', siyrak, kun, yozildi, ishlangan, yuborildi, bosildi, bosilmagan }
  * Qoidalar (assets/kalkifit-core.js remDay bilan bir xil): yozilgan ovqatga eslatma yo'q; kechki eslatma o'tkazib yuborilganini eslatadi; kuniga ≤ 3;
  * 3 kun ketma-ket (eslatma bo'lgan kunlar) birorta ham bosilmasa — siyrak (faqat kechki). */
+import KalkiIsm from '../../assets/kalkifit-ism.js';
 export const BIT = { b: 1, l: 2, s: 4, d: 8 }, MEALS = ['b', 'l', 's', 'd'], OYNA = 45, MAX = 3, SIYRAK = 3;
 const two = (n) => String(n).padStart(2, '0');
 export function mahalliy(nowMs, tz) {                  // tz — UTC dan daqiqa (Toshkent +300) → { kun: 'YYYY-MM-DD', min }
@@ -47,6 +48,7 @@ export function matn(tx, til, it, n, translit, uslub, ism) {        // tx — da
   const L = til === 'ru' ? 'ru' : 'uz', M = uslub === 'hazil' && tx.matn_hazil && tx.matn_hazil[L] ? tx.matn_hazil : tx.matn, list = M[L][it.kind === 'x' ? 'x' : it.meal]; let b = list[Math.abs(n || 0) % list.length];
   if (it.kind === 'x') { const nm = tx.ovqat[L][it.miss] || ''; b = b.replace('{m}', nm).replace('{M}', nm.charAt(0).toUpperCase() + nm.slice(1)); }
   const cy = (x) => til === 'cyr' && translit ? translit(String(x).replace(/[‘’ʻ`´]/g, "'")) : x;
-  return { t: ism ? cy(ism) + ' · ' + tx.sarlavha[L] : tx.sarlavha[L], b: cy(b) };
+  const nm = ism ? KalkiIsm.yozuv(ism, til === 'ru' ? 'ru' : 'uz') : '';          // v105: ism joriy yozuvda (uz — lotin, ru — kirill, cyr — translit)
+  return { t: cy(nm ? nm + ' · ' + tx.sarlavha[L] : tx.sarlavha[L]), b: cy(b) };
 }
 export function url(til, it, kun) { return (til === 'ru' ? '/ru/kalkifit' : '/kalkifit') + '?eslatma=' + (it.kind === 'x' ? it.miss : it.meal) + '&k=' + kun; }

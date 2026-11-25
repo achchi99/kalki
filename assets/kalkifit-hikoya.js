@@ -80,8 +80,8 @@
     return '<p class="hk-k">' + esc(t('wrWaterK')) + '</p><h2 class="hk-num"><b data-cu="' + W.liters + '" data-dec="1">0</b><small> ' + esc(t('wrLiters')) + '</small></h2><div class="hk-glasses">' + gl + '</div><p class="hk-sub">' + esc(W.goalDays >= 1 ? t('wrWaterDays', { n: W.goalDays }) : t('wrWaterFew')) + '</p>';
   }
   function sMove(m, o) {
-    var t = o.t, V = m.move, rt = V.route, line = '';
-    if (rt) line = rt.part ? t('wrRoutePart', { a: rt.a, b: rt.b, p: Math.round(rt.times * 100) }) : t('wrRoute', { a: rt.a, b: rt.b, n: dec(rt.times, rt.times % 1 ? 1 : 0) });
+    var t = o.t, V = m.move, rt = V.route, line = '', cy = o.city || function (x) { return x; };          // v105: shahar — joriy tilda (ru: Карши — Мубарек)
+    if (rt) line = rt.part ? t('wrRoutePart', { a: cy(rt.a), b: cy(rt.b), p: Math.round(rt.times * 100) }) : t('wrRoute', { a: cy(rt.a), b: cy(rt.b), n: dec(rt.times, rt.times % 1 ? 1 : 0) });
     return '<p class="hk-k">' + esc(t('wrMoveK')) + '</p><h2 class="hk-num"><b data-cu="' + V.steps + '">0</b><small> ' + esc(t('wrSteps')) + '</small></h2>' + (V.km ? '<p class="hk-sub"><span class="hk-arrow">' + svgI('shoe') + '</span><b>≈ ' + dec(V.km, 1) + ' ' + esc(t('wrKm')) + '</b></p>' : '') + (line ? '<p class="hk-pill alt"><span>' + esc(line) + '</span></p>' : '') +
       (V.exMin ? '<div class="hk-chips"><span>' + svgI('bolt') + '<b data-cu="' + V.exMin + '">0</b> ' + esc(t('wrMin')) + '</span><span><b data-cu="' + V.exKcal + '">0</b> ' + esc(t('wrBurn')) + '</span>' + (V.hr ? '<span>' + svgI('heart') + '<b data-cu="' + V.hr + '">0</b> ' + esc(t('wrPulse')) + '</span>' : '') + '</div>' : '');          // v82: soat skrinshotidan o'rtacha puls
   }
@@ -137,7 +137,7 @@
     var days = s.days || [], mx = Math.max(s.target || 1, Math.max.apply(null, days.map(function (x) { return x.k; }).concat([1]))) * 1.1, bw = 100, gap = 24, x0 = 90, H = 360, yb = 820;
     days.forEach(function (x, j) { var h = Math.max(10, H * x.k / mx), xx = x0 + j * (bw + gap); c.fillStyle = x.near ? ok : (x.k ? acc : base); c.beginPath(); if (c.roundRect) c.roundRect(xx, yb - h, bw, h, 20); else c.rect(xx, yb - h, bw, h); c.fill(); c.fillStyle = mut; c.font = '600 32px ' + F; c.textAlign = 'center'; c.fillText(tr(x.l || ''), xx + bw / 2, yb + 52); c.textAlign = 'left'; });
     var rows = [[String(s.logged) + ' / 7', t('wrDaysK')], [s.avg != null ? nf(s.avg) : '—', t('wrAvgK')], [nf(s.steps || 0), t('wrSteps')], [dec(s.liters || 0, 1) + ' ' + t('wrLiters'), t('wrWaterK')]];
-    rows.forEach(function (r, j) { var xx = 90 + (j % 2) * 480, yy = 1010 + Math.floor(j / 2) * 190; c.fillStyle = ink; c.font = '800 78px ' + F; c.fillText(r[0], xx, yy); c.fillStyle = mut; c.font = '600 34px ' + F; c.fillText(tr(String(r[1] || '')), xx, yy + 52); });
+    rows.forEach(function (r, j) { var xx = 90 + (j % 2) * 480, yy = 1010 + Math.floor(j / 2) * 190; c.fillStyle = ink; c.font = '800 78px ' + F; c.fillText(tr(r[0]), xx, yy); c.fillStyle = mut; c.font = '600 34px ' + F; c.fillText(tr(String(r[1] || '')), xx, yy + 52); });
     var y = 1400;
     if (s.fat) { c.fillStyle = dk ? '#3A2A22' : '#FFFFFF'; c.beginPath(); if (c.roundRect) c.roundRect(90, y, 900, 190, 40); else c.rect(90, y, 900, 190); c.fill(); c.fillStyle = ok; c.font = '800 64px ' + F; c.fillText(s.fat.even ? tr(t('wrEven')) : '≈ ' + dec(s.fat.kg, s.fat.kg < 1 ? 2 : 1) + ' ' + tr(t('wrKg')) + ' ' + tr(t('wrFat')), 130, y + 90); c.fillStyle = mut; c.font = '600 34px ' + F; c.fillText(s.fat.even ? tr(t('wrEvenS')) : '≈ ' + nf(s.fat.kcal) + ' ' + tr(t('kcal')) + ' ' + tr(t('wrSaved')), 130, y + 145); y += 230; }
     if (s.badge) { c.fillStyle = acc; c.font = '800 48px ' + F; c.fillText('★ ' + tr(t('wrB_' + s.badge)), 90, y + 60); }
