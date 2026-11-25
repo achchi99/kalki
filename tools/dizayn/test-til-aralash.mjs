@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url); const TR = require(path.join(ROO
 let n = 0; const ok = (m) => { n++; console.log('OK  ', n + '.', m); };
 /* brend/birlik — har rejimda lotincha qolishi mumkin */
 const ALLOW = new Set(TR.DEFAULT_ABBR.concat(['KalkiFit', 'Kalki', 'AI', 'OK', 'BMI', 'kcal', 'Wi-Fi', 'SE', 'iPhone', 'Android', 'Google', 'Telegram', 'Health', 'Connect', 'Fit', 'Samsung']).flatMap((w) => String(w).split(/[\s.]+/)));
-const CYR = /[А-Яа-яЁёЎўҚқҒғҲҳ]/, latWords = (s) => (s.match(/[A-Za-z][A-Za-z'’ʻ‘-]*/g) || []).map((w) => w.replace(/['’ʻ‘-]+$/, '')).filter((w) => w.length > 1 && !ALLOW.has(w));
+const CYR = /[А-Яа-яЁёЎўҚқҒғҲҳ]/, latWords = (s) => (s.match(/[A-Za-z][A-Za-z0-9'’ʻ‘-]*/g) || []).map((w) => w.replace(/['’ʻ‘-]+$/, '')).filter((w) => w.length > 1 && !ALLOW.has(w) && !/^[A-Z][A-Z0-9-]+$/.test(w));          // katta harfli qisqartma (AMD, BCAA, DHA) — istisno
 const bad = (s, mode) => mode === 'uz' ? CYR.test(s) : latWords(s).length > 0;
 /* ---------------- 1. maslahatchi va push matnlari (node) ---------------- */
 if (!process.env.ONLY_UI) { const SAMPLE = { uz: { name: 'anor', src: 'qozon-kabob va non', Src: 'Qozon-kabob va non', dish: 'Qozon-kabob', alt: 'dimlama, mastava', top: 'grechka, loviya', fix: '200 g tovuq ko\'kragi va 150 g bodring', m: 'oqsil', M: 'Oqsil', f: 'Osh', ab: '0,2–0,3 kg', cd: 'juda oz' },
@@ -31,7 +31,7 @@ if (!process.env.ONLY_UI) { const SAMPLE = { uz: { name: 'anor', src: 'qozon-kab
   ok('Ism yozuvi: uz Holms · ЎЗ Холмс · ru Холмс (saqlangan qiymat o\'zgarmaydi)'); }
 /* ---------------- 2. brauzer: ekranlar, oynalar, Haftangiz, ulashish rasmlari ---------------- */
 const SCAN = (mode) => { const out = [], CY = /[А-Яа-яЁёЎўҚқҒғҲҳ]/, A = new Set(window.__allow);
-  const lw = (s) => (s.match(/[A-Za-z][A-Za-z'’ʻ‘-]*/g) || []).map((w) => w.replace(/['’ʻ‘-]+$/, '')).filter((w) => w.length > 1 && !A.has(w));
+  const lw = (s) => (s.match(/[A-Za-z][A-Za-z0-9'’ʻ‘-]*/g) || []).map((w) => w.replace(/['’ʻ‘-]+$/, '')).filter((w) => w.length > 1 && !A.has(w) && !/^[A-Z][A-Z0-9-]+$/.test(w));
   const isBad = (s) => { s = s.replace(/\b[\w-]+(\.[\w-]+)*\.(uz|com|org|net)(\/\S*)?/gi, ' '); return mode === 'uz' ? CY.test(s) : lw(s).length > 0; };          // domen/URL — istisno
   const vis = (e) => { for (let a = e; a && a !== document.body; a = a.parentElement) { if (a.hidden) return false; const c = getComputedStyle(a); if (c.display === 'none' || c.visibility === 'hidden' || +c.opacity === 0 && a.id !== 'hkStory') return false; } return e.getClientRects().length > 0; };
   const skip = (e) => !!e.closest('[data-cyr=skip],script,style,noscript,[data-user],.rz-langwrap,#rzLangMenu,.sl-lp,input,textarea,[contenteditable]');

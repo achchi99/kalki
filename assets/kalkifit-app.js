@@ -2402,6 +2402,13 @@
   /* Android ilovasi ichida (KalkiNative): Web Push o'rniga LOKAL haftalik bildirishnoma (tanlangan kun, 11:00; server kerak emas) */
   var NAT = window.KalkiNative && KalkiNative.isApp() && KalkiNative.notif.ok() ? KalkiNative : null, NS = { perm: 'prompt' };
   function natTr(x) { return isCyr() && window.KalkiTranslit ? KalkiTranslit.translit(String(x).replace(/[‘’ʻ`´]/g, "'")) : x; }
+  (function () {          // v105: ЎЗ rejimida HAR canvas matni (ulashish rasmlari: kun kartasi, natija, retsept, Haftangiz, afsona) kirillda; URL va kirill matn o'zgarmaydi
+    var P = window.CanvasRenderingContext2D && CanvasRenderingContext2D.prototype; if (!P || P.__kfTr) return; P.__kfTr = 1; var F = P.fillText, SF = P.strokeText, M = P.measureText;
+    var tr = function (t) { t = String(t); return /^[\w.-]+\.(uz|com|org)(\/\S*)?$/i.test(t) || !/[A-Za-z]/.test(t) ? t : natTr(t); };
+    P.fillText = function (t) { var a = [].slice.call(arguments); if (isCyr()) a[0] = tr(t); return F.apply(this, a); };
+    P.strokeText = function (t) { var a = [].slice.call(arguments); if (isCyr()) a[0] = tr(t); return SF.apply(this, a); };
+    P.measureText = function (t) { return M.call(this, isCyr() ? tr(t) : t); };
+  })();
   function natOpts() { return { day: Y ? Y.kunBugun() : 3, hour: 11, title: 'KalkiFit', body: natTr(T('bkMsg')), url: (lang === 'ru' ? '/ru/kalkifit' : '/kalkifit') + '?baliq=1' }; }
   function natResched() { if (!NAT) return; var q = prefs().push; if (!q || !q.local) return; if (prefs().baliqOff || (Y && Y.avoids('baliq'))) { NAT.notif.disable(); return; } NAT.notif.schedule(natOpts()).catch(function () {}); }
   function loadPush(cb) {
