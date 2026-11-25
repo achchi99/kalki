@@ -57,6 +57,7 @@ const ASSETS = [
   '/assets/kalkifit-gaplar.js',
   '/assets/kalkifit-kunkarta.js',
   '/assets/kalkifit-hafta.js',
+  '/assets/kalkifit-sifat.js',
   '/assets/kalkifit-hikoya.js',
   '/assets/kalkifit-plato.js',
   '/assets/kalkifit-maslahat-matn.js',

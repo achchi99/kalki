@@ -111,6 +111,8 @@
   function variant(id, mode, last, seed) { var n = list('r_' + id, 'uz', mode).length; if (n <= 1) return 0; var i = Math.abs(num(seed)) % n; if (i === last) i = (i + 1) % n; return i; }
   function matn(q, lang, mode, vi) {
     var L = lang === 'ru' ? 'ru' : 'uz', d = q.data || {}, src = srcText(d.src, L), o = { x: d.x, p: d.p, sh: d.sh, k: d.k, min: d.min, top: d.top, src: src, Src: src.charAt(0).toUpperCase() + src.slice(1) };
+    var FX = { a: 'fx_fat', d: 'fx_fat', b: 'fx_carb', c: 'fx_prot' }; o.fix = d.fix;
+    if (d.fix && FX[q.id] && bor('ef_' + q.id) && bor(FX[q.id])) return { t: say('rt_' + q.id, o, { lang: L, mode: mode, i: vi || 0 }), b: say('ef_' + q.id, o, { lang: L, mode: mode, i: vi || 0 }) + ' ' + say(FX[q.id], o, { lang: L, mode: mode, i: vi || 0 }) };          // v103: 1) nimaga ta'sir qiladi, 2) kunning qolganini qanday to'g'irlash (aniq taom va gramm)
     if (bor('r_' + q.id)) return { t: say('rt_' + q.id, o, { lang: L, mode: mode, i: vi || 0 }), b: say('r_' + q.id, o, { lang: L, mode: mode, i: vi || 0 }) };
     return { t: fill(TX[L].t[q.id], o), b: fill(TX[L][q.id][vi || 0], o) };
   }
