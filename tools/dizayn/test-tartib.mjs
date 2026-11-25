@@ -65,7 +65,7 @@ try {
   /* BJU 3 ustun + oqsil maslahati (v50) */
   const pg = S.protein(st.profile, P.summary(st.weights, T0, 0, D).kg).g;
   const pc = await p.evaluate(() => { const c = document.getElementById('bjuCard'); return { k: [...c.querySelectorAll('.mc')].map((x) => x.dataset.m), v: [...c.querySelectorAll('.mc .mv')].map((x) => x.innerText), tip: c.querySelector('#prTip').textContent, sub: [...document.querySelectorAll('.sl-meal .ml-sub')].map((x) => x.textContent) }; });
-  assert.deepEqual(pc.k, ['p', 'f', 'c'], 'oqsil birinchi'); assert.equal(nb(pc.v[0]), '40 / ' + pg + ' g'); assert.match(nb(pc.tip), /^Yana ~\d+ g oqsil(: \d+ g .+)?$/, 'maslahat: ' + pc.tip); assert.ok(pc.sub.every((x) => !/kunning/.test(x)), 'budjet yoqilganda foiz yo\'q: ' + pc.sub);
+  assert.deepEqual(pc.k, ['p', 'f', 'c'], 'oqsil birinchi'); assert.equal(nb(pc.v[0]), '40 / ' + pg + ' g'); assert.match(nb(pc.tip), /^Yana ~\d+ g oqsil(: .+)?$/, 'maslahat: ' + pc.tip); assert.ok(pc.sub.every((x) => !/kunning/.test(x)), 'budjet yoqilganda foiz yo\'q: ' + pc.sub);
   /* (d) «Nima yesam ekan?» — hozirgi ovqat budjeti */
   await p.click('.rz-tab[data-v=more]'); await p.waitForTimeout(400);  await p.click('#rzMain [data-act=feat][data-fk=yesam], #rzMain [data-act=feat][data-fk=yeymiz]'); await p.waitForSelector('#nySt', { timeout: 8000 }); await p.waitForTimeout(400);
   const ny = nb(await p.locator('#nySt b').innerText()); assert.match(ny, new RegExp('^Kechki ovqatga ' + F(eb.meals.d.left) + ' kkal va \\d+ g oqsil qoldi$'), 'holat qatori: ' + ny);

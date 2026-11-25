@@ -14,6 +14,21 @@ const TAQIQ = {
 /* BAN — tana/vazn/aybdorlik/din (tools/dizayn/test-maslahatchi.mjs bilan bir xil) */
 const BAN = /semiz|ozg'in|yalqov|dangasa|ochko'z|\buyat|aybdor|gunoh|jazo|ahmoq|tentak|xunuk|figura|badan|qorin|\bsemir|vazningiz|tanangiz|\bkilo|halol|ҳалол|cho'chqa|choshqa|толст|живот|талия|фигур|ленив|обжор|стыд|позор|виноват|наказ|свин|бекон|голод|диет|переел|объел/i;
 const EMOJI = /\p{Extended_Pictographic}/gu;
+/* v106: MUTLAQ DA'VOLAR («oqsil yo'q», «umuman», «nol», «белка нет», «вообще») — faqat bazadagi qiymat ~0 bo'lganda to'g'ri. Matnda taom/ozuqa haqida mutlaq da'vo — YO'Q;
+   haqiqatan 0 bo'lgan holat kerak bo'lsa — ABS_OK ga (kalit, ozuqa, taom id) yoziladi va test bazadan qiymat ≤ 0,5 ekanini tekshiradi */
+const ABS = {
+  uz: [/(oqsil|yog['’`]?|uglevod|kletchatka|tola|kaloriya|vitamin|shakar)\w*\s+(umuman\s+|mutlaqo\s+)?(yo['’`]q|yo['’`]qdir|nol)\b/i, /\bumuman\b/i, /\bmutlaqo\b/i, /\bhech qanday\s+(oqsil|yog|uglevod|kletchatka|tola|kaloriya)/i],
+  ru: [/(белк\w*|жир\w*|углевод\w*|клетчатк\w*|калори\w*|сахар\w*)\s+(там\s+|в\s+нём\s+|в\s+них\s+)?(нет|ноль|нулев\w*|отсутствует|отсутствуют)(?![а-яё])/i, /(?<![а-яё])нет\s+(белка|жира|углеводов|клетчатки|калорий|сахара)/i, /(?<![а-яё])вообще(?![а-яё])/i, /(?<![а-яё])полностью отсутствует/i]
+};
+/* v106: tavsiya matnida QATTIQ porsiya («150 g tovuq», «2 ta tuxum», «bitta olma», «пара яиц») YO'Q — {opP}/{opZ}/{opS}/{opC}/{opF}/{opB}/{opK}/{opL} (farqdan hisoblanadi, assets/kalkifit-tavsiya.js).
+   Sabzavot/salat (bodring) va «kamaytirish» maslahatlari istisno (farq yo'q). */
+const QTY = {
+  uz: [/\b\d+(?:[.,]\d+)?(?:–\d+)?\s?g\s+(?:pishgan |qaynatilgan |yunon |grek |qora )?(?:tvorog|tovuq|qatiq|loviya|mosh|grechka|guruch|non\b|yong|go['’`]sht|mol|baliq|pishloq|kurka|tunets|mayiz|sutli|bo['’`]tqa)/i, /\b\d+(?:–\d+)?\s?ta\s+(?:qaynatilgan\s+)?(?:tuxum|olma|banan|nok|mandarin|kartoshka)/i, /\b(?:bitta|ikkita|uchta|yarim)\s+(?:qaynatilgan\s+)?(?:tuxum|olma|banan|nok|meva)\b/i, /\bbir\s+(?:stakan|piyola)\s+qatiq/i, /\bbir\s+(?:hovuch|burda)\b/i, /\bbir\s+bo['’`]lak\s+tovuq/i, /\b\d+\s*(?:choy|osh)\s+qoshiq\b/i],
+  ru: [/(?<![а-яё])\d+(?:–\d+)?\s?г\s+(?:творога|куриной|курицы|катыка|фасоли|маша|гречки|риса|хлеба|говядины|мяса|рыбы|сыра|орехов|изюма|молочной)/i, /(?<![а-яё])(?:\d+|одно|два|две|пара|пару)(?:–\d+)?\s+(?:яйц|яиц|яйцо|яблок|банан|груш)/i, /(?<![а-яё])(?:стакан|пиал\w*)\s+катыка/i, /(?<![а-яё])горсть(?![а-яё])/i, /(?<![а-яё])(?:чайную|столовую)\s+ложку/i, /(?<![а-яё])кусок\s+курицы/i]
+};
+function hardQty(s, L) { const t = strip(s), out = []; (QTY[L] || []).forEach((re) => { const m = t.match(re); if (m) out.push(m[0]); }); return out; }
+const ABS_OK = [];          // [{ key, re, nutrient: 'p'|'f'|'c'|'fb'|'k', food: <bazadagi id> }]
+function absolute(s, L) { const t = strip(s), out = []; (ABS[L] || []).forEach((re) => { const m = t.match(re); if (m) out.push(m[0]); }); return out; }
 /* ru matnida ruxsat etilgan lotin so'zlar (brend/birlik) */
 const RU_LAT_OK = /^(KalkiFit|Kalki|AI|Google|Telegram|PDF|CSV|ID|OK|Wi-Fi|BMI|USDA|kcal)$/;
 function strip(s) { return String(s).replace(/\{[^{}]*\}/g, ' '); }
@@ -21,6 +36,8 @@ function check(s, L, mode) {
   const e = [], t = strip(s);
   (TAQIQ[L] || []).forEach((re) => { if (re.test(t)) e.push('taqiqlangan ibora ' + re); });
   if (BAN.test(t)) e.push('BAN so\'z');
+  hardQty(s, L).forEach((x) => e.push('qattiq porsiya «' + x + '» — {opX} ishlating'));
+  absolute(s, L).forEach((x) => e.push('mutlaq da\'vo «' + x + '» (faqat bazadagi qiymat ~0 bo\'lsa)'));
   if (String(s).length > 200) e.push('uzun (' + String(s).length + ')');
   const em = (t.match(EMOJI) || []).length; if (mode === 'jiddiy' && em) e.push('jiddiyda emoji'); if (em > 1) e.push('emoji > 1');
   const gap = (t.replace(/\d[.,]\d/g, '0').replace(/\.\.\.|…/g, '.').match(/[.!?]+(\s|$)/g) || []).length; if (gap > 3 || (mode === 'jiddiy' && gap > 2)) e.push('gap ko\'p (' + gap + ')');
@@ -48,7 +65,7 @@ function checkMatn(X, ORIG) {
   return err;
 }
 function checkHazil(J) { const err = []; (J.items || []).forEach((x) => { for (const L of ['uz', 'ru']) if (x[L]) check(x[L], L, 'hazil').forEach((e) => err.push(`${x.id} ${L}: ${e} — «${x[L]}»`)); }); return err; }
-module.exports = { TAQIQ, BAN, check, checkMatn, checkHazil, jac };
+module.exports = { TAQIQ, BAN, ABS, ABS_OK, absolute, QTY, hardQty, check, checkMatn, checkHazil, jac };
 if (require.main === module) {
   const ROOT = path.join(__dirname, '..'), ORIG = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/maslahatchi-matn.json'), 'utf8'));
   const files = process.argv.slice(2).filter((a) => !a.startsWith('--')); if (!files.length) files.push(path.join(ROOT, 'data/maslahatchi-matn.json'));

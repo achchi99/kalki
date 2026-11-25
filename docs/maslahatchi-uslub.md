@@ -44,6 +44,8 @@ ru: «нервно курит», «в лёгком шоке», «помахал�
 
 ## Namunalar
 
+> Quyidagi namunalardagi gramm/dona — faqat misol. Haqiqiy matnlarda ular qattiq yozilmaydi: `{opP}` va hokazo (pastdagi «Porsiya va miqdorlar»).
+
 | | Matn |
 |---|---|
 | ❌ YOMON | Yog' bugun «men ham bormanku!» dedi (+25 g); u to'qlikka sust xizmat qiladi, shuning uchun kechki ochlik eshik qoqishi mumkin. |
@@ -54,9 +56,22 @@ ru: «нервно курит», «в лёгком шоке», «помахал�
 | ❌ sarlavha | Yog' prognozi: +25 g issiq |
 | ✅ sarlavha | Yog' me'yordan +25 g |
 
+## Porsiya va miqdorlar (v106 — QAT'IY)
+
+- Matnda **qattiq gramm/dona YOZILMAYDI** («150 g tovuq», «2 ta tuxum», «bitta olma», «пара яиц» — taqiqlangan). Tavsiya porsiyasi — placeholder: `{opP}` (oqsil), `{opZ}` (nonushta oqsili), `{opS}` (nam-yog'siz oqsil), `{opC}` (uglevod), `{opF}` (yog'), `{opB}` (kletchatka), `{opK}` (oqsilli tamaddi — kkal zaxirasi ichida), `{opL}` (yengil tamaddi — kkal zaxirasi ichida); oxiriga `1` — bitta variant (`{opP1}`), `1`siz — ko'pi bilan 2 variant («… yoki …»).
+- Placeholder'ni `assets/kalkifit-maslahat.js` `say()` to'ldiradi: qolgan **farq** (`{p}`, `{left}`, `{x}`; yo'q bo'lsa — «bitta ovqat» 25 g) → bazadagi (data/ovqatlar.json) 100 g qiymati bo'yicha taom + odatiy porsiya (`assets/kalkifit-tavsiya.js`).
+- **Qoida:** har variant farqning kamida ≈ 80 %, ko'pi bilan ≈ 150 % ini qoplaydi (ortiqcha kaloriya bermaydi); kkal zaxirasi bo'yicha tamaddi — zaxiradan oshmaydi. Porsiya odatiy qadamga yaxlitlanadi: tuxum — dona, tvorog/tovuq/qatiq — 50 g, yong'oq — 5–10 g, moy — choy qoshiq. Qadamlar va taomlar — faqat `kalkifit-tavsiya.js` `CAND` da (yangi taom qo'shish — shu yerda).
+- Farq juda katta/kichik (oqsil > 80 g, kletchatka > 28 g, yog' > 35 g, zaxira < 40 kkal) yoki baza yuklanmagan bo'lsa — **miqdorsiz** ibora («go'sht, tuxum yoki tvorog»); «Yemaydiganlarim»ga to'g'ri kelmagan taom tavsiya qilinmaydi (ibora ham).
+- Faqat sabzavot/salat («150 g bodring» — to'ldiruvchi) va «kamaytiring» (non yarim bo'lak) maslahatlarida miqdor matnda qolishi mumkin — ular farqni yopmaydi.
+- Test: `tools/test-tavsiya.js` — 5–80 g farqlarda har variant MATNDAN qayta o'qilib, bazadan hisoblanadi (80–150 %); barcha shablonlar render qilinadi; qattiq porsiya va mutlaq da'vo lint.
+
+## Mutlaq da'volar
+
+«yo'q», «umuman», «nol», «mutlaqo», «hech qanday …», «нет», «ноль», «вообще» — ozuqa/taom tarkibi haqida **faqat bazadagi qiymat ~0 bo'lsa** to'g'ri (`tools/maslahat-uslub.cjs` `ABS`, istisno — `ABS_OK`: kalit + ozuqa + taom id, test bazadan ≤ 0,5 ekanini tekshiradi). Aks holda «kam» / «oz» / «мало»: «non-choy … oqsil **kam**» (nonda 8 g/100 g), «белка там **мало**».
+
 ## Texnik qoidalar
 
-- Placeholder'lar (`{x}`, `{src}`, `{name}` …) — faqat shu kalitga ilova beradiganlar (`tools/dizayn/test-maslahatchi.mjs` `DATA`). Raqamli kalitda raqam doim matnda bo'ladi.
+- Placeholder'lar (`{x}`, `{src}`, `{name}`, `{opP}` …) — faqat shu kalitga ilova beradiganlar (`tools/dizayn/test-maslahatchi.mjs` `DATA`). Raqamli kalitda raqam doim matnda bo'ladi.
 - `{src}` — kichik harfli taom nomi(lar)i; gap boshida `{Src}`.
 - Taqiqlangan so'zlar (`BAN`): semiz, ozg'in, qorin, vazningiz, tanangiz, kilo, «halol», cho'chqa … (test ro'yxati).
 - Ruscha sonlar: «{n} дней» yozing — `plRu` o'zi «1 день / 3 дня / 5 дней» qiladi.

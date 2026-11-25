@@ -107,9 +107,9 @@
     "Kecha dasturxon boy edi (+{x} kkal), bugun esa tartib joyida. Barakalla 🙂"
    ],
    "m_prot3": [
-    "Oqsil {n} kundan beri kam chiqyapti — non bilan choy yutib ketyapti 😄 Bugun nonushtaga 2 ta tuxum qo'shamizmi?",
-    "{n} kundirki dasturxonda non-choy ustun, oqsil esa chetda qolyapti. Tushlikka 150 g tovuq — adolat tiklanadi 🙂",
-    "Oqsil {n} kundan beri mehmonga kam kelyapti. Kechki ovqatga 200 g tvorog yoki baliq bilan chaqirib qo'yamiz 🙂"
+    "Oqsil {n} kundan beri kam chiqyapti — non bilan choy yutib ketyapti 😄 Bugun nonushtaga {opZ1} qo'shamizmi?",
+    "{n} kundirki dasturxonda non-choy ustun, oqsil esa chetda qolyapti. Tushlikka {opP1} — adolat tiklanadi 🙂",
+    "Oqsil {n} kundan beri mehmonga kam kelyapti. Kechki ovqatga {opP} bilan chaqirib qo'yamiz 🙂"
    ],
    "m_pstreak": [
     "{n} kun ketma-ket oqsil rejasi bajarildi. Tuxum bilan tvorog sizdan xursand 😄",
@@ -117,8 +117,8 @@
     "{n} kunlik oqsil seriyasi! Bugun ham zanjirni uzmaymiz 💪"
    ],
    "m_skipbf": [
-    "Oxirgi 5 kunning {n} tasida nonushta ishga chiqmay qoldi 😄 Bugun 2 ta tuxum va bir burda non bilan boshlaymizmi?",
-    "Nonushta 5 kundan {n} tasida yozilmadi — choy bilan yugurib ketildi shekilli. Bugun bir piyola qatiq ham yetadi.",
+    "Oxirgi 5 kunning {n} tasida nonushta ishga chiqmay qoldi 😄 Bugun {opZ1} bilan boshlaymizmi?",
+    "Nonushta 5 kundan {n} tasida yozilmadi — choy bilan yugurib ketildi shekilli. Bugun {opZ1} ham yetadi.",
     "5 kunda {n} marta nonushta bo'lmadi. Ishxonadagi pechenye uning o'rnini egallab olmasin 😄 Bugun bo'tqa yoki tuxum?"
    ],
    "m_streak": [
@@ -132,13 +132,13 @@
     "Uglevod joyida: non ham, osh ham chegaradan chiqmadi. Kechqurun salat bilan yakunlaymiz."
    ],
    "mk_c_deyarli": [
-    "Uglevodga {left} g qoldi — bitta olma yoki yarim burda non. Uchinchi somsa bu hisobga sig'maydi 😄",
-    "Uglevodga {left} g joy qoldi. Bu — bitta banan, butun lavash emas 😄",
-    "Uglevod marraga yaqin: yana {left} g. Bir hovuch rezavor bilan chiroyli yopiladi."
+    "Uglevodga {left} g qoldi — {opC} yetadi. Uchinchi somsa bu hisobga sig'maydi 😄",
+    "Uglevodga {left} g joy qoldi. Bu — {opC1}, butun lavash emas 😄",
+    "Uglevod marraga yaqin: yana {left} g. {opC1} bilan chiroyli yopiladi."
    ],
    "mk_c_kam": [
-    "Uglevod hali {left} g kam — ishda kuchsiz qolmang. Tushlikka 150 g grechka yoki bitta banan 🙂",
-    "Non bugun sizdan xafa — uglevodga hali {left} g joy bor 😄 Bir burda butun donli non oling.",
+    "Uglevod hali {left} g kam — ishda kuchsiz qolmang. Tushlikka {opC} 🙂",
+    "Non bugun sizdan xafa — uglevodga hali {left} g joy bor 😄 Masalan, {opC1}.",
     "Uglevod {left} g orqada — kechki ovqatda guruch yoki kartoshkadan qo'rqmang 🙂"
    ],
    "mk_c_oshdi": [
@@ -152,17 +152,17 @@
     "Yog' bo'yicha kunlik me'yor to'ldi. Kechki ovqatga bug'da pishgan baliq — eng to'g'ri tanlov."
    ],
    "mk_f_deyarli": [
-    "Yog'ga {left} g qoldi — bu bir qoshiq yog'. Qazi bugun navbatini ertaga qoldirsin 😄",
+    "Yog'ga {left} g qoldi — bu {opF1}. Qazi bugun navbatini ertaga qoldirsin 😄",
     "Yog' deyarli to'ldi: yana {left} g. Salatga mayonez emas, limon suvi 🙂",
-    "Yog' chegarasiga {left} g qoldi. Bugun choyxonada somsani bittaga cheklasak, yetadi 😄"
+    "Yog' chegarasiga {left} g qoldi. Bugun choyxonada ikkinchi somsadan voz kechsak, yetadi 😄"
    ],
    "mk_f_kam": [
     "Yog' hali {left} g kam — bu yaxshi, alohida saryog' qidirib yurmang 😄 Oddiy ovqat o'zi to'ldiradi.",
-    "Yog'ga {left} g joy bor. Salatga bir qoshiq zaytun moyi bemalol 🙂",
-    "Yog' {left} g orqada, lekin shoshilmang. Bir hovuch yong'oq — va hisob joyida."
+    "Yog'ga {left} g joy bor. Masalan, {opF1} bemalol 🙂",
+    "Yog' {left} g orqada, lekin shoshilmang. {opF1} — va hisob joyida."
    ],
    "mk_f_oshdi": [
-    "Yog' bugun {x} g ortiqcha — qozon-kabob yoki somsa o'z ishini qildi 😄 Kechqurun 100 g tovuq ko'kragi va bodring salati.",
+    "Yog' bugun {x} g ortiqcha — qozon-kabob yoki somsa o'z ishini qildi 😄 Kechqurun {opS1} va bodring salati.",
     "Yog' +{x} g. Qozon-kabobmi, somsami — kim bo'lsa ham, kechki ovqat yengil bo'ladi 😄",
     "Saryog' bugun {x} g saxiylik qildi. Keyingi likopcha — bug'da baliq va sabzavot 🙂"
    ],
@@ -172,14 +172,14 @@
     "{v} g oqsil — maqsad yopildi. Kechgacha pechenyega qo'l cho'zilmaydi 😄"
    ],
    "mk_p_deyarli": [
-    "Oqsilga atigi {left} g qoldi — bitta qaynatilgan tuxum ishni bitiradi 🙂",
-    "Oqsil deyarli tayyor: yana {left} g. Bir stakan qatiq — va kechki choyga bemalol o'tiramiz 😄",
+    "Oqsilga atigi {left} g qoldi — {opP1} ishni bitiradi 🙂",
+    "Oqsil deyarli tayyor: yana {left} g. {opP1} — va kechki choyga bemalol o'tiramiz 😄",
     "{left} g oqsil yetmayapti, xolos. Muzlatkichdagi pishloqning vaqti keldi 😄"
    ],
    "mk_p_kam": [
-    "Oqsilga hali {left} g kerak — bugun non-choy biroz ustun kelyapti 😄 Tushlikka 150 g tovuq qo'shamizmi?",
+    "Oqsilga hali {left} g kerak — bugun non-choy biroz ustun kelyapti 😄 Tushlikka {opP1} qo'shamizmi?",
     "Oqsil {left} g orqada. Kechqurun mosh sho'rva — ham mazali, ham oqsilli 🙂",
-    "Likopchada oqsil hamon ozchilikda — {left} g yetmayapti. 200 g tvorog vaziyatni o'nglaydi."
+    "Likopchada oqsil hamon ozchilikda — {left} g yetmayapti. {opP} vaziyatni o'nglaydi."
    ],
    "mk_p_oshdi": [
     "Oqsil bugun +{x} g — tovuq ko'kragi bilan oshirib yubordik 😄 Bu yaxshi: to'qlik uzoqroq.",
@@ -207,13 +207,13 @@
     "Bugun kun qanday ketyapti: hammasi joyidami yoki ishda tirbandlik?"
    ],
    "qr_full_mid": [
-    "O'rtachami? Unda {left} kkal ichida bir piyola qatiq yoki olma — kechki choygacha yetadi 🙂",
-    "Yarim to'q bo'lsa, shkafdagi pechenyega shoshilmang 😄 {left} kkal ichida nok yoki qatiq yaxshiroq.",
-    "Oshqozon «yomon emas» deyapti 🙂 {left} kkal ichida bitta olma bu gapni «zo'r»ga aylantiradi."
+    "O'rtachami? Unda {left} kkal ichida {opL} — kechki choygacha yetadi 🙂",
+    "Yarim to'q bo'lsa, shkafdagi pechenyega shoshilmang 😄 {left} kkal ichida {opL} yaxshiroq.",
+    "Oshqozon «yomon emas» deyapti 🙂 {left} kkal ichida {opL1} bu gapni «zo'r»ga aylantiradi."
    ],
    "qr_full_no": [
-    "Demak, yana joy bor — {left} kkal. Bir piyola qatiq yoki 2 ta qaynatilgan tuxum, choy bilan 🍵",
-    "Ishtaha hali bo'shamabdi 😄 {left} kkal zaxira bor: 150 g tvorog yoki 100 g tovuq ko'kragi.",
+    "Demak, yana joy bor — {left} kkal. {opK}, choy bilan 🍵",
+    "Ishtaha hali bo'shamabdi 😄 {left} kkal zaxira bor: {opK}.",
     "Tushunarli, kechgacha yana {left} kkal bor. Muzlatkichda tuxum bo'lsa — eng tez yechim."
    ],
    "qr_full_yes": [
@@ -237,18 +237,18 @@
     "Tushunarli. Kun hali tugamadi — kechki choyxona suhbati hammasini o'zgartirib yuborishi mumkin."
    ],
    "r_a": [
-    "Yog' bugun {x} g ortiqcha — {src} o'z ishini qildi 😄 Kechqurun 100 g tovuq ko'kragi va bodring salati — ham to'q, ham yengil.",
+    "Yog' bugun {x} g ortiqcha — {src} o'z ishini qildi 😄 Kechqurun {opS1} va bodring salati — ham to'q, ham yengil.",
     "Iz topildi: yog' {x} g ortiq, asosiy gumondor — {src}. Kechki ovqatga qaynatilgan baliq va ko'kat — ish yopiladi.",
-    "{Src} mazali edi, lekin yog' {x} g oshib ketdi 🙂 Kechqurun qovurmasdan: 150 g bug'da pishgan tovuq va salat."
+    "{Src} mazali edi, lekin yog' {x} g oshib ketdi 🙂 Kechqurun qovurmasdan: {opS1} va salat."
    ],
    "r_b": [
-    "Bugun non va xamir oldinda: uglevod +{x} g, oqsilga esa hali {p} g kerak 😄 Kechqurun 2 ta tuxum va bir piyola qatiq — teng bo'ladi.",
-    "Choyxonada non tugamaganga o'xshaydi: uglevod {x} g ortiq. Oqsilga {p} g qoldi — 100 g tovuq yoki 150 g tvorog yetadi.",
+    "Bugun non va xamir oldinda: uglevod +{x} g, oqsilga esa hali {p} g kerak 😄 Kechqurun {opP} — teng bo'ladi.",
+    "Choyxonada non tugamaganga o'xshaydi: uglevod {x} g ortiq. Oqsilga {p} g qoldi — {opP} yetadi.",
     "Uglevod {x} g ko'p, oqsil {p} g kam — non va shirinlik bugun hammadan oldinda 🙂 Keyingi ovqatda non o'rniga tuxum yoki qatiq."
    ],
    "r_c": [
-    "Oqsilga yana {p} g qoldi. Kechki ovqatga bir bo'lak tovuq — ish bitdi 💪",
-    "Kechki dasturxonga eslatma: oqsil uchun {p} g joy bor. Baliq, tovuq yoki 2–3 ta tuxum — tanlov sizda 😄",
+    "Oqsilga yana {p} g qoldi. Kechki ovqatga {opP1} — ish bitdi 💪",
+    "Kechki dasturxonga eslatma: oqsil uchun {p} g joy bor. Variantlar: {opP} — tanlov sizda 😄",
     "Oqsil hali {p} g orqada qolyapti. Kechqurun qozon-kabob o'rniga qaynatilgan go'sht — va reja bajariladi."
    ],
    "r_d": [
@@ -267,9 +267,9 @@
     "Likopcha bugun besh oldi: hech narsa ortiq emas, hech narsa kam emas 🙂"
    ],
    "r_g": [
-    "Bugun menyu biroz «yumshoq» bo'ldi: kletchatkaga {x} g yetmayapti 🙂 Kechqurun qo'shib qo'ying: {top}.",
-    "Sabzavot bugun dasturxonga kam chiqdi — kletchatka {x} g kam. Eng oson yo'li: {top}.",
-    "Non, go'sht bor, ko'kat-sabzavot kam — tolaga yana {x} g kerak 😄 Tavsiyam: {top}."
+    "Bugun menyu biroz «yumshoq» bo'ldi: kletchatkaga {x} g yetmayapti 🙂 Kechqurun qo'shib qo'ying: {opB}.",
+    "Sabzavot bugun dasturxonga kam chiqdi — kletchatka {x} g kam. Eng oson yo'li: {opB}.",
+    "Non, go'sht bor, ko'kat-sabzavot kam — tolaga yana {x} g kerak 😄 Tavsiyam: {opB}."
    ],
    "r_kam": [
     "Bugun hozircha {k} kkal — bu juda kam, kamida {min} kkal kerak. Bir likopcha issiq sho'rva yoki osh qiling, men kutaman 🙂",
@@ -368,7 +368,7 @@
    ],
    "s_ok": [
     "Bugun {k} / {l} kkal — hammasi joyida. Yana {left} kkal bor, kechki osh uchun ham joy qoldi 😄",
-    "{k} / {l} kkal. Hali {left} kkal bor — choy va bitta olma bemalol sig'adi 🍵",
+    "{k} / {l} kkal. Hali {left} kkal bor — choy va {opL1} bemalol sig'adi 🍵",
     "Ish kuni yaxshi ketyapti: {k} / {l} kkal. Qolgan {left} kkal — kechki ovqatga."
    ],
    "s_wait": [
@@ -452,7 +452,7 @@
     "Sharbat va gazli ichimliklar daftarda kam uchraydi. Shunday davom eting 🙂"
    ],
    "t_kechki": [
-    "Kunning 40 % dan ko'prog'i kechqurun yeyilyapti — ish kunining odatiy manzarasi 😄 Tushlikka bir kosa sho'rva yoki 150 g go'sht qo'shsak, kechqurun yengilroq bo'ladi.",
+    "Kunning 40 % dan ko'prog'i kechqurun yeyilyapti — ish kunining odatiy manzarasi 😄 Tushlikka bir kosa sho'rva yoki {opP1} qo'shsak, kechqurun yengilroq bo'ladi.",
     "Kechki ovqat kunning 40 % dan ortig'ini olyapti. Tushlikda osh yoki lag'mon yoniga salat ham yesangiz, kechki dasturxon qisqaroq bo'ladi 🙂",
     "Kun bo'yi choy-non bilan yurib, kechqurun hammasini birdan yeyish — tanish holat 😄 Hozir kechki ovqat 40 % dan ko'p; tushlikni to'yimliroq qiling."
    ],
@@ -467,9 +467,9 @@
     "Daftaringiz toza: katta xato yo'q, tartib bir tekis. Shu yo'lda davom etamiz 👍"
    ],
    "t_oqsil": [
-    "Oqsil ko'p kunlari yetmay qolyapti. Ertalab ikkita tuxum yoki bir kosa qatiq — masala nonushtadayoq hal 🙂",
-    "Non-choy bilan nonushta — o'zbekcha klassika, lekin unda oqsil yo'q 😄 Yoniga 2 ta tuxum yoki 100 g tvorog qo'shing.",
-    "Oqsil maqsadi kam kunlarda bajarildi. Tushlikka 150 g tovuq yoki mol go'shti qo'shilsa, ish bitadi 💪"
+    "Oqsil ko'p kunlari yetmay qolyapti. Ertalab {opZ} — masala nonushtadayoq hal 🙂",
+    "Non-choy bilan nonushta — o'zbekcha klassika, lekin unda oqsil kam 😄 Yoniga {opZ} qo'shing.",
+    "Oqsil maqsadi kam kunlarda bajarildi. Tushlikka {opP} qo'shilsa, ish bitadi 💪"
    ],
    "t_oqsilOk": [
     "Oqsil ko'p kunlari rejadagidek bo'ldi — tuxum va tovuq yaxshi ishlayapti 💪",
@@ -512,7 +512,7 @@
     "Yozilmagan kunlar hisobni chalg'itadi. Har kuni nonushta, tushlik va kechki ovqatni qo'shsangiz kifoya 👍"
    ],
    "t_yozOk": [
-    "Daftar deyarli to'liq — hatto tushdan keyingi bitta olma ham yozilgan 👍",
+    "Daftar deyarli to'liq — hatto tushdan keyingi olma ham yozilgan 👍",
     "Bo'sh kun deyarli yo'q — a'lochi o'quvchining kundaligidek 😄",
     "Har kuni yozib boryapsiz — tahlil shuning uchun aniq chiqyapti 💪"
    ],
@@ -547,7 +547,7 @@
     "Ertaga osh bo'lsa, non olmaymiz — guruch o'zi yetadi"
    ],
    "x_nxF": [
-    "Ertaga tushlikka qozon-kabob emas, 150 g tovuq yoki baliq — ta'mi ham yomon emas 😄",
+    "Ertaga tushlikka qozon-kabob emas, {opS1} — ta'mi ham yomon emas 😄",
     "Ertaga tushlikda qovurma dam oladi, bug'da pishgan baliq ishlaydi",
     "Ertaga oshxonada tovuq sho'rva bo'lsa — o'sha sizniki 🙂"
    ],
@@ -557,14 +557,14 @@
     "Ertaga kechqurun salat ko'payadi, osh kamayadi — almashuv adolatli 🙂"
    ],
    "x_nxLow": [
-    "Ertaga nonushtani o'tkazib yubormaymiz — 2 ta tuxum va bir piyola choy bilan boshlaymiz 🍵",
+    "Ertaga nonushtani o'tkazib yubormaymiz — {opZ1} va bir piyola choy bilan boshlaymiz 🍵",
     "Ertaga ish qanchalik ko'p bo'lmasin, tushlikka 20 daqiqa ajrating — ish qochib ketmaydi 🙂",
     "Ertaga oshxona uch marta ishlaydi: nonushta, tushlik, kechki ovqat"
    ],
    "x_nxP": [
-    "Ertaga nonushtada 2 ta tuxum — choy bilan zo'r chiqadi 🍵",
-    "Ertalab non-choyga bir kosa qatiq qo'shamiz — oddiy, lekin ishlaydi",
-    "Ertaga nonushtaga 150 g tvorog — tushlikkacha bemalol yetadi 💪"
+    "Ertaga nonushtada {opZ1} — choy bilan zo'r chiqadi 🍵",
+    "Ertalab non-choyga {opZ1} qo'shamiz — oddiy, lekin ishlaydi",
+    "Ertaga nonushtaga {opZ1} — tushlikkacha bemalol yetadi 💪"
    ],
    "x_off0": [
     "Bugun hech qayerda ortiqcha yo'q — hisobni qayta tekshirdim, rostdan toza 🙂",
@@ -589,7 +589,7 @@
    "x_offLow": [
     "Bugun atigi {k} kkal — kamida {min} kerak. Bir kosa issiq sho'rva yoki mastava ayni muddao 🍵",
     "Ish ko'p bo'ldi shekilli: {k} kkal, eng kami esa {min}. O'zingizni bir tovoq osh bilan siylang 🙂",
-    "{k} kkal — bu {min} dan ancha kam. Choy-non emas, to'yimli ovqat kerak: masalan, 150 g tovuq va guruch"
+    "{k} kkal — bu {min} dan ancha kam. Choy-non emas, to'yimli ovqat kerak: go'sht, guruch yoki bo'tqa"
    ],
    "x_offP": [
     "Oqsil {x} g kam qoldi — bugun go'sht dasturxonga kam chiqdi shekilli 🙂",
@@ -729,8 +729,8 @@
     "Muvozanat tiklandi: kecha {x} kkal ortiq edi, bugun me'yordasiz."
    ],
    "m_prot3": [
-    "{n} kundan beri oqsil maqsadga yetmayapti. Bugun nonushtaga 2 ta tuxum yoki 200 g qatiq qo'shing.",
-    "Oqsil {n} kun ketma-ket kam bo'ldi. Tushlikka 150 g tovuq ko'kragi yoki baliq oling.",
+    "{n} kundan beri oqsil maqsadga yetmayapti. Bugun nonushtaga {opZ} qo'shing.",
+    "Oqsil {n} kun ketma-ket kam bo'ldi. Tushlikka {opP} oling.",
     "So'nggi {n} kunda oqsil yetishmadi. Har ovqatga bitta oqsilli taom qo'shing: tuxum, tvorog yoki mosh."
    ],
    "m_pstreak": [
@@ -739,9 +739,9 @@
     "Ketma-ket {n} kun oqsil me'yorda. Ofarin, davom eting."
    ],
    "m_skipbf": [
-    "So'nggi 5 kundan {n} tasida nonushta yozilmagan. Bugun yengil boshlang: 2 ta tuxum yoki 200 g qatiq.",
-    "{n} kun nonushtasiz o'tdi. Ertalabki 200 g sutli bo'tqa tushlikkacha to'q tutadi.",
-    "Nonushta 5 kundan {n} tasida tushib qoldi. Tez variant: tvorog va bitta olma."
+    "So'nggi 5 kundan {n} tasida nonushta yozilmagan. Bugun yengil boshlang: {opZ}.",
+    "{n} kun nonushtasiz o'tdi. Ertalab {opZ1} tushlikkacha to'q tutadi.",
+    "Nonushta 5 kundan {n} tasida tushib qoldi. Tez variant: {opZ1}."
    ],
    "m_streak": [
     "{n} kun ketma-ket kunlik me'yordasiz. Juda yaxshi natija.",
@@ -754,14 +754,14 @@
     "Uglevod bo'yicha reja bajarildi. Kechki ovqatga tovuq va sabzavot mos."
    ],
    "mk_c_deyarli": [
-    "Uglevod maqsadigacha {left} g qoldi — bitta meva yetarli.",
+    "Uglevod maqsadigacha {left} g qoldi — {opC1} yetarli.",
     "Uglevod deyarli maqsadda: yana {left} g. Qolgan ovqatlarda nonni ko'paytirmang.",
     "Uglevodga yana {left} g. Kechki ovqatda garnir o'rniga sabzavot oling."
    ],
    "mk_c_kam": [
-    "Uglevod maqsadigacha {left} g bor. Keyingi ovqatga grechka, guruch yoki meva qo'shing.",
+    "Uglevod maqsadigacha {left} g bor. Keyingi ovqatga {opC} qo'shing.",
     "Uglevod hozircha kam: yana {left} g. Butun donli non yoki bo'tqa yaxshi manba.",
-    "Kunlik uglevodga {left} g yetmayapti. Tushlik yoki kechki ovqatga garnir qo'shing."
+    "Kunlik uglevodga {left} g yetmayapti. Tushlik yoki kechki ovqatga qo'shing: {opC}."
    ],
    "mk_c_oshdi": [
     "Uglevod maqsaddan {x} g ko'p. Keyingi ovqatda non va shirinlikni kamaytiring.",
@@ -781,10 +781,10 @@
    "mk_f_kam": [
     "Yog' maqsadigacha {left} g bor. Maxsus qo'shishga hojat yo'q.",
     "Yog' hozircha kam: yana {left} g. Kechki ovqatda u o'zi yig'iladi.",
-    "Yog'ga {left} g yetmayapti. Xohlasangiz, salatga 1 choy qoshiq o'simlik moyi qo'shing."
+    "Yog'ga {left} g yetmayapti. Xohlasangiz, {opF1} qo'shing."
    ],
    "mk_f_oshdi": [
-    "Yog' me'yordan {x} g oshdi. Kechki ovqatga yog'siz oqsil tanlang: 100 g tovuq ko'kragi va 150 g bodring.",
+    "Yog' me'yordan {x} g oshdi. Kechki ovqatga yog'siz oqsil tanlang: {opS1} va 150 g bodring.",
     "{x} g ortiqcha yog'. Qovurilgan emas, qaynatilgan tovuq yoki baliq oling.",
     "Yog' maqsaddan {x} g ko'p. Keyingi ovqatni sabzavot va yog'siz oqsil bilan muvozanatlang."
    ],
@@ -794,14 +794,14 @@
     "Oqsil bo'yicha maqsadga yetdingiz: {v}/{g} g. Keyingi ovqatgacha to'q yurasiz."
    ],
    "mk_p_deyarli": [
-    "Oqsil maqsadiga oz qoldi: yana {left} g. Bitta tuxum yoki qatiq yetarli.",
-    "Oqsil maqsadigacha {left} g. Kechki ovqatga bir bo'lak tovuq yoki baliq qo'shing.",
-    "Yana {left} g oqsil kerak. 100 g tvorog buni to'liq yopadi."
+    "Oqsil maqsadiga oz qoldi: yana {left} g. {opP} yetarli.",
+    "Oqsil maqsadigacha {left} g. Kechki ovqatga {opP} qo'shing.",
+    "Yana {left} g oqsil kerak. {opP1} yetarli bo'ladi."
    ],
    "mk_p_kam": [
     "Oqsil hali kam: yana {left} g. Tuxum, qatiq, tovuq yoki baliq yaxshi manba.",
-    "Kunlik oqsilga {left} g yetmayapti. Keyingi ovqatga tovuq, baliq yoki mosh qo'shing.",
-    "Yana {left} g oqsil kerak. Qulay manbalar: tuxum, tvorog, qatiq, loviya."
+    "Kunlik oqsilga {left} g yetmayapti. Keyingi ovqatga {opP} qo'shing.",
+    "Yana {left} g oqsil kerak. Qulay variantlar: {opP}."
    ],
    "mk_p_oshdi": [
     "Oqsil maqsaddan {x} g ko'p. Bu yaxshi, faqat umumiy kaloriyani kuzating.",
@@ -829,13 +829,13 @@
     "O'zingizni bugun qanday his qilyapsiz?"
    ],
    "qr_full_mid": [
-    "Yengil tamaddi uchun {left} kkal joy bor — qatiq yoki meva yaxshi.",
-    "Xohlasangiz, kichik tamaddi qiling: 150 g qatiq yoki bitta nok — {left} kkal ichida.",
-    "{left} kkal zaxira bor. Meva yoki qatiq — yengil va to'yimli tanlov."
+    "Yengil tamaddi uchun {left} kkal joy bor — {opL} yaxshi.",
+    "Xohlasangiz, kichik tamaddi qiling: {opL} — {left} kkal ichida.",
+    "{left} kkal zaxira bor. {opL} — yengil va to'yimli tanlov."
    ],
    "qr_full_no": [
-    "Yana {left} kkal yeyishingiz mumkin. 2 ta qaynatilgan tuxum yoki 150 g tvorog yaxshi to'ydiradi.",
-    "Kunlik zaxirangiz {left} kkal. Oqsilli tamaddi tanlang: bir stakan qatiq yoki 100 g tovuq.",
+    "Yana {left} kkal yeyishingiz mumkin. {opK} yaxshi to'ydiradi.",
+    "Kunlik zaxirangiz {left} kkal. Oqsilli tamaddi tanlang: {opK}.",
     "Mayli, {left} kkal ichida yengil narsa oling: qatiq, tvorog yoki tuxum."
    ],
    "qr_full_yes": [
@@ -859,18 +859,18 @@
     "Bugun o'zingizga e'tiborliroq bo'ling. Kechgacha hammasi yaxshilanishi mumkin."
    ],
    "r_a": [
-    "Yog' me'yordan {x} g oshdi, asosan {src}dan. Kechki ovqatga yog'siz oqsil tanlang: 100 g tovuq ko'kragi va 150 g bodring.",
+    "Yog' me'yordan {x} g oshdi, asosan {src}dan. Kechki ovqatga yog'siz oqsil tanlang: {opS1} va 150 g bodring.",
     "Bugun yog' {x} g ko'p bo'ldi. Keyingi taomni qovurmasdan, qaynatib yoki bug'da pishiring — masalan, baliq va sabzavot.",
     "Yog' bo'yicha {x} g ortiq, asosiy manba — {src}. Kechqurun non va moyni kamaytirib, tovuq yoki baliq oling."
    ],
    "r_b": [
-    "Uglevod me'yordan {x} g ko'p, oqsilga hali {p} g bor. Keyingi taomda nonni kamaytirib, 2 ta tuxum yoki 150 g tvorog qo'shing.",
+    "Uglevod me'yordan {x} g ko'p, oqsilga hali {p} g bor. Keyingi taomda nonni kamaytirib, {opP} qo'shing.",
     "Bugun uglevod {x} g ortiq, oqsil esa {p} g yetmayapti. Kechki ovqatda garnirni yarmiga tushirib, tovuq yoki baliqni ko'paytiring.",
-    "Uglevodning ko'p qismi {src}dan keldi (+{x} g). Oqsilga {p} g qoldi — keyingi ovqatga qatiq yoki tovuq qo'shing."
+    "Uglevodning ko'p qismi {src}dan keldi (+{x} g). Oqsilga {p} g qoldi — keyingi ovqatga {opP} qo'shing."
    ],
    "r_c": [
-    "Bugun oqsil {p} g yetmayapti. Kechki ovqatga 150 g tovuq yoki baliq qo'shsangiz, maqsadga yetasiz.",
-    "Oqsil maqsadiga {p} g qoldi. Kechqurun 200 g tvorog yoki bir stakan qatiq bilan 2 ta tuxum oling.",
+    "Bugun oqsil {p} g yetmayapti. Kechki ovqatga {opP} qo'shsangiz, maqsadga yetasiz.",
+    "Oqsil maqsadiga {p} g qoldi. Kechqurun {opP} oling.",
     "Oqsil {p} g kam. Kechki taomda go'sht, baliq yoki dukkakli asosiy bo'lsin."
    ],
    "r_d": [
@@ -889,9 +889,9 @@
     "Bugungi tanlovlaringiz to'g'ri bo'ldi — hamma ko'rsatkich joyida. Shunday davom eting."
    ],
    "r_g": [
-    "Bugun kletchatka me'yordan {x} g kam. Kechki ovqatga sabzavot, yorma yoki dukkakli qo'shing, masalan: {top}.",
-    "Tolaga hali {x} g kerak. Bir likopcha sabzavot yoki bir hovuch meva farqni ancha kamaytiradi: {top}.",
-    "Kletchatka uzoq to'q tutadi, bugun esa {x} g yetmayapti. Mos tanlov: {top}."
+    "Bugun kletchatka me'yordan {x} g kam. Kechki ovqatga sabzavot, yorma yoki dukkakli qo'shing, masalan: {opB}.",
+    "Tolaga hali {x} g kerak. Masalan: {opB}.",
+    "Kletchatka uzoq to'q tutadi, bugun esa {x} g yetmayapti. Mos tanlov: {opB}."
    ],
    "r_kam": [
     "Bugun hozircha {k} kkal — bu xavfsiz chegaradan ({min} kkal) past. Iltimos, yana bir to'yimli ovqat qo'shing.",
@@ -1091,7 +1091,7 @@
    "t_oqsil": [
     "Oqsil maqsadi kam kunlarda bajarilgan. Nonushtaga tuxum yoki qatiq qo'shish — eng oson yo'l.",
     "Ko'p kunlarda oqsil yetishmagan. Har ovqatga oqsilli taom qo'shing: tuxum, tvorog, go'sht yoki dukkakli.",
-    "Oqsil past bo'lgan kunlar ko'p. Kuniga 2 ta tuxum va 150 g tovuq bu farqni yopadi."
+    "Oqsil past bo'lgan kunlar ko'p. Kuniga {opP} qo'shsangiz, bu farq yopiladi."
    ],
    "t_oqsilOk": [
     "Oqsil maqsadi ko'p kunlarda bajarilgan.",
@@ -1170,7 +1170,7 @@
    ],
    "x_nxF": [
     "Ertaga tushlikka tovuq yoki baliq tanlang",
-    "Ertaga tushlikda 150 g qaynatilgan tovuq ko'kragi yoki baliq oling",
+    "Ertaga tushlikda {opS} oling",
     "Ertaga tushlikda qovurilgan taom o'rniga tovuq yoki baliq"
    ],
    "x_nxK": [
@@ -1181,11 +1181,11 @@
    "x_nxLow": [
     "Ertaga 3 mahal to'yimli ovqatlaning — nonushtani tashlab ketmang",
     "Ertaga nonushta, tushlik va kechki ovqatni to'liq qiling",
-    "Ertaga kunni nonushtadan boshlang: 2 ta tuxum va non"
+    "Ertaga kunni nonushtadan boshlang: {opZ1} va non"
    ],
    "x_nxP": [
-    "Ertaga nonushtaga 2 ta tuxum yoki qatiq qo'shing",
-    "Ertaga nonushtada oqsil oling: 150 g tvorog",
+    "Ertaga nonushtaga {opZ} qo'shing",
+    "Ertaga nonushtada oqsil oling: {opZ1}",
     "Ertaga nonushtani tuxum yoki qatiq bilan boshlang"
    ],
    "x_off0": [
@@ -1353,9 +1353,9 @@
     "Вчера дастархан был щедрым (+{x} ккал), а сегодня всё по плану. Молодец 🙂"
    ],
    "m_prot3": [
-    "Белка мало уже {n} дней — хлеб с чаем всё перетянули на себя 😄 Добавим сегодня на завтрак пару яиц?",
-    "{n} дней подряд белок в отстающих. На обед 150 г курицы — и он догонит 🙂",
-    "Белок {n} дней где-то пропадает. Позовём его на ужин: 200 г творога или кусок рыбы."
+    "Белка мало уже {n} дней — хлеб с чаем всё перетянули на себя 😄 Добавим сегодня на завтрак {opZ1}?",
+    "{n} дней подряд белок в отстающих. На обед добавьте {opP1} — и он догонит 🙂",
+    "Белок {n} дней где-то пропадает. Позовём его на ужин: {opP}."
    ],
    "m_pstreak": [
     "{n} дней подряд белок в норме. Яйца и творог вами довольны 😄",
@@ -1363,8 +1363,8 @@
     "Серия по белку — {n} дней! Сегодня цепочку не рвём 💪"
    ],
    "m_skipbf": [
-    "Из последних 5 дней завтрак пропал {n} раз 😄 Сегодня начнём с пары яиц и кусочка лепёшки?",
-    "Завтрак {n} раз из 5 заменял чай на бегу. Сегодня хватит даже пиалы катыка.",
+    "Из последних 5 дней завтрак пропал {n} раз 😄 Сегодня добавим на завтрак {opZ1}?",
+    "Завтрак {n} раз из 5 заменял чай на бегу. Сегодня достаточно добавить {opZ1}.",
     "{n} раз из 5 утро обошлось без завтрака. Главное, чтобы печенье в офисе не заняло его место 😄"
    ],
    "m_streak": [
@@ -1378,13 +1378,13 @@
     "Углеводы на месте: ни лепёшка, ни плов за рамки не вышли. Вечером — салат."
    ],
    "mk_c_deyarli": [
-    "До цели по углеводам {left} г — это яблоко или полкуска лепёшки. Третья самса в этот счёт не влезет 😄",
-    "Углеводам осталось {left} г. Это один банан, а не целый лаваш 😄",
-    "Углеводы почти у цели: ещё {left} г. Горсть ягод — и всё сошлось."
+    "До цели по углеводам {left} г — это {opC}. Третья самса в этот счёт не влезет 😄",
+    "Углеводам осталось {left} г. Это {opC1}, а не целый лаваш 😄",
+    "Углеводы почти у цели: ещё {left} г. {opC1} — и всё сошлось."
    ],
    "mk_c_kam": [
-    "Углеводов пока на {left} г меньше — силы на работу ещё понадобятся. На обед 150 г гречки или банан 🙂",
-    "Хлеб сегодня обижен — углеводам ещё {left} г 😄 Возьмите кусок цельнозернового.",
+    "Углеводов пока на {left} г меньше — силы на работу ещё понадобятся. На обед добавьте {opC} 🙂",
+    "Хлеб сегодня обижен — углеводам ещё {left} г 😄 Например, {opC1}.",
     "Углеводы отстают на {left} г. На ужин рис или картошку можно смело 🙂"
    ],
    "mk_c_oshdi": [
@@ -1398,17 +1398,17 @@
     "Жиры на сегодня закрыты. На ужин рыба на пару — лучший вариант."
    ],
    "mk_f_deyarli": [
-    "До лимита по жирам {left} г — это одна ложка масла. Казы пусть подождёт до завтра 😄",
+    "До лимита по жирам {left} г — это {opF1}. Казы пусть подождёт до завтра 😄",
     "До лимита по жирам ещё {left} г. Салат сегодня с лимоном, а не с майонезом 🙂",
-    "Жирам осталось {left} г. В чайхане хватит одной самсы 😄"
+    "Жирам осталось {left} г. Вторую самсу в чайхане лучше пропустить 😄"
    ],
    "mk_f_kam": [
     "Жиров пока на {left} г меньше — и это нормально, искать сливочное масло специально не надо 😄",
-    "Жирам есть куда расти: {left} г. Ложка оливкового масла в салат — в самый раз 🙂",
-    "Жиры отстают на {left} г, но спешить некуда. Горсть орехов — и счёт сойдётся."
+    "Жирам есть куда расти: {left} г. Например, {opF1} — в самый раз 🙂",
+    "Жиры отстают на {left} г, но спешить некуда. {opF1} — и счёт сойдётся."
    ],
    "mk_f_oshdi": [
-    "Жиров сегодня +{x} г — казан-кабоб своё дело сделал 😄 Вечером 100 г куриной грудки и салат из огурцов.",
+    "Жиров сегодня +{x} г — казан-кабоб своё дело сделал 😄 Вечером {opS1} и салат из огурцов.",
     "Жиров +{x} г. Кто постарался — самса или плов, — неважно: ужин будет лёгким 😄",
     "Сливочное масло сегодня расщедрилось на {x} г. Дальше — рыба на пару и овощи 🙂"
    ],
@@ -1418,14 +1418,14 @@
     "{v} г белка — цель закрыта. До вечера рука к печенью уже не потянется 😄"
    ],
    "mk_p_deyarli": [
-    "До цели по белку всего {left} г — одно варёное яйцо, и готово 🙂",
-    "Белок почти на месте: ещё {left} г. Стакан катыка — и можно спокойно пить вечерний чай 😄",
+    "До цели по белку всего {left} г — {opP1}, и готово 🙂",
+    "Белок почти на месте: ещё {left} г. {opP1} — и можно спокойно пить вечерний чай 😄",
     "Не хватает всего {left} г белка. Сыр в холодильнике давно ждёт своего часа 😄"
    ],
    "mk_p_kam": [
-    "Белку ещё нужно {left} г — сегодня побеждают хлеб с чаем 😄 Добавим на обед 150 г курицы?",
+    "Белку ещё нужно {left} г — сегодня побеждают хлеб с чаем 😄 Добавим на обед {opP1}?",
     "Белок отстаёт на {left} г. Вечером суп с машем — вкусно и с белком 🙂",
-    "В тарелке белок пока в меньшинстве — не хватает {left} г. 200 г творога исправят ситуацию."
+    "В тарелке белок пока в меньшинстве — не хватает {left} г. Выручит {opP}."
    ],
    "mk_p_oshdi": [
     "Белка сегодня +{x} г — с куриной грудкой немного увлеклись 😄 Это хорошо: сытость продержится дольше.",
@@ -1453,13 +1453,13 @@
     "Как идёт день: всё по плану или на работе завал?"
    ],
    "qr_full_mid": [
-    "Средне? Тогда в пределах {left} ккал — пиала катыка или яблоко, и до вечернего чая доживём 🙂",
-    "Если сыто наполовину, печенье из шкафа подождёт 😄 На {left} ккал лучше груша или катык.",
-    "Желудок говорит «нормально» 🙂 Одно яблоко на {left} ккал превратит это в «отлично»."
+    "Средне? Тогда в пределах {left} ккал — {opL}, и до вечернего чая доживём 🙂",
+    "Если сыто наполовину, печенье из шкафа подождёт 😄 На {left} ккал лучше {opL}.",
+    "Желудок говорит «нормально» 🙂 Если съесть {opL1} в пределах {left} ккал, «нормально» станет «отлично»."
    ],
    "qr_full_no": [
-    "Значит, место ещё есть — {left} ккал. Стакан катыка или пара варёных яиц, и к чаю 🍵",
-    "Аппетит пока не сдаётся 😄 В запасе {left} ккал: 150 г творога или 100 г куриной грудки.",
+    "Значит, место ещё есть — {left} ккал. Возьмите {opK} — и к чаю 🍵",
+    "Аппетит пока не сдаётся 😄 В запасе {left} ккал: {opK}.",
     "Понятно, до вечера ещё {left} ккал. Если в холодильнике есть яйца — это самый быстрый вариант."
    ],
    "qr_full_yes": [
@@ -1483,18 +1483,18 @@
     "Понятно. День ещё не кончился — вечерний разговор за чаем может всё поменять."
    ],
    "r_a": [
-    "Жиров на {x} г больше — вот что значит {src} 😄 Вечером 100 г куриной грудки и огуречный салат: сытно и легко.",
+    "Жиров на {x} г больше — вот что значит {src} 😄 Вечером {opS1} и огуречный салат: сытно и легко.",
     "След найден: жиров на {x} г больше нормы, главный подозреваемый — {src}. На ужин варёная рыба с зеленью — и дело закрыто.",
-    "Вкусно было, но жиров вышло +{x} г 🙂 Вечером без сковородки: 150 г курицы на пару и салат."
+    "Вкусно было, но жиров вышло +{x} г 🙂 Вечером без сковородки: {opS1} и салат."
    ],
    "r_b": [
-    "Сегодня впереди хлеб и выпечка: углеводов +{x} г, а белку не хватает {p} г 😄 Вечером пара яиц и стакан катыка — и всё ровно.",
-    "Похоже, в чайхане лепёшки не кончались: углеводов на {x} г больше. Белку нужно ещё {p} г — хватит 100 г курицы или 150 г творога.",
-    "Углеводы +{x} г, а белка не хватает {p} г 🙂 В следующий раз вместо хлеба — яйцо или катык."
+    "Сегодня впереди хлеб и выпечка: углеводов +{x} г, а белку не хватает {p} г 😄 Вечером {opP} — и всё ровно.",
+    "Похоже, в чайхане лепёшки не кончались: углеводов на {x} г больше. Белку нужно ещё {p} г — хватит: {opP}.",
+    "Углеводы +{x} г, а белка не хватает {p} г 🙂 В следующий раз вместо хлеба — {opP}."
    ],
    "r_c": [
-    "Белку осталось ещё {p} г. Вечером кусок курицы — и готово 💪",
-    "Заметка к ужину: под белок есть ещё {p} г. Рыба, курица или 2–3 яйца — выбирайте 😄",
+    "Белку осталось ещё {p} г. Вечером {opP1} — и готово 💪",
+    "Заметка к ужину: под белок есть ещё {p} г. Варианты: {opP} — выбирайте 😄",
     "Белок пока отстаёт на {p} г. Вечером вместо казан-кабоба — отварное мясо, и план выполнен."
    ],
    "r_d": [
@@ -1513,9 +1513,9 @@
     "Тарелка сегодня получила пятёрку: ничего лишнего, ничего не забыто 🙂"
    ],
    "r_g": [
-    "Меню сегодня вышло слишком «мягким»: клетчатки не хватает {x} г 🙂 Добавьте вечером: {top}.",
-    "Овощей сегодня было мало — клетчатки на {x} г меньше нормы. Проще всего так: {top}.",
-    "Хлеб и мясо были, а зелени маловато — клетчатки нужно ещё {x} г 😄 Совет: {top}."
+    "Меню сегодня вышло слишком «мягким»: клетчатки не хватает {x} г 🙂 Добавьте вечером: {opB}.",
+    "Овощей сегодня было мало — клетчатки на {x} г меньше нормы. Проще всего так: {opB}.",
+    "Хлеб и мясо были, а зелени маловато — клетчатки нужно ещё {x} г 😄 Совет: {opB}."
    ],
    "r_kam": [
     "Пока сегодня {k} ккал — это очень мало, нужно хотя бы {min} ккал. Сделайте тарелку горячего супа или плова, я подожду 🙂",
@@ -1614,7 +1614,7 @@
    ],
    "s_ok": [
     "{k} / {l} ккал — день идёт ровно. Ещё {left} ккал есть, на нормальный ужин хватит 🙂",
-    "Пока всё спокойно: {k} / {l} ккал. В запасе {left} ккал — и на ужин, и на чай с яблоком.",
+    "Пока всё спокойно: {k} / {l} ккал. В запасе {left} ккал — хватит и на ужин, и на {opL1} к чаю.",
     "Рабочий день под контролем: {k} / {l} ккал. Оставшиеся {left} ккал — на вечер."
    ],
    "s_wait": [
@@ -1698,9 +1698,9 @@
     "Соки и газировка в дневнике — редкие гости. Так держать 🙂"
    ],
    "t_kechki": [
-    "Больше 40 % дня съедается вечером — классика рабочей недели 😄 Добавьте в обед тарелку супа или 150 г мяса, и ужин станет скромнее.",
+    "Больше 40 % дня съедается вечером — классика рабочей недели 😄 Добавьте в обед тарелку супа или {opP1}, и ужин станет скромнее.",
     "Весь день на чае с лепёшкой, а вечером за всё сразу — знакомая история 😄 Сейчас ужин больше 40 %, так что обед стоит сделать посытнее.",
-    "Ужин забирает больше 40 % дня. Если к обеду добавить салат и кусок курицы, вечером тянуть к холодильнику будет меньше 🙂"
+    "Ужин забирает больше 40 % дня. Если к обеду добавить салат и {opP1}, вечером тянуть к холодильнику будет меньше 🙂"
    ],
    "t_kechkiOk": [
     "Ужин в норме — вечерних походов к казану не замечено 😄",
@@ -1713,9 +1713,9 @@
     "Дневник чистый: серьёзных промахов нет, всё ровно. Едем дальше тем же курсом 👍"
    ],
    "t_oqsil": [
-    "Белка во многие дни не хватало. Два яйца или пиала катыка утром — и вопрос решён ещё за завтраком 🙂",
-    "Чай с лепёшкой на завтрак — классика, но белка там нет 😄 Добавьте пару яиц или 100 г творога.",
-    "Цель по белку выполнялась редко. Если в обед добавить 150 г курицы или говядины, всё сойдётся 💪"
+    "Белка во многие дни не хватало. Утром {opZ} — и вопрос решён ещё за завтраком 🙂",
+    "Чай с лепёшкой на завтрак — классика, но белка там мало 😄 Добавьте {opZ}.",
+    "Цель по белку выполнялась редко. Если в обед добавить {opP1}, всё сойдётся 💪"
    ],
    "t_oqsilOk": [
     "Белок идёт по плану — яйца и курица отлично справляются 💪",
@@ -1793,7 +1793,7 @@
     "Завтра хлеба полкуска: остальное место отдадим салату"
    ],
    "x_nxF": [
-    "Завтра на обед не казан-кебаб, а 150 г курицы или рыбы — тоже вкусно 😄",
+    "Завтра на обед не казан-кебаб, а {opS1} — тоже вкусно 😄",
     "Завтра днём жареное отдыхает, работает рыба на пару",
     "Если в столовой завтра куриный суп — он ваш 🙂"
    ],
@@ -1803,14 +1803,14 @@
     "Завтра вечером салата больше, плова меньше — честный обмен 🙂"
    ],
    "x_nxLow": [
-    "Завтра не пропускаем завтрак — пара яиц и чашка чая, и день пошёл 🍵",
+    "Завтра не пропускаем завтрак — {opZ1} и чашка чая, и день пошёл 🍵",
     "Сколько бы ни было работы, на обед завтра — 20 минут. Работа не убежит 🙂",
     "Завтра у кухни три смены: завтрак, обед и ужин"
    ],
    "x_nxP": [
-    "Завтра на завтрак пара яиц — с чаем самое то 🍵",
-    "К утреннему чаю с лепёшкой завтра добавим пиалу катыка — просто и работает",
-    "Завтра утром 150 г творога — и до обеда о еде не вспомните 💪"
+    "Завтра на завтрак {opZ1} — с чаем самое то 🍵",
+    "К утреннему чаю с лепёшкой завтра добавим {opZ1} — просто и работает",
+    "Завтра утром {opZ1} — и до обеда о еде не вспомните 💪"
    ],
    "x_off0": [
     "Сегодня всё в рамках — перепроверено дважды 🙂",
@@ -1835,7 +1835,7 @@
    "x_offLow": [
     "Сегодня всего {k} ккал, а нужно хотя бы {min}. Тарелка горячей шурпы будет очень кстати 🍵",
     "Похоже, день был суматошный: {k} ккал при минимуме {min}. Порадуйте себя тарелкой плова 🙂",
-    "{k} ккал — заметно меньше {min}. Чай с лепёшкой не в счёт: нужна сытная еда, например 150 г курицы с рисом"
+    "{k} ккал — заметно меньше {min}. Чай с лепёшкой не в счёт: нужна сытная еда — мясо, рис или каша"
    ],
    "x_offP": [
     "Белка не хватило {x} г — мясо сегодня на столе почти не появлялось 🙂",
@@ -1975,8 +1975,8 @@
     "Баланс восстановлен: вчера было +{x} ккал, сегодня вы в норме."
    ],
    "m_prot3": [
-    "Белка не хватает уже {n} дней подряд. Сегодня добавьте на завтрак 2 яйца или стакан катыка.",
-    "Последние {n} дней белок ниже цели. На обед возьмите 150 г куриной грудки или рыбу.",
+    "Белка не хватает уже {n} дней подряд. Сегодня добавьте на завтрак {opZ}.",
+    "Последние {n} дней белок ниже цели. На обед возьмите {opP}.",
     "{n} дней белка мало. Добавляйте к каждому приёму что-то белковое: яйца, творог, маш."
    ],
    "m_pstreak": [
@@ -1985,9 +1985,9 @@
     "Белок в пределах цели уже {n} дней. Продолжайте в том же духе."
    ],
    "m_skipbf": [
-    "В {n} из последних 5 дней завтрак не записан. Начните сегодня с 2 яиц или 200 г катыка.",
-    "Без завтрака прошло {n} из 5 дней. 200 г молочной каши держат сытость до обеда.",
-    "Завтрак пропущен {n} раз за 5 дней. Быстрый вариант: творог и одно яблоко."
+    "В {n} из последних 5 дней завтрак не записан. Добавьте сегодня на завтрак {opZ}.",
+    "Без завтрака прошло {n} из 5 дней. Сытость до обеда обеспечит: {opZ1}.",
+    "Завтрак пропущен {n} раз за 5 дней. Быстрый вариант: {opZ1}."
    ],
    "m_streak": [
     "Вы в пределах нормы {n} дней подряд. Очень хороший результат.",
@@ -2000,14 +2000,14 @@
     "Углеводов на сегодня достаточно. На ужин подойдут курица и овощи."
    ],
    "mk_c_deyarli": [
-    "До цели по углеводам осталось {left} г — хватит одного фрукта.",
+    "До цели по углеводам осталось {left} г — хватит: {opC1}.",
     "До цели по углеводам ещё {left} г. Хлеб в оставшихся приёмах лучше не добавлять.",
     "Углеводам ещё {left} г. На ужин вместо гарнира возьмите овощи."
    ],
    "mk_c_kam": [
-    "До цели по углеводам {left} г. Добавьте к следующему приёму гречку, рис или фрукт.",
+    "До цели по углеводам {left} г. Добавьте к следующему приёму {opC}.",
     "Углеводов пока мало: ещё {left} г. Хорошие источники — каша и цельнозерновой хлеб.",
-    "Углеводов не хватает {left} г. Добавьте гарнир к обеду или ужину."
+    "Углеводов не хватает {left} г. Добавьте к обеду или ужину {opC}."
    ],
    "mk_c_oshdi": [
     "Углеводов на {x} г больше цели. В следующий приём уменьшите хлеб и сладкое.",
@@ -2027,10 +2027,10 @@
    "mk_f_kam": [
     "До цели по жирам {left} г. Добавлять что-то специально не нужно.",
     "Жиров пока мало: ещё {left} г. Обычная еда доберёт их сама.",
-    "Не хватает {left} г жиров. Можно добавить в салат чайную ложку растительного масла."
+    "Не хватает {left} г жиров. Можно добавить: {opF1}."
    ],
    "mk_f_oshdi": [
-    "Жиры выше цели на {x} г. На ужин выберите нежирный белок: 100 г куриной грудки и 150 г огурцов.",
+    "Жиры выше цели на {x} г. На ужин выберите нежирный белок: {opS1} и 150 г огурцов.",
     "Лишние {x} г жиров. Вместо жареного возьмите отварную курицу или рыбу.",
     "Жиров на {x} г больше цели. Следующий приём уравновесьте овощами и нежирным белком."
    ],
@@ -2040,14 +2040,14 @@
     "Норма белка достигнута: {v}/{g} г. До следующего приёма пищи будете сыты."
    ],
    "mk_p_deyarli": [
-    "До цели по белку ещё {left} г. Хватит одного яйца или стакана катыка.",
-    "Белка не хватает совсем немного — {left} г. Добавьте к ужину кусочек курицы или рыбы.",
-    "Осталось {left} г белка. 100 г творога закроют это полностью."
+    "До цели по белку ещё {left} г. Подойдёт: {opP}.",
+    "Белка не хватает совсем немного — {left} г. Добавьте к ужину {opP}.",
+    "Осталось {left} г белка. Закроет это: {opP1}."
    ],
    "mk_p_kam": [
     "Белка пока мало: ещё {left} г. Хорошие источники — яйца, катык, курица, рыба.",
-    "До цели по белку не хватает {left} г — добавьте к следующему приёму курицу, рыбу или маш.",
-    "Осталось {left} г белка. Удобнее всего добрать творогом, яйцами или фасолью."
+    "До цели по белку не хватает {left} г — добавьте к следующему приёму {opP}.",
+    "Осталось {left} г белка. Удобные варианты: {opP}."
    ],
    "mk_p_oshdi": [
     "Белка на {x} г больше цели. Это нормально, просто следите за общей калорийностью.",
@@ -2075,13 +2075,13 @@
     "Как вы себя сегодня чувствуете?"
    ],
    "qr_full_mid": [
-    "Есть {left} ккал на лёгкий перекус — катык или фрукт.",
-    "Если хочется, небольшой перекус: 150 г катыка или груша — в пределах {left} ккал.",
-    "Запас — {left} ккал. Фрукт или катык будут лёгким и сытным вариантом."
+    "Есть {left} ккал на лёгкий перекус — {opL}.",
+    "Если хочется, небольшой перекус: {opL} — в пределах {left} ккал.",
+    "Запас — {left} ккал. Лёгкий и сытный вариант: {opL}."
    ],
    "qr_full_no": [
-    "Можно съесть ещё {left} ккал. Два варёных яйца или 150 г творога хорошо насытят.",
-    "Остаток на сегодня — {left} ккал. Выберите белковый перекус: стакан катыка или 100 г курицы.",
+    "Можно съесть ещё {left} ккал. Хорошо насытит: {opK}.",
+    "Остаток на сегодня — {left} ккал. Выберите белковый перекус: {opK}.",
     "Хорошо, возьмите что-нибудь лёгкое в пределах {left} ккал: катык, творог или яйцо."
    ],
    "qr_full_yes": [
@@ -2105,18 +2105,18 @@
     "Будьте сегодня к себе внимательнее. К вечеру всё может наладиться."
    ],
    "r_a": [
-    "Жиры выше нормы на {x} г, основной источник — {src}. На ужин — нежирный белок: 100 г куриной грудки и 150 г огурцов.",
+    "Жиры выше нормы на {x} г, основной источник — {src}. На ужин — нежирный белок: {opS1} и 150 г огурцов.",
     "Сегодня жиров на {x} г больше нормы. Следующее блюдо лучше отварить или приготовить на пару — например, рыбу с овощами.",
     "Жиров +{x} г, больше всего — {src}. Вечером уменьшите хлеб и масло, возьмите курицу или рыбу."
    ],
    "r_b": [
-    "Углеводов на {x} г больше нормы, белка нужно ещё {p} г. В следующий приём пищи уменьшите хлеб и добавьте 2 яйца или 150 г творога.",
+    "Углеводов на {x} г больше нормы, белка нужно ещё {p} г. В следующий приём пищи уменьшите хлеб и добавьте {opP}.",
     "Сегодня углеводы выше нормы на {x} г, а белка не хватает {p} г. На ужин уменьшите гарнир вдвое и добавьте курицу или рыбу.",
-    "Основной источник углеводов — {src}, превышение {x} г. До цели по белку {p} г — добавьте катык или курицу."
+    "Основной источник углеводов — {src}, превышение {x} г. До цели по белку {p} г — добавьте {opP}."
    ],
    "r_c": [
-    "Сегодня не хватает {p} г белка. Добавьте к ужину 150 г курицы или рыбы — и цель достигнута.",
-    "До цели по белку {p} г. Вечером подойдут 200 г творога или стакан катыка и 2 яйца.",
+    "Сегодня не хватает {p} г белка. Добавьте к ужину {opP} — и цель достигнута.",
+    "До цели по белку {p} г. Вечером подойдёт: {opP}.",
     "Белка меньше нормы на {p} г. Пусть основой ужина будет мясо, рыба или бобовые."
    ],
    "r_d": [
@@ -2135,9 +2135,9 @@
     "Выбор сегодня был точным, показатели в норме. Такие дни закрепляют результат — искренне {рада|рад}."
    ],
    "r_g": [
-    "Сегодня клетчатки на {x} г меньше нормы. Добавьте к ужину овощи, крупу или бобовые, например: {top}.",
-    "До нормы клетчатки не хватает {x} г. Тарелка овощей или горсть фруктов заметно сократят разрыв: {top}.",
-    "Клетчатка дольше держит сытость, а сегодня её не хватает {x} г. Удобный выбор: {top}."
+    "Сегодня клетчатки на {x} г меньше нормы. Добавьте к ужину овощи, крупу или бобовые, например: {opB}.",
+    "До нормы клетчатки не хватает {x} г. Например: {opB}.",
+    "Клетчатка дольше держит сытость, а сегодня её не хватает {x} г. Удобный выбор: {opB}."
    ],
    "r_kam": [
     "Сегодня пока {k} ккал — ниже безопасной границы ({min} ккал). Пожалуйста, добавьте ещё один сытный приём пищи.",
@@ -2337,7 +2337,7 @@
    "t_oqsil": [
     "Цель по белку выполнялась редко. Самый простой шаг — добавить к завтраку яйцо или катык.",
     "Белка не хватало в большинстве дней. Добавляйте белковый продукт в каждый приём: яйца, творог, мясо или бобовые.",
-    "Дней с низким белком много. Два яйца и 150 г курицы в день закроют эту разницу."
+    "Дней с низким белком много. Если добавлять в день {opP}, эта разница закроется."
    ],
    "t_oqsilOk": [
     "Цель по белку выполнялась в большинстве дней.",
@@ -2416,7 +2416,7 @@
    ],
    "x_nxF": [
     "Завтра на обед выберите курицу или рыбу",
-    "Завтра на обед — 150 г отварной куриной грудки или рыбы",
+    "Завтра на обед возьмите {opS}",
     "Завтра днём вместо жареного — курица или рыба"
    ],
    "x_nxK": [
@@ -2427,11 +2427,11 @@
    "x_nxLow": [
     "Завтра 3 сытных приёма пищи — не пропускайте завтрак",
     "Завтра полноценно позавтракайте, пообедайте и поужинайте",
-    "Завтра начните день с завтрака: 2 яйца и хлеб"
+    "Завтра начните день с завтрака: {opZ1} и хлеб"
    ],
    "x_nxP": [
-    "Завтра добавьте на завтрак 2 яйца или катык",
-    "Завтра на завтрак — белок: 150 г творога",
+    "Завтра добавьте на завтрак {opZ}",
+    "Завтра на завтрак — белок: {opZ1}",
     "Завтра начните утро с яиц или катыка"
    ],
    "x_off0": [
