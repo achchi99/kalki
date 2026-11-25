@@ -38,13 +38,14 @@
     o = o || {}; var t = (days || []).length, ok = 0, over = 0, low = 0, pKam = 0, fOshdi = 0;
     (days || []).forEach(function (x) { var k = num(x.kcal), lim = num(x.lim); if (x.floor > 0 && k < x.floor) low++; else if (lim > 0 && k > lim * 1.1) over++; else ok++; if (x.gp > 0 && num(x.p) < x.gp * 0.9) pKam++; if (x.gf > 0 && num(x.f) >= x.gf * 1.15) fOshdi++; });
     var out = { t: t, ok: ok, over: over, low: low, pKam: pKam, fOshdi: fOshdi, dw: null, mus: null, keys: [] }; if (!t) return out;
-    out.keys.push(ok >= over && ok >= low ? { k: 'sw_ok', d: { n: ok, t: t } } : over >= low ? { k: 'sw_over', d: { n: over, t: t } } : { k: 'sw_low', d: { n: low, t: t } });
+    out.keys.push(ok >= Math.ceil(t * 0.7) ? { k: 'sw_ok', d: { n: ok, t: t } } : over >= low ? { k: 'sw_over', d: { n: over, t: t } } : { k: 'sw_low', d: { n: low, t: t } });          // maqtov — kamida 70 % kun reja ichida
     out.keys.push(pKam || fOshdi ? { k: 'sw_tarkib', d: { p: pKam, f: fOshdi, t: t } } : { k: 'sw_tarkib_ok', d: {} });
     var e = o.end, A = o.addDays, cur = e && A ? avgIn(o.weights, A(e, -6), e) : null, prev = e && A ? avgIn(o.weights, A(e, -13), A(e, -7)) : null;
     if (cur != null && prev != null) {
       var dw = Math.round((cur - prev) * 10) / 10; out.dw = dw; var lost = -dw, fmt = function (x) { return String(r1(x)).replace('.', ','); }, lo = function (x) { return String(Math.max(0.1, Math.floor(x * 10 + 1e-9) / 10)).replace('.', ','); }, hi = function (x) { return String(Math.max(0.1, Math.ceil(x * 10 - 1e-9) / 10)).replace('.', ','); };          // diapazon: pastki — pastga, yuqori — yuqoriga yaxlitlanadi
-      if (lost >= 0.2 && pKam * 2 >= t) { out.mus = { a: lo(lost * MUS_LOW[0]), b: hi(lost * MUS_LOW[1]), c: lo(lost * MUS_OK[0]), d: hi(lost * MUS_OK[1]) }; out.keys.push({ k: 'sw_mus', d: Object.assign({ dw: fmt(lost) }, out.mus) }); }
-      else if (lost >= 0.2) { out.mus = { c: lo(lost * MUS_OK[0]), d: hi(lost * MUS_OK[1]) }; out.keys.push({ k: 'sw_mus_ok', d: { dw: fmt(lost), c: out.mus.c, d: out.mus.d } }); }
+      var rng = function (x, y) { var a = lo(x), b = hi(y); if (a === b) { a = String(Math.round(x * 100) / 100).replace('.', ','); b = String(Math.round(y * 100) / 100).replace('.', ','); } return [a, b]; };          // diapazon bir xil bo'lib qolsa — 2 xona
+      if (lost >= 0.2 && pKam * 2 >= t) { var R1 = rng(lost * MUS_LOW[0], lost * MUS_LOW[1]), R2 = rng(lost * MUS_OK[0], lost * MUS_OK[1]); out.mus = { a: R1[0], b: R1[1], c: R2[0], d: R2[1] }; out.keys.push({ k: 'sw_mus', d: Object.assign({ dw: fmt(lost) }, out.mus) }); }
+      else if (lost >= 0.2) { var R3 = rng(lost * MUS_OK[0], lost * MUS_OK[1]); out.mus = { c: R3[0], d: R3[1] }; out.keys.push({ k: 'sw_mus_ok', d: { dw: fmt(lost), c: out.mus.c, d: out.mus.d } }); }
       else out.keys.push({ k: 'sw_flat', d: { dw: (dw > 0 ? '+' : '') + String(dw).replace('.', ',') } });
     } else out.keys.push({ k: 'sw_now', d: {} });
     return out;

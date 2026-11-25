@@ -67,7 +67,9 @@
   function bor(key) { return list(key, 'uz', 'jiddiy').length > 0; }
   function fillD(s, o, g) { o = o || {}; return String(s).replace(/\{([^{}|]+)\|([^{}|]+)\}/g, function (m, f, mm) { return g === 'm' ? mm : f; }).replace(/\{(\w+)\}/g, function (m, k) { var v = o[k]; if (v == null && k === 'Src' && o.src != null) { v = String(o.src); v = v.charAt(0).toUpperCase() + v.slice(1); } return v != null ? v : ''; }).replace(/\s+([,.!?])/g, '$1').replace(/\s{2,}/g, ' ').trim().replace(/(^|[.!?]\s+)([a-zа-яё])/g, function (m, p, c) { return p + c.toUpperCase(); }); }          // gap boshi — katta harf ({name} boshida bo'lsa ham)
   /* o = { lang, mode, i | pick(key, n) } */
-  function say(key, data, o) { o = o || {}; var a = list(key, o.lang, o.mode); if (!a.length) return ''; var i = typeof o.i === 'number' ? o.i : (o.pick ? o.pick(key + '.' + uslub(o.mode), a.length) : 0); i = ((num(i) % a.length) + a.length) % a.length; return fillD(a[i], Object.assign({ ism: o.ism || (o.lang === 'ru' ? 'Лола' : 'Lola') }, data), o.g); }          // o.g — maslahatchi jinsi (RU fe'l/sifat: {рада|рад}), o.ism — ismi
+  function ruN(n, a, b, c) { n = Math.abs(n) % 100; var m = n % 10; return n > 10 && n < 20 ? c : m === 1 ? a : m >= 2 && m <= 4 ? b : c; }
+  function plRu(t) { return String(t).replace(/(\d+)(\s+)(дней|дня|день)(?![а-яё])/g, function (x, n, sp) { return n + sp + ruN(+n, 'день', 'дня', 'дней'); }).replace(/(\d+)(\s+)(раз|раза)(?![а-яё])/g, function (x, n, sp) { return n + sp + ruN(+n, 'раз', 'раза', 'раз'); }); }          // v103: «4 дней» → «4 дня»
+  function say(key, data, o) { o = o || {}; var a = list(key, o.lang, o.mode); if (!a.length) return ''; var i = typeof o.i === 'number' ? o.i : (o.pick ? o.pick(key + '.' + uslub(o.mode), a.length) : 0); i = ((num(i) % a.length) + a.length) % a.length; var out = fillD(a[i], Object.assign({ ism: o.ism || (o.lang === 'ru' ? 'Лола' : 'Lola') }, data), o.g); return o.lang === 'ru' ? plRu(out) : out; }          // o.g — maslahatchi jinsi (RU fe'l/sifat: {рада|рад}), o.ism — ismi
   /* ---------- matnlar ---------- */
   var TX = {
     uz: {
