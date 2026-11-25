@@ -6,7 +6,7 @@
  *  5) maslahatchi: kletchatka kam bo'lsa kechqurun «g» qoidasi (uz/ru × hazil/jiddiy, aniq taomlar bilan).   node tools/test-kletchatka.js */
 'use strict';
 const assert = require('assert'); const S = require('../assets/kalkifit-core.js'); const MS = require('../assets/kalkifit-maslahat.js');
-const all = S.normFoods(require('../data/ovqatlar.json').foods); const foods = all.filter((f) => !f.h); const by = Object.fromEntries(all.map((f) => [f.id, f]));
+const KT = require('../assets/kalkifit-tavsiya.js'); const all = S.normFoods(require('../data/ovqatlar.json').foods); KT.init(S.buildIndex(all)); const foods = all.filter((f) => !f.h); const by = Object.fromEntries(all.map((f) => [f.id, f]));
 let n = 0; const ok = (m) => { n++; console.log('OK  ', n + '.', m); };
 /* 1. maydon */
 const noKey = all.filter((f) => !('fb' in f)); assert.deepEqual(noKey.map((f) => f.id), [], 'fb maydoni yo\'q');
@@ -44,6 +44,7 @@ let q = MS.qoida(ctx({ fb: { g: 8, goal: 28, unk: 0, n: 3, top: 'grechka, loviya
 assert.equal((MS.qoida(ctx({ hour: 12, fb: { g: 8, goal: 28, unk: 0, n: 3, top: 'x' } })) || {}).id === 'g', false, 'kunduzi aytilmaydi');
 assert.equal((MS.qoida(ctx({ fb: { g: 8, goal: 28, unk: 2, n: 3, top: 'x' } })) || {}).id === 'g', false, 'noma\'lum taomlar ko\'p — aytilmaydi');
 assert.equal((MS.qoida(ctx({ fb: { g: 25, goal: 28, unk: 0, n: 3, top: 'x' } })) || {}).id === 'g', false, 'yetarli — aytilmaydi');
-for (const L of ['uz', 'ru']) for (const m of ['hazil', 'jiddiy']) for (let i = 0; i < 5; i++) { const t = MS.matn(q, L, m, i); assert.ok(t.t && t.b, L + m + i); assert.ok(!/[{}]/.test(t.t + t.b), 'to\'ldirilmagan: ' + t.b); assert.ok(t.b.includes('grechka, loviya, olma') && /20/.test(t.b), L + ' ' + m + ': ' + t.b); assert.ok(!/halol|ҳалол/i.test(t.b)); }
+for (const L of ['uz', 'ru']) for (const m of ['hazil', 'jiddiy']) for (let i = 0; i < 5; i++) { const t = MS.matn(q, L, m, i); assert.ok(t.t && t.b, L + m + i); assert.ok(!/[{}]/.test(t.t + t.b), 'to\'ldirilmagan: ' + t.b); const op = KT.opts('B', 20, L, { seed: i + 3, n: 2 }); assert.ok(!op.generic && t.b.toLowerCase().includes(op.first.toLowerCase()) && /20/.test(t.b), L + ' ' + m + ': ' + t.b); assert.ok(!/halol|ҳалол/i.test(t.b)); }
+/* v106: aniq taom va gramm — farqdan hisoblangan (kalkifit-tavsiya.js), 80–150 % */
 ok('Maslahatchi: kechqurun kletchatka me\'yorning 60 % idan kam bo\'lsa «g» qoidasi (uz/ru × hazil/jiddiy × 5 variant, aniq taomlar va gramm bilan); kunduzi, noma\'lum ko\'p yoki yetarli bo\'lsa — yo\'q');
 console.log('kletchatka: ' + n + ' guruh OK');
