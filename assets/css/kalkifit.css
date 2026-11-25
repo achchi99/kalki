@@ -2345,8 +2345,8 @@ html[data-theme=dark] .rz.sl .sl-adv.lola .sl-adv-go{color:color-mix(in srgb,var
 .rz .kc-sq svg{position:absolute;inset:0;width:100%;height:100%;fill:none}
 .rz .kc-sq .sq-trk{stroke:color-mix(in srgb,currentColor 20%,transparent);stroke-width:3.5}
 .rz .kc-sq .sq-arc{stroke:currentColor;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:100 100;transition:stroke-dashoffset calc(var(--mo-slow) * 2) var(--mo-ease)}
-.rz .kc-sq b{position:relative;font:800 15px/1 'Manrope',sans-serif;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
-.rz .kc-sq small{font:700 9px/1.1 'Manrope',sans-serif;letter-spacing:.02em;color:var(--mut);white-space:nowrap}
+.rz .kc-sq b{position:relative;font:700 15px/1 'Manrope',sans-serif;letter-spacing:-.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.rz .kc-sq small{font:600 11px/1.1 'Manrope',sans-serif;letter-spacing:0;color:var(--mut);white-space:nowrap}
 .rz .kc-sq .sq-sp,.rz .kc-sq .sq-st{position:absolute;pointer-events:none;opacity:0;background:currentColor;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
 .rz .kc-sq .sq-sp{width:10px;height:10px;right:-3px;top:-2px}
 .rz .kc-sq .sq-st{width:16px;height:16px;left:-5px;top:-5px;background:var(--sqmid)}
@@ -2358,6 +2358,7 @@ html[data-theme=dark] .rz.sl .sl-adv.lola .sl-adv-go{color:color-mix(in srgb,var
 @keyframes sqStar{0%{opacity:0;transform:scale(.2) rotate(-60deg)}35%{opacity:1;transform:scale(1.25) rotate(0)}70%{opacity:1;transform:scale(1) rotate(20deg)}100%{opacity:0;transform:scale(.8) rotate(40deg) translateY(-4px)}}
 /* halqa tugmasi: quti — halqaning ichki markazi (120 px), ko'rinish (220 px SVG + raqamlar) va doiraviy bosish zonasi (::before) o'zgarmaydi → burchakdagi medal/ⓘ bilan qutilar kesishmaydi */
 .rz .sl-vessel{width:120px;height:120px;margin:54px auto 50px}
+@media (max-width:359px){.rz .sl-vessel{margin-top:70px}}          /* 320 px: «Качество» (katta matn) halqa chizig'iga tegmasin — halqa 16 px pastroq */
 .rz .sl-vessel .sl-vsvg,.rz .sl-vessel .kv-ctr{inset:-50px;width:auto;height:auto}
 .rz .sl-vessel::before{content:"";position:absolute;inset:-50px;border-radius:50%}
 .rz .sl-vessel:focus-visible{outline:none}.rz .sl-vessel:focus-visible::before{outline:2px solid var(--acc);outline-offset:2px}
