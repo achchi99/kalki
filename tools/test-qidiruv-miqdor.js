@@ -10,7 +10,7 @@ let n = 0; const ok = (m) => { n++; console.log('OK  ', n + '.', m); };
 const ONE = [
   ['рис вареный 100 г', 'рис вареный', 100, 'g100', 'guruch', [['guruch', 100]]],
   ['рис вареный 90 г', 'рис вареный', 90, 'g100', 'guruch', [['guruch', 90]]],
-  ['яйца жареные без масла 200 г', 'яйца жареные без масла', 200, 'g100', 'tuxum-qov-yogsiz', [['tuxum-qov-yogsiz', 200]]],
+  ['яйца жареные без масла 200 г', 'яйца жареные без масла', 200, 'g100', 'tuxum', [['tuxum', 200]]],          // v107: tuxum-qov-yogsiz — «tuxum» oilasining «yog'siz» varianti (alias)
   ['отруби 30 г', 'отруби', 30, 'g100', 'kepak', [['kepak', 30]]],
   ['молоко пастеризованное 200 г', 'молоко пастеризованное', 200, 'g100', 'sut', [['sut', 200]]],
   ['котлета по киевски с сыром 110 г', 'котлета по киевски с сыром', 110, 'g100', 'kotleta-kiyev', [['kotleta-kiyev', 110]]],
@@ -28,6 +28,7 @@ for (const [q, nm, qty, u, id, pt] of ONE) {
   if (id) { const r = S.search(DB, sq.name, { limit: 3 }).map((f) => f.id); assert.ok(r.includes(id), q + ' → ' + id + ' (bor: ' + r.join(',') + ')'); }
   if (pt) { const p = S.parseText(q, DB, {}); assert.deepEqual(p.missing, [], q + ': topilmagan qism yo\'q'); assert.deepEqual(p.items.map((x) => [x.fid, pt[0][1] == null ? null : Math.round(x.g)]), pt, q + ': parseText'); }
 }
+{ const e = S.parseText('яйца жареные без масла 200 г', DB, {}).items[0]; assert.equal(e.vr, 'yogsiz', 'без масла → yog\'siz varianti'); }
 ok(ONE.length + " ta bitta taomli so'rov: miqdor (boshida/oxirida, 100 г / 200 мл / 2 ta / yarimta / 1,5) ajraladi, nom bo'yicha to'g'ri taom topiladi; «sut 1,5» — miqdor emas");
 assert.equal(S.parseText('yarimta non', DB, {}).items[0].qty, 0.5, 'yarimta = 0,5');
 const MULTI = [

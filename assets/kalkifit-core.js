@@ -1034,7 +1034,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
       if (!hit) { var fr2 = fr.replace(/\s+\d+(?:[.,]\d+)?(?:\s+\S+)?$/, ''); if (fr2 !== fr && /\d/.test(fr2)) { var p2 = parseFragment(fr2), h2b = p2.name && bestHit(foods, p2.name, o); if (h2b) { p = p2; hit = h2b; fr = fr2; } } }          // v52: oxiridagi to'liq yozilmagan «… 2 piyola» (keyingi taom hali yozilmagan)
       if (!hit) { miss.push(fr); return; }
       var fam = null, food = hit, sel = null, qn = p.name;
-      if (hit.fam) { fam = hit; sel = famDefault(hit); var pk = famPick(hit, p.sz && !hit.fam.sz ? p.raw : p.name) || famPick(hit, p.raw) || famPick(hit, p.name); if (pk) Object.keys(pk).forEach(function (a) { sel[a] = pk[a]; }); if (umHit === hit) { var up = usulPick(hit, um.u); Object.keys(up).forEach(function (a) { sel[a] = up[a]; }); } if (!hit.fam.sz) szid = null; food = famVariant(hit, sel, szid); }
+      if (hit.fam) { fam = hit; sel = famDefault(hit); var pk = famPick(hit, p.sz && !hit.fam.sz ? p.raw : p.name) || famPick(hit, p.raw) || famPick(hit, p.name); if (pk) Object.keys(pk).forEach(function (a) { sel[a] = pk[a]; }); if (umHit === hit) { var up = usulPick(hit, um.u); Object.keys(up).forEach(function (a) { if (!(pk && pk[a])) sel[a] = up[a]; }); } if (!hit.fam.sz) szid = null; food = famVariant(hit, sel, szid); }
       if (fam && p.unit && p.unit !== 'g100' && unitGrams(food, p.unit) == null && fam.fam.uv) {          // v52: so'ralgan birlik shu variantda yo'q («2 tilim non» → obi non emas, tilimli variant)
         var vk2 = Object.keys(fam.fam.uv).filter(function (k) { return fam.fam.uv[k] && fam.fam.uv[k][p.unit] != null; })[0];
         if (vk2) { sel = famSelOf(fam, vk2); food = famVariant(fam, sel, szid); }

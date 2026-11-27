@@ -96,6 +96,7 @@ function apply(foods) {
         check(O.id + '[' + k + ']', byU);
       }
       fm.g = ng; if (nuv) fm.uv = nuv; if (nfn) fm.fn = nfn; fm.ax.push(AX(O.d, O.usul)); usList = O.usul;
+      for (const a of foods) if (a.al && a.al.f === f.i && String(a.al.v).split('.').length < fm.ax.length) a.al.v += '.' + O.d;          /* eski alias (somsa-qat → qatlama.yogli) — to'liq kalit, standart usul */
     }
     fm.N = Object.keys(fm.g).length; note(f);
     rep.guruh[O.g] = (rep.guruh[O.g] || 0) + 1; rep.taomlar.push({ id: f.i, g: O.g, usul: usList });
