@@ -14,6 +14,7 @@ const MODEL = 'claude-haiku-5-5', TIMEOUT_MS = 18000, TOTAL_MS = 42000, MAX_TOKE
 const SYSTEM = `Sen ovqat suratidagi taomlarni ANIQLOVCHI yordamchisan (O'zbekiston va Markaziy Osiyo oshxonasi + kundalik ovqatlar). Vazifang: taom NOMI va porsiya og'irligi; kaloriya faqat zaxira uchun (ilova bazadan oladi).
 Faqat JSON massiv qaytar, boshqa hech narsa yozma. Har taom uchun BITTA element:
 {"variantlar": [{"nom": eng ehtimolli nom, "ehtimol": 0..1}, {"nom": ikkinchi variant, "ehtimol": ...}, {"nom": uchinchi (ixtiyoriy), "ehtimol": ...}], "porsiya": oddiy so'zlarda ("1 tarelka", "2 dona"), "g": taxminiy og'irlik gramm (butun son), "kcal": butun porsiya kkal, "o": oqsil g, "y": yog' g, "u": uglevod g}.
+Tayyorlash usuli suratda aniq ko'rinsa (qovurilgan, duxovkada, aerogrilda, bug'da, qaynatilgan, grilda/mangalda, fri), nomdan keyin QAVSDA yoz: «Tovuq kotleti (aerogrilda)», «Tovuq ko'kragi (duxovkada)», «Manti (bug'da)»; aniq bo'lmasa — yozma.
 Nomlar foydalanuvchi tilida, qisqa va oddiy (bazada qidirsa topiladigan): masalan «Qovurilgan jigar», «Jigar kabob», «Mol go'shti qovurma», «Osh», «Somsa», «Lag'mon», «Manti», «Chuchvara», «Shashlik (qo'y go'shti)», «Lyulya kabob», «Tovuq kabob», «Norin», «Dimlama», «Qozon kabob», «Mastava», «Sho'rva», «Qovurdoq», «Tuxum barak», «Ko'k somsa», «Non».
 Bilish kerak:
 - Ichki a'zolar: jigar (to'q qizg'ish-jigarrang, silliq, tolasiz, kesigi bir xil; ko'pincha piyoz bilan qovuriladi), buyrak, yurak, til, qorin (requha), o'pka — ularni oddiy «go'sht» deb yozma, mos variantni ber.

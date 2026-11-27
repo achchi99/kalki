@@ -135,6 +135,26 @@
    "tuxum",
    "glyuten"
   ],
+  "baliq-kotlet#aerogril": [
+   "baliq",
+   "tuxum",
+   "glyuten"
+  ],
+  "baliq-kotlet#bug": [
+   "baliq",
+   "tuxum",
+   "glyuten"
+  ],
+  "baliq-kotlet#duxovka": [
+   "baliq",
+   "tuxum",
+   "glyuten"
+  ],
+  "baliq-kotlet#tova": [
+   "baliq",
+   "tuxum",
+   "glyuten"
+  ],
   "baliq-panirovka": [
    "baliq",
    "tuxum",
@@ -152,6 +172,12 @@
   "banan-chips": [],
   "baqlajon": [],
   "baqlajon-qaynatilgan": [],
+  "baqlajon-qaynatilgan#aerogril": [],
+  "baqlajon-qaynatilgan#bug": [],
+  "baqlajon-qaynatilgan#duxovka": [],
+  "baqlajon-qaynatilgan#gril": [],
+  "baqlajon-qaynatilgan#qaynatilgan": [],
+  "baqlajon-qaynatilgan#tova": [],
   "baqlajon-qovurilgan": [],
   "barni": [
    "tuxum",
@@ -256,6 +282,12 @@
    "sut"
   ],
   "brokkoli-qaynatilgan": [],
+  "brokkoli-qaynatilgan#aerogril": [],
+  "brokkoli-qaynatilgan#bug": [],
+  "brokkoli-qaynatilgan#duxovka": [],
+  "brokkoli-qaynatilgan#gril": [],
+  "brokkoli-qaynatilgan#qaynatilgan": [],
+  "brokkoli-qaynatilgan#tova": [],
   "bruschetta": [
    "sut",
    "glyuten"
@@ -397,6 +429,7 @@
   "chuchvara": [
    "glyuten"
   ],
+  "chuchvara#goshtli.bug": [],
   "chuchvara#goshtli.qaynatma": [
    "glyuten"
   ],
@@ -406,6 +439,7 @@
   "chuchvara#goshtli.shorvada": [
    "glyuten"
   ],
+  "chuchvara#tovuq.bug": [],
   "chuchvara#tovuq.qaynatma": [
    "glyuten"
   ],
@@ -521,6 +555,24 @@
   "forel": [
    "baliq"
   ],
+  "forel#aerogril": [
+   "baliq"
+  ],
+  "forel#bug": [
+   "baliq"
+  ],
+  "forel#duxovka": [
+   "baliq"
+  ],
+  "forel#gril": [
+   "baliq"
+  ],
+  "forel#qaynatilgan": [
+   "baliq"
+  ],
+  "forel#tova": [
+   "baliq"
+  ],
   "frappe": [
    "sut"
   ],
@@ -604,6 +656,12 @@
   "guava": [],
   "gulkaram": [],
   "gulkaram-qaynatilgan": [],
+  "gulkaram-qaynatilgan#aerogril": [],
+  "gulkaram-qaynatilgan#bug": [],
+  "gulkaram-qaynatilgan#duxovka": [],
+  "gulkaram-qaynatilgan#gril": [],
+  "gulkaram-qaynatilgan#qaynatilgan": [],
+  "gulkaram-qaynatilgan#tova": [],
   "gulyash": [
    "glyuten"
   ],
@@ -679,6 +737,9 @@
   "jele-konfet": [],
   "jigar": [],
   "jigar-kabob": [],
+  "jigar-kabob#duxovka": [],
+  "jigar-kabob#mangal": [],
+  "jigar-kabob#tova": [],
   "jigar-pashtet": [],
   "jigar-qovurma": [],
   "jiz": [],
@@ -769,6 +830,8 @@
   ],
   "karkade": [],
   "kartoshka": [],
+  "kartoshka#aerogril": [],
+  "kartoshka#duxovka": [],
   "kartoshka#fri": [],
   "kartoshka#pyure": [
    "sut"
@@ -928,6 +991,22 @@
    "tuxum",
    "glyuten"
   ],
+  "kotlet#aerogril": [
+   "tuxum",
+   "glyuten"
+  ],
+  "kotlet#bug": [
+   "tuxum",
+   "glyuten"
+  ],
+  "kotlet#duxovka": [
+   "tuxum",
+   "glyuten"
+  ],
+  "kotlet#tova": [
+   "tuxum",
+   "glyuten"
+  ],
   "kotlet-bug": [
    "sut",
    "glyuten"
@@ -987,9 +1066,31 @@
   "kunjut-yogi": [],
   "kurka": [],
   "kurka-kokrak": [],
+  "kurka-kokrak#aerogril": [],
+  "kurka-kokrak#bug": [],
+  "kurka-kokrak#duxovka": [],
+  "kurka-kokrak#gril": [],
+  "kurka-kokrak#qaynatilgan": [],
+  "kurka-kokrak#tova": [],
   "kurka-kokrak-xom": [],
   "kurka-kolbasa": [],
   "kurka-kotlet": [
+   "tuxum",
+   "glyuten"
+  ],
+  "kurka-kotlet#aerogril": [
+   "tuxum",
+   "glyuten"
+  ],
+  "kurka-kotlet#bug": [
+   "tuxum",
+   "glyuten"
+  ],
+  "kurka-kotlet#duxovka": [
+   "tuxum",
+   "glyuten"
+  ],
+  "kurka-kotlet#tova": [
    "tuxum",
    "glyuten"
   ],
@@ -1130,6 +1231,24 @@
   "losos": [
    "baliq"
   ],
+  "losos#aerogril": [
+   "baliq"
+  ],
+  "losos#bug": [
+   "baliq"
+  ],
+  "losos#duxovka": [
+   "baliq"
+  ],
+  "losos#gril": [
+   "baliq"
+  ],
+  "losos#qaynatilgan": [
+   "baliq"
+  ],
+  "losos#tova": [
+   "baliq"
+  ],
   "losos-dudlangan": [
    "baliq"
   ],
@@ -1152,6 +1271,10 @@
   "loviya-tomat": [],
   "loviya-xom": [],
   "lyulya": [],
+  "lyulya#aerogril": [],
+  "lyulya#duxovka": [],
+  "lyulya#mangal": [],
+  "lyulya#tova": [],
   "maffin": [
    "tuxum",
    "sut",
@@ -1215,15 +1338,21 @@
   "manti": [
    "glyuten"
   ],
-  "manti#goshtli": [
+  "manti#goshtli.bug": [
    "glyuten"
   ],
-  "manti#kartoshka": [
+  "manti#goshtli.qaynatilgan": [],
+  "manti#goshtli.tova": [],
+  "manti#kartoshka.bug": [
    "glyuten"
   ],
-  "manti#qovoq": [
+  "manti#kartoshka.qaynatilgan": [],
+  "manti#kartoshka.tova": [],
+  "manti#qovoq.bug": [
    "glyuten"
   ],
+  "manti#qovoq.qaynatilgan": [],
+  "manti#qovoq.tova": [],
   "marakuya": [],
   "margarin": [
    "sut"
@@ -1315,6 +1444,21 @@
   "mintay": [
    "baliq"
   ],
+  "mintay#aerogril": [
+   "baliq"
+  ],
+  "mintay#bug": [
+   "baliq"
+  ],
+  "mintay#duxovka": [
+   "baliq"
+  ],
+  "mintay#qaynatilgan": [
+   "baliq"
+  ],
+  "mintay#tova": [
+   "baliq"
+  ],
   "mirinda": [],
   "mishka-kosolapiy": [
    "sut",
@@ -1345,6 +1489,11 @@
   "mol-jigar-qov": [],
   "mol-jigar-xom": [],
   "mol-kotlet-grill": [],
+  "mol-kotlet-grill#aerogril": [],
+  "mol-kotlet-grill#bug": [],
+  "mol-kotlet-grill#duxovka": [],
+  "mol-kotlet-grill#gril": [],
+  "mol-kotlet-grill#tova": [],
   "mol-miya": [],
   "mol-otbivnoy": [
    "tuxum",
@@ -1503,6 +1652,22 @@
    "sut"
   ],
   "naggets": [
+   "tuxum",
+   "glyuten"
+  ],
+  "naggets#aerogril": [
+   "tuxum",
+   "glyuten"
+  ],
+  "naggets#chuqur": [
+   "tuxum",
+   "glyuten"
+  ],
+  "naggets#duxovka": [
+   "tuxum",
+   "glyuten"
+  ],
+  "naggets#tova": [
    "tuxum",
    "glyuten"
   ],
@@ -1770,6 +1935,22 @@
    "glyuten"
   ],
   "pirojki": [
+   "tuxum",
+   "glyuten"
+  ],
+  "pirojki#aerogril": [
+   "tuxum",
+   "glyuten"
+  ],
+  "pirojki#chuqur": [
+   "tuxum",
+   "glyuten"
+  ],
+  "pirojki#duxovka": [
+   "tuxum",
+   "glyuten"
+  ],
+  "pirojki#tova": [
    "tuxum",
    "glyuten"
   ],
@@ -2079,6 +2260,14 @@
   "qovoq-urugi": [],
   "qovoq-urugi-qovurilgan": [],
   "qovoqcha": [],
+  "qovoqcha#aerogril": [],
+  "qovoqcha#bug": [],
+  "qovoqcha#duxovka": [],
+  "qovoqcha#gril": [],
+  "qovoqcha#qaynatilgan": [],
+  "qovoqcha#tova": [
+   "glyuten"
+  ],
   "qovoqcha-qovurilgan": [
    "glyuten"
   ],
@@ -2351,8 +2540,14 @@
    "glyuten"
   ],
   "shashlik": [],
-  "shashlik#gosht": [],
-  "shashlik#tovuq": [],
+  "shashlik#gosht.aerogril": [],
+  "shashlik#gosht.duxovka": [],
+  "shashlik#gosht.mangal": [],
+  "shashlik#gosht.tova": [],
+  "shashlik#tovuq.aerogril": [],
+  "shashlik#tovuq.duxovka": [],
+  "shashlik#tovuq.mangal": [],
+  "shashlik#tovuq.tova": [],
   "shashlik-dumba": [],
   "shashlik-tovuq": [],
   "shashlik-yurak": [],
@@ -2435,6 +2630,21 @@
    "sut",
    "glyuten"
   ],
+  "sirniki#aerogril": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "sirniki#duxovka": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "sirniki#tova": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "sirok": [
    "sut"
   ],
@@ -2511,50 +2721,74 @@
   "somsa": [
    "glyuten"
   ],
-  "somsa#oddiy.kartoshka": [
+  "somsa#oddiy.kartoshka.duxovka": [],
+  "somsa#oddiy.kartoshka.tandir": [
    "glyuten"
   ],
-  "somsa#oddiy.kokat": [
+  "somsa#oddiy.kartoshka.tova": [],
+  "somsa#oddiy.kokat.duxovka": [],
+  "somsa#oddiy.kokat.tandir": [
    "tuxum",
    "glyuten"
   ],
-  "somsa#oddiy.qovoq": [
+  "somsa#oddiy.kokat.tova": [],
+  "somsa#oddiy.qovoq.duxovka": [],
+  "somsa#oddiy.qovoq.tandir": [
    "glyuten"
   ],
-  "somsa#oddiy.tovuq": [
+  "somsa#oddiy.qovoq.tova": [],
+  "somsa#oddiy.tovuq.duxovka": [],
+  "somsa#oddiy.tovuq.tandir": [
    "glyuten"
   ],
-  "somsa#oddiy.yogli": [
+  "somsa#oddiy.tovuq.tova": [],
+  "somsa#oddiy.yogli.duxovka": [],
+  "somsa#oddiy.yogli.tandir": [
    "glyuten"
   ],
-  "somsa#oddiy.yogsiz": [
+  "somsa#oddiy.yogli.tova": [],
+  "somsa#oddiy.yogsiz.duxovka": [],
+  "somsa#oddiy.yogsiz.tandir": [
    "glyuten"
   ],
-  "somsa#qatlama.kartoshka": [
+  "somsa#oddiy.yogsiz.tova": [],
+  "somsa#qatlama.kartoshka.duxovka": [],
+  "somsa#qatlama.kartoshka.tandir": [
    "sut",
    "glyuten"
   ],
-  "somsa#qatlama.kokat": [
+  "somsa#qatlama.kartoshka.tova": [],
+  "somsa#qatlama.kokat.duxovka": [],
+  "somsa#qatlama.kokat.tandir": [
    "tuxum",
    "sut",
    "glyuten"
   ],
-  "somsa#qatlama.qovoq": [
+  "somsa#qatlama.kokat.tova": [],
+  "somsa#qatlama.qovoq.duxovka": [],
+  "somsa#qatlama.qovoq.tandir": [
    "sut",
    "glyuten"
   ],
-  "somsa#qatlama.tovuq": [
+  "somsa#qatlama.qovoq.tova": [],
+  "somsa#qatlama.tovuq.duxovka": [],
+  "somsa#qatlama.tovuq.tandir": [
    "sut",
    "glyuten"
   ],
-  "somsa#qatlama.yogli": [
+  "somsa#qatlama.tovuq.tova": [],
+  "somsa#qatlama.yogli.duxovka": [],
+  "somsa#qatlama.yogli.tandir": [
    "sut",
    "glyuten"
   ],
-  "somsa#qatlama.yogsiz": [
+  "somsa#qatlama.yogli.tova": [],
+  "somsa#qatlama.yogsiz.duxovka": [],
+  "somsa#qatlama.yogsiz.tandir": [
    "sut",
    "glyuten"
   ],
+  "somsa#qatlama.yogsiz.tova": [],
   "somsa-dumba": [
    "glyuten"
   ],
@@ -3098,6 +3332,11 @@
    "glyuten"
   ],
   "tovuq-boldir-duxovka": [],
+  "tovuq-boldir-duxovka#aerogril": [],
+  "tovuq-boldir-duxovka#duxovka": [],
+  "tovuq-boldir-duxovka#gril": [],
+  "tovuq-boldir-duxovka#qaynatilgan": [],
+  "tovuq-boldir-duxovka#tova": [],
   "tovuq-boldir-qov": [],
   "tovuq-boldir-xom": [],
   "tovuq-boneless": [
@@ -3125,12 +3364,34 @@
    "glyuten"
   ],
   "tovuq-kokrak": [],
+  "tovuq-kokrak#aerogril": [],
+  "tovuq-kokrak#bug": [],
+  "tovuq-kokrak#duxovka": [],
+  "tovuq-kokrak#gril": [],
+  "tovuq-kokrak#qaynatilgan": [],
+  "tovuq-kokrak#tova": [],
   "tovuq-kokrak-duxovka": [],
   "tovuq-kokrak-qov": [],
   "tovuq-kokrak-qozon": [],
   "tovuq-kokrak-terili-xom": [],
   "tovuq-kokrak-xom": [],
   "tovuq-kotlet": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tovuq-kotlet#aerogril": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tovuq-kotlet#bug": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tovuq-kotlet#duxovka": [
+   "tuxum",
+   "glyuten"
+  ],
+  "tovuq-kotlet#tova": [
    "tuxum",
    "glyuten"
   ],
@@ -3145,6 +3406,11 @@
    "glyuten"
   ],
   "tovuq-qanot": [],
+  "tovuq-qanot#aerogril": [],
+  "tovuq-qanot#duxovka": [],
+  "tovuq-qanot#gril": [],
+  "tovuq-qanot#qaynatilgan": [],
+  "tovuq-qanot#tova": [],
   "tovuq-qanot-duxovka": [],
   "tovuq-qanot-qov": [],
   "tovuq-qaynatilgan": [],
@@ -3160,6 +3426,11 @@
   ],
   "tovuq-shurva": [],
   "tovuq-son": [],
+  "tovuq-son#aerogril": [],
+  "tovuq-son#duxovka": [],
+  "tovuq-son#gril": [],
+  "tovuq-son#qaynatilgan": [],
+  "tovuq-son#tova": [],
   "tovuq-son-qozon": [],
   "tovuq-son-xom": [],
   "tovuq-sosiska": [],
@@ -3313,6 +3584,21 @@
   "treska": [
    "baliq"
   ],
+  "treska#aerogril": [
+   "baliq"
+  ],
+  "treska#bug": [
+   "baliq"
+  ],
+  "treska#duxovka": [
+   "baliq"
+  ],
+  "treska#qaynatilgan": [
+   "baliq"
+  ],
+  "treska#tova": [
+   "baliq"
+  ],
   "trubochka-krem": [
    "tuxum",
    "glyuten"
@@ -3347,6 +3633,9 @@
    "tuxum"
   ],
   "tuxum#qovurilgan": [
+   "tuxum"
+  ],
+  "tuxum#yogsiz": [
    "tuxum"
   ],
   "tuxum-barak": [
@@ -3522,6 +3811,21 @@
    "glyuten"
   ],
   "xek": [
+   "baliq"
+  ],
+  "xek#aerogril": [
+   "baliq"
+  ],
+  "xek#bug": [
+   "baliq"
+  ],
+  "xek#duxovka": [
+   "baliq"
+  ],
+  "xek#qaynatilgan": [
+   "baliq"
+  ],
+  "xek#tova": [
    "baliq"
   ],
   "xonim": [

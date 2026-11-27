@@ -2377,3 +2377,6 @@ html[data-theme=dark] .rz.sl .sl-adv.lola .sl-adv-go{color:color-mix(in srgb,var
 .rz .tl-sq .sq-lg i.kc{background:color-mix(in srgb,var(--fill) 55%,var(--card))}.rz .tl-sq .sq-lg i.q{background:var(--ink);border-radius:50%}
 .rz .tl-sq .sq-tr{font-weight:600;color:var(--ink)}.rz .tl-sq p{overflow-wrap:anywhere}
 .hk .hk-sw p{margin:6px 0 0;overflow-wrap:anywhere}
+/* v107: tayyorlash usuli chiplari (porsiya oynasida ko'rinadi; tor ekranda o'raladi — gorizontal aylanmaydi) */
+.rz .pw-usul{margin:2px 0 10px}.rz .pw-usul .rz-fl{margin:0 0 6px}
+.rz .pw-usul .pw-uc{display:flex;flex-wrap:wrap;gap:6px}.rz .pw-usul .rz-chip{max-width:100%;overflow-wrap:anywhere;text-align:center}

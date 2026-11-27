@@ -29,6 +29,7 @@ const SC = [
   { n: 'makro-oynasi', st: () => seed({ food: OVER }), act: async (p) => { await click(p, '#bjuCard .mk-row[data-m=f]'); await p.waitForSelector('#mkTop'); return '#rzSheet'; } },
   { n: 'qoshish-oynasi', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '#mainAdd'); await p.waitForTimeout(500); return '#rzSheet'; } },
   { n: 'qoshish-natijalar', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '#mainAdd'); await p.fill('#fdQ', 'osh'); await p.waitForTimeout(700); return '#rzSheet'; } },
+  { n: 'usul-chiplar', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '#mainAdd'); await p.fill('#fdQ', "tovuq ko'kragi"); await p.waitForTimeout(700); await click(p, '#rzSheet .sl-rw [data-act=pickfood]'); await p.waitForTimeout(500); await p.waitForSelector('#fdUsul'); return '#rzSheet'; } },          // v107: 6 ta usul chipi — o'raladi, sig'adi
   { n: 'qoshish-porsiya', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '#mainAdd'); await p.fill('#fdQ', 'osh'); await p.waitForTimeout(700); await click(p, '#rzSheet .sl-rw [data-act], #rzSheet .sl-rw'); await p.waitForTimeout(500); return '#rzSheet'; } },
   { n: 'yana-bolimi', st: () => seed({ food: FULL }), act: async (p) => { await click(p, '[data-act=tab][data-v=more]'); return '#rzMain'; } },
   { n: 'maslahat-bolimi', st: () => seed({ food: OVER }), hour: 15, act: async (p) => { await click(p, '[data-act=tab][data-v=advice]'); await p.waitForTimeout(500); return '#rzMain'; } },

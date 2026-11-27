@@ -63,6 +63,9 @@ try {
     const close = async () => { await p.keyboard.press('Escape'); await settle(350); };
     await scan('Bugun');
     for (const [sel, w] of [['#kcalBtn', 'Kaloriya oynasi'], ['#sqChip', 'Sifat oynasi'], ['#mainAdd', 'Qo\'shish oynasi'], ['#bjuCard [data-act]', 'Makro oynasi']]) { if (await p.locator(sel).count()) { await p.locator(sel).first().click(); await settle(); await scan(w); await close(); } }
+    /* v107: porsiya oynasi — tayyorlash usuli chiplari (Tovada qovurilgan · Duxovkada · Aerogrilda · Bug'da) */
+    { await p.click('#mainAdd'); await p.waitForSelector('#fdQ'); await p.fill('#fdQ', mode === 'ru' ? 'котлета куриная' : 'tovuq kotleti'); await settle(700);
+      await p.locator('#fdRes .sl-rw [data-act=pickfood]').first().click(); await p.waitForSelector('#fdUsul'); await p.click('#fdUsul [data-o=aerogril]'); await settle(); await scan('Porsiya oynasi (usul chiplari)'); await close(); await close(); }
     if (await p.locator('.sl-week7 .wd').count()) { await p.locator('.sl-week7 .wd').nth(5).click(); await settle(); await scan('Kecha (kun xulosasi)'); await p.click('.wk-back').catch(() => {}); await settle(); }
     await p.click('[data-act=tab][data-v=history]'); await settle(700); await scan('Tahlil');
     if (await p.locator('#hkCard').count()) { await p.click('#hkCard'); await p.waitForSelector('#hkStory .hk-sl.on'); await settle(600); const k = await p.locator('#hkStory .hk-prog span').count();

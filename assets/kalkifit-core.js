@@ -919,12 +919,15 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   function famVariant(f, sel, sz) {                      // oila + tanlov → oddiy taom ko'rinishi (k,p,f,c,u,e) — mavjud kod (portion/unitGrams) shu bilan ishlaydi
     var fm = f.fam; if (!fm) return f; var vr = famKey(f, sel), g = fm.g[vr] || fm.g[famKey(f, null)], o = {}, k;
     for (k in f) o[k] = f[k];
-    o.k = g.k; o.p = g.p; o.f = g.f; o.c = g.c; o.e = g.x ? 1 : 0; o.x = o.e; o.rc = g.rc || null; o.vr = vr;
+    o.k = g.k; o.p = g.p; o.f = g.f; o.c = g.c; o.e = g.x ? 1 : 0; o.x = o.e; o.rc = g.rc || null; o.vr = vr; o.us = g.us || null;          // v107: us — tayyorlash usuli bo'yicha hisoblangan (langar usuli)
     o.fb = g.fb !== undefined ? g.fb : (f.fb == null ? null : f.fb);          // v102: kletchatka (kombinatsiyaga xos; null — noma'lum)
     var uo = fm.uv && fm.uv[vr], u = f.u.map(function (x) { return [x[0], uo && uo[x[0]] != null ? uo[x[0]] : x[1]]; });
     if (uo) Object.keys(uo).forEach(function (kk) { if (!u.some(function (x) { return x[0] === kk; })) u.splice(u.length - 1, 0, [kk, uo[kk]]); });
     if (fm.sz) { var so = fm.sz.o.filter(function (x) { return x.i === (sz || fm.sz.d); })[0] || fm.sz.o[0]; u = u.map(function (x) { return x[0] === fm.sz.u ? [x[0], Math.round(x[1] * so.m)] : x; }); o.sz = so.i; }
     o.u = u; o.b = (f.b || []).map(function (b) { var q = {}, kk; for (kk in b) q[kk] = b[kk]; var m = u.filter(function (x) { return x[0] === b.k; })[0]; if (m) q.g = m[1]; return q; });
+    var bd = o.b.filter(function (b) { return b.d; })[0], g0 = bd && (f.u.filter(function (x) { return x[0] === bd.k; })[0] || [])[1];          // v107: variant standart birlikni juda kichraytirsa («fri»: dona = 1 tayoqcha, 5 g) — standart shu variantning odatiy porsiyasi
+    if (uo && bd && g0 && uo[bd.k] != null && uo[bd.k] < g0 * 0.2) { var alt = Object.keys(uo).filter(function (kk) { return kk !== bd.k && uo[kk] >= g0 * 0.5; })[0];
+      if (alt) { o.b = o.b.map(function (b) { var q = {}, kk; for (kk in b) if (kk !== 'd') q[kk] = b[kk]; return q; }); var ex = o.b.filter(function (b) { return b.k === alt; })[0]; if (ex) ex.d = 1; else o.b.unshift({ k: alt, g: uo[alt], d: 1, s: bd.s }); } }
     return o;
   }
   /* ---- v102: KLETCHATKA. Taom: fb (g/100 g) yoki null (noma'lum — 0 emas). Me'yor: 14 g / 1000 kkal (maqsad kaloriyasidan), kamida 25 g.
@@ -935,7 +938,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   function fiberDay(list, look) { var g = 0, unk = 0, n = 0; (list || []).forEach(function (e) { n++; var v = fiberOf(e, look); if (v == null) unk++; else g += v; }); return { g: Math.round(g * 10) / 10, unk: unk, n: n }; }
   function famLabel(f, vr, sz, lang) {                   // "qovoq, o'rta" — yozuv/qatorda ko'rsatiladigan omillar (faqat kkal'ga ta'sir qiladiganlar + o'lcham)
     var fm = f.fam, p = String(vr || '').split('.'), out = [];
-    fm.ax.forEach(function (a, i) { if (!a.s) return; var o = a.o.filter(function (x) { return x.i === (p[i] || a.d); })[0]; if (o) out.push(lang === 'ru' ? o.r : o.n); });
+    fm.ax.forEach(function (a, i) { if (!a.s) return; var o = a.o.filter(function (x) { return x.i === (p[i] || a.d); })[0]; if (o) out.push(lang === 'ru' ? (o.lr || o.r) : (o.l || o.n)); });          // v107: usul — qisqa yorliq («aerogril»)
     if (fm.sz && sz) { var so = fm.sz.o.filter(function (x) { return x.i === sz; })[0]; if (so && sz !== fm.sz.d) out.push(lang === 'ru' ? so.r : so.n); }
     return out.join(', ');
   }
@@ -951,6 +954,23 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     });
     return best && (!exact || bl >= 1000) ? best.p : null;
   }
+  /* ---- v107: TAYYORLASH USULI. Lug'at (usul → sinonimlar) data/ovqatlar.json «us» dan: setUsul(). usulQ(matn) → { q: usul so'zisiz matn, u: usul | null };
+     usulPick(taom, u) → { o'q: variant } (taom oilasida shu usul bo'lsa) | null. Qidiruv, matn/ovoz va AI natijasi shu orqali usulni tanlaydi («tovuq kotlet aerogril»). ---- */
+  var USUL = null, USUL_L = null;
+  function setUsul(d) { USUL = d && typeof d === 'object' ? d : null; USUL_L = null; }
+  function usulList() {
+    if (USUL_L || !USUL) return USUL_L || [];
+    var l = []; Object.keys(USUL).forEach(function (u) { var d = USUL[u]; [d.n, d.r, d.l, d.lr].concat(d.sy || []).forEach(function (x) { var k = x ? key(x) : ''; if (k) l.push([k, u]); }); });
+    l.sort(function (a, b) { return b[0].length - a[0].length; }); USUL_L = l; return l;
+  }
+  function usulQ(q) {
+    var t = ' ' + key(q || '') + ' ', l = usulList();
+    for (var i = 0; i < l.length; i++) { var w = ' ' + l[i][0] + ' ', j = t.indexOf(w); if (j < 0) continue; var rest = (t.slice(0, j) + ' ' + t.slice(j + w.length)).replace(/\s+/g, ' ').trim(); if (!rest) return { q: q, u: null }; return { q: rest, u: l[i][1] }; }
+    return { q: q, u: null };
+  }
+  function usulPick(f, u) { var fm = f && f.fam; if (!fm || !u) return null; for (var i = 0; i < fm.ax.length; i++) { var a = fm.ax[i]; if (!a.m) continue; var o = a.o.filter(function (x) { return x.u === u; })[0]; if (o) { var r = {}; r[a.i] = o.i; return r; } } return null; }
+  function exactName(f, q) { var k = key(q), strip = function (x) { return key(String(x).replace(/\([^)]*\)/g, ' ')); }; return [f.n, f.r].concat(f.a || []).some(function (x) { return x && (key(x) === k || strip(x) === k); }); }
+  function usulAx(f) { var fm = f && f.fam; if (!fm) return null; for (var i = 0; i < fm.ax.length; i++) if (fm.ax[i].m) return fm.ax[i]; return null; }
   function unitGrams(food, unit) { for (var i = 0; i < food.u.length; i++) if (food.u[i][0] === unit) return food.u[i][1]; return null; }
   var CASE_SUF = /(ning|dan|ni|ga|da|ni|lari|ларни|ов|а|у|ы|и|ой|ом|е)$/;
   function bestHit(foods, name, o) {
@@ -1006,12 +1026,15 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
       if (p.qty != null && !p.unit && /^\D\S*(?:\s+\D\S*)*\s+\d+(?:[.,]\d+)?\s*%?$/.test(fr.trim())) {          // v100: «tvorog 1», «kefir 2.5», «сметана 15» — oxiridagi yolg'iz son yog'lilik (oilada aynan sinonim bo'lsa), miqdor emas
         var fp0 = fr.trim().replace(/\s*%$/, ''), h0 = bestHit(foods, fp0.replace(/\s+\d+(?:[.,]\d+)?$/, ''), o); if (h0 && h0.fam && famPick(h0, fp0, true)) p = { qty: null, unit: null, name: fp0, sz: null, raw: fp0, my: null };
       }
-      var hit = bestHit(foods, p.name, o), szid = p.sz;
+      var um = USUL ? usulQ(p.name) : null, umHit = null;          // v107: «tovuq kotlet aerogril» — usul so'zisiz qidiriladi, oilada shu usul bo'lsa tanlanadi
+      if (um && um.u) { var hU = bestHit(foods, um.q, o), hO = bestHit(foods, p.name, o); if (hU && !usulPick(hU, um.u)) hU = search(foods, um.q, { limit: 6, ph: 'exact' }).filter(function (f) { return usulPick(f, um.u); })[0] || hU;
+        if (hU && usulPick(hU, um.u) && !(hO && hO !== hU && !hO.fam && exactName(hO, p.name))) umHit = hU; }          // iboraga AYNAN mos alohida taom (nomi/sinonimi, masalan «Qovurilgan sazan») — o'sha qoladi
+      var hit = umHit || bestHit(foods, p.name, o), szid = p.sz;
       if (hit && p.sz && !(hit.fam && hit.fam.sz)) { var h2 = bestHit(foods, p.raw, o); if (h2) { hit = h2; szid = null; } }      // "katta burger" — o'lcham omili yo'q, sinonim bo'lishi mumkin
       if (!hit) { var fr2 = fr.replace(/\s+\d+(?:[.,]\d+)?(?:\s+\S+)?$/, ''); if (fr2 !== fr && /\d/.test(fr2)) { var p2 = parseFragment(fr2), h2b = p2.name && bestHit(foods, p2.name, o); if (h2b) { p = p2; hit = h2b; fr = fr2; } } }          // v52: oxiridagi to'liq yozilmagan «… 2 piyola» (keyingi taom hali yozilmagan)
       if (!hit) { miss.push(fr); return; }
       var fam = null, food = hit, sel = null, qn = p.name;
-      if (hit.fam) { fam = hit; sel = famDefault(hit); var pk = famPick(hit, p.sz && !hit.fam.sz ? p.raw : p.name) || famPick(hit, p.raw) || famPick(hit, p.name); if (pk) Object.keys(pk).forEach(function (a) { sel[a] = pk[a]; }); if (!hit.fam.sz) szid = null; food = famVariant(hit, sel, szid); }
+      if (hit.fam) { fam = hit; sel = famDefault(hit); var pk = famPick(hit, p.sz && !hit.fam.sz ? p.raw : p.name) || famPick(hit, p.raw) || famPick(hit, p.name); if (pk) Object.keys(pk).forEach(function (a) { sel[a] = pk[a]; }); if (umHit === hit) { var up = usulPick(hit, um.u); Object.keys(up).forEach(function (a) { sel[a] = up[a]; }); } if (!hit.fam.sz) szid = null; food = famVariant(hit, sel, szid); }
       if (fam && p.unit && p.unit !== 'g100' && unitGrams(food, p.unit) == null && fam.fam.uv) {          // v52: so'ralgan birlik shu variantda yo'q («2 tilim non» → obi non emas, tilimli variant)
         var vk2 = Object.keys(fam.fam.uv).filter(function (k) { return fam.fam.uv[k] && fam.fam.uv[k][p.unit] != null; })[0];
         if (vk2) { sel = famSelOf(fam, vk2); food = famVariant(fam, sel, szid); }
@@ -1132,6 +1155,6 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
     addWeight: addWeight, removeWeight: removeWeight, avg7: avg7, weightInfo: weightInfo, weightSeries: weightSeries, currentWeight: currentWeight, goalProgress: goalProgress,
     stepsSeries: stepsSeries, stepsStats: stepsStats, stepsTotal: stepsTotal, monthSteps: monthSteps, weekdayIdx: weekdayIdx, weekSummary: weekSummary,
     dayLimit: dayLimit, dayPlan: dayPlan, bestStreak: bestStreak, streakWeek: streakWeek, monthSummary: monthSummary, limShift: limShift, setAe: setAe, setDev: setDev, aeBase: aeBase, devTotal: devTotal, AE_MAX: AE_MAX, STEPS_SANE: STEPS_SANE, dayBal: dayBal, dayFrac: dayFrac, parseEx: parseEx, EX: EX, EX_ORDER: EX_ORDER, exNet: exNet, walkNet: walkNet, addEx: addEx, shotKcal: shotKcal, restKcal: restKcal, exDup: exDup, exExtra: exExtra, EX_XK: EX_XK, updEx: updEx, removeEx: removeEx, restoreEx: restoreEx, planSt: planSt, jobOn: jobOn, creditOf: creditOf, LIM: LIM, dayStatus: dayStatus, isComplete: isComplete, avgDay: avgDay, goalKind: goalKind, finishDay: finishDay, trackStart: trackStart, streak: streak, monthGrid: monthGrid, minutesToBurn: minutesToBurn, recipe: recipe, saveRecipe: saveRecipe, removeCustom: removeCustom,
-    migrate: migrate, fiberGoal: fiberGoal, tefBonus: tefBonus, fiberOf: fiberOf, fiberDay: fiberDay, famKey: famKey, sameState: sameState, stamp: stamp, stampReset: stampReset, mergeStates: mergeStates, countState: countState, ptSplit: ptSplit, respace: respace, kbVariants: kbVariants, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, ADDON: ADDON, ADDON_K: ADDON_K, adOk: adOk, adClean: adClean, adCalc: adCalc, adText: adText, bixil: bixil, REM_MEALS: REM_MEALS, REM_DEF: REM_DEF, remCfg: remCfg, remLogged: remLogged, remMiss: remMiss, remDay: remDay, remPlan: remPlan, remSparseDue: remSparseDue, remText: remText, BX_SKIP: BX_SKIP, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
+    migrate: migrate, fiberGoal: fiberGoal, tefBonus: tefBonus, fiberOf: fiberOf, fiberDay: fiberDay, famKey: famKey, setUsul: setUsul, usulQ: usulQ, usulPick: usulPick, usulAx: usulAx, exactName: exactName, sameState: sameState, stamp: stamp, stampReset: stampReset, mergeStates: mergeStates, countState: countState, ptSplit: ptSplit, respace: respace, kbVariants: kbVariants, exportState: exportState, importState: importState, key: key, normFoods: normFoods, buildIndex: buildIndex, freqMap: freqMap, osa: osa, search: search, parseText: parseText, splitQty: splitQty, splitParts: splitParts, parseFragment: parseFragment, splitText: splitText, unitGrams: unitGrams, VESSEL_MAX: VESSEL_MAX, VKINDS: VKINDS, FILL: FILL, SCALE: SCALE, VUNIT: VUNIT, vesselById: vesselById, vesselsFor: vesselsFor, addVessel: addVessel, linkVessel: linkVessel, removeVessel: removeVessel, vessGrams: vessGrams, cleanVessels: cleanVessels, aliasMap: aliasMap, famDef: famDef, famKey: famKey, famSelOf: famSelOf, famDefault: famDefault, famVariant: famVariant, famLabel: famLabel, ADDON: ADDON, ADDON_K: ADDON_K, adOk: adOk, adClean: adClean, adCalc: adCalc, adText: adText, bixil: bixil, REM_MEALS: REM_MEALS, REM_DEF: REM_DEF, remCfg: remCfg, remLogged: remLogged, remMiss: remMiss, remDay: remDay, remPlan: remPlan, remSparseDue: remSparseDue, remText: remText, BX_SKIP: BX_SKIP, famPick: famPick, TPL_MAX: TPL_MAX, cleanTpls: cleanTpls, addTemplate: addTemplate, tplById: tplById, renameTemplate: renameTemplate, removeTemplate: removeTemplate, moveTemplate: moveTemplate, tplKcal: tplKcal, yesterdayEntries: yesterdayEntries, kechagidekOk: kechagidekOk, suggestTemplate: suggestTemplate,
     dates: D, num: num };
 });

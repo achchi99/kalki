@@ -350,10 +350,12 @@ const V2 = require('./baza-v2.js').apply(out);
 { const T = require('./baza-tuzatish.js').post(V2.foods); console.log('ishonch (v78): tekshirilgan', T.tekshirilgan, '| yiqilgan', T.yiqilgan.length); T.yiqilgan.forEach((x) => console.log('  ', x.id, x.sabab.join('; '))); }
 { const n = require('./ovqat-guruh.js').qoy(V2.foods); console.log('guruh teglari (v87):', n); }
 { const k = require('./kletchatka.js').qoy(V2.foods); console.log('kletchatka (v102): manbali', k.manbali, '| noma\'lum', k.nomalum, '| USDA', k.u, '· yorliq', k.y, '· hisob', k.r, '· tarkibi bo\'yicha 0', k.t); }          // v87: har taomga guruh (bir xillik maslahati)
+const USUL = require('./usul-yasa.js').apply(V2.foods);          // v107: tayyorlash usuli (oila o'qi «usul»; mavjud qiymat — langar, qolgani hisob; tartib tekshiriladi)
+console.log('tayyorlash usuli (v107): taom/oila', USUL.rep.taomlar.length, '| guruhlar', JSON.stringify(USUL.rep.guruh), '| hisoblangan katak', USUL.rep.hisoblangan, '| langar (mavjud qiymat)', USUL.rep.langar);
 // v73: baza-v2/retsept bosqichida qo'shilgan taomlarga ham sinonimlar (ALIAS) qo'llanadi
 V2.foods.forEach((o) => { if (!ALIAS[o.i]) return; const have = new Set([o.n, o.r].concat(o.a || []).map(normA)); o.a = o.a || []; ALIAS[o.i].forEach((a) => { const k = normA(a); if (k && !have.has(k)) { have.add(k); o.a.push(a); } }); });
       // baza v2: oilalar/omillar, birliklar (b), manba, retseptdan hisoblangan qiymatlar
 fs.mkdirSync(path.join(__dirname, '..', 'data'), { recursive: true });
-fs.writeFileSync(path.join(__dirname, '..', 'data', 'ovqatlar.json'), JSON.stringify({ v: 2, note: 'Qiymatlar 100 g uchun TAXMINIY: retsept taomlar — o\'rtacha uy retsepti (USDA FoodData Central + Скурихин, tools/baza-hisob.js), oddiy mahsulotlar — USDA/ochiq jadvallar. «x» — taxminiy (tarozida/ikki manba bilan tasdiqlanmagan).', mr: V2.mr, foods: V2.foods }));
+fs.writeFileSync(path.join(__dirname, '..', 'data', 'ovqatlar.json'), JSON.stringify({ v: 2, note: 'Qiymatlar 100 g uchun TAXMINIY: retsept taomlar — o\'rtacha uy retsepti (USDA FoodData Central + Скурихин, tools/baza-hisob.js), oddiy mahsulotlar — USDA/ochiq jadvallar. «x» — taxminiy (tarozida/ikki manba bilan tasdiqlanmagan).', mr: V2.mr, us: USUL.dict, foods: V2.foods }));
 console.log('baza v2: top', V2.meta.top, '| USDA bilan tekshirilgan oddiy mahsulotlar:', V2.meta.tekshirilgan, '| ±10% dan farq qilganlar:', V2.meta.farqlar.length); V2.meta.farqlar.forEach((x) => console.log('  ', x.id, 'baza', x.baza, 'USDA', x.usda, '(' + x.farq + '%)', x.fdc, x.d));
 console.log('ovqatlar:', out.length, '| sinonim qo\'shilgan taomlar:', aliasFoods, '(+' + aliasAdded + ' ta nom) | ogohlantirish:', warn.length); warn.forEach((x) => console.log(' ', x));
