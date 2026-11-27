@@ -13,7 +13,7 @@
   function valuesOf(by, key) {
     var s = split(key), f = by[s.id]; if (!f) return null;
     if (f.al && by[f.al.f]) { f = by[f.al.f]; s.v = s.v || f.al && null; if (!s.v) s.v = by[split(key).id].al.v; }
-    if (f.fam) { var v = s.v || defVariant(f), g = f.fam.g[v]; if (!g) return null; return { id: f.i, v: v, k: g.k, p: g.p, f: g.f, c: g.c }; }
+    if (f.fam) { var v = s.v || defVariant(f), g = f.fam.g[v]; if (!g && v.split('.').length < f.fam.ax.length) { v = v.split('.').concat(f.fam.ax.slice(v.split('.').length).map(function (a) { return a.d; })).join('.'); g = f.fam.g[v]; } if (!g) return null; return { id: f.i, v: v, k: g.k, p: g.p, f: g.f, c: g.c }; }
     return { id: f.i, v: null, k: f.k, p: f.p, f: f.f, c: f.c };
   }
   /* o'rinbosar nomzodi → kalit (asl taom kombinatsiyasi src ga qarab). alt: { i } | { i, v } | { i, set: { o'q: qiymat } } */

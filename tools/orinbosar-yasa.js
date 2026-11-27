@@ -40,7 +40,8 @@ function yasa() {
     }
     /* har xil oqsil manbai birinchi navbatda, keyin qolganlari (tartib saqlanadi); eng ko'pi 4 */
     const tegOf = (alt) => O.tegOf(TG, O.altKey(by, variantlar(src)[0], alt) || alt.i), used = new Set(), first = [], rest = [];
-    for (const alt of ok) { const t = tegOf(alt); if (!used.has(t)) { used.add(t); first.push(alt); } else rest.push(alt); }
+    const okDef = (alt) => { const k = O.altKey(by, src, alt); const c = k && k !== src ? O.compare(by, src, k) : null; return !!(c && c.ok); };          /* v107: standart kombinatsiyada o'tadigan nomzod — birinchi navbatda (usul variantlari ko'payganda kesilib qolmasin) */
+    for (const alt of ok.filter(okDef).concat(ok.filter((a) => !okDef(a)))) { const t = tegOf(alt); if (!used.has(t)) { used.add(t); first.push(alt); } else rest.push(alt); }
     const pick = first.concat(rest).slice(0, 4), ordered = ok.filter((a) => pick.includes(a));
     if (ordered.length) out[src] = ordered; hisobot.push([src, ordered.length]);       // nomzodsiz taom jadvalga tushmaydi (qoidaga javob beradigan o'rinbosar yo'q)
   }

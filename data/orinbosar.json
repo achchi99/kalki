@@ -61,7 +61,17 @@
   ],
   "manti": [
    {
+    "i": "chuchvara",
+    "v": "tovuq.qaynatma"
+   },
+   {
     "i": "tovuq-kokrak"
+   },
+   {
+    "i": "sazan-grill"
+   },
+   {
+    "i": "omlet-sabzavot"
    }
   ],
   "chuchvara": [
@@ -184,7 +194,22 @@
     "i": "sazan-grill"
    },
    {
+    "i": "tovuq-son"
+   },
+   {
     "i": "tovuq-kokrak"
+   }
+  ],
+  "jigar-kabob": [
+   {
+    "i": "shashlik",
+    "v": "tovuq"
+   },
+   {
+    "i": "tovuq-kokrak"
+   },
+   {
+    "i": "kurka"
    }
   ],
   "lyulya": [

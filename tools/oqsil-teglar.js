@@ -47,9 +47,16 @@ function hammasi() {
   }
   /* oila kombinatsiyasi retseptsiz («from»): asl taomning tegi */
   const FROM = { 'shashlik#gosht': 'qizil', 'shashlik#tovuq': 'tovuq', 'lavash-tovuq#tovuq': 'tovuq', 'lavash-tovuq#mol': 'qizil' };
-  Object.assign(out, FROM);
+  for (const [k, t] of Object.entries(FROM)) for (const kk of Object.keys(out)) if (kk === k || kk.startsWith(k + '.')) out[kk] = t;          /* v107: oxirida usul (shashlik#gosht.mangal) */
   /* oila ildizining tegi = standart kombinatsiyaniki */
   for (const f of foods) if (f.fam) { const dk = f.fam.ax.map((a) => a.d).join('.'); if (out[f.i + '#' + dk]) out[f.i] = out[f.i + '#' + dk]; else if (f.fam.g[dk] === undefined && out[f.i + '#' + Object.keys(f.fam.g)[0]]) out[f.i] = out[f.i + '#' + Object.keys(f.fam.g)[0]]; }
+  /* v107: usul bo'yicha hisoblangan katak (g.us) — manba katagining tegi (qovoqli somsa duxovkada = qovoqli somsa tandirda) */
+  for (const f of foods) { const ai = f.fam ? f.fam.ax.findIndex((a) => a.m) : -1; if (ai < 0) continue;
+    for (const [v, g] of Object.entries(f.fam.g)) { if (!g.us || g.rc || foods.some((x) => x.al && x.al.f === f.i && x.al.v === v)) continue; const o = f.fam.ax[ai].o.find((q) => q.i === g.us || q.u === g.us); if (!o) continue;
+      const p = v.split('.'); p[ai] = o.i; const sk = f.i + '#' + p.join('.'); if (sk !== f.i + '#' + v && out[sk] !== undefined) out[f.i + '#' + v] = out[sk]; } }
+  /* v107: usul o'qi qo'shilgan oilalarda eski kalit (somsa#oddiy.tovuq = standart usul) ham — Yeymiz/o'rinbosar va eski yozuvlar uchun */
+  for (const f of foods) { const ax = f.fam && f.fam.ax, la = ax && ax[ax.length - 1]; if (!la || !la.m || ax.length < 2) continue;
+    for (const k of Object.keys(f.fam.g)) { const p = k.split('.'); if (p[p.length - 1] === la.d && out[f.i + '#' + k]) out[f.i + '#' + p.slice(0, -1).join('.')] = out[f.i + '#' + k]; } }
   return { out, nega, foods };
 }
 if (require.main === module) {

@@ -31,7 +31,7 @@ assert.ok(by['sazan-grill'].p >= 15 && by['sazan-grill'].f <= 12 && by['osh-tovu
 log('yangi ' + YANGI.length + ' ta taom: hammasida retsept + USDA fdc_id manba (UZ/RU), «taxminiy», ±15% Atwater, birliklar; baza 715 ta');
 /* 3. o'rinbosar jadvali */
 assert.deepEqual(TB.manba, GEN.yasa().out, 'data/orinbosar.json eskirgan: node tools/orinbosar-yasa.js --yoz');
-const srcs = Object.keys(TB.manba); const ISTISNO = new Set(['dolma', 'jigar-kabob', 'jigar', 'tushonka', 'kolbasa', 'bekon', 'naggets']);
+const srcs = Object.keys(TB.manba); const ISTISNO = new Set(['dolma', 'jigar', 'tushonka', 'kolbasa', 'bekon', 'naggets']);
 assert.deepEqual(Object.keys(GEN.MANBA).filter((s) => !TB.manba[s]).sort(), [...ISTISNO].sort(), 'nomzodsiz taomlar (qoidaga javob beradigani yo\'q)');
 const variants = (id) => (by[id].fam ? Object.keys(by[id].fam.g).map((v) => id + '#' + v) : [id]);
 let jami = 0, kam2 = [];
@@ -52,7 +52,7 @@ for (const s of srcs) {
     for (const k of order) if (!alts.some((a) => a.key === k) && alts.length < 3) { const cm = O.compare(by, sk, k); assert.ok(!cm.ok, sk + ' → ' + k + ': qoidaga javob beradi, lekin ko\'rsatilmadi'); }
   }
   const dv = O.alternatives(by, TB, s); jami += dv.length; if (dv.length < 2) kam2.push(s + ':' + dv.length);
-  if (!ISTISNO.has(s)) assert.ok(dv.length >= 1, s + ': standart kombinatsiyada o\'rinbosar yo\'q');
+  if (!ISTISNO.has(s) && s !== 'jigar-kabob') assert.ok(dv.length >= 1, s + ': standart kombinatsiyada o\'rinbosar yo\'q');          /* v107: jigar kabob standarti (mangal, 190 kkal) — o'zi yengil; o'rinbosar faqat tova/duxovka variantida */
 }
 assert.ok(srcs.length >= 35 && Object.keys(GEN.MANBA).length === 42, 'manba taomlar soni');
 log(srcs.length + ' manba taom (qizil go\'sht + yog\'i ≥ 14 g): har bir kombinatsiyada ko\'rsatilganlar qoidaga javob beradi (oqsil ≥ asl VA yog\' yoki kkal kam), farqlar to\'g\'ri, tartib — oila birinchi; standart kombinatsiyada o\'rtacha ' + (jami / srcs.length).toFixed(1) + ' ta; <2: ' + kam2.join(', '));
@@ -81,7 +81,7 @@ assert.equal(sum(RT['osh-tovuq'], ['tovuq_son', 'tovuq_kokrak']), sum(RT['osh.or
 log('tovuqli osh retsepti: tovuq ' + sum(RT['osh-tovuq'], ['tovuq_son', 'tovuq_kokrak']) + ' g (son + ko\'krak) = oddiy osh go\'shti (qo\'y + mol), guruch/sabzi/yog\' bir xil — qoidaga moslanmagan');
 /* 5. bir xil porsiya */
 const sp = O.defPortion(by, 'osh'); assert.deepEqual([sp.u, sp.g], ['likop', 350]); const ot = O.alternatives(by, TB, 'osh')[0]; assert.deepEqual([ot.id, ot.g], ['osh-tovuq', 350]);
-const ks = O.alternatives(by, TB, 'shashlik')[0]; assert.equal(ks.key, 'shashlik#tovuq'); assert.equal(ks.g, 80, 'dona — bir xil gramm');
+const ks = O.alternatives(by, TB, 'shashlik')[0]; assert.equal(ks.key, 'shashlik#tovuq.mangal'); assert.equal(ks.g, 80, 'dona — bir xil gramm');
 const lg = O.alternatives(by, TB, 'lagmon#qovurma.qoy'); assert.ok(lg.length && lg[0].key === 'lagmon#qovurma.tovuq', 'oila o\'qi saqlanadi (qovurma qoladi, go\'sht tovuq)');
 log('bir xil porsiya: 1 likop osh → 1 likop tovuqli osh (350 g); dona → bir xil gramm; oila o\'qi (qovurma) saqlanadi');
 /* 6. oqsil «sifati» = 100 kkal ga gramm oqsil */

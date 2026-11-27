@@ -429,7 +429,12 @@
   "chuchvara": [
    "glyuten"
   ],
-  "chuchvara#goshtli.bug": [],
+  "chuchvara#goshtli": [
+   "glyuten"
+  ],
+  "chuchvara#goshtli.bug": [
+   "glyuten"
+  ],
   "chuchvara#goshtli.qaynatma": [
    "glyuten"
   ],
@@ -439,7 +444,12 @@
   "chuchvara#goshtli.shorvada": [
    "glyuten"
   ],
-  "chuchvara#tovuq.bug": [],
+  "chuchvara#tovuq": [
+   "glyuten"
+  ],
+  "chuchvara#tovuq.bug": [
+   "glyuten"
+  ],
   "chuchvara#tovuq.qaynatma": [
    "glyuten"
   ],
@@ -1338,21 +1348,42 @@
   "manti": [
    "glyuten"
   ],
+  "manti#goshtli": [
+   "glyuten"
+  ],
   "manti#goshtli.bug": [
    "glyuten"
   ],
-  "manti#goshtli.qaynatilgan": [],
-  "manti#goshtli.tova": [],
+  "manti#goshtli.qaynatilgan": [
+   "glyuten"
+  ],
+  "manti#goshtli.tova": [
+   "glyuten"
+  ],
+  "manti#kartoshka": [
+   "glyuten"
+  ],
   "manti#kartoshka.bug": [
    "glyuten"
   ],
-  "manti#kartoshka.qaynatilgan": [],
-  "manti#kartoshka.tova": [],
+  "manti#kartoshka.qaynatilgan": [
+   "glyuten"
+  ],
+  "manti#kartoshka.tova": [
+   "glyuten"
+  ],
+  "manti#qovoq": [
+   "glyuten"
+  ],
   "manti#qovoq.bug": [
    "glyuten"
   ],
-  "manti#qovoq.qaynatilgan": [],
-  "manti#qovoq.tova": [],
+  "manti#qovoq.qaynatilgan": [
+   "glyuten"
+  ],
+  "manti#qovoq.tova": [
+   "glyuten"
+  ],
   "marakuya": [],
   "margarin": [
    "sut"
@@ -2540,10 +2571,12 @@
    "glyuten"
   ],
   "shashlik": [],
+  "shashlik#gosht": [],
   "shashlik#gosht.aerogril": [],
   "shashlik#gosht.duxovka": [],
   "shashlik#gosht.mangal": [],
   "shashlik#gosht.tova": [],
+  "shashlik#tovuq": [],
   "shashlik#tovuq.aerogril": [],
   "shashlik#tovuq.duxovka": [],
   "shashlik#tovuq.mangal": [],
@@ -2721,74 +2754,182 @@
   "somsa": [
    "glyuten"
   ],
-  "somsa#oddiy.kartoshka.duxovka": [],
+  "somsa#oddiy.kartoshka": [
+   "glyuten"
+  ],
+  "somsa#oddiy.kartoshka.duxovka": [
+   "glyuten"
+  ],
   "somsa#oddiy.kartoshka.tandir": [
    "glyuten"
   ],
-  "somsa#oddiy.kartoshka.tova": [],
-  "somsa#oddiy.kokat.duxovka": [],
+  "somsa#oddiy.kartoshka.tova": [
+   "glyuten"
+  ],
+  "somsa#oddiy.kokat": [
+   "tuxum",
+   "glyuten"
+  ],
+  "somsa#oddiy.kokat.duxovka": [
+   "tuxum",
+   "glyuten"
+  ],
   "somsa#oddiy.kokat.tandir": [
    "tuxum",
    "glyuten"
   ],
-  "somsa#oddiy.kokat.tova": [],
-  "somsa#oddiy.qovoq.duxovka": [],
+  "somsa#oddiy.kokat.tova": [
+   "tuxum",
+   "glyuten"
+  ],
+  "somsa#oddiy.qovoq": [
+   "glyuten"
+  ],
+  "somsa#oddiy.qovoq.duxovka": [
+   "glyuten"
+  ],
   "somsa#oddiy.qovoq.tandir": [
    "glyuten"
   ],
-  "somsa#oddiy.qovoq.tova": [],
-  "somsa#oddiy.tovuq.duxovka": [],
+  "somsa#oddiy.qovoq.tova": [
+   "glyuten"
+  ],
+  "somsa#oddiy.tovuq": [
+   "glyuten"
+  ],
+  "somsa#oddiy.tovuq.duxovka": [
+   "glyuten"
+  ],
   "somsa#oddiy.tovuq.tandir": [
    "glyuten"
   ],
-  "somsa#oddiy.tovuq.tova": [],
-  "somsa#oddiy.yogli.duxovka": [],
+  "somsa#oddiy.tovuq.tova": [
+   "glyuten"
+  ],
+  "somsa#oddiy.yogli": [
+   "glyuten"
+  ],
+  "somsa#oddiy.yogli.duxovka": [
+   "glyuten"
+  ],
   "somsa#oddiy.yogli.tandir": [
    "glyuten"
   ],
-  "somsa#oddiy.yogli.tova": [],
-  "somsa#oddiy.yogsiz.duxovka": [],
+  "somsa#oddiy.yogli.tova": [
+   "glyuten"
+  ],
+  "somsa#oddiy.yogsiz": [
+   "glyuten"
+  ],
+  "somsa#oddiy.yogsiz.duxovka": [
+   "glyuten"
+  ],
   "somsa#oddiy.yogsiz.tandir": [
    "glyuten"
   ],
-  "somsa#oddiy.yogsiz.tova": [],
-  "somsa#qatlama.kartoshka.duxovka": [],
+  "somsa#oddiy.yogsiz.tova": [
+   "glyuten"
+  ],
+  "somsa#qatlama.kartoshka": [
+   "sut",
+   "glyuten"
+  ],
+  "somsa#qatlama.kartoshka.duxovka": [
+   "sut",
+   "glyuten"
+  ],
   "somsa#qatlama.kartoshka.tandir": [
    "sut",
    "glyuten"
   ],
-  "somsa#qatlama.kartoshka.tova": [],
-  "somsa#qatlama.kokat.duxovka": [],
+  "somsa#qatlama.kartoshka.tova": [
+   "sut",
+   "glyuten"
+  ],
+  "somsa#qatlama.kokat": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "somsa#qatlama.kokat.duxovka": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
   "somsa#qatlama.kokat.tandir": [
    "tuxum",
    "sut",
    "glyuten"
   ],
-  "somsa#qatlama.kokat.tova": [],
-  "somsa#qatlama.qovoq.duxovka": [],
+  "somsa#qatlama.kokat.tova": [
+   "tuxum",
+   "sut",
+   "glyuten"
+  ],
+  "somsa#qatlama.qovoq": [
+   "sut",
+   "glyuten"
+  ],
+  "somsa#qatlama.qovoq.duxovka": [
+   "sut",
+   "glyuten"
+  ],
   "somsa#qatlama.qovoq.tandir": [
    "sut",
    "glyuten"
   ],
-  "somsa#qatlama.qovoq.tova": [],
-  "somsa#qatlama.tovuq.duxovka": [],
+  "somsa#qatlama.qovoq.tova": [
+   "sut",
+   "glyuten"
+  ],
+  "somsa#qatlama.tovuq": [
+   "sut",
+   "glyuten"
+  ],
+  "somsa#qatlama.tovuq.duxovka": [
+   "sut",
+   "glyuten"
+  ],
   "somsa#qatlama.tovuq.tandir": [
    "sut",
    "glyuten"
   ],
-  "somsa#qatlama.tovuq.tova": [],
-  "somsa#qatlama.yogli.duxovka": [],
+  "somsa#qatlama.tovuq.tova": [
+   "sut",
+   "glyuten"
+  ],
+  "somsa#qatlama.yogli": [
+   "sut",
+   "glyuten"
+  ],
+  "somsa#qatlama.yogli.duxovka": [
+   "sut",
+   "glyuten"
+  ],
   "somsa#qatlama.yogli.tandir": [
    "sut",
    "glyuten"
   ],
-  "somsa#qatlama.yogli.tova": [],
-  "somsa#qatlama.yogsiz.duxovka": [],
+  "somsa#qatlama.yogli.tova": [
+   "sut",
+   "glyuten"
+  ],
+  "somsa#qatlama.yogsiz": [
+   "sut",
+   "glyuten"
+  ],
+  "somsa#qatlama.yogsiz.duxovka": [
+   "sut",
+   "glyuten"
+  ],
   "somsa#qatlama.yogsiz.tandir": [
    "sut",
    "glyuten"
   ],
-  "somsa#qatlama.yogsiz.tova": [],
+  "somsa#qatlama.yogsiz.tova": [
+   "sut",
+   "glyuten"
+  ],
   "somsa-dumba": [
    "glyuten"
   ],
