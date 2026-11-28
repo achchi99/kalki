@@ -8,7 +8,7 @@ async function search(p, q) { if (!(await p.locator('#fdQ').count())) { await p.
 const rows = (p) => p.evaluate(() => [...document.querySelectorAll('#fdRes .sl-rw')].map((r) => r.innerText.replace(/\s+/g, ' ').trim()));
 const fz = (p) => p.locator('#fdRes .kq-fz').count();
 try {
-  for (const [lang, w, qs] of [['uz', 390, ['Bahrom', 'bahrom muzqaymoq', 'Бахром', 'Bahroma']], ['ru', 390, ['Бахром', 'мороженое Бахрома', 'bahrom eskimo']]]) {
+  for (const [lang, w, qs] of [['uz', 390, ['Bahrom', 'Baxroma', 'baxroma', 'bahrom muzqaymoq', 'Бахром', 'Bahroma']], ['ru', 390, ['Бахром', 'мороженое Бахрома', 'bahrom eskimo']]]) {
     const p = await open(br, BASE, { w, lang, st: seed(), hour: 13, settle: 500 });
     for (const q of qs) { await search(p, q); const r = await rows(p); const txt = await p.locator('#fdRes').innerText();
       assert.ok(r.length >= 8, q + ': natija: ' + JSON.stringify(r)); assert.ok(r.filter((x) => /^Bahroma/.test(x)).length >= 2, q + ': Bahroma mahsulotlari: ' + JSON.stringify(r)); assert.equal(await fz(p), 1, q + ': «Balki» izohi');
@@ -20,6 +20,9 @@ try {
     await search(p, '48 kopeek stakancha'); r = await rows(p); assert.ok(/^48 kopeek — plombir vafli stakanchada/.test(r[0]), '1-natija: ' + r[0]); assert.match(r[0], /203/, 'kkal: 88 g × 231 / 100 = 203');
     await search(p, '48 копеек эскимо'); r = await rows(p); assert.ok(/eskimo/i.test(r[0]) && /48/.test(r[0]), 'эскимо: ' + r[0]);
     assert.deepEqual(p.errs, []); await p.context().close(); ok('«48 копеек» / «48 kopeek stakancha» / «48 копеек эскимо» → brend mahsulotlari (88 g stakancha = 203 kkal)'); }
+  if (B.webkit) { const p = await open(B.webkit, BASE, { w: 390, lang: 'uz', st: seed(), hour: 17, settle: 500 });          // iPhone (WebKit): «baxroma» «Topilmadi» bermasin
+    for (const q of ['baxroma', 'bahroma', 'бахрома', 'бахром']) { await search(p, q); const r = await rows(p); assert.ok(r.filter((x) => /^Bahroma/.test(x)).length >= 2, 'webkit ' + q + ': ' + JSON.stringify(r)); assert.doesNotMatch(await p.locator('#fdRes').innerText(), /^Topilmadi/, 'webkit ' + q + ': «Topilmadi»'); }
+    assert.deepEqual(p.errs, []); await p.context().close(); ok('WebKit (iPhone): «baxroma», «bahroma», «бахрома», «бахром» — Bahroma mahsulotlari, «Topilmadi» yo\'q'); }
   { const p = await open(br, BASE, { w: 320, lang: 'uz', st: seed(), hour: 13, zoom: 1.3, settle: 500 }); await search(p, 'Bahrom');
     const g = await p.evaluate(() => ({ sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth })); assert.ok(g.sw <= g.cw + 1, '320 px gorizontal aylanmaydi: ' + JSON.stringify(g)); assert.deepEqual(p.errs, []); await p.context().close(); ok('320 px, matn 130 %: «Bahrom» natijasi sig\'adi'); }
 } finally { await B.chromium.close(); if (B.webkit) await B.webkit.close(); srv.close(); }

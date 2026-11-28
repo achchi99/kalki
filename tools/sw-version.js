@@ -21,7 +21,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = process.env.SW_VERSION_ROOT ? path.resolve(process.env.SW_VERSION_ROOT) : path.resolve(__dirname, '..');
 const SW = path.join(ROOT, 'sw.js');
 const ASSETS_DIR = path.join(ROOT, 'assets');
 const WRITE = process.argv.indexOf('--write') > -1;
@@ -46,6 +46,12 @@ function hashAssets() {
   // sw.js ning o'z kodi ham (versiya qatorisiz — aks holda hash o'zini o'zi
   // o'zgartirardi): fetch/precache mantig'i o'zgarsa kesh nomi ham yangilansin,
   // eski keshdagi buzuq yozuvlar (masalan redirected javob) activate'da o'chsin.
+  /* /data/*.json — sw.js oldindan keshlaydigan ma'lumot fayllari (masalan ovqatlar.json): ular assets/ da emas, shuning uchun faqat ma'lumot o'zgargan relizda versiya
+   * o'zgarmasdi → qurilma eski precache'ni (STATIC) abadiy berardi (iPhone: yangi mahsulot «Topilmadi»). Endi ma'lumot o'zgarsa versiya ham o'zgaradi. */
+  const swSrc = fs.readFileSync(SW, 'utf8');
+  [...new Set((swSrc.match(/'\/data\/[A-Za-z0-9._-]+\.json'/g) || []).map((x) => x.slice(1, -1)))].sort().forEach((rel) => {
+    const f = path.join(ROOT, rel.slice(1)); if (fs.existsSync(f)) h.update(rel).update(fs.readFileSync(f));
+  });
   h.update('sw.js').update(fs.readFileSync(SW, 'utf8').replace(RE, '$1$3'));
   return h.digest('hex').slice(0, 8);
 }

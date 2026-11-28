@@ -3084,8 +3084,8 @@
   }
   /* v109: brend → «Balki» (data/ovqatlar.json `br`, tools/ovqatlar-brend.js): so'rov brend nomini (so'z chegarasida) o'z ichiga olsa — shu brendning yorlig'i bo'lmagan turlariga mos umumiy taomlar */
   function brandRel(qn) {
-    var s = ' ' + String(qn || '').toLowerCase().replace(/[\u2019\u2018\u02bb\u02bc`\u00b4]/g, '').replace(/\u0451/g, '\u0435').replace(/\s+/g, ' ').trim() + ' ', out = [];
-    dbBr.forEach(function (b) { if (!b.a.some(function (a) { return s.indexOf(' ' + a + ' ') >= 0; })) return; b.f.forEach(function (id) { var f = foodById(id); if (f && out.indexOf(f) < 0) out.push(f); }); });
+    var s = ' ' + S.key(qn || '') + ' ', out = [];          // S.key: lotin/kirill, x ≡ h («baxroma» = «bahroma» = «бахрома»)
+    dbBr.forEach(function (b) { if (!b.ak) b.ak = b.a.map(function (a) { return S.key(a); }); if (!b.ak.some(function (a) { return a && s.indexOf(' ' + a + ' ') >= 0; })) return; b.f.forEach(function (id) { var f = foodById(id); if (f && out.indexOf(f) < 0) out.push(f); }); });
     return out;
   }
   /* v74: umumiy qidiruv hisobi (anonim, so'zsiz): har xil so'rov seansda bir marta — «qidiruv_jami»; natija chiqmasa qo'shimcha «qidiruv_natijasiz» (admin: natijasiz ulush) */
