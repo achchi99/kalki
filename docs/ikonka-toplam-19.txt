@@ -1,0 +1,60 @@
+---
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 51 food icons, exactly 6 columns × 9 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
+The last 3 cell(s) of the bottom row stay EMPTY (background only).
+Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
+No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
+Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
+Keep the icons in exactly this order (left to right, top to bottom):
+---
+v100-yogurt-yunon-5 — dairy product: Греческий йогурт 5% (Yunon yogurti (to'liq yog'li, 5%)), realistic single serving, top-down three-quarter view, no text.
+v100-yogurt-ichimlik — dairy product: Питьевой йогурт натуральный (Yogurt ichimlik (tabiiy)), realistic single serving, top-down three-quarter view, no text.
+v100-ryajenka-25 — dairy product: Ряженка 2,5% (Ryajenka 2,5%), realistic single serving, top-down three-quarter view, no text.
+v100-ryajenka-4 — dairy product: Ряженка 4% (Ryajenka 4%), realistic single serving, top-down three-quarter view, no text.
+v100-sariyog-725 — dairy product: Масло сливочное 72,5% (крестьянское) (Sariyog' 72,5% (dehqon)), realistic single serving, top-down three-quarter view, no text.
+v100-sariyog-825 — dairy product: Масло сливочное 82,5% (традиционное) (Sariyog' 82,5% (an'anaviy)), realistic single serving, top-down three-quarter view, no text.
+v100-pishloq-edam — dairy product: Сыр эдам (45%) (Edam pishlog'i (45%)), realistic single serving, top-down three-quarter view, no text.
+v100-pishloq-rossiya — dairy product: Сыр Российский (≈50%) (Rossiya pishlog'i (≈50%)), realistic single serving, top-down three-quarter view, no text.
+v100-pishloq-adigey — dairy product: Сыр адыгейский (Adigey pishlog'i), realistic single serving, top-down three-quarter view, no text.
+v100-mozzarella-kam — dairy product: Моцарелла (частично обезжиренная) (Mozzarella (kam yog'li)), realistic single serving, top-down three-quarter view, no text.
+v100-qaymoq-20 — dairy product: Сливки 20% (Qaymoq (20%, yengil)), realistic single serving, top-down three-quarter view, no text.
+v100-mol-file-xom — meat or poultry: Говядина вырезка (сырая) (Mol go'shti — file (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-mol-antrekot-xom — meat or poultry: Говядина антрекот (рибай, сырая) (Mol go'shti — antrekot (ribay, xom)), realistic single serving, top-down three-quarter view, no text.
+v100-mol-yelka-xom — meat or poultry: Говядина лопатка (сырая) (Mol go'shti — yelka (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-mol-son-xom — meat or poultry: Говядина окорок (задняя часть, сырая) (Mol go'shti — son (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-mol-tosh-xom — meat or poultry: Говядина грудинка (сырая) (Mol go'shti — to'sh (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-mol-qiyma-5 — meat or poultry: Фарш говяжий 5% жира (сырой) (Mol qiymasi 5% yog' (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-mol-qiyma-10 — meat or poultry: Фарш говяжий 10% жира (сырой) (Mol qiymasi 10% yog' (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-mol-qiyma-20 — meat or poultry: Фарш говяжий 20% жира (сырой) (Mol qiymasi 20% yog' (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-qoy-son-xom — meat or poultry: Баранина задняя часть (сырая) (Qo'y go'shti — son (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-qoy-yelka-xom — meat or poultry: Баранина лопатка (сырая) (Qo'y go'shti — yelka (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-qoy-bel-xom — meat or poultry: Баранина поясница (сырая) (Qo'y go'shti — bel (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-qoy-boldir-xom — meat or poultry: Баранина голяшка (сырая) (Qo'y go'shti — boldir (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-tovuq-kanat-xom — meat or poultry: Куриные крылья (сырые, с кожей) (Tovuq qanoti (xom, terili)), realistic single serving, top-down three-quarter view, no text.
+v100-tovuq-boldir-xom — meat or poultry: Куриная голень (сырая, с кожей) (Tovuq boldiri (xom, terili)), realistic single serving, top-down three-quarter view, no text.
+v100-tovuq-jigar-xom — meat or poultry: Куриная печень (сырая) (Tovuq jigari (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-tovuq-yurak-xom — meat or poultry: Куриные сердечки (сырые) (Tovuq yuragi (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-tovuq-oshqozon-xom — meat or poultry: Куриные желудки (сырые) (Tovuq oshqozoni (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-tovuq-kokrak-terili-xom — meat or poultry: Куриная грудка с кожей (сырая) (Tovuq ko'kragi (xom, terili)), realistic single serving, top-down three-quarter view, no text.
+v100-tovuq-qiyma-xom — meat or poultry: Фарш куриный (сырой) (Tovuq qiymasi (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-kurka-qiyma-xom — meat or poultry: Фарш индейки (сырой) (Kurka qiymasi (xom)), realistic single serving, top-down three-quarter view, no text.
+v100-kolbasa-mol-kam-yogli — meat or poultry: Колбаса говяжья нежирная (Kolbasa (mol go'shtli, kam yog'li)), realistic single serving, top-down three-quarter view, no text.
+v100-sosiska-mol-kam-yogli — meat or poultry: Сосиски говяжьи нежирные (Sosiska (mol go'shtli, kam yog'li)), realistic single serving, top-down three-quarter view, no text.
+v100-sosiska-kurka — meat or poultry: Сосиски из индейки (Kurka sosiskasi), realistic single serving, top-down three-quarter view, no text.
+v100-pastrami-kurka — meat or poultry: Пастрома из индейки (Kurka pastramisi), realistic single serving, top-down three-quarter view, no text.
+v100-onigiri-tunets — Japanese rice ball onigiri: Онигири с тунцом и майонезом (Onigiri tunets-mayonez bilan), realistic single triangular rice ball wrapped in a strip of nori, on a small plate, top-down three-quarter view, no text.
+v100-onigiri-losos — Japanese rice ball onigiri: Онигири с лососем (Onigiri losos bilan), realistic single triangular rice ball wrapped in a strip of nori, on a small plate, top-down three-quarter view, no text.
+v100-onigiri-tovuq — Japanese rice ball onigiri: Онигири с курицей терияки (Onigiri tovuq, teriyaki), realistic single triangular rice ball wrapped in a strip of nori, on a small plate, top-down three-quarter view, no text.
+v100-onigiri-oddiy — Japanese rice ball onigiri: Онигири простой (Onigiri oddiy), realistic single triangular rice ball wrapped in a strip of nori, on a small plate, top-down three-quarter view, no text.
+v108-roll-maki-losos — Japanese maki roll: Ролл маки с лососем (Maki roll, losos bilan), six thin hosomaki pieces wrapped in dark green nori with a bright orange salmon centre in white rice, realistic single serving on a small plate, top-down three-quarter view, no text.
+v108-roll-ugor — Japanese uramaki roll with eel: Ролл с угрём (Roll ugor, unagi), eight pieces rolled in white rice with toasted sesame, a glossy dark brown eel glaze drizzled on top, realistic single serving on a small plate, top-down three-quarter view, no text.
+v108-roll-pishirilgan — Japanese baked sushi roll: Запечённый ролл (Pishirilgan roll, losos va pishloq bilan), eight pieces topped with a golden-browned creamy cheese sauce with lightly toasted spots, realistic single serving on a small plate, top-down three-quarter view, no text.
+v108-nigiri-tunets — Japanese nigiri sushi with tuna: Суши нигири с тунцом (Sushi nigiri, tunets), two small oval pads of white rice each topped with a deep red tuna slice, realistic single serving on a small plate, top-down three-quarter view, no text.
+v108-nigiri-ugor — Japanese nigiri sushi with eel: Суши нигири с угрём (Sushi nigiri, ugor), two small oval pads of white rice each topped with a glossy dark brown glazed eel strip and a thin band of nori, realistic single serving on a small plate, top-down three-quarter view, no text.
+v108-sashimi-losos — Japanese salmon sashimi: Сашими из лосося (Sashimi losos), five thin slices of bright orange raw salmon fanned out on a small plate with a little shredded white radish, realistic single serving, top-down three-quarter view, no text.
+v108-imbir-marinad — Japanese pickled sushi ginger gari: Имбирь маринованный (Imbir marinadi), a small loose mound of paper-thin pale pink ginger slices in a tiny round dish, realistic, top-down three-quarter view, no text.
+v108-vasabi — Japanese wasabi paste: Васаби (Vasabi), a small smooth green mound of wasabi on a tiny round dish, realistic, top-down three-quarter view, no text.
+v108-kimbap-klassik — Korean kimbap roll: Кимбап классический (Kimbap, sabzavot-tuxum-kolbasa), six round slices standing cut-side up showing white rice around colourful strips of yellow egg, orange carrot, green spinach, pale pink sausage and yellow pickled radish inside a dark glossy nori edge with sesame seeds, realistic single serving on a small plate, top-down three-quarter view, no text.
+v108-kimbap-tunets — Korean kimbap roll with tuna mayonnaise: Кимбап с тунцом и майонезом (Kimbap tunets-mayonez), six round slices cut-side up showing white rice around a creamy pale tuna-mayonnaise filling with thin strips of carrot and cucumber inside a dark glossy nori edge, realistic single serving on a small plate, top-down three-quarter view, no text.
+v108-kimbap-bulgogi — Korean kimbap roll with bulgogi beef: Кимбап с говядиной бульгоги (Kimbap mol go'shti), six round slices cut-side up showing white rice around glazed brown thin beef strips with strips of yellow egg, orange carrot and green spinach inside a dark glossy nori edge, realistic single serving on a small plate, top-down three-quarter view, no text.
+v108-beze — Meringue: Безе (Beze, oq quruq), three crisp white meringue kisses with swirled pointed tops, matte chalky white, realistic single serving on a small plate, top-down three-quarter view, no text.

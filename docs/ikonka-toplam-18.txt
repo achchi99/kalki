@@ -1,15 +1,11 @@
 ---
-Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 39 food icons, exactly 6 columns × 7 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 42 food icons, exactly 6 columns × 7 rows, all cells the same size, evenly spaced, no borders or lines between cells.
 Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
-The last 3 cell(s) of the bottom row stay EMPTY (background only).
 Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
 No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
 Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
 Keep the icons in exactly this order (left to right, top to bottom):
 ---
-v87-panna-kotta — dessert or sweet: Панна-котта (Panna kotta), realistic single serving, top-down three-quarter view, no text.
-v87-puding-vanil — dessert or sweet: Пудинг ванильный (готовый) (Puding (vanilli, tayyor)), realistic single serving, top-down three-quarter view, no text.
-v87-puding-shokolad — dessert or sweet: Пудинг шоколадный (готовый) (Puding (shokoladli, tayyor)), realistic single serving, top-down three-quarter view, no text.
 v87-fondan — dessert or sweet: Шоколадный фондан (Shokoladli fondan (suyuq markazli keks)), realistic single serving, top-down three-quarter view, no text.
 v87-rulet-biskvit — dessert or sweet: Бисквитный рулет с джемом (Biskvit rulet (murabboli)), realistic single serving, top-down three-quarter view, no text.
 v87-pirojnoe-krem — dessert or sweet: Пирожное бисквитное с кремом (Pirojnoe (biskvitli, kremli)), realistic single serving, top-down three-quarter view, no text.
@@ -46,3 +42,9 @@ v87-suluguni — dairy product: Сыр сулугуни (Sulugun pishlog'i), rea
 v87-vafli-shakarsiz — dessert or sweet: Вафли без сахара (Vafli (shakarsiz, poliollar bilan)), realistic single serving, top-down three-quarter view, no text.
 v87-tomat-pasta — sauce or condiment: Томатная паста (Tomat pastasi), realistic single serving, top-down three-quarter view, no text.
 v87-balzamik — sauce or condiment: Бальзамический уксус (Balzamik sirka), realistic single serving, top-down three-quarter view, no text.
+v100-ismaloqli-pirog — dish or baked good: Пирог со шпинатом (домашний) (Ismaloqli pirog (uyda pishirilgan)), realistic single serving, top-down three-quarter view, no text.
+v100-tovuq-kari — meat or poultry: Карри с курицей (Tovuqli karri (sousli)), realistic single serving, top-down three-quarter view, no text.
+v100-chizkeyk-san-sebastyan — dish or baked good: Баскский чизкейк (Сан-Себастьян) (San-Sebastyan chizkeyki (basklarcha)), realistic single serving, top-down three-quarter view, no text.
+v100-labne — dairy product: Лабне (сыр из кефира/йогурта) (Labne (suzilgan qatiq pishlog'i)), realistic single serving, top-down three-quarter view, no text.
+v100-yogurt-kam — dairy product: Йогурт натуральный нежирный (1,5%) (Yogurt (tabiiy, kam yog'li 1,5%)), realistic single serving, top-down three-quarter view, no text.
+v100-yogurt-yogsiz — dairy product: Йогурт натуральный обезжиренный (Yogurt (tabiiy, yog'siz)), realistic single serving, top-down three-quarter view, no text.

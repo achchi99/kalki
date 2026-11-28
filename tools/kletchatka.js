@@ -21,7 +21,7 @@ function qoy(foods) {
     for (const p of ps) { const v = tok(p.t); if (v == null) return null; s += v * p.g; G += p.g; } return G > 0 ? R1(s / G) : null; };
   const recipe = (rec) => { let s = 0, sum = 0; for (const [t, g] of rec.mas) { const v = tok(t); if (v == null) return null; s += v * +g / 100; sum += +g; } const out = rec.chiqish > 0 ? rec.chiqish : sum; return R1(s / out * 100); };
   /* kengaytma qatorlari: id → manba */
-  const files = ['ovqatlar-kengaytma.js', 'ovqatlar-turk.js', 'ovqatlar-kengaytma2.js', 'ovqatlar-kengaytma3.js', 'ovqatlar-kengaytma4.js', 'ovqatlar-kengaytma5.js', 'ovqatlar-kengaytma6.js', 'ovqatlar-kengaytma7.js', 'ovqatlar-kengaytma8a.js', 'ovqatlar-kengaytma8b.js', 'ovqatlar-kengaytma8c.js'].filter((f) => fs.existsSync(path.join(__dirname, f)));
+  const files = ['ovqatlar-kengaytma.js', 'ovqatlar-turk.js', 'ovqatlar-kengaytma2.js', 'ovqatlar-kengaytma3.js', 'ovqatlar-kengaytma4.js', 'ovqatlar-kengaytma5.js', 'ovqatlar-kengaytma6.js', 'ovqatlar-kengaytma7.js', 'ovqatlar-kengaytma8a.js', 'ovqatlar-kengaytma8b.js', 'ovqatlar-kengaytma8c.js', 'ovqatlar-kengaytma9.js'].filter((f) => fs.existsSync(path.join(__dirname, f)));
   const SRC = {}; for (const f of files) for (const r of require('./' + f)) SRC[r[0]] = r[6];
   const ZERO = (f) => { const s = (f.i + ' ' + f.n + ' ' + f.r).toLowerCase();
     if (/(meva|mevali|qulupnay|shokolad|asal bilan|vanil|massa|salat|zigir|granola|suli|non|xamir|panir|kotlet|tefteli|zrazy|rulet|sous|sabzavot|kartosh|guruch|loviya|qo'ziqorin|qoziqorin|ananas|olma|tort|pechen|pirog|piroj|kompot|sharbat|smuzi|kakao|shokolad|nektar|kvas|matcha|zanjabil|mohito|limon|yalpiz|kokos|bodom|soya|ovsyan|овся|фрукт|ягод|шокол|овощ|хлеб)/.test(s)) return false;

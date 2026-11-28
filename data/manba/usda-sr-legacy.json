@@ -4,7 +4,7 @@
   "url": "https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_csv_2018-04.zip",
   "sha256": "b80817294b8850530aaedf2e515c02593b1824f763a0ff356e5c2081643e6fd0",
   "yuklangan": "2026-10-20",
-  "eslatma": "Faqat data/baza-masalliq.json da ishlatilgan id lar; qiymatlar 100 g uchun; 2026-10-21: sut mahsulotlari va sport ovqatlanishi uchun id lar qo'shildi (meta.qoshimcha); 2026-10-21b: bazani kengaytirish (tools/ovqatlar-kengaytma.js) uchun id lar",
+  "eslatma": "Faqat data/baza-masalliq.json da ishlatilgan id lar; qiymatlar 100 g uchun; 2026-10-21: sut mahsulotlari va sport ovqatlanishi uchun id lar qo'shildi (meta.qoshimcha); 2026-10-21b: bazani kengaytirish (tools/ovqatlar-kengaytma.js) uchun id lar; 2026-11-28: sushi, kimbap, beze uchun id lar (meta.qoshimcha)",
   "qoshimcha": {
    "2026-10-21": [
     "169698",
@@ -611,6 +611,14 @@
     "174987",
     "174990",
     "175139"
+   ],
+   "2026-11-28": [
+    "170846",
+    "174194",
+    "173706",
+    "168583",
+    "173423",
+    "168710"
    ]
   },
   "kletchatka": "fib — Fiber, total dietary (nutrient 1079), g/100 g; yo'q bo'lsa — USDA da qiymat yo'q (noma'lum)"
@@ -12618,6 +12626,142 @@
      "nom": "sardines",
      "miqdor": 2.0,
      "g": 24.0
+    }
+   ],
+   "fib": 0.0
+  },
+  "170846": {
+   "d": "Cheese, mozzarella, whole milk, low moisture",
+   "p": 21.6,
+   "f": 24.64,
+   "c": 2.47,
+   "kcal": 318.0,
+   "suv": 48.38,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "cubic inch",
+     "miqdor": 1.0,
+     "g": 18.0
+    }
+   ],
+   "fib": 0.0
+  },
+  "174194": {
+   "d": "Fish, eel, mixed species, cooked, dry heat",
+   "p": 23.65,
+   "f": 14.95,
+   "c": 0.0,
+   "kcal": 236.0,
+   "suv": 59.31,
+   "o": [
+    {
+     "nom": "oz, boneless",
+     "miqdor": 1.0,
+     "g": 28.35
+    },
+    {
+     "nom": "oz with bone (yield after bone removed)",
+     "miqdor": 1.0,
+     "g": 22.0
+    },
+    {
+     "nom": "cubic inch, boneless",
+     "miqdor": 1.0,
+     "g": 17.0
+    },
+    {
+     "nom": "fillet",
+     "miqdor": 1.0,
+     "g": 159.0
+    },
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ],
+   "fib": 0.0
+  },
+  "173706": {
+   "d": "Fish, tuna, fresh, bluefin, raw",
+   "p": 23.33,
+   "f": 4.9,
+   "c": 0.0,
+   "kcal": 144.0,
+   "suv": 68.09,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    }
+   ],
+   "fib": 0.0
+  },
+  "168583": {
+   "d": "Wasabi, root, raw",
+   "p": 4.8,
+   "f": 0.63,
+   "c": 23.54,
+   "kcal": 109.0,
+   "suv": 69.11,
+   "o": [
+    {
+     "nom": "cup, sliced",
+     "miqdor": 1.0,
+     "g": 130.0
+    },
+    {
+     "nom": "root",
+     "miqdor": 1.0,
+     "g": 169.0
+    }
+   ],
+   "fib": 7.8
+  },
+  "173423": {
+   "d": "Egg, whole, cooked, fried",
+   "p": 13.61,
+   "f": 14.84,
+   "c": 0.83,
+   "kcal": 196.0,
+   "suv": 69.47,
+   "o": [
+    {
+     "nom": "large",
+     "miqdor": 1.0,
+     "g": 46.0
+    }
+   ],
+   "fib": 0.0
+  },
+  "168710": {
+   "d": "Beef, round, top round, steak, separable lean and fat, trimmed to 1/8\" fat, choice, cooked, broiled",
+   "p": 30.7,
+   "f": 10.27,
+   "c": 0.0,
+   "kcal": 224.0,
+   "suv": 58.46,
+   "o": [
+    {
+     "nom": "oz",
+     "miqdor": 3.0,
+     "g": 85.0
+    },
+    {
+     "nom": "steak (yield from raw steak weighing 492 g)",
+     "miqdor": 1.0,
+     "g": 347.0
+    },
+    {
+     "nom": "piece, cooked, excluding refuse (yield from 1 lb raw meat with refuse)",
+     "miqdor": 1.0,
+     "g": 326.0
     }
    ],
    "fib": 0.0

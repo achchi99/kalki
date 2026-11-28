@@ -19,6 +19,8 @@ const RE = {
   shirinlik: /shirin|сладк|tort|торт|pirog|пирог|pirojn|пирожн|shokolad|шокол|konfet|конфет|muzqaymoq|морожен|halva|халв|pahlava|пахлав|chak-?chak|чак-?чак|navvot|нават|asal|мёд|мед\b|murabbo|варень|джем|keks|кекс|muffin|маффин|brauni|брауни|chizkeyk|чизкейк|tiramisu|тирамису|napoleon|наполеон|medovik|медовик|ekler|эклер|ponchik|пончик|donut|vafli|sumalak|сумаляк|nishalda|pishmaniye|xalvaitar|holvaytar|shakar|сахар|lokum|рахат|zefir|зефир|marmelad|мармелад|desert|десерт/i
 };
 const Q = {          // qo'lda: avtomatik noto'g'ri tushadiganlar (id → guruhlar)
+  'roll-maki-losos': ['guruch', 'baliq'], 'roll-ugor': ['guruch', 'baliq'], 'roll-pishirilgan': ['guruch', 'baliq'], 'nigiri-tunets': ['guruch', 'baliq'], 'nigiri-ugor': ['guruch', 'baliq'], 'sashimi-losos': ['baliq'], 'imbir-marinad': ['boshqa'], vasabi: ['boshqa'],
+  'kimbap-klassik': ['guruch', 'tuxum'], 'kimbap-tunets': ['guruch', 'baliq'], 'kimbap-bulgogi': ['guruch', 'qizil_gosht'], beze: ['shirinlik'],          // v108: sushi, kimbap, beze
   'onigiri-tunets': ['guruch', 'baliq'], 'onigiri-losos': ['guruch', 'baliq'], 'onigiri-tovuq': ['guruch', 'tovuq'], 'onigiri-oddiy': ['guruch'],          // v100: onigiri (guruch tamaddisi)
   dimlama: ['sabzavot', 'qizil_gosht'], 'dimlama-tovuq': ['sabzavot', 'tovuq'], halim: ['guruch', 'qizil_gosht'], sumalak: ['shirinlik'], achichuk: ['sabzavot'], jiz: ['qizil_gosht'], 'kafe-jiz': ['qizil_gosht'],
   'sut-oshi': ['sut', 'xamir'], shirguruch: ['guruch', 'sut'], okroshka: ['sabzavot', 'sut'], 'ganfan': ['guruch', 'qizil_gosht'], 'qatiq-salat': ['sut', 'sabzavot'], 'suzma-salat': ['sut', 'sabzavot'],

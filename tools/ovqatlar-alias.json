@@ -1353,7 +1353,17 @@
   "sushi set",
   "sushi roll",
   "dona roll",
-  "roll 1 dona"
+  "roll 1 dona",
+  "nigiri losos",
+  "nigiri sake",
+  "sake nigiri",
+  "sushi salmon",
+  "salmon nigiri",
+  "суши лосось",
+  "суши с лососем",
+  "нигири лосось",
+  "нигири с лососем",
+  "суши нигири лосось"
  ],
  "choy-qaymoqli": [
   "chai latte",
@@ -1562,5 +1572,36 @@
  "tovuq-jigar": [
   "tovuq jigar",
   "tovuq jigari"
+ ],
+ "roll-kaliforniya": [
+  "rol",
+  "rull",
+  "rollar",
+  "роллы",
+  "сет роллов",
+  "ролл калифорния"
+ ],
+ "roll-filadelfiya": [
+  "filadelfiya roll",
+  "philadelphia roll",
+  "ролл филадельфия лосось",
+  "филадельфия ролл"
+ ],
+ "roll-tempura": [
+  "tempura roll",
+  "ролл темпура",
+  "жареный ролл",
+  "роллы темпура"
+ ],
+ "maki-bodring": [
+  "maki kappa",
+  "kappa roll",
+  "каппа ролл"
+ ],
+ "soya-sous": [
+  "shoyu",
+  "soya sous",
+  "соус соевый",
+  "шою"
  ]
 }

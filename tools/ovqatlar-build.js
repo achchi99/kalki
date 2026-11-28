@@ -313,9 +313,9 @@ for (const r of rows) {
     const y = /^y:(.+)$/.exec(tok); if (y) { const L = YQ[y[1]]; return L ? { k: L.k, p: L.p, f: L.f, c: L.c, u: 'yorliq: ' + L.nom + ' (shtrix-kod ' + L.code + ')', r: 'этикетка: ' + L.nom + ' (штрихкод ' + L.code + ')' } : null; }
     const id = tok.replace(/^u:/, ''), U = USDA[id]; return U ? { k: U.kcal, p: U.p, f: U.f, c: U.c, u: 'USDA ' + id + ' («' + U.d + '»)', r: 'USDA ' + id + ' («' + U.d + '»)' } : null;
   };
-  const V87 = new Set(['8a', '8b', '8c'].filter((x) => fs.existsSync(path.join(__dirname, 'ovqatlar-kengaytma' + x + '.js'))).flatMap((x) => require('./ovqatlar-kengaytma' + x + '.js').map((r) => r[0])));          // v87 tuzatish: manba belgisi «Retsept hisobi»
+  const V87 = new Set(['8a', '8b', '8c', '9'].filter((x) => fs.existsSync(path.join(__dirname, 'ovqatlar-kengaytma' + x + '.js'))).flatMap((x) => require('./ovqatlar-kengaytma' + x + '.js').map((r) => r[0])));          // v87 tuzatish: manba belgisi «Retsept hisobi»
   const ich = (t) => t === 'i' ? [' (ichimlik: 100 ml ≈ 100 g)', ' (напиток: 100 мл ≈ 100 г)'] : ['', ''];
-  for (const row of KENG.concat(require('./ovqatlar-turk.js'), require('./ovqatlar-kengaytma2.js'), require('./ovqatlar-kengaytma3.js'), require('./ovqatlar-kengaytma4.js'), require('./ovqatlar-kengaytma5.js'), require('./ovqatlar-kengaytma6.js'), require('./ovqatlar-kengaytma7.js'), ['8a', '8b', '8c'].filter((x) => fs.existsSync(path.join(__dirname, 'ovqatlar-kengaytma' + x + '.js'))).flatMap((x) => require('./ovqatlar-kengaytma' + x + '.js')))) {          // v67: fast-food tarmoqlari (taxminiy) va muzqaymoq turlari          // v66: 3-bosqich          // v65: 2-bosqich          // v64: 1-bosqich (tools/ovqatlar-kengaytma2.js)          // v87: 8a ichimliklar, 8b sho'rvalar, 8c umumiy
+  for (const row of KENG.concat(require('./ovqatlar-turk.js'), require('./ovqatlar-kengaytma2.js'), require('./ovqatlar-kengaytma3.js'), require('./ovqatlar-kengaytma4.js'), require('./ovqatlar-kengaytma5.js'), require('./ovqatlar-kengaytma6.js'), require('./ovqatlar-kengaytma7.js'), ['8a', '8b', '8c', '9'].filter((x) => fs.existsSync(path.join(__dirname, 'ovqatlar-kengaytma' + x + '.js'))).flatMap((x) => require('./ovqatlar-kengaytma' + x + '.js')))) {          // v67: fast-food tarmoqlari (taxminiy) va muzqaymoq turlari          // v66: 3-bosqich          // v65: 2-bosqich          // v64: 1-bosqich (tools/ovqatlar-kengaytma2.js)          // v87: 8a ichimliklar, 8b sho'rvalar, 8c umumiy
     const [id, n, ru, al, t, un, src, tm, izU, izR] = row;          // v67: tm — fast-food TARMOG'I kaliti (evos, maxway…): qiymat taxminiy, tarmoq rasmiy qiymat e'lon qilmagan; izU/izR — og'irlik/tarkib qayerdan
     if (ids.has(id)) throw new Error('kengaytma: takror id ' + id);
     let v = null; const RH = require('./retsept-hisob.js'), RA = RH.all();
@@ -331,7 +331,7 @@ for (const r of rows) {
     } else throw new Error('kengaytma: manba noto\'g\'ri ' + id + ' ' + src);
     if (!v) { warn.push('kengaytma: manba yo\'q, qo\'shilmadi — ' + id + ' (' + src + ')'); continue; }
     ids.add(id);
-    const u = un.split(',').map((x) => { const [a, b] = x.split(':'); return [a, +b]; }); u.push(['g100', 100]);
+    const u = un.split(',').filter(Boolean).map((x) => { const [a, b] = x.split(':'); return [a, +b]; }); u.push(['g100', 100]);          // v108: birliksiz qator (sashimi — faqat gramm)
     const o = { i: id, n, r: ru, a: al.split(',').filter(Boolean), k: Math.round(v.k), p: r1(v.p), f: r1(v.f), c: r1(v.c), t, e: v.e, u, m: v.m, ms: v.ms };
     if (tm) { if (!izU || !izR) throw new Error('kengaytma: tarmoq taomida og\'irlik manbasi izohi yo\'q ' + id); o.tm = tm; o.e = 1; { const tt = (/^tm-[a-z]+-([a-z]+)-/.exec(id) || [])[1], PP = { lavash: 3, tvister: 3, pitsa: 3, shaurma: 2, donar: 2, burger: 2, chizburger: 2, hotdog: 1 }; o.pp = PP[tt] || -1; }          // «evos» qidiruvida asosiy taomlar (lavash…) birinchi o.m = 'Taxminiy (tarmoq rasmiy qiymat e\'lon qilmagan): ' + o.m;
       o.ms = { u: "Taxminiy — tarmoq rasmiy qiymat e'lon qilmagan. " + izU + ' ' + o.ms.u, r: 'Примерно — сеть не публикует официальные значения. ' + izR + ' ' + o.ms.r }; }
@@ -352,6 +352,7 @@ const V2 = require('./baza-v2.js').apply(out);
 { const k = require('./kletchatka.js').qoy(V2.foods); console.log('kletchatka (v102): manbali', k.manbali, '| noma\'lum', k.nomalum, '| USDA', k.u, '· yorliq', k.y, '· hisob', k.r, '· tarkibi bo\'yicha 0', k.t); }          // v87: har taomga guruh (bir xillik maslahati)
 const USUL = require('./usul-yasa.js').apply(V2.foods);          // v107: tayyorlash usuli (oila o'qi «usul»; mavjud qiymat — langar, qolgani hisob; tartib tekshiriladi)
 console.log('tayyorlash usuli (v107): taom/oila', USUL.rep.taomlar.length, '| guruhlar', JSON.stringify(USUL.rep.guruh), '| hisoblangan katak', USUL.rep.hisoblangan, '| langar (mavjud qiymat)', USUL.rep.langar);
+{ const BL = { beze: ['zefir'] }; V2.foods.forEach((o) => { if (BL[o.i]) o.bl = BL[o.i]; }); }          // v108: «Balki» taklifi — yaqin taom qidiruvda asosiy natijadan keyin (beze → zefir; zefir qidiruvi o'zgarmaydi)
 // v73: baza-v2/retsept bosqichida qo'shilgan taomlarga ham sinonimlar (ALIAS) qo'llanadi
 V2.foods.forEach((o) => { if (!ALIAS[o.i]) return; const have = new Set([o.n, o.r].concat(o.a || []).map(normA)); o.a = o.a || []; ALIAS[o.i].forEach((a) => { const k = normA(a); if (k && !have.has(k)) { have.add(k); o.a.push(a); } }); });
       // baza v2: oilalar/omillar, birliklar (b), manba, retseptdan hisoblangan qiymatlar

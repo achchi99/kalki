@@ -28,10 +28,10 @@ prostokvasha|Prostokvasha (snejok)|Простокваша|prostokvasha,snejok,п
 aktimel|Ichimlik yogurt (aktimel turi)|Питьевой йогурт (актимель)|aktimel,actimel,актимель,ichadigan yogurt,питьевой йогурт,bifidok|i|dona:100|m:u:171284*90+u:169655*5+u:171265*5
 shokolad-batonchik|Shokolad batonchik (yong'oqli, vaflili)|Шоколадный батончик (с орехами и вафлей)|shokolad batonchik,batonchik,picnic,пикник,батончик шоколадный|x|dona:50|m:u:167587*45+u:174266*15+u:175039*30+u:169655*10
 sosiskali-bulochka|Sosiska xamirda (bulochka)|Сосиска в тесте|sosiskali bulochka,sosiska xamirda,sosimka v teste,сосиска в тесте,сосиска в булочке,sosiska bulochkada|q|dona:120|m:u:172796*60+u:174614*35+u:168556*5
-sushi-nigiri|Sushi (nigiri, losos)|Суши нигири (лосось)|sushi,nigiri,суши,нигири,sushi losos|q|dona:30,porsiya:150|m:u:168878*70+u:175167*30
-roll-filadelfiya|Roll Filadelfiya|Ролл Филадельфия|filadelfiya,philadelphia,филадельфия,roll filadelfiya,ролл филадельфия|q|dona:30,porsiya:240|m:u:168878*62+u:175167*16+u:173418*12+u:169655*2
-roll-kaliforniya|Roll Kaliforniya (maki)|Ролл Калифорния (маки)|kaliforniya,california,калифорния,roll kaliforniya,maki,маки,roll,ролл,ролы,rolli,sushi set,set roll|q|dona:30,porsiya:240|m:u:168878*65+u:171986*15+u:171009*8+u:169655*2
-roll-tempura|Roll tempura (qovurilgan)|Ролл темпура (жареный)|tempura,темпура,roll tempura,qovurilgan roll,запечённый ролл|q|dona:35,porsiya:240|m:u:168878*55+u:171970*30+u:171009*8
+sushi-nigiri|Sushi (nigiri, losos)|Суши нигири (лосось)|sushi,nigiri,суши,нигири,sushi losos|q|dona:30,set:240,porsiya:150|m:u:168878*70+u:175167*30
+roll-filadelfiya|Roll Filadelfiya|Ролл Филадельфия|filadelfiya,philadelphia,филадельфия,roll filadelfiya,ролл филадельфия|q|dona:30,set:240,porsiya:240|m:u:168878*62+u:175167*16+u:173418*12+u:169655*2
+roll-kaliforniya|Roll Kaliforniya (maki)|Ролл Калифорния (маки)|kaliforniya,california,калифорния,roll kaliforniya,roll,ролл,ролы,rolli,sushi set,set roll|q|dona:30,set:240,porsiya:240|m:u:168878*65+u:171986*15+u:171009*8+u:169655*2
+roll-tempura|Roll tempura (qovurilgan)|Ролл темпура (жареный)|tempura,темпура,roll tempura,qovurilgan roll|q|dona:35,set:280,porsiya:240|m:u:168878*55+u:171970*30+u:171009*8
 kimchi|Kimchi (achitilgan karam)|Кимчи|kimchi,kimchi salat,кимчи,кимчи салат|v|porsiya:80,qoshiq:20|m:u:169279*100
 bibimbap|Bibimbap|Бибимбап|bibimbap,бибимбап,pibimpap|q|likop:400,porsiya:400|m:u:168878*45+u:174032*12+u:172187*10+u:170393*8+u:169279*10+u:171025*3
 tteokbokki|Tokpokki (guruch kleykasi, achchiq sous)|Токпокки|tteokbokki,tokpokki,токпокки,teokpokki|q|porsiya:250|m:u:168878*70+u:169655*5+u:171025*3

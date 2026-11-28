@@ -29,7 +29,6 @@ v87-kotlet-bug — meat, poultry or fish: Котлета паровая (гов�
 v87-kurka-kotlet — meat, poultry or fish: Котлета из индейки (Kurka kotleti), realistic single serving, top-down three-quarter view, no text.
 v87-tovuq-rulet — meat, poultry or fish: Куриный рулет с сыром и грибами (Tovuq ruleti (pishloq va qo'ziqorinli)), realistic single serving, top-down three-quarter view, no text.
 v87-tovuq-boldir-duxovka — meat, poultry or fish: Куриная голень (запечённая) (Tovuq boldiri (duxovkada, terili)), realistic single serving, top-down three-quarter view, no text.
-v87-tovuq-qanot-duxovka — meat, poultry or fish: Куриные крылья (запечённые) (Tovuq qanoti (duxovkada, terili)), realistic single serving, top-down three-quarter view, no text.
 v87-kurka-kolbasa — meat, poultry or fish: Колбаса из индейки (варёная) (Kurka kolbasasi (qaynatilgan)), realistic single serving, top-down three-quarter view, no text.
 v87-tovuq-sosiska — meat, poultry or fish: Сосиски куриные (Tovuq sosiskasi), realistic single serving, top-down three-quarter view, no text.
 v87-kurka-vetchina — meat, poultry or fish: Ветчина из индейки (Kurka vetchinasi), realistic single serving, top-down three-quarter view, no text.
@@ -48,3 +47,4 @@ v87-makaron-pishloq — grain, pasta or potato side dish: Макароны с с
 v87-kartoshka-yosh — grain, pasta or potato side dish: Молодой картофель с маслом и укропом (Yosh kartoshka (sariyog' va shivitli)), realistic single serving, top-down three-quarter view, no text.
 v87-kartoshka-derevenski — grain, pasta or potato side dish: Картофель по-деревенски (Kartoshka po-derevenski (duxovkada, bo'laklab)), realistic single serving, top-down three-quarter view, no text.
 v87-suli-paketli — grain, pasta or potato side dish: Овсянка быстрого приготовления (пакетик, сухая) (Suli bo'tqasi (tez tayyor, paketli, quruq)), realistic single serving, top-down three-quarter view, no text.
+v87-mimoza — dish, one portion in a bowl (kosa) or plate: Салат «Мимоза» (Mimoza salati (baliqli)), realistic single serving, top-down three-quarter view, no text.

@@ -212,6 +212,9 @@
    "glyuten"
   ],
   "beshbarmoq": [],
+  "beze": [
+   "tuxum"
+  ],
   "bibimbap": [
    "tuxum"
   ],
@@ -722,6 +725,7 @@
   ],
   "ikra-baqlajon": [],
   "ikra-qovoqcha": [],
+  "imbir-marinad": [],
   "inmarko-eskimo": [
    "sut"
   ],
@@ -918,6 +922,17 @@
   ],
   "ketchup": [],
   "kifta-shurva": [],
+  "kimbap-bulgogi": [
+   "tuxum",
+   "glyuten"
+  ],
+  "kimbap-klassik": [
+   "tuxum"
+  ],
+  "kimbap-tunets": [
+   "baliq",
+   "tuxum"
+  ],
   "kimchi": [],
   "kinder-bueno": [
    "sut",
@@ -1718,6 +1733,13 @@
   "nesquik": [
    "sut"
   ],
+  "nigiri-tunets": [
+   "baliq"
+  ],
+  "nigiri-ugor": [
+   "baliq",
+   "glyuten"
+  ],
   "nishalda": [
    "tuxum"
   ],
@@ -2399,8 +2421,20 @@
   "roll-kaliforniya": [
    "baliq"
   ],
+  "roll-maki-losos": [
+   "baliq"
+  ],
+  "roll-pishirilgan": [
+   "baliq",
+   "tuxum",
+   "sut"
+  ],
   "roll-tempura": [
    "baliq"
+  ],
+  "roll-ugor": [
+   "baliq",
+   "glyuten"
   ],
   "roshen-karamel": [],
   "roshen-shokolad": [
@@ -2459,6 +2493,9 @@
   ],
   "sariyogli-sut": [
    "sut"
+  ],
+  "sashimi-losos": [
+   "baliq"
   ],
   "savoyardi": [
    "tuxum",
@@ -3922,6 +3959,7 @@
    "tuxum",
    "glyuten"
   ],
+  "vasabi": [],
   "vatrushka": [
    "tuxum",
    "sut",

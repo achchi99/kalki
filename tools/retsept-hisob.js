@@ -25,5 +25,5 @@ function hisob(rec) {
     r: 'Расчёт по рецепту (порция: ' + rec.porsiya + '): ' + xs.map((x) => x.g + ' г — ' + x.q.r).join('; ') + '.' + chr + ' На 100 г готового блюда, примерно (±15 %).' };
   v.xs = xs; return v;
 }
-function all() { const o = {}; for (const f of ['retsept-v87b.js', 'retsept-v87a.js', 'retsept-v87c.js']) { const p = path.join(__dirname, f); if (fs.existsSync(p)) Object.assign(o, require(p)); } return o; }
+function all() { const o = {}; for (const f of ['retsept-v87b.js', 'retsept-v87a.js', 'retsept-v87c.js', 'retsept-v108.js']) { const p = path.join(__dirname, f); if (fs.existsSync(p)) Object.assign(o, require(p)); } return o; }
 module.exports = { part, hisob, all };

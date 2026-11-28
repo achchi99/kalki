@@ -6,7 +6,7 @@
 'use strict';
 const fs = require('fs'), path = require('path');
 const ISTISNO = require('./baza-mantiq-istisno.js');
-const ORALIQ = { kosa: [150, 600], likop: [100, 600], piyola: [50, 300], stakan: [80, 500], chashka: [30, 360], six: [30, 200], qoshiq: [3, 40], choyq: [2, 10], bolak: [5, 250], tilim: [10, 350], dona_s: [5, 20], dona_l: [20, 40], hovuch: [5, 120], porsiya: [30, 600], shisha: [250, 1000], skup: [5, 40] };
+const ORALIQ = { kosa: [150, 600], likop: [100, 600], piyola: [50, 300], stakan: [80, 500], chashka: [30, 360], six: [30, 200], qoshiq: [3, 40], choyq: [2, 10], bolak: [5, 250], tilim: [10, 350], dona_s: [5, 20], dona_l: [15, 40], set: [100, 400], rulet: [100, 400], hovuch: [5, 120], porsiya: [30, 600], shisha: [250, 1000], skup: [5, 40] };
 const MAX_PORSIYA_KKAL = 1500;
 const slash = (s) => /\S\s\/\s\S/.test(String(s || ''));
 function manbaOf(f) {

@@ -21,8 +21,8 @@ const TOIFA = [
   ['salat', 'Salatlar', 'Салаты', ['achichuk', 'koreys-sabzi', 'olivye']],
   ['meva', 'Poliz va mevalar', 'Бахчевые и фрукты', ['qovun', 'tarvuz', 'anor']],
 ];
-const UN = { uz: { g100: 'g', dona_s: 'kichik', dona_l: 'katta', kosa: 'kosa', likop: 'tarelka', dona: 'dona', bolak: "bo'lak", stakan: 'stakan', qoshiq: 'osh qoshiq', piyola: 'piyola', porsiya: 'porsiya', tilim: 'tilim', six: 'six' },
-  ru: { g100: 'г', dona_s: 'малый', dona_l: 'большой', kosa: 'коса', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', stakan: 'стакан', qoshiq: 'ст. ложка', piyola: 'пиала', porsiya: 'порция', tilim: 'ломтик', six: 'шампур' } };
+const UN = { uz: { g100: 'g', dona_s: 'kichik', dona_l: 'katta', kosa: 'kosa', likop: 'tarelka', dona: 'dona', bolak: "bo'lak", set: 'set (8 dona)', rulet: 'butun rulet', stakan: 'stakan', qoshiq: 'osh qoshiq', piyola: 'piyola', porsiya: 'porsiya', tilim: 'tilim', six: 'six' },
+  ru: { g100: 'г', dona_s: 'малый', dona_l: 'большой', kosa: 'коса', likop: 'тарелка', dona: 'шт.', bolak: 'кусок', set: 'сет (8 шт.)', rulet: 'целый ролл', stakan: 'стакан', qoshiq: 'ст. ложка', piyola: 'пиала', porsiya: 'порция', tilim: 'ломтик', six: 'шампур' } };
 const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const nf = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const d1 = (x) => (Math.round(x * 10) / 10).toFixed(1).replace('.', ',').replace(/,0$/, '');

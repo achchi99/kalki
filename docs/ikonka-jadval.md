@@ -2,8 +2,8 @@
 
 `node tools/ikonka-toplam.js` — `data/ikonka-reja.txt` dan hali rasmi yo'q ikonkalar to'plamlari (`docs/ikonka-toplam-N.txt`) va shu jadval. Rasm: to'rni yarating → `node tools/ikonka-kes.js ~/toplam-N.jpg --quru` (kontakt-varaqni ko'ring) → `node tools/ikonka-kes.js ~/toplam-N.jpg` (oxirgi to'plam 7 qatordan kam bo'lsa: `--qator <qatorlar>`).
 
-- Generic (tur ikonkasi) taom: **295** (bekon — cho'chqa go'shti, ikonkasiz, sanalmaydi)
-- Yangi ikonka: **291**; to'plam: **7** (№12 — 42 ta, 6×7; №13 — 42 ta, 6×7; №14 — 42 ta, 6×7; №15 — 42 ta, 6×7; №16 — 42 ta, 6×7; №17 — 42 ta, 6×7; №18 — 39 ta, 6×7)
+- Generic (tur ikonkasi) taom: **349** (bekon — cho'chqa go'shti, ikonkasiz, sanalmaydi)
+- Yangi ikonka: **345**; to'plam: **8** (№12 — 42 ta, 6×7; №13 — 42 ta, 6×7; №14 — 42 ta, 6×7; №15 — 42 ta, 6×7; №16 — 42 ta, 6×7; №17 — 42 ta, 6×7; №18 — 42 ta, 6×7; №19 — 51 ta, 6×9)
 
 ## To'plam 12 (42)
 
@@ -219,115 +219,174 @@
 | 20 | `v87-kotlet-bug` | undefined | Bug'da pishirilgan kotlet (mol go'shti) (`kotlet-bug`) |
 | 21 | `v87-kurka-kotlet` | undefined | Kurka kotleti (`kurka-kotlet`) |
 | 22 | `v87-tovuq-rulet` | undefined | Tovuq ruleti (pishloq va qo'ziqorinli) (`tovuq-rulet`) |
-| 23 | `v87-tovuq-boldir-duxovka` | undefined | Tovuq boldiri (duxovkada, terili) (`tovuq-boldir-duxovka`) |
-| 24 | `v87-tovuq-qanot-duxovka` | undefined | Tovuq qanoti (duxovkada, terili) (`tovuq-qanot-duxovka`) |
-| 25 | `v87-kurka-kolbasa` | undefined | Kurka kolbasasi (qaynatilgan) (`kurka-kolbasa`) |
-| 26 | `v87-tovuq-sosiska` | undefined | Tovuq sosiskasi (`tovuq-sosiska`) |
-| 27 | `v87-kurka-vetchina` | undefined | Kurka vetchinasi (`kurka-vetchina`) |
-| 28 | `v87-jigar-pashtet` | undefined | Jigar pashteti (tovuq jigari) (`jigar-pashtet`) |
-| 29 | `v87-kambala` | undefined | Kambala (pishgan) (`kambala`) |
-| 30 | `v87-sudak` | undefined | Sudak (pishgan) (`sudak`) |
-| 31 | `v87-sibas` | undefined | Sibas (pishgan) (`sibas`) |
-| 32 | `v87-laqqa-baliq` | undefined | Laqqa baliq (som, pishgan) (`laqqa-baliq`) |
-| 33 | `v87-osetr` | undefined | Osetr (bakra, pishgan) (`osetr`) |
-| 34 | `v87-xek` | undefined | Xek (pishgan) (`xek`) |
-| 35 | `v87-skumbriya-tuzlangan` | undefined | Skumbriya (tuzlangan) (`skumbriya-tuzlangan`) |
-| 36 | `v87-guruch-garnir` | undefined | Guruch garnir (sariyog'li) (`guruch-garnir`) |
-| 37 | `v87-grechka-garnir` | undefined | Grechka garnir (sariyog'li) (`grechka-garnir`) |
-| 38 | `v87-makaron-garnir` | undefined | Makaron garnir (sariyog'li) (`makaron-garnir`) |
-| 39 | `v87-makaron-pishloq` | undefined | Makaron (pishloq bilan) (`makaron-pishloq`) |
-| 40 | `v87-kartoshka-yosh` | undefined | Yosh kartoshka (sariyog' va shivitli) (`kartoshka-yosh`) |
-| 41 | `v87-kartoshka-derevenski` | undefined | Kartoshka po-derevenski (duxovkada, bo'laklab) (`kartoshka-derevenski`) |
-| 42 | `v87-suli-paketli` | undefined | Suli bo'tqasi (tez tayyor, paketli, quruq) (`suli-paketli`) |
+| 23 | `v87-tovuq-boldir-duxovka` | undefined | Tovuq boldiri (terili) (`tovuq-boldir-duxovka`) |
+| 24 | `v87-kurka-kolbasa` | undefined | Kurka kolbasasi (qaynatilgan) (`kurka-kolbasa`) |
+| 25 | `v87-tovuq-sosiska` | undefined | Tovuq sosiskasi (`tovuq-sosiska`) |
+| 26 | `v87-kurka-vetchina` | undefined | Kurka vetchinasi (`kurka-vetchina`) |
+| 27 | `v87-jigar-pashtet` | undefined | Jigar pashteti (tovuq jigari) (`jigar-pashtet`) |
+| 28 | `v87-kambala` | undefined | Kambala (pishgan) (`kambala`) |
+| 29 | `v87-sudak` | undefined | Sudak (pishgan) (`sudak`) |
+| 30 | `v87-sibas` | undefined | Sibas (pishgan) (`sibas`) |
+| 31 | `v87-laqqa-baliq` | undefined | Laqqa baliq (som, pishgan) (`laqqa-baliq`) |
+| 32 | `v87-osetr` | undefined | Osetr (bakra, pishgan) (`osetr`) |
+| 33 | `v87-xek` | undefined | Xek (filesi) (`xek`) |
+| 34 | `v87-skumbriya-tuzlangan` | undefined | Skumbriya (tuzlangan) (`skumbriya-tuzlangan`) |
+| 35 | `v87-guruch-garnir` | undefined | Guruch garnir (sariyog'li) (`guruch-garnir`) |
+| 36 | `v87-grechka-garnir` | undefined | Grechka garnir (sariyog'li) (`grechka-garnir`) |
+| 37 | `v87-makaron-garnir` | undefined | Makaron garnir (sariyog'li) (`makaron-garnir`) |
+| 38 | `v87-makaron-pishloq` | undefined | Makaron (pishloq bilan) (`makaron-pishloq`) |
+| 39 | `v87-kartoshka-yosh` | undefined | Yosh kartoshka (sariyog' va shivitli) (`kartoshka-yosh`) |
+| 40 | `v87-kartoshka-derevenski` | undefined | Kartoshka po-derevenski (duxovkada, bo'laklab) (`kartoshka-derevenski`) |
+| 41 | `v87-suli-paketli` | undefined | Suli bo'tqasi (tez tayyor, paketli, quruq) (`suli-paketli`) |
+| 42 | `v87-mimoza` | undefined | Mimoza salati (baliqli) (`mimoza`) |
 
 ## To'plam 17 (42)
 
 | № | slug | guruh | ishlatadigan taomlar |
 |---|---|---|---|
-| 1 | `v87-mimoza` | undefined | Mimoza salati (baliqli) (`mimoza`) |
-| 2 | `v87-bahor-salati` | undefined | Bahor salati (bodring, rediska, tuxum, smetana) (`bahor-salati`) |
-| 3 | `v87-olivye-tovuq` | undefined | Olivye salati (tovuqli) (`olivye-tovuq`) |
-| 4 | `v87-mujskoy-kapriz` | undefined | Mujskoy kapriz salati (mol go'shti, pishloq) (`mujskoy-kapriz`) |
-| 5 | `v87-tbilisi-salat` | undefined | Tbilisi salati (loviya, mol go'shti) (`tbilisi-salat`) |
-| 6 | `v87-obzhorka` | undefined | Objorka salati (mol go'shti, qovurilgan sabzi va piyoz) (`obzhorka`) |
-| 7 | `v87-ananas-tovuq-salat` | undefined | Tovuqli salat (ananas va pishloq bilan) (`ananas-tovuq-salat`) |
-| 8 | `v87-qoziqorin-salat` | undefined | Qo'ziqorinli salat (tovuq, tuxum, mayonez) (`qoziqorin-salat`) |
-| 9 | `v87-loviya-salat` | undefined | Loviyali salat (suxarik, kolbasa, mayonez) (`loviya-salat`) |
-| 10 | `v87-sabzi-sarimsoq-salat` | undefined | Sabzi salati (sarimsoq va mayonezli) (`sabzi-sarimsoq-salat`) |
-| 11 | `v87-lavlagi-chernosliv` | undefined | Lavlagi salati (olxo'ri qoqi va yong'oqli) (`lavlagi-chernosliv`) |
-| 12 | `v87-sabzavot-salat-mayonez` | undefined | Sabzavot salati (mayonezli) (`sabzavot-salat-mayonez`) |
-| 13 | `v87-sabzavot-salat-smetana` | undefined | Sabzavot salati (smetanali) (`sabzavot-salat-smetana`) |
-| 14 | `v87-kaprese` | undefined | Kaprese salati (pomidor, motsarella) (`kaprese`) |
-| 15 | `v87-sezar-krevetka` | undefined | Sezar salati (krevetkali) (`sezar-krevetka`) |
-| 16 | `v87-mevali-salat` | undefined | Mevali salat (yogurtli) (`mevali-salat`) |
-| 17 | `v87-xe-baliq` | undefined | Xe (koreyscha marinadlangan baliq) (`xe-baliq`) |
-| 18 | `v87-koreyscha-bodring` | undefined | Koreyscha bodring (`koreyscha-bodring`) |
-| 19 | `v87-koreyscha-baqlajon` | undefined | Koreyscha baqlajon (`koreyscha-baqlajon`) |
-| 20 | `v87-baqlajon-qovurilgan` | undefined | Baqlajon (qovurilgan) (`baqlajon-qovurilgan`) |
-| 21 | `v87-qovoqcha-qovurilgan` | undefined | Qovoqcha (qovurilgan) (`qovoqcha-qovurilgan`) |
-| 22 | `v87-lecho` | undefined | Lecho (qalampir va pomidor) (`lecho`) |
-| 23 | `v87-sabzavot-aralash` | undefined | Sabzavot aralashmasi (muzlatilgan, qaynatilgan) (`sabzavot-aralash`) |
-| 24 | `v87-rukkola` | undefined | Rukkola (`rukkola`) |
-| 25 | `v87-aysberg` | undefined | Aysberg salati (`aysberg`) |
-| 26 | `v87-qalampir-yashil` | undefined | Bulg'or qalampiri (yashil) (`qalampir-yashil`) |
-| 27 | `v87-qoziqorin-qovurilgan` | undefined | Qo'ziqorin (piyoz bilan qovurilgan) (`qoziqorin-qovurilgan`) |
-| 28 | `v87-qoziqorin-marinad` | undefined | Qo'ziqorin (marinadlangan, konserva) (`qoziqorin-marinad`) |
-| 29 | `v87-olma-duxovka` | undefined | Olma (duxovkada pishirilgan) (`olma-duxovka`) |
-| 30 | `v87-olma-pyure` | undefined | Olma pyuresi (shakarsiz) (`olma-pyure`) |
-| 31 | `v87-tsukat` | undefined | Tsukatlar (shakarlangan mevalar) (`tsukat`) |
-| 32 | `v87-bodom-shakarli` | undefined | Bodom (shakarli draje) (`bodom-shakarli`) |
-| 33 | `v87-bodom-asalli` | undefined | Bodom (asalli qovurilgan) (`bodom-asalli`) |
-| 34 | `v87-yeryongoq-shakarli` | undefined | Yeryong'oq (shakarli glazurda) (`yeryongoq-shakarli`) |
-| 35 | `v87-yeryongoq-shokolad` | undefined | Yeryong'oq (sutli shokoladda) (`yeryongoq-shokolad`) |
-| 36 | `v87-tiramisu` | undefined | Tiramisu (`tiramisu`) |
-| 37 | `v87-kartoshka-pirojnoe` | undefined | Kartoshka pirojnoe (shokoladli) (`kartoshka-pirojnoe`) |
-| 38 | `v87-muraveynik` | undefined | Muraveynik (yong'oq va sgushenkali tort) (`muraveynik`) |
-| 39 | `v87-trubochka-krem` | undefined | Trubochka (kremli, sloyka) (`trubochka-krem`) |
-| 40 | `v87-korzinochka` | undefined | Korzinochka (kremli savatcha pirojnoe) (`korzinochka`) |
-| 41 | `v87-rogalik` | undefined | Rogalik (murabboli) (`rogalik`) |
-| 42 | `v87-makarons` | undefined | Makarons (fransuzcha bodomli pirojnoe) (`makarons`) |
+| 1 | `v87-bahor-salati` | undefined | Bahor salati (bodring, rediska, tuxum, smetana) (`bahor-salati`) |
+| 2 | `v87-olivye-tovuq` | undefined | Olivye salati (tovuqli) (`olivye-tovuq`) |
+| 3 | `v87-mujskoy-kapriz` | undefined | Mujskoy kapriz salati (mol go'shti, pishloq) (`mujskoy-kapriz`) |
+| 4 | `v87-tbilisi-salat` | undefined | Tbilisi salati (loviya, mol go'shti) (`tbilisi-salat`) |
+| 5 | `v87-obzhorka` | undefined | Objorka salati (mol go'shti, qovurilgan sabzi va piyoz) (`obzhorka`) |
+| 6 | `v87-ananas-tovuq-salat` | undefined | Tovuqli salat (ananas va pishloq bilan) (`ananas-tovuq-salat`) |
+| 7 | `v87-qoziqorin-salat` | undefined | Qo'ziqorinli salat (tovuq, tuxum, mayonez) (`qoziqorin-salat`) |
+| 8 | `v87-loviya-salat` | undefined | Loviyali salat (suxarik, kolbasa, mayonez) (`loviya-salat`) |
+| 9 | `v87-sabzi-sarimsoq-salat` | undefined | Sabzi salati (sarimsoq va mayonezli) (`sabzi-sarimsoq-salat`) |
+| 10 | `v87-lavlagi-chernosliv` | undefined | Lavlagi salati (olxo'ri qoqi va yong'oqli) (`lavlagi-chernosliv`) |
+| 11 | `v87-sabzavot-salat-mayonez` | undefined | Sabzavot salati (mayonezli) (`sabzavot-salat-mayonez`) |
+| 12 | `v87-sabzavot-salat-smetana` | undefined | Sabzavot salati (smetanali) (`sabzavot-salat-smetana`) |
+| 13 | `v87-kaprese` | undefined | Kaprese salati (pomidor, motsarella) (`kaprese`) |
+| 14 | `v87-sezar-krevetka` | undefined | Sezar salati (krevetkali) (`sezar-krevetka`) |
+| 15 | `v87-mevali-salat` | undefined | Mevali salat (yogurtli) (`mevali-salat`) |
+| 16 | `v87-xe-baliq` | undefined | Xe (koreyscha marinadlangan baliq) (`xe-baliq`) |
+| 17 | `v87-koreyscha-bodring` | undefined | Koreyscha bodring (`koreyscha-bodring`) |
+| 18 | `v87-koreyscha-baqlajon` | undefined | Koreyscha baqlajon (`koreyscha-baqlajon`) |
+| 19 | `v87-lecho` | undefined | Lecho (qalampir va pomidor) (`lecho`) |
+| 20 | `v87-sabzavot-aralash` | undefined | Sabzavot aralashmasi (muzlatilgan, qaynatilgan) (`sabzavot-aralash`) |
+| 21 | `v87-rukkola` | undefined | Rukkola (`rukkola`) |
+| 22 | `v87-aysberg` | undefined | Aysberg salati (`aysberg`) |
+| 23 | `v87-qalampir-yashil` | undefined | Bulg'or qalampiri (yashil) (`qalampir-yashil`) |
+| 24 | `v87-qoziqorin-qovurilgan` | undefined | Qo'ziqorin (piyoz bilan qovurilgan) (`qoziqorin-qovurilgan`) |
+| 25 | `v87-qoziqorin-marinad` | undefined | Qo'ziqorin (marinadlangan, konserva) (`qoziqorin-marinad`) |
+| 26 | `v87-olma-duxovka` | undefined | Olma (duxovkada pishirilgan) (`olma-duxovka`) |
+| 27 | `v87-olma-pyure` | undefined | Olma pyuresi (shakarsiz) (`olma-pyure`) |
+| 28 | `v87-tsukat` | undefined | Tsukatlar (shakarlangan mevalar) (`tsukat`) |
+| 29 | `v87-bodom-shakarli` | undefined | Bodom (shakarli draje) (`bodom-shakarli`) |
+| 30 | `v87-bodom-asalli` | undefined | Bodom (asalli qovurilgan) (`bodom-asalli`) |
+| 31 | `v87-yeryongoq-shakarli` | undefined | Yeryong'oq (shakarli glazurda) (`yeryongoq-shakarli`) |
+| 32 | `v87-yeryongoq-shokolad` | undefined | Yeryong'oq (sutli shokoladda) (`yeryongoq-shokolad`) |
+| 33 | `v87-tiramisu` | undefined | Tiramisu (`tiramisu`) |
+| 34 | `v87-kartoshka-pirojnoe` | undefined | Kartoshka pirojnoe (shokoladli) (`kartoshka-pirojnoe`) |
+| 35 | `v87-muraveynik` | undefined | Muraveynik (yong'oq va sgushenkali tort) (`muraveynik`) |
+| 36 | `v87-trubochka-krem` | undefined | Trubochka (kremli, sloyka) (`trubochka-krem`) |
+| 37 | `v87-korzinochka` | undefined | Korzinochka (kremli savatcha pirojnoe) (`korzinochka`) |
+| 38 | `v87-rogalik` | undefined | Rogalik (murabboli) (`rogalik`) |
+| 39 | `v87-makarons` | undefined | Makarons (fransuzcha bodomli pirojnoe) (`makarons`) |
+| 40 | `v87-panna-kotta` | undefined | Panna kotta (`panna-kotta`) |
+| 41 | `v87-puding-vanil` | undefined | Puding (vanilli, tayyor) (`puding-vanil`) |
+| 42 | `v87-puding-shokolad` | undefined | Puding (shokoladli, tayyor) (`puding-shokolad`) |
 
-## To'plam 18 (39)
+## To'plam 18 (42)
 
 | № | slug | guruh | ishlatadigan taomlar |
 |---|---|---|---|
-| 1 | `v87-panna-kotta` | undefined | Panna kotta (`panna-kotta`) |
-| 2 | `v87-puding-vanil` | undefined | Puding (vanilli, tayyor) (`puding-vanil`) |
-| 3 | `v87-puding-shokolad` | undefined | Puding (shokoladli, tayyor) (`puding-shokolad`) |
-| 4 | `v87-fondan` | undefined | Shokoladli fondan (suyuq markazli keks) (`fondan`) |
-| 5 | `v87-rulet-biskvit` | undefined | Biskvit rulet (murabboli) (`rulet-biskvit`) |
-| 6 | `v87-pirojnoe-krem` | undefined | Pirojnoe (biskvitli, kremli) (`pirojnoe-krem`) |
-| 7 | `v87-oreshki` | undefined | Oreshki (sgushenkali yong'oqcha pechenye) (`oreshki`) |
-| 8 | `v87-sharlotka` | undefined | Sharlotka (olmali pirog) (`sharlotka`) |
-| 9 | `v87-smetannik` | undefined | Smetannik (smetanali tort) (`smetannik`) |
-| 10 | `v87-vafli-trubochka` | undefined | Vafli trubochka (sgushenkali) (`vafli-trubochka`) |
-| 11 | `v87-savoyardi` | undefined | Savoyardi pechenyesi (biskvit tayoqcha) (`savoyardi`) |
-| 12 | `v87-xachapuri` | undefined | Xachapuri (ajarcha, tuxumli) (`xachapuri`) |
-| 13 | `v87-pasta-karbonara` | undefined | Pasta karbonara (qaymoqli) (`pasta-karbonara`) |
-| 14 | `v87-pasta-alfredo` | undefined | Pasta alfredo (tovuqli) (`pasta-alfredo`) |
-| 15 | `v87-poke-losos` | undefined | Poke (losos va guruchli) (`poke-losos`) |
-| 16 | `v87-tovuq-teriyaki` | undefined | Tovuq teriyaki (guruch bilan) (`tovuq-teriyaki`) |
-| 17 | `v87-maki-bodring` | undefined | Maki roll (bodringli) (`maki-bodring`) |
-| 18 | `v87-pishloqli-tost` | undefined | Pishloqli tost (issiq sendvich) (`pishloqli-tost`) |
-| 19 | `v87-buterbrod-kolbasa` | undefined | Buterbrod (kolbasali) (`buterbrod-kolbasa`) |
-| 20 | `v87-buterbrod-pishloq` | undefined | Buterbrod (sariyog' va pishloqli) (`buterbrod-pishloq`) |
-| 21 | `v87-buterbrod-baliq` | undefined | Buterbrod (qizil baliqli) (`buterbrod-baliq`) |
-| 22 | `v87-hotdog-fransuz` | undefined | Fransuzcha hot-dog (baget ichida) (`hotdog-fransuz`) |
-| 23 | `v87-ovsyanoblin` | undefined | Ovsyanoblin (suli va tuxumli quymoq) (`ovsyanoblin`) |
-| 24 | `v87-lenivie-vareniki` | undefined | Lenivie vareniki (tvorogli) (`lenivie-vareniki`) |
-| 25 | `v87-blinchik-gosht` | undefined | Blinchik (go'shtli) (`blinchik-gosht`) |
-| 26 | `v87-blinchik-tvorog` | undefined | Blinchik (tvorogli) (`blinchik-tvorog`) |
-| 27 | `v87-adjika` | undefined | Adjika (achchiq pomidor-qalampir sousi) (`adjika`) |
-| 28 | `v87-mayonez-light` | undefined | Mayonez (kam yog'li, 30%) (`mayonez-light`) |
-| 29 | `v87-sezar-sous` | undefined | Sezar sousi (`sezar-sous`) |
-| 30 | `v87-teriyaki-sous` | undefined | Teriyaki sousi (`teriyaki-sous`) |
-| 31 | `v87-kunjut-yogi` | undefined | Kunjut yog'i (`kunjut-yogi`) |
-| 32 | `v87-kokos-yogi` | undefined | Kokos yog'i (`kokos-yogi`) |
-| 33 | `v87-kokos-suti` | undefined | Kokos suti (konserva, pishirish uchun) (`kokos-suti`) |
-| 34 | `v87-dolana` | undefined | Do'lana (yangi) (`dolana`) |
-| 35 | `v87-qizilcha` | undefined | Qizilcha (kizil, yangi) (`qizilcha`) |
-| 36 | `v87-suluguni` | undefined | Sulugun pishlog'i (`suluguni`) |
-| 37 | `v87-vafli-shakarsiz` | undefined | Vafli (shakarsiz, poliollar bilan) (`vafli-shakarsiz`) |
-| 38 | `v87-tomat-pasta` | undefined | Tomat pastasi (`tomat-pasta`) |
-| 39 | `v87-balzamik` | undefined | Balzamik sirka (`balzamik`) |
+| 1 | `v87-fondan` | undefined | Shokoladli fondan (suyuq markazli keks) (`fondan`) |
+| 2 | `v87-rulet-biskvit` | undefined | Biskvit rulet (murabboli) (`rulet-biskvit`) |
+| 3 | `v87-pirojnoe-krem` | undefined | Pirojnoe (biskvitli, kremli) (`pirojnoe-krem`) |
+| 4 | `v87-oreshki` | undefined | Oreshki (sgushenkali yong'oqcha pechenye) (`oreshki`) |
+| 5 | `v87-sharlotka` | undefined | Sharlotka (olmali pirog) (`sharlotka`) |
+| 6 | `v87-smetannik` | undefined | Smetannik (smetanali tort) (`smetannik`) |
+| 7 | `v87-vafli-trubochka` | undefined | Vafli trubochka (sgushenkali) (`vafli-trubochka`) |
+| 8 | `v87-savoyardi` | undefined | Savoyardi pechenyesi (biskvit tayoqcha) (`savoyardi`) |
+| 9 | `v87-xachapuri` | undefined | Xachapuri (ajarcha, tuxumli) (`xachapuri`) |
+| 10 | `v87-pasta-karbonara` | undefined | Pasta karbonara (qaymoqli) (`pasta-karbonara`) |
+| 11 | `v87-pasta-alfredo` | undefined | Pasta alfredo (tovuqli) (`pasta-alfredo`) |
+| 12 | `v87-poke-losos` | undefined | Poke (losos va guruchli) (`poke-losos`) |
+| 13 | `v87-tovuq-teriyaki` | undefined | Tovuq teriyaki (guruch bilan) (`tovuq-teriyaki`) |
+| 14 | `v87-maki-bodring` | undefined | Maki roll (bodringli) (`maki-bodring`) |
+| 15 | `v87-pishloqli-tost` | undefined | Pishloqli tost (issiq sendvich) (`pishloqli-tost`) |
+| 16 | `v87-buterbrod-kolbasa` | undefined | Buterbrod (kolbasali) (`buterbrod-kolbasa`) |
+| 17 | `v87-buterbrod-pishloq` | undefined | Buterbrod (sariyog' va pishloqli) (`buterbrod-pishloq`) |
+| 18 | `v87-buterbrod-baliq` | undefined | Buterbrod (qizil baliqli) (`buterbrod-baliq`) |
+| 19 | `v87-hotdog-fransuz` | undefined | Fransuzcha hot-dog (baget ichida) (`hotdog-fransuz`) |
+| 20 | `v87-ovsyanoblin` | undefined | Ovsyanoblin (suli va tuxumli quymoq) (`ovsyanoblin`) |
+| 21 | `v87-lenivie-vareniki` | undefined | Lenivie vareniki (tvorogli) (`lenivie-vareniki`) |
+| 22 | `v87-blinchik-gosht` | undefined | Blinchik (go'shtli) (`blinchik-gosht`) |
+| 23 | `v87-blinchik-tvorog` | undefined | Blinchik (tvorogli) (`blinchik-tvorog`) |
+| 24 | `v87-adjika` | undefined | Adjika (achchiq pomidor-qalampir sousi) (`adjika`) |
+| 25 | `v87-mayonez-light` | undefined | Mayonez (kam yog'li, 30%) (`mayonez-light`) |
+| 26 | `v87-sezar-sous` | undefined | Sezar sousi (`sezar-sous`) |
+| 27 | `v87-teriyaki-sous` | undefined | Teriyaki sousi (`teriyaki-sous`) |
+| 28 | `v87-kunjut-yogi` | undefined | Kunjut yog'i (`kunjut-yogi`) |
+| 29 | `v87-kokos-yogi` | undefined | Kokos yog'i (`kokos-yogi`) |
+| 30 | `v87-kokos-suti` | undefined | Kokos suti (konserva, pishirish uchun) (`kokos-suti`) |
+| 31 | `v87-dolana` | undefined | Do'lana (yangi) (`dolana`) |
+| 32 | `v87-qizilcha` | undefined | Qizilcha (kizil, yangi) (`qizilcha`) |
+| 33 | `v87-suluguni` | undefined | Sulugun pishlog'i (`suluguni`) |
+| 34 | `v87-vafli-shakarsiz` | undefined | Vafli (shakarsiz, poliollar bilan) (`vafli-shakarsiz`) |
+| 35 | `v87-tomat-pasta` | undefined | Tomat pastasi (`tomat-pasta`) |
+| 36 | `v87-balzamik` | undefined | Balzamik sirka (`balzamik`) |
+| 37 | `v100-ismaloqli-pirog` | undefined | Ismaloqli pirog (uyda pishirilgan) (`ismaloqli-pirog`) |
+| 38 | `v100-tovuq-kari` | undefined | Tovuqli karri (sousli) (`tovuq-kari`) |
+| 39 | `v100-chizkeyk-san-sebastyan` | undefined | San-Sebastyan chizkeyki (basklarcha) (`chizkeyk-san-sebastyan`) |
+| 40 | `v100-labne` | undefined | Labne (suzilgan qatiq pishlog'i) (`labne`) |
+| 41 | `v100-yogurt-kam` | undefined | Yogurt (tabiiy, kam yog'li 1,5%) (`yogurt-kam`) |
+| 42 | `v100-yogurt-yogsiz` | undefined | Yogurt (tabiiy, yog'siz) (`yogurt-yogsiz`) |
+
+## To'plam 19 (51)
+
+| № | slug | guruh | ishlatadigan taomlar |
+|---|---|---|---|
+| 1 | `v100-yogurt-yunon-5` | undefined | Yunon yogurti (to'liq yog'li, 5%) (`yogurt-yunon-5`) |
+| 2 | `v100-yogurt-ichimlik` | undefined | Yogurt ichimlik (tabiiy) (`yogurt-ichimlik`) |
+| 3 | `v100-ryajenka-25` | undefined | Ryajenka 2,5% (`ryajenka-25`) |
+| 4 | `v100-ryajenka-4` | undefined | Ryajenka 4% (`ryajenka-4`) |
+| 5 | `v100-sariyog-725` | undefined | Sariyog' 72,5% (dehqon) (`sariyog-725`) |
+| 6 | `v100-sariyog-825` | undefined | Sariyog' 82,5% (an'anaviy) (`sariyog-825`) |
+| 7 | `v100-pishloq-edam` | undefined | Edam pishlog'i (45%) (`pishloq-edam`) |
+| 8 | `v100-pishloq-rossiya` | undefined | Rossiya pishlog'i (≈50%) (`pishloq-rossiya`) |
+| 9 | `v100-pishloq-adigey` | undefined | Adigey pishlog'i (`pishloq-adigey`) |
+| 10 | `v100-mozzarella-kam` | undefined | Mozzarella (kam yog'li) (`mozzarella-kam`) |
+| 11 | `v100-qaymoq-20` | undefined | Qaymoq (20%, yengil) (`qaymoq-20`) |
+| 12 | `v100-mol-file-xom` | undefined | Mol go'shti — file (xom) (`mol-file-xom`) |
+| 13 | `v100-mol-antrekot-xom` | undefined | Mol go'shti — antrekot (ribay, xom) (`mol-antrekot-xom`) |
+| 14 | `v100-mol-yelka-xom` | undefined | Mol go'shti — yelka (xom) (`mol-yelka-xom`) |
+| 15 | `v100-mol-son-xom` | undefined | Mol go'shti — son (xom) (`mol-son-xom`) |
+| 16 | `v100-mol-tosh-xom` | undefined | Mol go'shti — to'sh (xom) (`mol-tosh-xom`) |
+| 17 | `v100-mol-qiyma-5` | undefined | Mol qiymasi 5% yog' (xom) (`mol-qiyma-5`) |
+| 18 | `v100-mol-qiyma-10` | undefined | Mol qiymasi 10% yog' (xom) (`mol-qiyma-10`) |
+| 19 | `v100-mol-qiyma-20` | undefined | Mol qiymasi 20% yog' (xom) (`mol-qiyma-20`) |
+| 20 | `v100-qoy-son-xom` | undefined | Qo'y go'shti — son (xom) (`qoy-son-xom`) |
+| 21 | `v100-qoy-yelka-xom` | undefined | Qo'y go'shti — yelka (xom) (`qoy-yelka-xom`) |
+| 22 | `v100-qoy-bel-xom` | undefined | Qo'y go'shti — bel (xom) (`qoy-bel-xom`) |
+| 23 | `v100-qoy-boldir-xom` | undefined | Qo'y go'shti — boldir (xom) (`qoy-boldir-xom`) |
+| 24 | `v100-tovuq-kanat-xom` | undefined | Tovuq qanoti (xom, terili) (`tovuq-kanat-xom`) |
+| 25 | `v100-tovuq-boldir-xom` | undefined | Tovuq boldiri (xom, terili) (`tovuq-boldir-xom`) |
+| 26 | `v100-tovuq-jigar-xom` | undefined | Tovuq jigari (xom) (`tovuq-jigar-xom`) |
+| 27 | `v100-tovuq-yurak-xom` | undefined | Tovuq yuragi (xom) (`tovuq-yurak-xom`) |
+| 28 | `v100-tovuq-oshqozon-xom` | undefined | Tovuq oshqozoni (xom) (`tovuq-oshqozon-xom`) |
+| 29 | `v100-tovuq-kokrak-terili-xom` | undefined | Tovuq ko'kragi (xom, terili) (`tovuq-kokrak-terili-xom`) |
+| 30 | `v100-tovuq-qiyma-xom` | undefined | Tovuq qiymasi (xom) (`tovuq-qiyma-xom`) |
+| 31 | `v100-kurka-qiyma-xom` | undefined | Kurka qiymasi (xom) (`kurka-qiyma-xom`) |
+| 32 | `v100-kolbasa-mol-kam-yogli` | undefined | Kolbasa (mol go'shtli, kam yog'li) (`kolbasa-mol-kam-yogli`) |
+| 33 | `v100-sosiska-mol-kam-yogli` | undefined | Sosiska (mol go'shtli, kam yog'li) (`sosiska-mol-kam-yogli`) |
+| 34 | `v100-sosiska-kurka` | undefined | Kurka sosiskasi (`sosiska-kurka`) |
+| 35 | `v100-pastrami-kurka` | undefined | Kurka pastramisi (`pastrami-kurka`) |
+| 36 | `v100-onigiri-tunets` | undefined | Onigiri (tunets-mayonez bilan) (`onigiri-tunets`) |
+| 37 | `v100-onigiri-losos` | undefined | Onigiri (losos bilan) (`onigiri-losos`) |
+| 38 | `v100-onigiri-tovuq` | undefined | Onigiri (tovuq, teriyaki) (`onigiri-tovuq`) |
+| 39 | `v100-onigiri-oddiy` | undefined | Onigiri (oddiy, guruch va nori) (`onigiri-oddiy`) |
+| 40 | `v108-roll-maki-losos` | undefined | Maki roll (losos bilan) (`roll-maki-losos`) |
+| 41 | `v108-roll-ugor` | undefined | Roll Ugor (ilonbaliq, unagi) (`roll-ugor`) |
+| 42 | `v108-roll-pishirilgan` | undefined | Pishirilgan roll (zapechonniy, losos va pishloq bilan) (`roll-pishirilgan`) |
+| 43 | `v108-nigiri-tunets` | undefined | Sushi (nigiri, tunets) (`nigiri-tunets`) |
+| 44 | `v108-nigiri-ugor` | undefined | Sushi (nigiri, ugor) (`nigiri-ugor`) |
+| 45 | `v108-sashimi-losos` | undefined | Sashimi (losos) (`sashimi-losos`) |
+| 46 | `v108-imbir-marinad` | undefined | Imbir marinadi (sushi uchun) (`imbir-marinad`) |
+| 47 | `v108-vasabi` | undefined | Vasabi (`vasabi`) |
+| 48 | `v108-kimbap-klassik` | undefined | Kimbap (klassik: sabzavot, tuxum, kolbasa) (`kimbap-klassik`) |
+| 49 | `v108-kimbap-tunets` | undefined | Kimbap (tunets-mayonez bilan) (`kimbap-tunets`) |
+| 50 | `v108-kimbap-bulgogi` | undefined | Kimbap (mol go'shti, bulgogi) (`kimbap-bulgogi`) |
+| 51 | `v108-beze` | undefined | Beze (oq, quruq) (`beze`) |
 
