@@ -763,6 +763,7 @@ var STEP_BASE = { 1: 4000, 2: 4000, 3: 7000, 4: 10000, 5: 13000 };          // E
   /* «рис вареный 100 г», «yarimta non», «2 шт котлета», «50 gram qaymoq» → { name, qty, unit ('g100' | 'ml' | birlik | null) }. Oxiridagi YOLG'IZ son miqdor emas («sut 1,5» — yog'lilik) */
   function isWordQ(w) { return WORDS[key(w || '')] != null && !/^\d/.test(w); }
   function splitQty(fr) {
+    if (/^\s*48\s*(kopeek|kopeyka|kopek|kopeyek|\u043a\u043e\u043f\u0435\u0435\u043a|\u043a\u043e\u043f\u0435\u0439\u043a\u0438)/i.test(String(fr))) return { name: String(fr).trim(), qty: null, unit: null };          // «48 копеек» — muzqaymoq BRENDI (son miqdor emas)
     var t = qtyToks(fr), qty = null, unit = null, U = function (w) { return UNITW[key(w || '')] || null; };
     if (t.length > 1 && (qtyNum(t[0]) != null || isWordQ(t[0]))) { qty = qtyNum(t[0]) != null ? qtyNum(t[0]) : WORDS[key(t[0])]; t.shift(); if (t.length > 1 && U(t[0])) unit = U(t.shift()); }          // boshida
     if (qty == null && t.length > 2 && U(t[t.length - 1]) && qtyNum(t[t.length - 2]) != null) { unit = U(t[t.length - 1]); qty = qtyNum(t[t.length - 2]); t.length -= 2; }          // oxirida

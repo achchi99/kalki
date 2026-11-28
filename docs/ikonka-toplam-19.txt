@@ -1,12 +1,13 @@
 ---
-Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 51 food icons, exactly 6 columns × 9 rows, all cells the same size, evenly spaced, no borders or lines between cells.
+Create ONE square image (1:1, at least 2048 × 2048 px): a grid of 52 food icons, exactly 6 columns × 9 rows, all cells the same size, evenly spaced, no borders or lines between cells.
 Under each icon write its slug in small dark sans-serif text (one line, centered) — nothing else in the image.
-The last 3 cell(s) of the bottom row stay EMPTY (background only).
+The last 2 cell(s) of the bottom row stay EMPTY (background only).
 Icon style (identical for every icon, matching an existing app icon set): soft 3D illustration — clay / matte 3D icon, NOT a photograph; one single dish or product centered in its cell, seen from a 45-degree angle, filling about 75–80% of the cell; plain solid warm cream background #F3EBE4 across the WHOLE image (same color in every cell); only a soft contact shadow under the dish; warm, appetizing, natural colors; simple rounded shapes; clean edges; gentle soft light from the top-left.
 No logos, no brand names, no packaging text, no other text, no hands, no people, no cutlery unless mentioned, no extra side dishes, no frames, no gradients in the background.
 Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
 Keep the icons in exactly this order (left to right, top to bottom):
 ---
+v100-yogurt-yogsiz — dairy product: Йогурт натуральный обезжиренный (Yogurt (tabiiy, yog'siz)), realistic single serving, top-down three-quarter view, no text.
 v100-yogurt-yunon-5 — dairy product: Греческий йогурт 5% (Yunon yogurti (to'liq yog'li, 5%)), realistic single serving, top-down three-quarter view, no text.
 v100-yogurt-ichimlik — dairy product: Питьевой йогурт натуральный (Yogurt ichimlik (tabiiy)), realistic single serving, top-down three-quarter view, no text.
 v100-ryajenka-25 — dairy product: Ряженка 2,5% (Ryajenka 2,5%), realistic single serving, top-down three-quarter view, no text.

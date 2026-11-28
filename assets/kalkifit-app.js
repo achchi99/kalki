@@ -442,7 +442,7 @@
 
   /* ---------- baza (lazy) ---------- */
   var dbWaiters = [];
-  var dbMr = {}, dbAlias = {};
+  var dbMr = {}, dbAlias = {}, dbBr = [];
   /* v67: admin umumiy bazaga qo'shgan YORLIQ takliflari (GET /api/kalkifit-yorliq, manba «yorliq (foydalanuvchi)») — kesh localStorage'da (tarmoqsiz ham), bazaga qo'shiladi (id takrorlanmaydi) */
   var LS_YQ = 'kalki_fit_yq', yqDone = false;
   function yqCache() { try { var j = JSON.parse(localStorage.getItem(LS_YQ) || 'null'); return j && Array.isArray(j.t) ? j.t : []; } catch (e) { return []; } }
@@ -461,7 +461,7 @@
     if (dbState === 2) { cb && cb(); return; }
     if (cb) dbWaiters.push(cb);
     if (dbState === 1) return; dbState = 1;
-    fetch('/data/ovqatlar.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { db = S.normFoods(j.foods); if (S.setUsul) S.setUsul(j.us || null); yqAdd(yqCache()); S.buildIndex(db); yqFetch(); dbMr = j.mr || {}; dbAlias = S.aliasMap(db); dbState = 2; var w = dbWaiters; dbWaiters = []; w.forEach(function (f) { f(); }); })
+    fetch('/data/ovqatlar.json').then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { db = S.normFoods(j.foods); if (S.setUsul) S.setUsul(j.us || null); yqAdd(yqCache()); S.buildIndex(db); yqFetch(); dbMr = j.mr || {}; dbBr = j.br || []; dbAlias = S.aliasMap(db); dbState = 2; var w = dbWaiters; dbWaiters = []; w.forEach(function (f) { f(); }); })
       .catch(function () { dbState = 0; var w = dbWaiters; dbWaiters = []; w.forEach(function (f) { f(true); }); });
   }
   var jokeBoot = false, qTimer = null;                                 // qidiruv: har harfda emas, 120 ms kutib
@@ -3071,14 +3071,22 @@
     var q = fd.q.trim(), sq = S.splitParts(q).length > 1 ? {} : S.splitQty(q), pre = sq.qty != null && sq.name ? { q: sq.qty, u: sq.unit } : null, qn = pre ? sq.name : q, um = S.usulQ ? S.usulQ(qn) : { u: null }, all = usulFirst(S.search(allFoods(), qn, srchOpts(40, true)), um, qn),          // «рис вареный 100 г» → «рис вареный» qidiriladi, natija 100 g bilan
         list = all.filter(function (f) { return f.custom; }).concat(all.filter(function (f) { return !f.custom; }));          // qidiruv: odam o'zi yozgan — HAMMASI (cheklangani belgi bilan); o'z taomlari birinchi
     var head = multiHtml(q, list.length);
+    if (!all.length) { var brAll = brandRel(qn); if (brAll.length) { all = brAll; all.fuzzy = true; list = all.slice(); } }          // v109: brend nomi — natija yo'q bo'lsa umumiy taomlar «Balki: …» sifatida (raqam o'ylab topilmaydi)
     qjNote(q, !!list.length || !!(head && !multiMiss));
     if (!list.length) { if (!head || multiMiss) qtNote(q); return head && !multiMiss ? head : head + noneHtml(); }          // v68: gap to'liq tanilgan — faqat «Hammasini qo'shish» («Topilmadi» yo'q)
     var FATX = { sut: 1, kefir: 1, qatiq: 1, smetana: 1 }, noNum = !/\d/.test(qn);          // sut mahsulotlari: yog'liligi yozilmagan bo'lsa — har variant alohida qator (0,5% → 6%, tartib bilan)
     var own = '<button type="button" class="sl-txtbtn kq-own" data-act="fcustom">' + ico('plus', 'sl-inl') + esc(T('qOwn')) + '</button>';          // topilgani mos kelmasa — o'z taomi (ro'yxat oxirida, sokin havola)
-    var rel = !all.fuzzy && list[0] && list[0].bl ? list[0].bl.map(foodById).filter(function (r) { return r && !r.h && list.indexOf(r) < 0; }) : [];          // v108: yaqin taom («безе» → beze birinchi, zefir — «Balki: …» taklifida)
+    var rel = !all.fuzzy && list[0] && list[0].bl ? list[0].bl.map(foodById).filter(function (r) { return r && !r.h && list.indexOf(r) < 0; }) : [];
+    rel = rel.concat(brandRel(qn).filter(function (r) { return list.indexOf(r) < 0 && rel.indexOf(r) < 0; }));          // v109: brend nomi («Bahrom», «48 копеек») — brend turi yorlig'i bo'lmasa, mos umumiy taom «Balki: …» da          // v108: yaqin taom («безе» → beze birinchi, zefir — «Balki: …» taklifida)
     var relHtml = rel.length ? '<p class="kq-tip kq-fz">' + ico('spark', 'sl-inl') + esc(T('qFz')) + '</p>' + rel.map(function (r) { return foodRow(r, null, 'qidiruv', pre); }).join('') : '';
     var fzNote = all.fuzzy ? '<p class="kq-tip kq-fz">' + ico('spark', 'sl-inl') + esc(T('qFz')) + '</p>' : '';          // v100: imlo xatosiga chidamli moslik — «Balki: …» (aniq natija bo'lmaganda)
     return head + fzNote + list.map(function (f) { if (noNum && f.fam && FATX[f.fam.id] && f.fam.ax && f.fam.ax[0] && f.fam.ax[0].i === 'yogliligi') { var ax = f.fam.ax[0]; return ax.o.map(function (o) { var pk = {}; pk[ax.i] = o.i; return foodRow(f, pk, 'qidiruv', pre); }).join(''); } return foodRow(f, f.fam ? pickU(S.famPick(f, qn), f, um) : null, 'qidiruv', pre); }).join('') + relHtml + own;
+  }
+  /* v109: brend → «Balki» (data/ovqatlar.json `br`, tools/ovqatlar-brend.js): so'rov brend nomini (so'z chegarasida) o'z ichiga olsa — shu brendning yorlig'i bo'lmagan turlariga mos umumiy taomlar */
+  function brandRel(qn) {
+    var s = ' ' + String(qn || '').toLowerCase().replace(/[\u2019\u2018\u02bb\u02bc`\u00b4]/g, '').replace(/\u0451/g, '\u0435').replace(/\s+/g, ' ').trim() + ' ', out = [];
+    dbBr.forEach(function (b) { if (!b.a.some(function (a) { return s.indexOf(' ' + a + ' ') >= 0; })) return; b.f.forEach(function (id) { var f = foodById(id); if (f && out.indexOf(f) < 0) out.push(f); }); });
+    return out;
   }
   /* v74: umumiy qidiruv hisobi (anonim, so'zsiz): har xil so'rov seansda bir marta — «qidiruv_jami»; natija chiqmasa qo'shimcha «qidiruv_natijasiz» (admin: natijasiz ulush) */
   var qjTm = null;

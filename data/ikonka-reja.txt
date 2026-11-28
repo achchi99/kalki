@@ -150,6 +150,7 @@
 4|muzqaymoq-rojok|ice cream in a waffle cone, chocolate and nuts coating on the vanilla scoop.|mz-konus-shokolad mz-rojok
 4|muzqaymoq-rojok-sous|vanilla ice cream in a waffle cone with caramel sauce drizzle.|mz-konus-sundae
 4|eskimo|a chocolate-coated ice cream bar on a stick, a bite taken out showing white vanilla inside.|muzqaymoq-eskimo mz-eskimo-yongoq inmarko-eskimo mz-eskimo-glazur
+4|muzqaymoq-48-kopeek|a plain white wrapped plombir ice cream brick with a red circle on the pack, beside a waffle cup of white vanilla ice cream.|mz-48k-plombir-210 mz-48k-plombir-419 mz-48k-stakan-plombir mz-48k-eskimo-klyukva mz-48k-praga-432 mz-48k-rojok-mindal
 4|sorbet|two pastel orange fruit sorbet scoops in a small glass cup.|mz-sorbet
 4|muzli|a fruit ice pop on a stick, orange-red, with a few droplets.|mz-muzli mz-meva-bar
 4|sundae|a sundae in a tall glass with vanilla ice cream, chocolate sauce and a wafer.|mz-sundae

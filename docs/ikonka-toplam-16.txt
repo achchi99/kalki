@@ -6,6 +6,7 @@ No logos, no brand names, no packaging text, no other text, no hands, no people,
 Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
 Keep the icons in exactly this order (left to right, top to bottom):
 ---
+v87-yogurt-yunon-2 — dairy product: Греческий йогурт 2% (Yunon yogurti (kam yog'li, 2%)), realistic single serving, top-down three-quarter view, no text.
 v87-sariyog-eritilgan — dairy product: Топлёное масло (гхи) (Eritilgan sariyog' (gi)), realistic single serving, top-down three-quarter view, no text.
 v87-pishloq-kosichka — dairy product: Сыр-косичка (чечил) (Pishloq kosichka (chechil)), realistic single serving, top-down three-quarter view, no text.
 v87-pishloq-kam-yogli — dairy product: Сыр твёрдый нежирный (Pishloq (qattiq, kam yog'li)), realistic single serving, top-down three-quarter view, no text.
@@ -47,4 +48,3 @@ v87-makaron-pishloq — grain, pasta or potato side dish: Макароны с с
 v87-kartoshka-yosh — grain, pasta or potato side dish: Молодой картофель с маслом и укропом (Yosh kartoshka (sariyog' va shivitli)), realistic single serving, top-down three-quarter view, no text.
 v87-kartoshka-derevenski — grain, pasta or potato side dish: Картофель по-деревенски (Kartoshka po-derevenski (duxovkada, bo'laklab)), realistic single serving, top-down three-quarter view, no text.
 v87-suli-paketli — grain, pasta or potato side dish: Овсянка быстрого приготовления (пакетик, сухая) (Suli bo'tqasi (tez tayyor, paketli, quruq)), realistic single serving, top-down three-quarter view, no text.
-v87-mimoza — dish, one portion in a bowl (kosa) or plate: Салат «Мимоза» (Mimoza salati (baliqli)), realistic single serving, top-down three-quarter view, no text.

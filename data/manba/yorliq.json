@@ -1039,6 +1039,72 @@
    "f": 1.3,
    "c": 32,
    "fibYoq": 1
+  },
+  "k48-briket-210": {
+   "nom": "Мороженое Брикет «48 Копеек» Пломбир, 210 г",
+   "brand": "48 Копеек",
+   "code": "",
+   "url": "https://igooods.ru/products/205140-morozhenoe-briket-48-kopeek-plombir-210-g",
+   "qadoq": "210 г",
+   "k": 188,
+   "p": 3,
+   "f": 8.5,
+   "c": 25
+  },
+  "k48-briket-419": {
+   "nom": "Мороженое пломбир 48 Копеек БЗМЖ 419 г",
+   "brand": "48 Копеек",
+   "code": "",
+   "url": "https://igooods.ru/products/235662-morozhenoe-plombir-48-kopeek-bzmzh",
+   "qadoq": "419 г",
+   "k": 218,
+   "p": 2.8,
+   "f": 12,
+   "c": 24.7
+  },
+  "k48-stakan-88": {
+   "nom": "Мороженое 48 Копеек Пломбир в вафельном стакане, 88 г",
+   "brand": "48 Копеек",
+   "code": "",
+   "url": "https://gastronom-rnd.ru/katalog/zamorozhennye-produkty/deserty-i-morozhenoe/bzmzh-morozhenoe-48-kopeek-plombir-88g-stakan-vaf",
+   "qadoq": "88 г",
+   "k": 231,
+   "p": 3.2,
+   "f": 12,
+   "c": 27.5
+  },
+  "k48-eskimo-klyukva": {
+   "nom": "Мороженое 48 Копеек эскимо с морсом клюквы 61 г",
+   "brand": "48 Копеек",
+   "code": "",
+   "url": "https://vkusvill.ru/goods/morozhenoe-48-kopeek-eskimo-s-morsom-klyukvy-61-g-111218/",
+   "qadoq": "61 г",
+   "k": 179,
+   "p": 1.6,
+   "f": 7.2,
+   "c": 26.9
+  },
+  "k48-praga-432": {
+   "nom": "Мороженое 48 КОПЕЕК Шоколадная прага 432 г",
+   "brand": "48 Копеек",
+   "code": "",
+   "url": "https://vkusvill.ru/goods/morozhenoe-48-kopeek-shokoladnaya-praga-432-g-73297/",
+   "qadoq": "432 г",
+   "k": 200,
+   "p": 3.5,
+   "f": 9,
+   "c": 27
+  },
+  "k48-rojok-106": {
+   "nom": "Мороженое 48 Копеек пломбир 106 г (вафельный рожок, миндаль, шоколадная глазурь)",
+   "brand": "48 Копеек",
+   "code": "",
+   "url": "https://igooods.ru/products/61139-morozhenoe-48-kopeek-plombir",
+   "qadoq": "106 г",
+   "k": 270,
+   "p": 3.8,
+   "f": 12,
+   "c": 37
   }
  }
 }

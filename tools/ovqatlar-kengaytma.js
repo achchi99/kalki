@@ -25,6 +25,12 @@ mz-korovka-eskimo-belgiya|Korovka iz Korenovki — eskimo (belgiya shokoladida, 
 mz-korovka-eskimo|Korovka iz Korenovki — eskimo (shokolad glazurida)|Коровка из Кореновки — эскимо в шоколадной глазури|korovka eskimo glazur,эскимо в глазури,eskimo glazur,muzqaymoq,мороженое|h|dona:60|y:kizk-eskimo
 mz-korovka-stakan-shokolad|Korovka iz Korenovki — shokoladli plombir vafli stakanchada (15%)|Коровка из Кореновки — пломбир шоколадный в вафельном стаканчике 15%|korovka stakancha,коровка стаканчик,shokoladli plombir stakancha,muzqaymoq,мороженое|h|dona:80|y:kizk-stakan-shokolad
 mz-korovka-konteyner|Korovka iz Korenovki — plombir shokolad parchali (300 g)|Коровка из Кореновки — пломбир с шоколадной крошкой (300 г)|korovka 300,коровка 300,plombir konteyner,пломбир контейнер,muzqaymoq,мороженое|h|shar:60,banka:300|y:kizk-konteyner
+mz-48k-plombir-210|48 kopeek — plombir briket (210 g)|48 копеек — пломбир брикет (210 г)|48 kopeek,48 kopeek plombir,48 kopeek briket,48 копеек,48 копеек пломбир,48 копеек брикет,48 kopeyka,мороженое 48 копеек,48 копеек мороженое|h|paket:210|y:k48-briket-210
+mz-48k-plombir-419|48 kopeek — plombir briket (419 g)|48 копеек — пломбир брикет (419 г)|48 kopeek plombir 419,48 kopeek oilaviy,48 копеек пломбир 420,48 копеек 400 мл,48 копеек 420 мл,48 копеек пломбир 419,48 kopeek 420 ml|h|paket:419|y:k48-briket-419
+mz-48k-stakan-plombir|48 kopeek — plombir vafli stakanchada (88 g)|48 копеек — пломбир в вафельном стаканчике (88 г)|48 kopeek stakancha,48 kopeek stakanchik,48 kopeek vafli,48 копеек стаканчик,48 копеек пломбир стаканчик,48 копеек вафельный стаканчик|h|dona:88|y:k48-stakan-88
+mz-48k-eskimo-klyukva|48 kopeek — eskimo (klyukva morsi bilan, 61 g)|48 копеек — эскимо с морсом клюквы (61 г)|48 kopeek eskimo,48 копеек эскимо,48 копеек эскимо клюква,48 копеек клюквенный морс,48 kopeek klyukva|h|dona:61|y:k48-eskimo-klyukva
+mz-48k-praga-432|48 kopeek — shokoladli «Praga» (432 g)|48 копеек — Шоколадная прага (432 г)|48 kopeek praga,48 kopeek shokoladli,48 копеек прага,48 копеек шоколадная прага,48 копеек шоколадное|h|paket:432|y:k48-praga-432
+mz-48k-rojok-mindal|48 kopeek — plombir rojok (bodom va shokolad glazuri, 106 g)|48 копеек — пломбир в рожке с миндалём и глазурью (106 г)|48 kopeek rojok,48 kopeek konus,48 копеек рожок,48 копеек пломбир рожок,48 копеек миндаль|h|dona:106|y:k48-rojok-106
 mz-bomba-konus|Bomba konus XXL (qulupnay)|Бомба конус XXL клубника|bomba,бомба,bomba konus,бомба конус,shin-layn,шин-лайн,rojok qulupnay,muzqaymoq,мороженое|h|dona:145|y:shinline-bomba-konus
 mz-plombir-stakan|Plombir vanilli (15% yog', yorliq bo'yicha)|Пломбир ванильный (15%)|plombir stakancha,stakanchik,muzqaymoq stakancha,пломбир стаканчик,мороженое в стаканчике,ice cream cup|h|shar:60,dona:80|y:plombir-stakan
 mz-plombir-vafli|Plombir vafli stakanchada (chernika qatlamli)|Пломбир в вафельном стаканчике с черникой|plombir vafli stakancha,стаканчик пломбир,вафельный стаканчик мороженое|h|dona:93|y:rojok
@@ -382,6 +388,8 @@ const TEG = {
 for (const [t, ids] of [['sut', ['kokos-batonchik', 'protein-pechenye', 'mz-plombir-vafli', 'pishloq-hochland']], ['tuxum', ['protein-pechenye']], ['glyuten', ['protein-pechenye', 'mz-plombir-vafli', 'doshirak-pishloq']],
   /* v52: Sezar sousi — tuxum va baliq (anchous, ehtiyot), parmezan, kruton; sutli pechenye — sut, tuxum, un; Lotus — bug'doy uni; kepak non — bug'doy */
   ['glyuten', ['kepak-non', 'sezar-salat', 'lotus-biscoff', 'pechenye-molochnoe']], ['sut', ['sezar-salat', 'pechenye-molochnoe']], ['tuxum', ['sezar-salat', 'pechenye-molochnoe']], ['baliq', ['sezar-salat']]]) ids.forEach((i) => { if (!TEG[t].includes(i)) TEG[t].push(i); });
+/* v109: «48 копеек» muzqaymoqlari — allergen teglari (sut; vafli/biskvit — glyuten; bodom — yong'oq) */
+for (const [t, ids] of [['sut', ['mz-48k-plombir-210', 'mz-48k-plombir-419', 'mz-48k-stakan-plombir', 'mz-48k-eskimo-klyukva', 'mz-48k-praga-432', 'mz-48k-rojok-mindal']], ['glyuten', ['mz-48k-stakan-plombir', 'mz-48k-praga-432', 'mz-48k-rojok-mindal']], ['yongoq', ['mz-48k-rojok-mindal']]]) ids.forEach((i) => { if (!TEG[t].includes(i)) TEG[t].push(i); });
 /* oqsil manbasi (tools/oqsil-teglar.js): qolganlari tur bo'yicha (s — sut, boshqalar — yoq) */
 const OQSIL = Object.assign({},
   ...L(`mol-jigar-qov mol-jigar-dim qoy-jigar-qov mol-buyrak qoy-buyrak mol-yurak qoy-yurak mol-til qoy-til qorin qoy-miya mol-miya qoy-opka qoy-son qoy-kurak qoy-qiyma qoy-kabob-bolak qoy-yogsiz-dim mol-tosh mol-qaynatilgan mol-kotlet-grill buzoq buzoq-qiyma echki gosht-quritilgan gosht-dimlangan-konserva tefteli big-mac chizburger tako sendvich-mol shurva-mol-sabzavot`).map((i) => ({ [i]: 'qizil' })),
@@ -391,7 +399,8 @@ const OQSIL = Object.assign({},
   ...L(`falafel xummus-uy tofu-qov edamame loviya-qora loviya-konserva loviya-tomat noxat-konserva`).map((i) => ({ [i]: 'dukkak' })),
   ...L(`protein-bar-60 protein-bar-40 protein-bar-50 protein-pechenye protein-kokteyl-tayyor pitsa-pishloq nachos-pishloq`).map((i) => ({ [i]: 'sut' })),
   ...L(`quyon burrito chili-konkarne lazanya spagetti-bolonez`).map((i) => ({ [i]: 'aralash' })),
-  ...L(`sezar-salat`).map((i) => ({ [i]: 'tovuq' })), ...L(`kepak-non olma-sirka lotus-biscoff pechenye-molochnoe fuze-tea`).map((i) => ({ [i]: 'yoq' })));          // v52
+  ...L(`sezar-salat`).map((i) => ({ [i]: 'tovuq' })), ...L(`kepak-non olma-sirka lotus-biscoff pechenye-molochnoe fuze-tea`).map((i) => ({ [i]: 'yoq' })),
+  ...L(`mz-48k-plombir-210 mz-48k-plombir-419 mz-48k-stakan-plombir mz-48k-eskimo-klyukva mz-48k-praga-432 mz-48k-rojok-mindal`).map((i) => ({ [i]: 'sut' })));          // v52
 { const TR = require('./ovqatlar-turk.js'); for (const k of Object.keys(TR.TEG)) TEG[k] = (TEG[k] || []).concat(TR.TEG[k]); Object.assign(OQSIL, TR.OQSIL); }
 { const K4 = require('./ovqatlar-kengaytma4.js'); for (const k of Object.keys(K4.TEG)) TEG[k] = (TEG[k] || []).concat(K4.TEG[k]); Object.assign(OQSIL, K4.OQSIL); }   // v66: 3-bosqich
 { const K6 = require('./ovqatlar-kengaytma6.js'); for (const k of Object.keys(K6.TEG)) TEG[k] = (TEG[k] || []).concat(K6.TEG[k]); Object.assign(OQSIL, K6.OQSIL); }   // v73: baza kengaytirish (topilmagan qidiruvlar)
