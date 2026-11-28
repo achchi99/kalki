@@ -2380,3 +2380,24 @@ html[data-theme=dark] .rz.sl .sl-adv.lola .sl-adv-go{color:color-mix(in srgb,var
 /* v107: tayyorlash usuli chiplari (porsiya oynasida ko'rinadi; tor ekranda o'raladi — gorizontal aylanmaydi) */
 .rz .pw-usul{margin:2px 0 10px}.rz .pw-usul .rz-fl{margin:0 0 6px}
 .rz .pw-usul .pw-uc{display:flex;flex-wrap:wrap;gap:6px}.rz .pw-usul .rz-chip{max-width:100%;overflow-wrap:anywhere;text-align:center}
+
+/* v97: YANGI/KICHIK QURILMA — birinchi ekranda halqa + makrolar + Maslahatchi kartasining boshi (pastki panel USTIDA) ko'rinsin.
+   Halqa balandlikka moslanadi (avval 220 px qat'iy: 360×740 da kartalar pastki panel ortida qolardi); yangi qurilmada chiqadigan rang izohi bitta qatorga sig'adi. */
+.rz.sl[data-view=today] .sl-big:not(.fc-on){--k:1}
+.rz.sl[data-view=today] .sl-big:not(.fc-on) .sl-vessel{transform:scale(var(--k));margin-top:calc(110px * var(--k) - 56px);margin-bottom:calc(110px * var(--k) - 60px)}          /* ko'rinadigan halqa 220 px (120 px quti + inset -50): faqat halqa markazi atrofida kichrayadi (raqam, to'lqin birga) va o'rni shunga mos yig'iladi; «i», medal, tugmalar o'z o'lchamida */
+@media (max-width:359px){.rz.sl[data-view=today] .sl-big:not(.fc-on) .sl-vessel{margin-top:calc(110px * var(--k) - 40px)}}
+@media (max-height:780px){.rz.sl[data-view=today] .sl-big:not(.fc-on){--k:.8}}
+@media (max-height:700px){.rz.sl[data-view=today] .sl-big:not(.fc-on){--k:.6}}
+@media (max-height:900px){
+  .rz.sl[data-view=today] .wk-leg{flex-wrap:nowrap;gap:4px 8px;font-size:13px;margin:0;padding:0 2px;white-space:nowrap}
+  .rz.sl[data-view=today] .wk-leg{margin:-6px 0 -8px!important;line-height:1.2}
+  .rz.sl[data-view=today] .wk-leg .sl-txtbtn{margin-left:auto;font-size:13px!important;min-height:24px!important;padding:0!important;line-height:1}
+  .rz.sl[data-view=today] .sl-big{padding-top:8px}
+  .rz.sl[data-view=today] .sl-big{padding-bottom:6px;margin-bottom:-8px}
+  .rz.sl[data-view=today] #advCard,.rz.sl[data-view=today] #mslCard{margin-top:-6px}
+}
+@media (max-height:700px){.rz.sl[data-view=today] .wk-leg{display:none}}          /* juda past ekran: rang izohi (Profil'dagi «Qanday ishlaydi?»da ham bor) — birinchi ekranni halqa va makrolarga beramiz */
+@media (max-height:700px){.rz.sl[data-view=today] .sl-big{gap:0;padding-top:4px;padding-bottom:2px}.rz.sl[data-view=today] .sl-week7 .wd{padding-top:2px;padding-bottom:2px}.rz.sl[data-view=today] #advCard,.rz.sl[data-view=today] #mslCard{margin-top:-10px}}
+@media (max-height:780px){.rz.sl[data-view=today] .sl-big:not(.fc-on) .sl-bju{margin-top:8px}}
+@media (max-height:700px){.rz.sl[data-view=today] .sl-big:not(.fc-on) .sl-bju{margin-top:2px}.rz.sl[data-view=today] .sl-big:not(.fc-on){--k:.56}}
+html.fs-big .hk-s{gap:6px;padding-top:calc(env(safe-area-inset-top,0px) + 64px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 20px)}          /* v97: «Haftangiz» makro slaydi katta shriftda 360×800 ga 12 px ortiq (kletchatka qatori qo'shilgach) */
