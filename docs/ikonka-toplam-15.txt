@@ -6,6 +6,7 @@ No logos, no brand names, no packaging text, no other text, no hands, no people,
 Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
 Keep the icons in exactly this order (left to right, top to bottom):
 ---
+v87-borsh-kafe — dish, one portion in a bowl (kosa) or plate: Борщ (кафе, со сметаной) (Borsh (kafe, smetana bilan)), realistic single serving, top-down three-quarter view, no text.
 v87-yashil-borsh — dish, one portion in a bowl (kosa) or plate: Зелёный борщ (щавелевый) (Yashil borsh (shovul, tuxumli)), realistic single serving, top-down three-quarter view, no text.
 v87-shchi — dish, one portion in a bowl (kosa) or plate: Щи из свежей капусты (Shchi (yangi karamli)), realistic single serving, top-down three-quarter view, no text.
 v87-shchi-kislye — dish, one portion in a bowl (kosa) or plate: Щи из квашеной капусты (Shchi (tuzlangan karamdan)), realistic single serving, top-down three-quarter view, no text.
@@ -47,4 +48,3 @@ v87-echki-suti — dairy product: Козье молоко (Echki suti), realisti
 v87-qatiq-zigir — dairy product: Катык с семенами льна (Qatiq (zig'ir urug'i bilan)), realistic single serving, top-down three-quarter view, no text.
 v87-tvorog-smetana — dairy product: Творог со сметаной (Tvorog (smetana bilan)), realistic single serving, top-down three-quarter view, no text.
 v87-tvorog-asal — dairy product: Творог с мёдом (Tvorog (asal bilan)), realistic single serving, top-down three-quarter view, no text.
-v87-tvorog-massa — dairy product: Творожная масса сладкая с изюмом (Tvorogli massa (shirin, mayizli)), realistic single serving, top-down three-quarter view, no text.

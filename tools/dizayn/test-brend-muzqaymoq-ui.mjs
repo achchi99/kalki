@@ -8,13 +8,13 @@ async function search(p, q) { if (!(await p.locator('#fdQ').count())) { await p.
 const rows = (p) => p.evaluate(() => [...document.querySelectorAll('#fdRes .sl-rw')].map((r) => r.innerText.replace(/\s+/g, ' ').trim()));
 const fz = (p) => p.locator('#fdRes .kq-fz').count();
 try {
-  for (const [lang, w, qs] of [['uz', 390, ['Bahrom', 'bahrom muzqaymoq', 'Бахром']], ['ru', 390, ['Бахром', 'мороженое Бахром', 'bahrom eskimo']]]) {
+  for (const [lang, w, qs] of [['uz', 390, ['Bahrom', 'bahrom muzqaymoq', 'Бахром', 'Bahroma']], ['ru', 390, ['Бахром', 'мороженое Бахрома', 'bahrom eskimo']]]) {
     const p = await open(br, BASE, { w, lang, st: seed(), hour: 13, settle: 500 });
     for (const q of qs) { await search(p, q); const r = await rows(p); const txt = await p.locator('#fdRes').innerText();
-      assert.ok(r.length >= 4, q + ': natija: ' + JSON.stringify(r)); assert.equal(await fz(p), 1, q + ': «Balki» izohi'); assert.doesNotMatch(txt, /^Topilmadi|Не найдено/, q + ': «Topilmadi» yo\'q');
-      assert.ok(r.some((x) => /stakanchada|стаканчике/i.test(x)), q + ': Plombir vafli stakanchada: ' + JSON.stringify(r)); assert.ok(r.some((x) => /^(Eskimo|Эскимо)/i.test(x)), q + ': Eskimo'); assert.ok(!r.some((x) => /48/.test(x)), q + ': 48 kopeek aralashmagan'); }
+      assert.ok(r.length >= 8, q + ': natija: ' + JSON.stringify(r)); assert.ok(r.filter((x) => /^Bahroma/.test(x)).length >= 2, q + ': Bahroma mahsulotlari: ' + JSON.stringify(r)); assert.equal(await fz(p), 1, q + ': «Balki» izohi');
+      assert.doesNotMatch(txt, /^Topilmadi|Не найдено/, q + ': «Topilmadi» yo\'q'); assert.ok(r.some((x) => /stakanchada|стаканчике/i.test(x) && !/^(Bahroma|48)/.test(x)), q + ': yorlig\'i yo\'q tur — umumiy Plombir vafli stakanchada («Balki»da): ' + JSON.stringify(r)); assert.ok(!r.some((x) => /^48/.test(x)), q + ': 48 kopeek aralashmagan'); }
     assert.deepEqual(p.errs, []); await p.context().close(); }
-  ok('uz/ru: «Bahrom», «bahrom muzqaymoq», «Бахром», «мороженое Бахром», «bahrom eskimo» → «Balki: …» + umumiy Plombir vafli stakanchada, Eskimo, Rojok…; «Topilmadi» yo\'q');
+  ok('uz/ru: «Bahrom», «Bahroma», «bahrom muzqaymoq», «Бахром», «мороженое Бахрома», «bahrom eskimo» → Bahroma mahsulotlari + «Balki: …» da yorlig\'i yo\'q turlar (Plombir vafli stakanchada…); «Topilmadi» yo\'q');
   { const p = await open(br, BASE, { w: 390, lang: 'uz', st: seed(), hour: 13, settle: 500 });
     await search(p, '48 копеек'); let r = await rows(p); assert.ok(r.filter((x) => /48 kopeek/.test(x)).length >= 5, '48 копеек: ' + JSON.stringify(r));
     await search(p, '48 kopeek stakancha'); r = await rows(p); assert.ok(/^48 kopeek — plombir vafli stakanchada/.test(r[0]), '1-natija: ' + r[0]); assert.match(r[0], /203/, 'kkal: 88 g × 231 / 100 = 203');

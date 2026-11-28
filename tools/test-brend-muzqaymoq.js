@@ -24,16 +24,20 @@ for (const [q, id] of [['48 kopeek stakancha', 'mz-48k-stakan-plombir'], ['48 к
   else assert.ok(r.some((i) => i.startsWith('mz-48k-')), q + ' → ' + r.join(','));
 }
 ok('Qidiruv: 48 копеек / 48 kopeek (+ tur nomi, uz/ru) brend mahsulotini topadi');
-/* Bahrom: yorlig'i yo'q — mahsulot bazada YO'Q, brend ro'yxati bor */
-assert.ok(!A.some((f) => /^mz-bahrom-/.test(f.i)), 'Bahrom mahsuloti yorliqsiz qo\'shilmagan');
-const br = J.br; assert.ok(Array.isArray(br) && br.length >= 2, 'br');
-const norm = (x) => ' ' + x.toLowerCase().replace(/[’'`‘ʻʼ´]/g, '').replace(/ё/g, 'е').replace(/\s+/g, ' ').trim() + ' ';
-const rel = (q) => { const s = norm(q), out = []; br.forEach((b) => { if (b.a.some((a) => s.indexOf(' ' + a + ' ') >= 0)) b.f.forEach((i) => out.indexOf(i) < 0 && out.push(i)); }); return out; };
-for (const q of ['Bahrom', 'bahrom muzqaymoq', 'Бахром', 'мороженое Бахром', 'bahrom eskimo', 'Бахром пломбир']) {
-  const r = rel(q); assert.ok(r.length >= 5, q + ': umumiy taomlar «Balki»da'); r.forEach((i) => assert.ok(by[i] && by[i].i.startsWith('mz-') && !by[i].i.startsWith('mz-48k-'), q + ': ' + i));
-  assert.ok(r.includes('mz-stakancha') && r.includes('mz-eskimo-glazur'), q + ': Plombir stakanchada + Eskimo');
+/* Bahroma (Qozog'iston, Shin-Line; «Bahrom»/«Бахром» deb yozilsa ham shu): yorliq mahsulotlari + yo'qlari uchun «Balki» */
+const bh = A.filter((f) => f.i.startsWith('mz-bahroma-')); assert.ok(bh.length >= 6, 'Bahroma: kamida 6 tur — ' + bh.length);
+for (const f of bh) {
+  assert.ok(/https:\/\/[^ )]+/.test(f.m) && /https:\/\//.test(f.ms.u), f.i + ': manba havolasi'); const atw = 4 * f.p + 9 * f.f + 4 * f.c; assert.ok(Math.abs(atw - f.k) <= Math.max(20, f.k * 0.15), f.i + ': Atwater'); assert.equal(f.e, 0);
+  assert.ok(f.u.some((u) => u[0] !== 'g100' && u[1] >= 50 && u[1] <= 450) && f.u.some((u) => u[0] === 'g100'), f.i + ': porsiya'); ['bahroma', 'бахрома', 'bahrom', 'бахром'].forEach((a) => assert.ok(f.a.includes(a), f.i + ': sinonim ' + a));
 }
-ok('Bahrom (brend yorlig\'i yo\'q): «Bahrom»/«Бахром»/«bahrom muzqaymoq»/«мороженое Бахром» → mos umumiy taomlar (Plombir vafli stakanchada, Eskimo, Rojok, …) «Balki» ro\'yxatida');
+for (const k of Object.keys(YQ).filter((x) => x.startsWith('bahroma-'))) assert.ok(/^https:\/\//.test(YQ[k].url) && YQ[k].k > 0, k + ': manba url');
+for (const q of ['Bahrom', 'Бахром', 'Bahroma', 'Бахрома', 'bahrom muzqaymoq', 'мороженое Бахром', 'мороженое Бахрома', 'bahrom eskimo', 'бахром эскимо']) { const r = top(q); assert.ok(r.filter((i) => i.startsWith('mz-bahroma-')).length >= 2, q + ' → ' + r.join(',')); }
+ok('Bahroma: ' + bh.length + ' tur — yorliq qiymati, manba havolasi, Atwater, porsiya; «Bahrom»/«Бахром»/«Bahroma»/«Бахрома»/«мороженое Бахром» → Bahroma mahsulotlari');
+const norm = (x) => ' ' + x.toLowerCase().replace(/[’'`‘ʻʼ´]/g, '').replace(/ё/g, 'е').replace(/\s+/g, ' ').trim() + ' ';
+const br = J.br; assert.ok(Array.isArray(br) && br.length >= 2, 'br');
+const rel = (q) => { const s = norm(q), out = []; br.forEach((b) => { if (b.a.some((a) => s.indexOf(' ' + a + ' ') >= 0)) b.f.forEach((i) => out.indexOf(i) < 0 && out.push(i)); }); return out; };
+for (const q of ['Bahrom', 'Бахром', 'Bahroma', 'Бахрома', 'bahrom muzqaymoq', 'мороженое Бахром']) { const r = rel(q); assert.ok(r.includes('mz-stakancha') && r.includes('mz-rojok') && r.includes('mz-sendvich'), q + ': yorlig\'i yo\'q turlar uchun umumiy taomlar «Balki»da'); assert.ok(!r.includes('mz-eskimo-glazur') && !r.includes('mz-plombir-briket') && !r.includes('mz-meva-bar'), q + ': yorlig\'i bor turlarning umumiy nusxasi takrorlanmaydi'); r.forEach((i) => assert.ok(by[i] && /^mz-/.test(i) && !/^mz-(48k|bahroma)-/.test(i), q + ': ' + i)); }
+ok('Bahroma: yorlig\'i yo\'q turlar (stakancha, rojok, sendvich, vafli, vanil) uchun umumiy taomlar «Balki»da; yorlig\'i borlari takrorlanmaydi');
 const r48 = rel('48 копеек'); assert.ok(!r48.includes('mz-stakancha') && !r48.includes('mz-eskimo-glazur') && r48.includes('mz-sendvich'), '48 копеек: yorlig\'i bor turlar umumiy ro\'yxatdan tushgan, yo\'qlari qolgan');
 ok('48 копеек: yorlig\'i bor turlarning umumiy nusxasi «Balki»da takrorlanmaydi, yo\'qlari (sendvich, vafli, vanil) qoladi');
 const app = fs.readFileSync(path.join(__dirname, '..', 'assets', 'kalkifit-app.js'), 'utf8'); assert.ok(/function brandRel\(/.test(app) && /brandRel\(qn\)/.test(app) && /dbBr = j\.br/.test(app), 'ilova brandRel');

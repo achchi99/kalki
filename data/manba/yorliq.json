@@ -1105,6 +1105,72 @@
    "p": 3.8,
    "f": 12,
    "c": 37
+  },
+  "bahroma-lukum-persik-dynya": {
+   "nom": "Мороженое Bahroma «Фруктовый лукум персик-дыня»",
+   "brand": "Bahroma (Шин-Лайн)",
+   "code": "",
+   "url": "https://zira.uz/ru/2018/05/30/interesnoe-na-polkah-morozhenoe-bahroma/",
+   "qadoq": "75 г",
+   "k": 140,
+   "p": 2.3,
+   "f": 2.8,
+   "c": 27.1
+  },
+  "bahroma-lukum-granat-chereshnya": {
+   "nom": "Мороженое Bahroma «Фруктовый лукум гранат-черешня»",
+   "brand": "Bahroma (Шин-Лайн)",
+   "code": "",
+   "url": "https://zira.uz/ru/2018/05/30/interesnoe-na-polkah-morozhenoe-bahroma/",
+   "qadoq": "75 г",
+   "k": 140,
+   "p": 2.3,
+   "f": 2.8,
+   "c": 27.1
+  },
+  "bahroma-kuraga-shokolad": {
+   "nom": "Мороженое Bahroma «Курага в двойном шоколаде»",
+   "brand": "Bahroma (Шин-Лайн)",
+   "code": "",
+   "url": "https://zira.uz/ru/2018/05/30/interesnoe-na-polkah-morozhenoe-bahroma/",
+   "qadoq": "75 г",
+   "k": 360,
+   "p": 3,
+   "f": 20.4,
+   "c": 40.6
+  },
+  "bahroma-funduk-nuga": {
+   "nom": "Мороженое Bahroma «Фундучно-шоколадная нуга»",
+   "brand": "Bahroma (Шин-Лайн)",
+   "code": "",
+   "url": "https://lavka.yandex.uz/good/morozhenoe-bahroma-funduchno-shokoladnaya-nuga-70-gram",
+   "qadoq": "70 г",
+   "k": 270,
+   "p": 3.8,
+   "f": 17.6,
+   "c": 22.4
+  },
+  "bahroma-led-melon": {
+   "nom": "Мороженое Bahroma «Лёд молочный Дыня (Melon эскимо)»",
+   "brand": "Bahroma (Шин-Лайн)",
+   "code": "",
+   "url": "https://vkusmart.vmv.kz/catalog/morozhenoe/179353/",
+   "qadoq": "68 г",
+   "k": 155,
+   "p": 4,
+   "f": 6,
+   "c": 21.5
+  },
+  "bahroma-medovik-pinta": {
+   "nom": "Мороженое Bahroma «Медовик, грецкий орех» (пинта, пломбир)",
+   "brand": "Bahroma (Шин-Лайн)",
+   "code": "",
+   "url": "https://p24.by/product/morozhenoe-bahroma-medovik-gretskiy-orekh-320g-shin-layn-kazakhstan-bahroma/",
+   "qadoq": "320 г",
+   "k": 280,
+   "p": 4.3,
+   "f": 15.3,
+   "c": 31
   }
  }
 }

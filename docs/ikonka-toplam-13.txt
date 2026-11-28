@@ -6,6 +6,7 @@ No logos, no brand names, no packaging text, no other text, no hands, no people,
 Traditional Uzbek (Central Asian) dishes must follow the description exactly — do not substitute Indian, Turkish or Russian versions. Branded snacks are drawn as a generic unbranded product.
 Keep the icons in exactly this order (left to right, top to bottom):
 ---
+v87-ays-matcha-latte — drink, served in a typical glass or cup: Айс матча латте (со льдом, сладкий) (Ays matcha latte (kafe, muzli, shirin)), realistic single serving, top-down three-quarter view, no text.
 v87-muzli-choy-qora — drink, served in a typical glass or cup: Холодный чай чёрный с лимоном (бутылка) (Muzli choy (qora, limonli, shishada, shirin)), realistic single serving, top-down three-quarter view, no text.
 v87-muzli-choy-kok — drink, served in a typical glass or cup: Холодный зелёный чай (бутылка) (Muzli ko'k choy (shishada, shirin)), realistic single serving, top-down three-quarter view, no text.
 v87-muzli-choy-shakarsiz — drink, served in a typical glass or cup: Холодный чай (без сахара) (Muzli choy (shakarsiz)), realistic single serving, top-down three-quarter view, no text.
@@ -47,4 +48,3 @@ v87-limonad-kivi — drink, served in a typical glass or cup: Лимонад с 
 v87-limonad-apelsin — drink, served in a typical glass or cup: Апельсиновый лимонад (кафе) (Kafe limonadi (apelsinli)), realistic single serving, top-down three-quarter view, no text.
 v87-limonad-tarvuz — drink, served in a typical glass or cup: Арбузный лимонад (кафе) (Kafe limonadi (tarvuzli)), realistic single serving, top-down three-quarter view, no text.
 v87-smuzi-qulupnay-banan — drink, served in a typical glass or cup: Смузи клубника-банан (Smuzi (qulupnay-banan, yogurtli)), realistic single serving, top-down three-quarter view, no text.
-v87-smuzi-yashil — drink, served in a typical glass or cup: Смузи зелёный (шпинат, яблоко, банан) (Smuzi (yashil: ismaloq, olma, banan, kivi)), realistic single serving, top-down three-quarter view, no text.
